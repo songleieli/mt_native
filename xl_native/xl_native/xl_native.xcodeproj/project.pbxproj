@@ -63,6 +63,11 @@
 		04183B0821C2BC2200383E3F /* CircleTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183AFB21C2BC2200383E3F /* CircleTextView.m */; };
 		04183B0921C2BC2200383E3F /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183AFC21C2BC2200383E3F /* NSString+Extension.m */; };
 		04183B0A21C2BC2200383E3F /* WebCacheHelpler.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183AFD21C2BC2200383E3F /* WebCacheHelpler.m */; };
+		04183B0E21C2BFF800383E3F /* QCloudCOSXML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04183B0C21C2BFF800383E3F /* QCloudCOSXML.framework */; };
+		04183B0F21C2BFF800383E3F /* QCloudCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04183B0D21C2BFF800383E3F /* QCloudCore.framework */; };
+		04183B1721C2C09600383E3F /* Callback_voice_purchase.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183B1121C2C09600383E3F /* Callback_voice_purchase.m */; };
+		04183B1821C2C09600383E3F /* Callback_token.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183B1321C2C09600383E3F /* Callback_token.m */; };
+		04183B1921C2C09600383E3F /* Callback_userInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183B1421C2C09600383E3F /* Callback_userInfo.m */; };
 		041D43EC21536CA900250555 /* VoiceAnimationHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 041D43EB21536CA900250555 /* VoiceAnimationHUD.m */; };
 		04274C7020EDC5CC00D4B5E2 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04274C6E20EDC5CC00D4B5E2 /* iCarousel.m */; };
 		0430A6DD2153C372002D49D3 /* NetWork_voice_order_add.m in Sources */ = {isa = PBXBuildFile; fileRef = 0430A6DC2153C372002D49D3 /* NetWork_voice_order_add.m */; };
@@ -941,8 +946,6 @@
 		04DCA87C21A55C5B00691A3A /* TXUGCPublishUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA86C21A55C5A00691A3A /* TXUGCPublishUtil.m */; };
 		04DCA87D21A55C5B00691A3A /* TVCReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA86D21A55C5A00691A3A /* TVCReport.m */; };
 		04DCA87E21A55C5B00691A3A /* TVCCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA86F21A55C5A00691A3A /* TVCCommon.m */; };
-		04DCA87F21A55C5B00691A3A /* QCloudCOSXML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DCA87221A55C5A00691A3A /* QCloudCOSXML.framework */; };
-		04DCA88021A55C5B00691A3A /* QCloudCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DCA87321A55C5A00691A3A /* QCloudCore.framework */; };
 		04DCA88121A55C5B00691A3A /* TVCClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA87721A55C5A00691A3A /* TVCClient.m */; };
 		04DCA88221A55C5B00691A3A /* TVCClientInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA87921A55C5A00691A3A /* TVCClientInner.m */; };
 		04DCA88921A55E3E00691A3A /* TCUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA88721A55E3D00691A3A /* TCUserInfoModel.m */; };
@@ -1555,6 +1558,14 @@
 		04183AFF21C2BC2200383E3F /* FocusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocusView.h; sourceTree = "<group>"; };
 		04183B0021C2BC2200383E3F /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		04183B0121C2BC2200383E3F /* FavoriteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteView.h; sourceTree = "<group>"; };
+		04183B0C21C2BFF800383E3F /* QCloudCOSXML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QCloudCOSXML.framework; sourceTree = "<group>"; };
+		04183B0D21C2BFF800383E3F /* QCloudCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QCloudCore.framework; sourceTree = "<group>"; };
+		04183B1121C2C09600383E3F /* Callback_voice_purchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Callback_voice_purchase.m; sourceTree = "<group>"; };
+		04183B1221C2C09600383E3F /* Callback_userInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Callback_userInfo.h; sourceTree = "<group>"; };
+		04183B1321C2C09600383E3F /* Callback_token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Callback_token.m; sourceTree = "<group>"; };
+		04183B1421C2C09600383E3F /* Callback_userInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Callback_userInfo.m; sourceTree = "<group>"; };
+		04183B1521C2C09600383E3F /* Callback_voice_purchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Callback_voice_purchase.h; sourceTree = "<group>"; };
+		04183B1621C2C09600383E3F /* Callback_token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Callback_token.h; sourceTree = "<group>"; };
 		041D43EA21536CA900250555 /* VoiceAnimationHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoiceAnimationHUD.h; sourceTree = "<group>"; };
 		041D43EB21536CA900250555 /* VoiceAnimationHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoiceAnimationHUD.m; sourceTree = "<group>"; };
 		04274C6E20EDC5CC00D4B5E2 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
@@ -2445,8 +2456,6 @@
 		04DCA86E21A55C5A00691A3A /* TVCClientInner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVCClientInner.h; sourceTree = "<group>"; };
 		04DCA86F21A55C5A00691A3A /* TVCCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVCCommon.m; sourceTree = "<group>"; };
 		04DCA87021A55C5A00691A3A /* TVCClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVCClient.h; sourceTree = "<group>"; };
-		04DCA87221A55C5A00691A3A /* QCloudCOSXML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QCloudCOSXML.framework; sourceTree = "<group>"; };
-		04DCA87321A55C5A00691A3A /* QCloudCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QCloudCore.framework; sourceTree = "<group>"; };
 		04DCA87421A55C5A00691A3A /* TVCReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVCReport.h; sourceTree = "<group>"; };
 		04DCA87521A55C5A00691A3A /* TXUGCPublishUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXUGCPublishUtil.h; sourceTree = "<group>"; };
 		04DCA87621A55C5A00691A3A /* TVCUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVCUtils.h; sourceTree = "<group>"; };
@@ -3125,6 +3134,7 @@
 				D954C6061DD1A40F003CA535 /* libc++.tbd in Frameworks */,
 				0400F31721AF96F10038E16C /* libWeChatSDK.a in Frameworks */,
 				D954C60C1DD1A40F003CA535 /* SystemConfiguration.framework in Frameworks */,
+				04183B0E21C2BFF800383E3F /* QCloudCOSXML.framework in Frameworks */,
 				04DCA82121A546AB00691A3A /* Accelerate.framework in Frameworks */,
 				04CBC2D72179C01200658E47 /* libmp3lame.a in Frameworks */,
 				04CBC3112179C01300658E47 /* libWeiboSDK.a in Frameworks */,
@@ -3136,13 +3146,12 @@
 				D97F7D621E5541EB001DD916 /* Contacts.framework in Frameworks */,
 				0400F30D21AF8CD60038E16C /* TencentOpenAPI.framework in Frameworks */,
 				D97F7D5E1E553E7C001DD916 /* CoreLocation.framework in Frameworks */,
-				04DCA88021A55C5B00691A3A /* QCloudCore.framework in Frameworks */,
 				D954C6101DD1A40F003CA535 /* UIKit.framework in Frameworks */,
 				04DCA81F21A5458300691A3A /* TXLiteAVSDK_UGC_IJK.framework in Frameworks */,
 				D97F7D611E5541DD001DD916 /* AudioToolbox.framework in Frameworks */,
 				D954C60F1DD1A40F003CA535 /* Foundation.framework in Frameworks */,
 				D97F7D5F1E55415E001DD916 /* AVFoundation.framework in Frameworks */,
-				04DCA87F21A55C5B00691A3A /* QCloudCOSXML.framework in Frameworks */,
+				04183B0F21C2BFF800383E3F /* QCloudCore.framework in Frameworks */,
 				D954C5F71DD1A40F003CA535 /* MobileCoreServices.framework in Frameworks */,
 				D954C5F81DD1A40F003CA535 /* CoreText.framework in Frameworks */,
 				D954C5F91DD1A40F003CA535 /* ImageIO.framework in Frameworks */,
@@ -3336,6 +3345,28 @@
 				04183B0121C2BC2200383E3F /* FavoriteView.h */,
 			);
 			path = DouyinView;
+			sourceTree = "<group>";
+		};
+		04183B0B21C2BFF800383E3F /* COSSDK */ = {
+			isa = PBXGroup;
+			children = (
+				04183B0C21C2BFF800383E3F /* QCloudCOSXML.framework */,
+				04183B0D21C2BFF800383E3F /* QCloudCore.framework */,
+			);
+			path = COSSDK;
+			sourceTree = "<group>";
+		};
+		04183B1021C2C09600383E3F /* WebH5Demo */ = {
+			isa = PBXGroup;
+			children = (
+				04183B1121C2C09600383E3F /* Callback_voice_purchase.m */,
+				04183B1221C2C09600383E3F /* Callback_userInfo.h */,
+				04183B1321C2C09600383E3F /* Callback_token.m */,
+				04183B1421C2C09600383E3F /* Callback_userInfo.m */,
+				04183B1521C2C09600383E3F /* Callback_voice_purchase.h */,
+				04183B1621C2C09600383E3F /* Callback_token.h */,
+			);
+			path = WebH5Demo;
 			sourceTree = "<group>";
 		};
 		041D43E921536C5A00250555 /* Tool */ = {
@@ -4849,7 +4880,6 @@
 				04DCA86E21A55C5A00691A3A /* TVCClientInner.h */,
 				04DCA86F21A55C5A00691A3A /* TVCCommon.m */,
 				04DCA87021A55C5A00691A3A /* TVCClient.h */,
-				04DCA87121A55C5A00691A3A /* COSSDK */,
 				04DCA87421A55C5A00691A3A /* TVCReport.h */,
 				04DCA87521A55C5A00691A3A /* TXUGCPublishUtil.h */,
 				04DCA87621A55C5A00691A3A /* TVCUtils.h */,
@@ -4868,15 +4898,6 @@
 				04DCA86B21A55C5A00691A3A /* TXUGCPublish.h */,
 			);
 			path = include;
-			sourceTree = "<group>";
-		};
-		04DCA87121A55C5A00691A3A /* COSSDK */ = {
-			isa = PBXGroup;
-			children = (
-				04DCA87221A55C5A00691A3A /* QCloudCOSXML.framework */,
-				04DCA87321A55C5A00691A3A /* QCloudCore.framework */,
-			);
-			path = COSSDK;
 			sourceTree = "<group>";
 		};
 		04DCA88321A55CA000691A3A /* UGCPublish */ = {
@@ -5464,6 +5485,7 @@
 		7375C1FC1CE566460059974F /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				04183B0B21C2BFF800383E3F /* COSSDK */,
 				0482F24A21BFCA7B00587B38 /* Masonry */,
 				0400F30F21AF96F10038E16C /* OpenSDK1.8.3 */,
 				0400F30821AF8CD50038E16C /* QQShare */,
@@ -6073,6 +6095,7 @@
 		D9DD56BB1DD44D580031085B /* MTBase */ = {
 			isa = PBXGroup;
 			children = (
+				04183B1021C2C09600383E3F /* WebH5Demo */,
 				D9DD56BE1DD44D780031085B /* ZJBaseViewController.h */,
 				D9DD56BF1DD44D780031085B /* ZJBaseViewController.m */,
 				04E28F63218AA915006A91DA /* XLBaseTableMJViewController.h */,
@@ -7224,6 +7247,7 @@
 				04DCA85C21A5580300691A3A /* TCLog.m in Sources */,
 				0441A2612146687F0077EA1F /* Network_topicCommentReply.m in Sources */,
 				04C2615D21A68FB200374E4D /* TCBGMListViewController.m in Sources */,
+				04183B1921C2C09600383E3F /* Callback_userInfo.m in Sources */,
 				04CBC3EB2179C01300658E47 /* GPUImageMaskFilter.m in Sources */,
 				0435493121A7E9AC00AED5A8 /* AFURLRequestSerialization.m in Sources */,
 				04B0E1E621A6937600ABCF16 /* NSSet+BlocksKit.m in Sources */,
@@ -7485,6 +7509,7 @@
 				04CBC3932179C01300658E47 /* GPUImageToonFilter.m in Sources */,
 				04CBC37F2179C01300658E47 /* GPUImageOverlayBlendFilter.m in Sources */,
 				04CBC3A72179C01300658E47 /* GPUImageSepiaFilter.m in Sources */,
+				04183B1721C2C09600383E3F /* Callback_voice_purchase.m in Sources */,
 				0435493521A7E9AC00AED5A8 /* AFSecurityPolicy.m in Sources */,
 				04CBC3432179C01300658E47 /* GPUImageWeakPixelInclusionFilter.m in Sources */,
 				0482F26E21BFCA7C00587B38 /* NSArray+MASAdditions.m in Sources */,
@@ -7529,6 +7554,7 @@
 				04CBC3DF2179C01300658E47 /* GPUImageToneCurveFilter.m in Sources */,
 				04CBC4572179C01300658E47 /* GPUImageLuminosityBlendFilter.m in Sources */,
 				0482F27621BFCA7C00587B38 /* MASViewAttribute.m in Sources */,
+				04183B1821C2C09600383E3F /* Callback_token.m in Sources */,
 				0449AB6B2181BBF100D6172D /* RegisterViewController.m in Sources */,
 				04DCA8ED21A565D500691A3A /* VideoPasterView.m in Sources */,
 				04CBC4152179C01300658E47 /* GPUImageRawDataInput.m in Sources */,
@@ -7907,7 +7933,7 @@
 					"$(PROJECT_DIR)/xl_native/3rd/lib",
 					"$(PROJECT_DIR)/lib",
 					"$(PROJECT_DIR)/xl_native/3rd",
-					"$(PROJECT_DIR)/xl_native/ProjectSrc/xl_native/Guangchang/VideoUpload/COSSDK",
+					"$(PROJECT_DIR)/xl_native/3rd/COSSDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "xl_native/xl_native-Prefix.pch";
@@ -7983,7 +8009,7 @@
 					"$(PROJECT_DIR)/xl_native/3rd/lib",
 					"$(PROJECT_DIR)/lib",
 					"$(PROJECT_DIR)/xl_native/3rd",
-					"$(PROJECT_DIR)/xl_native/ProjectSrc/xl_native/Guangchang/VideoUpload/COSSDK",
+					"$(PROJECT_DIR)/xl_native/3rd/COSSDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "xl_native/xl_native-Prefix.pch";
