@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SwitchPlayerMaskView.h"
 #import "SwitchPlayerMaskView_temp.h"
-
 #import "NetWork_mt_home_list.h"
 
 @interface SwitchPlayerView : UIView<SwitchPlayerMaskViewDelegate_Temp>

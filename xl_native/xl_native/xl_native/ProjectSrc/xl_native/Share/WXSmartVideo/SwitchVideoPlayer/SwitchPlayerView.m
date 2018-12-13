@@ -197,10 +197,12 @@ typedef NS_ENUM(NSInteger, CLPlayerState) {
 
 - (void)moviePlayDidEnd:(id)sender{
     [self.maskView showPlayBtn];
-    [self pausePlay];
+    [self resetPlay];
+//    [self pausePlay];
 }
 
 - (void)pausePlay{
+    [self.maskView showPlayBtn];
     [_player pause];
 }
 - (void)playVideo{
@@ -235,7 +237,8 @@ typedef NS_ENUM(NSInteger, CLPlayerState) {
 - (void)resetPlay{
     
     [_player seekToTime:CMTimeMake(0, 1) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
-    [self playVideo];
+    [_player pause];
+//    [self playVideo];
 }
 
 #pragma mark ---------SwitchPlayerMaskViewDelegate-------------
@@ -259,8 +262,16 @@ typedef NS_ENUM(NSInteger, CLPlayerState) {
 //    }
 //}
 
-- (void)playButtonAction:(UIButton *)button{
-    [self resetPlay];
+- (void)playButtonAction:(BOOL)isPlay{
+    
+    if(isPlay){
+        [self playVideo];
+    }
+    else{
+        [self pausePlay];
+    }
+    
+    //[self resetPlay];
 }
 
 /*点赞*/

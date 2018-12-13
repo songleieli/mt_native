@@ -33,7 +33,7 @@
 - (void)musicCdAction;///< 旋转CD
 
 /**播放按钮*/
-- (void)playButtonAction:(UIButton *)button;
+- (void)playButtonAction:(BOOL)isPlay;
 
 /*关注*/
 - (void)followButtonAction:(FocusView *)button;
@@ -78,10 +78,12 @@
 @property (nonatomic ,strong) UIImageView      *pauseIcon;
 
 @property (nonatomic, strong) UITapGestureRecognizer   *singleTapGesture;
+@property (nonatomic, assign) NSTimeInterval           lastTapTime;    //上一次点击事件
+@property (nonatomic, assign) CGPoint                  lastTapPoint;   //上一次点击Point
 
 
-/**播放按钮*/
-@property(nonatomic,strong) UIButton * btnPlay;
+///**播放按钮*/
+//@property(nonatomic,strong) UIButton * btnPlay;
 
 /*视频model*/
 @property (nonatomic, strong) HomeListModel *listLoginModel;
