@@ -24,16 +24,26 @@
         
         _imageView = [[UIImageView alloc] initWithFrame:ScreenFrame];
         __weak typeof(self) wself = self;
-        [_imageView setImageWithURL:[NSURL URLWithString:urlPath] progressBlock:^(CGFloat persent) {
-            [wself.progressView setProgress:persent];
-        } completedBlock:^(UIImage *image, NSError *error) {
-            if(!error) {
-                [wself.imageView setImage:image];
-                [wself.progressView setHidden:YES];
-            }else {
-                [wself.progressView setTipHidden:NO];
-            }
+        [_imageView sd_setImageWithURL:[NSURL URLWithString:urlPath] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                        if(!error) {
+                            [wself.imageView setImage:image];
+                            [wself.progressView setHidden:YES];
+                        }else {
+                            [wself.progressView setTipHidden:NO];
+                        }
         }];
+        
+//        [_imageView setImageWithURL:[NSURL URLWithString:urlPath] progressBlock:^(CGFloat persent) {
+//            [wself.progressView setProgress:persent];
+//        } completedBlock:^(UIImage *image, NSError *error) {
+//            if(!error) {
+//                [wself.imageView setImage:image];
+//                [wself.progressView setHidden:YES];
+//            }else {
+//                [wself.progressView setTipHidden:NO];
+//            }
+//        }];
+        
         _imageView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:_imageView];
         
@@ -57,9 +67,8 @@
         _imageView = [[UIImageView alloc] initWithFrame:ScreenFrame];
         _imageView.image = image;
         __weak typeof(self) wself = self;
-        [_imageView setImageWithURL:[NSURL URLWithString:urlPath] progressBlock:^(CGFloat percent) {
-            [wself.progressView setProgress:percent];
-        } completedBlock:^(UIImage *image, NSError *error) {
+        
+        [_imageView sd_setImageWithURL:[NSURL URLWithString:urlPath] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if(!error) {
                 [wself.imageView setImage:image];
                 [wself.progressView setHidden:YES];
@@ -67,6 +76,19 @@
                 [wself.progressView setTipHidden:NO];
             }
         }];
+        
+//        [_imageView setImageWithURL:[NSURL URLWithString:urlPath] progressBlock:^(CGFloat percent) {
+//            [wself.progressView setProgress:percent];
+//        } completedBlock:^(UIImage *image, NSError *error) {
+//            if(!error) {
+//                [wself.imageView setImage:image];
+//                [wself.progressView setHidden:YES];
+//            }else {
+//                [wself.progressView setTipHidden:NO];
+//            }
+//        }];
+        
+        
         _imageView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:_imageView];
         

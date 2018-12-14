@@ -321,7 +321,7 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
         make.height.mas_equalTo(40);
         make.left.right.bottom.equalTo(self);
     }];
-    [_slideTabBar setLabels:@[@"作品0",@"喜欢0"] tabIndex:0];
+    [_slideTabBar setLabels:@[@"作品0",@"消息0",@"喜欢0"] tabIndex:0];
 }
 
 - (void)initData:(User *)user {
@@ -344,7 +344,10 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
     [_followNum setText:[NSString stringWithFormat:@"%ld%@",(long)user.following_count,@"关注"]];
     [_followedNum setText:[NSString stringWithFormat:@"%ld%@",(long)user.follower_count,@"粉丝"]];
     
-    [_slideTabBar setLabels:@[[@"作品" stringByAppendingString:[NSString stringWithFormat:@"%ld", (long)user.aweme_count]],[@"喜欢" stringByAppendingString:[NSString stringWithFormat:@"%ld", (long)user.favoriting_count]]] tabIndex:0];
+    [_slideTabBar setLabels:@[[@"作品" stringByAppendingString:[NSString stringWithFormat:@"%ld", (long)user.aweme_count]],
+                              [@"动态" stringByAppendingString:[NSString stringWithFormat:@"%ld", (long)user.favoriting_count]],
+                              [@"喜欢" stringByAppendingString:[NSString stringWithFormat:@"%ld", (long)user.favoriting_count]]]
+                   tabIndex:0];
 }
 
 - (void)onTapAction:(UITapGestureRecognizer *)sender {

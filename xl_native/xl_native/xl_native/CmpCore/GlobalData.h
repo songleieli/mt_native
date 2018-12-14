@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "NetWork_mt_login.h"
-//#import "NetWork_adminLogin.h"
 
 @interface GlobalData : NSObject
 

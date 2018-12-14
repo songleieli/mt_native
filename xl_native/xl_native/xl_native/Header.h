@@ -67,7 +67,6 @@
 #import "NetWork_hotTopic.h"
 #import "NetWork_himInfo.h"
 #import "NetWork_myFansList.h"
-#import "NetWork_checkUserToken.h"
 #import "NetWork_myWelfareTicket.h"
 #import "NetWork_homePlan.h"
 #import "NetWork_orderList.h"

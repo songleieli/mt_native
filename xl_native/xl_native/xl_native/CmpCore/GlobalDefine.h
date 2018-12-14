@@ -275,6 +275,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define kUserInfoHeaderHeight          350 + SafeAreaTopHeight
 #define kSlideTabBarHeight             40
 #define StatusBarHeight [UIApplication sharedApplication].statusBarFrame.size.height
+#define ScreenFrame [UIScreen mainScreen].bounds
 
 
 

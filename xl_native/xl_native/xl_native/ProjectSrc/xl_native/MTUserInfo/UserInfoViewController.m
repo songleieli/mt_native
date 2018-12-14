@@ -67,7 +67,19 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 }
 
 -(void)initNavTitle{
-    self.isNavBackGroundHiden  = YES;
+    self.isNavBackGroundHiden  = NO;
+    self.lableNavTitle.textColor = [UIColor clearColor];
+    self.lableNavTitle.font = [UIFont defaultBoldFontWithSize:20];
+    
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftButton.size = [UIView getSize_width:20 height:20];
+    leftButton.origin = [UIView getPoint_x:15.0f y:self.navBackGround.height -leftButton.height-11];
+    [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_titlebar_whiteback"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    self.btnLeft = leftButton;
+    self.navBackGround.backgroundColor = [UIColor clearColor]; //标注颜色，方便调试
 }
 
 
@@ -108,6 +120,9 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     [_collectionView registerClass:[AwemeCollectionCell class] forCellWithReuseIdentifier:kAwemeCollectionCell];
     [self.view addSubview:_collectionView];
     
+    [self.view bringSubviewToFront:self.navBackGround]; //将d导航栏，放到最上层。
+
+    
     _loadMore = [[LoadMoreControl alloc] initWithFrame:CGRectMake(0, kUserInfoHeaderHeight, ScreenWidth, 50) surplusCount:15];
     [_loadMore startLoading];
     __weak __typeof(self) wself = self;
@@ -115,7 +130,6 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         [wself loadData:wself.pageIndex pageSize:wself.pageSize];
     }];
     [_collectionView addSubview:_loadMore];
-    
 }
 
 #pragma -mark ----------HTTP data request----------
@@ -248,18 +262,24 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 }
 
 
-//- (void)updateNavigationTitle:(CGFloat)offsetY {
-//    if (kUserInfoHeaderHeight - [self navagationBarHeight]*2 > offsetY) {
-//        [self setNavigationBarTitleColor:ColorClear];
-//    }
-//    if (kUserInfoHeaderHeight - [self navagationBarHeight]*2 < offsetY && offsetY < kUserInfoHeaderHeight - [self navagationBarHeight]) {
-//        CGFloat alphaRatio =  1.0f - (kUserInfoHeaderHeight - [self navagationBarHeight] - offsetY)/[self navagationBarHeight];
-//        [self setNavigationBarTitleColor:[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:alphaRatio]];
-//    }
-//    if (offsetY > kUserInfoHeaderHeight - [self navagationBarHeight]) {
-//        [self setNavigationBarTitleColor:ColorWhite];
-//    }
-//}
+- (void)updateNavigationTitle:(CGFloat)offsetY {
+    if (kUserInfoHeaderHeight - self.navBackGround.height*2 > offsetY) {
+        //[self setNavigationBarTitleColor:ColorClear];
+        
+        self.lableNavTitle.textColor = [UIColor clearColor];
+        
+    }
+    if (kUserInfoHeaderHeight - self.navBackGround.height*2 < offsetY && offsetY < kUserInfoHeaderHeight - self.navBackGround.height) {
+        CGFloat alphaRatio =  1.0f - (kUserInfoHeaderHeight - self.navBackGround.height - offsetY)/self.navBackGround.height;
+        //[self setNavigationBarTitleColor:[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:alphaRatio]];
+        
+         self.lableNavTitle.textColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:alphaRatio];
+    }
+    if (offsetY > kUserInfoHeaderHeight - self.navBackGround.height) {
+        //[self setNavigationBarTitleColor:ColorWhite];
+        self.lableNavTitle.textColor = [UIColor whiteColor];
+    }
+}
 
 //
 
@@ -326,7 +346,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         [_userInfoHeader overScrollAction:offsetY];
     }else {
         [_userInfoHeader scrollToTopAction:offsetY];
-//        [self updateNavigationTitle:offsetY];
+        [self updateNavigationTitle:offsetY];
     }
 }
 
@@ -341,6 +361,74 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
             [self loadData:_pageIndex pageSize:_pageSize];
         }
 //    }
+}
+
+
+//UserActionTap
+
+#pragma -mark ------------UserInfoDelegate---------
+- (void)onUserActionTap:(NSInteger)tag {
+    switch (tag) {
+        case UserInfoHeaderAvatarTag: {
+            PhotoView *photoView = [[PhotoView alloc] initWithUrl:_user.avatar_medium.url_list.firstObject];
+            [photoView show];
+            break;
+        }
+        case UserInfoHeaderSendTag:
+            //[self.navigationController pushViewController:[[ChatListController alloc] init] animated:YES];
+            break;
+        case UserInfoHeaderFocusCancelTag:
+        case UserInfoHeaderFocusTag:{
+            if(_userInfoHeader) {
+                [_userInfoHeader startFocusAnimation];
+            }
+            break;
+        }
+        case UserInfoHeaderSettingTag:{
+            MenuPopView *menu = [[MenuPopView alloc] initWithTitles:@[@"清除缓存"]];
+            [menu setOnAction:^(NSInteger index) {
+//                [[WebCacheHelpler sharedWebCache] clearCache:^(NSString *cacheSize) {
+//                    [UIWindow showTips:[NSString stringWithFormat:@"已经清除%@M缓存",cacheSize]];
+//                }];
+            }];
+            [menu show];
+            break;
+        }
+            break;
+        case UserInfoHeaderGithubTag:
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/sshiqiao/douyin-ios-objectc"]];
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma -mark ------------OnTabTapDelegate---------
+
+- (void)onTabTapAction:(NSInteger)index {
+    if(_tabIndex == index){
+        return;
+    }
+    _tabIndex = index;
+    _pageIndex = 0;
+    
+    [UIView setAnimationsEnabled:NO];
+    [self.collectionView performBatchUpdates:^{
+        [self.workAwemes removeAllObjects];
+        [self.favoriteAwemes removeAllObjects];
+        
+        if([self.collectionView numberOfItemsInSection:1]) {
+            [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:1]];
+        }
+    } completion:^(BOOL finished) {
+        [UIView setAnimationsEnabled:YES];
+        
+        [self.loadMore reset];
+        [self.loadMore startLoading];
+        
+        [self loadData:self.pageIndex pageSize:self.pageSize];
+    }];
+    
 }
 
 

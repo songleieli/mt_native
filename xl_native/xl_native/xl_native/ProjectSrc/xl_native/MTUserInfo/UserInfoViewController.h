@@ -14,10 +14,16 @@
 #import "UserInfoHeader.h"
 #import "AwemeCollectionCell.h"
 #import "LoadMoreControl.h"
+#import "PhotoView.h"
+#import "MenuPopView.h"
 
 
 
-@interface UserInfoViewController : ZJCustomTabBarLjhTableViewController<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface UserInfoViewController : ZJCustomTabBarLjhTableViewController<UICollectionViewDelegate,
+                                                                    UICollectionViewDataSource,
+                                                                    UICollectionViewDelegateFlowLayout,
+                                                                    UserInfoDelegate,
+                                                                    OnTabTapActionDelegate>
 
 
 @property (nonatomic, strong) UICollectionView                 *collectionView;
