@@ -34,6 +34,7 @@
 		0403661721C378B6000FDC5E /* PhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661621C378B6000FDC5E /* PhotoView.m */; };
 		0403661A21C37910000FDC5E /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661821C37910000FDC5E /* CircleProgressView.m */; };
 		0403661D21C37A4C000FDC5E /* MenuPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661B21C37A4B000FDC5E /* MenuPopView.m */; };
+		0403662021C3A5D1000FDC5E /* CommentsPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661E21C3A5D1000FDC5E /* CommentsPopView.m */; };
 		0409B5DD21805DCB00528251 /* NetWork_homePlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 0409B5DC21805DCB00528251 /* NetWork_homePlan.m */; };
 		0409B5E72180795900528251 /* NetWork_orderList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0409B5E62180795900528251 /* NetWork_orderList.m */; };
 		0409B5EB21807E7500528251 /* XLOrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0409B5E921807E7500528251 /* XLOrderListCell.m */; };
@@ -1498,6 +1499,8 @@
 		0403661921C37910000FDC5E /* CircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleProgressView.h; sourceTree = "<group>"; };
 		0403661B21C37A4B000FDC5E /* MenuPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuPopView.m; sourceTree = "<group>"; };
 		0403661C21C37A4B000FDC5E /* MenuPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuPopView.h; sourceTree = "<group>"; };
+		0403661E21C3A5D1000FDC5E /* CommentsPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsPopView.m; sourceTree = "<group>"; };
+		0403661F21C3A5D1000FDC5E /* CommentsPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsPopView.h; sourceTree = "<group>"; };
 		0409B5DB21805DCB00528251 /* NetWork_homePlan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetWork_homePlan.h; sourceTree = "<group>"; };
 		0409B5DC21805DCB00528251 /* NetWork_homePlan.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetWork_homePlan.m; sourceTree = "<group>"; };
 		0409B5E52180795900528251 /* NetWork_orderList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetWork_orderList.h; sourceTree = "<group>"; };
@@ -5811,6 +5814,8 @@
 		D904E95C1DD1D6DB00C7E45E /* MTCommon */ = {
 			isa = PBXGroup;
 			children = (
+				0403661F21C3A5D1000FDC5E /* CommentsPopView.h */,
+				0403661E21C3A5D1000FDC5E /* CommentsPopView.m */,
 				04183AEE21C2BC2200383E3F /* SwitchVideoPlayer */,
 				D904E95D1DD1D6DB00C7E45E /* ZJCustomTabBar */,
 			);
@@ -7550,6 +7555,7 @@
 				04CBC37B2179C01300658E47 /* GPUImageExclusionBlendFilter.m in Sources */,
 				04CBC4812179C01300658E47 /* SDWebImagePrefetcher.m in Sources */,
 				04CBC3C92179C01300658E47 /* GPUImageBoxBlurFilter.m in Sources */,
+				0403662021C3A5D1000FDC5E /* CommentsPopView.m in Sources */,
 				04CBC3AF2179C01300658E47 /* GPUImageDifferenceBlendFilter.m in Sources */,
 				04274C7020EDC5CC00D4B5E2 /* iCarousel.m in Sources */,
 				0482F26C21BFCA7C00587B38 /* MASLayoutConstraint.m in Sources */,

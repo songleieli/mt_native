@@ -328,6 +328,10 @@
 - (void)commentClicked:(HomeListModel *)listModel{
     
     NSLog(@"----------点击查看评论----------");
+    
+    
+    CommentsPopView *popView = [[CommentsPopView alloc] initWithAwemeId:@"131231"];
+    [popView show];
 }
 
 - (void)shareClicked:(HomeListModel *)listModel{

@@ -9,7 +9,7 @@
 #import "CommentsPopView.h"
 #import "MenuPopView.h"
 #import "LoadMoreControl.h"
-#import "NetworkHelper.h"
+//#import "NetworkHelper.h"
 #import "Comment.h"
 
 NSString * const kCommentListCell     = @"CommentListCell";
@@ -44,7 +44,7 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
         [self addGestureRecognizer:tapGestureRecognizer];
         
         _awemeId = awemeId;
-        _vistor = readVisitor();
+        //_vistor = readVisitor();
         
         _pageIndex = 0;
         _pageSize = 20;
@@ -120,6 +120,10 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
 
 // comment textView delegate
 -(void)onSendText:(NSString *)text {
+    
+    
+    
+    /*
     __weak __typeof(self) wself = self;
     PostCommentRequest *request = [PostCommentRequest new];
     request.aweme_id = _awemeId;
@@ -139,6 +143,8 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
         [UIWindow showTips:@"评论失败"];
     }];
     
+    
+    
     Comment *comment = [[Comment alloc] init:_awemeId text:text taskId:task.taskIdentifier];
     comment.user_type = @"visitor";
     comment.visitor = _vistor;
@@ -150,6 +156,8 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
     [_tableView endUpdates];
     [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     [UIView setAnimationsEnabled:YES];
+    
+    */
 }
 
 // tableView delegate
@@ -172,6 +180,9 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    /*
+    
     Comment *comment = _data[indexPath.row];
     if(!comment.isTemp && [@"visitor" isEqualToString:comment.user_type] && [MD5_UDID isEqualToString:comment.visitor.udid]) {
         MenuPopView *menu = [[MenuPopView alloc] initWithTitles:@[@"删除"]];
@@ -181,10 +192,15 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
         };
         [menu show];
     }
+    
+     */
+    
 }
 
 //delete comment
 - (void)deleteComment:(Comment *)comment {
+    
+    /*
     __weak __typeof(self) wself = self;
     DeleteCommentRequest *request = [DeleteCommentRequest new];
     request.cid = comment.cid;
@@ -199,6 +215,8 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
     } failure:^(NSError *error) {
         [UIWindow showTips:@"评论删除失败"];
     }];
+    */
+    
 }
 
 //guesture
@@ -256,6 +274,8 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
 
 //load data
 - (void)loadData:(NSInteger)pageIndex pageSize:(NSInteger)pageSize {
+    
+    /*
     __weak __typeof(self) wself = self;
     CommentListRequest *request = [CommentListRequest new];
     request.page = pageIndex;
@@ -287,6 +307,8 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
     } failure:^(NSError *error) {
         [wself.loadMore loadingFailed];
     }];
+    */
+    
 }
 
 //UIScrollViewDelegate Delegate
@@ -391,6 +413,9 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
 }
 
 -(void)initData:(Comment *)comment {
+    
+    /*
+    
     NSURL *avatarUrl;
     if([@"user" isEqualToString:comment.user_type]) {
         avatarUrl = [NSURL URLWithString:comment.user.avatar_thumb.url_list.firstObject];
@@ -409,13 +434,21 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
     _date.text = [NSDate formatTime:comment.create_time];
     _likeNum.text = [NSString formatCount:comment.digg_count];
     
+    */
+    
 }
 
 +(CGFloat)cellHeight:(Comment *)comment {
+    
+    /*
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:comment.text];
     [attributedString addAttribute:NSFontAttributeName value:MediumFont range:NSMakeRange(0, attributedString.length)];
     CGSize size = [attributedString multiLineSize:MaxContentWidth];
     return size.height + 30 + SmallFont.lineHeight * 2;
+    */
+    
+    return 0.0f;
+    
 }
 @end
 
@@ -509,7 +542,7 @@ static const CGFloat kCommentTextViewTopBottomInset          = 15;
 
 //keyboard notification
 - (void)keyboardWillShow:(NSNotification *)notification {
-    _keyboardHeight = [notification keyBoardHeight];
+//    _keyboardHeight = [notification keyBoardHeight];
     [self updateTextViewFrame];
     _atImageView.image = [UIImage imageNamed:@"iconBlackaBefore"];
     _container.backgroundColor = ColorWhite;
@@ -535,7 +568,7 @@ static const CGFloat kCommentTextViewTopBottomInset          = 15;
         _textHeight = ceilf(_textView.font.lineHeight);
     }else {
         [_placeholderLabel setHidden:YES];
-        _textHeight = [attributedText multiLineSize:ScreenWidth - kCommentTextViewLeftInset - kCommentTextViewRightInset].height;
+        //_textHeight = [attributedText multiLineSize:ScreenWidth - kCommentTextViewLeftInset - kCommentTextViewRightInset].height;
     }
     [self updateTextViewFrame];
 }

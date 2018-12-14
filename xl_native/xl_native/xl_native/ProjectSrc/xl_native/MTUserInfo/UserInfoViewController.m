@@ -354,7 +354,8 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     return  CGSizeMake(_itemWidth, _itemHeight);
 }
 
-//UIScrollViewDelegate Delegate
+#pragma -mark ------------UIScrollViewDelegate---------
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat offsetY = scrollView.contentOffset.y;
     if (offsetY < 0) {
@@ -365,6 +366,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     }
 }
 
+#pragma -mark ------------Custom Method---------
 
 -(void)backBtnClick:(UIButton*)btn{
     [self.navigationController popViewControllerAnimated:YES];
