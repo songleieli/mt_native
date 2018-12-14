@@ -3312,9 +3312,9 @@
 		04183AEE21C2BC2200383E3F /* SwitchVideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				04183AF121C2BC2200383E3F /* SwitchPlayerMaskView_temp.h */,
 				04183AEF21C2BC2200383E3F /* SwitchPlayerMaskView_temp.m */,
 				04183AF021C2BC2200383E3F /* SwitchPlayerView.h */,
-				04183AF121C2BC2200383E3F /* SwitchPlayerMaskView_temp.h */,
 				04183AF221C2BC2200383E3F /* SwitchPlayerView.m */,
 				04183AF321C2BC2200383E3F /* DouyinView */,
 			);
@@ -3325,19 +3325,19 @@
 			isa = PBXGroup;
 			children = (
 				04183AF421C2BC2200383E3F /* MusicAlbumView.m */,
-				04183AF521C2BC2200383E3F /* WebCacheHelpler.h */,
 				04183AF621C2BC2200383E3F /* NSString+Extension.h */,
-				04183AF721C2BC2200383E3F /* CircleTextView.h */,
-				04183AF821C2BC2200383E3F /* FavoriteView.m */,
-				04183AF921C2BC2200383E3F /* UIImage+Extension.m */,
-				04183AFA21C2BC2200383E3F /* FocusView.m */,
-				04183AFB21C2BC2200383E3F /* CircleTextView.m */,
 				04183AFC21C2BC2200383E3F /* NSString+Extension.m */,
+				04183AF721C2BC2200383E3F /* CircleTextView.h */,
+				04183AFB21C2BC2200383E3F /* CircleTextView.m */,
+				04183AFF21C2BC2200383E3F /* FocusView.h */,
+				04183AFA21C2BC2200383E3F /* FocusView.m */,
+				04183B0121C2BC2200383E3F /* FavoriteView.h */,
+				04183AF821C2BC2200383E3F /* FavoriteView.m */,
+				04183B0021C2BC2200383E3F /* UIImage+Extension.h */,
+				04183AF921C2BC2200383E3F /* UIImage+Extension.m */,
+				04183AF521C2BC2200383E3F /* WebCacheHelpler.h */,
 				04183AFD21C2BC2200383E3F /* WebCacheHelpler.m */,
 				04183AFE21C2BC2200383E3F /* MusicAlbumView.h */,
-				04183AFF21C2BC2200383E3F /* FocusView.h */,
-				04183B0021C2BC2200383E3F /* UIImage+Extension.h */,
-				04183B0121C2BC2200383E3F /* FavoriteView.h */,
 			);
 			path = DouyinView;
 			sourceTree = "<group>";

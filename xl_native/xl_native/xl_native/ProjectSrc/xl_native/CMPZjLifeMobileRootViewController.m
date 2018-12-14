@@ -73,6 +73,7 @@
         _userInfoViewController = [[UserInfoViewController alloc]init];
         _userInfoViewController.selectedIndex = 4;
         _userInfoViewController.changeIndexDelegate = self;
+        _userInfoViewController.fromType = FromTypeMy; //我的页面，需要隐藏返回按钮，显示TabBar
     }
     return _userInfoViewController;
 }

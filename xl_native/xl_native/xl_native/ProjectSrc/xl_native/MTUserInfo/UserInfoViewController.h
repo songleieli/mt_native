@@ -8,6 +8,17 @@
 
 
 
+//typedef enum{
+//    kFavoriteViewLikeBeforeTag,
+//    kFavoriteViewLikeAfterTag
+//}kFavoriteViewType;
+
+typedef enum{
+    FromTypeMy,
+    FromTypeHome,
+    
+}FromType;
+
 
 
 #import "ZJCustomTabBarLjhTableViewController.h"
@@ -31,5 +42,7 @@
 @property (nonatomic, strong) User                             *user;
 @property (nonatomic, strong) UserInfoHeader                   *userInfoHeader;
 @property (nonatomic, strong) LoadMoreControl                  *loadMore;
+
+@property (nonatomic, assign) FromType                        fromType;
 
 @end

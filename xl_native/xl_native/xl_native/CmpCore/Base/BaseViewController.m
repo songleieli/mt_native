@@ -105,10 +105,12 @@
         [_btnLeft removeFromSuperview];
         _btnLeft = nil;
 //        self.btnLeft.size = CGSizeMake(50, 50 );
-        _btnLeft.left = 0;
-        _btnLeft.top = self.navBackGround.height - btnLeft.height;
-        [self.navBackGround addSubview:btnLeft];
+        
     }
+//    _btnLeft = btnLeft;
+//    _btnLeft.left = 0;
+//    _btnLeft.top = self.navBackGround.height - btnLeft.height;
+    [self.navBackGround addSubview:btnLeft];
 }
 
 

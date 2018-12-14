@@ -251,6 +251,9 @@
     
     NSLog(@"----------点击查看用户信息----------");
     
+    UserInfoViewController *userInfoViewController = [[UserInfoViewController alloc] init];
+    userInfoViewController.fromType = FromTypeHome; //我的页面，需要显示返回按钮，隐藏TabBar
+    [self pushNewVC:userInfoViewController animated:YES];
 }
 
 

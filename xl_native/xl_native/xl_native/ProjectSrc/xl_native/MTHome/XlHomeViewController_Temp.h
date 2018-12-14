@@ -12,6 +12,7 @@
 #import "HomeVideoCell.h"
 #import "NetWork_mt_likeVideo.h"
 #import "NetWork_mt_saveflour.h"
+#import "UserInfoViewController.h"
 
 
 typedef NS_ENUM(NSInteger,DragDirection){

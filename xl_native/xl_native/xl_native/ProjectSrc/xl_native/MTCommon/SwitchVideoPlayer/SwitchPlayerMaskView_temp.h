@@ -17,12 +17,6 @@
 #import "WebCacheHelpler.h"
 #import "NetWork_mt_home_list.h"
 
-/**
- *  space
- */
-#define  Video_Btn_space      20.0f
-
-
 @protocol SwitchPlayerMaskViewDelegate_Temp <NSObject>
 
 /**返回按钮代理*/

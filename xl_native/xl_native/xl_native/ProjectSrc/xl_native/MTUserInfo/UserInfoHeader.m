@@ -210,6 +210,9 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
         make.left.right.equalTo(self.nickName);
     }];
     
+    
+    
+    /* 暂时先屏蔽，面条号
     UIImageView *weiboArrow = [[UIImageView alloc] init];
     weiboArrow.image = [UIImage imageNamed:@"icon_arrow"];
     [_containerView addSubview:weiboArrow];
@@ -233,6 +236,10 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
         make.right.equalTo(weiboArrow).inset(5);
         make.width.mas_equalTo(92);
     }];
+    
+
+    */
+    
     
     UIView *splitView = [[UIView alloc] init];
     splitView.backgroundColor = ColorWhiteAlpha20;

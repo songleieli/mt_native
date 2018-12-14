@@ -32,6 +32,10 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 
 @implementation UserInfoViewController
 
+
+
+
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
@@ -40,11 +44,23 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
      */
     [UIApplication sharedApplication].statusBarHidden = NO;
     self.tabBar.top = [self getTabbarTop];    //  重新设置tabbar的高度
+    
+    if(self.fromType == FromTypeHome){ //从首页过来，需要隐藏tabBar , 显示返回按钮
+        self.tabBar.hidden = YES;
+        self.btnLeft.hidden = NO;
+    }
+    else if (self.fromType == FromTypeMy){ //如果是我的页面，需要显示tabBar，隐藏返回按钮
+        self.tabBar.hidden = NO;
+        self.btnLeft.hidden = YES;
+        self.btnLeft.backgroundColor = [UIColor redColor];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
+
     
     //test
     [self onNetworkStatusChange:nil];// 模仿抖音Demo中，的网络变化，加载数据
@@ -75,8 +91,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     leftButton.size = [UIView getSize_width:20 height:20];
     leftButton.origin = [UIView getPoint_x:15.0f y:self.navBackGround.height -leftButton.height-11];
     [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_titlebar_whiteback"] forState:UIControlStateNormal];
-    [leftButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
-    
+    [leftButton addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     self.btnLeft = leftButton;
     self.navBackGround.backgroundColor = [UIColor clearColor]; //标注颜色，方便调试
@@ -350,6 +365,10 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     }
 }
 
+
+-(void)backBtnClick:(UIButton*)btn{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 //网络状态发送变化
 -(void)onNetworkStatusChange:(NSNotification *)notification {
