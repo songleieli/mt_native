@@ -191,12 +191,24 @@
 
 -(void)creatUI{
     
+    
+    
+    //模糊效果
+    UIBlurEffect *blurEffect =[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc]initWithEffect:blurEffect];
+    visualEffectView.frame = self.view.bounds;
+    visualEffectView.alpha = 1;
+    [self.view addSubview:visualEffectView];
+    
     [self.view addSubview:self.btnCancel];
     
     
     
+    
+    
+    
 
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = RGBAlphaColor(0, 0, 0, 0.5); //[UIColor clearColor];
     self.bgView = [[UIView alloc]init];
     self.bgView.size = [UIView getSize_width:ScreenWidth-2*21 height:350];
     self.bgView.top  = sizeScale(70);
@@ -205,19 +217,21 @@
     
     self.bgView.backgroundColor = [UIColor clearColor];
     
-    UIImageView * iocnImageView =[[UIImageView alloc]init];
-    iocnImageView.size = [UIView getSize_width:85 height:85];
-    iocnImageView.left = (self.bgView.width - iocnImageView.width)/2;
-    iocnImageView.top = 0;
-    iocnImageView.image = [BundleUtil getCurrentBundleImageByName:@"login_icon"]; //[UIImage imageNamed:@"login_icon"];
-    iocnImageView.layer.masksToBounds = YES;
-    iocnImageView.layer.cornerRadius = 20.0;
-    [self.bgView addSubview:iocnImageView];
+//    UIImageView * iocnImageView =[[UIImageView alloc]init];
+//    iocnImageView.size = [UIView getSize_width:85 height:85];
+//    iocnImageView.left = (self.bgView.width - iocnImageView.width)/2;
+//    iocnImageView.top = 0;
+//    iocnImageView.image = [BundleUtil getCurrentBundleImageByName:@"login_icon"]; //[UIImage imageNamed:@"login_icon"];
+//    iocnImageView.layer.masksToBounds = YES;
+//    iocnImageView.layer.cornerRadius = 20.0;
+//    [self.bgView addSubview:iocnImageView];
     
     UIView * userViwe = [[UIView alloc]init];
     userViwe.size = [UIView getSize_width:self.bgView.width height:63];
     userViwe.left = 0;
-    [self.bgView addSubView:userViwe frameBottomView:iocnImageView offset:42];
+    userViwe.top = 100;
+    [self.bgView addSubview:userViwe];
+//    [self.bgView addSubView:userViwe frameBottomView:iocnImageView offset:42];
     
     self.textFieldUser = [[UITextField alloc]init];
     self.textFieldUser.size = [UIView getSize_width:userViwe.width height:20];

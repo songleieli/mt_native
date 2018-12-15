@@ -31,6 +31,11 @@
 		0400F33721AFA62D0038E16C /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0400F32921AFA62C0038E16C /* WXApiManager.m */; };
 		0401A47B216F5B5500A525AB /* NetWork_hotTopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 0401A47A216F5B5500A525AB /* NetWork_hotTopic.m */; };
 		0401A47F21704AF400A525AB /* NetWork_himInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0401A47E21704AF400A525AB /* NetWork_himInfo.m */; };
+		0402A45921C49FEB00C35CA9 /* NetWork_mt_publishComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402A45721C49FEB00C35CA9 /* NetWork_mt_publishComment.m */; };
+		0402A45C21C4AA0600C35CA9 /* UIWindow+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402A45A21C4AA0600C35CA9 /* UIWindow+Extension.m */; };
+		0402A45E21C4AEC000C35CA9 /* user_sl.json in Resources */ = {isa = PBXBuildFile; fileRef = 0402A45D21C4AEC000C35CA9 /* user_sl.json */; };
+		0402A46421C4C94800C35CA9 /* NSAttributedString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402A46321C4C94800C35CA9 /* NSAttributedString+Extension.m */; };
+		0402A46721C4C9BB00C35CA9 /* NetWork_mt_getCommentList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402A46621C4C9BB00C35CA9 /* NetWork_mt_getCommentList.m */; };
 		0403661721C378B6000FDC5E /* PhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661621C378B6000FDC5E /* PhotoView.m */; };
 		0403661A21C37910000FDC5E /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661821C37910000FDC5E /* CircleProgressView.m */; };
 		0403661D21C37A4C000FDC5E /* MenuPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661B21C37A4B000FDC5E /* MenuPopView.m */; };
@@ -1493,6 +1498,15 @@
 		0401A47A216F5B5500A525AB /* NetWork_hotTopic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetWork_hotTopic.m; sourceTree = "<group>"; };
 		0401A47D21704AF400A525AB /* NetWork_himInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetWork_himInfo.h; sourceTree = "<group>"; };
 		0401A47E21704AF400A525AB /* NetWork_himInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetWork_himInfo.m; sourceTree = "<group>"; };
+		0402A45721C49FEB00C35CA9 /* NetWork_mt_publishComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_publishComment.m; sourceTree = "<group>"; };
+		0402A45821C49FEB00C35CA9 /* NetWork_mt_publishComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_publishComment.h; sourceTree = "<group>"; };
+		0402A45A21C4AA0600C35CA9 /* UIWindow+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Extension.m"; sourceTree = "<group>"; };
+		0402A45B21C4AA0600C35CA9 /* UIWindow+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Extension.h"; sourceTree = "<group>"; };
+		0402A45D21C4AEC000C35CA9 /* user_sl.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user_sl.json; sourceTree = "<group>"; };
+		0402A46221C4C94800C35CA9 /* NSAttributedString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Extension.h"; sourceTree = "<group>"; };
+		0402A46321C4C94800C35CA9 /* NSAttributedString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Extension.m"; sourceTree = "<group>"; };
+		0402A46521C4C9BA00C35CA9 /* NetWork_mt_getCommentList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getCommentList.h; sourceTree = "<group>"; };
+		0402A46621C4C9BB00C35CA9 /* NetWork_mt_getCommentList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getCommentList.m; sourceTree = "<group>"; };
 		0403661521C378B6000FDC5E /* PhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoView.h; sourceTree = "<group>"; };
 		0403661621C378B6000FDC5E /* PhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoView.m; sourceTree = "<group>"; };
 		0403661821C37910000FDC5E /* CircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleProgressView.m; sourceTree = "<group>"; };
@@ -5427,6 +5441,10 @@
 		04E700D0219FBD8B0096099F /* mt_home */ = {
 			isa = PBXGroup;
 			children = (
+				0402A46521C4C9BA00C35CA9 /* NetWork_mt_getCommentList.h */,
+				0402A46621C4C9BB00C35CA9 /* NetWork_mt_getCommentList.m */,
+				0402A45821C49FEB00C35CA9 /* NetWork_mt_publishComment.h */,
+				0402A45721C49FEB00C35CA9 /* NetWork_mt_publishComment.m */,
 				04E700D1219FBD8B0096099F /* NetWork_mt_home_list.h */,
 				04E700D2219FBD8B0096099F /* NetWork_mt_home_list.m */,
 				04A5B81821B23B95003F5C88 /* NetWork_mt_login.h */,
@@ -5693,6 +5711,7 @@
 			isa = PBXGroup;
 			children = (
 				04B66E9721C15D40000D6C56 /* awemes.json */,
+				0402A45D21C4AEC000C35CA9 /* user_sl.json */,
 				04B66E9821C15D41000D6C56 /* favorites.json */,
 				040E28DC21C1089E00D15B44 /* user.json */,
 				04CBB6012179ADAA00658E47 /* xl_native_toB.bundle */,
@@ -5814,6 +5833,10 @@
 		D904E95C1DD1D6DB00C7E45E /* MTCommon */ = {
 			isa = PBXGroup;
 			children = (
+				0402A46221C4C94800C35CA9 /* NSAttributedString+Extension.h */,
+				0402A46321C4C94800C35CA9 /* NSAttributedString+Extension.m */,
+				0402A45B21C4AA0600C35CA9 /* UIWindow+Extension.h */,
+				0402A45A21C4AA0600C35CA9 /* UIWindow+Extension.m */,
 				0403661F21C3A5D1000FDC5E /* CommentsPopView.h */,
 				0403661E21C3A5D1000FDC5E /* CommentsPopView.m */,
 				04183AEE21C2BC2200383E3F /* SwitchVideoPlayer */,
@@ -6613,6 +6636,7 @@
 				04E6E99121A8FFDC007C8A16 /* fenlie23.png in Resources */,
 				04E6E94C21A8FFDC007C8A16 /* donggan0.png in Resources */,
 				04E6E9F421A8FFDC007C8A16 /* mirror-21.png in Resources */,
+				0402A45E21C4AEC000C35CA9 /* user_sl.json in Resources */,
 				04E6E9C121A8FFDC007C8A16 /* illusion-4.png in Resources */,
 				04E6E9F221A8FFDC007C8A16 /* mirror-18.png in Resources */,
 				D9F86DC21DEBEE7600C3A2B6 /* VideoSendIcon@2x.png in Resources */,
@@ -7177,6 +7201,7 @@
 				0441A28F214671230077EA1F /* NetWork_deleteComment.m in Sources */,
 				0482F27421BFCA7C00587B38 /* MASViewConstraint.m in Sources */,
 				04CBC36B2179C01300658E47 /* GPUImageHueFilter.m in Sources */,
+				0402A45C21C4AA0600C35CA9 /* UIWindow+Extension.m in Sources */,
 				04DCA8E121A565D500691A3A /* TXVideoLoadingController.m in Sources */,
 				04E700D9219FF5C10096099F /* MtHomeTopView.m in Sources */,
 				04CBC44F2179C01300658E47 /* GPUImageKuwaharaFilter.m in Sources */,
@@ -7334,6 +7359,7 @@
 				04B0E1E221A6937600ABCF16 /* NSMutableIndexSet+BlocksKit.m in Sources */,
 				04CBC40F2179C01300658E47 /* GPUImageThresholdSketchFilter.m in Sources */,
 				04CBC35B2179C01300658E47 /* GPUImageMissEtikateFilter.m in Sources */,
+				0402A45921C49FEB00C35CA9 /* NetWork_mt_publishComment.m in Sources */,
 				04CBC3AD2179C01300658E47 /* GPUImageBrightnessFilter.m in Sources */,
 				04CBC3CF2179C01300658E47 /* GPUImageFramebufferCache.m in Sources */,
 				04DCA91921A5687600691A3A /* QBSlomoIconView.m in Sources */,
@@ -7352,6 +7378,7 @@
 				04DCA88F21A5623500691A3A /* TCLoginParam.m in Sources */,
 				04183B0821C2BC2200383E3F /* CircleTextView.m in Sources */,
 				04C83CBB2194371800768041 /* NetWork_followVideo_list.m in Sources */,
+				0402A46421C4C94800C35CA9 /* NSAttributedString+Extension.m in Sources */,
 				04CBC36F2179C01300658E47 /* GPUImageAmatorkaFilter.m in Sources */,
 				04CBC48B2179C01300658E47 /* UIView+WebCacheOperation.m in Sources */,
 				0435491921A7E9AC00AED5A8 /* UIProgressView+AFNetworking.m in Sources */,
@@ -7566,6 +7593,7 @@
 				04CBC43B2179C01300658E47 /* GPUImageTextureOutput.m in Sources */,
 				D954C5D11DD1A40F003CA535 /* iToast.m in Sources */,
 				0403661D21C37A4C000FDC5E /* MenuPopView.m in Sources */,
+				0402A46721C4C9BB00C35CA9 /* NetWork_mt_getCommentList.m in Sources */,
 				0441A27921466DBC0077EA1F /* NetWork_deleteTopic.m in Sources */,
 				04C83CCC2194372000768041 /* NetWork_findhomepageTagList.m in Sources */,
 				D957AD671DD2CB2F00B7EE09 /* IQUIView+IQKeyboardToolbar.m in Sources */,

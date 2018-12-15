@@ -330,7 +330,7 @@
     NSLog(@"----------点击查看评论----------");
     
     
-    CommentsPopView *popView = [[CommentsPopView alloc] initWithAwemeId:@"131231"];
+    CommentsPopView *popView = [[CommentsPopView alloc] initWithAwemeId:listModel];
     [popView show];
 }
 

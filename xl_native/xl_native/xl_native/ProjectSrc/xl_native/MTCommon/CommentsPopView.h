@@ -7,20 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NetWork_mt_home_list.h"
+#import "NetWork_mt_publishComment.h"
+#import "NetWork_mt_getCommentList.h"
 
 @interface CommentsPopView:UIView
 
 @property (nonatomic, strong) UILabel           *label;
 @property (nonatomic, strong) UIImageView       *close;
 
-- (instancetype)initWithAwemeId:(NSString *)awemeId;
+- (instancetype)initWithAwemeId:(HomeListModel *)listModel;
+
+@property (nonatomic,strong) HomeListModel *listModel;
+
 - (void)show;
 - (void)dismiss;
 
 @end
 
 
-@class Comment;
+//@class Comment;
+
 @interface CommentListCell : UITableViewCell
 
 @property (nonatomic, strong) UIImageView        *avatar;
@@ -32,8 +39,8 @@
 @property (nonatomic, strong) UILabel            *date;
 @property (nonatomic, strong) UIView             *splitLine;
 
--(void)initData:(Comment *)comment;
-+(CGFloat)cellHeight:(Comment *)comment;
+-(void)initData:(CommentListModel *)comment;
++(CGFloat)cellHeight:(CommentListModel *)comment;
 
 @end
 
@@ -42,6 +49,7 @@
 @protocol CommentTextViewDelegate
 
 @required
+
 -(void)onSendText:(NSString *)text;
 
 @end

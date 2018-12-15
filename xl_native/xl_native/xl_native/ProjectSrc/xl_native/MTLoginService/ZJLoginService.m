@@ -41,6 +41,18 @@ static ZJLoginService *SharedInstance = nil;
 
 - (void)authenticateWithCompletion:(void (^)(BOOL))complete cancelBlock:(void (^)())cancelBlock isAnimat:(BOOL)isAnimat{
     
+    //test
+    NSDictionary *dic =  [NSString readJson2DicWithFileName:@"user_sl"];  //作品
+    
+    LoginResponse *result = [[LoginResponse alloc] initWithDictionary:dic];
+    [GlobalData sharedInstance].hasLogin = YES;
+    [GlobalData sharedInstance].loginDataModel = result.obj;
+    
+    return;
+    
+    
+    
+    
     self.completeBlock = complete;
     self.cancelledBlock = cancelBlock;
     /*
@@ -48,7 +60,10 @@ static ZJLoginService *SharedInstance = nil;
      */
     if([GlobalData sharedInstance].hasLogin == NO){ //没有登陆
         ZJLoginViewController *tempVC = [[ZJLoginViewController alloc] init];
+
         BaseNavigationController *tempNav = [[BaseNavigationController alloc]initWithRootViewController:tempVC];
+        tempNav.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+
         [[UIApplication sharedApplication].delegate.window.rootViewController presentViewController:tempNav animated:isAnimat completion:nil];
     }
     else{
