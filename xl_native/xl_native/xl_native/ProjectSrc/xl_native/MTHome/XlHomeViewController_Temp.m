@@ -118,26 +118,17 @@
 }
 
 -(void)loadMoreData{
-//    self.mainTableView.mj_header.hidden = YES;
-
     self.currentPage += 1;
-//    self.mainTableView.mj_header.hidden = YES;
     [self initRequest];
-//    if (self.totalCount == self.listDataArray.count) {
-//        [self showFaliureHUD:@"暂无更多数据"];
-//        [self.mainTableView.mj_footer endRefreshingWithNoMoreData];
-//        self.mainTableView.mj_footer.hidden = YES;
-//    }
 }
 
 #pragma mark --------- 网络请求 ------------
 -(void)initRequest {
     
     NetWork_mt_home_list *request = [[NetWork_mt_home_list alloc] init];
-    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPage+1]; //[NSNumber numberWithInteger:self.currentPage+1];
+    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPage+1];
     request.pageSize = @"20";
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    
     [request startGetWithBlock:^(HomeListResponse *result, NSString *msg) {
         /*
          缓存暂时先不用考虑
@@ -299,7 +290,7 @@
         request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
         request.noodleVideoId = listModel.noodleVideoId;
         request.noodleVideoCover = listModel.noodleVideoCover;
-        request.noodleId = listModel.noodleId;
+        request.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
         [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
             NSLog(@"---------");
             if(finished){

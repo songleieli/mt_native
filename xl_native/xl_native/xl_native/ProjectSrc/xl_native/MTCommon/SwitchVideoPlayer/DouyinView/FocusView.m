@@ -98,4 +98,12 @@
     [self setHidden:NO];
 }
 
+-(void)setUserFollow{
+    [self setHidden:YES];
+    
+}
+-(void)setUserUnFollow{
+    [self setHidden:NO];
+}
+
 @end

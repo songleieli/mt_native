@@ -342,8 +342,23 @@
     self.nickName.bottom = self.desc.top;
     
     self.shareNum.text = [NSString stringWithFormat:@"%d",[listLoginModel.saveAlbumSum intValue] ];
-    self.commentNum.text = [NSString stringWithFormat:@"%d",[listLoginModel.forwardSum intValue] ];
+    self.commentNum.text = [NSString stringWithFormat:@"%d",[listLoginModel.commentSum intValue] ];
     self.favoriteNum.text = [NSString stringWithFormat:@"%d",[listLoginModel.likeSum intValue] ];
+    
+    if([listLoginModel.isLike integerValue] == 1){
+        [self.favorite resetView];
+        [self.favorite setUserLike];
+    }
+    else{
+         [self.favorite resetView];
+        [self.favorite setUserUnLike];
+    }
+    if([listLoginModel.isFlour integerValue] == 1){
+        [self.focus setUserFollow];
+    }
+    else{
+        [self.focus setUserUnFollow];
+    }
     
     [self.avatar sd_setImageWithURL:[NSURL URLWithString:listLoginModel.head] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if(!error) {

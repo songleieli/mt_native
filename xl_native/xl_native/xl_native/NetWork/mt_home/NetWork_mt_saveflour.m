@@ -32,7 +32,7 @@
     return [SaveflourResponse class];
 }
 -(NSString*)responseCategory{
-    return @"/personal/saveflour";
+    return @"/miantiao/personal/saveflour";
 }
 
 

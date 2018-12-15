@@ -23,4 +23,7 @@ typedef enum{
 
 - (void)resetView;
 
+-(void)setUserLike;
+-(void)setUserUnLike;
+
 @end

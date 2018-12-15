@@ -15,4 +15,7 @@
 
 - (void)resetView;
 
+-(void)setUserFollow;
+-(void)setUserUnFollow;
+
 @end

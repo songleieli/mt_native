@@ -146,4 +146,18 @@
     [self.layer removeAllAnimations];
 }
 
+-(void)setUserLike{
+    
+    [_favoriteBefore setHidden:YES];
+    [_favoriteAfter setHidden:NO];
+    
+}
+-(void)setUserUnLike{
+    
+    
+    [_favoriteBefore setHidden:NO];
+    [_favoriteAfter setHidden:YES];
+}
+
+
 @end

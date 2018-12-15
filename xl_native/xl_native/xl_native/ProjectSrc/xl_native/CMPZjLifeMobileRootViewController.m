@@ -160,12 +160,10 @@
 
 - (BOOL)customTabBar:(ZJCustomTabBarLjhTableViewController *)tabBar shouldSelectIndex:(NSInteger)index{
     
-    //test ,暂时先屏蔽我的页面，登录判断，为UI仿抖音用户信息页面
-    if(index == 4){
-        return YES;
-    }
-    
-    
+//    //test ,暂时先屏蔽我的页面，登录判断，为UI仿抖音用户信息页面
+//    if(index == 4){
+//        return YES;
+//    }
     
     
     if(index == 1 || index == 3 || index == 4){

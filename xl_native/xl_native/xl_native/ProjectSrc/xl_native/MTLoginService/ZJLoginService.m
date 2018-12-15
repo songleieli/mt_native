@@ -48,6 +48,9 @@ static ZJLoginService *SharedInstance = nil;
     [GlobalData sharedInstance].hasLogin = YES;
     [GlobalData sharedInstance].loginDataModel = result.obj;
     
+    complete(YES);
+
+    
     return;
     
     
