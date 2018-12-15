@@ -36,6 +36,7 @@
 		0402A45E21C4AEC000C35CA9 /* user_sl.json in Resources */ = {isa = PBXBuildFile; fileRef = 0402A45D21C4AEC000C35CA9 /* user_sl.json */; };
 		0402A46421C4C94800C35CA9 /* NSAttributedString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402A46321C4C94800C35CA9 /* NSAttributedString+Extension.m */; };
 		0402A46721C4C9BB00C35CA9 /* NetWork_mt_getCommentList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402A46621C4C9BB00C35CA9 /* NetWork_mt_getCommentList.m */; };
+		0402A46A21C4E75200C35CA9 /* NetWork_mt_personal_homePage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402A46921C4E75100C35CA9 /* NetWork_mt_personal_homePage.m */; };
 		0403661721C378B6000FDC5E /* PhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661621C378B6000FDC5E /* PhotoView.m */; };
 		0403661A21C37910000FDC5E /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661821C37910000FDC5E /* CircleProgressView.m */; };
 		0403661D21C37A4C000FDC5E /* MenuPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661B21C37A4B000FDC5E /* MenuPopView.m */; };
@@ -138,9 +139,6 @@
 		04443E9021B3F91400C8DD34 /* XlHomeViewController_Temp.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E8F21B3F91400C8DD34 /* XlHomeViewController_Temp.m */; };
 		04443E9321B3FA6300C8DD34 /* MJTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E9121B3FA6200C8DD34 /* MJTableView.m */; };
 		04443E9721B41A0B00C8DD34 /* HomeVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E9621B41A0A00C8DD34 /* HomeVideoCell.m */; };
-		0444FC0E216DD08200B556C3 /* NetWork_addressBookList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0444FC0D216DD08200B556C3 /* NetWork_addressBookList.m */; };
-		0444FC1A216DDFD300B556C3 /* NetWork_inviteNewUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0444FC19216DDFD300B556C3 /* NetWork_inviteNewUser.m */; };
-		044662DC2174684D00BAF55B /* NetWork_myFansList.m in Sources */ = {isa = PBXBuildFile; fileRef = 044662DB2174684D00BAF55B /* NetWork_myFansList.m */; };
 		04468DAE214B7DB3002F4528 /* HuinongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04468DAC214B7DB3002F4528 /* HuinongViewController.m */; };
 		04468DB2214B8001002F4528 /* GchangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04468DB1214B8000002F4528 /* GchangViewController.m */; };
 		04468F17214B8F14002F4528 /* ZJCustomTabWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04468F16214B8F14002F4528 /* ZJCustomTabWebController.m */; };
@@ -207,7 +205,6 @@
 		049D80E12181930A007F3BAF /* NetWork_orders.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D80E02181930A007F3BAF /* NetWork_orders.m */; };
 		049D80E521819FBA007F3BAF /* XLPlanDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D80E321819FBA007F3BAF /* XLPlanDetailVC.m */; };
 		049D80E621819FBA007F3BAF /* XLPlanDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049D80E421819FBA007F3BAF /* XLPlanDetailVC.xib */; };
-		04A30AAE215B239C002EDD34 /* NetWork_keywordFunctionList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A30AAD215B239C002EDD34 /* NetWork_keywordFunctionList.m */; };
 		04A5B81921B23B95003F5C88 /* NetWork_mt_login.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5B81721B23B95003F5C88 /* NetWork_mt_login.m */; };
 		04A5B81C21B27F66003F5C88 /* NetWork_mt_saveVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5B81B21B27F66003F5C88 /* NetWork_mt_saveVideo.m */; };
 		04B0E1E021A6937600ABCF16 /* NSDictionary+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0E19721A6937500ABCF16 /* NSDictionary+BlocksKit.m */; };
@@ -544,7 +541,6 @@
 		04CBC4EE2179C61C00658E47 /* GPUImageHalftoneFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC1962179C01100658E47 /* GPUImageHalftoneFilter.m */; };
 		04CBC4EF2179C61C00658E47 /* MJRefreshNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC0252179C00F00658E47 /* MJRefreshNormalHeader.m */; };
 		04CBC4F02179C61C00658E47 /* GPUImageSaturationFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC1382179C01100658E47 /* GPUImageSaturationFilter.m */; };
-		04CBC4F32179C61C00658E47 /* NetWork_myFansList.m in Sources */ = {isa = PBXBuildFile; fileRef = 044662DB2174684D00BAF55B /* NetWork_myFansList.m */; };
 		04CBC4F42179C61C00658E47 /* UIPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F6B03C1E135758008F9FC0 /* UIPlaceholderTextView.m */; };
 		04CBC4F52179C61C00658E47 /* GPUImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC1722179C01100658E47 /* GPUImageView.m */; };
 		04CBC4F62179C61C00658E47 /* BBVoiceRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC0822179C01000658E47 /* BBVoiceRecordView.m */; };
@@ -577,7 +573,6 @@
 		04CBC51D2179C61C00658E47 /* IQKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D957AD3C1DD2CB2F00B7EE09 /* IQKeyboardManager.m */; };
 		04CBC51E2179C61C00658E47 /* GPUImageAdaptiveThresholdFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC1322179C01100658E47 /* GPUImageAdaptiveThresholdFilter.m */; };
 		04CBC5202179C61C00658E47 /* BBVoiceRecordPowerAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC0942179C01000658E47 /* BBVoiceRecordPowerAnimationView.m */; };
-		04CBC5212179C61C00658E47 /* NetWork_inviteNewUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0444FC19216DDFD300B556C3 /* NetWork_inviteNewUser.m */; };
 		04CBC5222179C61C00658E47 /* GPUImageColorBlendFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC18D2179C01100658E47 /* GPUImageColorBlendFilter.m */; };
 		04CBC5232179C61C00658E47 /* STPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D98FCFB81DEFC3DA0023C076 /* STPickerView.m */; };
 		04CBC5252179C61C00658E47 /* GPUImageGrayscaleFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC0F72179C01100658E47 /* GPUImageGrayscaleFilter.m */; };
@@ -627,7 +622,6 @@
 		04CBC5672179C61C00658E47 /* Network_topicViewNoLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441A243214666A50077EA1F /* Network_topicViewNoLogin.m */; };
 		04CBC5682179C61C00658E47 /* GPUImageDilationFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC1E22179C01100658E47 /* GPUImageDilationFilter.m */; };
 		04CBC56B2179C61C00658E47 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = C51E20501EF227A300463F8A /* SDPhotoBrowser.m */; };
-		04CBC56C2179C61C00658E47 /* NetWork_keywordFunctionList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A30AAD215B239C002EDD34 /* NetWork_keywordFunctionList.m */; };
 		04CBC56E2179C61C00658E47 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC0082179C00F00658E47 /* UIScrollView+MJRefresh.m */; };
 		04CBC56F2179C61C00658E47 /* WYStoryboardPopoverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BD11B31F02B134006CE841 /* WYStoryboardPopoverSegue.m */; };
 		04CBC5702179C61C00658E47 /* GPUImageRGBErosionFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC1AB2179C01100658E47 /* GPUImageRGBErosionFilter.m */; };
@@ -670,7 +664,6 @@
 		04CBC5A22179C61C00658E47 /* GPUImageSobelEdgeDetectionFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC0DF2179C01100658E47 /* GPUImageSobelEdgeDetectionFilter.m */; };
 		04CBC5A52179C61C00658E47 /* TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F86D7E1DEBEE7600C3A2B6 /* TZImageManager.m */; };
 		04CBC5A72179C61C00658E47 /* GPUImageFilterGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC0DB2179C01100658E47 /* GPUImageFilterGroup.m */; };
-		04CBC5A92179C61C00658E47 /* NetWork_addressBookList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0444FC0D216DD08200B556C3 /* NetWork_addressBookList.m */; };
 		04CBC5AB2179C61C00658E47 /* GPUImageSoftLightBlendFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC1872179C01100658E47 /* GPUImageSoftLightBlendFilter.m */; };
 		04CBC5AC2179C61C00658E47 /* GPUImageMovieComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC19C2179C01100658E47 /* GPUImageMovieComposition.m */; };
 		04CBC5AD2179C61C00658E47 /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC22C2179C01100658E47 /* SDWebImageDownloaderOperation.m */; };
@@ -1507,6 +1500,8 @@
 		0402A46321C4C94800C35CA9 /* NSAttributedString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Extension.m"; sourceTree = "<group>"; };
 		0402A46521C4C9BA00C35CA9 /* NetWork_mt_getCommentList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getCommentList.h; sourceTree = "<group>"; };
 		0402A46621C4C9BB00C35CA9 /* NetWork_mt_getCommentList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getCommentList.m; sourceTree = "<group>"; };
+		0402A46821C4E75100C35CA9 /* NetWork_mt_personal_homePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_personal_homePage.h; sourceTree = "<group>"; };
+		0402A46921C4E75100C35CA9 /* NetWork_mt_personal_homePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_personal_homePage.m; sourceTree = "<group>"; };
 		0403661521C378B6000FDC5E /* PhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoView.h; sourceTree = "<group>"; };
 		0403661621C378B6000FDC5E /* PhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoView.m; sourceTree = "<group>"; };
 		0403661821C37910000FDC5E /* CircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleProgressView.m; sourceTree = "<group>"; };
@@ -1673,12 +1668,6 @@
 		04443E9221B3FA6200C8DD34 /* MJTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJTableView.h; sourceTree = "<group>"; };
 		04443E9521B41A0A00C8DD34 /* HomeVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVideoCell.h; sourceTree = "<group>"; };
 		04443E9621B41A0A00C8DD34 /* HomeVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVideoCell.m; sourceTree = "<group>"; };
-		0444FC0C216DD08200B556C3 /* NetWork_addressBookList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetWork_addressBookList.h; sourceTree = "<group>"; };
-		0444FC0D216DD08200B556C3 /* NetWork_addressBookList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetWork_addressBookList.m; sourceTree = "<group>"; };
-		0444FC18216DDFD300B556C3 /* NetWork_inviteNewUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetWork_inviteNewUser.h; sourceTree = "<group>"; };
-		0444FC19216DDFD300B556C3 /* NetWork_inviteNewUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetWork_inviteNewUser.m; sourceTree = "<group>"; };
-		044662DA2174684D00BAF55B /* NetWork_myFansList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetWork_myFansList.h; sourceTree = "<group>"; };
-		044662DB2174684D00BAF55B /* NetWork_myFansList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetWork_myFansList.m; sourceTree = "<group>"; };
 		04468DAC214B7DB3002F4528 /* HuinongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuinongViewController.m; sourceTree = "<group>"; };
 		04468DAD214B7DB3002F4528 /* HuinongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuinongViewController.h; sourceTree = "<group>"; };
 		04468DB0214B8000002F4528 /* GchangViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GchangViewController.h; sourceTree = "<group>"; };
@@ -1780,8 +1769,6 @@
 		049D80E321819FBA007F3BAF /* XLPlanDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XLPlanDetailVC.m; sourceTree = "<group>"; };
 		049D80E421819FBA007F3BAF /* XLPlanDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XLPlanDetailVC.xib; sourceTree = "<group>"; };
 		049E96F221521BB700AE2263 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
-		04A30AAC215B239C002EDD34 /* NetWork_keywordFunctionList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetWork_keywordFunctionList.h; sourceTree = "<group>"; };
-		04A30AAD215B239C002EDD34 /* NetWork_keywordFunctionList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetWork_keywordFunctionList.m; sourceTree = "<group>"; };
 		04A5B81721B23B95003F5C88 /* NetWork_mt_login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_login.m; sourceTree = "<group>"; };
 		04A5B81821B23B95003F5C88 /* NetWork_mt_login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_login.h; sourceTree = "<group>"; };
 		04A5B81A21B27F66003F5C88 /* NetWork_mt_saveVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_saveVideo.h; sourceTree = "<group>"; };
@@ -3552,19 +3539,6 @@
 			path = CustromUItextFeild;
 			sourceTree = "<group>";
 		};
-		0444FC0B216DD06F00B556C3 /* AddressBookList */ = {
-			isa = PBXGroup;
-			children = (
-				0444FC0C216DD08200B556C3 /* NetWork_addressBookList.h */,
-				0444FC0D216DD08200B556C3 /* NetWork_addressBookList.m */,
-				0444FC18216DDFD300B556C3 /* NetWork_inviteNewUser.h */,
-				0444FC19216DDFD300B556C3 /* NetWork_inviteNewUser.m */,
-				044662DA2174684D00BAF55B /* NetWork_myFansList.h */,
-				044662DB2174684D00BAF55B /* NetWork_myFansList.m */,
-			);
-			path = AddressBookList;
-			sourceTree = "<group>";
-		};
 		0444FC0F216DD23F00B556C3 /* Other */ = {
 			isa = PBXGroup;
 			children = (
@@ -3779,15 +3753,6 @@
 				049312AD218053FE0024B165 /* XLHomePlanCell.xib */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		04A30AAB215B237F002EDD34 /* keywordFunctionList */ = {
-			isa = PBXGroup;
-			children = (
-				04A30AAC215B239C002EDD34 /* NetWork_keywordFunctionList.h */,
-				04A30AAD215B239C002EDD34 /* NetWork_keywordFunctionList.m */,
-			);
-			path = keywordFunctionList;
 			sourceTree = "<group>";
 		};
 		04B0E19421A6937500ABCF16 /* BlocksKit */ = {
@@ -5441,6 +5406,8 @@
 		04E700D0219FBD8B0096099F /* mt_home */ = {
 			isa = PBXGroup;
 			children = (
+				0402A46821C4E75100C35CA9 /* NetWork_mt_personal_homePage.h */,
+				0402A46921C4E75100C35CA9 /* NetWork_mt_personal_homePage.m */,
 				0402A46521C4C9BA00C35CA9 /* NetWork_mt_getCommentList.h */,
 				0402A46621C4C9BB00C35CA9 /* NetWork_mt_getCommentList.m */,
 				0402A45821C49FEB00C35CA9 /* NetWork_mt_publishComment.h */,
@@ -5478,8 +5445,6 @@
 				04E700D0219FBD8B0096099F /* mt_home */,
 				04CD35C1217F1FC40041E0A8 /* CRM */,
 				0444FC0F216DD23F00B556C3 /* Other */,
-				0444FC0B216DD06F00B556C3 /* AddressBookList */,
-				04A30AAB215B237F002EDD34 /* keywordFunctionList */,
 				048462C22147570E00A30F5E /* Common */,
 				0441A23C214666600077EA1F /* Share */,
 				0441A1F9214660BE0077EA1F /* User */,
@@ -6763,7 +6728,6 @@
 				04CBC4F02179C61C00658E47 /* GPUImageSaturationFilter.m in Sources */,
 				04E28F79218AF6B9006A91DA /* XLTBSingleTool.m in Sources */,
 				04CBC71D2179D32500658E47 /* TBCustomTabBar.m in Sources */,
-				04CBC4F32179C61C00658E47 /* NetWork_myFansList.m in Sources */,
 				0435492021A7E9AC00AED5A8 /* UIImageView+AFNetworking.m in Sources */,
 				04E28F7C218AF732006A91DA /* NetWork_voucherMessage.m in Sources */,
 				04CBC4F42179C61C00658E47 /* UIPlaceholderTextView.m in Sources */,
@@ -6806,7 +6770,6 @@
 				04CBC51E2179C61C00658E47 /* GPUImageAdaptiveThresholdFilter.m in Sources */,
 				04CBC5202179C61C00658E47 /* BBVoiceRecordPowerAnimationView.m in Sources */,
 				04CD35C5217F21E60041E0A8 /* NetWork_adminLogin.m in Sources */,
-				04CBC5212179C61C00658E47 /* NetWork_inviteNewUser.m in Sources */,
 				04C83CCB2194372000768041 /* NetWork_findHotTagList.m in Sources */,
 				04CBC5222179C61C00658E47 /* GPUImageColorBlendFilter.m in Sources */,
 				04CBC5232179C61C00658E47 /* STPickerView.m in Sources */,
@@ -6872,7 +6835,6 @@
 				04CBC5672179C61C00658E47 /* Network_topicViewNoLogin.m in Sources */,
 				04CBC5682179C61C00658E47 /* GPUImageDilationFilter.m in Sources */,
 				04CBC56B2179C61C00658E47 /* SDPhotoBrowser.m in Sources */,
-				04CBC56C2179C61C00658E47 /* NetWork_keywordFunctionList.m in Sources */,
 				04CBC56E2179C61C00658E47 /* UIScrollView+MJRefresh.m in Sources */,
 				04CBC56F2179C61C00658E47 /* WYStoryboardPopoverSegue.m in Sources */,
 				04CBC5702179C61C00658E47 /* GPUImageRGBErosionFilter.m in Sources */,
@@ -6924,7 +6886,6 @@
 				04CBC5A22179C61C00658E47 /* GPUImageSobelEdgeDetectionFilter.m in Sources */,
 				04CBC5A52179C61C00658E47 /* TZImageManager.m in Sources */,
 				04CBC5A72179C61C00658E47 /* GPUImageFilterGroup.m in Sources */,
-				04CBC5A92179C61C00658E47 /* NetWork_addressBookList.m in Sources */,
 				04CBC5AB2179C61C00658E47 /* GPUImageSoftLightBlendFilter.m in Sources */,
 				04CBC5AC2179C61C00658E47 /* GPUImageMovieComposition.m in Sources */,
 				04CBC5AD2179C61C00658E47 /* SDWebImageDownloaderOperation.m in Sources */,
@@ -7148,6 +7109,7 @@
 				04CBC3CD2179C01300658E47 /* GPUImageRGBFilter.m in Sources */,
 				0482F26421BFCA7C00587B38 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				04CBC2E32179C01200658E47 /* BBHoldToSpeakButton.m in Sources */,
+				0402A46A21C4E75200C35CA9 /* NetWork_mt_personal_homePage.m in Sources */,
 				0482F27021BFCA7C00587B38 /* View+MASAdditions.m in Sources */,
 				043558AA2195232800431646 /* Network_hotTopicList.m in Sources */,
 				04CBC4532179C01300658E47 /* GPUImageMosaicFilter.m in Sources */,
@@ -7174,7 +7136,6 @@
 				04DCA86121A5580300691A3A /* TCUtil.m in Sources */,
 				040E28D521C0F0D400D15B44 /* GroupChat.m in Sources */,
 				040E28D721C0F0D400D15B44 /* Comment.m in Sources */,
-				044662DC2174684D00BAF55B /* NetWork_myFansList.m in Sources */,
 				D9F6B03E1E135758008F9FC0 /* UIPlaceholderTextView.m in Sources */,
 				04CBC3DB2179C01300658E47 /* GPUImageView.m in Sources */,
 				04CBC2E52179C01200658E47 /* BBVoiceRecordView.m in Sources */,
@@ -7232,7 +7193,6 @@
 				04C882102109AB9800811DAD /* BaseWKWebViewController.m in Sources */,
 				04CBC2FB2179C01200658E47 /* BBVoiceRecordPowerAnimationView.m in Sources */,
 				04183B0521C2BC2200383E3F /* FavoriteView.m in Sources */,
-				0444FC1A216DDFD300B556C3 /* NetWork_inviteNewUser.m in Sources */,
 				04183B0321C2BC2200383E3F /* SwitchPlayerView.m in Sources */,
 				04CBC3F52179C01300658E47 /* GPUImageColorBlendFilter.m in Sources */,
 				04C83CCE2194372000768041 /* NetWork_findAllTagList.m in Sources */,
@@ -7319,7 +7279,6 @@
 				D954C5161DD1A40F003CA535 /* NSData+Base64.m in Sources */,
 				04A5B81C21B27F66003F5C88 /* NetWork_mt_saveVideo.m in Sources */,
 				D9EE757F1EF8C610001A1299 /* SDPhotoBrowser.m in Sources */,
-				04A30AAE215B239C002EDD34 /* NetWork_keywordFunctionList.m in Sources */,
 				04DCA8E521A565D500691A3A /* TCVideoEditPrevViewController.m in Sources */,
 				04CBC27B2179C01200658E47 /* UIScrollView+MJRefresh.m in Sources */,
 				D9BD11B71F02B134006CE841 /* WYStoryboardPopoverSegue.m in Sources */,
@@ -7393,7 +7352,6 @@
 				D9F86DCB1DEBEE7600C3A2B6 /* TZImageManager.m in Sources */,
 				04CBC3332179C01300658E47 /* GPUImageFilterGroup.m in Sources */,
 				04DCA85A21A5580300691A3A /* UIButton+Additions.m in Sources */,
-				0444FC0E216DD08200B556C3 /* NetWork_addressBookList.m in Sources */,
 				04B0E1FB21A6937600ABCF16 /* A2BlockInvocation.m in Sources */,
 				04CBC3EF2179C01300658E47 /* GPUImageSoftLightBlendFilter.m in Sources */,
 				04B0E1F221A6937600ABCF16 /* UIView+BlocksKit.m in Sources */,

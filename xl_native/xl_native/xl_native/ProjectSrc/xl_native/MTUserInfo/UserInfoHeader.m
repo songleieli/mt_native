@@ -331,9 +331,9 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
     [_slideTabBar setLabels:@[@"作品0",@"消息0",@"喜欢0"] tabIndex:0];
 }
 
-- (void)initData:(User *)user {
+- (void)initData:(PersonalModel *)user {
     __weak __typeof(self) wself = self;
-    [_avatar sd_setImageWithURL:[NSURL URLWithString:user.avatar_medium.url_list.firstObject] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [_avatar sd_setImageWithURL:[NSURL URLWithString:user.head] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 [wself.bottomBackground setImage:image];
                 [wself.avatar setImage:[image drawCircleImage]];
     }];
@@ -342,18 +342,18 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
     //[_topBackground setImageWithURL:[NSURL URLWithString:@"http://pb3.pstatp.com/obj/dbc1001cd29ccc479f7f"]];
     [_topBackground sd_setImageWithURL:[NSURL URLWithString:@"http://pb3.pstatp.com/obj/dbc1001cd29ccc479f7f"]];
     [_nickName setText:user.nickname];
-    [_douyinNum setText:[NSString stringWithFormat:@"面条号:%@", user.short_id]];
+    [_douyinNum setText:[NSString stringWithFormat:@"面条号:%@", user.noodleId]];
     if(![user.signature isEqual: @""]) {
         [_brief setText:user.signature];
     }
-    [_genderIcon setImage:[UIImage imageNamed:user.gender == 0 ? @"iconUserProfileBoy" : @"iconUserProfileGirl"]];
-    [_likeNum setText:[NSString stringWithFormat:@"%ld%@",(long)user.total_favorited,@"获赞"]];
-    [_followNum setText:[NSString stringWithFormat:@"%ld%@",(long)user.following_count,@"关注"]];
-    [_followedNum setText:[NSString stringWithFormat:@"%ld%@",(long)user.follower_count,@"粉丝"]];
+    [_genderIcon setImage:[UIImage imageNamed:[user.sex intValue] == 1 ? @"iconUserProfileBoy" : @"iconUserProfileGirl"]];
+    [_likeNum setText:[NSString stringWithFormat:@"%@%@",user.likeTotal,@"获赞"]];
+    [_followNum setText:[NSString stringWithFormat:@"%@%@",user.followSum,@"关注"]];
+    [_followedNum setText:[NSString stringWithFormat:@"%@%@",user.flourSum,@"粉丝"]];
     
-    [_slideTabBar setLabels:@[[@"作品" stringByAppendingString:[NSString stringWithFormat:@"%ld", (long)user.aweme_count]],
-                              [@"动态" stringByAppendingString:[NSString stringWithFormat:@"%ld", (long)user.favoriting_count]],
-                              [@"喜欢" stringByAppendingString:[NSString stringWithFormat:@"%ld", (long)user.favoriting_count]]]
+    [_slideTabBar setLabels:@[[@"作品" stringByAppendingString:[NSString stringWithFormat:@"%@", user.videoSum]],
+                              [@"动态" stringByAppendingString:[NSString stringWithFormat:@"%@", user.dynamics]],
+                              [@"喜欢" stringByAppendingString:[NSString stringWithFormat:@"%@", user.likeSum]]]
                    tabIndex:0];
 }
 

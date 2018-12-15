@@ -151,13 +151,33 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 
 -(void)loadUserData {
     
-    NSDictionary *dic =  [NSString readJson2DicWithFileName:@"user"];
+//    NSDictionary *dic =  [NSString readJson2DicWithFileName:@"user"];
+//    
+//    UserResponse *response = [[UserResponse alloc] initWithDictionary:dic];
+//    self.user = response.data;
+//    [self setTitle:self.user.nickname];
+//    [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+//    NSLog(@"------");
     
-    UserResponse *response = [[UserResponse alloc] initWithDictionary:dic];
-    self.user = response.data;
-    [self setTitle:self.user.nickname];
-    [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
-    NSLog(@"------");
+    
+    
+    NetWork_mt_personal_homePage *request = [[NetWork_mt_personal_homePage alloc] init];
+    request.noodleId = self.userNoodleId;
+    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+    [request startGetWithBlock:^(id result, NSString *msg) {
+        
+    } finishBlock:^(PersonalHomePageResponse *result, NSString *msg, BOOL finished) {
+        
+        if(finished){
+            [self setTitle:self.user.nickname];
+            self.user = result.obj;
+            [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+        }
+        else{
+            [UIWindow showTips:msg];
+        }
+    }];
+    
 
     
     
@@ -391,7 +411,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 - (void)onUserActionTap:(NSInteger)tag {
     switch (tag) {
         case UserInfoHeaderAvatarTag: {
-            PhotoView *photoView = [[PhotoView alloc] initWithUrl:_user.avatar_medium.url_list.firstObject];
+            PhotoView *photoView = [[PhotoView alloc] initWithUrl:_user.head];
             [photoView show];
             break;
         }

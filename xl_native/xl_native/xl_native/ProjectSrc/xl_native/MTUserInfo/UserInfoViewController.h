@@ -39,10 +39,12 @@ typedef enum{
 
 @property (nonatomic, strong) UICollectionView                 *collectionView;
 @property (nonatomic, assign) NSInteger                        selectIndex;
-@property (nonatomic, strong) User                             *user;
+@property (nonatomic, strong) PersonalModel                     *user;
 @property (nonatomic, strong) UserInfoHeader                   *userInfoHeader;
 @property (nonatomic, strong) LoadMoreControl                  *loadMore;
 
 @property (nonatomic, assign) FromType                        fromType;
+@property (nonatomic, copy) NSString                        *userNoodleId;
+
 
 @end

@@ -6,6 +6,8 @@
 //  Copyright © 2018年 Qiao Shi. All rights reserved.
 //
 
+#import "NetWork_mt_personal_homePage.h"
+
 #import <UIKit/UIKit.h>
 #import "SlideTabBar.h"
 static const NSInteger UserInfoHeaderAvatarTag = 0x01;
