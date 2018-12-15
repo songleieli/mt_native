@@ -73,6 +73,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         self.btnLeft.hidden = NO;
     }
     else if (self.fromType == FromTypeMy){ //如果是我的页面，需要显示tabBar，隐藏返回按钮
+        self.userNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
         self.tabBar.hidden = NO;
         self.btnLeft.hidden = YES;
         self.btnLeft.backgroundColor = [UIColor redColor];
@@ -90,21 +91,13 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 }
 
 - (void)viewDidLoad {
-    
-//    _workAwemes = [[NSMutableArray alloc]init];
-//    _favoriteAwemes = [[NSMutableArray alloc]init];
-    
-    
     _pageIndex = 1;
     _pageSize = 20;
-    
     _tabIndex = 0;
     
-    
     [super viewDidLoad];
-    [self loadUserData];
+//    [self loadUserData];
     [self setUpUI];
-    
 }
 
 -(void)initNavTitle{
@@ -176,16 +169,6 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 
 -(void)loadUserData {
     
-//    NSDictionary *dic =  [NSString readJson2DicWithFileName:@"user"];
-//
-//    UserResponse *response = [[UserResponse alloc] initWithDictionary:dic];
-//    self.user = response.data;
-//    [self setTitle:self.user.nickname];
-//    [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
-//    NSLog(@"------");
-    
-    
-    
     NetWork_mt_personal_homePage *request = [[NetWork_mt_personal_homePage alloc] init];
     request.noodleId = self.userNoodleId;
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
@@ -202,21 +185,6 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
             [UIWindow showTips:msg];
         }
     }];
-    
-
-    
-    
-//    __weak typeof (self) wself = self;
-//    UserRequest *request = [UserRequest new];
-//    request.uid = _uid;
-//    [NetworkHelper getWithUrlPath:FindUserByUidPath request:request success:^(id data) {
-//        UserResponse *response = [[UserResponse alloc] initWithDictionary:data error:nil];
-//        wself.user = response.data;
-//        [wself setTitle:self.user.nickname];
-//        [wself.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
-//    } failure:^(NSError *error) {
-//        [UIWindow showTips:error.description];
-//    }];
 }
 
 
@@ -224,35 +192,80 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     
     if(_tabIndex == 0){
         
-        
-        
+        NetWork_mt_getMyVideos *request = [[NetWork_mt_getMyVideos alloc] init];
+        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        request.noodleId = self.userNoodleId;
+        request.pageNo = [NSString stringWithFormat:@"%ld",pageIndex];
+        request.pageSize = [NSString stringWithFormat:@"%ld",pageSize];
+        [request startGetWithBlock:^(id result, NSString *msg) {
+            /*暂不考虑缓存*/
+        } finishBlock:^(GetLikeVideoListResponse *result, NSString *msg, BOOL finished) {
+            
+            NSLog(@"--------");
+            if(finished){
+                self.pageIndex++;
+                
+                [UIView setAnimationsEnabled:NO];
+                [self.collectionView performBatchUpdates:^{
+                    [self.workAwemes addObjectsFromArray:result.obj];
+                    NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
+                    for(NSInteger row = self.workAwemes.count - result.obj.count; row<self.workAwemes.count; row++) {
+                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
+                        [indexPaths addObject:indexPath];
+                    }
+                    [self.collectionView insertItemsAtIndexPaths:indexPaths];
+                } completion:^(BOOL finished) {
+                    [UIView setAnimationsEnabled:YES];
+                }];
+                
+                [self.loadMore endLoading];
+                if(self.workAwemes.count < pageSize || self.workAwemes.count == 0) {
+                    [self.loadMore loadingAll];
+                }
+            }
+            else{
+                [UIWindow showTips:msg];
+            }
+        }];
 
-        
-        
-        
-//        NSDictionary *dic =  [NSString readJson2DicWithFileName:@"awemes"];  //作品
-//        AwemesResponse *awemesResponse = [[AwemesResponse alloc] initWithDictionary:dic];
-//        self.pageIndex++;
-//
-//        NSArray<Aweme *> *array = awemesResponse.data;
-//        self.pageIndex++;
-//
-//        [UIView setAnimationsEnabled:NO];
-//        [self.collectionView performBatchUpdates:^{
-//            [self.workAwemes addObjectsFromArray:array];
-//            NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
-//            for(NSInteger row = self.workAwemes.count - array.count; row<self.workAwemes.count; row++) {
-//                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
-//                [indexPaths addObject:indexPath];
-//            }
-//            [self.collectionView insertItemsAtIndexPaths:indexPaths];
-//        } completion:^(BOOL finished) {
-//            [UIView setAnimationsEnabled:YES];
-//        }];
-//
-//        [self.loadMore endLoading];
     }
     else if(_tabIndex == 1){
+        
+        NetWork_mt_getDynamics *request = [[NetWork_mt_getDynamics alloc] init];
+        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        request.noodleId = self.userNoodleId;
+        request.pageNo = [NSString stringWithFormat:@"%ld",pageIndex];
+        request.pageSize = [NSString stringWithFormat:@"%ld",pageSize];
+        [request startGetWithBlock:^(id result, NSString *msg) {
+            /*暂不考虑缓存*/
+        } finishBlock:^(GetLikeVideoListResponse *result, NSString *msg, BOOL finished) {
+            
+            NSLog(@"--------");
+            if(finished){
+                self.pageIndex++;
+                
+                [UIView setAnimationsEnabled:NO];
+                [self.collectionView performBatchUpdates:^{
+                    [self.dynamicAwemes addObjectsFromArray:result.obj];
+                    NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
+                    for(NSInteger row = self.dynamicAwemes.count - result.obj.count; row<self.dynamicAwemes.count; row++) {
+                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
+                        [indexPaths addObject:indexPath];
+                    }
+                    [self.collectionView insertItemsAtIndexPaths:indexPaths];
+                } completion:^(BOOL finished) {
+                    [UIView setAnimationsEnabled:YES];
+                }];
+                
+                [self.loadMore endLoading];
+                if(self.dynamicAwemes.count < pageSize || self.dynamicAwemes.count == 0) {
+                    [self.loadMore loadingAll];
+                }
+            }
+            else{
+                [UIWindow showTips:msg];
+            }
+        }];
         
     }
     else if(_tabIndex == 2){
@@ -412,7 +425,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         if(_user == nil) {
             [self loadUserData];
         }
-        if(_favoriteAwemes.count == 0 && _workAwemes.count == 0) {
+        if(self.favoriteAwemes.count == 0 && self.workAwemes.count == 0 && self.dynamicAwemes.count == 0) {
             [self loadData:_pageIndex pageSize:_pageSize];
         }
 //    }
@@ -470,6 +483,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     [UIView setAnimationsEnabled:NO];
     [self.collectionView performBatchUpdates:^{
         [self.workAwemes removeAllObjects];
+        [self.dynamicAwemes removeAllObjects];
         [self.favoriteAwemes removeAllObjects];
         
         if([self.collectionView numberOfItemsInSection:1]) {

@@ -12,6 +12,11 @@
 @implementation UIWindow (Extension)
 
 +(void)showTips:(NSString *)text {
+    
+    if(text == nil || text.trim.length == 0){
+        text = @"内部错误";
+    }
+    
     UITextView *tips = objc_getAssociatedObject(self, &tipsKey);
     if(tips) {
         [self dismiss];

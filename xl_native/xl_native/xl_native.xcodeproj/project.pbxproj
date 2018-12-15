@@ -1279,6 +1279,8 @@
 		04E6EA0221A93215007C8A16 /* NSData+CommonTX.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6EA0021A93214007C8A16 /* NSData+CommonTX.m */; };
 		04E700D3219FBD8B0096099F /* NetWork_mt_home_list.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E700D2219FBD8B0096099F /* NetWork_mt_home_list.m */; };
 		04E700D9219FF5C10096099F /* MtHomeTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E700D7219FF5C00096099F /* MtHomeTopView.m */; };
+		04EDFCF721C5259500DB05B9 /* NetWork_mt_getMyVideos.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EDFCF521C5259400DB05B9 /* NetWork_mt_getMyVideos.m */; };
+		04EDFCFA21C525FD00DB05B9 /* NetWork_mt_getDynamics.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EDFCF921C525FD00DB05B9 /* NetWork_mt_getDynamics.m */; };
 		04EEBA5F21ABE3EE00A5F6F2 /* PopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EEBA5E21ABE3EE00A5F6F2 /* PopViewController.m */; };
 		04F47DD9218D92B800132D97 /* XLGchangNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F47DD7218D92B800132D97 /* XLGchangNewViewController.m */; };
 		C5336F931E83739600618975 /* TTPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5336F8D1E83739600618975 /* TTPopupView.m */; };
@@ -2840,6 +2842,10 @@
 		04E700D2219FBD8B0096099F /* NetWork_mt_home_list.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_home_list.m; sourceTree = "<group>"; };
 		04E700D7219FF5C00096099F /* MtHomeTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MtHomeTopView.m; sourceTree = "<group>"; };
 		04E700D8219FF5C10096099F /* MtHomeTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MtHomeTopView.h; sourceTree = "<group>"; };
+		04EDFCF521C5259400DB05B9 /* NetWork_mt_getMyVideos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getMyVideos.m; sourceTree = "<group>"; };
+		04EDFCF621C5259400DB05B9 /* NetWork_mt_getMyVideos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getMyVideos.h; sourceTree = "<group>"; };
+		04EDFCF821C525FD00DB05B9 /* NetWork_mt_getDynamics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getDynamics.h; sourceTree = "<group>"; };
+		04EDFCF921C525FD00DB05B9 /* NetWork_mt_getDynamics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getDynamics.m; sourceTree = "<group>"; };
 		04EEBA5D21ABE3EE00A5F6F2 /* PopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopViewController.h; sourceTree = "<group>"; };
 		04EEBA5E21ABE3EE00A5F6F2 /* PopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopViewController.m; sourceTree = "<group>"; };
 		04F47DD7218D92B800132D97 /* XLGchangNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLGchangNewViewController.m; sourceTree = "<group>"; };
@@ -5411,6 +5417,10 @@
 			children = (
 				0402A46C21C4FE1E00C35CA9 /* NetWork_mt_getLikeVideoList.h */,
 				0402A46B21C4FE1D00C35CA9 /* NetWork_mt_getLikeVideoList.m */,
+				04EDFCF621C5259400DB05B9 /* NetWork_mt_getMyVideos.h */,
+				04EDFCF521C5259400DB05B9 /* NetWork_mt_getMyVideos.m */,
+				04EDFCF821C525FD00DB05B9 /* NetWork_mt_getDynamics.h */,
+				04EDFCF921C525FD00DB05B9 /* NetWork_mt_getDynamics.m */,
 				0402A46821C4E75100C35CA9 /* NetWork_mt_personal_homePage.h */,
 				0402A46921C4E75100C35CA9 /* NetWork_mt_personal_homePage.m */,
 				0402A46521C4C9BA00C35CA9 /* NetWork_mt_getCommentList.h */,
@@ -7191,6 +7201,7 @@
 				D954C4DF1DD1A40F003CA535 /* UIView+Hierarchy.m in Sources */,
 				D957AD571DD2CB2F00B7EE09 /* IQUIViewController+Additions.m in Sources */,
 				04B0E1F321A6937600ABCF16 /* UIGestureRecognizer+BlocksKit.m in Sources */,
+				04EDFCF721C5259500DB05B9 /* NetWork_mt_getMyVideos.m in Sources */,
 				04CBC4112179C01300658E47 /* GPUImageRGBOpeningFilter.m in Sources */,
 				04CBC29F2179C01200658E47 /* MJRefreshAutoFooter.m in Sources */,
 				0435492521A7E9AC00AED5A8 /* UIWebView+AFNetworking.m in Sources */,
@@ -7397,6 +7408,7 @@
 				D9BD11B51F02B134006CE841 /* WYPopoverController.m in Sources */,
 				04C2615121A68FB200374E4D /* Label.m in Sources */,
 				040E28E021C1152500D15B44 /* LoadMoreControl.m in Sources */,
+				04EDFCFA21C525FD00DB05B9 /* NetWork_mt_getDynamics.m in Sources */,
 				04DCA8EC21A565D500691A3A /* TextAddView.m in Sources */,
 				040E28D121C0F0D400D15B44 /* PictureInfo.m in Sources */,
 				04CBC4632179C01300658E47 /* GPUImageLookupFilter.m in Sources */,

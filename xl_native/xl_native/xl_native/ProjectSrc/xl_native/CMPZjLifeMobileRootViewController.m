@@ -49,23 +49,23 @@
     return _huinongViewController;
 }
 
-- (XLGchangNewViewController *)gchangViewController{
-    if (!_gchangViewController){
-        _gchangViewController = [[XLGchangNewViewController alloc]init];
-        _gchangViewController.selectedIndex = 2;
-        _gchangViewController.changeIndexDelegate = self;
-    }
-    return _gchangViewController;
-}
-
-
 - (UIViewController *)topicViewController{
     if (!_topicViewController){
         _topicViewController = [[UIViewController alloc]init];
-//        _topicViewController.selectedIndex = 3;
-//        _topicViewController.changeIndexDelegate = self;
+//        _gchangViewController.selectedIndex = 2;
+//        _gchangViewController.changeIndexDelegate = self;
     }
     return _topicViewController;
+}
+
+
+- (XLGchangNewViewController *)gchangViewController{
+    if (!_gchangViewController){
+        _gchangViewController = [[XLGchangNewViewController alloc]init];
+        _gchangViewController.selectedIndex = 3;
+        _gchangViewController.changeIndexDelegate = self;
+    }
+    return _gchangViewController;
 }
 
 - (UserInfoViewController *)userInfoViewController{
@@ -96,18 +96,18 @@
     return _huinongNavController;
 }
 
-- (BaseNavigationController *)gchangNavViewController{
-    if (!_gchangNavViewController){
-        _gchangNavViewController = [BaseNavigationController navigationWithRootViewController:self.gchangViewController];
-    }
-    return _gchangNavViewController;
-}
-
 - (BaseNavigationController *)topicNavViewController{
     if (!_topicNavViewController){
         _topicNavViewController = [BaseNavigationController navigationWithRootViewController:self.topicViewController];
     }
     return _topicNavViewController;
+}
+
+- (BaseNavigationController *) gchangNavViewController{
+    if (!_gchangNavViewController){
+        _gchangNavViewController = [BaseNavigationController navigationWithRootViewController:self.gchangViewController];
+    }
+    return _gchangNavViewController;
 }
 
 -(BaseNavigationController *)settingNavViewController{
@@ -126,8 +126,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self addChildViewController:self.xlHomeNavViewController];
     [self addChildViewController:self.huinongNavController];
-    [self addChildViewController:self.gchangNavViewController];
     [self addChildViewController:self.topicNavViewController];
+    [self addChildViewController:self.gchangNavViewController];
     [self addChildViewController:self.settingNavViewController];
     [[UINavigationBar appearance] setBarTintColor:defaultZjBlueColor];
     

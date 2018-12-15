@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "NetWork_mt_getLikeVideoList.h"
+#import "NetWork_mt_getMyVideos.h"
+#import "NetWork_mt_getDynamics.h"
 
 //@class WebPImageView;
 

@@ -25,8 +25,8 @@
 //viewController
 @property (nonatomic, strong) XlHomeViewController_Temp* homeNewViewController;
 @property (nonatomic, strong) HuinongViewController* huinongViewController;
-@property (nonatomic, strong) XLGchangNewViewController* gchangViewController;
-@property (nonatomic, strong) UIViewController *topicViewController;
+@property (nonatomic, strong) UIViewController* topicViewController;
+@property (nonatomic, strong) XLGchangNewViewController *gchangViewController;
 @property (nonatomic, strong) UserInfoViewController* userInfoViewController; 
 
 //NavViewController
