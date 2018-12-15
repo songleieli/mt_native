@@ -2,7 +2,7 @@
 //  BaseCollectionController.m
 //  CMPLjhMobile
 //
-//  Created by 刘欣 on 16/7/25.
+//  Created by songleilei on 16/7/25.
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 

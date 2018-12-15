@@ -340,7 +340,7 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
     
     //新增的背景数据写为指定路径
     //[_topBackground setImageWithURL:[NSURL URLWithString:@"http://pb3.pstatp.com/obj/dbc1001cd29ccc479f7f"]];
-    [_topBackground sd_setImageWithURL:[NSURL URLWithString:@"http://pb3.pstatp.com/obj/dbc1001cd29ccc479f7f"]];
+    [_topBackground sd_setImageWithURL:[NSURL URLWithString:user.head]];
     [_nickName setText:user.nickname];
     [_douyinNum setText:[NSString stringWithFormat:@"面条号:%@", user.noodleId]];
     if(![user.signature isEqual: @""]) {

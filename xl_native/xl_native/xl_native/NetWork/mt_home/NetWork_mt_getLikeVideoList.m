@@ -6,14 +6,10 @@
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
-#import "NetWork_mt_home_list.h"
+#import "NetWork_mt_getLikeVideoList.h"
 
 
-@implementation HomeListModel
-
-@end
-
-@implementation HomeListResponse
+@implementation GetLikeVideoListResponse
 
 - (NSDictionary *)propertyMappingObjcJson {
     return @{@"obj" : @"obj"};
@@ -25,13 +21,13 @@
 @end
 
 
-@implementation NetWork_mt_home_list
+@implementation NetWork_mt_getLikeVideoList
 
 -(Class)responseType{
-    return [HomeListResponse class];
+    return [GetLikeVideoListResponse class];
 }
 -(NSString*)responseCategory{
-    return @"/miantiao/home/getVideoList";
+    return @"/miantiao/home/getLikeVideoList";
 }
 
 

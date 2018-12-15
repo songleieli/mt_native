@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NetWork_mt_getLikeVideoList.h"
 
 //@class WebPImageView;
-@class Aweme;
 
 @interface AwemeCollectionCell : UICollectionViewCell
 
 @property (nonatomic, strong) UIImageView    *imageView;
 @property (nonatomic, strong) UIButton         *favoriteNum;
 
-- (void)initData:(Aweme *)aweme;
+- (void)initData:(HomeListModel *)aweme;
 
 @end

@@ -60,13 +60,13 @@
     [self.imageView setImage:nil];
 }
 
-- (void)initData:(Aweme *)aweme {
+- (void)initData:(HomeListModel *)aweme {
     __weak __typeof(self) wself = self;
     
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:aweme.video.cover.url_list.firstObject] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                if(!error) {
-                    [wself.imageView setImage:image];
-                }
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:aweme.noodleVideoCover] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//                if(error) {
+//                    [wself.imageView setImage:image];
+//                }
     }];
     
 //    [self.imageView setWebPImageWithURL:[NSURL URLWithString:aweme.video.dynamic_cover.url_list.firstObject] progressBlock:^(CGFloat percent) {
@@ -75,7 +75,7 @@
 //            [wself.imageView setImage:image];
 //        }
 //    }];
-    [self.favoriteNum setTitle:[NSString formatCount:aweme.statistics.digg_count] forState:UIControlStateNormal];
+    [self.favoriteNum setTitle:[NSString formatCount:[aweme.likeSum integerValue]] forState:UIControlStateNormal];
 }
 
 @end

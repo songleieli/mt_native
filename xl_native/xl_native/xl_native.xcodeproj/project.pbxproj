@@ -37,6 +37,7 @@
 		0402A46421C4C94800C35CA9 /* NSAttributedString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402A46321C4C94800C35CA9 /* NSAttributedString+Extension.m */; };
 		0402A46721C4C9BB00C35CA9 /* NetWork_mt_getCommentList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402A46621C4C9BB00C35CA9 /* NetWork_mt_getCommentList.m */; };
 		0402A46A21C4E75200C35CA9 /* NetWork_mt_personal_homePage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402A46921C4E75100C35CA9 /* NetWork_mt_personal_homePage.m */; };
+		0402A46D21C4FE1E00C35CA9 /* NetWork_mt_getLikeVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402A46B21C4FE1D00C35CA9 /* NetWork_mt_getLikeVideoList.m */; };
 		0403661721C378B6000FDC5E /* PhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661621C378B6000FDC5E /* PhotoView.m */; };
 		0403661A21C37910000FDC5E /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661821C37910000FDC5E /* CircleProgressView.m */; };
 		0403661D21C37A4C000FDC5E /* MenuPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661B21C37A4B000FDC5E /* MenuPopView.m */; };
@@ -1502,6 +1503,8 @@
 		0402A46621C4C9BB00C35CA9 /* NetWork_mt_getCommentList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getCommentList.m; sourceTree = "<group>"; };
 		0402A46821C4E75100C35CA9 /* NetWork_mt_personal_homePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_personal_homePage.h; sourceTree = "<group>"; };
 		0402A46921C4E75100C35CA9 /* NetWork_mt_personal_homePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_personal_homePage.m; sourceTree = "<group>"; };
+		0402A46B21C4FE1D00C35CA9 /* NetWork_mt_getLikeVideoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getLikeVideoList.m; sourceTree = "<group>"; };
+		0402A46C21C4FE1E00C35CA9 /* NetWork_mt_getLikeVideoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getLikeVideoList.h; sourceTree = "<group>"; };
 		0403661521C378B6000FDC5E /* PhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoView.h; sourceTree = "<group>"; };
 		0403661621C378B6000FDC5E /* PhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoView.m; sourceTree = "<group>"; };
 		0403661821C37910000FDC5E /* CircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleProgressView.m; sourceTree = "<group>"; };
@@ -5406,6 +5409,8 @@
 		04E700D0219FBD8B0096099F /* mt_home */ = {
 			isa = PBXGroup;
 			children = (
+				0402A46C21C4FE1E00C35CA9 /* NetWork_mt_getLikeVideoList.h */,
+				0402A46B21C4FE1D00C35CA9 /* NetWork_mt_getLikeVideoList.m */,
 				0402A46821C4E75100C35CA9 /* NetWork_mt_personal_homePage.h */,
 				0402A46921C4E75100C35CA9 /* NetWork_mt_personal_homePage.m */,
 				0402A46521C4C9BA00C35CA9 /* NetWork_mt_getCommentList.h */,
@@ -7150,6 +7155,7 @@
 				04CBC3CB2179C01300658E47 /* GPUImageSourceOverBlendFilter.m in Sources */,
 				D954C4C71DD1A40F003CA535 /* VUILable.m in Sources */,
 				04CBC46D2179C01300658E47 /* GPUImageDarkenBlendFilter.m in Sources */,
+				0402A46D21C4FE1E00C35CA9 /* NetWork_mt_getLikeVideoList.m in Sources */,
 				04443E9321B3FA6300C8DD34 /* MJTableView.m in Sources */,
 				04B66E9D21C15DF3000D6C56 /* AwemesResponse.m in Sources */,
 				04CBC29D2179C01200658E47 /* MJRefreshBackFooter.m in Sources */,
