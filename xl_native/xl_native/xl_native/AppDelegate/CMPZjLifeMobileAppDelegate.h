@@ -10,8 +10,6 @@
 #import "CMPZjLifeMobileRootViewController.h"
 
 #import "AlerViewJoinCostom.h"
-//#import "NetWork_ZJ_getLastVersionAppInfo.h"
-//#import "NetWork_ZJ_getSourceToken.h"
 
 #import "WXApi.h"
 #import "WeiboSDK.h"

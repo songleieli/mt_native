@@ -14,7 +14,7 @@
 
 -(instancetype)initWithFrame:(CGRect)frame;
 /*初始化方法传入listLoginModel*/
--(instancetype)initWithFrame:(CGRect)frame listLoginModel:(HomeListModel *)listLoginModel;
+//-(instancetype)initWithFrame:(CGRect)frame listLoginModel:(HomeListModel *)listLoginModel;
 
 /**视频url*/
 @property (nonatomic, strong) NSURL *url;

@@ -314,7 +314,6 @@
     [self addSubview:self.focus];
     
     [self addSubview:self.pauseIcon];
-//    [self addSubview:self.btnPlay];
 }
 
 

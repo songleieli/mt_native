@@ -55,8 +55,10 @@ typedef NS_ENUM(NSInteger, CLPlayerState) {
     _player                   = [AVPlayer playerWithPlayerItem:_playerItem];
     _playerLayer              = [AVPlayerLayer playerLayerWithPlayer:_player];
     //AVLayerVideoGravityResize;//全屏拉伸
-    _playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;//保持视频原有比例，不需要全屏拉伸
+//    AVLayerVideoGravityResizeAspectFill
+    _playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;//保持视频原有比例，不需要全屏拉伸
     //放到最下面，防止遮挡
+    
     [self.layer insertSublayer:_playerLayer atIndex:0];
 }
 
@@ -154,32 +156,9 @@ typedef NS_ENUM(NSInteger, CLPlayerState) {
     return self;
 }
 
--(instancetype)initWithFrame:(CGRect)frame listLoginModel:(HomeListModel *)listLoginModel{
-    
-    if (self = [super initWithFrame:frame]){
-        
-        self.listLoginModel = listLoginModel;
-        
-        //开启
-        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-
-        //APP运行状态通知，将要被挂起
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(appDidEnterBackground:)
-                                                     name:UIApplicationWillResignActiveNotification
-                                                   object:nil];
-        // app进入前台
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(appDidEnterPlayground:)
-                                                     name:UIApplicationDidBecomeActiveNotification
-                                                   object:nil];
-        [self creatUI];
-    }
-    return self;
-}
 
 - (void)creatUI{
-    self.backgroundColor = [UIColor blackColor];
+//    self.backgroundColor = [UIColor blackColor];
     //最上面的View , 先去掉主要是 toolBar，等操作控件
     [self addSubview:self.maskView];
     
@@ -271,8 +250,7 @@ typedef NS_ENUM(NSInteger, CLPlayerState) {
 
 
 // 查看用户信息
-- (void)userInfoAction
-{
+- (void)userInfoAction{
     if (self.pushUserInfo) {
         self.pushUserInfo();
     }

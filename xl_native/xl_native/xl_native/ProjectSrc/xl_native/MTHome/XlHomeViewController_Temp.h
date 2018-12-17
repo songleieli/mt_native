@@ -29,7 +29,7 @@ typedef NS_ENUM(NSInteger,DragDirection){
 //    BOOL                 isFirstLoad;
     
     BOOL                 _beginDragging;
-    NSInteger            _liveInfoIndex;
+//    NSInteger            _liveInfoIndex;
     DragDirection        _dragDirection;
     
     SwitchPlayerView *_playerView;//当前正在播放视频的播放器
@@ -38,5 +38,7 @@ typedef NS_ENUM(NSInteger,DragDirection){
 
 @property (nonatomic, assign)BOOL isFirstLoad; //判断是否第一加载
 @property (nonatomic,strong) MtHomeTopView *topView;
+@property (nonatomic, assign) NSInteger currentIndex;
+@property (nonatomic, assign) BOOL  isCurPlayerPause;
 
 @end

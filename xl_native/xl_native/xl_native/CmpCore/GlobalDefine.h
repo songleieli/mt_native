@@ -51,7 +51,15 @@
 #define zTabBarHeight1080           zTabBarBgImgHeight1080 - zTabBarBgImgHeight1080 - 83*zTabBarBgImgHeight1080/231
 
 
-#define isIPhoneXAll ([[UIApplication sharedApplication] statusBarFrame].size.height > 20)
+//#define isIPhoneXAll ([[UIApplication sharedApplication] statusBarFrame].size.height > 20)
+
+// 判断是否为iPhone X 系列  这样写消除了在Xcode10上的警告。
+#define isIPhoneXAll \
+({BOOL isIPhoneXAll = NO;\
+if (@available(iOS 11.0, *)) {\
+isIPhoneXAll = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;\
+}\
+(isIPhoneXAll);})
 
 
 

@@ -117,6 +117,11 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 
 
 -(void)setUpUI{
+    
+    //[self setBackgroundColor:ColorThemeBackground];
+    
+    self.view.backgroundColor = ColorThemeBackground;
+
 
     //根据当前屏幕宽度j计算，item 宽度
     _itemWidth = (ScreenWidth - 3) / 3.0f;
@@ -153,7 +158,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     [_collectionView registerClass:[AwemeCollectionCell class] forCellWithReuseIdentifier:kAwemeCollectionCell];
     [self.view addSubview:_collectionView];
     
-    [self.view bringSubviewToFront:self.navBackGround]; //将d导航栏，放到最上层。
+    [self.view bringSubviewToFront:self.navBackGround]; //将导航栏，放到最上层。
 
     
     _loadMore = [[LoadMoreControl alloc] initWithFrame:CGRectMake(0, kUserInfoHeaderHeight, ScreenWidth, 50) surplusCount:15];
@@ -311,24 +316,16 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 
 - (void)updateNavigationTitle:(CGFloat)offsetY {
     if (kUserInfoHeaderHeight - self.navBackGround.height*2 > offsetY) {
-        //[self setNavigationBarTitleColor:ColorClear];
-        
         self.lableNavTitle.textColor = [UIColor clearColor];
-        
     }
     if (kUserInfoHeaderHeight - self.navBackGround.height*2 < offsetY && offsetY < kUserInfoHeaderHeight - self.navBackGround.height) {
         CGFloat alphaRatio =  1.0f - (kUserInfoHeaderHeight - self.navBackGround.height - offsetY)/self.navBackGround.height;
-        //[self setNavigationBarTitleColor:[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:alphaRatio]];
-        
          self.lableNavTitle.textColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:alphaRatio];
     }
     if (offsetY > kUserInfoHeaderHeight - self.navBackGround.height) {
-        //[self setNavigationBarTitleColor:ColorWhite];
         self.lableNavTitle.textColor = [UIColor whiteColor];
     }
 }
-
-//
 
 #pragma -mark ------------   UICollectionViewDataSource Delegate
 
@@ -453,8 +450,30 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
             break;
         }
         case UserInfoHeaderSettingTag:{
-            MenuPopView *menu = [[MenuPopView alloc] initWithTitles:@[@"清除缓存"]];
+            
+            NSArray *titles = nil;
+            
+            if(self.fromType == FromTypeMy){
+                titles = @[@"退出登录",@"清除缓存"];
+            }
+            else{
+                titles = @[@"清除缓存"];
+            }
+            
+            MenuPopView *menu = [[MenuPopView alloc] initWithTitles:titles];
+            
+            
             [menu setOnAction:^(NSInteger index) {
+                
+                if(index == 0){
+                    [UIWindow showTips:[NSString stringWithFormat:@"已经清除缓存"]];
+                }
+                else if (index == 1){
+                    
+                    [GlobalData cleanAccountInfo];
+                    [[CMPZjLifeMobileAppDelegate shareApp].rootViewController selectTabAtIndex:0];
+                }
+                
 //                [[WebCacheHelpler sharedWebCache] clearCache:^(NSString *cacheSize) {
 //                    [UIWindow showTips:[NSString stringWithFormat:@"已经清除%@M缓存",cacheSize]];
 //                }];

@@ -9,8 +9,12 @@
 #import "BaseTableViewCell.h"
 #import "NetWork_mt_home_list.h"
 #import "SwitchPlayerView.h"
+#import "AVPlayerView.h"
+#import "SwitchPlayerMaskView_temp.h"
 
 #define HomeVideoCellHeight ScreenHeight
+
+typedef void (^OnPlayerReady)(void);
 
 
 @protocol HomeDelegate <NSObject>
@@ -31,12 +35,9 @@
 
 @end
 
-@interface HomeVideoCell : BaseTableViewCell
+@interface HomeVideoCell : BaseTableViewCell<AVPlayerUpdateDelegate,SwitchPlayerMaskViewDelegate_Temp>
 
 + (NSString*) cellId;
-
-- (void)fillDataWithModel:(HomeListModel *)listModel;
-
 
 @property(nonatomic, weak)id <HomeDelegate> homeDelegate;
 
@@ -45,5 +46,22 @@
 /*播放器*/
 @property (nonatomic,strong) SwitchPlayerView *playerView;
 
+/*
+ 新版播放器View，带有缓存功能。
+ */
+@property (nonatomic, strong) AVPlayerView     *playerView_temp;
+@property (nonatomic, strong) OnPlayerReady    onPlayerReady;
+@property (nonatomic, assign) BOOL             isPlayerReady;
+
+/**遮罩*/
+@property (nonatomic, strong) SwitchPlayerMaskView_temp *maskView;
+
+
+- (void)fillDataWithModel:(HomeListModel *)listModel;
+- (void)play;
+- (void)pause;
+- (void)replay;
+- (void)startDownloadBackgroundTask;
+- (void)startDownloadHighPriorityTask;
 
 @end

@@ -19,9 +19,6 @@
     if (!_topView) {
         CGRect frame = CGRectMake(0, 0, ScreenWidth, kNavBarHeight_New);
         _topView = [[MtHomeTopView alloc] initWithFrame:frame];
-        
-        //test
-        //        _topView.backgroundColor = [UIColor redColor];
     }
     return _topView;
 }
@@ -62,6 +59,18 @@
 
 -(void)dealloc{    
     /*dealloc*/
+    
+//    [self.tableView.layer removeAllAnimations];
+//    NSArray<AwemeListCell *> *cells = [_tableView visibleCells];
+//    for(AwemeListCell *cell in cells) {
+//        [cell.playerView cancelLoading];
+//    }
+//    [[AVPlayerManager shareManager] removeAllPlayers];
+
+//    //移除 currentIndex 值变化的监听
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//    [self removeObserver:self forKeyPath:@"currentIndex"];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad {
@@ -75,6 +84,8 @@
 #pragma -mark ------ CustomMethod ----------
 
 -(void)setupUI{
+    
+//    [self setBackgroundImage:@"img_video_loading"];
     
     [self.view addSubview:self.mainTableView];
      [self.view addSubview:self.topView];
@@ -102,15 +113,36 @@
     self.mainTableView.mj_footer = nil;
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+////        [self.view addSubview:self.tableView];
+////        self.data = self.awemes;
+////        [self.tableView reloadData];
+//
+////        NSIndexPath *curIndexPath = [NSIndexPath indexPathForRow:self.currentIndex inSection:0];
+////        [self.tableView scrollToRowAtIndexPath:curIndexPath atScrollPosition:UITableViewScrollPositionMiddle
+////                                      animated:NO];
+//        [self addObserver:self forKeyPath:@"currentIndex" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:nil];
+//    });
+    
     [self.mainTableView.mj_header beginRefreshing];
     
+    
+    //添加 currentIndex 的监听
+//    [self addObserver:self forKeyPath:@"currentIndex" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:nil];
 }
 
+- (void) setBackgroundImage:(NSString *)imageName {
+    UIImageView *background = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    background.clipsToBounds = YES;
+    background.contentMode = UIViewContentModeScaleAspectFill;
+    background.image = [UIImage imageNamed:imageName];
+    [self.view addSubview:background];
+}
 
 #pragma mark --------- 数据加载代理 ------------
 
 -(void)loadNewData{
-    _liveInfoIndex = 0; //默认第一条视频
+    _currentIndex = 0; //默认第一条视频
     self.isFirstLoad = YES;
     self.currentPage = 0;
     [self.mainDataArr removeAllObjects];
@@ -143,9 +175,15 @@
             
             if(self.isFirstLoad){//第一次加载
                 self.isFirstLoad = NO;
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_liveInfoIndex inSection:0];
+                
+                
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_currentIndex inSection:0];
                 _currentCell = [self.mainTableView cellForRowAtIndexPath:indexPath];
-                [_currentCell.playerView playVideo];
+                //                [_currentCell.playerView playVideo];
+
+                [self playCurCellVideo];
+               
+                
             }
         }
         else{
@@ -155,7 +193,7 @@
         [self.mainTableView.mj_footer endRefreshing];
 
         if(_dragDirection == DragDirection_Down){//上拉加载完成后，mj_footer没有滚动一整屏幕，辅助滚动一整屏
-            [self.mainTableView setContentOffset:CGPointMake(0, _liveInfoIndex*HomeVideoCellHeight)];
+            [self.mainTableView setContentOffset:CGPointMake(0, _currentIndex*HomeVideoCellHeight)];
         }
     }];
 }
@@ -180,6 +218,7 @@
         cell.homeDelegate = self;
     }
     [cell fillDataWithModel:model];
+    [cell startDownloadBackgroundTask];
     
     return cell;
 }
@@ -204,37 +243,93 @@
     _beginDragging = YES;
 }
 
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
     CGPoint rect = scrollView.contentOffset;
     NSInteger index = rect.y / self.view.height;
-    if (_beginDragging && _liveInfoIndex != index) {
-        if (index > _liveInfoIndex) {
+    if (_beginDragging && _currentIndex != index) {
+        if (index > _currentIndex) {
             _dragDirection = DragDirection_Down;
         }else{
             _dragDirection = DragDirection_Up;
         }
-        _liveInfoIndex = index;
+        _currentIndex = index;
         
-        [_currentCell.playerView pausePlay]; //暂停上一个视频
         
-        _currentCell = [self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_liveInfoIndex inSection:0]];
-        [_currentCell.playerView playVideo];
+//        [_currentCell pause]; //暂停上一个视频
+        _currentCell = [self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_currentIndex inSection:0]];
+        [self playCurCellVideo];
+        
+//        [_currentCell.playerView playVideo]; //播放视频
         
         _beginDragging = NO;
     }
     
-    NSLog(@"-------------_liveInfoIndex = %ld",_liveInfoIndex);
+    NSLog(@"-------------_liveInfoIndex = %ld",_currentIndex);
     NSLog(@"-------------self.mainDataArr.count = %ld",self.mainDataArr.count);
-    
     NSLog(@"----------");
     
-    NSInteger offset = self.mainDataArr.count - _liveInfoIndex;
+    NSInteger offset = self.mainDataArr.count - _currentIndex;
     if(offset == 2){ //开始加载下一页
         self.currentPage += 1;
         [self initRequest];
     }
 }
+
+-(void)playCurCellVideo{
+    
+    
+    [_currentCell startDownloadHighPriorityTask];
+
+    
+    __weak typeof (HomeVideoCell) *wcell = _currentCell;
+    __weak typeof (self) wself = self;
+    //判断当前cell的视频源是否已经准备播放
+    if(_currentCell.isPlayerReady) {
+        //播放视频
+        [_currentCell replay];
+    }else {
+        [[AVPlayerManager shareManager] pauseAll];
+        //当前cell的视频源还未准备好播放，则实现cell的OnPlayerReady Block 用于等待视频准备好后通知播放
+        _currentCell.onPlayerReady = ^{
+            NSIndexPath *indexPath = [wself.mainTableView indexPathForCell:wcell];
+            if(!wself.isCurPlayerPause && indexPath && indexPath.row == wself.currentIndex) {
+                [wcell play];
+            }
+        };
+    }
+}
+
+//#pragma -----------KVO-------
+//-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+//    //观察currentIndex变化
+//    if ([keyPath isEqualToString:@"currentIndex"]) {
+//        //设置用于标记当前视频是否播放的BOOL值为NO
+//        _isCurPlayerPause = NO;
+//        //获取当前显示的cell
+//        HomeVideoCell *cell = [self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_currentIndex inSection:0]];
+//        [cell startDownloadHighPriorityTask];
+//        __weak typeof (cell) wcell = cell;
+//        __weak typeof (self) wself = self;
+//        //判断当前cell的视频源是否已经准备播放
+//        if(cell.isPlayerReady) {
+//            //播放视频
+//            [cell replay];
+//        }else {
+//            [[AVPlayerManager shareManager] pauseAll];
+//            //当前cell的视频源还未准备好播放，则实现cell的OnPlayerReady Block 用于等待视频准备好后通知播放
+//            cell.onPlayerReady = ^{
+//                NSIndexPath *indexPath = [wself.mainTableView indexPathForCell:wcell];
+//                if(!wself.isCurPlayerPause && indexPath && indexPath.row == wself.currentIndex) {
+//                    [wcell play];
+//                }
+//            };
+//        }
+//    } else {
+//        return [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+//    }
+//}
 
 #pragma mark --------------- HomeDelegate代理 -----------------
 
