@@ -67,9 +67,6 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
 
 - (void)fillDataWithModel:(HomeListModel *)model{
     
-    //test
-    model.isFlour = [NSNumber numberWithInteger:0];
-    
     self.listModel = model;
     self.maskView.listLoginModel = model;
     

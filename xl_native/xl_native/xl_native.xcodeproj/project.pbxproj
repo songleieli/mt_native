@@ -3345,6 +3345,7 @@
 		04183AF321C2BC2200383E3F /* DouyinView */ = {
 			isa = PBXGroup;
 			children = (
+				04183AFE21C2BC2200383E3F /* MusicAlbumView.h */,
 				04183AF421C2BC2200383E3F /* MusicAlbumView.m */,
 				04183AF621C2BC2200383E3F /* NSString+Extension.h */,
 				04183AFC21C2BC2200383E3F /* NSString+Extension.m */,
@@ -3356,7 +3357,6 @@
 				04183AF821C2BC2200383E3F /* FavoriteView.m */,
 				04183B0021C2BC2200383E3F /* UIImage+Extension.h */,
 				04183AF921C2BC2200383E3F /* UIImage+Extension.m */,
-				04183AFE21C2BC2200383E3F /* MusicAlbumView.h */,
 			);
 			path = DouyinView;
 			sourceTree = "<group>";

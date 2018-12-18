@@ -161,7 +161,7 @@
     //用来响应touch的view
     self.clearView = [[UIView alloc] init];
     self.clearView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
-    self.clearView.backgroundColor = RGBA(255, 0, 0, 0.3);
+    self.clearView.backgroundColor = RGBA(255, 0, 0, 0.0);
     [self.view addSubview:self.clearView];
     [self.view addSubview:self.refreshNavigitionView];
 
@@ -272,45 +272,55 @@
         BOOL isExitFlollow = CGRectContainsPoint(_currentCell.maskView.focus.frame,currentPoint);
         if(isExitFlollow){
             NSLog(@"点击关注");
-            return;
+            if(!_currentCell.listModel.isFlour){ //如果没有关注，才可点击关注按钮
+                [_currentCell.maskView followHomeClick];
+                return;
+            }
         }
         
         BOOL isExitUserInfo = CGRectContainsPoint(_currentCell.maskView.avatar.frame,currentPoint);
         if(isExitUserInfo){
             NSLog(@"点击用户头像");
+            [self userInfoClicked:_currentCell.listModel];
             return;
         }
 
         BOOL isExitFav = CGRectContainsPoint(_currentCell.maskView.favorite.frame,currentPoint);
         if(isExitFav){
             NSLog(@"点击喜欢");
+            [_currentCell.maskView.favorite favoriteViewLikeClick:[_currentCell.listModel.isLike boolValue]];
+            _currentCell.listModel.isLike = [NSNumber numberWithBool:![_currentCell.listModel.isLike boolValue]];
+            
             return;
         }
         
         BOOL isExitComment = CGRectContainsPoint(_currentCell.maskView.comment.frame,currentPoint);
         if(isExitComment){
             NSLog(@"点击评论");
+            [self commentClicked:_currentCell.listModel];
             return;
         }
         
         BOOL isExitShare = CGRectContainsPoint(_currentCell.maskView.share.frame,currentPoint);
         if(isExitShare){
             NSLog(@"点击分享");
+            [self shareClicked:_currentCell.listModel];
             return;
         }
         
         BOOL isExitMusicAlum = CGRectContainsPoint(_currentCell.maskView.musicAlum.frame,currentPoint);
         if(isExitMusicAlum){
             NSLog(@"点击旋转CD");
+            [self musicCDClicked:_currentCell.listModel];
             return;
         }
         
         BOOL isExitPlayBtn = CGRectContainsPoint(_currentCell.maskView.frame,currentPoint);
         if(isExitPlayBtn){
+            NSLog(@"暂停或播放");
             [_currentCell.maskView singleTapAction];
             return;
         }
-        
         return;
     }
     
@@ -559,6 +569,8 @@
             NSLog(@"---------");
             if(finished){
                 NSLog(@"-------");
+                
+//                _currentCell.listModel.isLike = [NSNumber numberWithBool:![_currentCell.listModel.isLike boolValue]];
                 
                 //发送点赞通知
                 

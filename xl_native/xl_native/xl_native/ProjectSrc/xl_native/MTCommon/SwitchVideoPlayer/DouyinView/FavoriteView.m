@@ -43,12 +43,10 @@
     switch (sender.view.tag) {
         case kFavoriteViewLikeBeforeTag: {
             [self startLikeAnim:YES];
-
             break;
         }
         case kFavoriteViewLikeAfterTag: {
             [self startLikeAnim:NO];
-
             break;
         }
     }
@@ -58,6 +56,23 @@
     }
     
 }
+
+- (void)favoriteViewLikeClick:(BOOL)isLike;{
+    
+    if(isLike){
+        [self startLikeAnim:NO];
+    }
+    else{
+        [self startLikeAnim:YES];
+    }
+    
+    
+    //点击喜欢按钮的block
+    if(self.likeClickBlock){
+        self.likeClickBlock(self);
+    }
+}
+
 
 -(void)startLikeAnim:(BOOL)isLike {
     
@@ -125,6 +140,7 @@
                          }];
     }else {
         _favoriteAfter.alpha = 1.0f;
+        [self.favoriteBefore setHidden:NO];
         _favoriteAfter.transform = CGAffineTransformScale(CGAffineTransformMakeRotation(0), 1.0f, 1.0f);
         [UIView animateWithDuration:0.35f
                               delay:0.0f

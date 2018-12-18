@@ -49,7 +49,7 @@
 /*
  新版UI布局
  */
-@property (nonatomic ,strong) CAGradientLayer          *gradientLayer;
+@property (nonatomic ,strong) CAGradientLayer  *gradientLayer;
 
 @property (nonatomic, strong) UIImageView      *musicIcon;
 @property (nonatomic, strong) CircleTextView   *musicName;
@@ -89,9 +89,10 @@
 -(void)showPlayBtn;
 -(void)hidePlayBtn;
 
-/*
- 如果播放，暂停，如果暂停播放，解决第一页添加蒙版，不想赢时间的问题。
- */
+#pragma mark ------------ 首页第一行下拉刷新，添加蒙版，响应事件添加方法，模仿响应事件,特殊处理----------------
+
 - (void)singleTapAction;
+
+-(void)followHomeClick;
 
 @end

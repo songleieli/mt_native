@@ -18,7 +18,7 @@
 
 @implementation SwitchPlayerMaskView
 
-#pragma mark ------------UI元素----------------
+#pragma mark ------------UI元素 懒加载----------------
 
 /*
  暂停按钮
@@ -378,7 +378,6 @@
 
 #pragma mark - 自定义方法
 -(void)showPlayBtn{
-    //self.btnPlay.hidden = NO;
     
     [self.pauseIcon setHidden:NO];
     self.pauseIcon.transform = CGAffineTransformMakeScale(1.8f, 1.8f);
@@ -392,17 +391,12 @@
 }
 
 -(void)hidePlayBtn{
-   // self.btnPlay.hidden = YES;
-    
     [UIView animateWithDuration:0.25f
                      animations:^{
                          self.pauseIcon.alpha = 0.0f;
                      } completion:^(BOOL finished) {
                          [self.pauseIcon setHidden:YES];
                      }];
-    
-    
-    
 }
 
 //播放按钮
@@ -413,6 +407,23 @@
         NSLog(@"没有实现代理或者没有设置代理人");
     }
 }
+
+#pragma mark ------------ 首页第一行下拉刷新，添加蒙版，响应事件添加方法，模仿响应事件,特殊处理----------------
+
+/*
+ 关注首页响应事件
+ */
+-(void)followHomeClick{
+    
+    [self.focus beginAnimation];
+//    //关注响应事件
+//    if (self.delegate && [self.delegate respondsToSelector:@selector(followButtonAction:)]) {
+//        [self.delegate followButtonAction:self.focus];
+//    }else{
+//        NSLog(@"没有实现代理或者没有设置代理人");
+//    }
+}
+
 
 #pragma mark ------------- gesture
 //

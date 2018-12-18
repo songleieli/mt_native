@@ -32,7 +32,7 @@ typedef NS_ENUM(NSInteger,StatusOfRefresh) {
     XDREFRESH_BeginRefresh,    //刷新状态
 };
 
-#define MaxDistance 60 //向下拖拽最大点-刷新临界值
+#define MaxDistance 25 //向下拖拽最大点-刷新临界值
 #define MaxScroll 200 //向上拖拽最大点-到达最大点就动画让tableview滚动到第二个cell
 
 @interface XlHomeViewController : ZJCustomTabBarLjhTableViewController{
