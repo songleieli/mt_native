@@ -104,6 +104,10 @@
     self.mainTableView.showsHorizontalScrollIndicator = NO;
     self.mainTableView.backgroundColor = XLColorBackgroundColor; //XLColorBackgroundColor;
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.mainTableView.mj_header = nil;
+    self.mainTableView.mj_footer = nil;
+    
+    [self.mainTableView registerClass:HomeVideoCell.class forCellReuseIdentifier:[HomeVideoCell cellId]];
 
     __weak typeof(self) weakSelf = self;
     [self addJXRefreshWithTableView:self.mainTableView andRefreshBlock:^{
@@ -341,46 +345,6 @@
     [self.refreshNavigitionView.circleImage.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
 }
 
-
-#pragma mark --------- touch ------------
-
-
-//- (void)tableView:(UITableView *)tableView touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-//    NSLog(@"began");
-//
-////    self.tableView.scrollEnabled = false;
-//
-//}
-//
-//- (void)tableView:(UITableView *)tableView touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-//    NSLog(@"moved");
-//}
-//
-//- (void)tableView:(UITableView *)tableView touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-//    NSLog(@"touch end");
-//
-////    self.tableView.scrollEnabled = true;
-//
-//
-//}
-
-
-
-#pragma mark --------- 数据加载代理 ------------
-
--(void)loadNewData{
-    _currentIndex = 0; //默认第一条视频
-    self.isFirstLoad = YES;
-    self.currentPage = 0;
-    [self.mainDataArr removeAllObjects];
-    [self initRequest];
-}
-
--(void)loadMoreData{
-    self.currentPage += 1;
-    [self initRequest];
-}
-
 #pragma mark --------- 网络请求 ------------
 
 -(void)initRequest {
@@ -412,17 +376,11 @@
             }
         }
         else{
-            [self showFaliureHUD:msg];
+            [UIWindow showTips:@"网络不给力"];
+            //[self showFaliureHUD:msg];
         }
         
         [self endRefresh];
-        
-//        [self.mainTableView.mj_header endRefreshing];
-//        [self.mainTableView.mj_footer endRefreshing];
-
-//        if(_dragDirection == DragDirection_Down){//上拉加载完成后，mj_footer没有滚动一整屏幕，辅助滚动一整屏
-//            [self.mainTableView setContentOffset:CGPointMake(0, _currentIndex*HomeVideoCellHeight)];
-//        }
     }];
 }
 
@@ -439,17 +397,21 @@
 //设置cell的样式
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    HomeVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:[HomeVideoCell cellId] forIndexPath:indexPath];
     HomeListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
-    HomeVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:[HomeVideoCell cellId]];
-    if(!cell){
-        cell = [[HomeVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[HomeVideoCell cellId]];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.homeDelegate = self;
-    }
+    cell.homeDelegate = self;
     [cell fillDataWithModel:model];
-//    [cell startDownloadBackgroundTask];
-    
     return cell;
+    
+//    HomeListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
+//    HomeVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:[HomeVideoCell cellId]];
+//    if(!cell){
+//        cell = [[HomeVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[HomeVideoCell cellId]];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.homeDelegate = self;
+//    }
+//    [cell fillDataWithModel:model];
+//    return cell;
 }
 
 //设置每一组的高度

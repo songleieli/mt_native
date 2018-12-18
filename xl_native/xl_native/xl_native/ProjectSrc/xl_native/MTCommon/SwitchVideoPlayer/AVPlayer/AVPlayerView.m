@@ -36,23 +36,50 @@
 @implementation AVPlayerView
 
 - (void)dealloc {
-    [_playerItem removeObserver:self forKeyPath:@"status"];
-    [_player removeTimeObserver:_timeObserver];
+    if(self.playerItem){
+        [self.playerItem removeObserver:self forKeyPath:@"status"];
+        self.playerItem = nil;
+    }
+    [self.player removeTimeObserver:_timeObserver];
 }
+
+#pragma -mark ------懒加载------
+
+
+
+-(AVPlayer*)player{
+    if(_player){
+        //初始化播放器
+        _player = [[AVPlayer alloc] init];
+    }
+    return _player;
+}
+-(AVPlayerLayer*)playerLayer{
+    if(_playerLayer){
+        _playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
+        _playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    }
+    return _playerLayer;
+}
+
+-(NSMutableArray*)pendingRequests{
+    if(_pendingRequests){
+        //初始化存储AVAssetResourceLoadingRequest的数组
+        _pendingRequests = [[NSMutableArray alloc] init];
+    }
+    return _pendingRequests;
+}
+
+//-()
+
+
 
 //重写initWithFrame
 -(instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if(self){
-        //初始化存储AVAssetResourceLoadingRequest的数组
-        _pendingRequests = [NSMutableArray array];
         
-        //初始化播放器
-        _player = [AVPlayer new];
-        _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
-        _playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-        [self.layer addSublayer:_playerLayer];
-        
+        [self.layer addSublayer:self.playerLayer];
         //dispatch_queue_concurrent 并发队列
         /*
          *特点
@@ -70,7 +97,7 @@
     //禁止隐式动画
     [CATransaction begin];
     [CATransaction setDisableActions:YES];
-    _playerLayer.frame = self.layer.bounds;
+    self.playerLayer.frame = self.layer.bounds;
     [CATransaction commit];
 }
 
@@ -83,11 +110,11 @@
     self.sourceScheme = components.scheme; //http(https)
     
     //路径作为视频缓存key
-    _cacheFileKey = self.sourceURL.absoluteString;
+    self.cacheFileKey = self.sourceURL.absoluteString;
     
     __weak __typeof(self) wself = self;
     //查找本地视频缓存数据
-    _queryCacheOperation = [[WebCacheHelpler sharedWebCache] queryURLFromDiskMemory:_cacheFileKey cacheQueryCompletedBlock:^(id data, BOOL hasCache) {
+    _queryCacheOperation = [[WebCacheHelpler sharedWebCache] queryURLFromDiskMemory:self.cacheFileKey cacheQueryCompletedBlock:^(id data, BOOL hasCache) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if(!hasCache){
@@ -103,12 +130,23 @@
             wself.urlAsset = [AVURLAsset URLAssetWithURL:wself.sourceURL options:nil];
             //设置AVAssetResourceLoaderDelegate代理
             [wself.urlAsset.resourceLoader setDelegate:wself queue:dispatch_get_main_queue()];
+            
             //初始化AVPlayerItem
+            if(wself.playerItem){
+                [wself.playerItem removeObserver:self forKeyPath:@"status"];
+                wself.playerItem = nil;
+            }
             wself.playerItem = [AVPlayerItem playerItemWithAsset:wself.urlAsset];
             //观察playerItem.status属性
             [wself.playerItem addObserver:wself forKeyPath:@"status" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:nil];
             
             //切换当前AVPlayer播放器的视频源
+            if(wself.player){
+                wself.player = nil;
+            }
+            if(wself.playerLayer){
+                wself.playerLayer = nil;
+            }
             wself.player = [[AVPlayer alloc] initWithPlayerItem:wself.playerItem];
             wself.playerLayer.player = wself.player;
             //给AVPlayerLayer添加周期性调用的观察者，用于更新视频播放进度
@@ -123,7 +161,7 @@
 - (void)startDownloadTask:(NSURL *)URL isBackground:(BOOL)isBackground {
     
     __weak __typeof(self) wself = self;
-    _queryCacheOperation = [[WebCacheHelpler sharedWebCache] queryURLFromDiskMemory:_cacheFileKey cacheQueryCompletedBlock:^(id data, BOOL hasCache) {
+    _queryCacheOperation = [[WebCacheHelpler sharedWebCache] queryURLFromDiskMemory:self.cacheFileKey cacheQueryCompletedBlock:^(id data, BOOL hasCache) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if(hasCache) {
                 return;
@@ -160,7 +198,7 @@
     [self pause];
     
     //隐藏playerLayer
-    [_playerLayer setHidden:YES];
+//    [self.playerLayer setHidden:YES];
     
     //取消下载任务
     if(_combineOperation) {
@@ -171,9 +209,21 @@
     //取消查找本地视频缓存数据的NSOperation任务
     [_queryCacheOperation cancel];
     
-    _player = nil;
-    _playerItem = nil;
-    _playerLayer.player = nil;
+    if(self.playerItem){
+        [self.playerItem removeObserver:self forKeyPath:@"status"];
+        self.playerItem = nil;
+    }
+    if(self.player){
+        self.player = nil;
+    }
+
+    if(self.playerLayer){
+        self.playerLayer = nil;
+    }
+    
+//    _player = nil;
+//    _playerItem = nil;
+//    _playerLayer.player = nil;
     
     __weak __typeof(self) wself = self;
     dispatch_async(self.cancelLoadingQueue, ^{
