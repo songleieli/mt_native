@@ -89,4 +89,9 @@
 -(void)showPlayBtn;
 -(void)hidePlayBtn;
 
+/*
+ 如果播放，暂停，如果暂停播放，解决第一页添加蒙版，不想赢时间的问题。
+ */
+- (void)singleTapAction;
+
 @end

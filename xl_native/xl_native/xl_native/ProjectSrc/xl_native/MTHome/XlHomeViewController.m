@@ -161,7 +161,7 @@
     //用来响应touch的view
     self.clearView = [[UIView alloc] init];
     self.clearView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
-    self.clearView.backgroundColor = RGBA(255, 0, 0, 0.0);
+    self.clearView.backgroundColor = RGBA(255, 0, 0, 0.3);
     [self.view addSubview:self.clearView];
     [self.view addSubview:self.refreshNavigitionView];
 
@@ -268,14 +268,50 @@
     float moveDistance = currentPoint.y-self.startPoint.y;
     if (moveDistance==0) {
         
+        //通过point所在位置 判断应该响应那个蒙版下面的按钮
+        BOOL isExitFlollow = CGRectContainsPoint(_currentCell.maskView.focus.frame,currentPoint);
+        if(isExitFlollow){
+            NSLog(@"点击关注");
+            return;
+        }
+        
+        BOOL isExitUserInfo = CGRectContainsPoint(_currentCell.maskView.avatar.frame,currentPoint);
+        if(isExitUserInfo){
+            NSLog(@"点击用户头像");
+            return;
+        }
+
         BOOL isExitFav = CGRectContainsPoint(_currentCell.maskView.favorite.frame,currentPoint);
         if(isExitFav){
             NSLog(@"点击喜欢");
+            return;
         }
+        
+        BOOL isExitComment = CGRectContainsPoint(_currentCell.maskView.comment.frame,currentPoint);
+        if(isExitComment){
+            NSLog(@"点击评论");
+            return;
+        }
+        
         BOOL isExitShare = CGRectContainsPoint(_currentCell.maskView.share.frame,currentPoint);
         if(isExitShare){
             NSLog(@"点击分享");
+            return;
         }
+        
+        BOOL isExitMusicAlum = CGRectContainsPoint(_currentCell.maskView.musicAlum.frame,currentPoint);
+        if(isExitMusicAlum){
+            NSLog(@"点击旋转CD");
+            return;
+        }
+        
+        BOOL isExitPlayBtn = CGRectContainsPoint(_currentCell.maskView.frame,currentPoint);
+        if(isExitPlayBtn){
+            [_currentCell.maskView singleTapAction];
+            return;
+        }
+        
+        return;
     }
     
     //清除起始触摸点
@@ -350,7 +386,7 @@
 -(void)initRequest {
     
     NetWork_mt_home_list *request = [[NetWork_mt_home_list alloc] init];
-    request.pageNo = [NSString stringWithFormat:@"%d",self.currentPage+1];
+    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPage+1];
     request.pageSize = @"20";
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     [request startGetWithBlock:^(HomeListResponse *result, NSString *msg) {
@@ -371,14 +407,11 @@
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_currentIndex inSection:0];
                 _currentCell = [self.mainTableView cellForRowAtIndexPath:indexPath];
                 [self playCurCellVideo];
-                
             }
         }
         else{
             [UIWindow showTips:@"网络不给力"];
-            //[self showFaliureHUD:msg];
         }
-        
         [self endRefresh];
     }];
 }

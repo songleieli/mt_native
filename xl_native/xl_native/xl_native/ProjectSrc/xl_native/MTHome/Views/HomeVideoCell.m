@@ -66,6 +66,10 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
 }
 
 - (void)fillDataWithModel:(HomeListModel *)model{
+    
+    //test
+    model.isFlour = [NSNumber numberWithInteger:0];
+    
     self.listModel = model;
     self.maskView.listLoginModel = model;
     
@@ -89,11 +93,6 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
     [self.maskView hidePlayBtn];
 }
 
-//- (void)startDownloadBackgroundTask {
-//    NSString *playUrl = self.listModel.storagePath;
-//    [self.playerView setPlayerWithUrl:playUrl];
-//}
-
 - (void)startDownloadHighPriorityTask {
     NSString *playUrl = self.listModel.storagePath;
     [self.playerView startDownloadTask:[[NSURL alloc] initWithString:playUrl] isBackground:NO];
@@ -109,13 +108,6 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
     _isPlayerReady = NO;
     [self.playerView cancelLoading];
     [self.maskView hidePlayBtn];
-    
-    //    [_hoverTextView.textView setText:@""];
-//    [_avatar setImage:[UIImage imageNamed:@"img_find_default"]];
-    
-//    [_musicAlum resetView];
-//    [_favorite resetView];
-//    [_focus resetView];
 }
 
 #pragma mark ---------AVPlayerUpdateDelegate-------------
