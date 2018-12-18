@@ -350,7 +350,7 @@
 -(void)initRequest {
     
     NetWork_mt_home_list *request = [[NetWork_mt_home_list alloc] init];
-    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPage+1];
+    request.pageNo = [NSString stringWithFormat:@"%d",self.currentPage+1];
     request.pageSize = @"20";
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     [request startGetWithBlock:^(HomeListResponse *result, NSString *msg) {
@@ -367,7 +367,6 @@
             
             if(self.isFirstLoad){//第一次加载
                 self.isFirstLoad = NO;
-                
                 
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_currentIndex inSection:0];
                 _currentCell = [self.mainTableView cellForRowAtIndexPath:indexPath];
@@ -397,11 +396,20 @@
 //设置cell的样式
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    HomeVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:[HomeVideoCell cellId] forIndexPath:indexPath];
-    HomeListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
-    cell.homeDelegate = self;
-    [cell fillDataWithModel:model];
-    return cell;
+    if(self.mainDataArr.count > 0){
+        HomeVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:[HomeVideoCell cellId] forIndexPath:indexPath];
+        HomeListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
+        cell.homeDelegate = self;
+        [cell fillDataWithModel:model];
+        return cell;
+    }
+    else{
+        /*
+        有时会出现，self.mainDataArr count为0 cellForRowAtIndexPath，却响应的bug。
+         */
+        UITableViewCell * celltemp =  [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellid"];
+        return celltemp;
+    }
     
 //    HomeListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
 //    HomeVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:[HomeVideoCell cellId]];

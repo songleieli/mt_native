@@ -1,14 +1,18 @@
 //
-//  PlayerView.h
-//  CLPlayerDemo
+//  AVPlayerView.h
+//  Douyin
 //
-//  Created by JmoVxia on 2016/11/1.
-//  Copyright © 2016年 JmoVxia. All rights reserved.
+//  Created by Qiao Shi on 2018/7/30.
+//  Copyright © 2018年 Qiao Shi. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "WebCacheHelpler.h"
+#import <AVFoundation/AVFoundation.h>
+#import <CoreServices/CoreServices.h>
 #import "AVPlayerManager.h"
+#import "WebCacheHelpler.h"
+
+
 
 //自定义Delegate，用于进度、播放状态更新回调
 @protocol AVPlayerUpdateDelegate
@@ -22,8 +26,10 @@
 
 @end
 
+
+
 //封装了AVPlayerLayer的自定义View
-@interface AVPlayerView : UIView<AVAssetResourceLoaderDelegate>
+@interface AVPlayerView : UIView
 
 //播放进度、状态更新代理
 @property(nonatomic, weak) id<AVPlayerUpdateDelegate> delegate;
@@ -54,5 +60,6 @@
 
 //重新请求
 - (void)retry;
+
 
 @end
