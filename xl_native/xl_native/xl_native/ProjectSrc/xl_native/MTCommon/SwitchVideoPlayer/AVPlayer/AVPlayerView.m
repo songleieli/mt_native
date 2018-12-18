@@ -50,6 +50,7 @@
         //初始化播放器
         _player = [AVPlayer new];
         _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
+        _playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
         [self.layer addSublayer:_playerLayer];
         
         //dispatch_queue_concurrent 并发队列

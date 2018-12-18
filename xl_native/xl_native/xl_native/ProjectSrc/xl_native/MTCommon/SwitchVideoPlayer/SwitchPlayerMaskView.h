@@ -17,7 +17,7 @@
 #import "WebCacheHelpler.h"
 #import "NetWork_mt_home_list.h"
 
-@protocol SwitchPlayerMaskViewDelegate_Temp <NSObject>
+@protocol SwitchPlayerMaskViewDelegate <NSObject>
 
 /**返回按钮代理*/
 - (void)backButtonAction:(UIButton *)button;
@@ -37,7 +37,7 @@
 
 @end
 
-@interface SwitchPlayerMaskView_temp : UIView
+@interface SwitchPlayerMaskView : UIView
 
 
 -(instancetype)initWithFrame:(CGRect)frame;
@@ -83,7 +83,7 @@
 @property (nonatomic, strong) HomeListModel *listLoginModel;
 
 /**代理人*/
-@property (nonatomic,weak) id<SwitchPlayerMaskViewDelegate_Temp> delegate;
+@property (nonatomic,weak) id<SwitchPlayerMaskViewDelegate> delegate;
 
 
 -(void)showPlayBtn;

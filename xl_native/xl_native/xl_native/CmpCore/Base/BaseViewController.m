@@ -387,18 +387,25 @@
 - (MJTableView *)mainTableView{
     
     if (_mainTableView == nil) {
+        
         _mainTableView = [[MJTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         _mainTableView.delegate = self;
         _mainTableView.dataSource = self;
+        
         _mainTableView.backgroundView = nil;
         _mainTableView.backgroundColor = [UIColor clearColor];
-        _mainTableView.estimatedRowHeight = 100;
         _mainTableView.rowHeight = UITableViewAutomaticDimension;
-        _mainTableView.estimatedSectionHeaderHeight = 0;
-        _mainTableView.estimatedSectionFooterHeight = 0;
-        _mainTableView.showsVerticalScrollIndicator = NO;
         _mainTableView.tableFooterView = [[UIView alloc] init];
         _mainTableView.scrollsToTop = YES;
+        
+        /*
+         iOS 11中如果不实现-tableView: viewForFooterInSection: 和 -tableView: viewForHeaderInSection:，那么-tableView: heightForHeaderInSection:和- tableView: heightForFooterInSection:不会被调用。
+         
+         这是因为estimatedRowHeight estimatedSectionHeaderHeight estimatedSectionFooterHeight三个高度估算属性由默认的0变成了UITableViewAutomaticDimension，导致高度计算不对，解决方法是实现对应方法或吧这三个属性设为0。
+         */
+        self.mainTableView.estimatedRowHeight = 0; //估算高度，如果我们要回到iOS11之前的效果，我们可以让estimatedRowHeight=0，关闭这个预估高度的效果。
+        self.mainTableView.estimatedSectionFooterHeight = 0;
+        self.mainTableView.estimatedSectionHeaderHeight = 0;
         
         [_mainTableView.mj_header setRefreshingTarget:self refreshingAction:@selector(loadNewData)];
         [_mainTableView.mj_footer setRefreshingTarget:self refreshingAction:@selector(loadMoreData)];

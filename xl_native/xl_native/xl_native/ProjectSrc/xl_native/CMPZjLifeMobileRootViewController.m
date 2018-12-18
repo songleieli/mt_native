@@ -9,7 +9,7 @@
 
 #import "BaseNavigationController.h"
 
-#import "XlHomeViewController_Temp.h"
+#import "XlHomeViewController.h"
 #import "HuinongViewController.h"
 #import "XLGchangNewViewController.h"
 //#import "TopicViewController.h"
@@ -31,9 +31,9 @@
 
 #pragma mark ------------懒加载-----------
 
-- (XlHomeViewController_Temp *)homeNewViewController{
+- (XlHomeViewController *)homeNewViewController{
     if (!_homeNewViewController){
-        _homeNewViewController = [[XlHomeViewController_Temp alloc]init];
+        _homeNewViewController = [[XlHomeViewController alloc]init];
         _homeNewViewController.selectedIndex = 0;
         _homeNewViewController.changeIndexDelegate = self;
     }

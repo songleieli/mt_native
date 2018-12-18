@@ -14,7 +14,7 @@
 
 @class BaseNavigationController;
 
-@class XlHomeViewController_Temp;
+@class XlHomeViewController;
 @class HuinongViewController;
 @class XLGchangNewViewController;
 //@class TopicViewController;
@@ -23,7 +23,7 @@
 @interface CMPZjLifeMobileRootViewController : UIViewController
 
 //viewController
-@property (nonatomic, strong) XlHomeViewController_Temp* homeNewViewController;
+@property (nonatomic, strong) XlHomeViewController* homeNewViewController;
 @property (nonatomic, strong) HuinongViewController* huinongViewController;
 @property (nonatomic, strong) UIViewController* topicViewController;
 @property (nonatomic, strong) XLGchangNewViewController *gchangViewController;

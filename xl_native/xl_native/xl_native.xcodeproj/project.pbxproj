@@ -64,8 +64,9 @@
 		040E28DB21C1047F00D15B44 /* UserResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 040E28D921C1047E00D15B44 /* UserResponse.m */; };
 		040E28DD21C1089E00D15B44 /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 040E28DC21C1089E00D15B44 /* user.json */; };
 		040E28E021C1152500D15B44 /* LoadMoreControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 040E28DF21C1152500D15B44 /* LoadMoreControl.m */; };
-		04183B0221C2BC2200383E3F /* SwitchPlayerMaskView_temp.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183AEF21C2BC2200383E3F /* SwitchPlayerMaskView_temp.m */; };
-		04183B0321C2BC2200383E3F /* SwitchPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183AF221C2BC2200383E3F /* SwitchPlayerView.m */; };
+		0415F08A21C7D463000440F4 /* MTHomeRefreshNavigitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415F08821C7D462000440F4 /* MTHomeRefreshNavigitionView.m */; };
+		0415F08D21C801D2000440F4 /* TouchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415F08C21C801D1000440F4 /* TouchTableView.m */; };
+		04183B0221C2BC2200383E3F /* SwitchPlayerMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183AEF21C2BC2200383E3F /* SwitchPlayerMaskView.m */; };
 		04183B0421C2BC2200383E3F /* MusicAlbumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183AF421C2BC2200383E3F /* MusicAlbumView.m */; };
 		04183B0521C2BC2200383E3F /* FavoriteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183AF821C2BC2200383E3F /* FavoriteView.m */; };
 		04183B0621C2BC2200383E3F /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183AF921C2BC2200383E3F /* UIImage+Extension.m */; };
@@ -136,7 +137,7 @@
 		0441A28C214670F00077EA1F /* NetWork_deleteReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441A28B214670F00077EA1F /* NetWork_deleteReply.m */; };
 		0441A28F214671230077EA1F /* NetWork_deleteComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441A28E214671220077EA1F /* NetWork_deleteComment.m */; };
 		0441A292214671490077EA1F /* PublishSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441A291214671490077EA1F /* PublishSuccessView.m */; };
-		04443E9021B3F91400C8DD34 /* XlHomeViewController_Temp.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E8F21B3F91400C8DD34 /* XlHomeViewController_Temp.m */; };
+		04443E9021B3F91400C8DD34 /* XlHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E8F21B3F91400C8DD34 /* XlHomeViewController.m */; };
 		04443E9321B3FA6300C8DD34 /* MJTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E9121B3FA6200C8DD34 /* MJTableView.m */; };
 		04443E9721B41A0B00C8DD34 /* HomeVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E9621B41A0A00C8DD34 /* HomeVideoCell.m */; };
 		04468DAE214B7DB3002F4528 /* HuinongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04468DAC214B7DB3002F4528 /* HuinongViewController.m */; };
@@ -1556,10 +1557,12 @@
 		040E28DC21C1089E00D15B44 /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
 		040E28DE21C1152400D15B44 /* LoadMoreControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreControl.h; sourceTree = "<group>"; };
 		040E28DF21C1152500D15B44 /* LoadMoreControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadMoreControl.m; sourceTree = "<group>"; };
-		04183AEF21C2BC2200383E3F /* SwitchPlayerMaskView_temp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchPlayerMaskView_temp.m; sourceTree = "<group>"; };
-		04183AF021C2BC2200383E3F /* SwitchPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchPlayerView.h; sourceTree = "<group>"; };
-		04183AF121C2BC2200383E3F /* SwitchPlayerMaskView_temp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchPlayerMaskView_temp.h; sourceTree = "<group>"; };
-		04183AF221C2BC2200383E3F /* SwitchPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchPlayerView.m; sourceTree = "<group>"; };
+		0415F08821C7D462000440F4 /* MTHomeRefreshNavigitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTHomeRefreshNavigitionView.m; sourceTree = "<group>"; };
+		0415F08921C7D462000440F4 /* MTHomeRefreshNavigitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTHomeRefreshNavigitionView.h; sourceTree = "<group>"; };
+		0415F08B21C801D1000440F4 /* TouchTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchTableView.h; sourceTree = "<group>"; };
+		0415F08C21C801D1000440F4 /* TouchTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchTableView.m; sourceTree = "<group>"; };
+		04183AEF21C2BC2200383E3F /* SwitchPlayerMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchPlayerMaskView.m; sourceTree = "<group>"; };
+		04183AF121C2BC2200383E3F /* SwitchPlayerMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchPlayerMaskView.h; sourceTree = "<group>"; };
 		04183AF421C2BC2200383E3F /* MusicAlbumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicAlbumView.m; sourceTree = "<group>"; };
 		04183AF621C2BC2200383E3F /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		04183AF721C2BC2200383E3F /* CircleTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleTextView.h; sourceTree = "<group>"; };
@@ -1667,8 +1670,8 @@
 		0441A28E214671220077EA1F /* NetWork_deleteComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_deleteComment.m; sourceTree = "<group>"; };
 		0441A290214671490077EA1F /* PublishSuccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishSuccessView.h; sourceTree = "<group>"; };
 		0441A291214671490077EA1F /* PublishSuccessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishSuccessView.m; sourceTree = "<group>"; };
-		04443E8E21B3F91400C8DD34 /* XlHomeViewController_Temp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XlHomeViewController_Temp.h; sourceTree = "<group>"; };
-		04443E8F21B3F91400C8DD34 /* XlHomeViewController_Temp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XlHomeViewController_Temp.m; sourceTree = "<group>"; };
+		04443E8E21B3F91400C8DD34 /* XlHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XlHomeViewController.h; sourceTree = "<group>"; };
+		04443E8F21B3F91400C8DD34 /* XlHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XlHomeViewController.m; sourceTree = "<group>"; };
 		04443E9121B3FA6200C8DD34 /* MJTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJTableView.m; sourceTree = "<group>"; };
 		04443E9221B3FA6200C8DD34 /* MJTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJTableView.h; sourceTree = "<group>"; };
 		04443E9521B41A0A00C8DD34 /* HomeVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVideoCell.h; sourceTree = "<group>"; };
@@ -3331,12 +3334,10 @@
 		04183AEE21C2BC2200383E3F /* SwitchVideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				04FB536821C61036000ED131 /* AVPlayer */,
-				04183AF121C2BC2200383E3F /* SwitchPlayerMaskView_temp.h */,
-				04183AEF21C2BC2200383E3F /* SwitchPlayerMaskView_temp.m */,
-				04183AF021C2BC2200383E3F /* SwitchPlayerView.h */,
-				04183AF221C2BC2200383E3F /* SwitchPlayerView.m */,
 				04183AF321C2BC2200383E3F /* DouyinView */,
+				04FB536821C61036000ED131 /* AVPlayer */,
+				04183AF121C2BC2200383E3F /* SwitchPlayerMaskView.h */,
+				04183AEF21C2BC2200383E3F /* SwitchPlayerMaskView.m */,
 			);
 			path = SwitchVideoPlayer;
 			sourceTree = "<group>";
@@ -3995,8 +3996,8 @@
 			isa = PBXGroup;
 			children = (
 				04E28F59218942C7006A91DA /* Views */,
-				04443E8E21B3F91400C8DD34 /* XlHomeViewController_Temp.h */,
-				04443E8F21B3F91400C8DD34 /* XlHomeViewController_Temp.m */,
+				04443E8E21B3F91400C8DD34 /* XlHomeViewController.h */,
+				04443E8F21B3F91400C8DD34 /* XlHomeViewController.m */,
 			);
 			path = MTHome;
 			sourceTree = "<group>";
@@ -5009,6 +5010,10 @@
 		04E28F59218942C7006A91DA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0415F08B21C801D1000440F4 /* TouchTableView.h */,
+				0415F08C21C801D1000440F4 /* TouchTableView.m */,
+				0415F08921C7D462000440F4 /* MTHomeRefreshNavigitionView.h */,
+				0415F08821C7D462000440F4 /* MTHomeRefreshNavigitionView.m */,
 				04E700D8219FF5C10096099F /* MtHomeTopView.h */,
 				04E700D7219FF5C00096099F /* MtHomeTopView.m */,
 				04443E9521B41A0A00C8DD34 /* HomeVideoCell.h */,
@@ -7229,7 +7234,6 @@
 				04C882102109AB9800811DAD /* BaseWKWebViewController.m in Sources */,
 				04CBC2FB2179C01200658E47 /* BBVoiceRecordPowerAnimationView.m in Sources */,
 				04183B0521C2BC2200383E3F /* FavoriteView.m in Sources */,
-				04183B0321C2BC2200383E3F /* SwitchPlayerView.m in Sources */,
 				04CBC3F52179C01300658E47 /* GPUImageColorBlendFilter.m in Sources */,
 				04C83CCE2194372000768041 /* NetWork_findAllTagList.m in Sources */,
 				04C2614F21A68FB200374E4D /* TCNavigationController.m in Sources */,
@@ -7270,7 +7274,7 @@
 				04B0E20021A6937600ABCF16 /* NSObject+A2DynamicDelegate.m in Sources */,
 				04CBC2D32179C01200658E47 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				04CBC35D2179C01300658E47 /* GPUImagePixellatePositionFilter.m in Sources */,
-				04443E9021B3F91400C8DD34 /* XlHomeViewController_Temp.m in Sources */,
+				04443E9021B3F91400C8DD34 /* XlHomeViewController.m in Sources */,
 				04CBC2FD2179C01200658E47 /* BBVoiceRecordController.m in Sources */,
 				04CBC34B2179C01300658E47 /* GPUImageEmbossFilter.m in Sources */,
 				D957AD291DD2CAF300B7EE09 /* IHKeyboardAvoiding.m in Sources */,
@@ -7293,6 +7297,7 @@
 				04CBC3192179C01300658E47 /* SVIndefiniteAnimatedView.m in Sources */,
 				D954C50B1DD1A40F003CA535 /* BaseNavigationController.m in Sources */,
 				04CBC4752179C01300658E47 /* SDWebImageDecoder.m in Sources */,
+				0415F08D21C801D2000440F4 /* TouchTableView.m in Sources */,
 				0449AB6A2181BBF100D6172D /* ZJLoginService.m in Sources */,
 				D9D2087E1F0DD3A400B9FE13 /* DLRadioButton.m in Sources */,
 				040E28B821C0E20200D15B44 /* AwemeCollectionCell.m in Sources */,
@@ -7453,7 +7458,7 @@
 				04CBC33D2179C01300658E47 /* GPUImageTwoPassFilter.m in Sources */,
 				04DCA88221A55C5B00691A3A /* TVCClientInner.m in Sources */,
 				0401A47B216F5B5500A525AB /* NetWork_hotTopic.m in Sources */,
-				04183B0221C2BC2200383E3F /* SwitchPlayerMaskView_temp.m in Sources */,
+				04183B0221C2BC2200383E3F /* SwitchPlayerMaskView.m in Sources */,
 				040E28B021C0D7F100D15B44 /* HoverViewFlowLayout.m in Sources */,
 				04CBC2812179C01200658E47 /* UIScrollView+MJExtension.m in Sources */,
 				04CBC2992179C01200658E47 /* MJRefreshFooter.m in Sources */,
@@ -7552,6 +7557,7 @@
 				04C2615221A68FB200374E4D /* V8HorizontalPickerView.m in Sources */,
 				04B0E1E321A6937600ABCF16 /* NSObject+BKBlockObservation.m in Sources */,
 				D954C5CB1DD1A40F003CA535 /* BaseTableMJViewController.m in Sources */,
+				0415F08A21C7D463000440F4 /* MTHomeRefreshNavigitionView.m in Sources */,
 				0492D0D92180512E00F5E6B1 /* NetWork_addFollow.m in Sources */,
 				D98FCFC41DEFC41A0023C076 /* STPickerViewConst.m in Sources */,
 				04DCA87D21A55C5B00691A3A /* TVCReport.m in Sources */,

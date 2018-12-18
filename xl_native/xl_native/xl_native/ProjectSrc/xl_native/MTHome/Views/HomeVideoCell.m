@@ -17,91 +17,22 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
     return ViewTableViewCellId;
 }
 
-#pragma mark --------- 懒加载 --------
-
-- (SwitchPlayerView *)playerView{
-    
-    if (!_playerView) {
-        __weak __typeof(self) weakSelf = self;
+-(AVPlayerView*)playerView{
+    if(!_playerView){
         CGRect frame = CGRectMake(0, 0, ScreenWidth, HomeVideoCellHeight);
-        _playerView = [[SwitchPlayerView alloc] initWithFrame:frame];
-        _playerView.pushUserInfo = ^{
-            
-            if ([weakSelf.homeDelegate respondsToSelector:@selector(userInfoClicked:)]) {
-                [weakSelf.homeDelegate userInfoClicked:weakSelf.listModel];
-            } else {
-                NSLog(@"代理没响应，快开看看吧");
-            }
-            
-        };
-        _playerView.followClick = ^{
-            
-            if ([weakSelf.homeDelegate respondsToSelector:@selector(followClicked:)]) {
-                [weakSelf.homeDelegate followClicked:weakSelf.listModel];
-            } else {
-                NSLog(@"代理没响应，快开看看吧");
-            }
-        };
-        _playerView.zanClick = ^{
-            
-            if ([weakSelf.homeDelegate respondsToSelector:@selector(zanClicked:)]) {
-                [weakSelf.homeDelegate zanClicked:weakSelf.listModel];
-            } else {
-                NSLog(@"代理没响应，快开看看吧");
-            }
-            
-        };
-        
-        _playerView.commentClick = ^{
-            
-            if ([weakSelf.homeDelegate respondsToSelector:@selector(commentClicked:)]) {
-                [weakSelf.homeDelegate commentClicked:weakSelf.listModel];
-            } else {
-                NSLog(@"代理没响应，快开看看吧");
-            }
-            
-        };
-
-
-        _playerView.shareClick = ^{
-            
-            if ([weakSelf.homeDelegate respondsToSelector:@selector(shareClicked:)]) {
-                [weakSelf.homeDelegate shareClicked:weakSelf.listModel];
-            } else {
-                NSLog(@"代理没响应，快开看看吧");
-            }
-            
-        };
-        
-        _playerView.musicCDClick = ^{
-            if ([weakSelf.homeDelegate respondsToSelector:@selector(musicCDClicked:)]) {
-                [weakSelf.homeDelegate musicCDClicked:weakSelf.listModel];
-            } else {
-                NSLog(@"代理没响应，快开看看吧");
-            }
-        };
-
-
+        _playerView = [[AVPlayerView alloc] initWithFrame:frame];
+        _playerView.delegate = self;
+        //test
+//        _playerView.backgroundColor = [UIColor blueColor];
     }
     return _playerView;
 }
 
--(AVPlayerView*)playerView_temp{
-    if(!_playerView_temp){
-        CGRect frame = CGRectMake(0, 0, ScreenWidth, HomeVideoCellHeight);
-        _playerView_temp = [[AVPlayerView alloc] initWithFrame:frame];
-        _playerView_temp.delegate = self;
-        //test
-//        _playerView_temp.backgroundColor = [UIColor blueColor];
-    }
-    return _playerView_temp;
-}
-
 
 //遮罩
-- (SwitchPlayerMaskView_temp *) maskView{
+- (SwitchPlayerMaskView *) maskView{
     if (_maskView == nil){
-        _maskView  = [[SwitchPlayerMaskView_temp alloc] initWithFrame:self.playerView_temp.bounds];
+        _maskView  = [[SwitchPlayerMaskView alloc] initWithFrame:self.playerView.bounds];
         _maskView.delegate = self;
     }
     return _maskView;
@@ -122,11 +53,8 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
     [self bringSubviewToFront:self.contentView];
 
 //    self.contentView.backgroundColor = [GlobalFunc randomColor];
-    [self.contentView addSubview:self.playerView_temp];
+    [self.contentView addSubview:self.playerView];
     [self.contentView addSubview:self.maskView];
-    
-    //self.selectionStyle = UITableViewCellSelectionStyleNone;
-    //[self.contentView addSubview:self.playerView];
 }
 
 - (void) setBackgroundImage:(NSString *)imageName {
@@ -137,46 +65,57 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
     [self addSubview:background];
 }
 
-
-
 - (void)fillDataWithModel:(HomeListModel *)model{
-    
     self.listModel = model;
     self.maskView.listLoginModel = model;
-//    self.playerView.listLoginModel = model;
-//    self.playerView.url = [NSURL URLWithString:model.storagePath];//视频地址
-//    [self.playerView playVideo];
+    
+    NSString *playUrl = self.listModel.storagePath;
+    [self.playerView setPlayerWithUrl:playUrl];
 }
 
 
 - (void)play {
-    [self.playerView_temp play];
+    [self.playerView play];
     [self.maskView hidePlayBtn];
-
-//    [_pauseIcon setHidden:YES];
 }
 
 - (void)pause {
-    [self.playerView_temp pause];
+    [self.playerView pause];
     [self.maskView showPlayBtn];
-
-//    [_pauseIcon setHidden:NO];
 }
 
 - (void)replay {
-    [self.playerView_temp replay];
-//    [_pauseIcon setHidden:YES];
+    [self.playerView replay];
     [self.maskView hidePlayBtn];
 }
 
-- (void)startDownloadBackgroundTask {
-    NSString *playUrl = self.listModel.storagePath;
-    [self.playerView_temp setPlayerWithUrl:playUrl];
-}
+//- (void)startDownloadBackgroundTask {
+//    NSString *playUrl = self.listModel.storagePath;
+//    [self.playerView setPlayerWithUrl:playUrl];
+//}
 
 - (void)startDownloadHighPriorityTask {
     NSString *playUrl = self.listModel.storagePath;
-    [self.playerView_temp startDownloadTask:[[NSURL alloc] initWithString:playUrl] isBackground:NO];
+    [self.playerView startDownloadTask:[[NSURL alloc] initWithString:playUrl] isBackground:NO];
+}
+
+/*
+ cell被重用如何提前知道? 重写cell的prepareForReuse官方头文件中有说明.当前已经被分配的cell如果被重用了(通常是滚动出屏幕外了),会调用cell的prepareForReuse通知cell.注意这里重写方法的时候,注意一定要调用父类方法[super prepareForReuse] .这个在使用cell作为网络访问的代理容器时尤其要注意,需要在这里通知取消掉前一次网络请求.不要再给这个cell发数据了.
+ */
+
+-(void)prepareForReuse {
+    [super prepareForReuse];
+    
+    _isPlayerReady = NO;
+    [self.playerView cancelLoading];
+    [self.maskView hidePlayBtn];
+    
+    //    [_hoverTextView.textView setText:@""];
+//    [_avatar setImage:[UIImage imageNamed:@"img_find_default"]];
+    
+//    [_musicAlum resetView];
+//    [_favorite resetView];
+//    [_focus resetView];
 }
 
 #pragma mark ---------AVPlayerUpdateDelegate-------------

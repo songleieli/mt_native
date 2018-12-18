@@ -6,17 +6,17 @@
 //  Copyright © 2017年 JmoVxia. All rights reserved.
 //
 
-#import "SwitchPlayerMaskView_temp.h"
+#import "SwitchPlayerMaskView.h"
 #import "Masonry.h"
 
 
-@interface SwitchPlayerMaskView_temp ()
+@interface SwitchPlayerMaskView ()
 
 
 
 @end
 
-@implementation SwitchPlayerMaskView_temp
+@implementation SwitchPlayerMaskView
 
 #pragma mark ------------UI元素----------------
 

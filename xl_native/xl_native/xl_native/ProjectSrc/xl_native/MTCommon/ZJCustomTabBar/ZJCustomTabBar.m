@@ -25,7 +25,7 @@
         lineLabel.backgroundColor = [UIColor grayColor]; //RGBAlphaColor(222, 222, 222, 0.8);
         [self addSubview:lineLabel];
         
-        if([NSStringFromClass([self.delegate class]) isEqualToString:@"XlHomeViewController_Temp"]){
+        if([NSStringFromClass([self.delegate class]) isEqualToString:@"XlHomeViewController"]){
             //self.backgroundColor = [UIColor clearColor];
             self.backgroundColor = RGBAlphaColor(0, 0, 0, 0.2);
         }
