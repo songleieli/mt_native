@@ -6,8 +6,6 @@
 //  Copyright © 2018年 gaokun. All rights reserved.
 //
 
-#import "GKNavigationBarViewController.h"
-
-@interface GKDouyinPersonalViewController : GKNavigationBarViewController
+@interface GKDouyinPersonalViewController : UIViewController
 
 @end

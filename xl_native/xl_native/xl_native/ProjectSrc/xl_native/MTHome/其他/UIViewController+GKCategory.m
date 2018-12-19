@@ -7,7 +7,6 @@
 //
 
 #import "UIViewController+GKCategory.h"
-#import "GKNavigationBarViewController.h"
 #import <objc/runtime.h>
 
 NSString *const GKViewControllerPropertyChangedNotification = @"GKViewControllerPropertyChangedNotification";
@@ -140,10 +139,10 @@ static const void* GKPushDelegateKey    = @"GKPushDelegateKey";
     if (self.gk_backStyle != GKNavigationBarBackStyleNone) {
         UIImage *backImage = self.gk_backStyle == GKNavigationBarBackStyleBlack ? GKImage(@"btn_back_black") : GKImage(@"btn_back_white");
         
-        if ([self isKindOfClass:[GKNavigationBarViewController class]]) {
-            GKNavigationBarViewController *vc = (GKNavigationBarViewController *)self;
-            vc.gk_navLeftBarButtonItem = [UIBarButtonItem itemWithTitle:nil image:backImage target:self action:@selector(backItemClick:)];
-        }
+//        if ([self isKindOfClass:[GKNavigationBarViewController class]]) {
+//            GKNavigationBarViewController *vc = (GKNavigationBarViewController *)self;
+//            vc.gk_navLeftBarButtonItem = [UIBarButtonItem itemWithTitle:nil image:backImage target:self action:@selector(backItemClick:)];
+//        }
     }
 }
 
@@ -159,29 +158,29 @@ static const void* GKPushDelegateKey    = @"GKPushDelegateKey";
     
     UINavigationBar *navBar = nil;
     
-    if ([self isKindOfClass:[GKNavigationBarViewController class]]) {
-        GKNavigationBarViewController *vc = (GKNavigationBarViewController *)self;
-        
-        vc.gk_navigationBar.gk_navBarBackgroundAlpha = alpha;
-    }else {
-        navBar = self.navigationController.navigationBar;
-        
-        UIView *barBackgroundView = [navBar.subviews objectAtIndex:0]; // _UIBarBackground
-        UIImageView *backgroundImageView = [barBackgroundView.subviews objectAtIndex:0]; // UIImageView
-        
-        if (navBar.isTranslucent) {
-            if (backgroundImageView != nil && backgroundImageView.image != nil) {
-                barBackgroundView.alpha = alpha;
-            }else {
-                UIView *backgroundEffectView = [barBackgroundView.subviews objectAtIndex:1]; // UIVisualEffectView
-                if (backgroundEffectView != nil) {
-                    backgroundEffectView.alpha = alpha;
-                }
-            }
-        }else {
-            barBackgroundView.alpha = alpha;
-        }
-    }
+//    if ([self isKindOfClass:[GKNavigationBarViewController class]]) {
+//        GKNavigationBarViewController *vc = (GKNavigationBarViewController *)self;
+//
+////        vc.gk_navigationBar.gk_navBarBackgroundAlpha = alpha;
+//    }else {
+//        navBar = self.navigationController.navigationBar;
+//
+//        UIView *barBackgroundView = [navBar.subviews objectAtIndex:0]; // _UIBarBackground
+//        UIImageView *backgroundImageView = [barBackgroundView.subviews objectAtIndex:0]; // UIImageView
+//
+//        if (navBar.isTranslucent) {
+//            if (backgroundImageView != nil && backgroundImageView.image != nil) {
+//                barBackgroundView.alpha = alpha;
+//            }else {
+//                UIView *backgroundEffectView = [barBackgroundView.subviews objectAtIndex:1]; // UIVisualEffectView
+//                if (backgroundEffectView != nil) {
+//                    backgroundEffectView.alpha = alpha;
+//                }
+//            }
+//        }else {
+//            barBackgroundView.alpha = alpha;
+//        }
+//    }
     // 底部分割线
     navBar.clipsToBounds = alpha == 0.0;
 }

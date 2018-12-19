@@ -21,8 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.gk_navigationBar.hidden = YES;
-    self.gk_statusBarHidden = YES;
+//    self.gk_navigationBar.hidden = YES;
+//    self.gk_statusBarHidden = YES;
 }
 
 @end

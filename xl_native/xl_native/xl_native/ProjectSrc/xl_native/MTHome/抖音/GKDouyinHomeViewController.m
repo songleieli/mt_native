@@ -15,73 +15,21 @@
 
 @interface GKDouyinHomeViewController ()<GKViewControllerPushDelegate>
 
-@property (nonatomic, strong) GKDouyinScrollView                *scrollView;
+@property (nonatomic, strong) GKDouyinScrollView  *scrollView;
 
-@property (nonatomic, strong) UIViewController  *searchVC;
-@property (nonatomic, strong) UIViewController  *playerVC;
-
-@property (nonatomic, strong) NSArray                           *childVCs;
+@property (nonatomic, strong) UIViewController  *searchVC; //左侧Controller
+@property (nonatomic, strong) UIViewController  *playerVC; //右侧Controller
+@property (nonatomic, strong) NSArray  *childVCs;
 
 @end
 
 @implementation GKDouyinHomeViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-//    self.gk_navBackgroundColor = [UIColor clearColor];
-//    self.gk_statusBarHidden = YES;
-    [self.view addSubview:self.scrollView];
-    self.scrollView.frame = self.view.bounds;
-    self.childVCs = @[self.searchVC, self.playerVC];
-    
-    CGFloat w = self.view.frame.size.width;
-    CGFloat h = self.view.frame.size.height;
-    [self.childVCs enumerateObjectsUsingBlock:^(UIViewController *vc, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self addChildViewController:vc];
-        [self.scrollView addSubview:vc.view];
-        
-        vc.view.frame = CGRectMake(idx * w, 0, w, h);
-    }];
-    
-    self.scrollView.contentSize = CGSizeMake(self.childVCs.count * w, 0);
-    // 默认显示播放器页
-    self.scrollView.contentOffset = CGPointMake(w, 0);
-    
-    // 设置左滑push代理
-    self.gk_pushDelegate = self;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    self.gk_pushDelegate = self;
-    
-//    self.gk_statusBarHidden = YES;
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    self.gk_pushDelegate = nil;
-    
-//    self.gk_statusBarHidden = NO;
-}
-
-- (void)dealloc {
-    NSLog(@"%@ dealloc", NSStringFromClass([self class]));
-}
-
-#pragma mark - GKViewControllerPushDelegate
-- (void)pushToNextViewController {
-    GKDouyinPersonalViewController *personalVC = [GKDouyinPersonalViewController new];
-    [self.navigationController pushViewController:personalVC animated:YES];
-}
-
-#pragma mark - 懒加载
+#pragma mark ----------- 懒加载 ----------
 - (GKDouyinScrollView *)scrollView {
     if (!_scrollView) {
         _scrollView = [GKDouyinScrollView new];
+        _scrollView.frame = self.view.bounds;
         _scrollView.showsVerticalScrollIndicator = NO;
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.pagingEnabled = YES;
@@ -107,6 +55,44 @@
         _playerVC = [GKDouyinHomePlayerViewController new];
     }
     return _playerVC;
+}
+
+
+- (void)dealloc {
+    NSLog(@"%@ dealloc", NSStringFromClass([self class]));
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    /*左右侧滑代码*/
+    [self.view addSubview:self.scrollView];
+    self.childVCs = @[self.searchVC, self.playerVC];
+    
+    CGFloat w = self.view.frame.size.width;
+    CGFloat h = self.view.frame.size.height;
+    [self.childVCs enumerateObjectsUsingBlock:^(UIViewController *vc, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [self addChildViewController:vc];
+        [self.scrollView addSubview:vc.view];
+        vc.view.frame = CGRectMake(idx * w, 0, w, h);
+    }];
+    
+    self.scrollView.contentSize = CGSizeMake(self.childVCs.count * w, 0);
+    // 默认显示播放器页
+    self.scrollView.contentOffset = CGPointMake(w, 0);
+    // 设置左滑push代理
+    self.gk_pushDelegate = self;
+
+}
+
+
+
+#pragma mark - GKViewControllerPushDelegate
+
+- (void)pushToNextViewController {
+    GKDouyinPersonalViewController *personalVC = [GKDouyinPersonalViewController new];
+    [self.navigationController pushViewController:personalVC animated:YES];
 }
 
 @end

@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "UIViewController+GKCategory.h"
-#import "UIBarButtonItem+GKCategory.h"
 #import "GKDelegateHandler.h"
 
 @interface UINavigationController (GKCategory)<GKViewControllerScrollPushDelegate>

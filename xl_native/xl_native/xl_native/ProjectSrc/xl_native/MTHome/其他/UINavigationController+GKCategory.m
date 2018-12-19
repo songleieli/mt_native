@@ -7,7 +7,6 @@
 //
 
 #import "UINavigationController+GKCategory.h"
-#import "GKNavigationBarViewController.h"
 #import <objc/runtime.h>
 
 @implementation UINavigationController (GKCategory)
@@ -117,12 +116,12 @@
 
 - (void)layoutNavBarWithViewController:(UIViewController *)viewController {
     UINavigationBar *navBar = nil;
-    if ([viewController isKindOfClass:[GKNavigationBarViewController class]]) {
-        GKNavigationBarViewController *vc = (GKNavigationBarViewController *)viewController;
-        navBar = vc.gk_navigationBar;
-    }else {
-        navBar = self.navigationBar;
-    }
+//    if ([viewController isKindOfClass:[GKNavigationBarViewController class]]) {
+//        GKNavigationBarViewController *vc = (GKNavigationBarViewController *)viewController;
+////        navBar = vc.gk_navigationBar;
+//    }else {
+//        navBar = self.navigationBar;
+//    }
     [navBar layoutSubviews];
 }
 
