@@ -30,17 +30,15 @@ extern NSString *const GKViewControllerPropertyChangedNotification;
 /** 全屏滑动时，滑动区域距离屏幕左边的最大位置，默认是0：表示全屏都可滑动 */
 @property (nonatomic, assign) CGFloat gk_popMaxAllowedDistanceToLeftEdge;
 
-/** 设置导航栏的透明度 */
-@property (nonatomic, assign) CGFloat gk_navBarAlpha;
 
-/** 设置状态栏类型 */
-@property (nonatomic, assign) UIStatusBarStyle gk_statusBarStyle;
+///** 设置状态栏类型 */
+//@property (nonatomic, assign) UIStatusBarStyle gk_statusBarStyle;
 
-/** 设置状态栏是否显示(default is NO 即不隐藏) */
-@property (nonatomic, assign) BOOL gk_statusBarHidden;
+///** 设置状态栏是否显示(default is NO 即不隐藏) */
+//@property (nonatomic, assign) BOOL gk_statusBarHidden;
 
-/** 设置返回按钮的类型 */
-@property (nonatomic, assign) GKNavigationBarBackStyle gk_backStyle;
+///** 设置返回按钮的类型 */
+//@property (nonatomic, assign) GKNavigationBarBackStyle gk_backStyle;
 
 /** push代理 */
 @property (nonatomic, weak) id<GKViewControllerPushDelegate> gk_pushDelegate;

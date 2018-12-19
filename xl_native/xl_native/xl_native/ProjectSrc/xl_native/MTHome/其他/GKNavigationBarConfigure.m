@@ -7,7 +7,6 @@
 //  https://github.com/QuintGao/GKNavigationBarViewController.git
 
 #import "GKNavigationBarConfigure.h"
-#import "UIViewController+GKCategory.h"
 
 @implementation GKNavigationBarConfigure
 
@@ -60,9 +59,9 @@ static GKNavigationBarConfigure *instance = nil;
     !block ? : block(self);
 }
 
-// 获取当前显示的控制器
-- (UIViewController *)visibleController {
-    return [[UIApplication sharedApplication].keyWindow.rootViewController gk_visibleViewControllerIfExist];
-}
+//// 获取当前显示的控制器
+//- (UIViewController *)visibleController {
+//    return [[UIApplication sharedApplication].keyWindow.rootViewController gk_visibleViewControllerIfExist];
+//}
 
 @end

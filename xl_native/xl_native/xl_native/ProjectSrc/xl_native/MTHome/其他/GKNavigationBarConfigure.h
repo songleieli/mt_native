@@ -48,7 +48,5 @@
 // 更新配置
 - (void)updateConfigure:(void (^)(GKNavigationBarConfigure *configure))block;
 
-// 获取当前显示的控制器
-- (UIViewController *)visibleController;
 
 @end

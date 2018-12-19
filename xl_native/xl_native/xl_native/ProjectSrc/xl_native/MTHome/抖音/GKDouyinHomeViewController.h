@@ -13,10 +13,10 @@
 @interface GKDouyinHomeViewController : ZJCustomTabBarLjhTableViewController
 
 
-/** push代理 */
-@property (nonatomic, weak) id<GKViewControllerPushDelegate> gk_pushDelegate;
-
-/** 是否开启左滑push操作，默认是NO，此时不可禁用控制器的滑动返回手势 */
-@property (nonatomic, assign) BOOL gk_openScrollLeftPush;
+///** push代理 */
+//@property (nonatomic, weak) id<GKViewControllerPushDelegate> gk_pushDelegate;
+//
+///** 是否开启左滑push操作，默认是NO，此时不可禁用控制器的滑动返回手势 */
+//@property (nonatomic, assign) BOOL gk_openScrollLeftPush;
 
 @end

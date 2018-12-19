@@ -3846,9 +3846,9 @@
 			children = (
 				04AB305A21CA93FB0072808E /* GKDelegateHandler.h */,
 				04AB305721CA93FB0072808E /* GKDelegateHandler.m */,
+				04AB305921CA93FB0072808E /* GKPushTransitionAnimation.h */,
 				04AB305621CA93FB0072808E /* GKPushTransitionAnimation.m */,
 				04AB305821CA93FB0072808E /* GKPopTransitionAnimation.m */,
-				04AB305921CA93FB0072808E /* GKPushTransitionAnimation.h */,
 				04AB305B21CA93FB0072808E /* GKPopTransitionAnimation.h */,
 			);
 			path = TransitionAnimation;

@@ -184,13 +184,13 @@
     return self.visibleViewController;
 }
 
-- (BOOL)prefersStatusBarHidden {
-    return self.visibleViewController.gk_statusBarHidden;
-}
+//- (BOOL)prefersStatusBarHidden {
+//    return self.visibleViewController.gk_statusBarHidden;
+//}
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return self.visibleViewController.gk_statusBarStyle;
-}
+//- (UIStatusBarStyle)preferredStatusBarStyle {
+//    return self.visibleViewController.gk_statusBarStyle;
+//}
 
 #pragma mark - getter
 - (BOOL)gk_translationScale {
