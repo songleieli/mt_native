@@ -7,7 +7,6 @@
 //
 
 #import "UIViewController+GKCategory.h"
-//#import "GKNavigationBarViewController.h"
 #import <objc/runtime.h>
 
 NSString *const GKViewControllerPropertyChangedNotification = @"GKViewControllerPropertyChangedNotification";
@@ -38,6 +37,8 @@ static const void* GKPushDelegateKey    = @"GKPushDelegateKey";
     
     // 在每次视图出现的时候重新设置当前控制器的手势
     [[NSNotificationCenter defaultCenter] postNotificationName:GKViewControllerPropertyChangedNotification object:@{@"viewController": self}];
+    
+    NSLog(@"----------gk_viewDidAppear-------");
     
     [self gk_viewDidAppear:animated];
 }

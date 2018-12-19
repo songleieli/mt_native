@@ -11,17 +11,17 @@
 
 @implementation UINavigationController (GKCategory)
 
-+ (instancetype)rootVC:(UIViewController *)rootVC translationScale:(BOOL)translationScale {
-    return [[self alloc] initWithRootVC:rootVC translationScale:translationScale];
-}
+//+ (instancetype)rootVC:(UIViewController *)rootVC translationScale:(BOOL)translationScale {
+//    return [[self alloc] initWithRootVC:rootVC translationScale:translationScale];
+//}
 
-- (instancetype)initWithRootVC:(UIViewController *)rootVC translationScale:(BOOL)translationScale {
-    if (self = [super init]) {
-        [self pushViewController:rootVC animated:YES];
-        self.gk_translationScale = translationScale;
-    }
-    return self;
-}
+//- (instancetype)initWithRootVC:(UIViewController *)rootVC translationScale:(BOOL)translationScale {
+//    if (self = [super init]) {
+//        [self pushViewController:rootVC animated:YES];
+//        self.gk_translationScale = translationScale;
+//    }
+//    return self;
+//}
 
 // 方法交换
 + (void)load {
@@ -132,9 +132,13 @@
 #pragma mark - Notification Handle
 - (void)handleNotification:(NSNotification *)notify {
     
+    //self.panGesture 滑动返回手势
+    
     UIViewController *vc = (UIViewController *)notify.object[@"viewController"];
     
     BOOL isRootVC = vc == self.viewControllers.firstObject;
+    
+    NSLog(@"-------------%@",self.viewControllers);
     
     if (vc.gk_interactivePopDisabled) { // 禁止滑动
         self.interactivePopGestureRecognizer.delegate = nil;

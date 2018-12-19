@@ -62,6 +62,12 @@
     NSLog(@"%@ dealloc", NSStringFromClass([self class]));
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    NSLog(@"----------viewDidAppear-------");
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

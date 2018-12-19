@@ -12,7 +12,6 @@
 
 @interface UINavigationController (GKCategory)<GKViewControllerScrollPushDelegate>
 
-+ (instancetype)rootVC:(UIViewController *)rootVC translationScale:(BOOL)translationScale;
 
 /** 导航栏转场时是否缩放,此属性只能在初始化导航栏的时候有效，在其他地方设置会导致错乱 */
 @property (nonatomic, assign, readonly) BOOL gk_translationScale;
