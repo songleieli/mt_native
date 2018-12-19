@@ -137,7 +137,7 @@
 		0441A28C214670F00077EA1F /* NetWork_deleteReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441A28B214670F00077EA1F /* NetWork_deleteReply.m */; };
 		0441A28F214671230077EA1F /* NetWork_deleteComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441A28E214671220077EA1F /* NetWork_deleteComment.m */; };
 		0441A292214671490077EA1F /* PublishSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441A291214671490077EA1F /* PublishSuccessView.m */; };
-		04443E9021B3F91400C8DD34 /* XlHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E8F21B3F91400C8DD34 /* XlHomeViewController.m */; };
+		04443E9021B3F91400C8DD34 /* XLPlayerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E8F21B3F91400C8DD34 /* XLPlayerListViewController.m */; };
 		04443E9321B3FA6300C8DD34 /* MJTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E9121B3FA6200C8DD34 /* MJTableView.m */; };
 		04443E9721B41A0B00C8DD34 /* HomeVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E9621B41A0A00C8DD34 /* HomeVideoCell.m */; };
 		04468DAE214B7DB3002F4528 /* HuinongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04468DAC214B7DB3002F4528 /* HuinongViewController.m */; };
@@ -208,6 +208,23 @@
 		049D80E621819FBA007F3BAF /* XLPlanDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049D80E421819FBA007F3BAF /* XLPlanDetailVC.xib */; };
 		04A5B81921B23B95003F5C88 /* NetWork_mt_login.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5B81721B23B95003F5C88 /* NetWork_mt_login.m */; };
 		04A5B81C21B27F66003F5C88 /* NetWork_mt_saveVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5B81B21B27F66003F5C88 /* NetWork_mt_saveVideo.m */; };
+		04AB303E21CA91310072808E /* GKDouyinHomePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB303821CA91310072808E /* GKDouyinHomePlayerViewController.m */; };
+		04AB303F21CA91310072808E /* GKDouyinHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB303921CA91310072808E /* GKDouyinHomeViewController.m */; };
+		04AB304021CA91310072808E /* GKDouyinScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB303A21CA91310072808E /* GKDouyinScrollView.m */; };
+		04AB304121CA91310072808E /* GKDouyinPersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB303B21CA91310072808E /* GKDouyinPersonalViewController.m */; };
+		04AB304221CA91310072808E /* GKDouyinHomeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB303C21CA91310072808E /* GKDouyinHomeSearchViewController.m */; };
+		04AB304621CA91D60072808E /* GKNavigationBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB304521CA91D60072808E /* GKNavigationBarViewController.m */; };
+		04AB304A21CA92B10072808E /* UINavigationController+GKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB304921CA92B10072808E /* UINavigationController+GKCategory.m */; };
+		04AB304D21CA92F20072808E /* UIViewController+GKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB304C21CA92F20072808E /* UIViewController+GKCategory.m */; };
+		04AB305021CA933E0072808E /* GKNavigationBarConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB304F21CA933E0072808E /* GKNavigationBarConfigure.m */; };
+		04AB305421CA93C80072808E /* UIBarButtonItem+GKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB305221CA93C70072808E /* UIBarButtonItem+GKCategory.m */; };
+		04AB305C21CA93FB0072808E /* GKPushTransitionAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB305621CA93FB0072808E /* GKPushTransitionAnimation.m */; };
+		04AB305D21CA93FB0072808E /* GKDelegateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB305721CA93FB0072808E /* GKDelegateHandler.m */; };
+		04AB305E21CA93FB0072808E /* GKPopTransitionAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB305821CA93FB0072808E /* GKPopTransitionAnimation.m */; };
+		04AB306121CA94390072808E /* UIScrollView+GKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB306021CA94380072808E /* UIScrollView+GKCategory.m */; };
+		04AB306421CA94790072808E /* UINavigationItem+GKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB306321CA94780072808E /* UINavigationItem+GKCategory.m */; };
+		04AB306721CA94B40072808E /* UIViewController+GKRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB306621CA94B30072808E /* UIViewController+GKRotation.m */; };
+		04AB306A21CA94E90072808E /* GKNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB306921CA94E90072808E /* GKNavigationBar.m */; };
 		04B0E1E021A6937600ABCF16 /* NSDictionary+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0E19721A6937500ABCF16 /* NSDictionary+BlocksKit.m */; };
 		04B0E1E121A6937600ABCF16 /* NSMutableArray+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0E19921A6937500ABCF16 /* NSMutableArray+BlocksKit.m */; };
 		04B0E1E221A6937600ABCF16 /* NSMutableIndexSet+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0E19A21A6937500ABCF16 /* NSMutableIndexSet+BlocksKit.m */; };
@@ -1670,8 +1687,8 @@
 		0441A28E214671220077EA1F /* NetWork_deleteComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_deleteComment.m; sourceTree = "<group>"; };
 		0441A290214671490077EA1F /* PublishSuccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishSuccessView.h; sourceTree = "<group>"; };
 		0441A291214671490077EA1F /* PublishSuccessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishSuccessView.m; sourceTree = "<group>"; };
-		04443E8E21B3F91400C8DD34 /* XlHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XlHomeViewController.h; sourceTree = "<group>"; };
-		04443E8F21B3F91400C8DD34 /* XlHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XlHomeViewController.m; sourceTree = "<group>"; };
+		04443E8E21B3F91400C8DD34 /* XLPlayerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLPlayerListViewController.h; sourceTree = "<group>"; };
+		04443E8F21B3F91400C8DD34 /* XLPlayerListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLPlayerListViewController.m; sourceTree = "<group>"; };
 		04443E9121B3FA6200C8DD34 /* MJTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJTableView.m; sourceTree = "<group>"; };
 		04443E9221B3FA6200C8DD34 /* MJTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJTableView.h; sourceTree = "<group>"; };
 		04443E9521B41A0A00C8DD34 /* HomeVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVideoCell.h; sourceTree = "<group>"; };
@@ -1781,6 +1798,42 @@
 		04A5B81821B23B95003F5C88 /* NetWork_mt_login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_login.h; sourceTree = "<group>"; };
 		04A5B81A21B27F66003F5C88 /* NetWork_mt_saveVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_saveVideo.h; sourceTree = "<group>"; };
 		04A5B81B21B27F66003F5C88 /* NetWork_mt_saveVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_saveVideo.m; sourceTree = "<group>"; };
+		04AB303421CA91310072808E /* GKDouyinScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKDouyinScrollView.h; sourceTree = "<group>"; };
+		04AB303521CA91310072808E /* GKDouyinHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKDouyinHomeViewController.h; sourceTree = "<group>"; };
+		04AB303621CA91310072808E /* GKDouyinHomeSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKDouyinHomeSearchViewController.h; sourceTree = "<group>"; };
+		04AB303721CA91310072808E /* GKDouyinPersonalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKDouyinPersonalViewController.h; sourceTree = "<group>"; };
+		04AB303821CA91310072808E /* GKDouyinHomePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKDouyinHomePlayerViewController.m; sourceTree = "<group>"; };
+		04AB303921CA91310072808E /* GKDouyinHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKDouyinHomeViewController.m; sourceTree = "<group>"; };
+		04AB303A21CA91310072808E /* GKDouyinScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKDouyinScrollView.m; sourceTree = "<group>"; };
+		04AB303B21CA91310072808E /* GKDouyinPersonalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKDouyinPersonalViewController.m; sourceTree = "<group>"; };
+		04AB303C21CA91310072808E /* GKDouyinHomeSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKDouyinHomeSearchViewController.m; sourceTree = "<group>"; };
+		04AB303D21CA91310072808E /* GKDouyinHomePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKDouyinHomePlayerViewController.h; sourceTree = "<group>"; };
+		04AB304421CA91D60072808E /* GKNavigationBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKNavigationBarViewController.h; sourceTree = "<group>"; };
+		04AB304521CA91D60072808E /* GKNavigationBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKNavigationBarViewController.m; sourceTree = "<group>"; };
+		04AB304721CA924E0072808E /* GKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCategory.h; sourceTree = "<group>"; };
+		04AB304821CA92B10072808E /* UINavigationController+GKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+GKCategory.h"; sourceTree = "<group>"; };
+		04AB304921CA92B10072808E /* UINavigationController+GKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+GKCategory.m"; sourceTree = "<group>"; };
+		04AB304B21CA92F20072808E /* UIViewController+GKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+GKCategory.h"; sourceTree = "<group>"; };
+		04AB304C21CA92F20072808E /* UIViewController+GKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+GKCategory.m"; sourceTree = "<group>"; };
+		04AB304E21CA933E0072808E /* GKNavigationBarConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKNavigationBarConfigure.h; sourceTree = "<group>"; };
+		04AB304F21CA933E0072808E /* GKNavigationBarConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKNavigationBarConfigure.m; sourceTree = "<group>"; };
+		04AB305121CA93920072808E /* GKCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCommon.h; sourceTree = "<group>"; };
+		04AB305221CA93C70072808E /* UIBarButtonItem+GKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+GKCategory.m"; sourceTree = "<group>"; };
+		04AB305321CA93C80072808E /* UIBarButtonItem+GKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+GKCategory.h"; sourceTree = "<group>"; };
+		04AB305621CA93FB0072808E /* GKPushTransitionAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKPushTransitionAnimation.m; sourceTree = "<group>"; };
+		04AB305721CA93FB0072808E /* GKDelegateHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKDelegateHandler.m; sourceTree = "<group>"; };
+		04AB305821CA93FB0072808E /* GKPopTransitionAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKPopTransitionAnimation.m; sourceTree = "<group>"; };
+		04AB305921CA93FB0072808E /* GKPushTransitionAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKPushTransitionAnimation.h; sourceTree = "<group>"; };
+		04AB305A21CA93FB0072808E /* GKDelegateHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKDelegateHandler.h; sourceTree = "<group>"; };
+		04AB305B21CA93FB0072808E /* GKPopTransitionAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKPopTransitionAnimation.h; sourceTree = "<group>"; };
+		04AB305F21CA94380072808E /* UIScrollView+GKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+GKCategory.h"; sourceTree = "<group>"; };
+		04AB306021CA94380072808E /* UIScrollView+GKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+GKCategory.m"; sourceTree = "<group>"; };
+		04AB306221CA94780072808E /* UINavigationItem+GKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+GKCategory.h"; sourceTree = "<group>"; };
+		04AB306321CA94780072808E /* UINavigationItem+GKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+GKCategory.m"; sourceTree = "<group>"; };
+		04AB306521CA94B30072808E /* UIViewController+GKRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+GKRotation.h"; sourceTree = "<group>"; };
+		04AB306621CA94B30072808E /* UIViewController+GKRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+GKRotation.m"; sourceTree = "<group>"; };
+		04AB306821CA94E90072808E /* GKNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKNavigationBar.h; sourceTree = "<group>"; };
+		04AB306921CA94E90072808E /* GKNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKNavigationBar.m; sourceTree = "<group>"; };
 		04B0E19521A6937500ABCF16 /* BlocksKit+UIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BlocksKit+UIKit.h"; sourceTree = "<group>"; };
 		04B0E19721A6937500ABCF16 /* NSDictionary+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BlocksKit.m"; sourceTree = "<group>"; };
 		04B0E19821A6937500ABCF16 /* NSOrderedSet+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOrderedSet+BlocksKit.h"; sourceTree = "<group>"; };
@@ -3770,6 +3823,64 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		04AB303321CA91310072808E /* 抖音 */ = {
+			isa = PBXGroup;
+			children = (
+				04AB303421CA91310072808E /* GKDouyinScrollView.h */,
+				04AB303A21CA91310072808E /* GKDouyinScrollView.m */,
+				04AB303521CA91310072808E /* GKDouyinHomeViewController.h */,
+				04AB303921CA91310072808E /* GKDouyinHomeViewController.m */,
+				04AB303721CA91310072808E /* GKDouyinPersonalViewController.h */,
+				04AB303B21CA91310072808E /* GKDouyinPersonalViewController.m */,
+				04AB303D21CA91310072808E /* GKDouyinHomePlayerViewController.h */,
+				04AB303821CA91310072808E /* GKDouyinHomePlayerViewController.m */,
+				04AB303621CA91310072808E /* GKDouyinHomeSearchViewController.h */,
+				04AB303C21CA91310072808E /* GKDouyinHomeSearchViewController.m */,
+			);
+			path = "抖音";
+			sourceTree = "<group>";
+		};
+		04AB304321CA91D60072808E /* 其他 */ = {
+			isa = PBXGroup;
+			children = (
+				04AB304721CA924E0072808E /* GKCategory.h */,
+				04AB305121CA93920072808E /* GKCommon.h */,
+				04AB305521CA93FB0072808E /* TransitionAnimation */,
+				04AB304E21CA933E0072808E /* GKNavigationBarConfigure.h */,
+				04AB304F21CA933E0072808E /* GKNavigationBarConfigure.m */,
+				04AB306821CA94E90072808E /* GKNavigationBar.h */,
+				04AB306921CA94E90072808E /* GKNavigationBar.m */,
+				04AB306221CA94780072808E /* UINavigationItem+GKCategory.h */,
+				04AB306321CA94780072808E /* UINavigationItem+GKCategory.m */,
+				04AB306521CA94B30072808E /* UIViewController+GKRotation.h */,
+				04AB306621CA94B30072808E /* UIViewController+GKRotation.m */,
+				04AB305F21CA94380072808E /* UIScrollView+GKCategory.h */,
+				04AB306021CA94380072808E /* UIScrollView+GKCategory.m */,
+				04AB305321CA93C80072808E /* UIBarButtonItem+GKCategory.h */,
+				04AB305221CA93C70072808E /* UIBarButtonItem+GKCategory.m */,
+				04AB304B21CA92F20072808E /* UIViewController+GKCategory.h */,
+				04AB304C21CA92F20072808E /* UIViewController+GKCategory.m */,
+				04AB304821CA92B10072808E /* UINavigationController+GKCategory.h */,
+				04AB304921CA92B10072808E /* UINavigationController+GKCategory.m */,
+				04AB304421CA91D60072808E /* GKNavigationBarViewController.h */,
+				04AB304521CA91D60072808E /* GKNavigationBarViewController.m */,
+			);
+			path = "其他";
+			sourceTree = "<group>";
+		};
+		04AB305521CA93FB0072808E /* TransitionAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				04AB305621CA93FB0072808E /* GKPushTransitionAnimation.m */,
+				04AB305721CA93FB0072808E /* GKDelegateHandler.m */,
+				04AB305821CA93FB0072808E /* GKPopTransitionAnimation.m */,
+				04AB305921CA93FB0072808E /* GKPushTransitionAnimation.h */,
+				04AB305A21CA93FB0072808E /* GKDelegateHandler.h */,
+				04AB305B21CA93FB0072808E /* GKPopTransitionAnimation.h */,
+			);
+			path = TransitionAnimation;
+			sourceTree = "<group>";
+		};
 		04B0E19421A6937500ABCF16 /* BlocksKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -3996,8 +4107,10 @@
 			isa = PBXGroup;
 			children = (
 				04E28F59218942C7006A91DA /* Views */,
-				04443E8E21B3F91400C8DD34 /* XlHomeViewController.h */,
-				04443E8F21B3F91400C8DD34 /* XlHomeViewController.m */,
+				04AB303321CA91310072808E /* 抖音 */,
+				04AB304321CA91D60072808E /* 其他 */,
+				04443E8E21B3F91400C8DD34 /* XLPlayerListViewController.h */,
+				04443E8F21B3F91400C8DD34 /* XLPlayerListViewController.m */,
 			);
 			path = MTHome;
 			sourceTree = "<group>";
@@ -7141,6 +7254,7 @@
 				04CBC44D2179C01300658E47 /* GPUImageHighlightShadowFilter.m in Sources */,
 				04CBC3D52179C01300658E47 /* GPUImageMovieWriter.m in Sources */,
 				04CBC2912179C01200658E47 /* MJRefreshAutoNormalFooter.m in Sources */,
+				04AB305D21CA93FB0072808E /* GKDelegateHandler.m in Sources */,
 				0435492F21A7E9AC00AED5A8 /* AFURLSessionManager.m in Sources */,
 				04CBC3C32179C01300658E47 /* GPUImageColorDodgeBlendFilter.m in Sources */,
 				C5336F931E83739600618975 /* TTPopupView.m in Sources */,
@@ -7150,6 +7264,7 @@
 				0402A46A21C4E75200C35CA9 /* NetWork_mt_personal_homePage.m in Sources */,
 				0482F27021BFCA7C00587B38 /* View+MASAdditions.m in Sources */,
 				043558AA2195232800431646 /* Network_hotTopicList.m in Sources */,
+				04AB306121CA94390072808E /* UIScrollView+GKCategory.m in Sources */,
 				04CBC4532179C01300658E47 /* GPUImageMosaicFilter.m in Sources */,
 				04CBC4032179C01300658E47 /* GPUImageSmoothToonFilter.m in Sources */,
 				04DCA87A21A55C5B00691A3A /* TVCUtils.m in Sources */,
@@ -7169,6 +7284,7 @@
 				04DCA8E821A565D500691A3A /* VideoTextFiled.m in Sources */,
 				04CBC3FF2179C01300658E47 /* GPUImageHalftoneFilter.m in Sources */,
 				04CBC2932179C01200658E47 /* MJRefreshNormalHeader.m in Sources */,
+				04AB306A21CA94E90072808E /* GKNavigationBar.m in Sources */,
 				04443E9721B41A0B00C8DD34 /* HomeVideoCell.m in Sources */,
 				04CBC3972179C01300658E47 /* GPUImageSaturationFilter.m in Sources */,
 				04DCA86121A5580300691A3A /* TCUtil.m in Sources */,
@@ -7225,6 +7341,7 @@
 				D954C4DF1DD1A40F003CA535 /* UIView+Hierarchy.m in Sources */,
 				D957AD571DD2CB2F00B7EE09 /* IQUIViewController+Additions.m in Sources */,
 				04B0E1F321A6937600ABCF16 /* UIGestureRecognizer+BlocksKit.m in Sources */,
+				04AB305021CA933E0072808E /* GKNavigationBarConfigure.m in Sources */,
 				04EDFCF721C5259500DB05B9 /* NetWork_mt_getMyVideos.m in Sources */,
 				04CBC4112179C01300658E47 /* GPUImageRGBOpeningFilter.m in Sources */,
 				04CBC29F2179C01200658E47 /* MJRefreshAutoFooter.m in Sources */,
@@ -7274,7 +7391,7 @@
 				04B0E20021A6937600ABCF16 /* NSObject+A2DynamicDelegate.m in Sources */,
 				04CBC2D32179C01200658E47 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				04CBC35D2179C01300658E47 /* GPUImagePixellatePositionFilter.m in Sources */,
-				04443E9021B3F91400C8DD34 /* XlHomeViewController.m in Sources */,
+				04443E9021B3F91400C8DD34 /* XLPlayerListViewController.m in Sources */,
 				04CBC2FD2179C01200658E47 /* BBVoiceRecordController.m in Sources */,
 				04CBC34B2179C01300658E47 /* GPUImageEmbossFilter.m in Sources */,
 				D957AD291DD2CAF300B7EE09 /* IHKeyboardAvoiding.m in Sources */,
@@ -7306,6 +7423,7 @@
 				0492D0DD21805BE800F5E6B1 /* NetWork_delFollow.m in Sources */,
 				04CBC28D2179C01200658E47 /* MJRefreshAutoStateFooter.m in Sources */,
 				04C83CCA2194372000768041 /* NetWork_findHotTagList.m in Sources */,
+				04AB304621CA91D60072808E /* GKNavigationBarViewController.m in Sources */,
 				04DCA91021A5687600691A3A /* QBVideoIconView.m in Sources */,
 				04CBC39F2179C01300658E47 /* GPUImageTextureInput.m in Sources */,
 				C5336F9B1E83739600618975 /* UIViewController+TTPopupView.m in Sources */,
@@ -7353,8 +7471,10 @@
 				04CBC3532179C01300658E47 /* GPUImageLevelsFilter.m in Sources */,
 				04DCA82E21A5576700691A3A /* TCVideoRecordProcessView.m in Sources */,
 				04DCA8D721A565D500691A3A /* TCVideoCutViewController.m in Sources */,
+				04AB304A21CA92B10072808E /* UINavigationController+GKCategory.m in Sources */,
 				D9F86D921DEBEE7600C3A2B6 /* LxGridViewFlowLayout.m in Sources */,
 				0441A1FC214660BE0077EA1F /* NetWork_login.m in Sources */,
+				04AB306421CA94790072808E /* UINavigationItem+GKCategory.m in Sources */,
 				04CBC3AB2179C01300658E47 /* GLProgram.m in Sources */,
 				D9F86DC51DEBEE7600C3A2B6 /* TZAssetCell.m in Sources */,
 				04B0E1E221A6937600ABCF16 /* NSMutableIndexSet+BlocksKit.m in Sources */,
@@ -7364,6 +7484,7 @@
 				04CBC3AD2179C01300658E47 /* GPUImageBrightnessFilter.m in Sources */,
 				04CBC3CF2179C01300658E47 /* GPUImageFramebufferCache.m in Sources */,
 				04DCA91921A5687600691A3A /* QBSlomoIconView.m in Sources */,
+				04AB304121CA91310072808E /* GKDouyinPersonalViewController.m in Sources */,
 				04CBC3312179C01300658E47 /* GPUImageLuminanceThresholdFilter.m in Sources */,
 				04B0E1E821A6937600ABCF16 /* NSOrderedSet+BlocksKit.m in Sources */,
 				04CBC3472179C01300658E47 /* GPUImageNonMaximumSuppressionFilter.m in Sources */,
@@ -7398,10 +7519,12 @@
 				04CBC3EF2179C01300658E47 /* GPUImageSoftLightBlendFilter.m in Sources */,
 				04B0E1F221A6937600ABCF16 /* UIView+BlocksKit.m in Sources */,
 				04CBC4072179C01300658E47 /* GPUImageMovieComposition.m in Sources */,
+				04AB305E21CA93FB0072808E /* GKPopTransitionAnimation.m in Sources */,
 				04CBC4852179C01300658E47 /* SDWebImageDownloaderOperation.m in Sources */,
 				D9EE75801EF8C613001A1299 /* SDWaitingView.m in Sources */,
 				04DCA8F421A565D500691A3A /* VideoInfo.m in Sources */,
 				D954C5671DD1A40F003CA535 /* NSString+Common.m in Sources */,
+				04AB306721CA94B40072808E /* UIViewController+GKRotation.m in Sources */,
 				04CBC4412179C01300658E47 /* GPUImageAddBlendFilter.m in Sources */,
 				0435491F21A7E9AC00AED5A8 /* UIImageView+AFNetworking.m in Sources */,
 				04B0E1EE21A6937600ABCF16 /* NSMutableSet+BlocksKit.m in Sources */,
@@ -7444,6 +7567,7 @@
 				D9D208791F0CED6000B9FE13 /* RadioButton.m in Sources */,
 				04DCA8E221A565D500691A3A /* TCVideoJoinViewController.m in Sources */,
 				0400F32E21AFA62D0038E16C /* SendMessageToWXReq+requestWithTextOrMediaMessage.m in Sources */,
+				04AB305421CA93C80072808E /* UIBarButtonItem+GKCategory.m in Sources */,
 				D957AD591DD2CB2F00B7EE09 /* IQUIWindow+Hierarchy.m in Sources */,
 				04CBC4672179C01300658E47 /* GPUImageStillCamera.m in Sources */,
 				04B0E1FD21A6937600ABCF16 /* NSURLConnection+BlocksKit.m in Sources */,
@@ -7512,6 +7636,7 @@
 				0441A25B2146682C0077EA1F /* NetWork_topicCommentList.m in Sources */,
 				D904E9641DD1D6DB00C7E45E /* ZJCustomTabBar.m in Sources */,
 				040E28D421C0F0D400D15B44 /* BaseModel.m in Sources */,
+				04AB305C21CA93FB0072808E /* GKPushTransitionAnimation.m in Sources */,
 				04CBC4492179C01300658E47 /* GPUImageNobleCornerDetectionFilter.m in Sources */,
 				04CBC3B72179C01300658E47 /* GPUImageDirectionalSobelEdgeDetectionFilter.m in Sources */,
 				04CBC3A92179C01300658E47 /* GPUImageLineGenerator.m in Sources */,
@@ -7529,6 +7654,7 @@
 				0482F26821BFCA7C00587B38 /* MASCompositeConstraint.m in Sources */,
 				C5336F971E83739600618975 /* UIView+TTFramePopupView.m in Sources */,
 				D954C5BF1DD1A40F003CA535 /* BaseTableViewCell.m in Sources */,
+				04AB303F21CA91310072808E /* GKDouyinHomeViewController.m in Sources */,
 				04CBC2D12179C01200658E47 /* TPKeyboardAvoidingTableView.m in Sources */,
 				04B0E1F821A6937600ABCF16 /* UIControl+BlocksKit.m in Sources */,
 				04EEBA5F21ABE3EE00A5F6F2 /* PopViewController.m in Sources */,
@@ -7624,6 +7750,7 @@
 				04CBC37D2179C01300658E47 /* GPUImageSolidColorGenerator.m in Sources */,
 				0490D56E2150F4C10047E7D6 /* NetWork_uploadIcon.m in Sources */,
 				04CBC4BF2179C01300658E47 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
+				04AB304D21CA92F20072808E /* UIViewController+GKCategory.m in Sources */,
 				04C2615A21A68FB200374E4D /* TCVideoRecordMusicView.m in Sources */,
 				04CBC41F2179C01300658E47 /* GPUImageMotionDetector.m in Sources */,
 				04CBC47D2179C01300658E47 /* UIImage+MultiFormat.m in Sources */,
@@ -7652,9 +7779,12 @@
 				04DCA86021A5580300691A3A /* UIView+CustomAutoLayout.m in Sources */,
 				04CBC4352179C01300658E47 /* GPUImagePrewittEdgeDetectionFilter.m in Sources */,
 				0403661A21C37910000FDC5E /* CircleProgressView.m in Sources */,
+				04AB304221CA91310072808E /* GKDouyinHomeSearchViewController.m in Sources */,
+				04AB303E21CA91310072808E /* GKDouyinHomePlayerViewController.m in Sources */,
 				D9F86DC81DEBEE7600C3A2B6 /* TZAssetModel.m in Sources */,
 				04C2615921A68FB200374E4D /* TCBGMCell.m in Sources */,
 				04CBC3C12179C01300658E47 /* GPUImageXYDerivativeFilter.m in Sources */,
+				04AB304021CA91310072808E /* GKDouyinScrollView.m in Sources */,
 				04C2615721A68FB200374E4D /* TCBGMCutView.m in Sources */,
 				04DCA87C21A55C5B00691A3A /* TXUGCPublishUtil.m in Sources */,
 				04CBC3672179C01300658E47 /* GPUImageJFAVoronoiFilter.m in Sources */,

@@ -6,13 +6,13 @@
 //  Copyright © 2018年 CMP_Ljh. All rights reserved.
 //
 
-#import "XlHomeViewController.h"
+#import "XLPlayerListViewController.h"
 
-@interface XlHomeViewController ()<HomeDelegate,TouchTableViewDelegate>
+@interface XLPlayerListViewController ()<HomeDelegate,TouchTableViewDelegate>
 
 @end
 
-@implementation XlHomeViewController
+@implementation XLPlayerListViewController
 
 
 #pragma -mark -----懒加载----下拉刷新切换头部View-------

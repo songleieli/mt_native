@@ -9,10 +9,9 @@
 
 #import "BaseNavigationController.h"
 
-#import "XlHomeViewController.h"
+#import "GKDouyinHomeViewController.h"
 #import "HuinongViewController.h"
 #import "XLGchangNewViewController.h"
-//#import "TopicViewController.h"
 #import "UserInfoViewController.h"
 
 #import "TCVideoRecordViewController.h"
@@ -31,9 +30,9 @@
 
 #pragma mark ------------懒加载-----------
 
-- (XlHomeViewController *)homeNewViewController{
+- (GKDouyinHomeViewController *)homeNewViewController{
     if (!_homeNewViewController){
-        _homeNewViewController = [[XlHomeViewController alloc]init];
+        _homeNewViewController = [[GKDouyinHomeViewController alloc]init];
         _homeNewViewController.selectedIndex = 0;
         _homeNewViewController.changeIndexDelegate = self;
     }
@@ -45,6 +44,7 @@
         _huinongViewController = [[HuinongViewController alloc]init];
         _huinongViewController.selectedIndex = 1;
         _huinongViewController.changeIndexDelegate = self;
+        
     }
     return _huinongViewController;
 }
@@ -85,6 +85,7 @@
 - (BaseNavigationController *)xlHomeNavViewController{
     if (!_xlHomeNavViewController){
         _xlHomeNavViewController = [BaseNavigationController navigationWithRootViewController:self.homeNewViewController];
+        _xlHomeNavViewController.gk_openScrollLeftPush = YES;
     }
     return _xlHomeNavViewController;
 }

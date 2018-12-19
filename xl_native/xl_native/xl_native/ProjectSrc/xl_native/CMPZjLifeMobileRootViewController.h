@@ -14,16 +14,15 @@
 
 @class BaseNavigationController;
 
-@class XlHomeViewController;
+@class GKDouyinHomeViewController;
 @class HuinongViewController;
 @class XLGchangNewViewController;
-//@class TopicViewController;
 @class UserInfoViewController;
 
 @interface CMPZjLifeMobileRootViewController : UIViewController
 
 //viewController
-@property (nonatomic, strong) XlHomeViewController* homeNewViewController;
+@property (nonatomic, strong) GKDouyinHomeViewController* homeNewViewController;
 @property (nonatomic, strong) HuinongViewController* huinongViewController;
 @property (nonatomic, strong) UIViewController* topicViewController;
 @property (nonatomic, strong) XLGchangNewViewController *gchangViewController;
