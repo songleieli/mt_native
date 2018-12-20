@@ -78,16 +78,14 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         self.btnLeft.hidden = YES;
         self.btnLeft.backgroundColor = [UIColor redColor];
     }
+    
+    //test
+    [self onNetworkStatusChange:nil];// 模仿抖音Demo中，的网络变化，加载数据
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    
-
-    
-    //test
-    [self onNetworkStatusChange:nil];// 模仿抖音Demo中，的网络变化，加载数据
 }
 
 - (void)viewDidLoad {

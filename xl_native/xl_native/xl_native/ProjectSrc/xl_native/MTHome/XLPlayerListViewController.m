@@ -33,7 +33,7 @@
         _refreshNavigitionView.alpha = 0;
         
         //test
-//        _refreshNavigitionView.backgroundColor = [UIColor blueColor];
+        //        _refreshNavigitionView.backgroundColor = [UIColor blueColor];
     }
     return _refreshNavigitionView;
 }
@@ -51,7 +51,7 @@
     [super viewWillAppear:animated];
     
     [UIApplication sharedApplication].statusBarHidden = YES;
-//    self.tabBar.top = [self getTabbarTop];
+    //    self.tabBar.top = [self getTabbarTop];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -69,19 +69,19 @@
     /*dealloc*/
     
     [self.mainTableView removeObserver:self forKeyPath:@"contentOffset"];
-
     
-//    [self.tableView.layer removeAllAnimations];
-//    NSArray<AwemeListCell *> *cells = [_tableView visibleCells];
-//    for(AwemeListCell *cell in cells) {
-//        [cell.playerView cancelLoading];
-//    }
-//    [[AVPlayerManager shareManager] removeAllPlayers];
-
-//    //移除 currentIndex 值变化的监听
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
-//    [self removeObserver:self forKeyPath:@"currentIndex"];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    //    [self.tableView.layer removeAllAnimations];
+    //    NSArray<AwemeListCell *> *cells = [_tableView visibleCells];
+    //    for(AwemeListCell *cell in cells) {
+    //        [cell.playerView cancelLoading];
+    //    }
+    //    [[AVPlayerManager shareManager] removeAllPlayers];
+    
+    //    //移除 currentIndex 值变化的监听
+    //    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    //    [self removeObserver:self forKeyPath:@"currentIndex"];
+    //    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad {
@@ -96,7 +96,7 @@
     
     [self.view addSubview:self.mainTableView];
     [self.view addSubview:self.topView];
-
+    
     self.mainTableView.size = [UIView getSize_width:ScreenWidth height:ScreenHeight];
     self.mainTableView.origin = [UIView getPoint_x:0 y:0];
     self.mainTableView.pagingEnabled = YES;
@@ -108,7 +108,7 @@
     self.mainTableView.mj_footer = nil;
     
     [self.mainTableView registerClass:HomeVideoCell.class forCellReuseIdentifier:[HomeVideoCell cellId]];
-
+    
     __weak typeof(self) weakSelf = self;
     [self addJXRefreshWithTableView:self.mainTableView andRefreshBlock:^{
         [weakSelf loadNewListData];
@@ -126,7 +126,7 @@
 
 -(void)playCurCellVideo{
     
-//    BOOL temp = firstLoad
+    //    BOOL temp = firstLoad
     
     [_currentCell startDownloadHighPriorityTask];
     __weak typeof (HomeVideoCell) *wcell = self.currentCell;
@@ -164,7 +164,7 @@
     self.clearView.backgroundColor = RGBA(255, 0, 0, 0.0);
     [self.view addSubview:self.clearView];
     [self.view addSubview:self.refreshNavigitionView];
-
+    
     //添加观察者
     [self.mainTableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
 }
@@ -284,7 +284,7 @@
             [self userInfoClicked:_currentCell.listModel];
             return;
         }
-
+        
         BOOL isExitFav = CGRectContainsPoint(_currentCell.maskView.favorite.frame,currentPoint);
         if(isExitFav){
             NSLog(@"点击喜欢");
@@ -327,7 +327,7 @@
     //清除起始触摸点
     self.startPoint = CGPointZero;
     
-     //1.在第一页，松开手后，判断向下滚动还是向上滚动
+    //1.在第一页，松开手后，判断向下滚动还是向上滚动
     if(self.mainTableView.contentOffset.y > ScreenHeight/2){
         [UIView animateWithDuration:0.3 animations:^{
             self.mainTableView.contentOffset = CGPointMake(0, ScreenHeight);
@@ -414,7 +414,7 @@
             if(self.isFirstLoad){//第一次加载
                 self.isFirstLoad = NO;
                 
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_currentIndex inSection:0];
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentIndex inSection:0];
                 self.currentCell = [self.mainTableView cellForRowAtIndexPath:indexPath];
                 [self playCurCellVideo];
             }
@@ -444,25 +444,16 @@
         HomeListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
         cell.homeDelegate = self;
         [cell fillDataWithModel:model];
+        [cell startDownloadBackgroundTask];
         return cell;
     }
     else{
         /*
-        有时会出现，self.mainDataArr count为0 cellForRowAtIndexPath，却响应的bug。
+         有时会出现，self.mainDataArr count为0 cellForRowAtIndexPath，却响应的bug。
          */
         UITableViewCell * celltemp =  [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellid"];
         return celltemp;
     }
-    
-//    HomeListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
-//    HomeVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:[HomeVideoCell cellId]];
-//    if(!cell){
-//        cell = [[HomeVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[HomeVideoCell cellId]];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.homeDelegate = self;
-//    }
-//    [cell fillDataWithModel:model];
-//    return cell;
 }
 
 //设置每一组的高度
@@ -489,21 +480,21 @@
     
     CGPoint rect = scrollView.contentOffset;
     NSInteger index = rect.y / self.view.height;
-    if (_beginDragging && _currentIndex != index) {
-//        if (index > _currentIndex) {
-//            _dragDirection = DragDirection_Down;
-//        }else{
-//            _dragDirection = DragDirection_Up;
-//        }
-        _currentIndex = index;
+    if (_beginDragging && self.currentIndex != index) {
+        //        if (index > _currentIndex) {
+        //            _dragDirection = DragDirection_Down;
+        //        }else{
+        //            _dragDirection = DragDirection_Up;
+        //        }
+        self.currentIndex = index;
         
-        self.currentCell = [self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_currentIndex inSection:0]];
+        self.currentCell = [self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentIndex inSection:0]];
         [self playCurCellVideo];
         
         _beginDragging = NO;
     }
     
-    NSInteger offset = self.mainDataArr.count - _currentIndex;
+    NSInteger offset = self.mainDataArr.count - self.currentIndex;
     if(offset == 2){ //开始加载下一页
         self.currentPage += 1;
         [self initRequest];
@@ -551,8 +542,8 @@
     } isAnimat:YES];
     
     
-
-
+    
+    
 }
 
 - (void)zanClicked:(HomeListModel *)listModel{
@@ -560,34 +551,53 @@
     
     [[ZJLoginService sharedInstance] authenticateWithCompletion:^(BOOL success) {
         
-        NetWork_mt_likeVideo *request = [[NetWork_mt_likeVideo alloc] init];
-        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-        request.noodleVideoId = listModel.noodleVideoId;
-        request.noodleVideoCover = listModel.noodleVideoCover;
-        request.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-        [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
-            NSLog(@"---------");
-            if(finished){
-                NSLog(@"-------");
-                
-//                _currentCell.listModel.isLike = [NSNumber numberWithBool:![_currentCell.listModel.isLike boolValue]];
-                
-                //发送点赞通知
-                
-                // _currentCell.playerView.maskView.btnZan.selected = YES;
-                
-            }
-            else{
-                [self showFaliureHUD:msg];
-            }
-        }];
+        if([listModel.isLike intValue] == 0){ //点赞
+            
+            NetWork_mt_likeVideo *request = [[NetWork_mt_likeVideo alloc] init];
+            request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+            request.noodleVideoId = listModel.noodleVideoId;
+            request.noodleVideoCover = listModel.noodleVideoCover;
+            request.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+            [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+                if(finished){
+                    //赞成功，修改数值重新加载cell
+                    listModel.isLike = [NSNumber numberWithInt:1];
+                    listModel.likeSum = [NSNumber numberWithInt:[listModel.likeSum intValue]+1];
+                    
+                    [self.currentCell fillDataWithModel:listModel];
+                    
+                }
+                else{
+                    [self showFaliureHUD:msg];
+                }
+            }];
+        }
+        else{ //已赞，取消赞
+            NetWork_mt_delLikeVideo *request = [[NetWork_mt_delLikeVideo alloc] init];
+            request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+            request.noodleVideoId = listModel.noodleVideoId;
+            request.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+            [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+                if(finished){
+                    
+                    //取消赞成功，修改数值后重新加载cell
+                    listModel.isLike = [NSNumber numberWithInt:0];
+                    listModel.likeSum = [NSNumber numberWithInt:[listModel.likeSum intValue]-1];
+                    
+                    [self.currentCell fillDataWithModel:listModel];
+                }
+                else{
+                    [self showFaliureHUD:msg];
+                }
+            }];
+        }
         
     } cancelBlock:^{
         
     } isAnimat:YES];
     
     
-
+    
     
     
 }
@@ -603,7 +613,7 @@
 
 - (void)shareClicked:(HomeListModel *)listModel{
     
-        NSLog(@"----------分享----------");
+    NSLog(@"----------分享----------");
     
 }
 

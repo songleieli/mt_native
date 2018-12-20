@@ -57,7 +57,7 @@ typedef void (^OnPlayerReady)(void);
 - (void)play;
 - (void)pause;
 - (void)replay;
-//- (void)startDownloadBackgroundTask;
+- (void)startDownloadBackgroundTask;
 - (void)startDownloadHighPriorityTask;
 
 @end

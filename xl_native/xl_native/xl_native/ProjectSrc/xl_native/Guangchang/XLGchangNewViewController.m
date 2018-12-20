@@ -8,7 +8,6 @@
 
 #import "XLGchangNewViewController.h"
 #import "NetWork_uploadApi.h"
-#import "NetWork_voice_order_add.h"
 
 @interface XLGchangNewViewController ()
 

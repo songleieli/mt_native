@@ -8,15 +8,11 @@
 
 #import "NetWork_mt_delLikeVideo.h"
 
-//@implementation ContentModel
-//
-//@end
-
 @implementation DeLikeVideoModel
 
 @end
 
-@implementation DelLikeVideoResponse
+@implementation DeLikeVideoResponse
 
 //- (NSDictionary *)propertyMappingObjcJson {
 //    return @{@"obj" : @"obj"};
@@ -31,7 +27,7 @@
 @implementation NetWork_mt_delLikeVideo
 
 -(Class)responseType{
-    return [DelLikeVideoResponse class];
+    return [DeLikeVideoResponse class];
 }
 -(NSString*)responseCategory{
     return @"/miantiao/home/delLikeVideo";

@@ -60,7 +60,6 @@
 
 #pragma mark - NetWork
 #import "NetWork_addIntegral.h"
-#import "NetWork_aboutUs.h"
 #import "NetWork_hotTopic.h"
 #import "NetWork_himInfo.h"
 #import "NetWork_myWelfareTicket.h"

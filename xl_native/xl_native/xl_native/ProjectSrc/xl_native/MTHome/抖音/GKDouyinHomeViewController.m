@@ -97,7 +97,9 @@
 #pragma mark - GKViewControllerPushDelegate
 
 - (void)pushToNextViewController {
+    
     UserInfoViewController *personalVC = [UserInfoViewController new];
+    personalVC.fromType = FromTypeHome;
     personalVC.userNoodleId = self.playerVC.currentCell.listModel.noodleId;
     [self pushNewVC:personalVC animated:YES];
 }

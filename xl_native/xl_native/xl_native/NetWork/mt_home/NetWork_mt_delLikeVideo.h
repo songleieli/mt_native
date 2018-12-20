@@ -6,16 +6,7 @@
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
-#import "WCServiceBase.h"
-
-
-//@interface ContentModel : IObjcJsonBase
-//
-//@property (nonatomic,copy) NSString * nickname;
-//@property (nonatomic,copy) NSString * qq_id;
-//@property (nonatomic,copy) NSString * wechat_id;
-//
-//@end
+//#import "WCServiceBase.h"
 
 
 @interface DeLikeVideoModel : IObjcJsonBase
@@ -27,7 +18,7 @@
 
 
 
-@interface DelLikeVideoResponse : IObjcJsonBase
+@interface DeLikeVideoResponse : IObjcJsonBase
 
 @property(nonatomic,copy) NSString * status;
 @property(nonatomic,copy) NSString * message;

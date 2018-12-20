@@ -70,8 +70,7 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
     self.listModel = model;
     self.maskView.listLoginModel = model;
     
-    NSString *playUrl = self.listModel.storagePath;
-    [self.playerView setPlayerWithUrl:playUrl];
+
 }
 
 
@@ -88,6 +87,12 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
 - (void)replay {
     [self.playerView replay];
     [self.maskView hidePlayBtn];
+}
+
+- (void)startDownloadBackgroundTask {
+    
+    NSString *playUrl = self.listModel.storagePath;
+    [self.playerView setPlayerWithUrl:playUrl];
 }
 
 - (void)startDownloadHighPriorityTask {
