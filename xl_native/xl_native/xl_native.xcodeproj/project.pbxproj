@@ -208,10 +208,8 @@
 		049D80E621819FBA007F3BAF /* XLPlanDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049D80E421819FBA007F3BAF /* XLPlanDetailVC.xib */; };
 		04A5B81921B23B95003F5C88 /* NetWork_mt_login.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5B81721B23B95003F5C88 /* NetWork_mt_login.m */; };
 		04A5B81C21B27F66003F5C88 /* NetWork_mt_saveVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5B81B21B27F66003F5C88 /* NetWork_mt_saveVideo.m */; };
-		04AB303E21CA91310072808E /* GKDouyinHomePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB303821CA91310072808E /* GKDouyinHomePlayerViewController.m */; };
 		04AB303F21CA91310072808E /* GKDouyinHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB303921CA91310072808E /* GKDouyinHomeViewController.m */; };
 		04AB304021CA91310072808E /* GKDouyinScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB303A21CA91310072808E /* GKDouyinScrollView.m */; };
-		04AB304121CA91310072808E /* GKDouyinPersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB303B21CA91310072808E /* GKDouyinPersonalViewController.m */; };
 		04AB304221CA91310072808E /* GKDouyinHomeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB303C21CA91310072808E /* GKDouyinHomeSearchViewController.m */; };
 		04AB304A21CA92B10072808E /* UINavigationController+GKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB304921CA92B10072808E /* UINavigationController+GKCategory.m */; };
 		04AB304D21CA92F20072808E /* UIViewController+GKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB304C21CA92F20072808E /* UIViewController+GKCategory.m */; };
@@ -1795,13 +1793,9 @@
 		04AB303421CA91310072808E /* GKDouyinScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKDouyinScrollView.h; sourceTree = "<group>"; };
 		04AB303521CA91310072808E /* GKDouyinHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKDouyinHomeViewController.h; sourceTree = "<group>"; };
 		04AB303621CA91310072808E /* GKDouyinHomeSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKDouyinHomeSearchViewController.h; sourceTree = "<group>"; };
-		04AB303721CA91310072808E /* GKDouyinPersonalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKDouyinPersonalViewController.h; sourceTree = "<group>"; };
-		04AB303821CA91310072808E /* GKDouyinHomePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKDouyinHomePlayerViewController.m; sourceTree = "<group>"; };
 		04AB303921CA91310072808E /* GKDouyinHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKDouyinHomeViewController.m; sourceTree = "<group>"; };
 		04AB303A21CA91310072808E /* GKDouyinScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKDouyinScrollView.m; sourceTree = "<group>"; };
-		04AB303B21CA91310072808E /* GKDouyinPersonalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKDouyinPersonalViewController.m; sourceTree = "<group>"; };
 		04AB303C21CA91310072808E /* GKDouyinHomeSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKDouyinHomeSearchViewController.m; sourceTree = "<group>"; };
-		04AB303D21CA91310072808E /* GKDouyinHomePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKDouyinHomePlayerViewController.h; sourceTree = "<group>"; };
 		04AB304821CA92B10072808E /* UINavigationController+GKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+GKCategory.h"; sourceTree = "<group>"; };
 		04AB304921CA92B10072808E /* UINavigationController+GKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+GKCategory.m"; sourceTree = "<group>"; };
 		04AB304B21CA92F20072808E /* UIViewController+GKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+GKCategory.h"; sourceTree = "<group>"; };
@@ -3811,10 +3805,6 @@
 				04AB303A21CA91310072808E /* GKDouyinScrollView.m */,
 				04AB303521CA91310072808E /* GKDouyinHomeViewController.h */,
 				04AB303921CA91310072808E /* GKDouyinHomeViewController.m */,
-				04AB303721CA91310072808E /* GKDouyinPersonalViewController.h */,
-				04AB303B21CA91310072808E /* GKDouyinPersonalViewController.m */,
-				04AB303D21CA91310072808E /* GKDouyinHomePlayerViewController.h */,
-				04AB303821CA91310072808E /* GKDouyinHomePlayerViewController.m */,
 				04AB303621CA91310072808E /* GKDouyinHomeSearchViewController.h */,
 				04AB303C21CA91310072808E /* GKDouyinHomeSearchViewController.m */,
 			);
@@ -7448,7 +7438,6 @@
 				04CBC3AD2179C01300658E47 /* GPUImageBrightnessFilter.m in Sources */,
 				04CBC3CF2179C01300658E47 /* GPUImageFramebufferCache.m in Sources */,
 				04DCA91921A5687600691A3A /* QBSlomoIconView.m in Sources */,
-				04AB304121CA91310072808E /* GKDouyinPersonalViewController.m in Sources */,
 				04CBC3312179C01300658E47 /* GPUImageLuminanceThresholdFilter.m in Sources */,
 				04B0E1E821A6937600ABCF16 /* NSOrderedSet+BlocksKit.m in Sources */,
 				04CBC3472179C01300658E47 /* GPUImageNonMaximumSuppressionFilter.m in Sources */,
@@ -7742,7 +7731,6 @@
 				04CBC4352179C01300658E47 /* GPUImagePrewittEdgeDetectionFilter.m in Sources */,
 				0403661A21C37910000FDC5E /* CircleProgressView.m in Sources */,
 				04AB304221CA91310072808E /* GKDouyinHomeSearchViewController.m in Sources */,
-				04AB303E21CA91310072808E /* GKDouyinHomePlayerViewController.m in Sources */,
 				D9F86DC81DEBEE7600C3A2B6 /* TZAssetModel.m in Sources */,
 				04C2615921A68FB200374E4D /* TCBGMCell.m in Sources */,
 				04CBC3C12179C01300658E47 /* GPUImageXYDerivativeFilter.m in Sources */,

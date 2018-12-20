@@ -9,8 +9,7 @@
 #import "GKDouyinHomeViewController.h"
 #import "GKDouyinHomeSearchViewController.h"
 #import "XLPlayerListViewController.h"
-//#import "GKDouyinHomePlayerViewController.h"
-#import "GKDouyinPersonalViewController.h"
+#import "UserInfoViewController.h"
 #import "GKDouyinScrollView.h"
 
 
@@ -98,8 +97,9 @@
 #pragma mark - GKViewControllerPushDelegate
 
 - (void)pushToNextViewController {
-    GKDouyinPersonalViewController *personalVC = [GKDouyinPersonalViewController new];
-    [self.navigationController pushViewController:personalVC animated:YES];
+    UserInfoViewController *personalVC = [UserInfoViewController new];
+    personalVC.userNoodleId = self.playerVC.currentCell.listModel.noodleId;
+    [self pushNewVC:personalVC animated:YES];
 }
 
 @end

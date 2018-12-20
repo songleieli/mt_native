@@ -40,12 +40,13 @@ typedef NS_ENUM(NSInteger,StatusOfRefresh) {
     BOOL                 _beginDragging;
 //    DragDirection        _dragDirection;
     
-    HomeVideoCell *_currentCell;  //当前显示到屏幕的cell
 }
 
 @property (nonatomic, assign)BOOL isFirstLoad; //判断是否第一加载
 @property (nonatomic,strong) MtHomeTopView *topView;
 @property (nonatomic, assign) NSInteger currentIndex;
+@property (nonatomic, strong)HomeVideoCell *currentCell;  //当前显示到屏幕的cell
+
 @property (nonatomic, assign) BOOL  isCurPlayerPause;
 
 /*仿抖音下拉刷新*/

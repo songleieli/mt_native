@@ -42,8 +42,8 @@
     [super viewDidAppear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
-    if(_currentCell){
-        [_currentCell.playerView play];
+    if(self.currentCell){
+        [self.currentCell.playerView play];
     }
 }
 
@@ -56,8 +56,8 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    if(_currentCell){
-        [_currentCell.playerView pause];
+    if(self.currentCell){
+        [self.currentCell.playerView pause];
     }
 }
 
@@ -129,10 +129,10 @@
 //    BOOL temp = firstLoad
     
     [_currentCell startDownloadHighPriorityTask];
-    __weak typeof (HomeVideoCell) *wcell = _currentCell;
+    __weak typeof (HomeVideoCell) *wcell = self.currentCell;
     __weak typeof (self) wself = self;
     //判断当前cell的视频源是否已经准备播放
-    if(_currentCell.isPlayerReady) {
+    if(self.currentCell.isPlayerReady) {
         //播放视频
         [_currentCell replay];
         
@@ -141,7 +141,7 @@
     }else {
         [[AVPlayerManager shareManager] pauseAll];
         //当前cell的视频源还未准备好播放，则实现cell的OnPlayerReady Block 用于等待视频准备好后通知播放
-        _currentCell.onPlayerReady = ^{
+        self.currentCell.onPlayerReady = ^{
             NSIndexPath *indexPath = [wself.mainTableView indexPathForCell:wcell];
             if(!wself.isCurPlayerPause && indexPath && indexPath.row == wself.currentIndex) {
                 [wcell play];
@@ -272,8 +272,8 @@
         BOOL isExitFlollow = CGRectContainsPoint(_currentCell.maskView.focus.frame,currentPoint);
         if(isExitFlollow){
             NSLog(@"点击关注");
-            if(!_currentCell.listModel.isFlour){ //如果没有关注，才可点击关注按钮
-                [_currentCell.maskView followHomeClick];
+            if(!self.currentCell.listModel.isFlour){ //如果没有关注，才可点击关注按钮
+                [self.currentCell.maskView followHomeClick];
                 return;
             }
         }
@@ -288,8 +288,8 @@
         BOOL isExitFav = CGRectContainsPoint(_currentCell.maskView.favorite.frame,currentPoint);
         if(isExitFav){
             NSLog(@"点击喜欢");
-            [_currentCell.maskView.favorite favoriteViewLikeClick:[_currentCell.listModel.isLike boolValue]];
-            _currentCell.listModel.isLike = [NSNumber numberWithBool:![_currentCell.listModel.isLike boolValue]];
+            [self.currentCell.maskView.favorite favoriteViewLikeClick:[_currentCell.listModel.isLike boolValue]];
+            self.currentCell.listModel.isLike = [NSNumber numberWithBool:![_currentCell.listModel.isLike boolValue]];
             
             return;
         }
@@ -318,7 +318,7 @@
         BOOL isExitPlayBtn = CGRectContainsPoint(_currentCell.maskView.frame,currentPoint);
         if(isExitPlayBtn){
             NSLog(@"暂停或播放");
-            [_currentCell.maskView singleTapAction];
+            [self.currentCell.maskView singleTapAction];
             return;
         }
         return;
@@ -333,8 +333,8 @@
             self.mainTableView.contentOffset = CGPointMake(0, ScreenHeight);
         }];
         
-        _currentIndex = 1;
-        _currentCell = [self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_currentIndex inSection:0]];
+        self.currentIndex = 1;
+        self.currentCell = [self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_currentIndex inSection:0]];
         [self playCurCellVideo];
     }
     else{
@@ -415,7 +415,7 @@
                 self.isFirstLoad = NO;
                 
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_currentIndex inSection:0];
-                _currentCell = [self.mainTableView cellForRowAtIndexPath:indexPath];
+                self.currentCell = [self.mainTableView cellForRowAtIndexPath:indexPath];
                 [self playCurCellVideo];
             }
         }
@@ -497,7 +497,7 @@
 //        }
         _currentIndex = index;
         
-        _currentCell = [self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_currentIndex inSection:0]];
+        self.currentCell = [self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_currentIndex inSection:0]];
         [self playCurCellVideo];
         
         _beginDragging = NO;
