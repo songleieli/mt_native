@@ -8,7 +8,8 @@
 
 #import "GKDouyinHomeViewController.h"
 #import "GKDouyinHomeSearchViewController.h"
-#import "GKDouyinHomePlayerViewController.h"
+#import "XLPlayerListViewController.h"
+//#import "GKDouyinHomePlayerViewController.h"
 #import "GKDouyinPersonalViewController.h"
 #import "GKDouyinScrollView.h"
 
@@ -18,7 +19,7 @@
 @property (nonatomic, strong) GKDouyinScrollView  *scrollView;
 
 @property (nonatomic, strong) UIViewController  *searchVC; //左侧Controller
-@property (nonatomic, strong) UIViewController  *playerVC; //右侧Controller
+@property (nonatomic, strong) XLPlayerListViewController  *playerVC; //右侧Controller
 @property (nonatomic, strong) NSArray  *childVCs;
 
 @end
@@ -50,9 +51,9 @@
     return _searchVC;
 }
 
-- (UIViewController *)playerVC {
+- (XLPlayerListViewController *)playerVC {
     if (!_playerVC) {
-        _playerVC = [GKDouyinHomePlayerViewController new];
+        _playerVC = [XLPlayerListViewController new];
     }
     return _playerVC;
 }

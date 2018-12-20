@@ -51,7 +51,7 @@
     [super viewWillAppear:animated];
     
     [UIApplication sharedApplication].statusBarHidden = YES;
-    self.tabBar.top = [self getTabbarTop];
+//    self.tabBar.top = [self getTabbarTop];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
