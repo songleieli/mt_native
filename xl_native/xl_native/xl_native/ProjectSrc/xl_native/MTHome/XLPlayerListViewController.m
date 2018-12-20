@@ -534,6 +534,10 @@
         request.content = [contentModel generateJsonStringForProperties];
         [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
             NSLog(@"----------");
+            if(finished){}
+            else{
+                [UIWindow showTips:msg];
+            }
         }];
         contentModel = nil;
         
@@ -565,7 +569,6 @@
                     listModel.likeSum = [NSNumber numberWithInt:[listModel.likeSum intValue]+1];
                     
                     [self.currentCell fillDataWithModel:listModel];
-                    
                 }
                 else{
                     [self showFaliureHUD:msg];
@@ -583,7 +586,6 @@
                     //取消赞成功，修改数值后重新加载cell
                     listModel.isLike = [NSNumber numberWithInt:0];
                     listModel.likeSum = [NSNumber numberWithInt:[listModel.likeSum intValue]-1];
-                    
                     [self.currentCell fillDataWithModel:listModel];
                 }
                 else{
@@ -595,32 +597,25 @@
     } cancelBlock:^{
         
     } isAnimat:YES];
-    
-    
-    
-    
-    
 }
 
 - (void)commentClicked:(HomeListModel *)listModel{
     
-    NSLog(@"----------点击查看评论----------");
-    
-    
     CommentsPopView *popView = [[CommentsPopView alloc] initWithAwemeId:listModel];
+    [popView setCommitResult:^(BOOL finish, NSInteger totalCount) {
+        
+        listModel.commentSum = [NSString stringWithFormat:@"%ld",totalCount];
+        [self.currentCell fillDataWithModel:listModel];
+    }];
     [popView show];
 }
 
 - (void)shareClicked:(HomeListModel *)listModel{
-    
     NSLog(@"----------分享----------");
-    
 }
 
 - (void)musicCDClicked:(HomeListModel *)listModel{
-    
     NSLog(@"----------CD----------");
-    
 }
 
 @end

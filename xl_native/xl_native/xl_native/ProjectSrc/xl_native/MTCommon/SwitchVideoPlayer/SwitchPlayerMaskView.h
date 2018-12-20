@@ -75,10 +75,6 @@
 @property (nonatomic, assign) NSTimeInterval           lastTapTime;    //上一次点击事件
 @property (nonatomic, assign) CGPoint                  lastTapPoint;   //上一次点击Point
 
-
-///**播放按钮*/
-//@property(nonatomic,strong) UIButton * btnPlay;
-
 /*视频model*/
 @property (nonatomic, strong) HomeListModel *listLoginModel;
 

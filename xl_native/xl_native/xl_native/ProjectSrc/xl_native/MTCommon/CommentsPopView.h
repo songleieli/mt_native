@@ -20,6 +20,9 @@
 
 @property (nonatomic,strong) HomeListModel *listModel;
 
+@property (nonatomic,copy) void(^ commitResult) (BOOL finish , NSInteger totalCount);
+
+
 - (void)show;
 - (void)dismiss;
 

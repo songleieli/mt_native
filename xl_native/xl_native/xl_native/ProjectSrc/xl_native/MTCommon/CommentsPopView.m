@@ -50,20 +50,14 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
         tapGestureRecognizer.delegate = self;
         [self addGestureRecognizer:tapGestureRecognizer];
         
-        //        _awemeId = awemeId;
-        //_vistor = readVisitor();
-        
         _listModel = listModel;
         
         _pageIndex = 1;
         _pageSize = 20;
         
-        //        _data = [NSMutableArray array];
-        
         _container = [[UIView alloc] initWithFrame:CGRectMake(0, ScreenHeight, ScreenWidth, ScreenHeight*3/4)];
         _container.backgroundColor = ColorBlackAlpha60;
         [self addSubview:_container];
-        
         
         UIBezierPath* rounded = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, ScreenWidth, ScreenHeight*3/4) byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(10.0f, 10.0f)];
         CAShapeLayer* shape = [[CAShapeLayer alloc] init];
@@ -115,14 +109,11 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
             [wself loadData:wself.pageIndex pageSize:wself.pageSize];
         }];
         [_tableView addSubview:_loadMore];
-        
         [_container addSubview:_tableView];
         
         _textView = [CommentTextView new];
         _textView.delegate = self;
-        
         [self loadData:_pageIndex pageSize:_pageSize];
-        
     }
     return self;
 }
@@ -138,14 +129,14 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
     contentModel.commentContent = text;
     contentModel.parentNoodleId = self.listModel.noodleId;
     
-    
-    NSLog(@"----评论内容%@--",text);
     NetWork_mt_publishComment *request = [[NetWork_mt_publishComment alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.content = [contentModel generateJsonStringForProperties];
     [request startPostWithBlock:^(PublishCommentResponse *result, NSString *msg, BOOL finished) {
         if([result.status isEqualToString:@"S"]){
             [UIWindow showTips:@"评论成功"];
+            
+
             
             [UIView setAnimationsEnabled:NO];
             [_tableView beginUpdates];
@@ -154,6 +145,11 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
             [_tableView endUpdates];
             [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
             [UIView setAnimationsEnabled:YES];
+            
+            self.label.text = [NSString stringWithFormat:@"%ld条评论",(long)self.listData.count];
+            if(self.commitResult){
+                self.commitResult(YES, self.listData.count);
+            }
         }
         else{
             [UIWindow showTips:@"评论失败"];
@@ -310,6 +306,11 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
                 [self.loadMore loadingAll];
             }
             self.label.text = [NSString stringWithFormat:@"%ld条评论",(long)self.listData.count];
+            
+            
+            
+            
+            
         }
         else{
             [self.loadMore loadingFailed];
