@@ -320,6 +320,25 @@
 
 #pragma mark --------------- HomeDelegate代理 -----------------
 
+
+-(void)currVideoProgressUpdate:(HomeListModel *)listModel current:(CGFloat)current total:(CGFloat)total{
+    //当前视频播放进度
+    
+    if(current == 0.0f){
+        NSLog(@"-------调用，视频播放接口-----");
+        
+        NetWork_mt_addVideoPlay *request = [[NetWork_mt_addVideoPlay alloc] init];
+        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        request.noodleVideoId = listModel.noodleVideoId;
+        [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+            if(finished){
+                NSLog(@"-----------播放量增加-----------");
+            }
+        }];
+        
+    }
+}
+
 - (void)userInfoClicked:(HomeListModel *)listModel{
     
 }

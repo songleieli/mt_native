@@ -116,6 +116,15 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
 
 -(void)onProgressUpdate:(CGFloat)current total:(CGFloat)total {
     //播放进度更新
+    
+    NSLog(@"------------current = %f-----total = %f------------",current,total);
+    
+    if ([self.homeDelegate respondsToSelector:@selector(followClicked:)]) {
+        [self.homeDelegate currVideoProgressUpdate:self.listModel current:current total:total];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
+    
 }
 
 -(void)onPlayItemStatusUpdate:(AVPlayerItemStatus)status { //播放状态更新

@@ -3,7 +3,7 @@
 //  Douyin
 //
 //  Created by songlei on 2018/7/30.
-//  Copyright © 2018年 Qiao Shi. All rights reserved.
+//  Copyright © 2018年 songleilei. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

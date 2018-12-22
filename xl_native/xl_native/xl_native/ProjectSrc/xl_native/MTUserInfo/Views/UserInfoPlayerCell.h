@@ -18,6 +18,9 @@ typedef void (^OnPlayerReady)(void);
 
 @protocol UserInfoPlayerDelegate <NSObject>
 
+-(void)currVideoProgressUpdate:(HomeListModel *)listModel current:(CGFloat)current total:(CGFloat)total;
+
+
 - (void)userInfoClicked:(HomeListModel *)listModel;
 
 - (void)followClicked:(HomeListModel *)listModel;

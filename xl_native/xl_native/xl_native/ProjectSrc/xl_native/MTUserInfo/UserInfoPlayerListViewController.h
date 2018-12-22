@@ -15,6 +15,7 @@
 #import "NetWork_mt_likeVideo.h"
 #import "NetWork_mt_delLikeVideo.h"
 #import "NetWork_mt_saveflour.h"
+#import "NetWork_mt_addVideoPlay.h"
 
 typedef enum{
     VideoTypeWorks,

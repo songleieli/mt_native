@@ -2,8 +2,8 @@
 //  SlideTabBar.h
 //  Douyin
 //
-//  Created by Qiao Shi on 2018/10/22.
-//  Copyright © 2018 Qiao Shi. All rights reserved.
+//  Created by songleilei on 2018/10/22.
+//  Copyright © 2018 songleilei. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

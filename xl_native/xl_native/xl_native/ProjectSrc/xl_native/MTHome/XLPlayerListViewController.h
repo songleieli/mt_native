@@ -12,10 +12,14 @@
 #import "MTHomeRefreshNavigitionView.h"
 #import "HomeVideoCell.h"
 #import "CommentsPopView.h"
+#import "SharePopView.h"
 
 #import "NetWork_mt_likeVideo.h"
 #import "NetWork_mt_delLikeVideo.h"
 #import "NetWork_mt_saveflour.h"
+#import "NetWork_mt_addVideoPlay.h"
+#import "NetWork_mt_collectionVideo.h"
+#import "NetWork_mt_getVideoCollections.h"
 
 #import "UserInfoViewController.h"
 

@@ -8,7 +8,7 @@
 
 #import "XLPlayerListViewController.h"
 
-@interface XLPlayerListViewController ()<HomeDelegate>
+@interface XLPlayerListViewController ()<HomeDelegate,VideoSahreDelegate>
 
 @end
 
@@ -138,7 +138,8 @@
         
         NSLog(@"---------[_currentCell replay];-------");
         
-    }else {
+    }
+    else {
         [[AVPlayerManager shareManager] pauseAll];
         //当前cell的视频源还未准备好播放，则实现cell的OnPlayerReady Block 用于等待视频准备好后通知播放
         self.currentCell.onPlayerReady = ^{
@@ -496,6 +497,24 @@
 
 #pragma mark --------------- HomeDelegate代理 -----------------
 
+-(void)currVideoProgressUpdate:(HomeListModel *)listModel current:(CGFloat)current total:(CGFloat)total{
+    //当前视频播放进度
+    
+    if(current == 0.0f){
+        NSLog(@"-------调用，视频播放接口-----");
+        
+        NetWork_mt_addVideoPlay *request = [[NetWork_mt_addVideoPlay alloc] init];
+        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        request.noodleVideoId = listModel.noodleVideoId;
+        [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+            if(finished){
+                NSLog(@"-----------播放量增加-----------");
+            }
+        }];
+        
+    }
+}
+
 - (void)userInfoClicked:(HomeListModel *)listModel{
     
     NSLog(@"----------点击查看用户信息----------");
@@ -605,10 +624,63 @@
 
 - (void)shareClicked:(HomeListModel *)listModel{
     NSLog(@"----------分享----------");
+    
+    SharePopView *popView = [[SharePopView alloc] init];
+    popView.delegate = self;
+    [popView show];
 }
 
 - (void)musicCDClicked:(HomeListModel *)listModel{
     NSLog(@"----------CD----------");
+    
+    //test, 查看测试收藏的视频列表
+    NetWork_mt_getVideoCollections *request = [[NetWork_mt_getVideoCollections alloc] init];
+    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+    request.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+    request.pageNo = @"1";
+    request.pageSize = @"20";
+    
+    [request startGetWithBlock:^(id result, NSString *msg) {
+        /*暂不考虑缓存的问题*/
+    } finishBlock:^(id result, NSString *msg, BOOL finished) {
+        NSLog(@"----------CD----------");
+
+    }];
+    
+    
+}
+
+#pragma mark --------------- VideoSahreDelegate 代理 -----------------
+
+- (void)onShareItemClicked:(SharePopView *)sharePopView index:(NSInteger)index{
+    
+}
+
+- (void)onActionItemClicked:(SharePopView *)sharePopView index:(NSInteger)index{
+    
+    if(index == 0){
+        NSLog(@"---------点击f收藏-------");
+        CollectionContentModel *contentModel = [[CollectionContentModel alloc] init];
+        contentModel.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;//当前登录者面条号
+        contentModel.noodleVideoId = self.currentCell.listModel.noodleVideoId; //视频Id
+        contentModel.videoNoodleId = self.currentCell.listModel.noodleId;      //视频所属者面条好
+        contentModel.noodleVideoCover = self.currentCell.listModel.coverUrl;    //
+        
+        
+        NetWork_mt_collectionVideo *request = [[NetWork_mt_collectionVideo alloc] init];
+        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        request.content = [contentModel generateJsonStringForProperties];
+        [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+            if(finished){
+                [UIWindow showTips:@"收藏成功"];
+            }
+            else{
+                [UIWindow showTips:@"收藏失败"];
+            }
+        }];
+        
+    }
+    
 }
 
 @end

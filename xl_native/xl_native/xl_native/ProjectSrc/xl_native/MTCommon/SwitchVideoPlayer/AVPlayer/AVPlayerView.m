@@ -2,8 +2,8 @@
 //  AVPlayerView.m
 //  Douyin
 //
-//  Created by Qiao Shi on 2018/7/30.
-//  Copyright © 2018年 Qiao Shi. All rights reserved.
+//  Created by songleilei on 2018/7/30.
+//  Copyright © 2018年 songleilei. All rights reserved.
 //
 
 #import "AVPlayerView.h"
@@ -292,9 +292,6 @@
 
 // 给AVPlayerLayer添加周期性调用的观察者，用于更新视频播放进度
 -(void)addProgressObserver{
-    
-
-    
     
     __weak __typeof(self) weakSelf = self;
     //AVPlayer添加周期性回调观察者，一秒调用一次block，用于更新视频播放进度
