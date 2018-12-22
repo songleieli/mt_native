@@ -18,13 +18,7 @@
 #import "NetWork_mt_saveflour.h"
 
 #import "UserInfoViewController.h"
-#import "TouchTableView.h"
 
-
-typedef NS_ENUM(NSInteger,DragDirection){
-    DragDirection_Down,
-    DragDirection_Up,
-};
 
 typedef NS_ENUM(NSInteger,StatusOfRefresh) {
     REFRESH_Normal = 0,     //正常状态
@@ -36,12 +30,7 @@ typedef NS_ENUM(NSInteger,StatusOfRefresh) {
 #define MaxDistance 25 //向下拖拽最大点-刷新临界值
 #define MaxScroll 200 //向上拖拽最大点-到达最大点就动画让tableview滚动到第二个cell
 
-@interface XLPlayerListViewController : ZJBaseViewController{
-    
-    BOOL                 _beginDragging;
-//    DragDirection        _dragDirection;
-    
-}
+@interface XLPlayerListViewController : ZJBaseViewController
 
 @property (nonatomic, assign)BOOL isFirstLoad; //判断是否第一加载
 @property (nonatomic,strong) MtHomeTopView *topView;

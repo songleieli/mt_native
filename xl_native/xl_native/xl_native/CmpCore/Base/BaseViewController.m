@@ -412,6 +412,7 @@
         if (@available(iOS 11.0, *)) {
             self.mainTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {
+            self.automaticallyAdjustsScrollViewInsets = NO;
             // Fallback on earlier versions
         }
 

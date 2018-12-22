@@ -8,7 +8,7 @@
 
 #import "XLPlayerListViewController.h"
 
-@interface XLPlayerListViewController ()<HomeDelegate,TouchTableViewDelegate>
+@interface XLPlayerListViewController ()<HomeDelegate>
 
 @end
 
@@ -472,26 +472,19 @@
 }
 
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    _beginDragging = YES;
-}
+//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+//    _beginDragging = YES;
+//}
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
     CGPoint rect = scrollView.contentOffset;
     NSInteger index = rect.y / self.view.height;
-    if (_beginDragging && self.currentIndex != index) {
-        //        if (index > _currentIndex) {
-        //            _dragDirection = DragDirection_Down;
-        //        }else{
-        //            _dragDirection = DragDirection_Up;
-        //        }
+    if (self.currentIndex != index) {
         self.currentIndex = index;
         
         self.currentCell = [self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentIndex inSection:0]];
         [self playCurCellVideo];
-        
-        _beginDragging = NO;
     }
     
     NSInteger offset = self.mainDataArr.count - self.currentIndex;

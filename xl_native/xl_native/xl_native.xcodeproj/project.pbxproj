@@ -63,7 +63,6 @@
 		040E28DD21C1089E00D15B44 /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 040E28DC21C1089E00D15B44 /* user.json */; };
 		040E28E021C1152500D15B44 /* LoadMoreControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 040E28DF21C1152500D15B44 /* LoadMoreControl.m */; };
 		0415F08A21C7D463000440F4 /* MTHomeRefreshNavigitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415F08821C7D462000440F4 /* MTHomeRefreshNavigitionView.m */; };
-		0415F08D21C801D2000440F4 /* TouchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415F08C21C801D1000440F4 /* TouchTableView.m */; };
 		04183B0221C2BC2200383E3F /* SwitchPlayerMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183AEF21C2BC2200383E3F /* SwitchPlayerMaskView.m */; };
 		04183B0421C2BC2200383E3F /* MusicAlbumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183AF421C2BC2200383E3F /* MusicAlbumView.m */; };
 		04183B0521C2BC2200383E3F /* FavoriteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183AF821C2BC2200383E3F /* FavoriteView.m */; };
@@ -224,6 +223,10 @@
 		04B66E9A21C15D41000D6C56 /* favorites.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B66E9821C15D41000D6C56 /* favorites.json */; };
 		04B66E9D21C15DF3000D6C56 /* AwemesResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B66E9C21C15DF2000D6C56 /* AwemesResponse.m */; };
 		04BC59872197C88700D5EA12 /* XLProjectWkWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BC59862197C88600D5EA12 /* XLProjectWkWebViewController.m */; };
+		04C171E221CDDE9E0077FA6C /* UserInfoPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */; };
+		04C171EA21CDE3070077FA6C /* SwipeLeftInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E421CDE3070077FA6C /* SwipeLeftInteractiveTransition.m */; };
+		04C171EB21CDE3070077FA6C /* ScalePresentAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E621CDE3070077FA6C /* ScalePresentAnimation.m */; };
+		04C171EC21CDE3070077FA6C /* ScaleDismissAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E921CDE3070077FA6C /* ScaleDismissAnimation.m */; };
 		04C2614E21A68FB200374E4D /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2612621A68FB200374E4D /* UIPlaceHolderTextView.m */; };
 		04C2614F21A68FB200374E4D /* TCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2612821A68FB200374E4D /* TCNavigationController.m */; };
 		04C2615021A68FB200374E4D /* TCBGMProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2612C21A68FB200374E4D /* TCBGMProgressView.m */; };
@@ -1226,6 +1229,7 @@
 		04E700D3219FBD8B0096099F /* NetWork_mt_home_list.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E700D2219FBD8B0096099F /* NetWork_mt_home_list.m */; };
 		04E700D9219FF5C10096099F /* MtHomeTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E700D7219FF5C00096099F /* MtHomeTopView.m */; };
 		04ED451921CBD897009DE89F /* NetWork_mt_delLikeVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ED451821CBD896009DE89F /* NetWork_mt_delLikeVideo.m */; };
+		04ED451C21CBE3E2009DE89F /* UserInfoPlayerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ED451B21CBE3E1009DE89F /* UserInfoPlayerListViewController.m */; };
 		04EDFCF721C5259500DB05B9 /* NetWork_mt_getMyVideos.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EDFCF521C5259400DB05B9 /* NetWork_mt_getMyVideos.m */; };
 		04EDFCFA21C525FD00DB05B9 /* NetWork_mt_getDynamics.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EDFCF921C525FD00DB05B9 /* NetWork_mt_getDynamics.m */; };
 		04EEBA5F21ABE3EE00A5F6F2 /* PopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EEBA5E21ABE3EE00A5F6F2 /* PopViewController.m */; };
@@ -1502,8 +1506,6 @@
 		040E28DF21C1152500D15B44 /* LoadMoreControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadMoreControl.m; sourceTree = "<group>"; };
 		0415F08821C7D462000440F4 /* MTHomeRefreshNavigitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTHomeRefreshNavigitionView.m; sourceTree = "<group>"; };
 		0415F08921C7D462000440F4 /* MTHomeRefreshNavigitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTHomeRefreshNavigitionView.h; sourceTree = "<group>"; };
-		0415F08B21C801D1000440F4 /* TouchTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchTableView.h; sourceTree = "<group>"; };
-		0415F08C21C801D1000440F4 /* TouchTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchTableView.m; sourceTree = "<group>"; };
 		04183AEF21C2BC2200383E3F /* SwitchPlayerMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchPlayerMaskView.m; sourceTree = "<group>"; };
 		04183AF121C2BC2200383E3F /* SwitchPlayerMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchPlayerMaskView.h; sourceTree = "<group>"; };
 		04183AF421C2BC2200383E3F /* MusicAlbumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicAlbumView.m; sourceTree = "<group>"; };
@@ -1773,6 +1775,14 @@
 		04B66E9C21C15DF2000D6C56 /* AwemesResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwemesResponse.m; sourceTree = "<group>"; };
 		04BC59852197C88600D5EA12 /* XLProjectWkWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLProjectWkWebViewController.h; sourceTree = "<group>"; };
 		04BC59862197C88600D5EA12 /* XLProjectWkWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLProjectWkWebViewController.m; sourceTree = "<group>"; };
+		04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoPlayerCell.m; sourceTree = "<group>"; };
+		04C171E121CDDE9E0077FA6C /* UserInfoPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoPlayerCell.h; sourceTree = "<group>"; };
+		04C171E421CDE3070077FA6C /* SwipeLeftInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeLeftInteractiveTransition.m; sourceTree = "<group>"; };
+		04C171E521CDE3070077FA6C /* ScaleDismissAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleDismissAnimation.h; sourceTree = "<group>"; };
+		04C171E621CDE3070077FA6C /* ScalePresentAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScalePresentAnimation.m; sourceTree = "<group>"; };
+		04C171E721CDE3070077FA6C /* SwipeLeftInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeLeftInteractiveTransition.h; sourceTree = "<group>"; };
+		04C171E821CDE3070077FA6C /* ScalePresentAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScalePresentAnimation.h; sourceTree = "<group>"; };
+		04C171E921CDE3070077FA6C /* ScaleDismissAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleDismissAnimation.m; sourceTree = "<group>"; };
 		04C2612521A68FB200374E4D /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
 		04C2612621A68FB200374E4D /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
 		04C2612821A68FB200374E4D /* TCNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCNavigationController.m; sourceTree = "<group>"; };
@@ -2749,6 +2759,8 @@
 		04E700D8219FF5C10096099F /* MtHomeTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MtHomeTopView.h; sourceTree = "<group>"; };
 		04ED451721CBD896009DE89F /* NetWork_mt_delLikeVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_delLikeVideo.h; sourceTree = "<group>"; };
 		04ED451821CBD896009DE89F /* NetWork_mt_delLikeVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_delLikeVideo.m; sourceTree = "<group>"; };
+		04ED451A21CBE3E1009DE89F /* UserInfoPlayerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoPlayerListViewController.h; sourceTree = "<group>"; };
+		04ED451B21CBE3E1009DE89F /* UserInfoPlayerListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoPlayerListViewController.m; sourceTree = "<group>"; };
 		04EDFCF521C5259400DB05B9 /* NetWork_mt_getMyVideos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getMyVideos.m; sourceTree = "<group>"; };
 		04EDFCF621C5259400DB05B9 /* NetWork_mt_getMyVideos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getMyVideos.h; sourceTree = "<group>"; };
 		04EDFCF821C525FD00DB05B9 /* NetWork_mt_getDynamics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getDynamics.h; sourceTree = "<group>"; };
@@ -3189,6 +3201,8 @@
 		040E28AA21C0AA4900D15B44 /* MTUserInfo */ = {
 			isa = PBXGroup;
 			children = (
+				04C171E321CDE3070077FA6C /* TransitionAnim */,
+				04C171DF21CDDE9E0077FA6C /* Views */,
 				040E28BD21C0F0D400D15B44 /* Entity */,
 				040E28B421C0E20100D15B44 /* AwemeCollectionCell.h */,
 				040E28B321C0E20100D15B44 /* AwemeCollectionCell.m */,
@@ -3206,6 +3220,8 @@
 				040E28B121C0E20000D15B44 /* UserInfoHeader.m */,
 				040E28AE21C0D7F000D15B44 /* HoverViewFlowLayout.h */,
 				040E28AF21C0D7F000D15B44 /* HoverViewFlowLayout.m */,
+				04ED451A21CBE3E1009DE89F /* UserInfoPlayerListViewController.h */,
+				04ED451B21CBE3E1009DE89F /* UserInfoPlayerListViewController.m */,
 				040E28AB21C0AA4900D15B44 /* UserInfoViewController.h */,
 				040E28AC21C0AA4900D15B44 /* UserInfoViewController.m */,
 			);
@@ -3751,6 +3767,28 @@
 				04B0E1DA21A6937500ABCF16 /* NSURLConnection+BlocksKit.m */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		04C171DF21CDDE9E0077FA6C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				04C171E121CDDE9E0077FA6C /* UserInfoPlayerCell.h */,
+				04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		04C171E321CDE3070077FA6C /* TransitionAnim */ = {
+			isa = PBXGroup;
+			children = (
+				04C171E521CDE3070077FA6C /* ScaleDismissAnimation.h */,
+				04C171E621CDE3070077FA6C /* ScalePresentAnimation.m */,
+				04C171E821CDE3070077FA6C /* ScalePresentAnimation.h */,
+				04C171E921CDE3070077FA6C /* ScaleDismissAnimation.m */,
+				04C171E721CDE3070077FA6C /* SwipeLeftInteractiveTransition.h */,
+				04C171E421CDE3070077FA6C /* SwipeLeftInteractiveTransition.m */,
+			);
+			path = TransitionAnim;
 			sourceTree = "<group>";
 		};
 		04C2612321A68FB200374E4D /* Common */ = {
@@ -4850,8 +4888,6 @@
 		04E28F59218942C7006A91DA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0415F08B21C801D1000440F4 /* TouchTableView.h */,
-				0415F08C21C801D1000440F4 /* TouchTableView.m */,
 				0415F08921C7D462000440F4 /* MTHomeRefreshNavigitionView.h */,
 				0415F08821C7D462000440F4 /* MTHomeRefreshNavigitionView.m */,
 				04E700D8219FF5C10096099F /* MtHomeTopView.h */,
@@ -7032,6 +7068,7 @@
 				04CBC29F2179C01200658E47 /* MJRefreshAutoFooter.m in Sources */,
 				0435492521A7E9AC00AED5A8 /* UIWebView+AFNetworking.m in Sources */,
 				D957AD5B1DD2CB2F00B7EE09 /* IQKeyboardManager.m in Sources */,
+				04C171EA21CDE3070077FA6C /* SwipeLeftInteractiveTransition.m in Sources */,
 				04CBC38D2179C01300658E47 /* GPUImageAdaptiveThresholdFilter.m in Sources */,
 				04C882102109AB9800811DAD /* BaseWKWebViewController.m in Sources */,
 				04CBC2FB2179C01200658E47 /* BBVoiceRecordPowerAnimationView.m in Sources */,
@@ -7094,7 +7131,6 @@
 				04CBC3192179C01300658E47 /* SVIndefiniteAnimatedView.m in Sources */,
 				D954C50B1DD1A40F003CA535 /* BaseNavigationController.m in Sources */,
 				04CBC4752179C01300658E47 /* SDWebImageDecoder.m in Sources */,
-				0415F08D21C801D2000440F4 /* TouchTableView.m in Sources */,
 				0449AB6A2181BBF100D6172D /* ZJLoginService.m in Sources */,
 				D9D2087E1F0DD3A400B9FE13 /* DLRadioButton.m in Sources */,
 				040E28B821C0E20200D15B44 /* AwemeCollectionCell.m in Sources */,
@@ -7173,6 +7209,7 @@
 				04CBC36F2179C01300658E47 /* GPUImageAmatorkaFilter.m in Sources */,
 				04CBC48B2179C01300658E47 /* UIView+WebCacheOperation.m in Sources */,
 				0435491921A7E9AC00AED5A8 /* UIProgressView+AFNetworking.m in Sources */,
+				04ED451C21CBE3E2009DE89F /* UserInfoPlayerListViewController.m in Sources */,
 				D957AD631DD2CB2F00B7EE09 /* IQTitleBarButtonItem.m in Sources */,
 				04183B0721C2BC2200383E3F /* FocusView.m in Sources */,
 				04B0E1E021A6937600ABCF16 /* NSDictionary+BlocksKit.m in Sources */,
@@ -7271,6 +7308,7 @@
 				04B0E1E721A6937600ABCF16 /* NSMutableOrderedSet+BlocksKit.m in Sources */,
 				04DCA91121A5687600691A3A /* QBVideoIndicatorView.m in Sources */,
 				04CBC2A12179C01200658E47 /* MJRefreshComponent.m in Sources */,
+				04C171E221CDDE9E0077FA6C /* UserInfoPlayerCell.m in Sources */,
 				04CBC4292179C01300658E47 /* GPUImageLocalBinaryPatternFilter.m in Sources */,
 				04CBC3F92179C01300658E47 /* GPUImageRGBDilationFilter.m in Sources */,
 				04CBC4692179C01300658E47 /* GPUImageLightenBlendFilter.m in Sources */,
@@ -7342,6 +7380,7 @@
 				04B0E1E321A6937600ABCF16 /* NSObject+BKBlockObservation.m in Sources */,
 				D954C5CB1DD1A40F003CA535 /* BaseTableMJViewController.m in Sources */,
 				0415F08A21C7D463000440F4 /* MTHomeRefreshNavigitionView.m in Sources */,
+				04C171EC21CDE3070077FA6C /* ScaleDismissAnimation.m in Sources */,
 				D98FCFC41DEFC41A0023C076 /* STPickerViewConst.m in Sources */,
 				04DCA87D21A55C5B00691A3A /* TVCReport.m in Sources */,
 				04CBC32D2179C01300658E47 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
@@ -7350,6 +7389,7 @@
 				0482F27621BFCA7C00587B38 /* MASViewAttribute.m in Sources */,
 				04183B1821C2C09600383E3F /* Callback_token.m in Sources */,
 				0449AB6B2181BBF100D6172D /* RegisterViewController.m in Sources */,
+				04C171EB21CDE3070077FA6C /* ScalePresentAnimation.m in Sources */,
 				04DCA8ED21A565D500691A3A /* VideoPasterView.m in Sources */,
 				04CBC4152179C01300658E47 /* GPUImageRawDataInput.m in Sources */,
 				04BC59872197C88700D5EA12 /* XLProjectWkWebViewController.m in Sources */,

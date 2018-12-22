@@ -93,6 +93,10 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     _pageSize = 20;
     _tabIndex = 0;
     
+    _scalePresentAnimation = [ScalePresentAnimation new];
+    _scaleDismissAnimation = [ScaleDismissAnimation new];
+    _swipeLeftInteractiveTransition = [SwipeLeftInteractiveTransition new];
+    
     [super viewDidLoad];
 //    [self loadUserData];
     [self setUpUI];
@@ -394,6 +398,44 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath { //
     return  CGSizeMake(_itemWidth, _itemHeight);
+}
+
+//UICollectionViewDelegate Delegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    self.selectIndex = indexPath.row;
+    
+    UserInfoPlayerListViewController *controller;
+    if(_tabIndex == 0){ //我的作品
+        controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.workAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeWorks];
+    }
+    else if (_tabIndex == 1){ //动态
+        controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.dynamicAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeDynamics];
+
+    }
+    else{//喜欢
+        controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeFavourites];
+
+    }
+    controller.transitioningDelegate = self;
+    
+    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [_swipeLeftInteractiveTransition wireToViewController:controller];
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+#pragma mark --------------- UIViewControllerTransitioningDelegate Delegate  Controller 之间的转场动画 -----------------
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    return _scalePresentAnimation;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return _scaleDismissAnimation;
+}
+
+-(id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
+    return _swipeLeftInteractiveTransition.interacting ? _swipeLeftInteractiveTransition : nil;
 }
 
 #pragma -mark ------------UIScrollViewDelegate---------
