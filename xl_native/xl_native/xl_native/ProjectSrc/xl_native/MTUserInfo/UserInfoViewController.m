@@ -98,7 +98,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     _swipeLeftInteractiveTransition = [SwipeLeftInteractiveTransition new];
     
     [super viewDidLoad];
-//    [self loadUserData];
+    //    [self loadUserData];
     [self setUpUI];
 }
 
@@ -123,8 +123,8 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     //[self setBackgroundColor:ColorThemeBackground];
     
     self.view.backgroundColor = ColorThemeBackground;
-
-
+    
+    
     //根据当前屏幕宽度j计算，item 宽度
     _itemWidth = (ScreenWidth - 3) / 3.0f;
     _itemHeight = _itemWidth * 1.35f; //高度为宽度的1.35倍
@@ -161,7 +161,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     [self.view addSubview:_collectionView];
     
     [self.view bringSubviewToFront:self.navBackGround]; //将导航栏，放到最上层。
-
+    
     
     _loadMore = [[LoadMoreControl alloc] initWithFrame:CGRectMake(0, kUserInfoHeaderHeight, ScreenWidth, 50) surplusCount:15];
     [_loadMore startLoading];
@@ -220,6 +220,8 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
                         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
                         [indexPaths addObject:indexPath];
                     }
+                    NSLog(@"-------------numberOfRowsInSection: %d",[self.collectionView numberOfSections]);
+                    
                     [self.collectionView insertItemsAtIndexPaths:indexPaths];
                 } completion:^(BOOL finished) {
                     [UIView setAnimationsEnabled:YES];
@@ -231,10 +233,10 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
                 }
             }
             else{
-                [UIWindow showTips:msg];
+                [UIWindow showTips:@"获取作品列表失败，请检查网络"];
             }
         }];
-
+        
     }
     else if(_tabIndex == 1){
         
@@ -259,7 +261,10 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
                         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
                         [indexPaths addObject:indexPath];
                     }
+                    NSLog(@"-------------numberOfRowsInSection: %d indexPaths =%@",[self.collectionView numberOfSections],indexPaths);
                     [self.collectionView insertItemsAtIndexPaths:indexPaths];
+                    NSLog(@"-------------numberOfRowsInSection: %d indexPaths =%@",[self.collectionView numberOfSections],indexPaths);
+                    
                 } completion:^(BOOL finished) {
                     [UIView setAnimationsEnabled:YES];
                 }];
@@ -270,7 +275,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
                 }
             }
             else{
-                [UIWindow showTips:msg];
+                [UIWindow showTips:@"获取动态列表失败，请检查网络"];
             }
         }];
         
@@ -297,7 +302,13 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
                         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
                         [indexPaths addObject:indexPath];
                     }
+                    
+                    //                    NSLog(@"numberOfRowsInSection: %d", [self tableView:self.tableView numberOfRowsInSection:0]);
+                    NSLog(@"-------------numberOfRowsInSection: %d",[self.collectionView numberOfSections]);
+                    
                     [self.collectionView insertItemsAtIndexPaths:indexPaths];
+                    
+                    
                 } completion:^(BOOL finished) {
                     [UIView setAnimationsEnabled:YES];
                 }];
@@ -308,7 +319,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
                 }
             }
             else{
-                [UIWindow showTips:msg];
+                [UIWindow showTips:@"获取喜欢列表失败，请检查网络"];
             }
         }];
     }
@@ -322,7 +333,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     }
     if (kUserInfoHeaderHeight - self.navBackGround.height*2 < offsetY && offsetY < kUserInfoHeaderHeight - self.navBackGround.height) {
         CGFloat alphaRatio =  1.0f - (kUserInfoHeaderHeight - self.navBackGround.height - offsetY)/self.navBackGround.height;
-         self.lableNavTitle.textColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:alphaRatio];
+        self.lableNavTitle.textColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:alphaRatio];
     }
     if (offsetY > kUserInfoHeaderHeight - self.navBackGround.height) {
         self.lableNavTitle.textColor = [UIColor whiteColor];
@@ -342,6 +353,11 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         _userInfoHeader = header;
         if(_user) {
             [header initData:_user];
+            //            //默认没有关注，如果已经关注需要Show 一下
+            //            if(_user.isFlour){
+            //                [header startFocusAnimation];
+            //            }
+            
             header.delegate = self;
             header.slideTabBar.delegate = self;
         }
@@ -363,7 +379,6 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
             return self.favoriteAwemes.count;
         }
         
-        //return _tabIndex == 0 ? _workAwemes.count : _favoriteAwemes.count;
     }
     return 0;
 }
@@ -410,11 +425,11 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     }
     else if (_tabIndex == 1){ //动态
         controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.dynamicAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeDynamics];
-
+        
     }
     else{//喜欢
         controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeFavourites];
-
+        
     }
     controller.transitioningDelegate = self;
     
@@ -458,14 +473,14 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 
 //网络状态发送变化
 -(void)onNetworkStatusChange:(NSNotification *)notification {
-//    if(![NetworkHelper isNotReachableStatus:[NetworkHelper networkStatus]]) {
-        if(_user == nil) {
-            [self loadUserData];
-        }
-        if(self.favoriteAwemes.count == 0 && self.workAwemes.count == 0 && self.dynamicAwemes.count == 0) {
-            [self loadData:_pageIndex pageSize:_pageSize];
-        }
-//    }
+    //    if(![NetworkHelper isNotReachableStatus:[NetworkHelper networkStatus]]) {
+    if(_user == nil) {
+        [self loadUserData];
+    }
+    if(self.favoriteAwemes.count == 0 && self.workAwemes.count == 0 && self.dynamicAwemes.count == 0) {
+        [self loadData:_pageIndex pageSize:_pageSize];
+    }
+    //    }
 }
 
 
@@ -473,61 +488,97 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 
 #pragma -mark ------------UserInfoDelegate---------
 - (void)onUserActionTap:(NSInteger)tag {
-    switch (tag) {
-        case UserInfoHeaderAvatarTag: {
-            PhotoView *photoView = [[PhotoView alloc] initWithUrl:_user.head];
-            [photoView show];
-            break;
-        }
-        case UserInfoHeaderSendTag:
-            //[self.navigationController pushViewController:[[ChatListController alloc] init] animated:YES];
-            break;
-        case UserInfoHeaderFocusCancelTag:
-        case UserInfoHeaderFocusTag:{
-            if(_userInfoHeader) {
-                [_userInfoHeader startFocusAnimation];
-            }
-            break;
-        }
-        case UserInfoHeaderSettingTag:{
+    
+    
+    if(tag == UserInfoHeaderAvatarTag){ //点击头像
+        
+        PhotoView *photoView = [[PhotoView alloc] initWithUrl:_user.head];
+        [photoView show];
+    }
+    else if (tag == UserInfoHeaderSendTag){//点击发送消息
+        NSLog(@"点击发送消息");
+    }
+    else if (tag == UserInfoHeaderFocusCancelTag){//取消关注
+        
+        //调用取消关注接口，关注成功后，startFocusAnimation
+        DelFlourContentModel *contentModel = [[DelFlourContentModel alloc] init];
+        contentModel.flourId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        contentModel.noodleId = self.user.noodleId;
+        
+        NetWork_mt_delflour *request = [[NetWork_mt_delflour alloc] init];
+        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        request.content = [contentModel generateJsonStringForProperties];
+        [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
             
-            NSArray *titles = nil;
-            
-            if(self.fromType == FromTypeMy){
-                titles = @[@"退出登录",@"清除缓存"];
+            if(finished){
+                if(_userInfoHeader) {
+                    [_userInfoHeader startFocusAnimation];
+                }
             }
             else{
-                titles = @[@"清除缓存"];
+                [UIWindow showTips:@"取消关注失败，请检查网络"];
+            }
+        }];
+        contentModel = nil;
+        
+    }
+    else if (tag == UserInfoHeaderFocusTag){//点击关注
+        
+        //调用关注接口，关注成功后，startFocusAnimation
+        SaveflourContentModel *contentModel = [[SaveflourContentModel alloc] init];
+        contentModel.flourId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        contentModel.noodleId = self.user.noodleId;
+        contentModel.flourHead = [GlobalData sharedInstance].loginDataModel.head;
+        contentModel.flourNickname = [GlobalData sharedInstance].loginDataModel.nickname;
+        contentModel.flourSignature = [GlobalData sharedInstance].loginDataModel.signature;
+        contentModel.noodleHead = self.user.head;
+        contentModel.noodleNickname = self.user.nickname;
+        contentModel.noodleSignature = self.user.signature;
+        
+        NetWork_mt_saveflour *request = [[NetWork_mt_saveflour alloc] init];
+        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        request.content = [contentModel generateJsonStringForProperties];
+        [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+            
+            if(finished){
+                if(_userInfoHeader) {
+                    [_userInfoHeader startFocusAnimation];
+                }
+            }
+            else{
+                [UIWindow showTips:@"关注失败，请检查网络"];
+            }
+        }];
+        contentModel = nil;
+    }
+    else if (tag == UserInfoHeaderSettingTag){//点击设置
+        
+        NSArray *titles = nil;
+        if(self.fromType == FromTypeMy){
+            titles = @[@"退出登录",@"清除缓存"];
+        }
+        else{
+            titles = @[@"清除缓存"];
+        }
+        MenuPopView *menu = [[MenuPopView alloc] initWithTitles:titles];
+        [menu setOnAction:^(NSInteger index) {
+            if(index == 0){
+                [UIWindow showTips:[NSString stringWithFormat:@"已经清除缓存"]];
+            }
+            else if (index == 1){
+                [GlobalData cleanAccountInfo];
+                [[CMPZjLifeMobileAppDelegate shareApp].rootViewController selectTabAtIndex:0];
             }
             
-            MenuPopView *menu = [[MenuPopView alloc] initWithTitles:titles];
-            
-            
-            [menu setOnAction:^(NSInteger index) {
-                
-                if(index == 0){
-                    [UIWindow showTips:[NSString stringWithFormat:@"已经清除缓存"]];
-                }
-                else if (index == 1){
-                    
-                    [GlobalData cleanAccountInfo];
-                    [[CMPZjLifeMobileAppDelegate shareApp].rootViewController selectTabAtIndex:0];
-                }
-                
-//                [[WebCacheHelpler sharedWebCache] clearCache:^(NSString *cacheSize) {
-//                    [UIWindow showTips:[NSString stringWithFormat:@"已经清除%@M缓存",cacheSize]];
-//                }];
-            }];
-            [menu show];
-            break;
-        }
-            break;
-        case UserInfoHeaderGithubTag:
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/sshiqiao/douyin-ios-objectc"]];
-            break;
-        default:
-            break;
+            //                [[WebCacheHelpler sharedWebCache] clearCache:^(NSString *cacheSize) {
+            //                    [UIWindow showTips:[NSString stringWithFormat:@"已经清除%@M缓存",cacheSize]];
+            //                }];
+        }];
+        [menu show];
     }
+    
+    
+    return;
 }
 
 #pragma -mark ------------OnTabTapDelegate---------

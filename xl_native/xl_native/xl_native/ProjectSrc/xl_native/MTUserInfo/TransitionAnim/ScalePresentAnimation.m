@@ -20,7 +20,7 @@
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext{
     UserInfoPlayerListViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UINavigationController *fromVC = (UINavigationController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    UserInfoViewController *userHomePageController = fromVC.viewControllers.firstObject;
+    UserInfoViewController *userHomePageController = fromVC.viewControllers.lastObject;
     UIView *selectCell = (AwemeCollectionCell *)[userHomePageController.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:userHomePageController.selectIndex inSection:1]];
     
     UIView *containerView = [transitionContext containerView];

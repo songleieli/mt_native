@@ -98,7 +98,6 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
 - (void) initAvatar {
     int avatarRadius = 48;
     _avatar = [[UIImageView alloc] init];
-    _avatar.image = [UIImage imageNamed:@"img_find_default"];
     _avatar.userInteractionEnabled = YES;
     _avatar.tag = UserInfoHeaderAvatarTag;
     [_avatar addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapAction:)]];
@@ -109,6 +108,9 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
         make.left.equalTo(self).offset(15);
         make.width.height.mas_equalTo(avatarRadius*2);
     }];
+    
+    _avatar.layer.cornerRadius = avatarRadius;
+    [_avatar.layer setMasksToBounds:YES];
 }
 
 - (void) initActionsView {
@@ -132,7 +134,7 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
     _focusIcon.contentMode = UIViewContentModeCenter;
     _focusIcon.userInteractionEnabled = YES;
     _focusIcon.clipsToBounds = YES;
-    _focusIcon.hidden = !_isFollowed;
+    _focusIcon.hidden = !_isFollowed;; //!self.user.isFlour;
     _focusIcon.layer.backgroundColor = ColorWhiteAlpha20.CGColor;
     _focusIcon.layer.cornerRadius = 2;
     _focusIcon.tag = UserInfoHeaderFocusCancelTag;
@@ -149,7 +151,7 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
     _sendMessage.textColor = ColorWhiteAlpha60;
     _sendMessage.textAlignment = NSTextAlignmentCenter;
     _sendMessage.font = MediumFont;
-    _sendMessage.hidden = !_isFollowed;
+    _sendMessage.hidden = !_isFollowed;; //!self.user.isFlour;
     _sendMessage.layer.backgroundColor = ColorWhiteAlpha20.CGColor;
     _sendMessage.layer.cornerRadius = 2;
     _sendMessage.tag = UserInfoHeaderSendTag;
@@ -168,7 +170,7 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
     [_focusButton setTitle:@"关注" forState:UIControlStateNormal];
     [_focusButton setTitleColor:ColorWhite forState:UIControlStateNormal];
     _focusButton.titleLabel.font = MediumFont;
-    _focusButton.hidden = _isFollowed;
+    _focusButton.hidden = _isFollowed;;//self.user.isFlour;
     _focusButton.clipsToBounds = YES;
     [_focusButton setImage:[UIImage imageNamed:@"icon_personal_add_little"] forState:UIControlStateNormal];
     [_focusButton setImageEdgeInsets:UIEdgeInsetsMake(0, -2, 0, 0)];
@@ -254,12 +256,14 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
     _brief.text = @"本宝宝暂时还没想到个性的签名";
     _brief.textColor = ColorWhiteAlpha60;
     _brief.font = SmallFont;
-    _brief.numberOfLines = 0;
+    _brief.numberOfLines = 1; //暂时先用一行，等有时间再动态调整，高度。
     [_containerView addSubview:_brief];
     [_brief mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(splitView.mas_bottom).offset(10);
         make.left.right.equalTo(self.nickName);
     }];
+    //test
+//    _brief.backgroundColor = [UIColor redColor];
     
     _genderIcon = [[UIImageView alloc] init];
     _genderIcon.image = [UIImage imageNamed:@"iconUserProfileGirl"];
@@ -332,16 +336,32 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
 }
 
 - (void)initData:(PersonalModel *)user {
-    __weak __typeof(self) wself = self;
-    [_avatar sd_setImageWithURL:[NSURL URLWithString:user.head] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                [wself.bottomBackground setImage:image];
-                [wself.avatar setImage:[image drawCircleImage]];
-    }];
     
+//    self.user = user;
+    
+    [_avatar sd_setImageWithURL:[NSURL URLWithString:user.head] placeholderImage:[UIImage imageNamed:@"img_find_default"]];
     //新增的背景数据写为指定路径
     //[_topBackground setImageWithURL:[NSURL URLWithString:@"http://pb3.pstatp.com/obj/dbc1001cd29ccc479f7f"]];
     [_topBackground sd_setImageWithURL:[NSURL URLWithString:user.head]];
     [_nickName setText:user.nickname];
+    
+    //默认没有关注，如果已经关注需要Show 一下
+//    if(self.user.isFlour){
+////        [self showFollowedAnimation];
+////        [self startFocusAnimation];
+//    }
+//    else{
+////        [self showUnFollowedAnimation];
+//    }
+    
+    
+//    [self startFocusAnimation];
+    
+    if(user.isFlour){ //如果已关注，调用一下方法，显示取消关注和发送消息按钮
+        [self showSendMessageAnimation];
+        [self showFollowedAnimation];
+    }
+    
     [_douyinNum setText:[NSString stringWithFormat:@"面条号:%@", user.noodleId]];
     if(![user.signature isEqual: @""]) {
         [_brief setText:user.signature];
@@ -375,7 +395,6 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
     CGFloat alphaRatio = offsetY/(370.0f - 44 - StatusBarHeight);
     _containerView.alpha = 1.0f - alphaRatio;
 }
-
 
 #pragma animation
 
@@ -502,6 +521,4 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
     [animationGroup setAnimations:@[positionAnimation, sizeAnimation]];
     [layer addAnimation:animationGroup forKey:nil];
 }
-
-
 @end

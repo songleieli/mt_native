@@ -29,7 +29,7 @@
     UserInfoPlayerListViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UINavigationController *toVC = (UINavigationController *)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    UserInfoViewController *userHomePageController = toVC.viewControllers.firstObject;
+    UserInfoViewController *userHomePageController = toVC.viewControllers.lastObject;
     UIView *selectCell = (AwemeCollectionCell *)[userHomePageController.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:fromVC.currentIndex inSection:1]];
     
     UIView *snapshotView;

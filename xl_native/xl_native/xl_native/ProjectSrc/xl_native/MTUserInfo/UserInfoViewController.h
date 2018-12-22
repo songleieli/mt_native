@@ -28,12 +28,14 @@ typedef enum{
 #import "PhotoView.h"
 #import "MenuPopView.h"
 
+//转场动画
 #import "ScalePresentAnimation.h"
 #import "SwipeLeftInteractiveTransition.h"
 #import "ScaleDismissAnimation.h"
 
 #import "UserInfoPlayerListViewController.h"
-
+#import "NetWork_mt_saveflour.h"
+#import "NetWork_mt_delflour.h"
 
 
 @interface UserInfoViewController : ZJCustomTabBarLjhTableViewController<UICollectionViewDelegate,

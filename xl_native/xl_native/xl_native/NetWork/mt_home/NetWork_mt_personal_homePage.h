@@ -120,6 +120,7 @@
 @property (copy, nonatomic) NSString *currIntegral;
 @property (copy, nonatomic) NSString *shenheIntegral;
 @property (copy, nonatomic) NSString *ifDrawIntegral;
+@property (assign, nonatomic) BOOL isFlour;
 
 //数量
 @property (strong, nonatomic) NSNumber *likeTotal;   //获赞数

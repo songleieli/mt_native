@@ -50,6 +50,7 @@ static const NSInteger UserInfoHeaderGithubTag = 0x06;
 @property (nonatomic, strong) UILabel                      *followedNum;
 
 @property (nonatomic, strong) SlideTabBar                  *slideTabBar;
+//@property (nonatomic, strong) PersonalModel                *user;
 
 - (void)initData:(PersonalModel *)user;
 - (void)overScrollAction:(CGFloat) offsetY;

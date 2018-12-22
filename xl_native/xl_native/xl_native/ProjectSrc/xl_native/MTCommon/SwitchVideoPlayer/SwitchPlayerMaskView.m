@@ -359,11 +359,7 @@
         [self.focus setUserUnFollow];
     }
     
-    [self.avatar sd_setImageWithURL:[NSURL URLWithString:listLoginModel.head] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        if(!error) {
-            wself.musicAlum.album.image = [image drawCircleImage];
-        }
-    }];
+    [self.avatar sd_setImageWithURL:[NSURL URLWithString:listLoginModel.head] placeholderImage:[UIImage imageNamed:@"img_find_default"]];
 }
 
 

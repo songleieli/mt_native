@@ -9,27 +9,20 @@
 #import "WCServiceBase.h"
 
 
-@interface SaveflourContentModel : IObjcJsonBase
+@interface DelFlourContentModel : IObjcJsonBase
 
 @property (copy, nonatomic) NSString *flourId;
 @property (copy, nonatomic) NSString *noodleId;
-@property (copy, nonatomic) NSString *flourHead;
-@property (copy, nonatomic) NSString *flourNickname;
-@property (copy, nonatomic) NSString *flourSignature;
-@property (copy, nonatomic) NSString *noodleHead    ;
-@property (copy, nonatomic) NSString *noodleNickname;
-@property (copy, nonatomic) NSString *noodleSignature;
 
 @end
 
-@interface SaveflourModel : IObjcJsonBase
-
+@interface DelFlourModel : IObjcJsonBase
 
 @end
 
 
 
-@interface SaveflourResponse : IObjcJsonBase
+@interface DelFlourResponse : IObjcJsonBase
 
 @property(nonatomic,copy) NSString * status;
 @property(nonatomic,copy) NSString * message;
@@ -37,7 +30,7 @@
 
 @end
 
-@interface NetWork_mt_saveflour : WCServiceBase
+@interface NetWork_mt_delflour : WCServiceBase
 
 @property (nonatomic,copy) NSString * currentNoodleId;
 @property (nonatomic,copy) NSString * content;

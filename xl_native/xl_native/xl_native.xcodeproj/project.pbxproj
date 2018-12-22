@@ -227,6 +227,7 @@
 		04C171EA21CDE3070077FA6C /* SwipeLeftInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E421CDE3070077FA6C /* SwipeLeftInteractiveTransition.m */; };
 		04C171EB21CDE3070077FA6C /* ScalePresentAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E621CDE3070077FA6C /* ScalePresentAnimation.m */; };
 		04C171EC21CDE3070077FA6C /* ScaleDismissAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E921CDE3070077FA6C /* ScaleDismissAnimation.m */; };
+		04C171F121CE2CA30077FA6C /* NetWork_mt_delflour.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171F021CE2CA30077FA6C /* NetWork_mt_delflour.m */; };
 		04C2614E21A68FB200374E4D /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2612621A68FB200374E4D /* UIPlaceHolderTextView.m */; };
 		04C2614F21A68FB200374E4D /* TCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2612821A68FB200374E4D /* TCNavigationController.m */; };
 		04C2615021A68FB200374E4D /* TCBGMProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2612C21A68FB200374E4D /* TCBGMProgressView.m */; };
@@ -1783,6 +1784,8 @@
 		04C171E721CDE3070077FA6C /* SwipeLeftInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeLeftInteractiveTransition.h; sourceTree = "<group>"; };
 		04C171E821CDE3070077FA6C /* ScalePresentAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScalePresentAnimation.h; sourceTree = "<group>"; };
 		04C171E921CDE3070077FA6C /* ScaleDismissAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleDismissAnimation.m; sourceTree = "<group>"; };
+		04C171EF21CE2CA30077FA6C /* NetWork_mt_delflour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_delflour.h; sourceTree = "<group>"; };
+		04C171F021CE2CA30077FA6C /* NetWork_mt_delflour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_delflour.m; sourceTree = "<group>"; };
 		04C2612521A68FB200374E4D /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
 		04C2612621A68FB200374E4D /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
 		04C2612821A68FB200374E4D /* TCNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCNavigationController.m; sourceTree = "<group>"; };
@@ -3781,9 +3784,9 @@
 		04C171E321CDE3070077FA6C /* TransitionAnim */ = {
 			isa = PBXGroup;
 			children = (
-				04C171E521CDE3070077FA6C /* ScaleDismissAnimation.h */,
 				04C171E621CDE3070077FA6C /* ScalePresentAnimation.m */,
 				04C171E821CDE3070077FA6C /* ScalePresentAnimation.h */,
+				04C171E521CDE3070077FA6C /* ScaleDismissAnimation.h */,
 				04C171E921CDE3070077FA6C /* ScaleDismissAnimation.m */,
 				04C171E721CDE3070077FA6C /* SwipeLeftInteractiveTransition.h */,
 				04C171E421CDE3070077FA6C /* SwipeLeftInteractiveTransition.m */,
@@ -5325,6 +5328,8 @@
 				04A5B81B21B27F66003F5C88 /* NetWork_mt_saveVideo.m */,
 				04352BC621BBAD78005F60E1 /* NetWork_mt_saveflour.h */,
 				04352BC721BBAD78005F60E1 /* NetWork_mt_saveflour.m */,
+				04C171EF21CE2CA30077FA6C /* NetWork_mt_delflour.h */,
+				04C171F021CE2CA30077FA6C /* NetWork_mt_delflour.m */,
 				04352BC921BBC2B4005F60E1 /* NetWork_mt_getMusicList.h */,
 				04352BCA21BBC2B4005F60E1 /* NetWork_mt_getMusicList.m */,
 			);
@@ -7464,6 +7469,7 @@
 				04CBC3652179C01300658E47 /* GPUImageiOSBlurFilter.m in Sources */,
 				04CBC3912179C01300658E47 /* GPUImageErosionFilter.m in Sources */,
 				04CBC45D2179C01300658E47 /* GPUImageFalseColorFilter.m in Sources */,
+				04C171F121CE2CA30077FA6C /* NetWork_mt_delflour.m in Sources */,
 				04CBC3FD2179C01300658E47 /* GPUImageHazeFilter.m in Sources */,
 				04DCA83021A5576700691A3A /* TextCell.m in Sources */,
 				04CBC4552179C01300658E47 /* GPUImageExposureFilter.m in Sources */,
