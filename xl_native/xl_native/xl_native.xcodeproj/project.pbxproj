@@ -109,6 +109,8 @@
 		0441FA1D21CF3ED200801225 /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441FA1C21CF3ED200801225 /* CircleProgressView.m */; };
 		0441FA2021CF3F0F00801225 /* PhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441FA1E21CF3F0E00801225 /* PhotoView.m */; };
 		0441FA2321CF3FBA00801225 /* LoadMoreControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441FA2221CF3FBA00801225 /* LoadMoreControl.m */; };
+		0441FA2621CF4CAD00801225 /* UserCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441FA2421CF4CAD00801225 /* UserCollectionController.m */; };
+		0441FA2921CF547100801225 /* UserCollectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441FA2821CF547100801225 /* UserCollectionHeader.m */; };
 		04443E9021B3F91400C8DD34 /* XLPlayerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E8F21B3F91400C8DD34 /* XLPlayerListViewController.m */; };
 		04443E9321B3FA6300C8DD34 /* MJTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E9121B3FA6200C8DD34 /* MJTableView.m */; };
 		04443E9721B41A0B00C8DD34 /* HomeVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E9621B41A0A00C8DD34 /* HomeVideoCell.m */; };
@@ -1576,6 +1578,10 @@
 		0441FA1F21CF3F0E00801225 /* PhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoView.h; sourceTree = "<group>"; };
 		0441FA2121CF3FBA00801225 /* LoadMoreControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreControl.h; sourceTree = "<group>"; };
 		0441FA2221CF3FBA00801225 /* LoadMoreControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadMoreControl.m; sourceTree = "<group>"; };
+		0441FA2421CF4CAD00801225 /* UserCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCollectionController.m; sourceTree = "<group>"; };
+		0441FA2521CF4CAD00801225 /* UserCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCollectionController.h; sourceTree = "<group>"; };
+		0441FA2721CF547100801225 /* UserCollectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCollectionHeader.h; sourceTree = "<group>"; };
+		0441FA2821CF547100801225 /* UserCollectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCollectionHeader.m; sourceTree = "<group>"; };
 		04443E8E21B3F91400C8DD34 /* XLPlayerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLPlayerListViewController.h; sourceTree = "<group>"; };
 		04443E8F21B3F91400C8DD34 /* XLPlayerListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLPlayerListViewController.m; sourceTree = "<group>"; };
 		04443E9121B3FA6200C8DD34 /* MJTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJTableView.m; sourceTree = "<group>"; };
@@ -3221,8 +3227,8 @@
 				040E28BD21C0F0D400D15B44 /* Entity */,
 				04ED451A21CBE3E1009DE89F /* UserInfoPlayerListViewController.h */,
 				04ED451B21CBE3E1009DE89F /* UserInfoPlayerListViewController.m */,
-				040E28AB21C0AA4900D15B44 /* UserInfoViewController.h */,
-				040E28AC21C0AA4900D15B44 /* UserInfoViewController.m */,
+				0441FA2521CF4CAD00801225 /* UserCollectionController.h */,
+				0441FA2421CF4CAD00801225 /* UserCollectionController.m */,
 			);
 			path = MTUserInfo;
 			sourceTree = "<group>";
@@ -3230,6 +3236,8 @@
 		040E28BD21C0F0D400D15B44 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				040E28AB21C0AA4900D15B44 /* UserInfoViewController.h */,
+				040E28AC21C0AA4900D15B44 /* UserInfoViewController.m */,
 				040E28C021C0F0D400D15B44 /* PictureInfo.m */,
 				040E28DA21C1047F00D15B44 /* UserResponse.h */,
 				040E28D921C1047E00D15B44 /* UserResponse.m */,
@@ -3775,6 +3783,8 @@
 				040E28AF21C0D7F000D15B44 /* HoverViewFlowLayout.m */,
 				040E28B221C0E20100D15B44 /* UserInfoHeader.h */,
 				040E28B121C0E20000D15B44 /* UserInfoHeader.m */,
+				0441FA2721CF547100801225 /* UserCollectionHeader.h */,
+				0441FA2821CF547100801225 /* UserCollectionHeader.m */,
 				040E28B521C0E20100D15B44 /* SlideTabBar.h */,
 				040E28B621C0E20200D15B44 /* SlideTabBar.m */,
 				04C171E121CDDE9E0077FA6C /* UserInfoPlayerCell.h */,
@@ -7283,6 +7293,7 @@
 				04CBC48B2179C01300658E47 /* UIView+WebCacheOperation.m in Sources */,
 				0435491921A7E9AC00AED5A8 /* UIProgressView+AFNetworking.m in Sources */,
 				04ED451C21CBE3E2009DE89F /* UserInfoPlayerListViewController.m in Sources */,
+				0441FA2621CF4CAD00801225 /* UserCollectionController.m in Sources */,
 				D957AD631DD2CB2F00B7EE09 /* IQTitleBarButtonItem.m in Sources */,
 				04183B0721C2BC2200383E3F /* FocusView.m in Sources */,
 				04B0E1E021A6937600ABCF16 /* NSDictionary+BlocksKit.m in Sources */,
@@ -7537,6 +7548,7 @@
 				04CBC3E12179C01300658E47 /* GPUImageGaussianBlurFilter.m in Sources */,
 				04DCA8F121A565D500691A3A /* TXCVEFColorPalette.m in Sources */,
 				04CBC3DD2179C01300658E47 /* GPUImageSaturationBlendFilter.m in Sources */,
+				0441FA2921CF547100801225 /* UserCollectionHeader.m in Sources */,
 				04DCA79F21927B2D00CB22A2 /* XLGCBodyView.m in Sources */,
 				04CBC3652179C01300658E47 /* GPUImageiOSBlurFilter.m in Sources */,
 				04CBC3912179C01300658E47 /* GPUImageErosionFilter.m in Sources */,

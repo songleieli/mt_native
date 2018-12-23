@@ -6,23 +6,7 @@
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
-
-
-//typedef enum{
-//    kFavoriteViewLikeBeforeTag,
-//    kFavoriteViewLikeAfterTag
-//}kFavoriteViewType;
-
-typedef enum{
-    FromTypeMy,
-    FromTypeHome,
-}FromType;
-
-
-
-#import "ZJCustomTabBarLjhTableViewController.h"
-
-#import "UserInfoHeader.h"
+#import "UserCollectionHeader.h"
 #import "AwemeCollectionCell.h"
 #import "LoadMoreControl.h"
 #import "PhotoView.h"
@@ -34,11 +18,14 @@ typedef enum{
 #import "ScaleDismissAnimation.h"
 
 #import "UserInfoPlayerListViewController.h"
-#import "NetWork_mt_saveflour.h"
-#import "NetWork_mt_delflour.h"
+//#import "NetWork_mt_saveflour.h"
+//#import "NetWork_mt_delflour.h"
+
+#import "NetWork_mt_collectionVideo.h"
 
 
-@interface UserInfoViewController : ZJCustomTabBarLjhTableViewController<UICollectionViewDelegate,
+
+@interface UserCollectionController : ZJBaseViewController<UICollectionViewDelegate,
                                                                     UICollectionViewDataSource,
                                                                     UICollectionViewDelegateFlowLayout,
                                                                     UIViewControllerTransitioningDelegate,
@@ -49,7 +36,7 @@ typedef enum{
 @property (nonatomic, strong) UICollectionView                 *collectionView;
 @property (nonatomic, assign) NSInteger                        selectIndex;
 @property (nonatomic, strong) PersonalModel                     *user;
-@property (nonatomic, strong) UserInfoHeader                   *userInfoHeader;
+@property (nonatomic, strong) UserCollectionHeader             *collectionHeader;
 @property (nonatomic, strong) LoadMoreControl                  *loadMore;
 
 //Controller 转场动画
@@ -57,8 +44,10 @@ typedef enum{
 @property (nonatomic, strong) ScaleDismissAnimation            *scaleDismissAnimation;
 @property (nonatomic, strong) SwipeLeftInteractiveTransition   *swipeLeftInteractiveTransition;
 
-@property (nonatomic, assign) FromType                        fromType;
 @property (nonatomic, copy) NSString                        *userNoodleId;
+
+@property (nonatomic, strong) SlideTabBar                  *slideTabBar;
+
 
 
 @end

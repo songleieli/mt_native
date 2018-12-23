@@ -351,7 +351,7 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
         [self showSendMessageAnimation];
         [self showFollowedAnimation];
     }
-    //如果已关注，或者是自己的话，调用一下方法，显示取消关注和发送消息按钮
+    
     if([user.noodleId isEqualToString:[GlobalData sharedInstance].loginDataModel.noodleId]){
         _sendMessage.text = @"收藏";
     }
