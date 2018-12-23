@@ -33,9 +33,6 @@
 		0402A45E21C4AEC000C35CA9 /* user_sl.json in Resources */ = {isa = PBXBuildFile; fileRef = 0402A45D21C4AEC000C35CA9 /* user_sl.json */; };
 		0402A46421C4C94800C35CA9 /* NSAttributedString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402A46321C4C94800C35CA9 /* NSAttributedString+Extension.m */; };
 		0402A46D21C4FE1E00C35CA9 /* NetWork_mt_getLikeVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402A46B21C4FE1D00C35CA9 /* NetWork_mt_getLikeVideoList.m */; };
-		0403661721C378B6000FDC5E /* PhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661621C378B6000FDC5E /* PhotoView.m */; };
-		0403661A21C37910000FDC5E /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661821C37910000FDC5E /* CircleProgressView.m */; };
-		0403661D21C37A4C000FDC5E /* MenuPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661B21C37A4B000FDC5E /* MenuPopView.m */; };
 		0403662021C3A5D1000FDC5E /* CommentsPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661E21C3A5D1000FDC5E /* CommentsPopView.m */; };
 		0409B5DD21805DCB00528251 /* NetWork_homePlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 0409B5DC21805DCB00528251 /* NetWork_homePlan.m */; };
 		0409B5E72180795900528251 /* NetWork_orderList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0409B5E62180795900528251 /* NetWork_orderList.m */; };
@@ -58,7 +55,6 @@
 		040E28D821C0F0D400D15B44 /* Visitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 040E28CE21C0F0D400D15B44 /* Visitor.m */; };
 		040E28DB21C1047F00D15B44 /* UserResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 040E28D921C1047E00D15B44 /* UserResponse.m */; };
 		040E28DD21C1089E00D15B44 /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 040E28DC21C1089E00D15B44 /* user.json */; };
-		040E28E021C1152500D15B44 /* LoadMoreControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 040E28DF21C1152500D15B44 /* LoadMoreControl.m */; };
 		0415F08A21C7D463000440F4 /* MTHomeRefreshNavigitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415F08821C7D462000440F4 /* MTHomeRefreshNavigitionView.m */; };
 		04183B0221C2BC2200383E3F /* SwitchPlayerMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183AEF21C2BC2200383E3F /* SwitchPlayerMaskView.m */; };
 		04183B0421C2BC2200383E3F /* MusicAlbumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183AF421C2BC2200383E3F /* MusicAlbumView.m */; };
@@ -109,6 +105,10 @@
 		0435493821A7FF0100AED5A8 /* FilterResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0435493721A7FF0100AED5A8 /* FilterResource.bundle */; };
 		0441A1FC214660BE0077EA1F /* NetWork_login.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441A1FA214660BE0077EA1F /* NetWork_login.m */; };
 		0441A283214670500077EA1F /* UITextFeildCustrom.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441A281214670500077EA1F /* UITextFeildCustrom.m */; };
+		0441FA1A21CF3E8100801225 /* MenuPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441FA1821CF3E8100801225 /* MenuPopView.m */; };
+		0441FA1D21CF3ED200801225 /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441FA1C21CF3ED200801225 /* CircleProgressView.m */; };
+		0441FA2021CF3F0F00801225 /* PhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441FA1E21CF3F0E00801225 /* PhotoView.m */; };
+		0441FA2321CF3FBA00801225 /* LoadMoreControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441FA2221CF3FBA00801225 /* LoadMoreControl.m */; };
 		04443E9021B3F91400C8DD34 /* XLPlayerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E8F21B3F91400C8DD34 /* XLPlayerListViewController.m */; };
 		04443E9321B3FA6300C8DD34 /* MJTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E9121B3FA6200C8DD34 /* MJTableView.m */; };
 		04443E9721B41A0B00C8DD34 /* HomeVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E9621B41A0A00C8DD34 /* HomeVideoCell.m */; };
@@ -1456,12 +1456,6 @@
 		0402A46321C4C94800C35CA9 /* NSAttributedString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Extension.m"; sourceTree = "<group>"; };
 		0402A46B21C4FE1D00C35CA9 /* NetWork_mt_getLikeVideoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getLikeVideoList.m; sourceTree = "<group>"; };
 		0402A46C21C4FE1E00C35CA9 /* NetWork_mt_getLikeVideoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getLikeVideoList.h; sourceTree = "<group>"; };
-		0403661521C378B6000FDC5E /* PhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoView.h; sourceTree = "<group>"; };
-		0403661621C378B6000FDC5E /* PhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoView.m; sourceTree = "<group>"; };
-		0403661821C37910000FDC5E /* CircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleProgressView.m; sourceTree = "<group>"; };
-		0403661921C37910000FDC5E /* CircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleProgressView.h; sourceTree = "<group>"; };
-		0403661B21C37A4B000FDC5E /* MenuPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuPopView.m; sourceTree = "<group>"; };
-		0403661C21C37A4B000FDC5E /* MenuPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuPopView.h; sourceTree = "<group>"; };
 		0403661E21C3A5D1000FDC5E /* CommentsPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsPopView.m; sourceTree = "<group>"; };
 		0403661F21C3A5D1000FDC5E /* CommentsPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsPopView.h; sourceTree = "<group>"; };
 		0409B5DB21805DCB00528251 /* NetWork_homePlan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetWork_homePlan.h; sourceTree = "<group>"; };
@@ -1501,8 +1495,6 @@
 		040E28D921C1047E00D15B44 /* UserResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserResponse.m; sourceTree = "<group>"; };
 		040E28DA21C1047F00D15B44 /* UserResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserResponse.h; sourceTree = "<group>"; };
 		040E28DC21C1089E00D15B44 /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
-		040E28DE21C1152400D15B44 /* LoadMoreControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreControl.h; sourceTree = "<group>"; };
-		040E28DF21C1152500D15B44 /* LoadMoreControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadMoreControl.m; sourceTree = "<group>"; };
 		0415F08821C7D462000440F4 /* MTHomeRefreshNavigitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTHomeRefreshNavigitionView.m; sourceTree = "<group>"; };
 		0415F08921C7D462000440F4 /* MTHomeRefreshNavigitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTHomeRefreshNavigitionView.h; sourceTree = "<group>"; };
 		04183AEF21C2BC2200383E3F /* SwitchPlayerMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchPlayerMaskView.m; sourceTree = "<group>"; };
@@ -1576,6 +1568,14 @@
 		0441A1FB214660BE0077EA1F /* NetWork_login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_login.h; sourceTree = "<group>"; };
 		0441A281214670500077EA1F /* UITextFeildCustrom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextFeildCustrom.m; sourceTree = "<group>"; };
 		0441A282214670500077EA1F /* UITextFeildCustrom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextFeildCustrom.h; sourceTree = "<group>"; };
+		0441FA1821CF3E8100801225 /* MenuPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuPopView.m; sourceTree = "<group>"; };
+		0441FA1921CF3E8100801225 /* MenuPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuPopView.h; sourceTree = "<group>"; };
+		0441FA1B21CF3ED200801225 /* CircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleProgressView.h; sourceTree = "<group>"; };
+		0441FA1C21CF3ED200801225 /* CircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleProgressView.m; sourceTree = "<group>"; };
+		0441FA1E21CF3F0E00801225 /* PhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoView.m; sourceTree = "<group>"; };
+		0441FA1F21CF3F0E00801225 /* PhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoView.h; sourceTree = "<group>"; };
+		0441FA2121CF3FBA00801225 /* LoadMoreControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreControl.h; sourceTree = "<group>"; };
+		0441FA2221CF3FBA00801225 /* LoadMoreControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadMoreControl.m; sourceTree = "<group>"; };
 		04443E8E21B3F91400C8DD34 /* XLPlayerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLPlayerListViewController.h; sourceTree = "<group>"; };
 		04443E8F21B3F91400C8DD34 /* XLPlayerListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLPlayerListViewController.m; sourceTree = "<group>"; };
 		04443E9121B3FA6200C8DD34 /* MJTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJTableView.m; sourceTree = "<group>"; };
@@ -3219,22 +3219,6 @@
 				04C171E321CDE3070077FA6C /* TransitionAnim */,
 				04C171DF21CDDE9E0077FA6C /* Views */,
 				040E28BD21C0F0D400D15B44 /* Entity */,
-				040E28B421C0E20100D15B44 /* AwemeCollectionCell.h */,
-				040E28B321C0E20100D15B44 /* AwemeCollectionCell.m */,
-				040E28DE21C1152400D15B44 /* LoadMoreControl.h */,
-				040E28DF21C1152500D15B44 /* LoadMoreControl.m */,
-				040E28B521C0E20100D15B44 /* SlideTabBar.h */,
-				040E28B621C0E20200D15B44 /* SlideTabBar.m */,
-				0403661521C378B6000FDC5E /* PhotoView.h */,
-				0403661621C378B6000FDC5E /* PhotoView.m */,
-				0403661921C37910000FDC5E /* CircleProgressView.h */,
-				0403661821C37910000FDC5E /* CircleProgressView.m */,
-				0403661C21C37A4B000FDC5E /* MenuPopView.h */,
-				0403661B21C37A4B000FDC5E /* MenuPopView.m */,
-				040E28B221C0E20100D15B44 /* UserInfoHeader.h */,
-				040E28B121C0E20000D15B44 /* UserInfoHeader.m */,
-				040E28AE21C0D7F000D15B44 /* HoverViewFlowLayout.h */,
-				040E28AF21C0D7F000D15B44 /* HoverViewFlowLayout.m */,
 				04ED451A21CBE3E1009DE89F /* UserInfoPlayerListViewController.h */,
 				04ED451B21CBE3E1009DE89F /* UserInfoPlayerListViewController.m */,
 				040E28AB21C0AA4900D15B44 /* UserInfoViewController.h */,
@@ -3787,8 +3771,16 @@
 		04C171DF21CDDE9E0077FA6C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				040E28AE21C0D7F000D15B44 /* HoverViewFlowLayout.h */,
+				040E28AF21C0D7F000D15B44 /* HoverViewFlowLayout.m */,
+				040E28B221C0E20100D15B44 /* UserInfoHeader.h */,
+				040E28B121C0E20000D15B44 /* UserInfoHeader.m */,
+				040E28B521C0E20100D15B44 /* SlideTabBar.h */,
+				040E28B621C0E20200D15B44 /* SlideTabBar.m */,
 				04C171E121CDDE9E0077FA6C /* UserInfoPlayerCell.h */,
 				04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */,
+				040E28B421C0E20100D15B44 /* AwemeCollectionCell.h */,
+				040E28B321C0E20100D15B44 /* AwemeCollectionCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -5780,6 +5772,14 @@
 		D904E95C1DD1D6DB00C7E45E /* MTCommon */ = {
 			isa = PBXGroup;
 			children = (
+				0441FA2121CF3FBA00801225 /* LoadMoreControl.h */,
+				0441FA2221CF3FBA00801225 /* LoadMoreControl.m */,
+				0441FA1F21CF3F0E00801225 /* PhotoView.h */,
+				0441FA1E21CF3F0E00801225 /* PhotoView.m */,
+				0441FA1B21CF3ED200801225 /* CircleProgressView.h */,
+				0441FA1C21CF3ED200801225 /* CircleProgressView.m */,
+				0441FA1921CF3E8100801225 /* MenuPopView.h */,
+				0441FA1821CF3E8100801225 /* MenuPopView.m */,
 				0402A46221C4C94800C35CA9 /* NSAttributedString+Extension.h */,
 				0402A46321C4C94800C35CA9 /* NSAttributedString+Extension.m */,
 				0402A45B21C4AA0600C35CA9 /* UIWindow+Extension.h */,
@@ -7161,6 +7161,7 @@
 				04CBC3892179C01300658E47 /* GPUImageHardLightBlendFilter.m in Sources */,
 				0435492121A7E9AC00AED5A8 /* UIButton+AFNetworking.m in Sources */,
 				D957AD5D1DD2CB2F00B7EE09 /* IQKeyboardReturnKeyHandler.m in Sources */,
+				0441FA2321CF3FBA00801225 /* LoadMoreControl.m in Sources */,
 				D98FCFC71DEFC41A0023C076 /* STPickerViewUI.m in Sources */,
 				04DCA85C21A5580300691A3A /* TCLog.m in Sources */,
 				04C2615D21A68FB200374E4D /* TCBGMListViewController.m in Sources */,
@@ -7229,7 +7230,6 @@
 				04CBC27D2179C01200658E47 /* MJRefreshConst.m in Sources */,
 				04B0E1FF21A6937600ABCF16 /* A2DynamicDelegate.m in Sources */,
 				04CBC3172179C01300658E47 /* SVProgressHUD.m in Sources */,
-				0403661721C378B6000FDC5E /* PhotoView.m in Sources */,
 				04CBC3132179C01300658E47 /* SVRadialGradientLayer.m in Sources */,
 				04FB537121C61639000ED131 /* WebCacheHelpler.m in Sources */,
 				04B0E1F421A6937600ABCF16 /* UIPopoverController+BlocksKit.m in Sources */,
@@ -7333,7 +7333,6 @@
 				04CBC42F2179C01300658E47 /* GPUImageTwoInputCrossTextureSamplingFilter.m in Sources */,
 				D9BD11B51F02B134006CE841 /* WYPopoverController.m in Sources */,
 				04C2615121A68FB200374E4D /* Label.m in Sources */,
-				040E28E021C1152500D15B44 /* LoadMoreControl.m in Sources */,
 				04DCA8EC21A565D500691A3A /* TextAddView.m in Sources */,
 				040E28D121C0F0D400D15B44 /* PictureInfo.m in Sources */,
 				04CBC4632179C01300658E47 /* GPUImageLookupFilter.m in Sources */,
@@ -7362,6 +7361,7 @@
 				040E28B021C0D7F100D15B44 /* HoverViewFlowLayout.m in Sources */,
 				04CBC2812179C01200658E47 /* UIScrollView+MJExtension.m in Sources */,
 				04CBC2992179C01200658E47 /* MJRefreshFooter.m in Sources */,
+				0441FA2021CF3F0F00801225 /* PhotoView.m in Sources */,
 				D954C58F1DD1A40F003CA535 /* main.m in Sources */,
 				04C1720D21CE3EC80077FA6C /* NetWork_mt_saveflour.m in Sources */,
 				04CBC4512179C01300658E47 /* GPUImageSingleComponentGaussianBlurFilter.m in Sources */,
@@ -7411,6 +7411,7 @@
 				04CBC38B2179C01300658E47 /* GPUImagePolarPixellateFilter.m in Sources */,
 				D904E9641DD1D6DB00C7E45E /* ZJCustomTabBar.m in Sources */,
 				040E28D421C0F0D400D15B44 /* BaseModel.m in Sources */,
+				0441FA1D21CF3ED200801225 /* CircleProgressView.m in Sources */,
 				04AB305C21CA93FB0072808E /* GKPushTransitionAnimation.m in Sources */,
 				04CBC4492179C01300658E47 /* GPUImageNobleCornerDetectionFilter.m in Sources */,
 				04CBC3B72179C01300658E47 /* GPUImageDirectionalSobelEdgeDetectionFilter.m in Sources */,
@@ -7481,6 +7482,7 @@
 				04CBC3412179C01300658E47 /* GPUImageColorPackingFilter.m in Sources */,
 				04C1721021CE3EC80077FA6C /* NetWork_mt_saveVideo.m in Sources */,
 				04CBC4592179C01300658E47 /* GPUImageLuminanceRangeFilter.m in Sources */,
+				0441FA1A21CF3E8100801225 /* MenuPopView.m in Sources */,
 				04CBC37B2179C01300658E47 /* GPUImageExclusionBlendFilter.m in Sources */,
 				04CBC4812179C01300658E47 /* SDWebImagePrefetcher.m in Sources */,
 				04CBC3C92179C01300658E47 /* GPUImageBoxBlurFilter.m in Sources */,
@@ -7494,7 +7496,6 @@
 				0400F33221AFA62D0038E16C /* WXApiResponseHandler.m in Sources */,
 				04CBC43B2179C01300658E47 /* GPUImageTextureOutput.m in Sources */,
 				D954C5D11DD1A40F003CA535 /* iToast.m in Sources */,
-				0403661D21C37A4C000FDC5E /* MenuPopView.m in Sources */,
 				D957AD671DD2CB2F00B7EE09 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				04DCA85E21A5580300691A3A /* NSString+CommonTX.m in Sources */,
 				04CBC3FB2179C01300658E47 /* GPUImageContrastFilter.m in Sources */,
@@ -7551,7 +7552,6 @@
 				04DCA86021A5580300691A3A /* UIView+CustomAutoLayout.m in Sources */,
 				04CBC4352179C01300658E47 /* GPUImagePrewittEdgeDetectionFilter.m in Sources */,
 				04C1720C21CE3EC80077FA6C /* NetWork_mt_getDynamics.m in Sources */,
-				0403661A21C37910000FDC5E /* CircleProgressView.m in Sources */,
 				04AB304221CA91310072808E /* GKDouyinHomeSearchViewController.m in Sources */,
 				D9F86DC81DEBEE7600C3A2B6 /* TZAssetModel.m in Sources */,
 				04C2615921A68FB200374E4D /* TCBGMCell.m in Sources */,

@@ -337,7 +337,8 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
 
 - (void)initData:(PersonalModel *)user {
     
-//    self.user = user;
+
+
     
     [_avatar sd_setImageWithURL:[NSURL URLWithString:user.head] placeholderImage:[UIImage imageNamed:@"img_find_default"]];
     //新增的背景数据写为指定路径
@@ -345,21 +346,17 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
     [_topBackground sd_setImageWithURL:[NSURL URLWithString:user.head]];
     [_nickName setText:user.nickname];
     
-    //默认没有关注，如果已经关注需要Show 一下
-//    if(self.user.isFlour){
-////        [self showFollowedAnimation];
-////        [self startFocusAnimation];
-//    }
-//    else{
-////        [self showUnFollowedAnimation];
-//    }
-    
-    
-//    [self startFocusAnimation];
-    
-    if(user.isFlour){ //如果已关注，调用一下方法，显示取消关注和发送消息按钮
+    //如果已关注，或者是自己的话，调用一下方法，显示取消关注和发送消息按钮
+    if(user.isFlour || [user.noodleId isEqualToString:[GlobalData sharedInstance].loginDataModel.noodleId]){
         [self showSendMessageAnimation];
         [self showFollowedAnimation];
+    }
+    //如果已关注，或者是自己的话，调用一下方法，显示取消关注和发送消息按钮
+    if([user.noodleId isEqualToString:[GlobalData sharedInstance].loginDataModel.noodleId]){
+        _sendMessage.text = @"收藏";
+    }
+    else{
+        _sendMessage.text = @"发消息";
     }
     
     [_douyinNum setText:[NSString stringWithFormat:@"面条号:%@", user.noodleId]];

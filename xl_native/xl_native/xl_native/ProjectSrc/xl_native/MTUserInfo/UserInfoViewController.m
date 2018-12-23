@@ -496,30 +496,50 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         [photoView show];
     }
     else if (tag == UserInfoHeaderSendTag){//点击发送消息
-        NSLog(@"点击发送消息");
+        
+        if([self.user.noodleId isEqualToString:[GlobalData sharedInstance].loginDataModel.noodleId]){
+            NSLog(@"------查看收藏列表-----");
+            
+        }
+        else{
+            NSLog(@"------发送消息-----");
+
+        }
+        
     }
     else if (tag == UserInfoHeaderFocusCancelTag){//取消关注
         
-        //调用取消关注接口，关注成功后，startFocusAnimation
-        DelFlourContentModel *contentModel = [[DelFlourContentModel alloc] init];
-        contentModel.flourId = [GlobalData sharedInstance].loginDataModel.noodleId;
-        contentModel.noodleId = self.user.noodleId;
         
-        NetWork_mt_delflour *request = [[NetWork_mt_delflour alloc] init];
-        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-        request.content = [contentModel generateJsonStringForProperties];
-        [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+        if([self.user.noodleId isEqualToString:[GlobalData sharedInstance].loginDataModel.noodleId]){
+            //如果是自己就查看我的联系人
+            NSLog(@"------查看联系人-----");
             
-            if(finished){
-                if(_userInfoHeader) {
-                    [_userInfoHeader startFocusAnimation];
+        }
+        else{//如果是别人，取消关注
+            
+            //调用取消关注接口，关注成功后，startFocusAnimation
+            DelFlourContentModel *contentModel = [[DelFlourContentModel alloc] init];
+            contentModel.flourId = [GlobalData sharedInstance].loginDataModel.noodleId;
+            contentModel.noodleId = self.user.noodleId;
+            
+            NetWork_mt_delflour *request = [[NetWork_mt_delflour alloc] init];
+            request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+            request.content = [contentModel generateJsonStringForProperties];
+            [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+                
+                if(finished){
+                    if(_userInfoHeader) {
+                        [_userInfoHeader startFocusAnimation];
+                    }
                 }
-            }
-            else{
-                [UIWindow showTips:@"取消关注失败，请检查网络"];
-            }
-        }];
-        contentModel = nil;
+                else{
+                    [UIWindow showTips:@"取消关注失败，请检查网络"];
+                }
+            }];
+            contentModel = nil;
+            
+        }
+        
         
     }
     else if (tag == UserInfoHeaderFocusTag){//点击关注
