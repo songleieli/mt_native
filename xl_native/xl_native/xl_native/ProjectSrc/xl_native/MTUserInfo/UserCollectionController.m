@@ -301,17 +301,7 @@ NSString * const kAwemeCollectionCell_temp  = @"AwemeCollectionCell";
     self.selectIndex = indexPath.row;
     
     UserInfoPlayerListViewController *controller;
-    if(_tabIndex == 0){ //我的作品
-        controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.workAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeWorks];
-    }
-    else if (_tabIndex == 1){ //动态
-        controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.dynamicAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeDynamics];
-        
-    }
-    else{//喜欢
-        controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeFavourites];
-        
-    }
+    controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeFavourites];
     controller.transitioningDelegate = self;
     
     controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;

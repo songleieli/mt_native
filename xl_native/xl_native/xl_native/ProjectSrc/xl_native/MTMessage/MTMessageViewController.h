@@ -13,7 +13,7 @@
 
 
 
-@interface XLGchangNewViewController : ZJCustomTabBarLjhTableViewController
+@interface MTMessageViewController : ZJCustomTabBarLjhTableViewController
 
 
 @property (strong, nonatomic) MyScrollView   *scrolBanner;//Banner轮播图

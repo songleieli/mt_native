@@ -102,12 +102,12 @@
 //    [self.mainTableView removeObserver:self forKeyPath:@"contentOffset"];
     
     
-    //    [self.tableView.layer removeAllAnimations];
-    //    NSArray<AwemeListCell *> *cells = [_tableView visibleCells];
-    //    for(AwemeListCell *cell in cells) {
-    //        [cell.playerView cancelLoading];
-    //    }
-    //    [[AVPlayerManager shareManager] removeAllPlayers];
+//        [self.tableView.layer removeAllAnimations];
+//        NSArray<AwemeListCell *> *cells = [self.mainTableView visibleCells];
+//        for(AwemeListCell *cell in cells) {
+//            [cell.playerView cancelLoading];
+//        }
+//        [[AVPlayerManager shareManager] removeAllPlayers];
     
     //    //移除 currentIndex 值变化的监听
     //    [[NSNotificationCenter defaultCenter] removeObserver:self];

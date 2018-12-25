@@ -16,7 +16,7 @@
 
 @class GKDouyinHomeViewController;
 @class HuinongViewController;
-@class XLGchangNewViewController;
+@class MTMessageViewController;
 @class UserInfoViewController;
 
 @interface CMPZjLifeMobileRootViewController : UIViewController
@@ -25,15 +25,15 @@
 @property (nonatomic, strong) GKDouyinHomeViewController* homeNewViewController;
 @property (nonatomic, strong) HuinongViewController* huinongViewController;
 @property (nonatomic, strong) UIViewController* topicViewController;
-@property (nonatomic, strong) XLGchangNewViewController *gchangViewController;
+@property (nonatomic, strong) MTMessageViewController *messageViewController;
 @property (nonatomic, strong) UserInfoViewController* userInfoViewController; 
 
 //NavViewController
 @property (nonatomic, strong) BaseNavigationController *xlHomeNavViewController;
 @property (nonatomic, strong) BaseNavigationController *huinongNavController;
-@property (nonatomic, strong) BaseNavigationController *gchangNavViewController;
 @property (nonatomic,strong)   BaseNavigationController * topicNavViewController;
-@property (nonatomic,strong)   BaseNavigationController * settingNavViewController;
+@property (nonatomic, strong) BaseNavigationController *messageNavViewController;
+@property (nonatomic,strong)   BaseNavigationController * userInfoNavViewController;
 
 
 @property (nonatomic, strong) BaseNavigationController *currentViewController;

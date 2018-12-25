@@ -11,7 +11,7 @@
 
 #import "GKDouyinHomeViewController.h"
 #import "HuinongViewController.h"
-#import "XLGchangNewViewController.h"
+#import "MTMessageViewController.h"
 #import "UserInfoViewController.h"
 
 #import "TCVideoRecordViewController.h"
@@ -59,13 +59,13 @@
 }
 
 
-- (XLGchangNewViewController *)gchangViewController{
-    if (!_gchangViewController){
-        _gchangViewController = [[XLGchangNewViewController alloc]init];
-        _gchangViewController.selectedIndex = 3;
-        _gchangViewController.changeIndexDelegate = self;
+- (MTMessageViewController *)messageViewController{
+    if (!_messageViewController){
+        _messageViewController = [[MTMessageViewController alloc]init];
+        _messageViewController.selectedIndex = 3;
+        _messageViewController.changeIndexDelegate = self;
     }
-    return _gchangViewController;
+    return _messageViewController;
 }
 
 - (UserInfoViewController *)userInfoViewController{
@@ -104,18 +104,18 @@
     return _topicNavViewController;
 }
 
-- (BaseNavigationController *) gchangNavViewController{
-    if (!_gchangNavViewController){
-        _gchangNavViewController = [BaseNavigationController navigationWithRootViewController:self.gchangViewController];
+- (BaseNavigationController *) messageNavViewController{
+    if (!_messageNavViewController){
+        _messageNavViewController = [BaseNavigationController navigationWithRootViewController:self.messageViewController];
     }
-    return _gchangNavViewController;
+    return _messageNavViewController;
 }
 
--(BaseNavigationController *)settingNavViewController{
-    if (!_settingNavViewController) {
-        _settingNavViewController = [BaseNavigationController navigationWithRootViewController:self.userInfoViewController];
+-(BaseNavigationController *)userInfoNavViewController{
+    if (!_userInfoNavViewController) {
+        _userInfoNavViewController = [BaseNavigationController navigationWithRootViewController:self.userInfoViewController];
     }
-    return _settingNavViewController;
+    return _userInfoNavViewController;
 }
 
 
@@ -128,8 +128,8 @@
     [self addChildViewController:self.xlHomeNavViewController];
     [self addChildViewController:self.huinongNavController];
     [self addChildViewController:self.topicNavViewController];
-    [self addChildViewController:self.gchangNavViewController];
-    [self addChildViewController:self.settingNavViewController];
+    [self addChildViewController:self.messageNavViewController];
+    [self addChildViewController:self.userInfoNavViewController];
     [[UINavigationBar appearance] setBarTintColor:defaultZjBlueColor];
     
     self.currentViewController = self.xlHomeNavViewController;

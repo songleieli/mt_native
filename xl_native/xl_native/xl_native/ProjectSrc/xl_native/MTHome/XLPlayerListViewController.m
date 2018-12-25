@@ -214,7 +214,15 @@
     
     CGPoint currentPoint = [touches.anyObject locationInView:self.view];
     float moveDistance = currentPoint.y - self.startPoint.y;
+    
+    
     if (self.mainTableView.contentOffset.y <=0){ //下拉
+        
+        //在第一页下拉的过程中，停止右华
+        if(self.scrollBlock){
+            self.scrollBlock(YES);
+        }
+        
         //根据触摸点移动方向判断用户是下拉还是上拉
         if( moveDistance > 0 && moveDistance < MaxDistance) {
             
@@ -250,6 +258,8 @@
         self.refreshStatus = REFRESH_MoveUp;
         //tableview被上拉了
         moveDistance = self.startPoint.y - currentPoint.y;//转换为正数
+//        NSLog(@"-----------------------%f------------------",moveDistance);
+
         if (moveDistance > MaxScroll) {
             //上拉距离超过MaxScroll，就让tableview滚动到第二个cell，模仿tableview翻页效果
             _clearView.hidden = YES;
@@ -265,7 +275,8 @@
 - (void)touchesEnded:(NSSet *)touches
            withEvent:(UIEvent *)event{
     
-    CGPoint currentPoint = [touches.anyObject locationInView:self.view];
+
+        CGPoint currentPoint = [touches.anyObject locationInView:self.view];
     float moveDistance = currentPoint.y-self.startPoint.y;
     if (moveDistance==0) {
         
@@ -328,10 +339,19 @@
     //清除起始触摸点
     self.startPoint = CGPointZero;
     
+    
+    NSLog(@"-------touchesEnded----");
+    
     //1.在第一页，松开手后，判断向下滚动还是向上滚动
     if(self.mainTableView.contentOffset.y > ScreenHeight/2){
         [UIView animateWithDuration:0.3 animations:^{
             self.mainTableView.contentOffset = CGPointMake(0, ScreenHeight);
+        } completion:^(BOOL finished) {
+            
+            if(self.scrollBlock){
+                self.scrollBlock(NO);
+            }
+            
         }];
         
         self.currentIndex = 1;
@@ -341,6 +361,10 @@
     else{
         [UIView animateWithDuration:0.3 animations:^{
             self.mainTableView.contentOffset = CGPointMake(0, 0);
+        } completion:^(BOOL finished) {
+            if(self.scrollBlock){
+                self.scrollBlock(NO);
+            }
         }];
     }
     
@@ -364,6 +388,12 @@
         else{
             //没下拉到最大点，alpha复原
             [self resumeNormal];
+        }
+    } completion:^(BOOL finished) {
+        
+        //松手回弹后，启用右滑
+        if(self.scrollBlock){
+            self.scrollBlock(NO);
         }
     }];
 }
@@ -477,7 +507,22 @@
 //    _beginDragging = YES;
 //}
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    NSLog(@"------------scrollViewDidScroll---------------");
+
+    if(self.scrollBlock){
+        self.scrollBlock(YES);
+    }
+}
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    NSLog(@"------------scrollViewDidEndDecelerating---------------");
+    
+    if(self.scrollBlock){
+        self.scrollBlock(NO);
+    }
     
     CGPoint rect = scrollView.contentOffset;
     NSInteger index = rect.y / self.view.height;

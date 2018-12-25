@@ -32,6 +32,8 @@
     
     CGPoint transition = [gestureRecognizer translationInView:gestureRecognizer.view];
     
+//    NSLog(@"---------transition = %@",NSStringFromCGPoint(transition));
+    
     SEL action = NSSelectorFromString(@"handleNavigationTransition:");
     
     if (transition.x < 0) {
@@ -51,6 +53,13 @@
         // 忽略超出手势区域
         CGPoint beginningLocation = [gestureRecognizer locationInView:gestureRecognizer.view];
         CGFloat maxAllowDistance  = topVC.gk_popMaxAllowedDistanceToLeftEdge;
+        
+        
+//        NSLog(@"---------beginningLocation = %@",NSStringFromCGPoint(beginningLocation));
+//        NSLog(@"---------maxAllowDistance = %f",maxAllowDistance);
+
+
+        
         if (maxAllowDistance > 0 && beginningLocation.x > maxAllowDistance) {
             return NO;
         }else if(!self.navigationController.gk_translationScale) { // 非缩放，系统处理

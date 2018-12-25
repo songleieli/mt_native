@@ -34,6 +34,7 @@
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.pagingEnabled = YES;
         _scrollView.bounces = NO; // 禁止弹簧效果
+        _scrollView.isPanUse = YES; //默认可以向右滑动
         if (@available(iOS 11.0, *)) {
             _scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {
@@ -52,7 +53,13 @@
 
 - (XLPlayerListViewController *)playerVC {
     if (!_playerVC) {
+        
+        __weak __typeof(self) weakSelf = self;
         _playerVC = [XLPlayerListViewController new];
+        _playerVC.scrollBlock = ^(BOOL isScroll) {
+            //视频列表在滚动的过程中，不能左右滑动显示，搜索页面
+            weakSelf.scrollView.isPanUse = !isScroll;
+        };
     }
     return _playerVC;
 }
