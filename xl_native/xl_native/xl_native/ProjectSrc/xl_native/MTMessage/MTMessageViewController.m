@@ -21,25 +21,25 @@
 
 #pragma mark --- header ---
 
-- (MyScrollView *)scrolBanner{
-    
-    if (!_scrolBanner) {
-        CGRect rect =  [UIView getFrame_x:0 y:0 width:ScreenWidth height:sizeScale(137)];
-        _scrolBanner = [[MyScrollView alloc] initWithFrame:rect];
-        _scrolBanner.scrolDelegate = self;
-    }
-    return  _scrolBanner;
-}
+//- (MyScrollView *)scrolBanner{
+//
+//    if (!_scrolBanner) {
+//        CGRect rect =  [UIView getFrame_x:0 y:0 width:ScreenWidth height:sizeScale(137)];
+//        _scrolBanner = [[MyScrollView alloc] initWithFrame:rect];
+//        _scrolBanner.scrolDelegate = self;
+//    }
+//    return  _scrolBanner;
+//}
 
-- (XLGCBodyView *)bodyView{
-    
-    if (!_bodyView) {
-        CGRect rect =  [UIView getFrame_x:0 y:0 width:ScreenWidth height:sizeScale(137)];
-        _bodyView = [[XLGCBodyView alloc] initWithFrame:rect];
-//        _bodyView.scrolDelegate = self;
-    }
-    return  _bodyView;
-}
+//- (XLGCBodyView *)bodyView{
+//    
+//    if (!_bodyView) {
+//        CGRect rect =  [UIView getFrame_x:0 y:0 width:ScreenWidth height:sizeScale(137)];
+//        _bodyView = [[XLGCBodyView alloc] initWithFrame:rect];
+////        _bodyView.scrolDelegate = self;
+//    }
+//    return  _bodyView;
+//}
 
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -47,6 +47,9 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [UIApplication sharedApplication].statusBarHidden = NO;
     self.tabBar.top = [self getTabbarTop];    //  重新设置tabbar的高度
+    
+    [self.mainDataArr removeAllObjects]; //加载页面内容时，先清除老数据
+    [self initRequest];
 }
 
 -(void)initNavTitle{
@@ -70,7 +73,7 @@
     [self.view addSubview:self.mainTableView];
     
     
-    NSInteger tableViewHeight = ScreenHeight -kTabBarHeight_New - KViewStartTopOffset_New;
+    NSInteger tableViewHeight = ScreenHeight -kTabBarHeight_New - kNavBarHeight_New;
     
     self.mainTableView.size = [UIView getSize_width:ScreenWidth height:tableViewHeight];
     self.mainTableView.origin = [UIView getPoint_x:0 y:kNavBarHeight_New];
@@ -81,6 +84,8 @@
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.mainTableView.mj_header = nil;
     self.mainTableView.mj_footer = nil;
+    [self.mainTableView registerClass:MessageCell.class forCellReuseIdentifier:[MessageCell cellId]];
+
     
     self.mainTableView.tableHeaderView = [self getHeadView];
 }
@@ -167,5 +172,62 @@
     
     return self.viewHeadBg;
 }
+
+#pragma mark ------ initRequest  ------
+
+-(void)initRequest{
+    
+    NetWork_mt_getFollows *request = [[NetWork_mt_getFollows alloc] init];
+    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+    request.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+    request.pageNo = @"1";
+    request.pageSize = @"20";
+    [request startGetWithBlock:^(id result, NSString *msg) {
+        /*
+         *暂不考虑缓存问题
+         */
+    } finishBlock:^(GetFollowsResponse *result, NSString *msg, BOOL finished) {
+        NSLog(@"");
+        
+        [self.mainDataArr addObjectsFromArray:result.obj];
+        [self.mainTableView reloadData];
+    }];
+    
+}
+
+#pragma mark --------------- tabbleView代理 -----------------
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return self.mainDataArr.count;
+}
+//设置cell的样式
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if(self.mainDataArr.count > 0){
+        MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:[MessageCell cellId] forIndexPath:indexPath];
+        GetFollowsModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
+//        cell.homeDelegate = self;
+        [cell fillDataWithModel:model];
+        return cell;
+    }
+    else{
+        /*
+         有时会出现，self.mainDataArr count为0 cellForRowAtIndexPath，却响应的bug。
+         */
+        UITableViewCell * celltemp =  [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellid"];
+        return celltemp;
+    }
+}
+
+//设置每一组的高度
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return ZJMessageCellHeight;
+}
+
 
 @end

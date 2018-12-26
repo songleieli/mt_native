@@ -868,6 +868,8 @@
 		04CD95AA2180685800EB535C /* TBWealthPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0493128121803D930024B165 /* TBWealthPlanViewController.m */; };
 		04CD95AB2180685D00EB535C /* XLBusinessPlanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0493128321803D930024B165 /* XLBusinessPlanVC.m */; };
 		04D28DEF218316F50072FD66 /* NetWork_membershipWelfare.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D28DEE218316F50072FD66 /* NetWork_membershipWelfare.m */; };
+		04D9B4C821D327B300DEC8B9 /* NetWork_mt_getFollows.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9B4C621D327B300DEC8B9 /* NetWork_mt_getFollows.m */; };
+		04D9B4CE21D343A400DEC8B9 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9B4CC21D343A300DEC8B9 /* MessageCell.m */; };
 		04DCA79F21927B2D00CB22A2 /* XLGCBodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA79E21927B2D00CB22A2 /* XLGCBodyView.m */; };
 		04DCA81F21A5458300691A3A /* TXLiteAVSDK_UGC_IJK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DCA81E21A5458300691A3A /* TXLiteAVSDK_UGC_IJK.framework */; };
 		04DCA82121A546AB00691A3A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DCA82021A546AB00691A3A /* Accelerate.framework */; };
@@ -2331,6 +2333,10 @@
 		04CD35C3217F21E60041E0A8 /* NetWork_adminLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_adminLogin.m; sourceTree = "<group>"; };
 		04D28DED218316F50072FD66 /* NetWork_membershipWelfare.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetWork_membershipWelfare.h; sourceTree = "<group>"; };
 		04D28DEE218316F50072FD66 /* NetWork_membershipWelfare.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetWork_membershipWelfare.m; sourceTree = "<group>"; };
+		04D9B4C621D327B300DEC8B9 /* NetWork_mt_getFollows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getFollows.m; sourceTree = "<group>"; };
+		04D9B4C721D327B300DEC8B9 /* NetWork_mt_getFollows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getFollows.h; sourceTree = "<group>"; };
+		04D9B4CC21D343A300DEC8B9 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		04D9B4CD21D343A300DEC8B9 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		04DCA79D21927B2D00CB22A2 /* XLGCBodyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLGCBodyView.h; sourceTree = "<group>"; };
 		04DCA79E21927B2D00CB22A2 /* XLGCBodyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLGCBodyView.m; sourceTree = "<group>"; };
 		04DCA81E21A5458300691A3A /* TXLiteAVSDK_UGC_IJK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TXLiteAVSDK_UGC_IJK.framework; sourceTree = "<group>"; };
@@ -3411,6 +3417,7 @@
 		0441FA2A21CFD1C600801225 /* MTMessage */ = {
 			isa = PBXGroup;
 			children = (
+				04D9B4CB21D343A300DEC8B9 /* Views */,
 				0441FA2E21CFD1C600801225 /* MTMessageViewController.h */,
 				0441FA2C21CFD1C600801225 /* MTMessageViewController.m */,
 			);
@@ -3813,6 +3820,8 @@
 		04C171F221CE3EC70077FA6C /* mt_personal */ = {
 			isa = PBXGroup;
 			children = (
+				04D9B4C721D327B300DEC8B9 /* NetWork_mt_getFollows.h */,
+				04D9B4C621D327B300DEC8B9 /* NetWork_mt_getFollows.m */,
 				04C171F321CE3EC70077FA6C /* NetWork_mt_getDynamics.h */,
 				04C171F421CE3EC70077FA6C /* NetWork_mt_getMyVideos.m */,
 				04C171F521CE3EC70077FA6C /* NetWork_mt_saveflour.h */,
@@ -4726,6 +4735,15 @@
 				04D28DEE218316F50072FD66 /* NetWork_membershipWelfare.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		04D9B4CB21D343A300DEC8B9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				04D9B4CD21D343A300DEC8B9 /* MessageCell.h */,
+				04D9B4CC21D343A300DEC8B9 /* MessageCell.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		04DCA79C21927B2D00CB22A2 /* Views */ = {
@@ -5851,8 +5869,8 @@
 		D954C6981DD1C998003CA535 /* xl_native */ = {
 			isa = PBXGroup;
 			children = (
-				04468DAF214B8000002F4528 /* mt_record */,
 				D9DD56BB1DD44D580031085B /* MTBase */,
+				04468DAF214B8000002F4528 /* mt_record */,
 				D904E95C1DD1D6DB00C7E45E /* MTCommon */,
 				0449AB632181BBF100D6172D /* MTLoginService */,
 				04C56C40214B62890052D15D /* MTHome */,
@@ -7131,6 +7149,7 @@
 				04DCA8E121A565D500691A3A /* TXVideoLoadingController.m in Sources */,
 				04E700D9219FF5C10096099F /* MtHomeTopView.m in Sources */,
 				04CBC44F2179C01300658E47 /* GPUImageKuwaharaFilter.m in Sources */,
+				04D9B4CE21D343A400DEC8B9 /* MessageCell.m in Sources */,
 				04E28F71218ABB96006A91DA /* XLGameWkWebViewController.m in Sources */,
 				04CBC3E32179C01300658E47 /* GPUImagePoissonBlendFilter.m in Sources */,
 				044F0356217EC324007D88DF /* MJRefreshBackNormalFooter.m in Sources */,
@@ -7575,6 +7594,7 @@
 				04DCA87C21A55C5B00691A3A /* TXUGCPublishUtil.m in Sources */,
 				04CBC3672179C01300658E47 /* GPUImageJFAVoronoiFilter.m in Sources */,
 				048462C52147570E00A30F5E /* NetWork_uploadApi.m in Sources */,
+				04D9B4C821D327B300DEC8B9 /* NetWork_mt_getFollows.m in Sources */,
 				D9F86DDA1DEBEE7600C3A2B6 /* TZPhotoPreviewController.m in Sources */,
 				04DCA8EE21A565D500691A3A /* PasterAddView.m in Sources */,
 				04CBC42B2179C01300658E47 /* GPUImagePinchDistortionFilter.m in Sources */,
