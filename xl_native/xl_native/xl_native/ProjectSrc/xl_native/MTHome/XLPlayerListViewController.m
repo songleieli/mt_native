@@ -509,7 +509,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    NSLog(@"------------scrollViewDidScroll---------------");
+//    NSLog(@"------------scrollViewDidScroll---------------");
 
     if(self.scrollBlock){
         self.scrollBlock(YES);
@@ -518,7 +518,7 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
-    NSLog(@"------------scrollViewDidEndDecelerating---------------");
+//    NSLog(@"------------scrollViewDidEndDecelerating---------------");
     
     if(self.scrollBlock){
         self.scrollBlock(NO);

@@ -138,7 +138,7 @@
     
     BOOL isRootVC = vc == self.viewControllers.firstObject;
     
-    NSLog(@"-------------%@",self.viewControllers);
+//    NSLog(@"-------------%@",self.viewControllers);
     
     if (vc.gk_interactivePopDisabled) { // 禁止滑动
         self.interactivePopGestureRecognizer.delegate = nil;

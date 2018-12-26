@@ -117,7 +117,7 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
 -(void)onProgressUpdate:(CGFloat)current total:(CGFloat)total {
     //播放进度更新
     
-    NSLog(@"------------current = %f-----total = %f------------",current,total);
+//    NSLog(@"------------current = %f-----total = %f------------",current,total);
     
     if ([self.homeDelegate respondsToSelector:@selector(followClicked:)]) {
         [self.homeDelegate currVideoProgressUpdate:self.listModel current:current total:total];
