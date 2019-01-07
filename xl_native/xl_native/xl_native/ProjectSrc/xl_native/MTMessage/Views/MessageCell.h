@@ -11,7 +11,7 @@
 #import "NetWork_mt_getFollows.h"
 
 
-@protocol DeleteClickDelegate <NSObject>
+@protocol GetFollowsDelegate <NSObject>
 
 
 -(void)btnDeleteClick:(GetFollowsModel*)model;
@@ -38,7 +38,7 @@
 @property(nonatomic,strong) UILabel * labelSign;
 @property(nonatomic,strong) UILabel * labelTImes;
 
-@property(nonatomic,weak) id <DeleteClickDelegate> deleteDelegate;
+@property(nonatomic,weak) id <GetFollowsDelegate> getFollowsDelegate;
 
 
 @end

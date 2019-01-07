@@ -21,7 +21,7 @@
 
 
 
-@interface MTMessageViewController : ZJCustomTabBarLjhTableViewController
+@interface MTFollowViewController : ZJCustomTabBarLjhTableViewController
 
 
 

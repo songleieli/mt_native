@@ -6,15 +6,16 @@
 //  Copyright © 2018年 CMP_Ljh. All rights reserved.
 //
 
-#import "MTMessageViewController.h"
+#import "MTFollowViewController.h"
+//#import "NetWork_uploadApi.h"
 
-@interface MTMessageViewController ()<GetFollowsDelegate>
+@interface MTFollowViewController ()<GetFollowsDelegate>
 
 @property (copy, nonatomic) NSString *myCallBack;
 
 @end
 
-@implementation MTMessageViewController
+@implementation MTFollowViewController
 
 #pragma mark =========== 懒加载 ===========
 
@@ -33,7 +34,7 @@
     self.lableNavTitle.textColor = [UIColor whiteColor];
     self.lableNavTitle.font = [UIFont defaultBoldFontWithSize:16];
     
-    self.title = @"消息";
+    self.title = @"关注";
 }
 
 - (void)viewDidLoad {

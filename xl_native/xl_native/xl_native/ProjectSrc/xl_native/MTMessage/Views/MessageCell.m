@@ -36,7 +36,7 @@ static NSString* const ViewTableViewCellId = @"MessageCellId";
     [self.viewBg setBackgroundColor:ColorThemeBackground forState:UIControlStateNormal];
     [self.viewBg setBackgroundColor:RGBAlphaColor(29, 32, 42, 1) forState:UIControlStateHighlighted];
     
-    [self.viewBg addTarget:self action:@selector(cellClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.viewBg addTarget:self action:@selector(btnDelClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.viewBg];
 
     self.imageVeiwIcon = [[UIImageView alloc]init];
@@ -87,19 +87,19 @@ static NSString* const ViewTableViewCellId = @"MessageCellId";
     self.labelTImes.text = model.time;
 }
 
-- (void)cellClick:(id)sender
-{
-    if ([self.delegate respondsToSelector:@selector(btnClicked:cell:)]) {
-        [self.delegate btnClicked:sender cell:self];
-    } else {
-        NSLog(@"代理没响应，快开看看吧");
-    }
-}
+//- (void)cellClick:(id)sender
+//{
+//    if ([self.delegate respondsToSelector:@selector(btnClicked:cell:)]) {
+//        [self.delegate btnClicked:sender cell:self];
+//    } else {
+//        NSLog(@"代理没响应，快开看看吧");
+//    }
+//}
 
 - (void)btnDelClick:(id)sender{
     
-    if ([self.deleteDelegate respondsToSelector:@selector(btnDeleteClick:)]) {
-        [self.deleteDelegate btnDeleteClick:self.listModel];
+    if ([self.getFollowsDelegate respondsToSelector:@selector(btnDeleteClick:)]) {
+        [self.getFollowsDelegate btnDeleteClick:self.listModel];
     } else {
         NSLog(@"代理没响应，快开看看吧");
     }

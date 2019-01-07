@@ -15,7 +15,7 @@
 @class BaseNavigationController;
 
 @class GKDouyinHomeViewController;
-@class HuinongViewController;
+@class MTFollowViewController;
 @class MTMessageViewController;
 @class UserInfoViewController;
 
@@ -23,14 +23,14 @@
 
 //viewController
 @property (nonatomic, strong) GKDouyinHomeViewController* homeNewViewController;
-@property (nonatomic, strong) HuinongViewController* huinongViewController;
+@property (nonatomic, strong) MTFollowViewController* followViewController;
 @property (nonatomic, strong) UIViewController* topicViewController;
 @property (nonatomic, strong) MTMessageViewController *messageViewController;
 @property (nonatomic, strong) UserInfoViewController* userInfoViewController; 
 
 //NavViewController
 @property (nonatomic, strong) BaseNavigationController *xlHomeNavViewController;
-@property (nonatomic, strong) BaseNavigationController *huinongNavController;
+@property (nonatomic, strong) BaseNavigationController *followNavViewController;
 @property (nonatomic,strong)   BaseNavigationController * topicNavViewController;
 @property (nonatomic, strong) BaseNavigationController *messageNavViewController;
 @property (nonatomic,strong)   BaseNavigationController * userInfoNavViewController;

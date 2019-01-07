@@ -10,7 +10,7 @@
 #import "BaseNavigationController.h"
 
 #import "GKDouyinHomeViewController.h"
-#import "HuinongViewController.h"
+#import "MTFollowViewController.h"
 #import "MTMessageViewController.h"
 #import "UserInfoViewController.h"
 
@@ -39,14 +39,14 @@
     return _homeNewViewController;
 }
 
-- (HuinongViewController *)huinongViewController{
-    if (!_huinongViewController){
-        _huinongViewController = [[HuinongViewController alloc]init];
-        _huinongViewController.selectedIndex = 1;
-        _huinongViewController.changeIndexDelegate = self;
+- (MTFollowViewController *)followViewController{
+    if (!_followViewController){
+        _followViewController = [[MTFollowViewController alloc]init];
+        _followViewController.selectedIndex = 1;
+        _followViewController.changeIndexDelegate = self;
         
     }
-    return _huinongViewController;
+    return _followViewController;
 }
 
 - (UIViewController *)topicViewController{
@@ -90,11 +90,11 @@
     return _xlHomeNavViewController;
 }
 
-- (BaseNavigationController *)huinongNavController{
-    if (!_huinongNavController){
-        _huinongNavController = [BaseNavigationController navigationWithRootViewController:self.huinongViewController];
+- (BaseNavigationController *)followNavViewController{
+    if (!_followNavViewController){
+        _followNavViewController = [BaseNavigationController navigationWithRootViewController:self.followViewController];
     }
-    return _huinongNavController;
+    return _followNavViewController;
 }
 
 - (BaseNavigationController *)topicNavViewController{
@@ -126,7 +126,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     [self addChildViewController:self.xlHomeNavViewController];
-    [self addChildViewController:self.huinongNavController];
+    [self addChildViewController:self.followNavViewController];
     [self addChildViewController:self.topicNavViewController];
     [self addChildViewController:self.messageNavViewController];
     [self addChildViewController:self.userInfoNavViewController];
