@@ -10,7 +10,7 @@
 #import "ZJCustomTabBarLjhTableViewController.h"
 //#import "MyScrollView.h"
 //#import "XLGCBodyView.h"
-#import "MessageCell.h"
+#import "FollowsVideoListCell.h"
 #import "UserInfoViewController.h"
 #import "MTMyFansViewController.h"
 #import "MTAMeListViewController.h"
@@ -18,6 +18,8 @@
 #import "MTMyCommentViewController.h"
 
 #import "NetWork_mt_getFollows.h"
+
+#import "NetWork_mt_getFollowsVideoList.h"
 
 
 

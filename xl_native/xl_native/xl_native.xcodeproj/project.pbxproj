@@ -174,6 +174,8 @@
 		049D80E12181930A007F3BAF /* NetWork_orders.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D80E02181930A007F3BAF /* NetWork_orders.m */; };
 		049D80E521819FBA007F3BAF /* XLPlanDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D80E321819FBA007F3BAF /* XLPlanDetailVC.m */; };
 		049D80E621819FBA007F3BAF /* XLPlanDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049D80E421819FBA007F3BAF /* XLPlanDetailVC.xib */; };
+		04A919A021E4EA7A002DDB1A /* NetWork_mt_getFollowsVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A9199E21E4EA7A002DDB1A /* NetWork_mt_getFollowsVideoList.m */; };
+		04A919A421E4F045002DDB1A /* FollowsVideoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A919A321E4F044002DDB1A /* FollowsVideoListCell.m */; };
 		04AB303F21CA91310072808E /* GKDouyinHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB303921CA91310072808E /* GKDouyinHomeViewController.m */; };
 		04AB304021CA91310072808E /* GKDouyinScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB303A21CA91310072808E /* GKDouyinScrollView.m */; };
 		04AB304221CA91310072808E /* GKDouyinHomeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB303C21CA91310072808E /* GKDouyinHomeSearchViewController.m */; };
@@ -1689,6 +1691,10 @@
 		049D80E321819FBA007F3BAF /* XLPlanDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XLPlanDetailVC.m; sourceTree = "<group>"; };
 		049D80E421819FBA007F3BAF /* XLPlanDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XLPlanDetailVC.xib; sourceTree = "<group>"; };
 		049E96F221521BB700AE2263 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		04A9199E21E4EA7A002DDB1A /* NetWork_mt_getFollowsVideoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getFollowsVideoList.m; sourceTree = "<group>"; };
+		04A9199F21E4EA7A002DDB1A /* NetWork_mt_getFollowsVideoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getFollowsVideoList.h; sourceTree = "<group>"; };
+		04A919A221E4F044002DDB1A /* FollowsVideoListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowsVideoListCell.h; sourceTree = "<group>"; };
+		04A919A321E4F044002DDB1A /* FollowsVideoListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowsVideoListCell.m; sourceTree = "<group>"; };
 		04AB303421CA91310072808E /* GKDouyinScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKDouyinScrollView.h; sourceTree = "<group>"; };
 		04AB303521CA91310072808E /* GKDouyinHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKDouyinHomeViewController.h; sourceTree = "<group>"; };
 		04AB303621CA91310072808E /* GKDouyinHomeSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKDouyinHomeSearchViewController.h; sourceTree = "<group>"; };
@@ -3456,6 +3462,7 @@
 		04468DAB214B7DB3002F4528 /* MTFollow */ = {
 			isa = PBXGroup;
 			children = (
+				04A919A121E4F044002DDB1A /* Views */,
 				04C70D3A21E3AE600022D897 /* MTFollowViewController.h */,
 				04C70D3921E3AE5F0022D897 /* MTFollowViewController.m */,
 				04468DAD214B7DB3002F4528 /* HuinongViewController.h */,
@@ -3656,6 +3663,24 @@
 				049312AD218053FE0024B165 /* XLHomePlanCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		04A9199D21E4EA7A002DDB1A /* mt_follow */ = {
+			isa = PBXGroup;
+			children = (
+				04A9199F21E4EA7A002DDB1A /* NetWork_mt_getFollowsVideoList.h */,
+				04A9199E21E4EA7A002DDB1A /* NetWork_mt_getFollowsVideoList.m */,
+			);
+			path = mt_follow;
+			sourceTree = "<group>";
+		};
+		04A919A121E4F044002DDB1A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				04A919A221E4F044002DDB1A /* FollowsVideoListCell.h */,
+				04A919A321E4F044002DDB1A /* FollowsVideoListCell.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		04AB303321CA91310072808E /* 抖音 */ = {
@@ -5485,6 +5510,7 @@
 		7375C1FA1CE5660C0059974F /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
+				04A9199D21E4EA7A002DDB1A /* mt_follow */,
 				04C70D2C21E3A7C90022D897 /* mt_message */,
 				04F5E89C21CE8DD100781FCD /* mt_collection */,
 				04E700D0219FBD8B0096099F /* mt_home */,
@@ -7173,6 +7199,7 @@
 				04DCA8DD21A565D500691A3A /* TCVideoEditViewController.m in Sources */,
 				04CBC47B2179C01300658E47 /* UIImage+GIF.m in Sources */,
 				040E28D821C0F0D400D15B44 /* Visitor.m in Sources */,
+				04A919A021E4EA7A002DDB1A /* NetWork_mt_getFollowsVideoList.m in Sources */,
 				D954C4C61DD1A40F003CA535 /* UIView+Common.m in Sources */,
 				04B0E1EA21A6937600ABCF16 /* NSArray+BlocksKit.m in Sources */,
 				04CBC3CB2179C01300658E47 /* GPUImageSourceOverBlendFilter.m in Sources */,
@@ -7637,6 +7664,7 @@
 				04C1720C21CE3EC80077FA6C /* NetWork_mt_getDynamics.m in Sources */,
 				04AB304221CA91310072808E /* GKDouyinHomeSearchViewController.m in Sources */,
 				D9F86DC81DEBEE7600C3A2B6 /* TZAssetModel.m in Sources */,
+				04A919A421E4F045002DDB1A /* FollowsVideoListCell.m in Sources */,
 				04C2615921A68FB200374E4D /* TCBGMCell.m in Sources */,
 				04CBC3C12179C01300658E47 /* GPUImageXYDerivativeFilter.m in Sources */,
 				04AB304021CA91310072808E /* GKDouyinScrollView.m in Sources */,
