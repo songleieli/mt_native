@@ -71,10 +71,10 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
 - (UILabel *)labelTitle{
     if (_labelTitle == nil){
         _labelTitle = [[UILabel alloc]init];
-        _labelTitle.size = [UIView getSize_width:ScreenWidth *718/1080 height:20]; //宽度为屏幕的 718/1080
+        _labelTitle.size = [UIView getSize_width:FollowsVideoListCellTitleWidth height:20]; //宽度为屏幕的 718/1080
         _labelTitle.top = self.imageVeiwIcon.bottom + 10;
         _labelTitle.left = self.imageVeiwIcon.left;
-        _labelTitle.font = [UIFont defaultFontWithSize:13];
+        _labelTitle.font = FollowsVideoListCellTitleFont;
         _labelTitle.textColor = [UIColor whiteColor];
         _labelTitle.numberOfLines = 0;
 
@@ -104,19 +104,23 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
 }
 - (void)fillDataWithModel:(HomeListModel *)model{
     
+    /*cell 的高度组成部分相加*/
+    CGFloat cellHeight = FollowsVideoListCellIconHeight + model.fpllowVideoListTitleHeight + FollowsVideoListCellVideoHeight+FollowsVideoListCellBottomHeight;
+    self.viewBg.height = cellHeight;
+    self.labelLine.top = self.viewBg.height - self.labelLine.height;
     self.listModel = model;
+    
+    
     [self.imageVeiwIcon sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"img_find_default"]];
-    
     self.labelUserName.text = [NSString stringWithFormat:@"@%@",model.nickname];
-    
-    
-    CGRect contentLabelSize = [model.title boundingRectWithSize:CGSizeMake(self.labelTitle.width, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:self.labelTitle.font,NSFontAttributeName, nil] context:nil];
-
-    self.labelTitle.height = contentLabelSize.size.height;
-    
+    self.labelTitle.height = model.fpllowVideoListTitleHeight;
     self.labelTitle.text = model.title;
-//    self.labelSign.text = model.noodleSignature.length == 0?@"暂时还没有签名":model.noodleSignature;
-//    self.labelTImes.text = model.time;
+    
+    
+    
+    
+    
+    
 }
 
 - (void)btnDelClick:(id)sender{

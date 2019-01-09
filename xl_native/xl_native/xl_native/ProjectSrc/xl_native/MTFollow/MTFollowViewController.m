@@ -65,6 +65,25 @@
     [self.mainTableView registerClass:FollowsVideoListCell.class forCellReuseIdentifier:[FollowsVideoListCell cellId]];
 }
 
+//预先计算cell的g高度
+-(void)countCellHeight:(NSArray *)modelList{
+    
+    for(HomeListModel *homeListModel in modelList){
+        
+        CGRect contentLabelSize = [homeListModel.title boundingRectWithSize:CGSizeMake(FollowsVideoListCellTitleWidth, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:FollowsVideoListCellTitleFont,NSFontAttributeName, nil] context:nil];
+
+        
+        
+        
+        homeListModel.fpllowVideoListTitleHeight = contentLabelSize.size.height;
+        
+        
+        
+        
+        
+    }
+}
+
 #pragma mark ------ initRequest  ------
 
 -(void)initRequest{
@@ -80,6 +99,9 @@
     } finishBlock:^(GetFollowsVideoListResponse *result, NSString *msg, BOOL finished) {
         NSLog(@"----------------");
         
+        
+        [self countCellHeight:result.obj]; //计算cell的高度
+
         [self.mainDataArr addObjectsFromArray:result.obj];
         [self.mainTableView reloadData];
     }];
@@ -117,7 +139,11 @@
 //设置每一组的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return FollowsVideoListCellHeight;
+    HomeListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
+    
+    CGFloat cellHeight = FollowsVideoListCellIconHeight + model.fpllowVideoListTitleHeight + FollowsVideoListCellVideoHeight+FollowsVideoListCellBottomHeight;
+    
+    return  cellHeight;
 }
 
 -(void)btnDeleteClick:(GetFollowsModel*)model{

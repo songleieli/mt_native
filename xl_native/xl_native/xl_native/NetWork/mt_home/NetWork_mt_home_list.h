@@ -123,6 +123,10 @@
 @property (strong, nonatomic) NSNumber *isFlour;  //是否关注
 @property (strong, nonatomic) NSNumber *isLike;   //是否喜欢（赞）过
 
+//关注视频列表使用，计算Cell的高度
+@property (assign, nonatomic) CGFloat fpllowVideoListTitleHeight;
+
+
 @end
 
 
