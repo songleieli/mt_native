@@ -8,7 +8,7 @@
 
 #import "MTFollowViewController.h"
 
-@interface MTFollowViewController ()<GetFollowsDelegate>
+@interface MTFollowViewController ()
 
 @property (copy, nonatomic) NSString *myCallBack;
 
@@ -42,6 +42,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.isFirstLoad = YES;
+    
     [self setupUI];
 }
 
@@ -63,6 +65,16 @@
     self.mainTableView.mj_header = nil;
     self.mainTableView.mj_footer = nil;
     [self.mainTableView registerClass:FollowsVideoListCell.class forCellReuseIdentifier:[FollowsVideoListCell cellId]];
+    
+    /*
+     滚动到指定的行，此时并没有响应 scrollViewDidEndDecelerating
+     */
+//    NSIndexPath *curIndexPath = [NSIndexPath indexPathForRow:self.currentIndex inSection:0];
+//    [self.mainTableView scrollToRowAtIndexPath:curIndexPath atScrollPosition:UITableViewScrollPositionMiddle
+//                                      animated:NO];
+    
+//    self.currentCell = [self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentIndex inSection:0]];
+//    [self playCurCellVideo];
 }
 
 //预先计算cell的g高度
@@ -71,16 +83,38 @@
     for(HomeListModel *homeListModel in modelList){
         
         CGRect contentLabelSize = [homeListModel.title boundingRectWithSize:CGSizeMake(FollowsVideoListCellTitleWidth, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:FollowsVideoListCellTitleFont,NSFontAttributeName, nil] context:nil];
+        
+        CGFloat cellHeight = FollowsVideoListCellIconHeight + contentLabelSize.size.height + FollowsVideoListCellVideoHeight+FollowsVideoListCellBottomHeight+FollowsVideoListCellSpace*2;
 
         
-        
-        
         homeListModel.fpllowVideoListTitleHeight = contentLabelSize.size.height;
+        homeListModel.fpllowVideoListCellHeight = cellHeight;
+    }
+}
+
+-(void)playCurCellVideo{
+    
+    //    BOOL temp = firstLoad
+    
+    [_currentCell startDownloadHighPriorityTask];
+    __weak typeof (FollowsVideoListCell) *wcell = self.currentCell;
+    __weak typeof (self) wself = self;
+    //判断当前cell的视频源是否已经准备播放
+    if(self.currentCell.isPlayerReady) {
+        //播放视频
+        [_currentCell replay];
         
+        NSLog(@"---------[_currentCell replay];-------");
         
-        
-        
-        
+    }else {
+        [[AVPlayerManager shareManager] pauseAll];
+        //当前cell的视频源还未准备好播放，则实现cell的OnPlayerReady Block 用于等待视频准备好后通知播放
+        self.currentCell.onPlayerReady = ^{
+            NSIndexPath *indexPath = [wself.mainTableView indexPathForCell:wcell];
+            if(indexPath && indexPath.row == wself.currentIndex) {
+                [wcell play];
+            }
+        };
     }
 }
 
@@ -104,6 +138,14 @@
 
         [self.mainDataArr addObjectsFromArray:result.obj];
         [self.mainTableView reloadData];
+        
+        if(self.isFirstLoad){//第一次加载
+            self.isFirstLoad = NO;
+            
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentIndex inSection:0];
+            self.currentCell = [self.mainTableView cellForRowAtIndexPath:indexPath];
+            [self playCurCellVideo];
+        }
     }];
     
 }
@@ -125,6 +167,7 @@
         HomeListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
 //        cell.getFollowsDelegate = self;
         [cell fillDataWithModel:model];
+        [cell startDownloadBackgroundTask];
         return cell;
     }
     else{
@@ -140,20 +183,68 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     HomeListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
-    
-    CGFloat cellHeight = FollowsVideoListCellIconHeight + model.fpllowVideoListTitleHeight + FollowsVideoListCellVideoHeight+FollowsVideoListCellBottomHeight;
-    
-    return  cellHeight;
+
+    return  model.fpllowVideoListCellHeight;
 }
 
--(void)btnDeleteClick:(GetFollowsModel*)model{
-    
-    UserInfoViewController *userInfoViewController = [[UserInfoViewController alloc] init];
-    userInfoViewController.userNoodleId = model.noodleId;
-    userInfoViewController.fromType = FromTypeHome; //我的页面，需要显示返回按钮，隐藏TabBar
-    [self pushNewVC:userInfoViewController animated:YES];
-    
+#pragma mark --------------- UIScrollView 代理 -----------------
+//scrollViewDidEndDecelerating方法不执行解决方案
+//https://blog.csdn.net/abc649395594/article/details/46780065/
+
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if(!decelerate){
+        //这里复制scrollViewDidEndDecelerating里的代码
+        //NSLog(@"------------------停止滚动-1---强制滚动停止--------------");
+        [self dealStopScroll:scrollView];
+    }
 }
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    //NSLog(@"------------------停止滚动----2---慢慢滑动停止-----------");
+    [self dealStopScroll:scrollView];
+}
+
+/*
+ *处理滚动停止后的方法
+ */
+-(void)dealStopScroll:(UIScrollView*)scrollView{
+    
+    /*
+     *1.暂时采用一下方式
+     *2.循环数组使y值减去cell每一行的高度，对应的i值即为index的值
+     *3.后续持续对该算法进行优化。
+     */
+    CGPoint rect = scrollView.contentOffset;
+    CGFloat y = rect.y;
+    //    NSLog(@"-------y = %f------------",rect.y);
+    NSInteger index = 0;
+    for(int i=0;i<self.mainDataArr.count;i++){
+        
+        HomeListModel *model = [self.mainDataArr objectAtIndex:i];
+        //        NSLog(@"-------fpllowVideoListCellHeight = %f------------",model.fpllowVideoListCellHeight);
+        y = y-model.fpllowVideoListCellHeight;
+        //        NSLog(@"-------y = %f------------",y);
+        if(y <= 0.0f){
+            index = i;
+            NSLog(@"--------------------------index---- = %ld------------",index);
+            break;
+        }
+    }
+    
+    if (self.currentIndex != index) {
+        
+        self.currentIndex = index;
+        self.currentCell = [self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentIndex inSection:0]];
+        [self playCurCellVideo];
+    }
+    
+    //    NSInteger offset = self.mainDataArr.count - self.currentIndex;
+    //    if(offset == 2){ //开始加载下一页
+    //        self.currentPage += 1;
+    //        [self initRequest];
+    //    }
+}
+
 
 
 @end

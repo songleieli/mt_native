@@ -82,8 +82,16 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
     return _labelTitle;
 }
 
-
-
+-(AVPlayerView*)playerView{
+    if(!_playerView){
+        CGRect frame = CGRectMake(self.imageVeiwIcon.left, self.labelTitle.bottom, FollowsVideoListCellVideoWidth, FollowsVideoListCellVideoHeight);
+        _playerView = [[AVPlayerView alloc] initWithFrame:frame];
+        _playerView.delegate = self;
+        //test
+        _playerView.backgroundColor = [UIColor blueColor];
+    }
+    return _playerView;
+}
 
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -101,26 +109,84 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
     [self.viewBg addSubview:self.imageVeiwIcon];
     [self.viewBg addSubview:self.labelUserName];
     [self.viewBg addSubview:self.labelTitle];
+    [self.viewBg addSubview:self.playerView];
 }
 - (void)fillDataWithModel:(HomeListModel *)model{
     
     /*cell 的高度组成部分相加*/
-    CGFloat cellHeight = FollowsVideoListCellIconHeight + model.fpllowVideoListTitleHeight + FollowsVideoListCellVideoHeight+FollowsVideoListCellBottomHeight;
-    self.viewBg.height = cellHeight;
+//    CGFloat cellHeight = FollowsVideoListCellIconHeight + model.fpllowVideoListTitleHeight + FollowsVideoListCellVideoHeight+FollowsVideoListCellBottomHeight+FollowsVideoListCellSpace*2;
+    self.viewBg.height = model.fpllowVideoListCellHeight;
     self.labelLine.top = self.viewBg.height - self.labelLine.height;
+    self.labelTitle.height = model.fpllowVideoListTitleHeight;
+    self.playerView.top = self.labelTitle.bottom+FollowsVideoListCellSpace;
     self.listModel = model;
     
     
     [self.imageVeiwIcon sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"img_find_default"]];
     self.labelUserName.text = [NSString stringWithFormat:@"@%@",model.nickname];
-    self.labelTitle.height = model.fpllowVideoListTitleHeight;
     self.labelTitle.text = model.title;
     
+//    NSString *playUrl = model.storagePath;
+//    [self.playerView setPlayerWithUrl:playUrl];
+//    [self.playerView play];
+}
+
+
+- (void)play {
+    [self.playerView play];
+//    [self.maskView hidePlayBtn];
+}
+
+- (void)pause {
+    [self.playerView pause];
+//    [self.maskView showPlayBtn];
+}
+
+- (void)replay {
+    [self.playerView replay];
+//    [self.maskView hidePlayBtn];
+}
+
+- (void)startDownloadBackgroundTask {
     
+    NSString *playUrl = self.listModel.storagePath;
+    [self.playerView setPlayerWithUrl:playUrl];
+}
+
+- (void)startDownloadHighPriorityTask {
+    NSString *playUrl = self.listModel.storagePath;
+    [self.playerView startDownloadTask:[[NSURL alloc] initWithString:playUrl] isBackground:NO];
+}
+
+#pragma mark ---------AVPlayerUpdateDelegate-------------
+
+//播放进度更新回调方法
+-(void)onProgressUpdate:(CGFloat)current total:(CGFloat)total{
     
-    
-    
-    
+}
+
+-(void)onPlayItemStatusUpdate:(AVPlayerItemStatus)status { //播放状态更新
+    switch (status) {
+        case AVPlayerItemStatusUnknown:
+            //            [self startLoadingPlayItemAnim:YES];
+            break;
+        case AVPlayerItemStatusReadyToPlay:
+            //            [self startLoadingPlayItemAnim:NO];
+            
+            _isPlayerReady = YES;
+            //            [_musicAlum startAnimation:_aweme.rate];
+            
+            if(_onPlayerReady) {
+                _onPlayerReady();
+            }
+            break;
+        case AVPlayerItemStatusFailed:
+            //            [self startLoadingPlayItemAnim:NO];
+            [UIWindow showTips:@"加载失败"];
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)btnDelClick:(id)sender{
