@@ -8,7 +8,8 @@
 
 #import "BaseTableViewCell.h"
 #import "AVPlayerView.h"
-
+#import "CircleTextView.h"
+#import "FavoriteView.h"
 #import "NetWork_mt_getFollowsVideoList.h"
 
 typedef void (^OnPlayerReady)(void);
@@ -38,6 +39,7 @@ typedef void (^OnPlayerReady)(void);
 
 - (void)fillDataWithModel:(HomeListModel *)listModel;
 
+/*标题相关*/
 @property(nonatomic,strong) HomeListModel * listModel;
 @property(nonatomic,strong) UIButton * viewBg;
 @property(nonatomic,strong) UILabel * labelLine;
@@ -46,17 +48,31 @@ typedef void (^OnPlayerReady)(void);
 @property(nonatomic,strong) UILabel * labelUserName;
 @property(nonatomic,strong) UILabel * labelTitle;
 
-
+/*视频相关*/
 @property (nonatomic, strong) OnPlayerReady    onPlayerReady;
 @property (nonatomic, assign) BOOL             isPlayerReady;
 /*播放器*/
 @property (nonatomic, strong) AVPlayerView     *playerView;
+
+@property (nonatomic, strong) UIImageView      *musicIcon;
+@property (nonatomic, strong) CircleTextView   *musicName;
 
 - (void)play;
 - (void)pause;
 - (void)replay;
 - (void)startDownloadBackgroundTask;
 - (void)startDownloadHighPriorityTask;
+
+/*底部分享相关*/
+@property(nonatomic,strong) UIView *bottomView;
+@property (nonatomic, strong) FavoriteView     *favorite; //赞
+@property (nonatomic, strong) UIImageView      *comment;  //评论
+@property (nonatomic, strong) UIImageView      *share;    //分享
+
+@property (nonatomic, strong) UILabel          *favoriteNum;
+@property (nonatomic, strong) UILabel          *commentNum;
+@property (nonatomic, strong) UILabel          *shareNum;
+
 
 
 //@property(nonatomic,weak) id <GetFollowsDelegate> getFollowsDelegate;
