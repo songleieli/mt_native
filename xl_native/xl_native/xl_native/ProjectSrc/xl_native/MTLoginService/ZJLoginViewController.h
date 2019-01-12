@@ -8,7 +8,7 @@
 
 //#import "JPUSHService.h"
 
-#import "RegisterViewController.h"
+//#import "RegisterViewController.h"
 
 @interface ZJLoginViewController : ZJBaseViewController
 

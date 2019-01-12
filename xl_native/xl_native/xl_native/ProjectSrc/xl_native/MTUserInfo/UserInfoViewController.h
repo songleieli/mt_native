@@ -38,7 +38,7 @@ typedef enum{
 #import "NetWork_mt_delflour.h"
 
 #import "UserCollectionController.h"
-
+#import "MyViewController.h"
 
 
 @interface UserInfoViewController : ZJCustomTabBarLjhTableViewController<UICollectionViewDelegate,

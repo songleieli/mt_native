@@ -577,6 +577,11 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     }
     else if (tag == UserInfoHeaderSettingTag){//点击设置
         
+        MyViewController *myViewController = [[MyViewController alloc] init];
+        [self pushNewVC:myViewController animated:YES];
+        
+        
+        /*
         NSArray *titles = nil;
         if(self.fromType == FromTypeMy){
             titles = @[@"退出登录",@"清除缓存"];
@@ -599,6 +604,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
             //                }];
         }];
         [menu show];
+        */
     }
     
     

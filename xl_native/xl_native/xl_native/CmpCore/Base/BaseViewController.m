@@ -388,7 +388,7 @@
     
     if (_mainTableView == nil) {
         
-        _mainTableView = [[MJTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _mainTableView = [[MJTableView alloc] initWithFrame:self.view.bounds style:self.isGroup];
         _mainTableView.delegate = self;
         _mainTableView.dataSource = self;
         

@@ -617,8 +617,8 @@
     NSLog(@"%@",string);
     
     
-    RegisterViewController *registerViewController = [[RegisterViewController alloc] init];
-    [self.navigationController pushViewController:registerViewController animated:YES];
+//    RegisterViewController *registerViewController = [[RegisterViewController alloc] init];
+//    [self.navigationController pushViewController:registerViewController animated:YES];
 }
 
 #pragma mark 微信登录

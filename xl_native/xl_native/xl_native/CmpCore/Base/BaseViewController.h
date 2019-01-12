@@ -22,6 +22,8 @@
 @property (nonatomic, strong) ShowNotice *showNotice;
 @property (nonatomic, assign) BOOL isNavBackGroundHiden;
 
+/*是否当前TableView style group*/
+@property (nonatomic, assign) BOOL          isGroup;
 
 
 + (instancetype)classViewController;

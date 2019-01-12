@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ZJCustomTabBar.h"
-//#import "XLBaseTableMJViewController.h"
 
 @protocol ZJChangeIndexDelegate;
 
