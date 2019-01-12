@@ -8,9 +8,6 @@
 #import <WebKit/WebKit.h>
 #import "BaseViewController.h"
 
-#import "NetWork_uploadApi.h"
-
-
 @interface BaseWKWebViewController : ZJBaseViewController <WKUIDelegate,WKNavigationDelegate,UIActionSheetDelegate>
 
 @property (nonatomic, copy) NSString *homeUrl; //当前WKWebView的一级页面地址

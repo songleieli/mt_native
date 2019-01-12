@@ -1,311 +1,360 @@
 //
-//  PersonalInformationViewController.m
+//  ZJMessageViewController.m
 //  CMPLjhMobile
 //
-//  Created by iOS开发 on 16/5/24.
+//  Created by lei song on 2016/11/8.
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
 #import "SettingViewController.h"
-//#import "PersonalInformationViewController.h"
-//#import "XLAboutViewController.h"
 
-@interface SettingViewController ()<UIAlertViewDelegate>
+@implementation MyViewTableViewSelectionModel
 
-@property(nonatomic,strong) UILabel * labelLoginIcon;
-@property(nonatomic,strong) UIImageView * loginIconImageView;
-@property(nonatomic,strong) UIImageView * nicknameArrowImageView;
-@property(nonatomic,strong) UIScrollView * scrollBg;
+
+@end
+
+
+@interface SettingViewController ()
+
 
 @end
 
 @implementation SettingViewController
 
--(void)dealloc{
-    NSLog(@"---------------%@ dealloc ",NSStringFromClass([self class]));
+- (NSMutableArray *)dataList{
+    
+    if (!_dataList) {
+        
+        _dataList = [[NSMutableArray alloc] init];
+        
+        int selectionCount = 5;
+        for (int i =0 ; i<selectionCount; i ++) {
+            MyViewTableViewSelectionModel *model = [[MyViewTableViewSelectionModel alloc] init];
+            switch (i) {
+                case 0:{
+                    model.selectTitle = @"账号";
+                    NSMutableArray *cellList = [[NSMutableArray alloc] init];
+                    for (int j =0 ; j<3; j ++) {
+                        MyViewTableViewCellModel *model = [[MyViewTableViewCellModel alloc] init];
+                        switch (j) {
+                            case 0:
+                                model.titleStr = @"编辑个人资料";
+                                model.imageStr = @"icon_m_s_lock";
+                                model.cellTag = MyCellTag_editor;
+                                break;
+                            case 1:
+                                model.titleStr = @"账号与安全";
+                                model.imageStr = @"icon_m_s_order";
+                                break;
+                            default:
+                                model.titleStr = @"隐私设置";
+                                model.imageStr = @"icon_m_s_lock";
+                                model.isShowLine = YES;
+                                break;
+                        }
+                        [cellList addObject:model];
+                    }
+                    model.cellList = cellList;
+                }
+                    break;
+                case 1:{
+                    model.selectTitle = @"通用";
+                    NSMutableArray *cellList = [[NSMutableArray alloc] init];
+                    for (int j =0 ; j<2; j ++) {
+                        MyViewTableViewCellModel *model = [[MyViewTableViewCellModel alloc] init];
+                        switch (j) {
+                            case 0:
+                                model.titleStr = @"通知设置";
+                                model.imageStr = @"icon_m_s_lock";
+                                break;
+                            case 1:
+                                model.titleStr = @"通用设置";
+                                model.imageStr = @"icon_m_s_lock";
+                                model.isShowLine = YES;
+                                break;
+                            default:
+                                break;
+                        }
+                        [cellList addObject:model];
+                    }
+                    model.cellList = cellList;
+                }
+                    break;
+                case 2:{
+                    model.selectTitle = @"钱包";
+                    NSMutableArray *cellList = [[NSMutableArray alloc] init];
+                    for (int j =0 ; j<4; j ++) {
+                        MyViewTableViewCellModel *model = [[MyViewTableViewCellModel alloc] init];
+                        switch (j) {
+                            case 0:
+                                model.titleStr = @"免流量看面条";
+                                model.imageStr = @"icon_m_s_order";
+                                break;
+                            case 1:
+                                model.titleStr = @"面条订单管理";
+                                model.imageStr = @"icon_m_s_order";
+                                break;
+                            case 2:
+                                model.titleStr = @"购物助手";
+                                model.imageStr = @"icon_m_s_order";
+                                break;
+                            default:
+                                model.titleStr = @"商品分享功能";
+                                model.imageStr = @"icon_m_s_order";
+                                model.isShowLine = YES;
+                                break;
+                        }
+                        [cellList addObject:model];
+                    }
+                    model.cellList = cellList;
+                }
+                    break;
+                case 3:{
+                    model.selectTitle = @"未成年保护";
+                    NSMutableArray *cellList = [[NSMutableArray alloc] init];
+                    for (int j =0 ; j<2; j ++) {
+                        MyViewTableViewCellModel *model = [[MyViewTableViewCellModel alloc] init];
+                        switch (j) {
+                            case 0:
+                                model.titleStr = @"时间锁";
+                                model.imageStr = @"icon_m_s_model";
+                                break;
+                            case 1:
+                                model.titleStr = @"青少年模式";
+                                model.imageStr = @"icon_m_s_model";
+                                model.isShowLine = YES;
+                                break;
+                            default:
+                                break;
+                        }
+                        [cellList addObject:model];
+                    }
+                    model.cellList = cellList;
+                }
+                    break;
+                case 4:{
+                    model.selectTitle = @"关于";
+                    NSMutableArray *cellList = [[NSMutableArray alloc] init];
+                    for (int j =0 ; j<8; j ++) {
+                        MyViewTableViewCellModel *model = [[MyViewTableViewCellModel alloc] init];
+                        switch (j) {
+                            case 0:
+                                model.titleStr = @"反馈与帮助";
+                                model.imageStr = @"icon_m_s_order";
+                                break;
+                            case 1:
+                                model.titleStr = @"社区自律公约";
+                                model.imageStr = @"icon_m_s_order";
+                                break;
+                            case 2:
+                                model.titleStr = @"用户协议";
+                                model.imageStr = @"icon_m_s_order";
+                                break;
+                            case 3:
+                                model.titleStr = @"隐私政策";
+                                model.imageStr = @"icon_m_s_order";
+                                break;
+                            case 4:
+                                model.titleStr = @"关于面条";
+                                model.imageStr = @"icon_m_s_order";
+                                model.cellTag = MyCellTag_about;
+                                break;
+                            case 5:
+                                model.titleStr = @"网络监测";
+                                model.imageStr = @"icon_m_s_order";
+                                break;
+                            case 6:
+                                model.titleStr = @"清理缓存";
+                                model.imageStr = @"icon_m_s_order";
+                                model.isShowLine = YES;
+                                model.cellTag = MyCellTag_cleanCache;
+                                break;
+                            case 7:
+                                model.titleStr = @"退出登录";
+                                model.imageStr = @"icon_m_s_order";
+                                model.cellTag = MyCellTag_logout;
+                                break;
+                            default:
+                                break;
+                        }
+                        [cellList addObject:model];
+                    }
+                    model.cellList = cellList;
+                }
+                    break;
+                default:
+                    break;
+            }
+            [_dataList addObject:model];
+        }
+    }
+    return _dataList;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
 -(void)initNavTitle{
-    [super initNavTitle];
+    self.isNavBackGroundHiden = NO;
+    self.lableNavTitle.textColor = [UIColor whiteColor];
+    self.lableNavTitle.font = [UIFont defaultBoldFontWithSize:16];
+    
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftButton.size = [UIView getSize_width:20 height:20];
+    leftButton.origin = [UIView getPoint_x:15.0f y:self.navBackGround.height -leftButton.height-11];
+    [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_titlebar_whiteback"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.btnLeft = leftButton;
+    
     self.title = @"设置";
 }
 
 - (void)viewDidLoad {
-    
-    self.isNavBackGroundHiden = NO;
-    
     [super viewDidLoad];
-    [self creatUI];
-}
-
--(void)creatUI{
-    self.view.backgroundColor = RGBFromColor(0xecedf1);
-    
-    self.scrollBg = [[UIScrollView alloc] init];
-    self.scrollBg.size = [UIView getSize_width:ScreenWidth height:ScreenHeight - kTabBarHeight_New];
-    self.scrollBg.origin = [UIView getPoint_x:0 y:self.navBackGround.bottom];
-    self.scrollBg.showsVerticalScrollIndicator = NO;
-    self.scrollBg.contentSize = CGSizeMake(self.scrollBg.width, ScreenHeight);
-    [self.view addSubview:self.scrollBg];
-    
-    
-    //编辑资料
-    UIView * viewEditInfo = [[UIView alloc]init];
-    viewEditInfo.size   =[UIView getSize_width:ScreenWidth height:sizeScale(66)];
-    viewEditInfo.origin =[UIView getPoint_x:0 y:0];
-    viewEditInfo.backgroundColor = [UIColor whiteColor];
-    [self.scrollBg addSubview:viewEditInfo];
-    
-    UILabel * lablescan = [[UILabel alloc]init];
-    lablescan.font = [UIFont defaultFontWithSize:sizeScale(14)];
-    lablescan.textColor = RGBFromColor(0x464952);
-    lablescan.text = @"编辑资料";
-    lablescan.left = 21;
-    lablescan.top = 0;
-    lablescan.size = [UIView getSize_width:100 height:viewEditInfo.height];
-    [viewEditInfo addSubview:lablescan];
-    
-    UIImageView * scanArrowImageView = [[UIImageView alloc]init];
-    scanArrowImageView.size = [UIView getSize_width:5 height:10];
-    scanArrowImageView.top = (viewEditInfo.height - scanArrowImageView.height)/2;
-    scanArrowImageView.left = viewEditInfo.width - 21 - scanArrowImageView.width;
-    scanArrowImageView.image = [UIImage imageNamed:@"command_left"];
-    [viewEditInfo addSubview:scanArrowImageView];
-    
-    UIButton * btnEditInfo = [[UIButton alloc]init];
-    btnEditInfo.size = [UIView getSize_width:viewEditInfo.width height:viewEditInfo.height];
-    btnEditInfo.origin = [UIView getPoint_x:0 y:0];
-    btnEditInfo.tag = 9010;
-    [btnEditInfo addTarget:self action:@selector(buttonClcik:) forControlEvents:UIControlEventTouchUpInside];
-    [viewEditInfo addSubview:btnEditInfo];
-    
-    UILabel * lableLineEditInfo = [[UILabel alloc]init];
-    lableLineEditInfo.backgroundColor = RGBFromColor(0xecedf1);
-    lableLineEditInfo.left = 0;
-    lableLineEditInfo.width = ScreenWidth;
-    lableLineEditInfo.height = 1;
-    lableLineEditInfo.top = viewEditInfo.height-1;
-    [viewEditInfo addSubview:lableLineEditInfo];
-    
-    
-    //修改密码
-    UIView * viewModifyPassword = [[UIView alloc]init];
-    viewModifyPassword.size   =[UIView getSize_width:ScreenWidth height:sizeScale(66)];
-    viewModifyPassword.origin =[UIView getPoint_x:0 y:viewEditInfo.bottom];
-    viewModifyPassword.backgroundColor = [UIColor whiteColor];
-    [self.scrollBg addSubview:viewModifyPassword];
-    
-    UILabel * lableModify = [[UILabel alloc]init];
-    lableModify.font = [UIFont defaultFontWithSize:sizeScale(14)];
-    lableModify.textColor = RGBFromColor(0x464952);
-    lableModify.text = @"修改登录密码";
-    lableModify.left = 21;
-    lableModify.top = 0;
-    lableModify.size = [UIView getSize_width:200 height:viewModifyPassword.height];
-
-    [viewModifyPassword addSubview:lableModify];
-    //
-    UIImageView * modifyPasswordGuide = [[UIImageView alloc]init];
-    modifyPasswordGuide.size = [UIView getSize_width:5 height:10];
-    modifyPasswordGuide.top = (viewModifyPassword.height - modifyPasswordGuide.height)/2;
-    modifyPasswordGuide.left = viewModifyPassword.width - 21 - modifyPasswordGuide.width;
-    modifyPasswordGuide.image = [UIImage imageNamed:@"command_left"];
-    [viewModifyPassword addSubview:modifyPasswordGuide];
-    
-    
-    UIButton * buttonModifyClear = [[UIButton alloc]init];
-    buttonModifyClear.size = [UIView getSize_width:ScreenWidth height:viewModifyPassword.height];
-    buttonModifyClear.origin = [UIView getPoint_x:0 y:0];
-    buttonModifyClear.tag = 9020;
-    [buttonModifyClear addTarget:self action:@selector(buttonClcik:) forControlEvents:UIControlEventTouchUpInside];
-    [viewModifyPassword addSubview:buttonModifyClear];
-    
-    
-    UILabel * lableLineModifyPassword = [[UILabel alloc]init];
-    lableLineModifyPassword.backgroundColor = RGBFromColor(0xecedf1);
-    lableLineModifyPassword.left = 0;
-    lableLineModifyPassword.width = ScreenWidth;
-    lableLineModifyPassword.height = 1;
-    lableLineModifyPassword.top = viewModifyPassword.height-1;
-    [viewModifyPassword addSubview:lableLineModifyPassword];
-    //test
-//    lableLineModifyPassword.backgroundColor = [UIColor redColor];
-    
-    
-    //修改密码
-    UIView * viewAbout = [[UIView alloc]init];
-    viewAbout.size   =[UIView getSize_width:ScreenWidth height:sizeScale(66)];
-    viewAbout.origin =[UIView getPoint_x:0 y:viewModifyPassword.bottom];
-    viewAbout.backgroundColor = [UIColor whiteColor];
-    [self.scrollBg addSubview:viewAbout];
-    
-    UILabel * lableAbout = [[UILabel alloc]init];
-    lableAbout.font = [UIFont defaultFontWithSize:sizeScale(14)];
-    lableAbout.textColor = RGBFromColor(0x464952);
-    lableAbout.text = @"关于我爱我乡";
-    lableAbout.left = 21;
-    lableAbout.top = 0;
-    lableAbout.size = [UIView getSize_width:200 height:viewAbout.height];
-    [viewAbout addSubview:lableAbout];
-    
-    UIImageView * imgAbout = [[UIImageView alloc]init];
-    imgAbout.size = [UIView getSize_width:5 height:10];
-    imgAbout.top = (viewAbout.height - imgAbout.height)/2;
-    imgAbout.left = viewAbout.width - 21 - imgAbout.width;
-    imgAbout.image = [UIImage imageNamed:@"command_left"];
-    [viewAbout addSubview:imgAbout];
-    
-    
-    UIButton * btnAbout = [[UIButton alloc]init];
-    btnAbout.size = [UIView getSize_width:ScreenWidth height:viewAbout.height];
-    btnAbout.origin = [UIView getPoint_x:0 y:0];
-    btnAbout.tag = 9030;
-    [btnAbout addTarget:self action:@selector(buttonClcik:) forControlEvents:UIControlEventTouchUpInside];
-    [viewAbout addSubview:btnAbout];
-    
-    
-    UILabel * lableLineAbout = [[UILabel alloc]init];
-    lableLineAbout.backgroundColor = RGBFromColor(0xecedf1);
-    lableLineAbout.left = 0;
-    lableLineAbout.width = ScreenWidth;
-    lableLineAbout.height = 1;
-    lableLineAbout.top = viewAbout.height-1;
-    [viewAbout addSubview:lableLineAbout];
-    
-    // 检测新版本
-    UIView * viewVersion = [[UIView alloc]init];
-    viewVersion.size   =[UIView getSize_width:ScreenWidth height:sizeScale(66)];
-    viewVersion.origin =[UIView getPoint_x:0 y:viewAbout.bottom];
-    viewVersion.backgroundColor = [UIColor whiteColor];
-    [self.scrollBg addSubview:viewVersion];
-    
-    UILabel * lableVersion = [[UILabel alloc]init];
-    lableVersion.font = [UIFont defaultFontWithSize:sizeScale(14)];
-    lableVersion.textColor = RGBFromColor(0x464952);
-    lableVersion.text = @"检测新版本";
-    lableVersion.left = 21;
-    lableVersion.top = 0;
-    lableVersion.size = [UIView getSize_width:200 height:viewVersion.height];
-    [viewVersion addSubview:lableVersion];
-    
-    UIImageView * imgVersion = [[UIImageView alloc]init];
-    imgVersion.size = [UIView getSize_width:5 height:10];
-    imgVersion.top = (viewVersion.height - imgVersion.height)/2;
-    imgVersion.left = viewVersion.width - 21 - imgVersion.width;
-    imgVersion.image = [UIImage imageNamed:@"command_left"];
-    [viewVersion addSubview:imgVersion];
-    
-    
-    UIButton * btnVersion = [[UIButton alloc]init];
-    btnVersion.size = [UIView getSize_width:ScreenWidth height:viewVersion.height];
-    btnVersion.origin = [UIView getPoint_x:0 y:0];
-    btnVersion.tag = 9050;
-    [btnVersion addTarget:self action:@selector(buttonClcik:) forControlEvents:UIControlEventTouchUpInside];
-    [viewVersion addSubview:btnVersion];
-    
-    
-    UILabel * lableLineVersion = [[UILabel alloc]init];
-    lableLineVersion.backgroundColor = RGBFromColor(0xecedf1);
-    lableLineVersion.left = 0;
-    lableLineVersion.width = ScreenWidth;
-    lableLineVersion.height = 1;
-    lableLineVersion.top = viewVersion.height-1;
-    [viewVersion addSubview:lableLineVersion];
-    
-    [self thirdBinding:viewVersion];
+    [self setUpUI];
 }
 
 
--(void)buttonClcik:(UIButton *)btn{
+#pragma -mark ------- CustomMethod -------------
+
+-(void)setUpUI{
     
-    if(btn.tag == 9010){ //编辑资料
+    self.view.backgroundColor = ColorThemeBackground;
+    self.isGroup = YES;
+    [self.view addSubview:self.mainTableView];
+    
+    
+    NSInteger tableViewHeight = ScreenHeight - kNavBarHeight_New;
+    self.mainTableView.size = [UIView getSize_width:ScreenWidth height:tableViewHeight];
+    self.mainTableView.origin = [UIView getPoint_x:0 y:kNavBarHeight_New];
+    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.mainTableView.delegate = self;
+    self.mainTableView.dataSource = self;
+    self.mainTableView.backgroundColor = ColorThemeBackground;
+    
+    //    self.tableView.mj_header.mj_h = 30;
+    self.mainTableView.mj_header.backgroundColor = ColorThemeBackground;
+    self.mainTableView.mj_footer.hidden = YES;
+    //    self.mainTableView.tableHeaderView = [self getHeadView];
+    self.mainTableView.tableFooterView = [self getFooterView];
+}
+
+
+-(UIView*)getFooterView{
+    UIView *viewFooter = [[UIView alloc] init];
+    viewFooter.size = [UIView getSize_width:ScreenWidth height:70];
+    viewFooter.backgroundColor = ColorThemeBackground;
+    
+    
+    UILabel *lableSelection = [[UILabel alloc] init];
+    lableSelection.size = [UIView getSize_width:ScreenWidth height:40];
+    lableSelection.origin = [UIView getPoint_x:(viewFooter.width - lableSelection.width)/2
+                                             y:(viewFooter.height - lableSelection.height)/2];
+    lableSelection.font = [UIFont defaultFontWithSize:13];
+    lableSelection.textAlignment = NSTextAlignmentCenter;
+    lableSelection.textColor = RGBA(132, 135, 144, 1);
+    [viewFooter addSubview:lableSelection];
+    
+    lableSelection.text = @"面条 version 1.0";
+    
+    return viewFooter;
+}
+
+-(void)backBtnClick:(UIButton*)btn{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - 数据加载代理
+-(void)loadNewData{
+    [self.mainTableView.mj_header endRefreshing];
+}
+
+
+#pragma mark - 设置tabbleView的代理
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.dataList.count;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    MyViewTableViewSelectionModel *selectionModel = [self.dataList objectAtIndex:section];
+
+    UIView* view = [[UIView alloc] init];
+    UILabel *lableSelection = [[UILabel alloc] init];
+    lableSelection.size = [UIView getSize_width:ScreenWidth height:40];
+    lableSelection.origin = [UIView getPoint_x:15 y:0];
+    lableSelection.font = [UIFont defaultBoldFontWithSize:13];
+    lableSelection.textColor = RGBA(132, 135, 144, 1);
+    [view addSubview:lableSelection];
+    
+    lableSelection.text = selectionModel.selectTitle;
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 40 ;
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView* view = [[UIView alloc] init];
+//    view.backgroundColor = [UIColor clearColor];
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.1;
+}
+
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+   MyViewTableViewSelectionModel *selectionModel = [self.dataList objectAtIndex:section];
+    return selectionModel.cellList.count;
+}
+
+//设置cell的样式
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    MyViewTableViewSelectionModel *selectionModel = [self.dataList objectAtIndex:indexPath.section];
+    MyViewTableViewCellModel* cellModel = [selectionModel.cellList objectAtIndex:indexPath.row];
+    MyViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[MyViewTableViewCell cellId]];
+    if(!cell){
+        cell = [[MyViewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[MyViewTableViewCell cellId] ];
+        cell.myCellDelegate = self;
+    }
+    [cell dataBind:cellModel];
+    return cell;
+}
+//设置每一组的高度
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return MyViewTableViewCellHeight;
+}
+
+#pragma - mark cell 点击事件
+
+-(void)myCellClick:(MyViewTableViewCellModel*)model{
+    
+    if(model.cellTag == MyCellTag_editor){
+        NSLog(@"--------编辑个人资料-------");
         
-        NSLog(@"------------");
-        
-//        PersonalInformationViewController *personalInformationViewController = [[PersonalInformationViewController alloc] init];
-//        [self pushNewVC:personalInformationViewController animated:YES];
+        PersonalInformationViewController *personalInformationViewController = [[PersonalInformationViewController alloc] init];
+        [self pushNewVC:personalInformationViewController animated:YES];
         
     }
-    else if (btn.tag == 9020){ //修改登录密码
-        
-//        ModifyPasswordViewController *modifyPasswordViewController = [[ModifyPasswordViewController alloc] init];
-//        [self pushNewVC:modifyPasswordViewController animated:YES];
-        
+    else if (model.cellTag == MyCellTag_about){
+        NSLog(@"--------关于-------");
+
     }
-    else if(btn.tag == 9030){//关于我爱我乡
-//        [self.navigationController pushViewController:[[XLAboutViewController alloc] init] animated:YES];
-    }
-    else if(btn.tag == 9040){ //退出
+    else if (model.cellTag == MyCellTag_logout){
+        NSLog(@"--------退出登录-------");
         
         [GlobalData cleanAccountInfo];
-        [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationUserLoginSuccess
-                                                            object:nil];
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    else if(btn.tag == 9050){ // 检测新版本
-        [self checkVersion];
+        [[CMPZjLifeMobileAppDelegate shareApp].rootViewController selectTabAtIndex:0];
     }
 }
-
-- (void)checkVersion {
-    [SVProgressHUD showErrorWithStatus:@"App Store应用地址缺失"];
-/*
-    NSString *urlString = @"http://itunes.apple.com/lookup?id=1295166"; //自己应用在App Store里的地址
-
-    NSURL *url = [NSURL URLWithString:urlString];//这个URL地址是该app在iTunes connect里面的相关配置信息。其中id是该app在app store唯一的ID编号。
-
-    NSString *jsonResponseString = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
-
-    NSData *data = [jsonResponseString dataUsingEncoding:NSUTF8StringEncoding];
-
-    id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-
-    NSArray *array = json[@"results"];
-    for (NSDictionary *dic in array) {
-        NSString *newVersion =[dic valueForKey:@"version"]; // appStore 的版本号
-    }
-    */
-}
-
-- (void)thirdBinding:(UIView*)lastview{
-    
-    //  微信绑定
-    UIView * wechatView = [[UIView alloc]init];
-    wechatView.size   =[UIView getSize_width:ScreenWidth height:sizeScale(46)];
-    wechatView.origin =[UIView getPoint_x:0 y:lastview.bottom+12];
-    wechatView.backgroundColor = [UIColor whiteColor];
-    [self.scrollBg addSubview:wechatView];
-    
-    UILabel * lableModify = [[UILabel alloc]init];
-    lableModify.font = [UIFont defaultFontWithSize:sizeScale(14)];
-    lableModify.textColor = RGBFromColor(0x464952);
-    lableModify.text = @"退出";
-    
-    CGSize lableModifySize = [lableModify.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:lableModify.font,NSFontAttributeName, nil]];
-    lableModify.size = [UIView getSize_width:lableModifySize.width height:lableModifySize.height];
-    lableModify.left = (wechatView.width - lableModify.width)/2;
-    lableModify.top = (wechatView.height - lableModify.height)/2;
-    [wechatView addSubview:lableModify];
-    
-    
-    UIButton * btnExit = [[UIButton alloc]init];
-    btnExit.size = [UIView getSize_width:ScreenWidth height:wechatView.height];
-    btnExit.origin = [UIView getPoint_x:0 y:0];
-    btnExit.tag = 9040;
-    [btnExit addTarget:self action:@selector(buttonClcik:) forControlEvents:UIControlEventTouchUpInside];
-    [wechatView addSubview:btnExit];
-    
-//    btnExit.backgroundColor = [UIColor redColor];
-}
-
-
-
-
-
 
 @end

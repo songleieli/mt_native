@@ -25,7 +25,6 @@
 		0402A46421C4C94800C35CA9 /* NSAttributedString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402A46321C4C94800C35CA9 /* NSAttributedString+Extension.m */; };
 		0402A46D21C4FE1E00C35CA9 /* NetWork_mt_getLikeVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402A46B21C4FE1D00C35CA9 /* NetWork_mt_getLikeVideoList.m */; };
 		0403662021C3A5D1000FDC5E /* CommentsPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661E21C3A5D1000FDC5E /* CommentsPopView.m */; };
-		040D77502183103C00E008F2 /* NetWork_registerAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 040D774E2183103C00E008F2 /* NetWork_registerAccount.m */; };
 		040E28AD21C0AA4900D15B44 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040E28AC21C0AA4900D15B44 /* UserInfoViewController.m */; };
 		040E28B021C0D7F100D15B44 /* HoverViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 040E28AF21C0D7F000D15B44 /* HoverViewFlowLayout.m */; };
 		040E28B721C0E20200D15B44 /* UserInfoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 040E28B121C0E20000D15B44 /* UserInfoHeader.m */; };
@@ -54,6 +53,11 @@
 		04183B1921C2C09600383E3F /* Callback_userInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183B1421C2C09600383E3F /* Callback_userInfo.m */; };
 		041D43EC21536CA900250555 /* VoiceAnimationHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 041D43EB21536CA900250555 /* VoiceAnimationHUD.m */; };
 		04274C7020EDC5CC00D4B5E2 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04274C6E20EDC5CC00D4B5E2 /* iCarousel.m */; };
+		0434BDD221E9E1560059A28C /* PersonalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434BDD121E9E1560059A28C /* PersonalInformationViewController.m */; };
+		0434BDD521E9E1B10059A28C /* NickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434BDD321E9E1B10059A28C /* NickNameViewController.m */; };
+		0434BDD821E9E1E80059A28C /* IntroduceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434BDD621E9E1E80059A28C /* IntroduceViewController.m */; };
+		0434BDDC21EA000B0059A28C /* NetWork_mt_updateNoodelHead.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434BDDB21EA000B0059A28C /* NetWork_mt_updateNoodelHead.m */; };
+		0434BDDF21EA05E90059A28C /* NetWork_mt_updateNoodleAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434BDDE21EA05E90059A28C /* NetWork_mt_updateNoodleAccount.m */; };
 		04352BC221BBA6AA005F60E1 /* NetWork_mt_likeVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04352BC121BBA6A9005F60E1 /* NetWork_mt_likeVideo.m */; };
 		043548EC21A79ED700AED5A8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 043548EB21A79ED700AED5A8 /* Localizable.strings */; };
 		0435491921A7E9AC00AED5A8 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 043548F221A7E9AC00AED5A8 /* UIProgressView+AFNetworking.m */; };
@@ -72,7 +76,6 @@
 		0435493321A7E9AC00AED5A8 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435491121A7E9AC00AED5A8 /* AFNetworkReachabilityManager.m */; };
 		0435493521A7E9AC00AED5A8 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435491221A7E9AC00AED5A8 /* AFSecurityPolicy.m */; };
 		0435493821A7FF0100AED5A8 /* FilterResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0435493721A7FF0100AED5A8 /* FilterResource.bundle */; };
-		0441A1FC214660BE0077EA1F /* NetWork_login.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441A1FA214660BE0077EA1F /* NetWork_login.m */; };
 		0441A283214670500077EA1F /* UITextFeildCustrom.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441A281214670500077EA1F /* UITextFeildCustrom.m */; };
 		0441FA1A21CF3E8100801225 /* MenuPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441FA1821CF3E8100801225 /* MenuPopView.m */; };
 		0441FA1D21CF3ED200801225 /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441FA1C21CF3ED200801225 /* CircleProgressView.m */; };
@@ -88,8 +91,6 @@
 		04468F17214B8F14002F4528 /* ZJCustomTabWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04468F16214B8F14002F4528 /* ZJCustomTabWebController.m */; };
 		0449AB6A2181BBF100D6172D /* ZJLoginService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449AB642181BBF100D6172D /* ZJLoginService.m */; };
 		0449AB6C2181BBF100D6172D /* ZJLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449AB682181BBF100D6172D /* ZJLoginViewController.m */; };
-		0449AB722181C84700D6172D /* NetWork_getSonElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449AB702181C84700D6172D /* NetWork_getSonElement.m */; };
-		0449AB772181D41C00D6172D /* AreaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449AB752181D41B00D6172D /* AreaCell.m */; };
 		044F0354217EC324007D88DF /* MJRefreshBackGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 044F0351217EC324007D88DF /* MJRefreshBackGifFooter.m */; };
 		044F0355217EC324007D88DF /* MJRefreshBackStateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 044F0352217EC324007D88DF /* MJRefreshBackStateFooter.m */; };
 		044F0356217EC324007D88DF /* MJRefreshBackNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 044F0353217EC324007D88DF /* MJRefreshBackNormalFooter.m */; };
@@ -104,11 +105,8 @@
 		0482F27221BFCA7C00587B38 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0482F26021BFCA7B00587B38 /* MASConstraint.m */; };
 		0482F27421BFCA7C00587B38 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0482F26221BFCA7B00587B38 /* MASViewConstraint.m */; };
 		0482F27621BFCA7C00587B38 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 0482F26321BFCA7B00587B38 /* MASViewAttribute.m */; };
-		048462C52147570E00A30F5E /* NetWork_uploadApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 048462C32147570E00A30F5E /* NetWork_uploadApi.m */; };
-		0487EBBA21E89ADE00501B9C /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487EBB821E89ADD00501B9C /* MyViewController.m */; };
-		0487EBBB21E89ADE00501B9C /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487EBB921E89ADD00501B9C /* SettingViewController.m */; };
+		0487EBBA21E89ADE00501B9C /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487EBB821E89ADD00501B9C /* SettingViewController.m */; };
 		0487EBBF21E89C2900501B9C /* MyViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487EBBD21E89C2900501B9C /* MyViewTableViewCell.m */; };
-		0490D56E2150F4C10047E7D6 /* NetWork_uploadIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 0490D56D2150F4C10047E7D6 /* NetWork_uploadIcon.m */; };
 		04A919A021E4EA7A002DDB1A /* NetWork_mt_getFollowsVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A9199E21E4EA7A002DDB1A /* NetWork_mt_getFollowsVideoList.m */; };
 		04A919A421E4F045002DDB1A /* FollowsVideoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A919A321E4F044002DDB1A /* FollowsVideoListCell.m */; };
 		04AB303F21CA91310072808E /* GKDouyinHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB303921CA91310072808E /* GKDouyinHomeViewController.m */; };
@@ -429,7 +427,6 @@
 		04CBC4912179C01300658E47 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 04CBC23B2179C01200658E47 /* LICENSE */; };
 		04CBC4932179C01300658E47 /* README.mdown in Resources */ = {isa = PBXBuildFile; fileRef = 04CBC23D2179C01200658E47 /* README.mdown */; };
 		04CBC4BF2179C01300658E47 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC2722179C01200658E47 /* UINavigationController+FDFullscreenPopGesture.m */; };
-		04CD35C4217F21E60041E0A8 /* NetWork_adminLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CD35C3217F21E60041E0A8 /* NetWork_adminLogin.m */; };
 		04D9B4C821D327B300DEC8B9 /* NetWork_mt_getFollows.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9B4C621D327B300DEC8B9 /* NetWork_mt_getFollows.m */; };
 		04D9B4CE21D343A400DEC8B9 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9B4CC21D343A300DEC8B9 /* MessageCell.m */; };
 		04DCA79F21927B2D00CB22A2 /* XLGCBodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA79E21927B2D00CB22A2 /* XLGCBodyView.m */; };
@@ -1006,8 +1003,6 @@
 		0402A46C21C4FE1E00C35CA9 /* NetWork_mt_getLikeVideoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getLikeVideoList.h; sourceTree = "<group>"; };
 		0403661E21C3A5D1000FDC5E /* CommentsPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsPopView.m; sourceTree = "<group>"; };
 		0403661F21C3A5D1000FDC5E /* CommentsPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsPopView.h; sourceTree = "<group>"; };
-		040D774E2183103C00E008F2 /* NetWork_registerAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_registerAccount.m; sourceTree = "<group>"; };
-		040D774F2183103C00E008F2 /* NetWork_registerAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_registerAccount.h; sourceTree = "<group>"; };
 		040E28AB21C0AA4900D15B44 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
 		040E28AC21C0AA4900D15B44 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		040E28AE21C0D7F000D15B44 /* HoverViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoverViewFlowLayout.h; sourceTree = "<group>"; };
@@ -1062,6 +1057,16 @@
 		04274C6E20EDC5CC00D4B5E2 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		04274C6F20EDC5CC00D4B5E2 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		042B5B1F20F19F1200382BA7 /* ZJCustomTabBarLjhTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCustomTabBarLjhTableViewController.h; sourceTree = "<group>"; };
+		0434BDD021E9E1560059A28C /* PersonalInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInformationViewController.h; sourceTree = "<group>"; };
+		0434BDD121E9E1560059A28C /* PersonalInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInformationViewController.m; sourceTree = "<group>"; };
+		0434BDD321E9E1B10059A28C /* NickNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NickNameViewController.m; sourceTree = "<group>"; };
+		0434BDD421E9E1B10059A28C /* NickNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NickNameViewController.h; sourceTree = "<group>"; };
+		0434BDD621E9E1E80059A28C /* IntroduceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroduceViewController.m; sourceTree = "<group>"; };
+		0434BDD721E9E1E80059A28C /* IntroduceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceViewController.h; sourceTree = "<group>"; };
+		0434BDDA21EA000B0059A28C /* NetWork_mt_updateNoodelHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_updateNoodelHead.h; sourceTree = "<group>"; };
+		0434BDDB21EA000B0059A28C /* NetWork_mt_updateNoodelHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_updateNoodelHead.m; sourceTree = "<group>"; };
+		0434BDDD21EA05E80059A28C /* NetWork_mt_updateNoodleAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_updateNoodleAccount.h; sourceTree = "<group>"; };
+		0434BDDE21EA05E90059A28C /* NetWork_mt_updateNoodleAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_updateNoodleAccount.m; sourceTree = "<group>"; };
 		04352BC021BBA6A9005F60E1 /* NetWork_mt_likeVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_likeVideo.h; sourceTree = "<group>"; };
 		04352BC121BBA6A9005F60E1 /* NetWork_mt_likeVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_likeVideo.m; sourceTree = "<group>"; };
 		043548EB21A79ED700AED5A8 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -1102,8 +1107,6 @@
 		0435491321A7E9AC00AED5A8 /* AFCompatibilityMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFCompatibilityMacros.h; sourceTree = "<group>"; };
 		0435491421A7E9AC00AED5A8 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		0435493721A7FF0100AED5A8 /* FilterResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FilterResource.bundle; sourceTree = "<group>"; };
-		0441A1FA214660BE0077EA1F /* NetWork_login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_login.m; sourceTree = "<group>"; };
-		0441A1FB214660BE0077EA1F /* NetWork_login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_login.h; sourceTree = "<group>"; };
 		0441A281214670500077EA1F /* UITextFeildCustrom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextFeildCustrom.m; sourceTree = "<group>"; };
 		0441A282214670500077EA1F /* UITextFeildCustrom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextFeildCustrom.h; sourceTree = "<group>"; };
 		0441FA1821CF3E8100801225 /* MenuPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuPopView.m; sourceTree = "<group>"; };
@@ -1134,10 +1137,6 @@
 		0449AB652181BBF100D6172D /* ZJLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJLoginViewController.h; sourceTree = "<group>"; };
 		0449AB672181BBF100D6172D /* ZJLoginService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJLoginService.h; sourceTree = "<group>"; };
 		0449AB682181BBF100D6172D /* ZJLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJLoginViewController.m; sourceTree = "<group>"; };
-		0449AB702181C84700D6172D /* NetWork_getSonElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_getSonElement.m; sourceTree = "<group>"; };
-		0449AB712181C84700D6172D /* NetWork_getSonElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_getSonElement.h; sourceTree = "<group>"; };
-		0449AB752181D41B00D6172D /* AreaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaCell.m; sourceTree = "<group>"; };
-		0449AB762181D41B00D6172D /* AreaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaCell.h; sourceTree = "<group>"; };
 		044F034E217EC324007D88DF /* MJRefreshBackGifFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackGifFooter.h; sourceTree = "<group>"; };
 		044F034F217EC324007D88DF /* MJRefreshBackStateFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackStateFooter.h; sourceTree = "<group>"; };
 		044F0350217EC324007D88DF /* MJRefreshBackNormalFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackNormalFooter.h; sourceTree = "<group>"; };
@@ -1171,16 +1170,10 @@
 		0482F26121BFCA7B00587B38 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		0482F26221BFCA7B00587B38 /* MASViewConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewConstraint.m; sourceTree = "<group>"; };
 		0482F26321BFCA7B00587B38 /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
-		048462C32147570E00A30F5E /* NetWork_uploadApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_uploadApi.m; sourceTree = "<group>"; };
-		048462C42147570E00A30F5E /* NetWork_uploadApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_uploadApi.h; sourceTree = "<group>"; };
-		0487EBB621E89ADD00501B9C /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
-		0487EBB721E89ADD00501B9C /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
-		0487EBB821E89ADD00501B9C /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
-		0487EBB921E89ADD00501B9C /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		0487EBB721E89ADD00501B9C /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		0487EBB821E89ADD00501B9C /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		0487EBBD21E89C2900501B9C /* MyViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewTableViewCell.m; sourceTree = "<group>"; };
 		0487EBBE21E89C2900501B9C /* MyViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewTableViewCell.h; sourceTree = "<group>"; };
-		0490D56C2150F4C10047E7D6 /* NetWork_uploadIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_uploadIcon.h; sourceTree = "<group>"; };
-		0490D56D2150F4C10047E7D6 /* NetWork_uploadIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_uploadIcon.m; sourceTree = "<group>"; };
 		0495106C2182B00A0005F615 /* NSDate+TimeCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+TimeCategory.h"; sourceTree = "<group>"; };
 		0495106D2182B00A0005F615 /* NSDate+TimeCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TimeCategory.m"; sourceTree = "<group>"; };
 		049E96F221521BB700AE2263 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
@@ -1824,8 +1817,6 @@
 		04CBC23D2179C01200658E47 /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.mdown; sourceTree = "<group>"; };
 		04CBC2712179C01200658E47 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
 		04CBC2722179C01200658E47 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
-		04CD35C2217F21E60041E0A8 /* NetWork_adminLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_adminLogin.h; sourceTree = "<group>"; };
-		04CD35C3217F21E60041E0A8 /* NetWork_adminLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_adminLogin.m; sourceTree = "<group>"; };
 		04D9B4C621D327B300DEC8B9 /* NetWork_mt_getFollows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getFollows.m; sourceTree = "<group>"; };
 		04D9B4C721D327B300DEC8B9 /* NetWork_mt_getFollows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getFollows.h; sourceTree = "<group>"; };
 		04D9B4CC21D343A300DEC8B9 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
@@ -2731,6 +2722,17 @@
 			path = iCarousel;
 			sourceTree = "<group>";
 		};
+		0434BDD921EA000B0059A28C /* mt_editPersonal */ = {
+			isa = PBXGroup;
+			children = (
+				0434BDDA21EA000B0059A28C /* NetWork_mt_updateNoodelHead.h */,
+				0434BDDB21EA000B0059A28C /* NetWork_mt_updateNoodelHead.m */,
+				0434BDDD21EA05E80059A28C /* NetWork_mt_updateNoodleAccount.h */,
+				0434BDDE21EA05E90059A28C /* NetWork_mt_updateNoodleAccount.m */,
+			);
+			path = mt_editPersonal;
+			sourceTree = "<group>";
+		};
 		043548EE21A7E9AC00AED5A8 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -2788,21 +2790,6 @@
 				0435491421A7E9AC00AED5A8 /* AFHTTPSessionManager.h */,
 			);
 			path = AFNetworking;
-			sourceTree = "<group>";
-		};
-		0441A1F9214660BE0077EA1F /* User */ = {
-			isa = PBXGroup;
-			children = (
-				0441A1FB214660BE0077EA1F /* NetWork_login.h */,
-				0441A1FA214660BE0077EA1F /* NetWork_login.m */,
-				0490D56C2150F4C10047E7D6 /* NetWork_uploadIcon.h */,
-				0490D56D2150F4C10047E7D6 /* NetWork_uploadIcon.m */,
-				0449AB712181C84700D6172D /* NetWork_getSonElement.h */,
-				0449AB702181C84700D6172D /* NetWork_getSonElement.m */,
-				040D774F2183103C00E008F2 /* NetWork_registerAccount.h */,
-				040D774E2183103C00E008F2 /* NetWork_registerAccount.m */,
-			);
-			path = User;
 			sourceTree = "<group>";
 		};
 		0441A280214670500077EA1F /* CustromUItextFeild */ = {
@@ -2874,22 +2861,12 @@
 		0449AB632181BBF100D6172D /* MTLoginService */ = {
 			isa = PBXGroup;
 			children = (
-				0449AB742181D41B00D6172D /* views */,
 				0449AB672181BBF100D6172D /* ZJLoginService.h */,
 				0449AB642181BBF100D6172D /* ZJLoginService.m */,
 				0449AB652181BBF100D6172D /* ZJLoginViewController.h */,
 				0449AB682181BBF100D6172D /* ZJLoginViewController.m */,
 			);
 			path = MTLoginService;
-			sourceTree = "<group>";
-		};
-		0449AB742181D41B00D6172D /* views */ = {
-			isa = PBXGroup;
-			children = (
-				0449AB762181D41B00D6172D /* AreaCell.h */,
-				0449AB752181D41B00D6172D /* AreaCell.m */,
-			);
-			path = views;
 			sourceTree = "<group>";
 		};
 		044F034D217EC324007D88DF /* Back */ = {
@@ -2937,23 +2914,18 @@
 			path = Masonry;
 			sourceTree = "<group>";
 		};
-		048462C22147570E00A30F5E /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				048462C42147570E00A30F5E /* NetWork_uploadApi.h */,
-				048462C32147570E00A30F5E /* NetWork_uploadApi.m */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		0487EBB521E89ADD00501B9C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				0487EBBC21E89C2900501B9C /* Views */,
-				0487EBB721E89ADD00501B9C /* MyViewController.h */,
-				0487EBB821E89ADD00501B9C /* MyViewController.m */,
-				0487EBB621E89ADD00501B9C /* SettingViewController.h */,
-				0487EBB921E89ADD00501B9C /* SettingViewController.m */,
+				0487EBB721E89ADD00501B9C /* SettingViewController.h */,
+				0487EBB821E89ADD00501B9C /* SettingViewController.m */,
+				0434BDD021E9E1560059A28C /* PersonalInformationViewController.h */,
+				0434BDD121E9E1560059A28C /* PersonalInformationViewController.m */,
+				0434BDD421E9E1B10059A28C /* NickNameViewController.h */,
+				0434BDD321E9E1B10059A28C /* NickNameViewController.m */,
+				0434BDD721E9E1E80059A28C /* IntroduceViewController.h */,
+				0434BDD621E9E1E80059A28C /* IntroduceViewController.m */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -3228,8 +3200,8 @@
 		04C1720821CE3EC80077FA6C /* mt_login */ = {
 			isa = PBXGroup;
 			children = (
-				04C1720921CE3EC80077FA6C /* NetWork_mt_login.m */,
 				04C1720A21CE3EC80077FA6C /* NetWork_mt_login.h */,
+				04C1720921CE3EC80077FA6C /* NetWork_mt_login.m */,
 			);
 			path = mt_login;
 			sourceTree = "<group>";
@@ -3981,15 +3953,6 @@
 			path = FDFullscreenPopGesture;
 			sourceTree = "<group>";
 		};
-		04CD35C1217F1FC40041E0A8 /* CRM */ = {
-			isa = PBXGroup;
-			children = (
-				04CD35C2217F21E60041E0A8 /* NetWork_adminLogin.h */,
-				04CD35C3217F21E60041E0A8 /* NetWork_adminLogin.m */,
-			);
-			path = CRM;
-			sourceTree = "<group>";
-		};
 		04D9B4CB21D343A300DEC8B9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -4687,6 +4650,7 @@
 		7375C1FA1CE5660C0059974F /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
+				0434BDD921EA000B0059A28C /* mt_editPersonal */,
 				04A9199D21E4EA7A002DDB1A /* mt_follow */,
 				04C70D2C21E3A7C90022D897 /* mt_message */,
 				04F5E89C21CE8DD100781FCD /* mt_collection */,
@@ -4696,9 +4660,6 @@
 				04C1720021CE3EC70077FA6C /* mt_music */,
 				04C171F221CE3EC70077FA6C /* mt_personal */,
 				04C171FD21CE3EC70077FA6C /* mt_video */,
-				04CD35C1217F1FC40041E0A8 /* CRM */,
-				048462C22147570E00A30F5E /* Common */,
-				0441A1F9214660BE0077EA1F /* User */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -5947,7 +5908,6 @@
 				04CBC4232179C01300658E47 /* GPUImageDirectionalNonMaximumSuppressionFilter.m in Sources */,
 				D954C4D91DD1A40F003CA535 /* BaseCollectionController.m in Sources */,
 				04B0E1FA21A6937600ABCF16 /* MFMessageComposeViewController+BlocksKit.m in Sources */,
-				040D77502183103C00E008F2 /* NetWork_registerAccount.m in Sources */,
 				0435492B21A7E9AC00AED5A8 /* AFURLResponseSerialization.m in Sources */,
 				D954C4DF1DD1A40F003CA535 /* UIView+Hierarchy.m in Sources */,
 				D957AD571DD2CB2F00B7EE09 /* IQUIViewController+Additions.m in Sources */,
@@ -6000,6 +5960,7 @@
 				04CBC2D32179C01200658E47 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				04CBC35D2179C01300658E47 /* GPUImagePixellatePositionFilter.m in Sources */,
 				04443E9021B3F91400C8DD34 /* XLPlayerListViewController.m in Sources */,
+				0434BDDC21EA000B0059A28C /* NetWork_mt_updateNoodelHead.m in Sources */,
 				04CBC2FD2179C01200658E47 /* BBVoiceRecordController.m in Sources */,
 				04CBC34B2179C01300658E47 /* GPUImageEmbossFilter.m in Sources */,
 				040208FD21D3CF0500765F06 /* NetWork_mt_getFlours.m in Sources */,
@@ -6072,7 +6033,6 @@
 				04DCA8D721A565D500691A3A /* TCVideoCutViewController.m in Sources */,
 				04AB304A21CA92B10072808E /* UINavigationController+GKCategory.m in Sources */,
 				D9F86D921DEBEE7600C3A2B6 /* LxGridViewFlowLayout.m in Sources */,
-				0441A1FC214660BE0077EA1F /* NetWork_login.m in Sources */,
 				04CBC3AB2179C01300658E47 /* GLProgram.m in Sources */,
 				D9F86DC51DEBEE7600C3A2B6 /* TZAssetCell.m in Sources */,
 				04B0E1E221A6937600ABCF16 /* NSMutableIndexSet+BlocksKit.m in Sources */,
@@ -6090,7 +6050,6 @@
 				04CBC33F2179C01300658E47 /* GPUImageGaussianBlurPositionFilter.m in Sources */,
 				04CBC38F2179C01300658E47 /* GPUImageOpeningFilter.m in Sources */,
 				04CBC2832179C01200658E47 /* NSBundle+MJRefresh.m in Sources */,
-				0449AB772181D41C00D6172D /* AreaCell.m in Sources */,
 				04CBC3712179C01300658E47 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
 				D9D19BFE1E272F32009C52A8 /* AlerViewJoinCostom.m in Sources */,
 				04DCA88F21A5623500691A3A /* TCLoginParam.m in Sources */,
@@ -6148,7 +6107,7 @@
 				04CBC3572179C01300658E47 /* GPUImageFASTCornerDetectionFilter.m in Sources */,
 				D98FCFB51DEFC3080023C076 /* STPickerSingle.m in Sources */,
 				040E28AD21C0AA4900D15B44 /* UserInfoViewController.m in Sources */,
-				0487EBBB21E89ADE00501B9C /* SettingViewController.m in Sources */,
+				0434BDD521E9E1B10059A28C /* NickNameViewController.m in Sources */,
 				04CBC42F2179C01300658E47 /* GPUImageTwoInputCrossTextureSamplingFilter.m in Sources */,
 				D9BD11B51F02B134006CE841 /* WYPopoverController.m in Sources */,
 				04C2615121A68FB200374E4D /* Label.m in Sources */,
@@ -6177,6 +6136,7 @@
 				04CBC33D2179C01300658E47 /* GPUImageTwoPassFilter.m in Sources */,
 				04DCA88221A55C5B00691A3A /* TVCClientInner.m in Sources */,
 				04183B0221C2BC2200383E3F /* SwitchPlayerMaskView.m in Sources */,
+				0434BDDF21EA05E90059A28C /* NetWork_mt_updateNoodleAccount.m in Sources */,
 				040E28B021C0D7F100D15B44 /* HoverViewFlowLayout.m in Sources */,
 				04CBC2812179C01200658E47 /* UIScrollView+MJExtension.m in Sources */,
 				04CBC2992179C01200658E47 /* MJRefreshFooter.m in Sources */,
@@ -6185,6 +6145,7 @@
 				04C1720D21CE3EC80077FA6C /* NetWork_mt_saveflour.m in Sources */,
 				04CBC4512179C01300658E47 /* GPUImageSingleComponentGaussianBlurFilter.m in Sources */,
 				04CBC3D12179C01300658E47 /* GPUImageTiltShiftFilter.m in Sources */,
+				0434BDD821E9E1E80059A28C /* IntroduceViewController.m in Sources */,
 				04C2615821A68FB200374E4D /* TCBGMHelper.m in Sources */,
 				0449AB6C2181BBF100D6172D /* ZJLoginViewController.m in Sources */,
 				04DCA8E921A565D500691A3A /* VideoCutView.m in Sources */,
@@ -6193,7 +6154,6 @@
 				04DCA8F221A565D500691A3A /* PhotoTransitionToolbar.m in Sources */,
 				04CBC32F2179C01300658E47 /* GPUImageChromaKeyFilter.m in Sources */,
 				D954C5931DD1A40F003CA535 /* NSDictionary+RequestEncoding.m in Sources */,
-				04CD35C4217F21E60041E0A8 /* NetWork_adminLogin.m in Sources */,
 				04CBC4892179C01300658E47 /* UIImageView+WebCache.m in Sources */,
 				04352BC221BBA6AA005F60E1 /* NetWork_mt_likeVideo.m in Sources */,
 				D954C5941DD1A40F003CA535 /* UIView+AutoLayout.m in Sources */,
@@ -6226,6 +6186,7 @@
 				04CBC4472179C01300658E47 /* GPUImage3x3ConvolutionFilter.m in Sources */,
 				04CBC3B52179C01300658E47 /* GPUImageOutput.m in Sources */,
 				C552FC261E7136EA003D3E2E /* MyImageView.m in Sources */,
+				0434BDD221E9E1560059A28C /* PersonalInformationViewController.m in Sources */,
 				04CBC38B2179C01300658E47 /* GPUImagePolarPixellateFilter.m in Sources */,
 				D904E9641DD1D6DB00C7E45E /* ZJCustomTabBar.m in Sources */,
 				040E28D421C0F0D400D15B44 /* BaseModel.m in Sources */,
@@ -6323,7 +6284,6 @@
 				04DCA89221A5634700691A3A /* TCLiveListModel.m in Sources */,
 				04C70D3721E3AC230022D897 /* MTMyCommentViewController.m in Sources */,
 				0400F33621AFA62D0038E16C /* WXApiManager.m in Sources */,
-				0449AB722181C84700D6172D /* NetWork_getSonElement.m in Sources */,
 				0457917A218709A7000AAA2E /* ZJCustomTabCollectionViewController.m in Sources */,
 				04CBC3F32179C01300658E47 /* GPUImageCrosshairGenerator.m in Sources */,
 				04CBC4332179C01300658E47 /* GPUImageMotionBlurFilter.m in Sources */,
@@ -6340,7 +6300,6 @@
 				04DCA8DA21A565D500691A3A /* TCVideoLoadingController.m in Sources */,
 				D954C5E11DD1A40F003CA535 /* WCOnbConfiguration.m in Sources */,
 				04CBC37D2179C01300658E47 /* GPUImageSolidColorGenerator.m in Sources */,
-				0490D56E2150F4C10047E7D6 /* NetWork_uploadIcon.m in Sources */,
 				04CBC4BF2179C01300658E47 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				04AB304D21CA92F20072808E /* UIViewController+GKCategory.m in Sources */,
 				04C2615A21A68FB200374E4D /* TCVideoRecordMusicView.m in Sources */,
@@ -6382,9 +6341,8 @@
 				04C2615721A68FB200374E4D /* TCBGMCutView.m in Sources */,
 				04DCA87C21A55C5B00691A3A /* TXUGCPublishUtil.m in Sources */,
 				04CBC3672179C01300658E47 /* GPUImageJFAVoronoiFilter.m in Sources */,
-				048462C52147570E00A30F5E /* NetWork_uploadApi.m in Sources */,
 				04D9B4C821D327B300DEC8B9 /* NetWork_mt_getFollows.m in Sources */,
-				0487EBBA21E89ADE00501B9C /* MyViewController.m in Sources */,
+				0487EBBA21E89ADE00501B9C /* SettingViewController.m in Sources */,
 				D9F86DDA1DEBEE7600C3A2B6 /* TZPhotoPreviewController.m in Sources */,
 				04DCA8EE21A565D500691A3A /* PasterAddView.m in Sources */,
 				04CBC42B2179C01300658E47 /* GPUImagePinchDistortionFilter.m in Sources */,
@@ -6531,7 +6489,7 @@
 					"$(SRCROOT)/xl_native/3rd/TXLiteAVSDK_UGC_IJK.framework/Headers/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ProjectsCustomization/xl_native/xl_native-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6607,7 +6565,7 @@
 					"$(SRCROOT)/xl_native/3rd/TXLiteAVSDK_UGC_IJK.framework/Headers/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ProjectsCustomization/xl_native/xl_native-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

@@ -323,39 +323,6 @@ completionHandler:(void (^)(NSString *result))completionHandler{
     }
 }
 
-- (void)voiceCallBack:(NSString *)filePathMp3 voiceContent:(NSString *)voiceContent myCallBack:(NSString*)myCallBack{
-    
-    NSString *filePath = [NSString stringWithFormat:@"file://%@",filePathMp3];
-    NSString *extName = [filePath pathExtension];
-    NSURL *audioUrl = [NSURL URLWithString:filePath];
-    /*
-     *测试上传视频
-     */
-    NSMutableDictionary *fileDic = [[NSMutableDictionary alloc]init];
-    NSData *mp3Data = [NSData dataWithContentsOfURL:audioUrl];
-    NSString *key = [NSString stringWithFormat:@"%@.%@",[GlobalFunc getCurrentTimeWithFormatter:@"yyyyMMddHHmmssSSS"],extName];
-    [fileDic setObject:mp3Data forKey:key];
-    
-    NetWork_uploadApi *requestUpload = [[NetWork_uploadApi alloc] init];
-    requestUpload.uploadFilesDic = fileDic;
-    [requestUpload showWaitMsg:@"加载中..." handle:self];
-    [requestUpload startPostWithBlock:^(UploadRespone *result, NSString *msg, BOOL finished) {
-        
-        if(finished){ //语音上传成功后回调H5
-            NSLog(@"----------");
-            
-            Callback_voice_purchase *callback_voice_purchase = [[Callback_voice_purchase alloc] init];
-            callback_voice_purchase.voice_url = ((UploadModel*)[result.data objectAtIndex:0]).showAttachUrl;
-            callback_voice_purchase.voice_content = voiceContent;
-            
-            NSString *voiceCallBackStr = [NSString stringWithFormat:@"%@('%@');",myCallBack, [callback_voice_purchase generateJsonStringForProperties]];
-            //WKWebView调用JS 方法
-            [self.webDefault evaluateJavaScript:voiceCallBackStr completionHandler:^(id _Nullable response, NSError * _Nullable error) {
-                NSLog(@"response3: %@ error: %@", response, error);
-            }];
-        }
-    }];
-}
 
 /*获取用户信息*/
 -(NSString*)HybridCall_GetUserInfo:(NSString*)myCallBack{

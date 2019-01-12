@@ -577,8 +577,8 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     }
     else if (tag == UserInfoHeaderSettingTag){//点击设置
         
-        MyViewController *myViewController = [[MyViewController alloc] init];
-        [self pushNewVC:myViewController animated:YES];
+        SettingViewController *settingViewController = [[SettingViewController alloc] init];
+        [self pushNewVC:settingViewController animated:YES];
         
         
         /*
