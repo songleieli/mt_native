@@ -42,6 +42,7 @@
                             case 0:
                                 model.titleStr = @"编辑个人资料";
                                 model.imageStr = @"icon_m_s_lock";
+                                model.cellTag = MyCellTag_editor;
                                 break;
                             case 1:
                                 model.titleStr = @"账号与安全";
@@ -158,6 +159,7 @@
                             case 4:
                                 model.titleStr = @"关于面条";
                                 model.imageStr = @"icon_m_s_order";
+                                model.cellTag = MyCellTag_about;
                                 break;
                             case 5:
                                 model.titleStr = @"网络监测";
@@ -167,10 +169,12 @@
                                 model.titleStr = @"清理缓存";
                                 model.imageStr = @"icon_m_s_order";
                                 model.isShowLine = YES;
+                                model.cellTag = MyCellTag_cleanCache;
                                 break;
                             case 7:
                                 model.titleStr = @"退出登录";
                                 model.imageStr = @"icon_m_s_order";
+                                model.cellTag = MyCellTag_logout;
                                 break;
                             default:
                                 break;
@@ -323,6 +327,7 @@
     MyViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[MyViewTableViewCell cellId]];
     if(!cell){
         cell = [[MyViewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[MyViewTableViewCell cellId] ];
+        cell.myCellDelegate = self;
     }
     [cell dataBind:cellModel];
     return cell;
@@ -332,52 +337,20 @@
     return MyViewTableViewCellHeight;
 }
 
-
-//点击cell的触发事件
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self cellClick:indexPath];
-}
-
 #pragma - mark cell 点击事件
 
--(void)cellClick:(NSIndexPath *)indexPath{
+-(void)myCellClick:(MyViewTableViewCellModel*)model{
     
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-    
-    if(indexPath.section ==0){
-        if(indexPath.row == 0){//我的积分
-            //            MyIntegralViewController *myIntegralViewController = [[MyIntegralViewController alloc] init];
-            //            [self pushNewVC:myIntegralViewController animated:YES];
-        }
-        else if(indexPath.row == 1){//我的卡券
-            //            XLMyWelfareTicketVC *vc = [[XLMyWelfareTicketVC alloc] init];
-            //            [self pushNewVC:vc animated:YES];
-        }
-        else if(indexPath.row == 2){//我的信用
-            //            MyCreditViewController *myCreditViewController = [[MyCreditViewController alloc] init];
-            //            [self pushNewVC:myCreditViewController animated:YES];
-        }
-        else if(indexPath.row == 3){//我的订单
-            
-            //            NSString *url = [NSString stringWithFormat:@"%@/H5/manageOrder.html",[WCBaseContext sharedInstance].h5Server];
-            //            XLProjectWkWebViewController *webViewController = [[XLProjectWkWebViewController alloc] init];
-            //            webViewController.topNav.hidden = NO;
-            //            webViewController.webDefault.size = [UIView getSize_width:ScreenWidth height:ScreenHeight];
-            //            webViewController.webDefault.origin = [UIView getPoint_x:0 y:KStatusBarHeight_New];
-            //            [webViewController reloadWebWithUrl:url msg:@""];
-            //            [self pushNewVC:webViewController animated:YES];
-        }
-        else if(indexPath.row == 4){//我的实名认证
-            //            ReadNameAuthViewController *readNameAuthViewController = [[ReadNameAuthViewController alloc] init];
-            //            [self pushNewVC:readNameAuthViewController animated:YES];
-        }
+    if(model.cellTag == MyCellTag_editor){
+        NSLog(@"--------编辑个人资料-------");
     }
-    else if(indexPath.section ==1){
-        if(indexPath.row == 0){//个人设置
-            SettingViewController *settingViewController = [[SettingViewController alloc] init];
-            [self pushNewVC:settingViewController animated:YES];
-        }
+    else if (model.cellTag == MyCellTag_about){
+        NSLog(@"--------关于-------");
+
+    }
+    else if (model.cellTag == MyCellTag_logout){
+        NSLog(@"--------退出登录-------");
+        
     }
 }
 

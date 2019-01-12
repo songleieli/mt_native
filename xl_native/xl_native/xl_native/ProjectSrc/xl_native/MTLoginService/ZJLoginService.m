@@ -41,17 +41,17 @@ static ZJLoginService *SharedInstance = nil;
 
 - (void)authenticateWithCompletion:(void (^)(BOOL))complete cancelBlock:(void (^)())cancelBlock isAnimat:(BOOL)isAnimat{
     
-    //test
-    NSDictionary *dic =  [NSString readJson2DicWithFileName:@"user_sl"];  //作品
-    
-    LoginResponse *result = [[LoginResponse alloc] initWithDictionary:dic];
-    [GlobalData sharedInstance].hasLogin = YES;
-    [GlobalData sharedInstance].loginDataModel = result.obj;
-    
-    complete(YES);
-
-    
-    return;
+//    //test
+//    NSDictionary *dic =  [NSString readJson2DicWithFileName:@"user_sl"];  //作品
+//
+//    LoginResponse *result = [[LoginResponse alloc] initWithDictionary:dic];
+//    [GlobalData sharedInstance].hasLogin = YES;
+//    [GlobalData sharedInstance].loginDataModel = result.obj;
+//
+//    complete(YES);
+//
+//
+//    return;
     
     
     

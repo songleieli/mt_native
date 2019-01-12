@@ -18,6 +18,8 @@ static NSString* const ViewTableViewCellId=@"MyViewTableViewCellId";
 
 @interface MyViewTableViewCell()
 
+@property(nonatomic,strong) UIButton * viewBg;
+
 @property (nonatomic, strong)UILabel *titleLalbe;//标题lable
 @property (nonatomic,strong)UIImageView* imgView;//图片
 @property (nonatomic, strong)UIView* lineView;//底部横线
@@ -29,6 +31,11 @@ static NSString* const ViewTableViewCellId=@"MyViewTableViewCellId";
 
 
 @implementation MyViewTableViewCell
+
+#pragma mark - 类方法
++ (NSString*) cellId{
+    return ViewTableViewCellId;
+}
 
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)reuseIdentifier{
@@ -43,6 +50,19 @@ static NSString* const ViewTableViewCellId=@"MyViewTableViewCellId";
 
 
 #pragma mark - 懒加载
+
+- (UIButton *)viewBg{
+    if (_viewBg == nil){
+        _viewBg = [UIButton buttonWithType:UIButtonTypeCustom];
+        _viewBg.size = [UIView getSize_width:ScreenWidth height:MyViewTableViewCellHeight];
+        _viewBg.origin = [UIView getPoint_x:0 y:0];
+        [_viewBg setBackgroundColor:ColorThemeBackground forState:UIControlStateNormal];
+        [_viewBg setBackgroundColor:RGBAlphaColor(29, 32, 42, 1) forState:UIControlStateHighlighted];
+        [_viewBg addTarget:self action:@selector(myCellClick:) forControlEvents:UIControlEventTouchUpInside];
+
+    }
+    return _viewBg;
+}
 
 - (UIImageView *)imgView{
     
@@ -99,25 +119,35 @@ static NSString* const ViewTableViewCellId=@"MyViewTableViewCellId";
     
     self.contentView.backgroundColor = ColorThemeBackground;
     
-    [self.contentView addSubview:self.imgView];
-    [self.contentView addSubview:self.titleLalbe];
-    [self.contentView addSubview:self.narrowImg];
-    [self.contentView addSubview:self.lineView];
+    [self.contentView addSubview:self.viewBg];
+    
+    [self.viewBg addSubview:self.imgView];
+    [self.viewBg addSubview:self.titleLalbe];
+    [self.viewBg addSubview:self.narrowImg];
+    [self.viewBg addSubview:self.lineView];
 }
 
 
 #pragma mark - 实例方法
 - (void)dataBind:(MyViewTableViewCellModel*)model{
     
+    self.listModel = model;
+    
     self.imgView.image = [UIImage imageNamed:model.imageStr];
     self.titleLalbe.text = model.titleStr;
     self.lineView.hidden = !model.isShowLine;
 }
 
-#pragma mark - 类方法
-+ (NSString*) cellId{
-    return ViewTableViewCellId;
+- (void)myCellClick:(id)sender{
+    
+    if ([self.myCellDelegate respondsToSelector:@selector(myCellClick:)]) {
+        [self.myCellDelegate myCellClick:self.listModel];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
 }
+
+
 
 
 @end

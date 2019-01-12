@@ -9,6 +9,9 @@
 #import "SettingViewController.h"
 #import "MyViewTableViewCell.h"
 
+
+
+
 @interface MyViewTableViewSelectionModel : NSObject
 
 @property (nonatomic ,copy)NSString* selectTitle;
@@ -17,22 +20,7 @@
 @end
 
 
-@interface MyViewController : ZJBaseViewController
-
-
-@property (nonatomic,strong) UIView * viewHeadBg;
-@property (nonatomic,strong) UIView *textFieldBgView;
-@property (nonatomic,strong) UIButton *cancleButton;
-@property (nonatomic,strong) UITextField * textFieldSearchKey;
-
-//头像
-@property (nonatomic, strong) UIImageView * iconImageView;
-//登录按钮
-@property (nonatomic, strong) UIButton *btnLigin;
-//姓名
-@property (nonatomic, strong) UILabel *labelName;
-//介绍
-@property (nonatomic, strong) UILabel *labelDetail;
+@interface MyViewController : ZJBaseViewController<MyCellDelegate>
 
 /*
  *数据源
