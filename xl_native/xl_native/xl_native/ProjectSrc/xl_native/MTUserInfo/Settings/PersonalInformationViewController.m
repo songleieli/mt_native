@@ -32,7 +32,19 @@
 @implementation PersonalInformationViewController
 
 -(void)dealloc{
+    
     NSLog(@"---------------%@ dealloc ",NSStringFromClass([self class]));
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSNotificationUserInfoChange
+                                                  object:nil];
+}
+
+-(void)registerForRemoteNotification{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(changeUserInfo:)
+                                                 name:NSNotificationUserInfoChange
+                                               object:nil];
 }
 
 
@@ -53,13 +65,11 @@
 }
 
 - (void)viewDidLoad {
-    
     self.isNavBackGroundHiden = NO;
     
     [super viewDidLoad];
-    
+    [self registerForRemoteNotification];
     [self creatUI];
-//    [self initRequest];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -310,54 +320,22 @@
             NSLog(@"头像修改成功");
             
             if(finished){
-//                [self.loginIconImageView sd_setImageWithURL:[NSURL URLWithString:result.obj]];
                 [self.loginIconImageView sd_setImageWithURL:[NSURL URLWithString:result.obj.trim]
                                            placeholderImage:[UIImage imageNamed:@"img_find_default"]]; //默认头像
+                
+                LoginModel *tempModel = [GlobalData sharedInstance].loginDataModel;
+                tempModel.head = result.obj.trim;
+                [GlobalData sharedInstance].loginDataModel = tempModel;
+                
+                //用户信息修改成功发送通知
+                [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationUserInfoChange
+                                                                    object:nil];
             }
             else{
                 [UIWindow showTips:msg];
             }
             
         }];
-
-        
-//        __weak __typeof(self) weakSelf = self;
-//        NetWork_uploadApi *request = [[NetWork_uploadApi alloc]init];
-//        request.uploadFilesDic = fileDic;
-//        [request startPostWithBlock:^(UploadRespone *result, NSString *msg, BOOL finished) {
-//
-//            if([result.status isEqualToString:@"1"] && result.data.count > 0){
-//
-//                UploadModel *model = [result.data objectAtIndex:0];
-//                //                [weakSelf.loginIconImageView sd_setImageWithURL:[NSURL URLWithString:model.showImgUrl]];
-//                NetWork_uploadIcon *requestIcon = [[NetWork_uploadIcon alloc]init];
-//                requestIcon.token = [GlobalData sharedInstance].loginDataModel.token;
-//                requestIcon.mobile = [GlobalData sharedInstance].loginDataModel.mobile;
-//                requestIcon.userIcon = model.attachUrl;
-//                [requestIcon showWaitMsg:@"" handle:self];
-//                [requestIcon startPostWithBlock:^(UploadIconRespone *resulIcon, NSString *msg, BOOL finished) {
-//                    /*
-//                     *如果上传成功，发送用户状态改变通知
-//                     */
-//                    if([resulIcon.status isEqualToString:@"1"]){
-//                        [weakSelf.loginIconImageView sd_setImageWithURL:[NSURL URLWithString:model.showAttachUrl]];
-//
-//                        NSString *dicStr = [[GlobalData sharedInstance].loginDataModel generateJsonStringForProperties];
-//                        LoginDataModel *dataModelTemp = [[LoginDataModel alloc]initWithDictionary:[dicStr objectFromJSONString]];
-//                        dataModelTemp.userIcon = model.showAttachUrl;
-//                        [GlobalData sharedInstance].loginDataModel = dataModelTemp;
-//
-//                        [[AddIntegralTool sharedInstance] addIntegral:self code:@"10002"];
-//                    }else{
-//
-//                        [self showFaliureHUD:msg];
-//
-//                    }
-//                }];
-//            }else{
-//                [self showFaliureHUD:msg];
-//            }
-//        }];
     }
 }
 //事件处理
@@ -410,5 +388,13 @@
     //    [self pushNewVC:nickNameViewController animated:YES];
     [self.navigationController pushViewController:introduceViewController animated:YES];
 }
+
+#pragma mark ------------------ 通知 ---------------
+
+-(void)changeUserInfo:(id)sender{
+    [self updateUser];
+}
+
+
 
 @end

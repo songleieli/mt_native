@@ -45,10 +45,13 @@
                             case 1:
                                 model.titleStr = @"账号与安全";
                                 model.imageStr = @"icon_m_s_order";
+                                model.cellTag = MyCellTag_other;
+
                                 break;
                             default:
                                 model.titleStr = @"隐私设置";
                                 model.imageStr = @"icon_m_s_lock";
+                                model.cellTag = MyCellTag_other;
                                 model.isShowLine = YES;
                                 break;
                         }
@@ -66,10 +69,12 @@
                             case 0:
                                 model.titleStr = @"通知设置";
                                 model.imageStr = @"icon_m_s_lock";
+                                model.cellTag = MyCellTag_other;
                                 break;
                             case 1:
                                 model.titleStr = @"通用设置";
                                 model.imageStr = @"icon_m_s_lock";
+                                model.cellTag = MyCellTag_other;
                                 model.isShowLine = YES;
                                 break;
                             default:
@@ -89,18 +94,22 @@
                             case 0:
                                 model.titleStr = @"免流量看面条";
                                 model.imageStr = @"icon_m_s_order";
+                                model.cellTag = MyCellTag_other;
                                 break;
                             case 1:
                                 model.titleStr = @"面条订单管理";
                                 model.imageStr = @"icon_m_s_order";
+                                model.cellTag = MyCellTag_other;
                                 break;
                             case 2:
                                 model.titleStr = @"购物助手";
                                 model.imageStr = @"icon_m_s_order";
+                                model.cellTag = MyCellTag_other;
                                 break;
                             default:
                                 model.titleStr = @"商品分享功能";
                                 model.imageStr = @"icon_m_s_order";
+                                model.cellTag = MyCellTag_other;
                                 model.isShowLine = YES;
                                 break;
                         }
@@ -118,10 +127,12 @@
                             case 0:
                                 model.titleStr = @"时间锁";
                                 model.imageStr = @"icon_m_s_model";
+                                model.cellTag = MyCellTag_other;
                                 break;
                             case 1:
                                 model.titleStr = @"青少年模式";
                                 model.imageStr = @"icon_m_s_model";
+                                model.cellTag = MyCellTag_other;
                                 model.isShowLine = YES;
                                 break;
                             default:
@@ -141,18 +152,22 @@
                             case 0:
                                 model.titleStr = @"反馈与帮助";
                                 model.imageStr = @"icon_m_s_order";
+                                model.cellTag = MyCellTag_other;
                                 break;
                             case 1:
                                 model.titleStr = @"社区自律公约";
                                 model.imageStr = @"icon_m_s_order";
+                                model.cellTag = MyCellTag_other;
                                 break;
                             case 2:
                                 model.titleStr = @"用户协议";
                                 model.imageStr = @"icon_m_s_order";
+                                model.cellTag = MyCellTag_other;
                                 break;
                             case 3:
                                 model.titleStr = @"隐私政策";
                                 model.imageStr = @"icon_m_s_order";
+                                model.cellTag = MyCellTag_other;
                                 break;
                             case 4:
                                 model.titleStr = @"关于面条";
@@ -162,6 +177,7 @@
                             case 5:
                                 model.titleStr = @"网络监测";
                                 model.imageStr = @"icon_m_s_order";
+                                model.cellTag = MyCellTag_other;
                                 break;
                             case 6:
                                 model.titleStr = @"清理缓存";

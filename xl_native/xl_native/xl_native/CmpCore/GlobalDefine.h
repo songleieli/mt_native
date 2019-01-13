@@ -414,3 +414,7 @@ alpha:1.0]
 #define IsValidText(text,matches)\
 [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", matches] evaluateWithObject:text]
 
+
+/*面条全局通知定义*/
+#define NSNotificationUserInfoChange @"NSNotificationUserInfoChange"    //用户信息修改成功通知
+

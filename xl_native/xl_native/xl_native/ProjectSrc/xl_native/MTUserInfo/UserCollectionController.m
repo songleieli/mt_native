@@ -71,6 +71,8 @@ NSString * const kAwemeCollectionCell_temp  = @"AwemeCollectionCell";
 }
 
 
+#pragma -mark ---------- Controller 生命周期 -------------
+
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -119,19 +121,9 @@ NSString * const kAwemeCollectionCell_temp  = @"AwemeCollectionCell";
 
 -(void)setUpUI{
     
-    //[self setBackgroundColor:ColorThemeBackground];
-    
     self.view.backgroundColor = ColorThemeBackground;
     [self.view addSubview:self.slideTabBar];
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     //根据当前屏幕宽度j计算，item 宽度
     _itemWidth = (ScreenWidth - 3) / 3.0f;
     _itemHeight = _itemWidth * 1.35f; //高度为宽度的1.35倍
@@ -335,6 +327,8 @@ NSString * const kAwemeCollectionCell_temp  = @"AwemeCollectionCell";
 
     [self loadData:_pageIndex pageSize:_pageSize];
 }
+
+
 
 
 @end

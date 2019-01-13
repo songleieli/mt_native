@@ -100,8 +100,41 @@
     NSString *nickName = self.nickNameTextField.text.trim;
     if(nickName.length > 0){
         
-        NetWork_mt_updateNoodleAccount *request = [[NetWork_mt_updateNoodleAccount alloc] init];
+        UpdateNoodleAccountContentModel *model = [[UpdateNoodleAccountContentModel alloc] init];
+        model.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        model.nickname = nickName;
+        model.sex = [GlobalData sharedInstance].loginDataModel.sex;
+        model.birthday = [GlobalData sharedInstance].loginDataModel.birthday;
+        model.school = [GlobalData sharedInstance].loginDataModel.school;
+        model.department = [GlobalData sharedInstance].loginDataModel.department;
+        model.enrolmentTime = [GlobalData sharedInstance].loginDataModel.enrolmentTime;
+        model.company = [GlobalData sharedInstance].loginDataModel.company;
+        model.signature = [GlobalData sharedInstance].loginDataModel.signature;
+        model.city = [GlobalData sharedInstance].loginDataModel.city;
+        model.addr = [GlobalData sharedInstance].loginDataModel.addr;
+        model.country = [GlobalData sharedInstance].loginDataModel.country;
         
+        NetWork_mt_updateNoodleAccount *request = [[NetWork_mt_updateNoodleAccount alloc] init];
+        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        request.content = [model generateJsonStringForProperties];
+        [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+            if(finished){
+                NSLog(@"-------");
+                
+                LoginModel *tempModel = [GlobalData sharedInstance].loginDataModel;
+                tempModel.nickname = nickName;
+                [GlobalData sharedInstance].loginDataModel = tempModel;
+                
+                //用户信息修改成功发送通知
+                [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationUserInfoChange
+                                                                    object:nil];
+                
+                [self backBtnClick:nil]; //修改成功后返回
+            }
+            else{
+                [UIWindow showTips:msg];
+            }
+        }];
     }
     else{
         [UIWindow showTips:@"昵称不能为空！"];

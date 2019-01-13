@@ -58,6 +58,24 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 }
 
 
+#pragma -mark ---------- Controller 生命周期 -------------
+
+
+-(void)dealloc{
+    
+    NSLog(@"---------------%@ dealloc ",NSStringFromClass([self class]));
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSNotificationUserInfoChange
+                                                  object:nil];
+}
+
+-(void)registerForRemoteNotification{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(changeUserInfo:)
+                                                 name:NSNotificationUserInfoChange
+                                               object:nil];
+}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -96,6 +114,8 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     _scalePresentAnimation = [ScalePresentAnimation new];
     _scaleDismissAnimation = [ScaleDismissAnimation new];
     _swipeLeftInteractiveTransition = [SwipeLeftInteractiveTransition new];
+    
+    [self registerForRemoteNotification];
     
     [super viewDidLoad];
     //    [self loadUserData];
@@ -640,5 +660,12 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     
 }
 
+#pragma mark ------------------ 通知 ---------------
+
+-(void)changeUserInfo:(id)sender{
+    //[self updateUser];
+    
+    [self loadUserData];
+}
 
 @end
