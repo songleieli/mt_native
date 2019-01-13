@@ -13,7 +13,7 @@
 #import "GKDouyinScrollView.h"
 
 
-@interface GKDouyinHomeViewController ()<GKViewControllerPushDelegate>
+@interface GKDouyinHomeViewController ()<GKViewControllerPushDelegate,UIScrollViewDelegate>
 
 @property (nonatomic, strong) GKDouyinScrollView  *scrollView;
 
@@ -33,6 +33,7 @@
         _scrollView.showsVerticalScrollIndicator = NO;
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.pagingEnabled = YES;
+        _scrollView.delegate = self;
         _scrollView.bounces = NO; // 禁止弹簧效果
         _scrollView.isPanUse = YES; //默认可以向右滑动
         if (@available(iOS 11.0, *)) {
@@ -52,7 +53,8 @@
         _searchVC.backClickBlock = ^{
             CGFloat w = weakSelf.view.frame.size.width;
             [weakSelf.scrollView setContentOffset:CGPointMake(w, 0) animated:YES];
-            [weakSelf hiddenTabBar:NO isAnimat:YES]; //隐藏tablebar
+            //视频播放列表显示
+            [weakSelf playListViewControllerDidAppear];
         };
     }
     return _searchVC;
@@ -70,7 +72,8 @@
         _playerVC.seachClickBlock = ^{
             
             [weakSelf.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-            [weakSelf hiddenTabBar:YES isAnimat:YES]; //隐藏tablebar
+            //搜索页面显示
+            [weakSelf searchViewControllerDidAppear];
         };
     }
     return _playerVC;
@@ -110,6 +113,18 @@
     self.gk_pushDelegate = self;
 }
 
+#pragma mark ----------- CustomMethod ----------
+
+
+-(void)searchViewControllerDidAppear{
+    
+    [self hiddenTabBar:YES isAnimat:YES]; //隐藏tablebar
+}
+
+-(void)playListViewControllerDidAppear{
+    
+    [self hiddenTabBar:NO isAnimat:YES]; //显示tablebar
+}
 
 
 #pragma mark - GKViewControllerPushDelegate
@@ -120,6 +135,22 @@
     personalVC.fromType = FromTypeHome;
     personalVC.userNoodleId = self.playerVC.currentCell.listModel.noodleId;
     [self pushNewVC:personalVC animated:YES];
+}
+
+#pragma mark --------------- UIScrollView 代理 -----------------
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    CGPoint rect = scrollView.contentOffset;
+
+    CGFloat w = self.view.frame.size.width;
+    if(rect.x == 0.0f){ //搜索页面，显示完成
+        NSLog(@"-----搜索页面，显示完成------");
+        [self searchViewControllerDidAppear];
+    }
+    else if(rect.x == w){//视频播放列表显示完成
+        NSLog(@"-----视频播放列表显示完成------");
+        [self playListViewControllerDidAppear];
+    }
 }
 
 @end
