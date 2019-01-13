@@ -7,6 +7,9 @@
 //
 
 
-@interface GKDouyinHomeSearchViewController : UIViewController
+@interface GKDouyinHomeSearchViewController : ZJBaseViewController
+
+
+@property (nonatomic, copy) void(^backClickBlock)();
 
 @end

@@ -17,7 +17,7 @@
 
 @property (nonatomic, strong) GKDouyinScrollView  *scrollView;
 
-@property (nonatomic, strong) UIViewController  *searchVC; //左侧Controller
+@property (nonatomic, strong) GKDouyinHomeSearchViewController  *searchVC; //左侧Controller
 @property (nonatomic, strong) XLPlayerListViewController  *playerVC; //右侧Controller
 @property (nonatomic, strong) NSArray  *childVCs;
 
@@ -28,7 +28,7 @@
 #pragma mark ----------- 懒加载 ----------
 - (GKDouyinScrollView *)scrollView {
     if (!_scrollView) {
-        _scrollView = [GKDouyinScrollView new];
+        _scrollView = [[GKDouyinScrollView alloc] init];
         _scrollView.frame = self.view.bounds;
         _scrollView.showsVerticalScrollIndicator = NO;
         _scrollView.showsHorizontalScrollIndicator = NO;
@@ -44,9 +44,16 @@
     return _scrollView;
 }
 
-- (UIViewController *)searchVC {
+- (GKDouyinHomeSearchViewController *)searchVC {
+    
     if (!_searchVC) {
-        _searchVC = [GKDouyinHomeSearchViewController new];
+        __weak __typeof(self) weakSelf = self;
+        _searchVC = [[GKDouyinHomeSearchViewController alloc] init];
+        _searchVC.backClickBlock = ^{
+            CGFloat w = weakSelf.view.frame.size.width;
+            [weakSelf.scrollView setContentOffset:CGPointMake(w, 0) animated:YES];
+            [weakSelf hiddenTabBar:NO isAnimat:YES]; //隐藏tablebar
+        };
     }
     return _searchVC;
 }
@@ -59,6 +66,11 @@
         _playerVC.scrollBlock = ^(BOOL isScroll) {
             //视频列表在滚动的过程中，不能左右滑动显示，搜索页面
             weakSelf.scrollView.isPanUse = !isScroll;
+        };
+        _playerVC.seachClickBlock = ^{
+            
+            [weakSelf.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+            [weakSelf hiddenTabBar:YES isAnimat:YES]; //隐藏tablebar
         };
     }
     return _playerVC;
@@ -96,7 +108,6 @@
     self.scrollView.contentOffset = CGPointMake(w, 0);
     // 设置左滑push代理
     self.gk_pushDelegate = self;
-
 }
 
 

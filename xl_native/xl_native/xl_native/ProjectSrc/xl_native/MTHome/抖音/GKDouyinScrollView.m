@@ -15,8 +15,6 @@
 //gestureRecognizerShouldBegin 开始进行手势识别时调用的方法，返回NO则结束识别，不再触发手势，用处：可以在控件指定的位置使用手势识别
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     
-    //    return NO;
-    
     if(self.isPanUse){
         
         if ([self panBack:gestureRecognizer]) {
@@ -27,7 +25,6 @@
     else{
         return self.isPanUse;
     }
-    
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
@@ -50,24 +47,15 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         
         NSLog(@"---------point = %@",NSStringFromCGPoint(point));
         NSLog(@"---------locationDistance = %f",locationDistance);
-
-
-        
         if (state == UIGestureRecognizerStateBegan || state == UIGestureRecognizerStatePossible) {
             CGPoint location = [gestureRecognizer locationInView:self];
             NSLog(@"---------location = %@",NSStringFromCGPoint(point));
             NSLog(@"---------self.contentOffset.x = %f",self.contentOffset.x);
-
-            
             if (point.x > 0 && location.x < locationDistance && self.contentOffset.x <= 0) {
                 return YES;
             }
-            
             // 临界点：scrollView滑动到最后一屏时的x轴位置，可根据需求改变
             CGFloat criticalPoint = [UIScreen mainScreen].bounds.size.width;
-            
-            
-            
             // point.x < 0 代表左滑即手指从屏幕右边向左移动
             // 当UIScrollview滑动到临界点时，则不再相应UIScrollview的滑动左滑手势，防止与左滑手势冲突
             if (point.x < 0 && self.contentOffset.x == criticalPoint) {

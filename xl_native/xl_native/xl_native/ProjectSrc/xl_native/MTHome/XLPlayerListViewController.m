@@ -8,7 +8,7 @@
 
 #import "XLPlayerListViewController.h"
 
-@interface XLPlayerListViewController ()<HomeDelegate,VideoSahreDelegate>
+@interface XLPlayerListViewController ()<HomeDelegate,VideoSahreDelegate,MtHomeTopDelegate>
 
 @end
 
@@ -21,6 +21,8 @@
     if (!_topView) {
         CGRect frame = CGRectMake(0, 0, ScreenWidth, kNavBarHeight_New);
         _topView = [[MtHomeTopView alloc] initWithFrame:frame];
+        _topView.mtHomeTopDelegate = self;
+//        _topView.backgroundColor = [UIColor redColor];
     }
     return _topView;
 }
@@ -95,7 +97,6 @@
 -(void)setupUI{
     
     [self.view addSubview:self.mainTableView];
-    [self.view addSubview:self.topView];
     
     self.mainTableView.size = [UIView getSize_width:ScreenWidth height:ScreenHeight];
     self.mainTableView.origin = [UIView getPoint_x:0 y:0];
@@ -114,6 +115,8 @@
         [weakSelf loadNewListData];
     }];
     [self loadNewListData];
+    [self.view addSubview:self.topView];
+
 }
 
 -(void)loadNewListData{
@@ -135,9 +138,6 @@
     if(self.currentCell.isPlayerReady) {
         //播放视频
         [_currentCell replay];
-        
-        NSLog(@"---------[_currentCell replay];-------");
-        
     }
     else {
         [[AVPlayerManager shareManager] pauseAll];
@@ -199,6 +199,8 @@
     if (self.mainTableView.contentOffset.y <=0 && self.refreshStatus == REFRESH_Normal) {
         //当tableview停在第一个cell并且是正常状态才记录起始触摸点，防止页面在刷新时用户再次向下拖拽页面造成多次下拉刷新
         self.startPoint = [touches.anyObject locationInView:self.view];
+        
+        
     }else{
         //否则就隐藏透明视图，让页面能响应tableview的拖拽手势
         _clearView.hidden = YES;
@@ -276,9 +278,17 @@
            withEvent:(UIEvent *)event{
     
 
-        CGPoint currentPoint = [touches.anyObject locationInView:self.view];
+    CGPoint currentPoint = [touches.anyObject locationInView:self.view];
     float moveDistance = currentPoint.y-self.startPoint.y;
-    if (moveDistance==0) {
+    if (moveDistance==0) { //如果moveDistance == 0 表示的是点击页面
+        
+        
+        if(self.startPoint.y < self.topView.height){
+            //如果点击的是top的位置，直接返回，不想赢touch。
+            return;
+        }
+        
+        
         
         //通过point所在位置 判断应该响应那个蒙版下面的按钮
         BOOL isExitFlollow = CGRectContainsPoint(_currentCell.maskView.focus.frame,currentPoint);
@@ -502,23 +512,14 @@
     return 0.001;
 }
 
-
-//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-//    _beginDragging = YES;
-//}
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-//    NSLog(@"------------scrollViewDidScroll---------------");
-
     if(self.scrollBlock){
         self.scrollBlock(YES);
     }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    
-//    NSLog(@"------------scrollViewDidEndDecelerating---------------");
     
     if(self.scrollBlock){
         self.scrollBlock(NO);
@@ -538,6 +539,28 @@
         self.currentPage += 1;
         [self initRequest];
     }
+}
+
+#pragma mark --------------- MtHomeTopDelegate代理 -----------------
+
+-(void)searchBtnClick{
+    
+    
+    if(self.seachClickBlock){
+        self.seachClickBlock();
+    }
+}
+
+-(void)recommendBtnClick{
+    NSLog(@"------recommendBtnClick----------");
+}
+
+-(void)cityBtnClick{
+    NSLog(@"------cityBtnClick----------");
+}
+
+-(void)scanBtnClick{
+    NSLog(@"------scanBtnClick----------");
 }
 
 #pragma mark --------------- HomeDelegate代理 -----------------
@@ -601,10 +624,6 @@
     } cancelBlock:^{
         NSLog(@"--------取消登录---------");
     } isAnimat:YES];
-    
-    
-    
-    
 }
 
 - (void)zanClicked:(HomeListModel *)listModel{

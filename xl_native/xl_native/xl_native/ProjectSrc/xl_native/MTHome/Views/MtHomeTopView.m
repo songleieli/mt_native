@@ -25,7 +25,7 @@
         _searchButton.size = [UIView getSize_width:23 height:23];
         _searchButton.origin = [UIView getPoint_x:20 y:self.height - _searchButton.height-20];
         [_searchButton setImage:[BundleUtil getCurrentBundleImageByName:@"icon_m_search"] forState:UIControlStateNormal];
-//        [_searchButton addTarget:self action:@selector(searchButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_searchButton addTarget:self action:@selector(searchButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _searchButton;
 }
@@ -42,7 +42,7 @@
         [_recommendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_recommendButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
 
-        //        [_searchButton addTarget:self action:@selector(searchButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_recommendButton addTarget:self action:@selector(recommendButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _recommendButton;
 }
@@ -57,22 +57,10 @@
         [_cityButton setTitle:@"北京" forState:UIControlStateNormal];
         [_cityButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_cityButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-        
-        //        [_searchButton addTarget:self action:@selector(searchButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_cityButton addTarget:self action:@selector(cityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _cityButton;
 }
-
-//- (UIButton *)scanButton{
-//    if (_scanButton == nil){
-//        _scanButton = [[UIButton alloc] init];
-//        _scanButton.size = [UIView getSize_width:23 height:23];
-//        _scanButton.origin = [UIView getPoint_x:20 y:self.height - _searchButton.height-20];
-//        [_scanButton setImage:[BundleUtil getCurrentBundleImageByName:@"icon_m_search"] forState:UIControlStateNormal];
-//        //        [_searchButton addTarget:self action:@selector(searchButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    return _scanButton;
-//}
 
 - (UIButton *)refreshButton{
     if (_refreshButton == nil){
@@ -90,16 +78,14 @@
 }
 
 - (UIButton *)scanButton{
+    
     if (_scanButton == nil){
-        
-//        CGFloat scal = (CGFloat)64/29;
-        
         _scanButton = [[UIButton alloc] init];
         _scanButton.size = [UIView getSize_width:20 height:20];
         _scanButton.origin = [UIView getPoint_x:self.refreshButton.left - _scanButton.width - 15
-                                                 y:self.height - _scanButton.height-20];
+                                              y:self.height - _scanButton.height-20];
         [_scanButton setImage:[BundleUtil getCurrentBundleImageByName:@"icon_m_scan"] forState:UIControlStateNormal];
-        //        [_searchButton addTarget:self action:@selector(searchButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_scanButton addTarget:self action:@selector(scanButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _scanButton;
 }
@@ -127,8 +113,41 @@
     [self addSubview:self.scanButton];         //扫描按钮
 }
 
-#pragma mark - 自定义方法
-
 #pragma mark - 按钮点击事件
+
+- (void)searchButtonAction:(id)sender{
+    
+    if ([self.mtHomeTopDelegate respondsToSelector:@selector(searchBtnClick)]) {
+        [self.mtHomeTopDelegate searchBtnClick];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
+}
+
+- (void)recommendButtonAction:(id)sender{
+    
+    if ([self.mtHomeTopDelegate respondsToSelector:@selector(recommendBtnClick)]) {
+        [self.mtHomeTopDelegate recommendBtnClick];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
+}
+
+- (void)cityButtonAction:(id)sender{
+    
+    if ([self.mtHomeTopDelegate respondsToSelector:@selector(cityBtnClick)]) {
+        [self.mtHomeTopDelegate cityBtnClick];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
+}
+- (void)scanButtonAction:(id)sender{
+    
+    if ([self.mtHomeTopDelegate respondsToSelector:@selector(scanBtnClick)]) {
+        [self.mtHomeTopDelegate scanBtnClick];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
+}
 
 @end

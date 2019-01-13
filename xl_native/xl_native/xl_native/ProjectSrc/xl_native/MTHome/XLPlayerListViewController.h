@@ -50,6 +50,8 @@ typedef NS_ENUM(NSInteger,StatusOfRefresh) {
 @property (nonatomic, assign)StatusOfRefresh refreshStatus;
 @property (nonatomic, assign)CGPoint startPoint;
 
+/*block*/
 @property (nonatomic, copy) void(^scrollBlock)(BOOL isScroll);
+@property (nonatomic, copy) void(^seachClickBlock)();
 
 @end

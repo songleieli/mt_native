@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MtHomeTopDelegate <NSObject>
+
+-(void)searchBtnClick;
+
+-(void)recommendBtnClick;
+
+-(void)cityBtnClick;
+
+-(void)scanBtnClick;
+
+@end
+
 
 @interface MtHomeTopView : UIView
 
@@ -28,6 +40,11 @@
 
 /**刷新按钮*/
 @property (nonatomic,strong) UIButton *refreshButton;
+
+
+/**/
+@property(nonatomic,weak) id <MtHomeTopDelegate> mtHomeTopDelegate;
+
 
 
 @end
