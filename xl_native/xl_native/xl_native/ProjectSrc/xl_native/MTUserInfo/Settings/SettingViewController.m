@@ -251,10 +251,9 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.backgroundColor = ColorThemeBackground;
     
-    //    self.tableView.mj_header.mj_h = 30;
-    self.mainTableView.mj_header.backgroundColor = ColorThemeBackground;
-    self.mainTableView.mj_footer.hidden = YES;
-    //    self.mainTableView.tableHeaderView = [self getHeadView];
+    self.mainTableView.mj_header = nil;
+    self.mainTableView.mj_footer = nil;
+    
     self.mainTableView.tableFooterView = [self getFooterView];
 }
 

@@ -34,6 +34,16 @@
     
     self.btnLeft = leftButton;
     
+    UIButton * rightBarButton = [[UIButton alloc]init];
+    rightBarButton.size = [UIView getSize_width:50 height:50];
+    [rightBarButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    rightBarButton.titleLabel.font = [UIFont defaultFontWithSize:17];
+    //    rightBarButton.titleLabel.textColor = [UIColor whiteColor] ;
+    rightBarButton.enabled = YES;
+    [rightBarButton setTitle:@"保存" forState:UIControlStateNormal];
+    [rightBarButton addTarget:self action:@selector(btnClcik:) forControlEvents:UIControlEventTouchUpInside];
+    self.btnRight = rightBarButton;
+    
     self.title = @"昵称";
 }
 
@@ -47,25 +57,15 @@
 -(void)creatUI{
 
     self.view.backgroundColor = ColorThemeBackground;
-//  test
-    UIButton * rightBarButton = [[UIButton alloc]init];
-    rightBarButton.size = [UIView getSize_width:50 height:50];
-    [rightBarButton setTitleColor:RGBFromColor(0x464952) forState:UIControlStateNormal];
-    rightBarButton.titleLabel.font = [UIFont defaultFontWithSize:17];
-    rightBarButton.titleLabel.textColor = [UIColor whiteColor] ;
-    rightBarButton.enabled = YES;
-    [rightBarButton setTitle:@"保存" forState:UIControlStateNormal];
-    [rightBarButton addTarget:self action:@selector(btnClcik:) forControlEvents:UIControlEventTouchUpInside];
-    self.btnRight = rightBarButton;
-//    [self.view addSubview:rightBarButton];
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBarButton];
+    
+
     
 // 昵称的View
     UIView * nickNameView = [[UIView alloc]init];
     nickNameView.size = [UIView getSize_width:ScreenWidth height:63];
     nickNameView.left = 0;
     nickNameView.top = 12+self.navBackGround.bottom;
-    nickNameView.backgroundColor = [UIColor whiteColor];
+    nickNameView.backgroundColor = ColorThemeBackground;
     [self.view addSubview:nickNameView];
     
     self.nickNameTextField = [[UITextField alloc]init];
@@ -77,23 +77,13 @@
     self.nickNameTextField.borderStyle = UITextBorderStyleNone;
     self.nickNameTextField.clearButtonMode =UITextFieldViewModeWhileEditing;
     self.nickNameTextField.placeholder = @"填写昵称";
+    self.nickNameTextField.text = [GlobalData sharedInstance].loginDataModel.nickname;
+    self.nickNameTextField.textColor = [UIColor whiteColor];
     
     [nickNameView addSubview:self.nickNameTextField];
     
     [self.nickNameTextField becomeFirstResponder];
 }
-
-
-
-
-
-//-(void)updateUserNickName{
-//    if ([GlobalData sharedInstance].userAccount.nickName == nil) {
-//
-//    }else{
-//        self.nickNameTextField.text =[GlobalData sharedInstance].userAccount.nickName;
-// }
-//}
 
 -(void)btnClcik:(UIButton *)btn{
     
@@ -139,72 +129,10 @@
     else{
         [UIWindow showTips:@"昵称不能为空！"];
     }
-    
-    
-    
-    
-    
-//    [GlobalFunc event:@"event_submit_new_nickname"];
-    if(![[Reachability reachabilityForInternetConnection] isReachable]){
-        [self showFaliureHUD:@"没有网络,请先检查网络设置"];
-        return;
-    }
-    
-//    0-8个字符，只能是数字，字母，中文。
-    NSString *regex = @"[a-zA-Z\u4e00-\u9fa5][a-zA-Z0-9\u4e00-\u9fa5]{0,7}$";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    if([pred evaluateWithObject: self.nickNameTextField.text]){
-        btn.enabled = NO;
-//        __weak __typeof(self) weakSelf = self;
-//        NetWork_updateUser * updateUser = [[NetWork_updateUser alloc]init];
-//        updateUser.mobile = [GlobalData sharedInstance].loginDataModel.mobile;
-//        updateUser.nickName = self.nickNameTextField.text.trim;
-//        updateUser.token = [GlobalData sharedInstance].loginDataModel.token;
-//        [updateUser showWaitMsg:@"" handle:self];
-//        [updateUser startPostWithBlock:^(updateUserRespone *result, NSString *msg, BOOL finished) {
-//            if ([result.status isEqualToString:@"1"]) {
-//                
-//                NSString *dicStr = [[GlobalData sharedInstance].loginDataModel generateJsonStringForProperties];
-//                LoginDataModel *modelTemp = [[LoginDataModel alloc]initWithDictionary:[dicStr objectFromJSONString]];
-//                modelTemp.nickName = weakSelf.nickNameTextField.text.trim;
-//                [GlobalData sharedInstance].loginDataModel = modelTemp;
-//                
-////                [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationUserStateChange
-////                                                                    object:nil];
-//                
-//                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-//            }else{
-//                [self showFaliureHUD:msg];
-//            }
-//        }];
-
-        
-    }
-    else{
-        [self showFaliureHUD:@"昵称格式不正确"];
-    }
 }
 
 -(void)backBtnClick:(UIButton*)btn{
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-#pragma mark- textFiled的代理方法
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
-    return YES;
-    
-}
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    UITextField * nickNameTextField = (UITextField *)[self.view viewWithTag:2222];
-    [nickNameTextField resignFirstResponder];
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

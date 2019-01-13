@@ -10,4 +10,5 @@
 
 @interface NickNameViewController : ZJBaseViewController
 
+
 @end
