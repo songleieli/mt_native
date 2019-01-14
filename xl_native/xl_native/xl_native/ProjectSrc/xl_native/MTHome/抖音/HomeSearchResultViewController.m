@@ -6,13 +6,13 @@
 //  Copyright © 2018年 gaokun. All rights reserved.
 //
 
-#import "GKDouyinHomeSearchViewController.h"
+#import "HomeSearchResultViewController.h"
 
-@interface GKDouyinHomeSearchViewController ()
+@interface HomeSearchResultViewController ()
 
 @end
 
-@implementation GKDouyinHomeSearchViewController
+@implementation HomeSearchResultViewController
 
 -(void)dealloc{
     
@@ -232,8 +232,6 @@
 
 -(void)titleButtonClicked:(UIButton*)btn{
     
-    HomeSearchResultViewController *homeSearchResultViewController = [[HomeSearchResultViewController alloc] init];
-    [self pushNewVC:homeSearchResultViewController animated:YES];
 }
 
 #pragma mark - 键盘 show 与 hide

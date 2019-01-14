@@ -7,9 +7,8 @@
 //
 
 #import "NetWork_mt_getHotSearchSix.h"
-#import "HomeSearchResultViewController.h"
 
-@interface GKDouyinHomeSearchViewController : ZJBaseViewController
+@interface HomeSearchResultViewController : ZJBaseViewController
 
 //title
 @property (nonatomic,strong) UIView *textFieldBgView;

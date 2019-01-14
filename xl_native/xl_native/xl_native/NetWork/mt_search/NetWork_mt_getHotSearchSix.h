@@ -1,0 +1,45 @@
+//
+//  NetWork_topicPraise.h
+//  CMPLjhMobile
+//
+//  Created by songlei on 16/5/31.
+//  Copyright © 2016年 CMP_Ljh. All rights reserved.
+//
+
+#import "WCServiceBase.h"
+
+
+@interface GetHotSearchSixModel : IObjcJsonBase
+
+
+/*
+ 
+ "noodleVideoCover": "http://p1.pstatp.com/large/a97c0001645baa2497c0.jpeg",
+ "topic": "#明星"
+
+
+ */
+
+@property (copy, nonatomic) NSString *noodleVideoCover;
+@property (copy, nonatomic) NSString *topic;
+
+@end
+
+
+
+@interface GetHotSearchSixResponse : IObjcJsonBase
+
+@property(nonatomic,copy) NSString * status;
+@property(nonatomic,copy) NSString * message;
+@property(nonatomic,strong) NSArray * obj;
+
+@end
+
+@interface NetWork_mt_getHotSearchSix : WCServiceBase
+
+@property (nonatomic,strong) NSString * currentNoodleId;
+@property (nonatomic,strong) NSString * noodleId;
+@property (nonatomic,strong) NSString * pageNo;
+@property (nonatomic,strong) NSString * pageSize;
+
+@end
