@@ -10,6 +10,11 @@
 @interface GKDouyinHomeSearchViewController : ZJBaseViewController
 
 
+@property (nonatomic,strong) UIView *textFieldBgView;
+@property (nonatomic,strong) UIButton *cancleButton;
+@property (nonatomic,strong) UITextField * textFieldSearchKey;
+@property (nonatomic,assign) BOOL hasKeyBordShow;
+
 @property (nonatomic, copy) void(^backClickBlock)();
 
 @end

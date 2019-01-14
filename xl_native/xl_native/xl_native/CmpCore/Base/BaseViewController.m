@@ -90,27 +90,27 @@
 
 
 -(void)setBtnRight:(UIButton *)btnRight{
-    if(btnRight){
+    if(_btnRight){
         [_btnRight removeFromSuperview];
         _btnRight = nil;
-        
-        btnRight.bottom = self.navBackGround.height;
-        btnRight.left = self.navBackGround.width - btnRight.width;
+    }
+    
+    if(btnRight){
         [self.navBackGround addSubview:btnRight];
+        _btnRight = btnRight;
     }
 }
 
 -(void)setBtnLeft:(UIButton *)btnLeft{
-    if(btnLeft){
+    
+    if(_btnLeft){
         [_btnLeft removeFromSuperview];
         _btnLeft = nil;
-//        self.btnLeft.size = CGSizeMake(50, 50 );
-        
     }
-    _btnLeft = btnLeft;
-//    _btnLeft.left = 0;
-//    _btnLeft.top = self.navBackGround.height - btnLeft.height;
-    [self.navBackGround addSubview:btnLeft];
+    if(btnLeft){
+        [self.navBackGround addSubview:btnLeft];
+        _btnLeft = btnLeft;
+    }
 }
 
 
