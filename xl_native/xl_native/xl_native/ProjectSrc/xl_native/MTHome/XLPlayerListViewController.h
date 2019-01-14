@@ -54,4 +54,20 @@ typedef NS_ENUM(NSInteger,StatusOfRefresh) {
 @property (nonatomic, copy) void(^scrollBlock)(BOOL isScroll);
 @property (nonatomic, copy) void(^seachClickBlock)();
 
+/*
+ 1.如果页面离开前是播放状态，那么回来后还播放。
+ 2.如果页面离开前是暂停状态，那么回来后还是暂停状态。
+ */
+@property (nonatomic, assign)BOOL isDisAppearPlay;
+
+/*
+ 页面显示或从其他页面返回来已经显示调用方法
+ */
+- (void)playListCurrPlayDidAppear;
+/*
+ 页面消失调用方法
+ */
+- (void)playListCurrPlayDisAppear;
+
+
 @end

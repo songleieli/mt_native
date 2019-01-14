@@ -172,6 +172,13 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
     else{
         [self pause];
     }
+    
+    //响应代理
+    if ([self.homeDelegate respondsToSelector:@selector(playButtonAction:)]) {
+        [self.homeDelegate playButtonAction:isPlay];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
 }
 
 /*点赞*/

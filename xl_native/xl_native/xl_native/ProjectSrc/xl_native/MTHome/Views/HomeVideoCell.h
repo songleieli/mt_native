@@ -30,6 +30,8 @@ typedef void (^OnPlayerReady)(void);
 
 - (void)musicCDClicked:(HomeListModel *)listModel;
 
+- (void)playButtonAction:(BOOL)isPlay;
+
 -(void)currVideoProgressUpdate:(HomeListModel *)listModel current:(CGFloat)current total:(CGFloat)total;
 
 @end

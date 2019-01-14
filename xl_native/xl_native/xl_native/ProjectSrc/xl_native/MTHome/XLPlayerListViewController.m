@@ -44,9 +44,11 @@
     [super viewDidAppear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
-    if(self.currentCell){
-        [self.currentCell.playerView play];
-    }
+//    if(self.currentCell){
+//        [self.currentCell.playerView play];
+//    }
+    
+    [self playListCurrPlayDidAppear];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -58,9 +60,12 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    if(self.currentCell){
-        [self.currentCell.playerView pause];
-    }
+    
+    [self playListCurrPlayDisAppear];
+    
+//    if(self.currentCell){
+//        [self.currentCell.playerView pause];
+//    }
 }
 
 -(void)initNavTitle{
@@ -129,7 +134,8 @@
 
 -(void)playCurCellVideo{
     
-    //    BOOL temp = firstLoad
+    //设置当前播放状态为播放，为跳转其他页面后再跳转回来后做准备。
+    self.isDisAppearPlay = YES;
     
     [_currentCell startDownloadHighPriorityTask];
     __weak typeof (HomeVideoCell) *wcell = self.currentCell;
@@ -149,6 +155,24 @@
             }
         };
     }
+}
+
+/*
+ 页面显示或从其他页面返回来已经显示调用方法
+ */
+- (void)playListCurrPlayDidAppear{
+    
+    if(self.currentCell && self.isDisAppearPlay){
+        [self.currentCell.playerView play];
+    }
+}
+/*
+ 页面消失调用方法
+ */
+- (void)playListCurrPlayDisAppear{
+        if(self.currentCell && self.isDisAppearPlay){
+            [self.currentCell.playerView pause];
+        }
 }
 
 #pragma mark --------- 仿抖音下拉刷新 ------------
@@ -545,7 +569,6 @@
 
 -(void)searchBtnClick{
     
-    
     if(self.seachClickBlock){
         self.seachClickBlock();
     }
@@ -712,6 +735,13 @@
     }];
     
     
+}
+
+- (void)playButtonAction:(BOOL)isPlay{
+    
+    self.isDisAppearPlay = isPlay;
+    
+    NSLog(@"-----------self.isDisAppearPlay -=%d---",self.isDisAppearPlay);
 }
 
 #pragma mark --------------- VideoSahreDelegate 代理 -----------------
