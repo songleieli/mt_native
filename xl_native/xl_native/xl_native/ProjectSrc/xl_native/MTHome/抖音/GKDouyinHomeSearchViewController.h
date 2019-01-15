@@ -8,6 +8,7 @@
 
 #import "NetWork_mt_getHotSearchSix.h"
 #import "HomeSearchResultViewController.h"
+#import "MTSearchHeadFunctionView.h"
 
 @interface GKDouyinHomeSearchViewController : ZJBaseViewController
 
@@ -17,9 +18,16 @@
 @property (nonatomic,strong) UITextField * textFieldSearchKey;
 @property (nonatomic,assign) BOOL hasKeyBordShow;
 
+
+
+//返回播放列表Block
+@property (nonatomic, copy) void(^backClickBlock)();
+
 //head
 @property (nonatomic,strong) UIView * viewHeadBg;
+@property (nonatomic, strong) UILabel *lableHeadTitle;
+@property (nonatomic, strong) UILabel *lableHeadBottomTitle;
+@property(nonatomic,strong) MTSearchHeadFunctionView *functionView;
 
-@property (nonatomic, copy) void(^backClickBlock)();
 
 @end

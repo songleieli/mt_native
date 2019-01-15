@@ -11,15 +11,6 @@
 
 @interface GetHotSearchSixModel : IObjcJsonBase
 
-
-/*
- 
- "noodleVideoCover": "http://p1.pstatp.com/large/a97c0001645baa2497c0.jpeg",
- "topic": "#明星"
-
-
- */
-
 @property (copy, nonatomic) NSString *noodleVideoCover;
 @property (copy, nonatomic) NSString *topic;
 

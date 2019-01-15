@@ -14,6 +14,62 @@
 
 @implementation GKDouyinHomeSearchViewController
 
+- (MTSearchHeadFunctionView *)functionView{
+    
+    if (!_functionView) {
+//        __weak __typeof(self) weakSelf = self;
+        CGRect rect =  [UIView getFrame_x:15 y:50 width:ScreenWidth-15*2 height:165];
+        _functionView = [[MTSearchHeadFunctionView alloc] initWithFrame:rect];
+//        _functionView.backgroundColor = [UIColor whiteColor];
+    }
+    return  _functionView;
+}
+
+- (UIView *)viewHeadBg{
+    
+    if (!_viewHeadBg) {
+        //        __weak __typeof(self) weakSelf = self;
+        CGRect rect =  [UIView getFrame_x:0 y:0 width:ScreenWidth height:165];
+        _viewHeadBg = [[UIView alloc] initWithFrame:rect];
+//        _viewHeadBg.backgroundColor = [UIColor redColor];
+        
+        [_viewHeadBg addSubview:self.lableHeadTitle];
+        [_viewHeadBg addSubview:self.functionView];
+        [_viewHeadBg addSubview:self.lableHeadBottomTitle];
+
+    }
+    return  _viewHeadBg;
+}
+
+- (UILabel *) lableHeadTitle{
+    if (_lableHeadTitle == nil){ //
+        _lableHeadTitle = [[UILabel alloc]init];
+        _lableHeadTitle.textColor = ColorWhite;
+        _lableHeadTitle.font = BigBoldFont;
+        _lableHeadTitle.top = 0;
+        _lableHeadTitle.left = 15;
+        _lableHeadTitle.height = 50;
+        _lableHeadTitle.width = self.functionView.width;
+        _lableHeadTitle.text = @"面条热搜";
+    }
+    return _lableHeadTitle;
+}
+- (UILabel *) lableHeadBottomTitle{
+    if (_lableHeadBottomTitle == nil){ //
+        _lableHeadBottomTitle = [[UILabel alloc]init];
+        _lableHeadBottomTitle.textColor = ColorWhite;
+        _lableHeadBottomTitle.font = BigBoldFont;
+        _lableHeadBottomTitle.top = self.functionView.bottom;
+        _lableHeadBottomTitle.left = 15;
+        _lableHeadBottomTitle.height = 50;
+        _lableHeadBottomTitle.width = self.functionView.width;
+        _lableHeadBottomTitle.text = @"查看更多热搜榜";
+    }
+    return _lableHeadBottomTitle;
+}
+
+
+
 -(void)dealloc{
     
     NSLog(@"---------------%@ dealloc ",NSStringFromClass([self class]));
@@ -55,9 +111,9 @@
     
     
     self.textFieldBgView = [[UIView alloc] init];
-    self.textFieldBgView.size = [UIView getSize_width:self.navBackGround.width - sizeScale(15)*2 - rightButton.width - 25
+    self.textFieldBgView.size = [UIView getSize_width:self.navBackGround.width - 15*2 - rightButton.width - 25
                                                height:self.navBackGround.height];
-    self.textFieldBgView.origin = [UIView getPoint_x:sizeScale(15) y:0];
+    self.textFieldBgView.origin = [UIView getPoint_x:15 y:0];
     self.textFieldBgView.layer.borderWidth = 0.0;
     self.textFieldBgView.layer.cornerRadius = 5.0;
     self.textFieldBgView.layer.borderColor = defaultLineColor.CGColor;
@@ -127,7 +183,7 @@
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    self.mainTableView.mj_header = nil;
     self.mainTableView.mj_footer = nil;
-    self.mainTableView.tableHeaderView = [self getHeadView];
+//    self.mainTableView.tableHeaderView = [self getHeadView];
     [self.mainTableView.mj_header beginRefreshing];
 //    [self.mainTableView registerClass:MessageCell.class forCellReuseIdentifier:[MessageCell cellId]];
     
@@ -135,57 +191,8 @@
 
 }
 
--(UIView*)getHeadView{
-    
-    self.viewHeadBg = [[UIView alloc] init];
-    self.viewHeadBg.size = [UIView getSize_width:ScreenWidth height:sizeScale(80)];
-    self.viewHeadBg.origin = [UIView getPoint_x:0 y:0];
-    
-    UILabel *lineLabel = [[UILabel alloc] init];
-    lineLabel.size = [UIView getSize_width:ScreenWidth height:0.3];
-    lineLabel.top = self.viewHeadBg.height - lineLabel.height;
-    lineLabel.left = 0;
-    lineLabel.backgroundColor = [UIColor grayColor]; //RGBAlphaColor(222, 222, 222, 0.8);
-    [self.viewHeadBg addSubview:lineLabel];
-    
-    
-    NSArray *titleArray = @[@"面粉",@"赞",@"@我的",@"评论"];
-    
-    //    NSInteger count = titleArray;
-    CGFloat width = (CGFloat)self.viewHeadBg.width/titleArray.count;
-    CGFloat offX = 0;
-    
-    
-    for (int i = 0; i < titleArray.count; i++){
-        UIView *bgView = [[UIView alloc] init];
-        bgView.frame = CGRectMake(offX, 0, width, self.viewHeadBg.height);
-        [self.viewHeadBg addSubview:bgView];
-        
-        UIButton *imgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        imgBtn.tag = i;
-        imgBtn.size = [UIView getSize_width:bgView.height/2 height:bgView.height/2];
-        imgBtn.top = bgView.height/9;
-        imgBtn.left = (bgView.width - imgBtn.width)/2;
-        [imgBtn addTarget:self action:@selector(titleButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        UIImage *img = [UIImage imageNamed:[NSString stringWithFormat:@"icon_m_%d",i]];
-        [imgBtn setImage:img forState:UIControlStateNormal];
-        [bgView addSubview:imgBtn];
-        
-        UIButton *titleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        titleBtn.tag = i;
-        titleBtn.size = [UIView getSize_width:bgView.width height:25];
-        titleBtn.origin = [UIView getPoint_x:0 y:imgBtn.bottom];
-        titleBtn.titleLabel.font = [UIFont defaultBoldFontWithSize: 13.0];
-        [titleBtn setTitle:[titleArray objectAtIndex:i] forState:UIControlStateNormal];
-        [titleBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [titleBtn setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
-        [bgView addSubview:titleBtn];
-        
-        offX += width;
-    }
-    return self.viewHeadBg;
-}
 
+#pragma -mark ---------- CustomMethod ----------
 
 - (void) setBackgroundImage:(NSString *)imageName {
     UIImageView *background = [[UIImageView alloc] initWithFrame:self.view.bounds];
@@ -198,6 +205,25 @@
     
 }
 
+-(void)refreshVideoList:(NSArray*)searchSixModelList{
+    
+    
+    __weak __typeof(self) weakSelf = self;
+    [self.functionView reloadWithSource:searchSixModelList dataLoadFinishBlock:^() {
+        NSLog(@"---------------返回functionView 的高度");
+        
+        //self.viewFooterBg.height = viewHeight;
+        
+//        weakSelf.viewFooterBg.height = weakSelf.functionView.bottom;
+        
+        weakSelf.viewHeadBg.height = weakSelf.functionView.height+100;
+        self.lableHeadBottomTitle.top = self.functionView.bottom;
+
+        weakSelf.mainTableView.tableHeaderView = weakSelf.viewHeadBg;
+    }];
+    
+}
+
 
 -(void)backBtnClick:(UIButton*)btn{
 //    [self.navigationController popViewControllerAnimated:YES];
@@ -207,7 +233,7 @@
     }
 }
 
-#pragma mark - 加载更过
+#pragma mark -------------- 加载更多 --------------
 
 -(void)loadNewData{
     
@@ -217,9 +243,15 @@
         /*暂时不考虑缓存问题*/
     } finishBlock:^(GetHotSearchSixResponse *result, NSString *msg, BOOL finished) {
         NSLog(@"-------");
+        [self.mainTableView.mj_header endRefreshing];
+
+        if(finished){
+            [self refreshVideoList:result.obj];
+        }
+        else{
+            [UIWindow showTips:msg];
+        }
     }];
-    
-    
 }
 
 #pragma mark - 取消按钮点击事件

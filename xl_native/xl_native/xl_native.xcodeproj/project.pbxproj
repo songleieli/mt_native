@@ -803,6 +803,7 @@
 		04FB536B21C61036000ED131 /* AVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB536A21C61036000ED131 /* AVPlayerView.m */; };
 		04FB537121C61639000ED131 /* WebCacheHelpler.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB537021C61639000ED131 /* WebCacheHelpler.m */; };
 		04FB537521C69B9F000ED131 /* AVPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB537421C69B9F000ED131 /* AVPlayerManager.m */; };
+		04FD7DE021EE2DB7004A57CA /* MTSearchHeadFunctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD7DDE21EE2DB6004A57CA /* MTSearchHeadFunctionView.m */; };
 		C5336F931E83739600618975 /* TTPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5336F8D1E83739600618975 /* TTPopupView.m */; };
 		C5336F971E83739600618975 /* UIView+TTFramePopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5336F8F1E83739600618975 /* UIView+TTFramePopupView.m */; };
 		C5336F9B1E83739600618975 /* UIViewController+TTPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5336F911E83739600618975 /* UIViewController+TTPopupView.m */; };
@@ -2283,6 +2284,8 @@
 		04FB537021C61639000ED131 /* WebCacheHelpler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebCacheHelpler.m; sourceTree = "<group>"; };
 		04FB537321C69B9F000ED131 /* AVPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerManager.h; sourceTree = "<group>"; };
 		04FB537421C69B9F000ED131 /* AVPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPlayerManager.m; sourceTree = "<group>"; };
+		04FD7DDE21EE2DB6004A57CA /* MTSearchHeadFunctionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSearchHeadFunctionView.m; sourceTree = "<group>"; };
+		04FD7DDF21EE2DB6004A57CA /* MTSearchHeadFunctionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSearchHeadFunctionView.h; sourceTree = "<group>"; };
 		1F26E1D71D6BE9DE007A2849 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1F26E1D91D6BE9E8007A2849 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		1F26E1DB1D6BEA1A007A2849 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -4213,6 +4216,8 @@
 		04E28F59218942C7006A91DA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				04FD7DDF21EE2DB6004A57CA /* MTSearchHeadFunctionView.h */,
+				04FD7DDE21EE2DB6004A57CA /* MTSearchHeadFunctionView.m */,
 				0415F08921C7D462000440F4 /* MTHomeRefreshNavigitionView.h */,
 				0415F08821C7D462000440F4 /* MTHomeRefreshNavigitionView.m */,
 				04E700D8219FF5C10096099F /* MtHomeTopView.h */,
@@ -5962,6 +5967,7 @@
 				04DCA85C21A5580300691A3A /* TCLog.m in Sources */,
 				04C2615D21A68FB200374E4D /* TCBGMListViewController.m in Sources */,
 				04183B1921C2C09600383E3F /* Callback_userInfo.m in Sources */,
+				04FD7DE021EE2DB7004A57CA /* MTSearchHeadFunctionView.m in Sources */,
 				04CBC3EB2179C01300658E47 /* GPUImageMaskFilter.m in Sources */,
 				0435493121A7E9AC00AED5A8 /* AFURLRequestSerialization.m in Sources */,
 				04B0E1E621A6937600ABCF16 /* NSSet+BlocksKit.m in Sources */,
