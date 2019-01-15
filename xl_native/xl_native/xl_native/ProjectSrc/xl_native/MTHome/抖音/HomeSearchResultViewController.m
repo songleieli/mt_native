@@ -44,20 +44,19 @@
     self.isNavBackGroundHiden  = NO;
     self.btnLeft.hidden = YES;
     
-    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightButton.size = [UIView getSize_width:15 height:26];
-    rightButton.origin = [UIView getPoint_x:self.navBackGround.width - rightButton.width-20
-                                          y:self.navBackGround.height - rightButton.height-9];
-    [rightButton setBackgroundImage:[UIImage imageNamed:@"icon_m_s_right"] forState:UIControlStateNormal];
-    [rightButton addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftButton.size = [UIView getSize_width:20 height:20];
+    leftButton.origin = [UIView getPoint_x:15.0f y:self.navBackGround.height -leftButton.height-11];
+    [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_titlebar_whiteback"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.btnRight = rightButton;
+    self.btnLeft = leftButton;
     
     
     self.textFieldBgView = [[UIView alloc] init];
-    self.textFieldBgView.size = [UIView getSize_width:self.navBackGround.width - sizeScale(15)*2 - rightButton.width - 25
+    self.textFieldBgView.size = [UIView getSize_width:self.navBackGround.width - 10*2 - leftButton.right
                                                height:self.navBackGround.height];
-    self.textFieldBgView.origin = [UIView getPoint_x:sizeScale(15) y:0];
+    self.textFieldBgView.origin = [UIView getPoint_x:10+leftButton.right y:0];
     self.textFieldBgView.layer.borderWidth = 0.0;
     self.textFieldBgView.layer.cornerRadius = 5.0;
     self.textFieldBgView.layer.borderColor = defaultLineColor.CGColor;
@@ -200,11 +199,7 @@
 
 
 -(void)backBtnClick:(UIButton*)btn{
-//    [self.navigationController popViewControllerAnimated:YES];
-    
-    if(self.backClickBlock){
-        self.backClickBlock();
-    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - 加载更过
@@ -243,6 +238,8 @@
         /*
          在调试过过程中发现，keyboardWillShow会多次调用弹起，通过 hasKeyBordShow 判断只有第一次调用才响应以下代码块
          */
+        self.textFieldBgView.width = self.textFieldBgView.width - 50;
+        self.textFieldSearchKey.width = self.textFieldSearchKey.width - 50;
         self.cancleButton.left = self.cancleButton.left - 50;
         
         [UIView animateWithDuration:1.0f animations:^{
@@ -256,7 +253,11 @@
 - (void)keyboardWillHide:(NSNotification *)notification{
     
     self.hasKeyBordShow = NO;
+    
+    self.textFieldBgView.width = self.textFieldBgView.width + 50;
+    self.textFieldSearchKey.width = self.textFieldSearchKey.width + 50;
     self.cancleButton.left = self.cancleButton.left + 50;
+    
     [UIView animateWithDuration:1.0f animations:^{
         self.btnRight.hidden = NO;
     }];

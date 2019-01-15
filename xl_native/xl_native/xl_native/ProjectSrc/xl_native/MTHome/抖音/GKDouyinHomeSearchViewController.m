@@ -232,6 +232,10 @@
 
 -(void)titleButtonClicked:(UIButton*)btn{
     
+    //先取消键盘再弹出新页面
+    [self.textFieldSearchKey resignFirstResponder];
+
+    
     HomeSearchResultViewController *homeSearchResultViewController = [[HomeSearchResultViewController alloc] init];
     [self pushNewVC:homeSearchResultViewController animated:YES];
 }
