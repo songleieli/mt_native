@@ -183,12 +183,8 @@
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    self.mainTableView.mj_header = nil;
     self.mainTableView.mj_footer = nil;
-//    self.mainTableView.tableHeaderView = [self getHeadView];
     [self.mainTableView.mj_header beginRefreshing];
-//    [self.mainTableView registerClass:MessageCell.class forCellReuseIdentifier:[MessageCell cellId]];
-    
-//    [self setBackgroundImage:@"img_video_loading"]; //cell 设置背景图
-
+    [self.mainTableView registerClass:HomeSearchCell.class forCellReuseIdentifier:[HomeSearchCell cellId]];
 }
 
 
@@ -224,6 +220,35 @@
     
 }
 
+-(void)loadBodyDataList{
+    
+    
+    NetWork_mt_getHotVideoList *request = [[NetWork_mt_getHotVideoList alloc] init];
+    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+    request.pageNo = @"1";
+    request.pageSize = @"20";
+    [request startGetWithBlock:^(id result, NSString *msg) {
+        /*暂时不考虑缓存问题*/
+    } finishBlock:^(GetHotSearchSixResponse *result, NSString *msg, BOOL finished) {
+        NSLog(@"-------");
+        
+        if(finished){
+//            [self refreshVideoList:result.obj];
+            
+            
+            [self.mainDataArr addObjectsFromArray:result.obj];
+            [self.mainTableView reloadData];
+            
+        }
+        else{
+            [UIWindow showTips:msg];
+        }
+    }];
+    
+}
+
+
+
 
 -(void)backBtnClick:(UIButton*)btn{
 //    [self.navigationController popViewControllerAnimated:YES];
@@ -244,9 +269,15 @@
     } finishBlock:^(GetHotSearchSixResponse *result, NSString *msg, BOOL finished) {
         NSLog(@"-------");
         [self.mainTableView.mj_header endRefreshing];
+        [self loadBodyDataList]; //加载cell Data
 
         if(finished){
+            
             [self refreshVideoList:result.obj];
+            
+            
+            
+            
         }
         else{
             [UIWindow showTips:msg];
@@ -271,6 +302,39 @@
     HomeSearchResultViewController *homeSearchResultViewController = [[HomeSearchResultViewController alloc] init];
     [self pushNewVC:homeSearchResultViewController animated:YES];
 }
+
+#pragma mark --------------- tabbleView代理 -----------------
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return self.mainDataArr.count;
+}
+//设置cell的样式
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if(self.mainDataArr.count > 0){
+        HomeSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:[HomeSearchCell cellId] forIndexPath:indexPath];
+        GetHotVideoListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
+        [cell fillDataWithModel:model];
+        return cell;
+    }
+    else{
+        /*
+         有时会出现，self.mainDataArr count为0 cellForRowAtIndexPath，却响应的bug。
+         */
+        UITableViewCell * celltemp =  [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellid"];
+        return celltemp;
+    }
+}
+
+//设置每一组的高度
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return  HomeSearchCellHeight;
+}
+
 
 #pragma mark - 键盘 show 与 hide
 

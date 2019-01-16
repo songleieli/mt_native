@@ -87,7 +87,6 @@
 		04443E9021B3F91400C8DD34 /* XLPlayerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E8F21B3F91400C8DD34 /* XLPlayerListViewController.m */; };
 		04443E9321B3FA6300C8DD34 /* MJTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E9121B3FA6200C8DD34 /* MJTableView.m */; };
 		04443E9721B41A0B00C8DD34 /* HomeVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04443E9621B41A0A00C8DD34 /* HomeVideoCell.m */; };
-		04468DAE214B7DB3002F4528 /* HuinongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04468DAC214B7DB3002F4528 /* HuinongViewController.m */; };
 		04468F17214B8F14002F4528 /* ZJCustomTabWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04468F16214B8F14002F4528 /* ZJCustomTabWebController.m */; };
 		0449AB6A2181BBF100D6172D /* ZJLoginService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449AB642181BBF100D6172D /* ZJLoginService.m */; };
 		0449AB6C2181BBF100D6172D /* ZJLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449AB682181BBF100D6172D /* ZJLoginViewController.m */; };
@@ -107,6 +106,8 @@
 		0482F27621BFCA7C00587B38 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 0482F26321BFCA7B00587B38 /* MASViewAttribute.m */; };
 		0487EBBA21E89ADE00501B9C /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487EBB821E89ADD00501B9C /* SettingViewController.m */; };
 		0487EBBF21E89C2900501B9C /* MyViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487EBBD21E89C2900501B9C /* MyViewTableViewCell.m */; };
+		048BF55221EEC4F2005D3708 /* NetWork_mt_getHotVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 048BF55021EEC4F1005D3708 /* NetWork_mt_getHotVideoList.m */; };
+		048BF55521EEFE1E005D3708 /* HomeSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 048BF55421EEFE1E005D3708 /* HomeSearchCell.m */; };
 		04A04EB321ECDEA8007CBABF /* NetWork_mt_getHotSearchSix.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A04EB121ECDEA8007CBABF /* NetWork_mt_getHotSearchSix.m */; };
 		04A04EB621ECE553007CBABF /* HomeSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A04EB421ECE552007CBABF /* HomeSearchResultViewController.m */; };
 		04A919A021E4EA7A002DDB1A /* NetWork_mt_getFollowsVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A9199E21E4EA7A002DDB1A /* NetWork_mt_getFollowsVideoList.m */; };
@@ -1132,8 +1133,6 @@
 		04443E9221B3FA6200C8DD34 /* MJTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJTableView.h; sourceTree = "<group>"; };
 		04443E9521B41A0A00C8DD34 /* HomeVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVideoCell.h; sourceTree = "<group>"; };
 		04443E9621B41A0A00C8DD34 /* HomeVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVideoCell.m; sourceTree = "<group>"; };
-		04468DAC214B7DB3002F4528 /* HuinongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuinongViewController.m; sourceTree = "<group>"; };
-		04468DAD214B7DB3002F4528 /* HuinongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuinongViewController.h; sourceTree = "<group>"; };
 		04468F15214B8F13002F4528 /* ZJCustomTabWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCustomTabWebController.h; sourceTree = "<group>"; };
 		04468F16214B8F14002F4528 /* ZJCustomTabWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCustomTabWebController.m; sourceTree = "<group>"; };
 		0449AB642181BBF100D6172D /* ZJLoginService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJLoginService.m; sourceTree = "<group>"; };
@@ -1177,6 +1176,10 @@
 		0487EBB821E89ADD00501B9C /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		0487EBBD21E89C2900501B9C /* MyViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewTableViewCell.m; sourceTree = "<group>"; };
 		0487EBBE21E89C2900501B9C /* MyViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewTableViewCell.h; sourceTree = "<group>"; };
+		048BF55021EEC4F1005D3708 /* NetWork_mt_getHotVideoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getHotVideoList.m; sourceTree = "<group>"; };
+		048BF55121EEC4F1005D3708 /* NetWork_mt_getHotVideoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getHotVideoList.h; sourceTree = "<group>"; };
+		048BF55321EEFE1E005D3708 /* HomeSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSearchCell.h; sourceTree = "<group>"; };
+		048BF55421EEFE1E005D3708 /* HomeSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSearchCell.m; sourceTree = "<group>"; };
 		0495106C2182B00A0005F615 /* NSDate+TimeCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+TimeCategory.h"; sourceTree = "<group>"; };
 		0495106D2182B00A0005F615 /* NSDate+TimeCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TimeCategory.m"; sourceTree = "<group>"; };
 		049E96F221521BB700AE2263 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
@@ -2834,8 +2837,6 @@
 				04A919A121E4F044002DDB1A /* Views */,
 				04C70D3A21E3AE600022D897 /* MTFollowViewController.h */,
 				04C70D3921E3AE5F0022D897 /* MTFollowViewController.m */,
-				04468DAD214B7DB3002F4528 /* HuinongViewController.h */,
-				04468DAC214B7DB3002F4528 /* HuinongViewController.m */,
 			);
 			path = MTFollow;
 			sourceTree = "<group>";
@@ -2953,6 +2954,8 @@
 			children = (
 				04A04EB221ECDEA8007CBABF /* NetWork_mt_getHotSearchSix.h */,
 				04A04EB121ECDEA8007CBABF /* NetWork_mt_getHotSearchSix.m */,
+				048BF55121EEC4F1005D3708 /* NetWork_mt_getHotVideoList.h */,
+				048BF55021EEC4F1005D3708 /* NetWork_mt_getHotVideoList.m */,
 			);
 			path = mt_search;
 			sourceTree = "<group>";
@@ -4222,6 +4225,8 @@
 				0415F08821C7D462000440F4 /* MTHomeRefreshNavigitionView.m */,
 				04E700D8219FF5C10096099F /* MtHomeTopView.h */,
 				04E700D7219FF5C00096099F /* MtHomeTopView.m */,
+				048BF55321EEFE1E005D3708 /* HomeSearchCell.h */,
+				048BF55421EEFE1E005D3708 /* HomeSearchCell.m */,
 				04443E9521B41A0A00C8DD34 /* HomeVideoCell.h */,
 				04443E9621B41A0A00C8DD34 /* HomeVideoCell.m */,
 			);
@@ -5849,6 +5854,7 @@
 				04CBC47F2179C01300658E47 /* SDWebImageCompat.m in Sources */,
 				04CBC3E52179C01300658E47 /* GPUImageSharpenFilter.m in Sources */,
 				0435492D21A7E9AC00AED5A8 /* AFHTTPSessionManager.m in Sources */,
+				048BF55521EEFE1E005D3708 /* HomeSearchCell.m in Sources */,
 				04CBC3A12179C01300658E47 /* GPUImage3x3TextureSamplingFilter.m in Sources */,
 				D957AD611DD2CB2F00B7EE09 /* IQBarButtonItem.m in Sources */,
 				04CBC44D2179C01300658E47 /* GPUImageHighlightShadowFilter.m in Sources */,
@@ -6107,6 +6113,7 @@
 				D9EE75801EF8C613001A1299 /* SDWaitingView.m in Sources */,
 				04DCA8F421A565D500691A3A /* VideoInfo.m in Sources */,
 				D954C5671DD1A40F003CA535 /* NSString+Common.m in Sources */,
+				048BF55221EEC4F2005D3708 /* NetWork_mt_getHotVideoList.m in Sources */,
 				04CBC4412179C01300658E47 /* GPUImageAddBlendFilter.m in Sources */,
 				0435491F21A7E9AC00AED5A8 /* UIImageView+AFNetworking.m in Sources */,
 				04B0E1EE21A6937600ABCF16 /* NSMutableSet+BlocksKit.m in Sources */,
@@ -6207,7 +6214,6 @@
 				04CBC2F92179C01200658E47 /* BBVoiceRecordToastContentView.m in Sources */,
 				04B0E1FC21A6937600ABCF16 /* NSCache+BlocksKit.m in Sources */,
 				04CBC3ED2179C01300658E47 /* GPUImageSwirlFilter.m in Sources */,
-				04468DAE214B7DB3002F4528 /* HuinongViewController.m in Sources */,
 				04CBC4392179C01300658E47 /* GPUImagePerlinNoiseFilter.m in Sources */,
 				04CBC4472179C01300658E47 /* GPUImage3x3ConvolutionFilter.m in Sources */,
 				04CBC3B52179C01300658E47 /* GPUImageOutput.m in Sources */,

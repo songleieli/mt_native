@@ -6,9 +6,13 @@
 //  Copyright © 2018年 gaokun. All rights reserved.
 //
 
-#import "NetWork_mt_getHotSearchSix.h"
 #import "HomeSearchResultViewController.h"
 #import "MTSearchHeadFunctionView.h"
+
+#import "NetWork_mt_getHotSearchSix.h"
+#import "NetWork_mt_getHotVideoList.h"
+
+#import "HomeSearchCell.h"
 
 @interface GKDouyinHomeSearchViewController : ZJBaseViewController
 

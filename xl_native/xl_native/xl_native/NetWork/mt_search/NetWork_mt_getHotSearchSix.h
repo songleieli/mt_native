@@ -6,8 +6,6 @@
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
-#import "WCServiceBase.h"
-
 
 @interface GetHotSearchSixModel : IObjcJsonBase
 
