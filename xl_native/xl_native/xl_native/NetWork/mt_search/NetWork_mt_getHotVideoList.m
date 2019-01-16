@@ -12,6 +12,11 @@
 
 @end
 
+@implementation MusicHotModel
+
+@end
+
+
 
 @implementation GetHotVideoListModel
 
@@ -20,7 +25,7 @@
     return @{@"videoList" : @"videoList"};
 }
 - (NSDictionary *)classNameForItemInArray {
-    return @{@"videoList" : @"HomeListModel",@"topic":@"TopicModel"};
+    return @{@"videoList" : @"HomeListModel",@"topic":@"TopicModel",@"music":@"MusicHotModel"};
 }
 
 

@@ -101,14 +101,10 @@
 }
 
 - (void)initViews{
-    
-//    self.backgroundColor = RGBAlphaColor(0, 0, 0, 0.5);
-//    [self addSubview:self.scrollView];
-    
+
     [self addSubview:self.searchButton];       //搜索按钮
     [self addSubview:self.recommendButton];    //推荐按钮
     [self addSubview:self.cityButton];         //城市按钮
-    
     [self addSubview:self.refreshButton];      //刷新按钮
     [self addSubview:self.scanButton];         //扫描按钮
 }

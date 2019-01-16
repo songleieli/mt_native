@@ -28,12 +28,44 @@
 
 @end
 
+@interface MusicHotModel : IObjcJsonBase
+
+//"music": {
+//    "id": 6609915509053852420,
+//    "name": "1, 2, 3, 4 (One, Two, Three, Four) [Fun Radio Edit]",
+//    "coverUrl": null,
+//    "playUrl": "http://p1.pstatp.com/obj/d19b000372d62c39c48f",
+//    "noodleId": null,
+//    "nickname": null,
+//    "hotCount": "6230399",
+//    "createTime": "2018-12-27 20:20:47",
+//    "useCount": 102,
+//    "isCollect": 0
+//},
+
+
+
+@property (copy, nonatomic) NSString *name;
+@property (strong, nonatomic) NSNumber *id;
+@property (copy, nonatomic) NSString *coverUrl;
+@property (copy, nonatomic) NSString *playUrl;
+@property (copy, nonatomic) NSString *noodleId;
+@property (copy, nonatomic) NSString *nickname;
+@property (copy, nonatomic) NSString *hotCount;
+@property (copy, nonatomic) NSString *createTime;
+@property (strong, nonatomic) NSNumber *useCount;
+@property (strong, nonatomic) NSNumber *isCollect;
+
+
+@end
+
 
 
 @interface GetHotVideoListModel : IObjcJsonBase
 
 @property (strong, nonatomic) NSNumber *hotType;
 @property (strong, nonatomic) TopicModel *topic;
+@property (strong, nonatomic) MusicHotModel *music;
 @property(nonatomic,strong) NSArray * videoList;
 
 

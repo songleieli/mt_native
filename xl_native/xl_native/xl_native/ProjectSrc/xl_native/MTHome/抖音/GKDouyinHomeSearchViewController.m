@@ -226,7 +226,7 @@
     NetWork_mt_getHotVideoList *request = [[NetWork_mt_getHotVideoList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.pageNo = @"1";
-    request.pageSize = @"20";
+    request.pageSize = @"10";
     [request startGetWithBlock:^(id result, NSString *msg) {
         /*暂时不考虑缓存问题*/
     } finishBlock:^(GetHotSearchSixResponse *result, NSString *msg, BOOL finished) {

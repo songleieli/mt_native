@@ -11,15 +11,14 @@
 #import "NetWork_mt_getHotVideoList.h"
 
 
-@protocol GetFollowsDelegate <NSObject>
+//@protocol GetFollowsDelegate <NSObject>
+//
+//-(void)btnDeleteClick:(GetHotVideoListModel*)model;
+//
+//@end
 
--(void)btnDeleteClick:(GetHotVideoListModel*)model;
 
-@end
-
-
-#define HomeSearchCellHeight 80.0f
-//#define ZJMessageCellSpace 6.0f
+#define HomeSearchCellHeight 200.0f
 
 
 @interface HomeSearchCell : BaseTableViewCell
@@ -29,15 +28,21 @@
 - (void)fillDataWithModel:(GetHotVideoListModel *)listModel;
 
 @property(nonatomic,strong) GetHotVideoListModel * listModel;
-@property(nonatomic,strong) UIButton * viewBg;
+
+
+//head
+@property(nonatomic,strong) UIView * viewTitle;
+@property(nonatomic,strong) UIView * imageVeiwBg;
 @property(nonatomic,strong) UIImageView * imageVeiwIcon;
+@property(nonatomic,strong) UILabel * titleLalbe;
+@property(nonatomic,strong) UILabel * descLalbe;
+@property(nonatomic,strong) UILabel * playCountLalbe;
 
-@property(nonatomic,strong) UILabel * labelReadStatus;
-@property(nonatomic,strong) UILabel * labelTitle;
-@property(nonatomic,strong) UILabel * labelSign;
-@property(nonatomic,strong) UILabel * labelTImes;
 
-@property(nonatomic,weak) id <GetFollowsDelegate> getFollowsDelegate;
+@property(nonatomic,strong) UIScrollView * scrollerBody;
+
+
+//@property(nonatomic,weak) id <GetFollowsDelegate> getFollowsDelegate;
 
 
 @end
