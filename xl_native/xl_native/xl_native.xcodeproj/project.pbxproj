@@ -500,6 +500,7 @@
 		04DCA91821A5687600691A3A /* QBCheckmarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA90A21A5687500691A3A /* QBCheckmarkView.m */; };
 		04DCA91921A5687600691A3A /* QBSlomoIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA90C21A5687500691A3A /* QBSlomoIconView.m */; };
 		04DCA91A21A5687600691A3A /* QBAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA90D21A5687500691A3A /* QBAssetCell.m */; };
+		04DCEE8B21F59DD9007AC5B0 /* HomeSearchResultSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCEE8A21F59DD9007AC5B0 /* HomeSearchResultSubViewController.m */; };
 		04E28F71218ABB96006A91DA /* XLGameWkWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E28F6F218ABB96006A91DA /* XLGameWkWebViewController.m */; };
 		04E6E8DA21A8FFDC007C8A16 /* ghostshadow-19.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E6E7AF21A8FFDB007C8A16 /* ghostshadow-19.png */; };
 		04E6E8DB21A8FFDC007C8A16 /* ghostshadow-18.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E6E7B021A8FFDB007C8A16 /* ghostshadow-18.png */; };
@@ -1970,6 +1971,8 @@
 		04DCA90B21A5687500691A3A /* QBAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAlbumCell.h; sourceTree = "<group>"; };
 		04DCA90C21A5687500691A3A /* QBSlomoIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBSlomoIconView.m; sourceTree = "<group>"; };
 		04DCA90D21A5687500691A3A /* QBAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAssetCell.m; sourceTree = "<group>"; };
+		04DCEE8921F59DD8007AC5B0 /* HomeSearchResultSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSearchResultSubViewController.h; sourceTree = "<group>"; };
+		04DCEE8A21F59DD9007AC5B0 /* HomeSearchResultSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSearchResultSubViewController.m; sourceTree = "<group>"; };
 		04E28F6F218ABB96006A91DA /* XLGameWkWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLGameWkWebViewController.m; sourceTree = "<group>"; };
 		04E28F70218ABB96006A91DA /* XLGameWkWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLGameWkWebViewController.h; sourceTree = "<group>"; };
 		04E6E7AF21A8FFDB007C8A16 /* ghostshadow-19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ghostshadow-19.png"; sourceTree = "<group>"; };
@@ -2989,6 +2992,8 @@
 				04AB303C21CA91310072808E /* GKDouyinHomeSearchViewController.m */,
 				04A04EB521ECE553007CBABF /* HomeSearchResultViewController.h */,
 				04A04EB421ECE552007CBABF /* HomeSearchResultViewController.m */,
+				04DCEE8921F59DD8007AC5B0 /* HomeSearchResultSubViewController.h */,
+				04DCEE8A21F59DD9007AC5B0 /* HomeSearchResultSubViewController.m */,
 			);
 			path = "抖音";
 			sourceTree = "<group>";
@@ -6154,6 +6159,7 @@
 				D9D208791F0CED6000B9FE13 /* RadioButton.m in Sources */,
 				04DCA8E221A565D500691A3A /* TCVideoJoinViewController.m in Sources */,
 				0400F32E21AFA62D0038E16C /* SendMessageToWXReq+requestWithTextOrMediaMessage.m in Sources */,
+				04DCEE8B21F59DD9007AC5B0 /* HomeSearchResultSubViewController.m in Sources */,
 				D957AD591DD2CB2F00B7EE09 /* IQUIWindow+Hierarchy.m in Sources */,
 				04CBC4672179C01300658E47 /* GPUImageStillCamera.m in Sources */,
 				04C1720E21CE3EC80077FA6C /* NetWork_mt_personal_homePage.m in Sources */,

@@ -107,15 +107,9 @@ static NSString* const ViewTableViewCellId = @"HomeSearchCellId";
         _playCountLalbe.font = [UIFont defaultBoldFontWithSize:12];
         _playCountLalbe.textColor = [UIColor whiteColor];
         _playCountLalbe.size = [UIView getSize_width:50 height:20];
-//        _playCountLalbe.origin = [UIView getPoint_x:self.viewTitle.width - _playCountLalbe.width - 15
-//                                             y:self.imageVeiwBg.centerY];
         _playCountLalbe.left = self.viewTitle.width - _playCountLalbe.width - 15;
         _playCountLalbe.centerY = self.imageVeiwBg.centerY;
         _playCountLalbe.textAlignment = NSTextAlignmentRight;
-        
-        
-        //test
-        //        _descLalbe.backgroundColor = [UIColor orangeColor];
     }
     return _playCountLalbe;
 }
@@ -125,7 +119,6 @@ static NSString* const ViewTableViewCellId = @"HomeSearchCellId";
         
         CGRect rect =  [UIView getFrame_x:15 y:self.viewTitle.bottom width:self.viewTitle.width height:130];
         _scrollerBody  = [[UIScrollView alloc] initWithFrame:rect];
-//        _scrollerBody.backgroundColor = [UIColor blueColor];
         _scrollerBody.alwaysBounceVertical = NO;
         _scrollerBody.alwaysBounceHorizontal = YES;
     }

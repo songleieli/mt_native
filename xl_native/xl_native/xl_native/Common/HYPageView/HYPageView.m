@@ -316,7 +316,9 @@
         
         _scrollView.frame = CGRectMake(0, y, _selfFrame.size.width, _selfFrame.size.height);
         _scrollView.delegate = self;
-        _scrollView.backgroundColor = [UIColor whiteColor];
+//        _scrollView.backgroundColor = [UIColor redColor];
+        _scrollView.backgroundColor = ColorThemeBackground; //修改为面条主体黑色，modify by songlei
+        
         _scrollView.contentSize = CGSizeMake(_selfFrame.size.width * _titles.count, 0);
         _scrollView.pagingEnabled = YES;
         _scrollView.showsHorizontalScrollIndicator = YES;

@@ -6,9 +6,11 @@
 //  Copyright © 2018年 gaokun. All rights reserved.
 //
 
+#import "HomeSearchResultSubViewController.h"
 #import "NetWork_mt_getHotSearchSix.h"
+#import "HYPageView.h"
 
-@interface HomeSearchResultViewController : ZJBaseViewController
+@interface HomeSearchResultViewController : ZJBaseViewController<HYPageViewDelegate,SubCellDelegate>
 
 //title
 @property (nonatomic,strong) UIView *textFieldBgView;
@@ -17,7 +19,7 @@
 @property (nonatomic,assign) BOOL hasKeyBordShow;
 
 //head
-@property (nonatomic,strong) UIView * viewHeadBg;
+@property(nonatomic,strong) HYPageView *pageView;
 
 @property (nonatomic, copy) void(^backClickBlock)();
 

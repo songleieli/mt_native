@@ -109,112 +109,43 @@
 }
 
 -(void)setUpUI{
-    
     self.view.backgroundColor = ColorThemeBackground;
     
-    [self.view addSubview:self.mainTableView];
+    
+    NSInteger bodyViewHeight = ScreenHeight - kNavBarHeight_New;
     
     
-    NSInteger tableViewHeight = ScreenHeight - kNavBarHeight_New;
+    /*
+     *多个参数写法，ZJMyRepairSubViewController 要声明对应的参数名称
+     */
+    NSDictionary *dicOne = @{@"parameter":@"0",@"delegate":self};
+    NSDictionary *dicTwo = @{@"parameter":@"1",@"delegate":self};
+    NSDictionary *dicThree = @{@"parameter":@"2",@"delegate":self};
+     NSDictionary *dicFour = @{@"parameter":@"3",@"delegate":self};
+     NSDictionary *dicFive = @{@"parameter":@"4",@"delegate":self};
+    NSArray *arrayParameters = @[dicOne,dicTwo,dicThree,dicFour,dicFive];
     
-    self.mainTableView.size = [UIView getSize_width:ScreenWidth height:tableViewHeight];
-    self.mainTableView.origin = [UIView getPoint_x:0 y:kNavBarHeight_New];
-    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.mainTableView.delegate = self;
-    self.mainTableView.dataSource = self;
-    self.mainTableView.backgroundColor = [UIColor clearColor]; //RGBFromColor(0xecedf1);
-    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    self.mainTableView.mj_header = nil;
-    self.mainTableView.mj_footer = nil;
-    self.mainTableView.tableHeaderView = [self getHeadView];
-    [self.mainTableView.mj_header beginRefreshing];
-//    [self.mainTableView registerClass:MessageCell.class forCellReuseIdentifier:[MessageCell cellId]];
+    self.pageView = [[HYPageView alloc] initWithFrame:CGRectMake(0, kNavBarHeight_New, ScreenWidth, bodyViewHeight)
+                                           withTitles:@[@"综合",@"视频",@"用户",@"音乐",@"话题",]
+                                  withViewControllers:@[@"HomeSearchResultSubViewController",@"HomeSearchResultSubViewController",@"HomeSearchResultSubViewController",@"HomeSearchResultSubViewController",@"HomeSearchResultSubViewController"]
+                                    withParametersDic:arrayParameters];
     
-//    [self setBackgroundImage:@"img_video_loading"]; //cell 设置背景图
-
-}
-
--(UIView*)getHeadView{
+    self.pageView.isTranslucent = NO;
+    self.pageView.selectedColor = [UIColor whiteColor];
+    self.pageView.unselectedColor = RGBA(120, 122, 132, 1);
+    self.pageView.topTabScrollViewBgColor = ColorThemeBackground;
+    self.pageView.topTabBottomLineColor = [UIColor grayColor];
+    self.pageView.delegate = self;
     
-    self.viewHeadBg = [[UIView alloc] init];
-    self.viewHeadBg.size = [UIView getSize_width:ScreenWidth height:sizeScale(80)];
-    self.viewHeadBg.origin = [UIView getPoint_x:0 y:0];
-    
-    UILabel *lineLabel = [[UILabel alloc] init];
-    lineLabel.size = [UIView getSize_width:ScreenWidth height:0.3];
-    lineLabel.top = self.viewHeadBg.height - lineLabel.height;
-    lineLabel.left = 0;
-    lineLabel.backgroundColor = [UIColor grayColor]; //RGBAlphaColor(222, 222, 222, 0.8);
-    [self.viewHeadBg addSubview:lineLabel];
-    
-    
-    NSArray *titleArray = @[@"面粉",@"赞",@"@我的",@"评论"];
-    
-    //    NSInteger count = titleArray;
-    CGFloat width = (CGFloat)self.viewHeadBg.width/titleArray.count;
-    CGFloat offX = 0;
-    
-    
-    for (int i = 0; i < titleArray.count; i++){
-        UIView *bgView = [[UIView alloc] init];
-        bgView.frame = CGRectMake(offX, 0, width, self.viewHeadBg.height);
-        [self.viewHeadBg addSubview:bgView];
-        
-        UIButton *imgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        imgBtn.tag = i;
-        imgBtn.size = [UIView getSize_width:bgView.height/2 height:bgView.height/2];
-        imgBtn.top = bgView.height/9;
-        imgBtn.left = (bgView.width - imgBtn.width)/2;
-        [imgBtn addTarget:self action:@selector(titleButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        UIImage *img = [UIImage imageNamed:[NSString stringWithFormat:@"icon_m_%d",i]];
-        [imgBtn setImage:img forState:UIControlStateNormal];
-        [bgView addSubview:imgBtn];
-        
-        UIButton *titleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        titleBtn.tag = i;
-        titleBtn.size = [UIView getSize_width:bgView.width height:25];
-        titleBtn.origin = [UIView getPoint_x:0 y:imgBtn.bottom];
-        titleBtn.titleLabel.font = [UIFont defaultBoldFontWithSize: 13.0];
-        [titleBtn setTitle:[titleArray objectAtIndex:i] forState:UIControlStateNormal];
-        [titleBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [titleBtn setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
-        [bgView addSubview:titleBtn];
-        
-        offX += width;
-    }
-    return self.viewHeadBg;
+    [self.view addSubview:self.pageView];
 }
 
 
-- (void) setBackgroundImage:(NSString *)imageName {
-    UIImageView *background = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    background.clipsToBounds = YES;
-    background.contentMode = UIViewContentModeScaleAspectFill;
-    background.image = [UIImage imageNamed:imageName];
-    //[self.view addSubview:background];
-    [self.view insertSubview:background atIndex:0];
-    
-    
-}
+
 
 
 -(void)backBtnClick:(UIButton*)btn{
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-#pragma mark - 加载更过
-
--(void)loadNewData{
-    
-    NetWork_mt_getHotSearchSix *request = [[NetWork_mt_getHotSearchSix alloc] init];
-    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    [request startGetWithBlock:^(id result, NSString *msg) {
-        /*暂时不考虑缓存问题*/
-    } finishBlock:^(GetHotSearchSixResponse *result, NSString *msg, BOOL finished) {
-        NSLog(@"-------");
-    }];
-    
-    
 }
 
 #pragma mark - 取消按钮点击事件
@@ -225,9 +156,18 @@
     
 }
 
--(void)titleButtonClicked:(UIButton*)btn{
+#pragma -mark SubCellDelegate
+
+-(void)subCkeckClick:(NSMutableArray *)selectModelList{
+    NSLog(@"-------------");
     
+//    self.chenkBoxArray = selectModelList;
 }
+
+//-(void)subCellClick:(ZjPmsPatrolRecordsModel *)model subType:(NSString*)subType{
+//    NSLog(@"-------------");
+//
+//}
 
 #pragma mark - 键盘 show 与 hide
 

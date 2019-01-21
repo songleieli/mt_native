@@ -285,6 +285,36 @@
     }];
 }
 
+
+#pragma mark ---------- 点击搜索按钮 --------
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    NSLog(@"点击了搜索");
+    
+    [textField resignFirstResponder];
+    
+    HomeSearchResultViewController *homeSearchResultViewController = [[HomeSearchResultViewController alloc] init];
+    [self pushNewVC:homeSearchResultViewController animated:YES];
+    
+    return YES;
+}
+
+//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+//
+//    //写你要实现的：页面跳转的相关代码
+//
+//    //先取消键盘再弹出新页面
+//    [self.textFieldSearchKey resignFirstResponder];
+//
+//
+//    HomeSearchResultViewController *homeSearchResultViewController = [[HomeSearchResultViewController alloc] init];
+//    [self pushNewVC:homeSearchResultViewController animated:YES];
+//
+//    return NO;
+//
+//}
+
 #pragma mark - 取消按钮点击事件
 
 -(void)btnCancelClick{
