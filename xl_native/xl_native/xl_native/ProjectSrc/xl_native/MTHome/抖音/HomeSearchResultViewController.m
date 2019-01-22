@@ -112,8 +112,8 @@
     self.view.backgroundColor = ColorThemeBackground;
     
     
-    NSInteger bodyViewHeight = ScreenHeight - kNavBarHeight_New;
-    
+    CGFloat bodyViewHeight = ScreenHeight - kNavBarHeight_New;
+    CGFloat topSpace = 20.0f;
     
     /*
      *多个参数写法，ZJMyRepairSubViewController 要声明对应的参数名称
@@ -125,9 +125,9 @@
      NSDictionary *dicFive = @{@"parameter":@"4",@"delegate":self};
     NSArray *arrayParameters = @[dicOne,dicTwo,dicThree,dicFour,dicFive];
     
-    self.pageView = [[HYPageView alloc] initWithFrame:CGRectMake(0, kNavBarHeight_New, ScreenWidth, bodyViewHeight)
+    self.pageView = [[HYPageView alloc] initWithFrame:CGRectMake(0, kNavBarHeight_New, ScreenWidth, bodyViewHeight+topSpace)
                                            withTitles:@[@"综合",@"视频",@"用户",@"音乐",@"话题",]
-                                  withViewControllers:@[@"HomeSearchResultSubViewController",@"HomeSearchResultSubViewController",@"HomeSearchResultSubViewController",@"HomeSearchResultSubViewController",@"HomeSearchResultSubViewController"]
+                                  withViewControllers:@[@"HomeSearchResultSubViewController",@"HomeSearchResultSubVideoViewController",@"HomeSearchResultSubUserViewController",@"HomeSearchResultSubMusicViewController",@"HomeSearchResultSubTopicViewController"]
                                     withParametersDic:arrayParameters];
     
     self.pageView.isTranslucent = NO;

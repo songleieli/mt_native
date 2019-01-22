@@ -32,6 +32,9 @@
 
 -(void)setUpUI{
     self.view.backgroundColor = ColorThemeBackground;
+    
+    
+    
 }
 
 

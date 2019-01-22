@@ -25,6 +25,9 @@
 		0402A46421C4C94800C35CA9 /* NSAttributedString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402A46321C4C94800C35CA9 /* NSAttributedString+Extension.m */; };
 		0402A46D21C4FE1E00C35CA9 /* NetWork_mt_getLikeVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402A46B21C4FE1D00C35CA9 /* NetWork_mt_getLikeVideoList.m */; };
 		0403662021C3A5D1000FDC5E /* CommentsPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661E21C3A5D1000FDC5E /* CommentsPopView.m */; };
+		0406761F21F7158700543917 /* HomeSearchResultSubMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406761E21F7158700543917 /* HomeSearchResultSubMusicViewController.m */; };
+		0406762221F7175800543917 /* HomeSearchResultSubTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406762121F7175800543917 /* HomeSearchResultSubTopicViewController.m */; };
+		0406762521F718B000543917 /* HomeSearchResultSubVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406762421F718B000543917 /* HomeSearchResultSubVideoViewController.m */; };
 		040E28AD21C0AA4900D15B44 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040E28AC21C0AA4900D15B44 /* UserInfoViewController.m */; };
 		040E28B021C0D7F100D15B44 /* HoverViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 040E28AF21C0D7F000D15B44 /* HoverViewFlowLayout.m */; };
 		040E28B721C0E20200D15B44 /* UserInfoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 040E28B121C0E20000D15B44 /* UserInfoHeader.m */; };
@@ -501,6 +504,9 @@
 		04DCA91921A5687600691A3A /* QBSlomoIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA90C21A5687500691A3A /* QBSlomoIconView.m */; };
 		04DCA91A21A5687600691A3A /* QBAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA90D21A5687500691A3A /* QBAssetCell.m */; };
 		04DCEE8B21F59DD9007AC5B0 /* HomeSearchResultSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCEE8A21F59DD9007AC5B0 /* HomeSearchResultSubViewController.m */; };
+		04DCEE8E21F5ACD9007AC5B0 /* HomeSearchResultSubUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCEE8D21F5ACD9007AC5B0 /* HomeSearchResultSubUserViewController.m */; };
+		04DCEE9121F5B4B9007AC5B0 /* SearchResultSubUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCEE8F21F5B4B9007AC5B0 /* SearchResultSubUserCell.m */; };
+		04DCEE9421F5C92E007AC5B0 /* NetWork_mt_getFuzzyAccountList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCEE9321F5C92E007AC5B0 /* NetWork_mt_getFuzzyAccountList.m */; };
 		04E28F71218ABB96006A91DA /* XLGameWkWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E28F6F218ABB96006A91DA /* XLGameWkWebViewController.m */; };
 		04E6E8DA21A8FFDC007C8A16 /* ghostshadow-19.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E6E7AF21A8FFDB007C8A16 /* ghostshadow-19.png */; };
 		04E6E8DB21A8FFDC007C8A16 /* ghostshadow-18.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E6E7B021A8FFDB007C8A16 /* ghostshadow-18.png */; };
@@ -1008,6 +1014,12 @@
 		0402A46C21C4FE1E00C35CA9 /* NetWork_mt_getLikeVideoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getLikeVideoList.h; sourceTree = "<group>"; };
 		0403661E21C3A5D1000FDC5E /* CommentsPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsPopView.m; sourceTree = "<group>"; };
 		0403661F21C3A5D1000FDC5E /* CommentsPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsPopView.h; sourceTree = "<group>"; };
+		0406761D21F7158600543917 /* HomeSearchResultSubMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSearchResultSubMusicViewController.h; sourceTree = "<group>"; };
+		0406761E21F7158700543917 /* HomeSearchResultSubMusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSearchResultSubMusicViewController.m; sourceTree = "<group>"; };
+		0406762021F7175700543917 /* HomeSearchResultSubTopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSearchResultSubTopicViewController.h; sourceTree = "<group>"; };
+		0406762121F7175800543917 /* HomeSearchResultSubTopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSearchResultSubTopicViewController.m; sourceTree = "<group>"; };
+		0406762321F718B000543917 /* HomeSearchResultSubVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSearchResultSubVideoViewController.h; sourceTree = "<group>"; };
+		0406762421F718B000543917 /* HomeSearchResultSubVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSearchResultSubVideoViewController.m; sourceTree = "<group>"; };
 		040E28AB21C0AA4900D15B44 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
 		040E28AC21C0AA4900D15B44 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		040E28AE21C0D7F000D15B44 /* HoverViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoverViewFlowLayout.h; sourceTree = "<group>"; };
@@ -1973,6 +1985,12 @@
 		04DCA90D21A5687500691A3A /* QBAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAssetCell.m; sourceTree = "<group>"; };
 		04DCEE8921F59DD8007AC5B0 /* HomeSearchResultSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSearchResultSubViewController.h; sourceTree = "<group>"; };
 		04DCEE8A21F59DD9007AC5B0 /* HomeSearchResultSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSearchResultSubViewController.m; sourceTree = "<group>"; };
+		04DCEE8C21F5ACD9007AC5B0 /* HomeSearchResultSubUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSearchResultSubUserViewController.h; sourceTree = "<group>"; };
+		04DCEE8D21F5ACD9007AC5B0 /* HomeSearchResultSubUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSearchResultSubUserViewController.m; sourceTree = "<group>"; };
+		04DCEE8F21F5B4B9007AC5B0 /* SearchResultSubUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultSubUserCell.m; sourceTree = "<group>"; };
+		04DCEE9021F5B4B9007AC5B0 /* SearchResultSubUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultSubUserCell.h; sourceTree = "<group>"; };
+		04DCEE9221F5C92E007AC5B0 /* NetWork_mt_getFuzzyAccountList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getFuzzyAccountList.h; sourceTree = "<group>"; };
+		04DCEE9321F5C92E007AC5B0 /* NetWork_mt_getFuzzyAccountList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getFuzzyAccountList.m; sourceTree = "<group>"; };
 		04E28F6F218ABB96006A91DA /* XLGameWkWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLGameWkWebViewController.m; sourceTree = "<group>"; };
 		04E28F70218ABB96006A91DA /* XLGameWkWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLGameWkWebViewController.h; sourceTree = "<group>"; };
 		04E6E7AF21A8FFDB007C8A16 /* ghostshadow-19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ghostshadow-19.png"; sourceTree = "<group>"; };
@@ -2955,6 +2973,8 @@
 		04A04EB021ECDEA8007CBABF /* mt_search */ = {
 			isa = PBXGroup;
 			children = (
+				04DCEE9221F5C92E007AC5B0 /* NetWork_mt_getFuzzyAccountList.h */,
+				04DCEE9321F5C92E007AC5B0 /* NetWork_mt_getFuzzyAccountList.m */,
 				04A04EB221ECDEA8007CBABF /* NetWork_mt_getHotSearchSix.h */,
 				04A04EB121ECDEA8007CBABF /* NetWork_mt_getHotSearchSix.m */,
 				048BF55121EEC4F1005D3708 /* NetWork_mt_getHotVideoList.h */,
@@ -2994,6 +3014,14 @@
 				04A04EB421ECE552007CBABF /* HomeSearchResultViewController.m */,
 				04DCEE8921F59DD8007AC5B0 /* HomeSearchResultSubViewController.h */,
 				04DCEE8A21F59DD9007AC5B0 /* HomeSearchResultSubViewController.m */,
+				04DCEE8C21F5ACD9007AC5B0 /* HomeSearchResultSubUserViewController.h */,
+				04DCEE8D21F5ACD9007AC5B0 /* HomeSearchResultSubUserViewController.m */,
+				0406761D21F7158600543917 /* HomeSearchResultSubMusicViewController.h */,
+				0406761E21F7158700543917 /* HomeSearchResultSubMusicViewController.m */,
+				0406762021F7175700543917 /* HomeSearchResultSubTopicViewController.h */,
+				0406762121F7175800543917 /* HomeSearchResultSubTopicViewController.m */,
+				0406762321F718B000543917 /* HomeSearchResultSubVideoViewController.h */,
+				0406762421F718B000543917 /* HomeSearchResultSubVideoViewController.m */,
 			);
 			path = "抖音";
 			sourceTree = "<group>";
@@ -4232,6 +4260,8 @@
 				04E700D7219FF5C00096099F /* MtHomeTopView.m */,
 				048BF55321EEFE1E005D3708 /* HomeSearchCell.h */,
 				048BF55421EEFE1E005D3708 /* HomeSearchCell.m */,
+				04DCEE9021F5B4B9007AC5B0 /* SearchResultSubUserCell.h */,
+				04DCEE8F21F5B4B9007AC5B0 /* SearchResultSubUserCell.m */,
 				04443E9521B41A0A00C8DD34 /* HomeVideoCell.h */,
 				04443E9621B41A0A00C8DD34 /* HomeVideoCell.m */,
 			);
@@ -6148,6 +6178,7 @@
 				0434BDD521E9E1B10059A28C /* NickNameViewController.m in Sources */,
 				04CBC42F2179C01300658E47 /* GPUImageTwoInputCrossTextureSamplingFilter.m in Sources */,
 				D9BD11B51F02B134006CE841 /* WYPopoverController.m in Sources */,
+				0406762221F7175800543917 /* HomeSearchResultSubTopicViewController.m in Sources */,
 				04C2615121A68FB200374E4D /* Label.m in Sources */,
 				04DCA8EC21A565D500691A3A /* TextAddView.m in Sources */,
 				040E28D121C0F0D400D15B44 /* PictureInfo.m in Sources */,
@@ -6211,6 +6242,7 @@
 				04DCA8EB21A565D500691A3A /* VideoRangeSlider.m in Sources */,
 				04B0E1EB21A6937600ABCF16 /* NSObject+BKBlockExecution.m in Sources */,
 				04CBC3552179C01300658E47 /* GPUImageCannyEdgeDetectionFilter.m in Sources */,
+				04DCEE8E21F5ACD9007AC5B0 /* HomeSearchResultSubUserViewController.m in Sources */,
 				D98FCFCA1DEFC41A0023C076 /* UIView+STFrame.m in Sources */,
 				04CBC3B12179C01300658E47 /* GPUImageStretchDistortionFilter.m in Sources */,
 				04B0E1E421A6937600ABCF16 /* NSTimer+BlocksKit.m in Sources */,
@@ -6240,6 +6272,7 @@
 				04C70D2F21E3A7C90022D897 /* NetWork_mt_aMeList.m in Sources */,
 				04183B1721C2C09600383E3F /* Callback_voice_purchase.m in Sources */,
 				0435493521A7E9AC00AED5A8 /* AFSecurityPolicy.m in Sources */,
+				0406761F21F7158700543917 /* HomeSearchResultSubMusicViewController.m in Sources */,
 				04CBC3432179C01300658E47 /* GPUImageWeakPixelInclusionFilter.m in Sources */,
 				0482F26E21BFCA7C00587B38 /* NSArray+MASAdditions.m in Sources */,
 				0482F27221BFCA7C00587B38 /* MASConstraint.m in Sources */,
@@ -6281,6 +6314,7 @@
 				04CBC4572179C01300658E47 /* GPUImageLuminosityBlendFilter.m in Sources */,
 				04C70D3B21E3AE600022D897 /* MTFollowViewController.m in Sources */,
 				0482F27621BFCA7C00587B38 /* MASViewAttribute.m in Sources */,
+				04DCEE9121F5B4B9007AC5B0 /* SearchResultSubUserCell.m in Sources */,
 				04183B1821C2C09600383E3F /* Callback_token.m in Sources */,
 				04C171EB21CDE3070077FA6C /* ScalePresentAnimation.m in Sources */,
 				04DCA8ED21A565D500691A3A /* VideoPasterView.m in Sources */,
@@ -6312,6 +6346,7 @@
 				04CBC2852179C01200658E47 /* UIView+MJExtension.m in Sources */,
 				0400F33221AFA62D0038E16C /* WXApiResponseHandler.m in Sources */,
 				04CBC43B2179C01300658E47 /* GPUImageTextureOutput.m in Sources */,
+				04DCEE9421F5C92E007AC5B0 /* NetWork_mt_getFuzzyAccountList.m in Sources */,
 				D954C5D11DD1A40F003CA535 /* iToast.m in Sources */,
 				D957AD671DD2CB2F00B7EE09 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				04DCA85E21A5580300691A3A /* NSString+CommonTX.m in Sources */,
@@ -6322,6 +6357,7 @@
 				04DCA89221A5634700691A3A /* TCLiveListModel.m in Sources */,
 				04C70D3721E3AC230022D897 /* MTMyCommentViewController.m in Sources */,
 				0400F33621AFA62D0038E16C /* WXApiManager.m in Sources */,
+				0406762521F718B000543917 /* HomeSearchResultSubVideoViewController.m in Sources */,
 				0457917A218709A7000AAA2E /* ZJCustomTabCollectionViewController.m in Sources */,
 				04CBC3F32179C01300658E47 /* GPUImageCrosshairGenerator.m in Sources */,
 				04CBC4332179C01300658E47 /* GPUImageMotionBlurFilter.m in Sources */,
