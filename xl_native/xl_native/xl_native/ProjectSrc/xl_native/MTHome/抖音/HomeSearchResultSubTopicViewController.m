@@ -52,21 +52,21 @@
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     //    self.mainTableView.mj_header = nil;
     self.mainTableView.mj_footer = nil;
-    [self.mainTableView registerClass:SearchResultSubUserCell.class forCellReuseIdentifier:[SearchResultSubUserCell cellId]];
+    [self.mainTableView registerClass:SearchResultSubTopicCell.class forCellReuseIdentifier:[SearchResultSubTopicCell cellId]];
 
     [self.mainTableView.mj_header beginRefreshing];
 }
 
 -(void)loadNewData{
     
-    NetWork_mt_getFuzzyAccountList *request = [[NetWork_mt_getFuzzyAccountList alloc] init];
+    NetWork_mt_getFuzzyTopicList *request = [[NetWork_mt_getFuzzyTopicList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.searchName = @"y";
     request.pageNo = @"1";
     request.pageSize = @"20";
     [request startGetWithBlock:^(id result, NSString *msg) {
         /*暂时不考虑缓存问题*/
-    } finishBlock:^(GetFuzzyAccountListResponse *result, NSString *msg, BOOL finished) {
+    } finishBlock:^(GetFuzzyTopicListResponse *result, NSString *msg, BOOL finished) {
         NSLog(@"-------");
         [self.mainTableView.mj_header endRefreshing];
 //        [self loadBodyDataList]; //加载cell Data
@@ -98,8 +98,8 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if(self.mainDataArr.count > 0){
-        SearchResultSubUserCell *cell = [tableView dequeueReusableCellWithIdentifier:[SearchResultSubUserCell cellId] forIndexPath:indexPath];
-        GetFuzzyAccountListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
+        SearchResultSubTopicCell *cell = [tableView dequeueReusableCellWithIdentifier:[SearchResultSubTopicCell cellId] forIndexPath:indexPath];
+        GetFuzzyTopicListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
         [cell fillDataWithModel:model];
         return cell;
     }
@@ -114,7 +114,7 @@
 
 //设置每一组的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return  SearchResultSubUserCellHeight;
+    return  SearchResultSubTopicCellHeight;
 }
 
 @end

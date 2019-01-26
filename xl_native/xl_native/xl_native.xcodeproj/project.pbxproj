@@ -55,6 +55,10 @@
 		04183B1821C2C09600383E3F /* Callback_token.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183B1321C2C09600383E3F /* Callback_token.m */; };
 		04183B1921C2C09600383E3F /* Callback_userInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183B1421C2C09600383E3F /* Callback_userInfo.m */; };
 		041D43EC21536CA900250555 /* VoiceAnimationHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 041D43EB21536CA900250555 /* VoiceAnimationHUD.m */; };
+		0420916B21FB53D1004C0524 /* SearchResultSubMusicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0420916921FB53D0004C0524 /* SearchResultSubMusicCell.m */; };
+		0420917121FB6173004C0524 /* NetWork_mt_getFuzzyMusicList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0420917021FB6172004C0524 /* NetWork_mt_getFuzzyMusicList.m */; };
+		0420917421FB6185004C0524 /* NetWork_mt_getFuzzyTopicList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0420917321FB6185004C0524 /* NetWork_mt_getFuzzyTopicList.m */; };
+		0420917821FC9DF3004C0524 /* SearchResultSubTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0420917721FC9DF3004C0524 /* SearchResultSubTopicCell.m */; };
 		04274C7020EDC5CC00D4B5E2 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04274C6E20EDC5CC00D4B5E2 /* iCarousel.m */; };
 		0434BDD221E9E1560059A28C /* PersonalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434BDD121E9E1560059A28C /* PersonalInformationViewController.m */; };
 		0434BDD521E9E1B10059A28C /* NickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434BDD321E9E1B10059A28C /* NickNameViewController.m */; };
@@ -1071,6 +1075,14 @@
 		04183B1621C2C09600383E3F /* Callback_token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Callback_token.h; sourceTree = "<group>"; };
 		041D43EA21536CA900250555 /* VoiceAnimationHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoiceAnimationHUD.h; sourceTree = "<group>"; };
 		041D43EB21536CA900250555 /* VoiceAnimationHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoiceAnimationHUD.m; sourceTree = "<group>"; };
+		0420916921FB53D0004C0524 /* SearchResultSubMusicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultSubMusicCell.m; sourceTree = "<group>"; };
+		0420916A21FB53D0004C0524 /* SearchResultSubMusicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultSubMusicCell.h; sourceTree = "<group>"; };
+		0420916F21FB6172004C0524 /* NetWork_mt_getFuzzyMusicList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getFuzzyMusicList.h; sourceTree = "<group>"; };
+		0420917021FB6172004C0524 /* NetWork_mt_getFuzzyMusicList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getFuzzyMusicList.m; sourceTree = "<group>"; };
+		0420917221FB6185004C0524 /* NetWork_mt_getFuzzyTopicList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getFuzzyTopicList.h; sourceTree = "<group>"; };
+		0420917321FB6185004C0524 /* NetWork_mt_getFuzzyTopicList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getFuzzyTopicList.m; sourceTree = "<group>"; };
+		0420917621FC9DF3004C0524 /* SearchResultSubTopicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultSubTopicCell.h; sourceTree = "<group>"; };
+		0420917721FC9DF3004C0524 /* SearchResultSubTopicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultSubTopicCell.m; sourceTree = "<group>"; };
 		04274C6E20EDC5CC00D4B5E2 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		04274C6F20EDC5CC00D4B5E2 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		042B5B1F20F19F1200382BA7 /* ZJCustomTabBarLjhTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCustomTabBarLjhTableViewController.h; sourceTree = "<group>"; };
@@ -2973,6 +2985,10 @@
 		04A04EB021ECDEA8007CBABF /* mt_search */ = {
 			isa = PBXGroup;
 			children = (
+				0420917221FB6185004C0524 /* NetWork_mt_getFuzzyTopicList.h */,
+				0420917321FB6185004C0524 /* NetWork_mt_getFuzzyTopicList.m */,
+				0420916F21FB6172004C0524 /* NetWork_mt_getFuzzyMusicList.h */,
+				0420917021FB6172004C0524 /* NetWork_mt_getFuzzyMusicList.m */,
 				04DCEE9221F5C92E007AC5B0 /* NetWork_mt_getFuzzyAccountList.h */,
 				04DCEE9321F5C92E007AC5B0 /* NetWork_mt_getFuzzyAccountList.m */,
 				04A04EB221ECDEA8007CBABF /* NetWork_mt_getHotSearchSix.h */,
@@ -4262,6 +4278,10 @@
 				048BF55421EEFE1E005D3708 /* HomeSearchCell.m */,
 				04DCEE9021F5B4B9007AC5B0 /* SearchResultSubUserCell.h */,
 				04DCEE8F21F5B4B9007AC5B0 /* SearchResultSubUserCell.m */,
+				0420916A21FB53D0004C0524 /* SearchResultSubMusicCell.h */,
+				0420916921FB53D0004C0524 /* SearchResultSubMusicCell.m */,
+				0420917621FC9DF3004C0524 /* SearchResultSubTopicCell.h */,
+				0420917721FC9DF3004C0524 /* SearchResultSubTopicCell.m */,
 				04443E9521B41A0A00C8DD34 /* HomeVideoCell.h */,
 				04443E9621B41A0A00C8DD34 /* HomeVideoCell.m */,
 			);
@@ -6136,6 +6156,7 @@
 				04CBC3D92179C01300658E47 /* GPUImagePicture+TextureSubimage.m in Sources */,
 				04CBC3372179C01300658E47 /* GPUImageSobelEdgeDetectionFilter.m in Sources */,
 				D9F86DCB1DEBEE7600C3A2B6 /* TZImageManager.m in Sources */,
+				0420916B21FB53D1004C0524 /* SearchResultSubMusicCell.m in Sources */,
 				04CBC3332179C01300658E47 /* GPUImageFilterGroup.m in Sources */,
 				04DCA85A21A5580300691A3A /* UIButton+Additions.m in Sources */,
 				04B0E1FB21A6937600ABCF16 /* A2BlockInvocation.m in Sources */,
@@ -6171,6 +6192,7 @@
 				D98FCFB21DEFC3080023C076 /* STPickerDate.m in Sources */,
 				04CBC4092179C01300658E47 /* GPUImageThreeInputFilter.m in Sources */,
 				0441A283214670500077EA1F /* UITextFeildCustrom.m in Sources */,
+				0420917421FB6185004C0524 /* NetWork_mt_getFuzzyTopicList.m in Sources */,
 				04C2615521A68FB200374E4D /* TCBGMSliderCutView.m in Sources */,
 				04CBC3572179C01300658E47 /* GPUImageFASTCornerDetectionFilter.m in Sources */,
 				D98FCFB51DEFC3080023C076 /* STPickerSingle.m in Sources */,
@@ -6189,6 +6211,7 @@
 				04CBC40B2179C01300658E47 /* GPUImageShiTomasiFeatureDetectionFilter.m in Sources */,
 				D9D208791F0CED6000B9FE13 /* RadioButton.m in Sources */,
 				04DCA8E221A565D500691A3A /* TCVideoJoinViewController.m in Sources */,
+				0420917821FC9DF3004C0524 /* SearchResultSubTopicCell.m in Sources */,
 				0400F32E21AFA62D0038E16C /* SendMessageToWXReq+requestWithTextOrMediaMessage.m in Sources */,
 				04DCEE8B21F59DD9007AC5B0 /* HomeSearchResultSubViewController.m in Sources */,
 				D957AD591DD2CB2F00B7EE09 /* IQUIWindow+Hierarchy.m in Sources */,
@@ -6322,6 +6345,7 @@
 				04BC59872197C88700D5EA12 /* XLProjectWkWebViewController.m in Sources */,
 				04CBC3292179C01300658E47 /* GPUImageTwoPassTextureSamplingFilter.m in Sources */,
 				0435491B21A7E9AC00AED5A8 /* UIRefreshControl+AFNetworking.m in Sources */,
+				0420917121FB6173004C0524 /* NetWork_mt_getFuzzyMusicList.m in Sources */,
 				0435492321A7E9AC00AED5A8 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				04ED451921CBD897009DE89F /* NetWork_mt_delLikeVideo.m in Sources */,
 				0400F33421AFA62D0038E16C /* WXApiRequestHandler.m in Sources */,

@@ -6,8 +6,8 @@
 //  Copyright © 2018年 gaokun. All rights reserved.
 //
 
-#import "NetWork_mt_getFuzzyAccountList.h"
-#import "SearchResultSubUserCell.h"
+#import "NetWork_mt_getFuzzyMusicList.h"
+#import "SearchResultSubMusicCell.h"
 
 
 @protocol SubCellDelegate <NSObject>
