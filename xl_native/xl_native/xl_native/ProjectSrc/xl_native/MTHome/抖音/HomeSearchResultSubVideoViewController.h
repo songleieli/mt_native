@@ -6,8 +6,12 @@
 //  Copyright © 2018年 gaokun. All rights reserved.
 //
 
-#import "NetWork_mt_getFuzzyAccountList.h"
-#import "SearchResultSubUserCell.h"
+NSString * const kSearchResultSubVideoCollectionCell  = @"kSearchResultSubVideoCollectionCell";
+
+
+#import "NetWork_mt_getFuzzyVideoList.h"
+#import "SearchResultSubVideoCollectionCell.h"
+#import "LoadMoreControl.h" //加载更多控件
 
 
 @protocol SubCellDelegate <NSObject>
@@ -18,11 +22,17 @@
 
 @end
 
-@interface HomeSearchResultSubVideoViewController : ZJBaseViewController
+@interface HomeSearchResultSubVideoViewController : ZJBaseViewController<UICollectionViewDelegate,
+UICollectionViewDataSource,
+UICollectionViewDelegateFlowLayout,
+UIViewControllerTransitioningDelegate
+>
 
 
 @property(nonatomic,strong) NSString *parameter;         // @"待检",@"已检",@"未检"
 @property (nonatomic, weak) id<SubCellDelegate> delegate;
 
+@property (nonatomic, strong) NSMutableArray   *favoriteAwemes;//当前视频数组
+@property (nonatomic, strong) LoadMoreControl                  *loadMore;
 
 @end

@@ -584,6 +584,15 @@
 
 -(void)scanBtnClick{
     NSLog(@"------scanBtnClick----------");
+    
+    
+    
+    //test
+    NSLog(@"------查看收藏列表-----");
+    
+    UserCollectionController *collectionController = [[UserCollectionController alloc] init];
+    collectionController.userNoodleId = @"18818714082349056";
+    [self pushNewVC:collectionController animated:YES];
 }
 
 #pragma mark --------------- HomeDelegate代理 -----------------

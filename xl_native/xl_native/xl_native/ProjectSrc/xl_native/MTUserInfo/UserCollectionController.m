@@ -243,26 +243,9 @@ NSString * const kAwemeCollectionCell_temp  = @"AwemeCollectionCell";
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
-//
-//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-//
-//    if(indexPath.section == 0 && kind == UICollectionElementKindSectionHeader) {
-//        UserCollectionHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kUserInfoCell_temp forIndexPath:indexPath];
-//        self.collectionHeader = header;
-//        if(_user) {
-//            [header initData:_user];
-//
-//            header.delegate = self;
-//            header.slideTabBar.delegate = self;
-//        }
-//        return header;
-//    }
-//    return [UICollectionReusableView new];
-//}
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.favoriteAwemes.count;
-
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -274,9 +257,6 @@ NSString * const kAwemeCollectionCell_temp  = @"AwemeCollectionCell";
 
 //UICollectionFlowLayout Delegate
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-//    if(section == 0) { //设置header的size
-//        return CGSizeMake(ScreenWidth, kSlideTabBarHeight);
-//    }
     return CGSizeZero;
 }
 

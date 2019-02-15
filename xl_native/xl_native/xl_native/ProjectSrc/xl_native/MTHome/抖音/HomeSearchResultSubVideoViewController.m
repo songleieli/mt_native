@@ -7,12 +7,41 @@
 //
 
 #import "HomeSearchResultSubVideoViewController.h"
+//转场动画
+#import "ScalePresentAnimation.h"
+#import "SwipeLeftInteractiveTransition.h"
+#import "ScaleDismissAnimation.h"
 
 @interface HomeSearchResultSubVideoViewController ()
+
+@property (nonatomic, assign) CGFloat                          itemWidth;
+@property (nonatomic, assign) CGFloat                          itemHeight;
+
+@property (nonatomic, assign) NSInteger                        tabIndex;
+@property (nonatomic, assign) NSInteger                        pageIndex;
+@property (nonatomic, assign) NSInteger                        pageSize;
+
+//Controller 转场动画
+@property (nonatomic, strong) ScalePresentAnimation            *scalePresentAnimation;
+@property (nonatomic, strong) ScaleDismissAnimation            *scaleDismissAnimation;
+@property (nonatomic, strong) SwipeLeftInteractiveTransition   *swipeLeftInteractiveTransition;
+
+@property (nonatomic, strong) NSMutableArray          *workAwemes;
+
+@property (nonatomic, strong) UICollectionView        *collectionView;
+
 
 @end
 
 @implementation HomeSearchResultSubVideoViewController
+
+
+-(NSMutableArray*)favoriteAwemes{
+    if(!_favoriteAwemes){
+        _favoriteAwemes = [[NSMutableArray alloc] init];
+    }
+    return _favoriteAwemes;
+}
 
 -(void)dealloc{
     
@@ -23,96 +52,165 @@
     self.isNavBackGroundHiden  = YES;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    //test
+    [self onNetworkStatusChange:nil];// 模仿抖音Demo中，的网络变化，加载数据
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _pageIndex = 1;
+    _pageSize = 20;
+    _tabIndex = 0;
+    
+    _scalePresentAnimation = [ScalePresentAnimation new];
+    _scaleDismissAnimation = [ScaleDismissAnimation new];
+    _swipeLeftInteractiveTransition = [SwipeLeftInteractiveTransition new];
+    
     [self setUpUI];
 }
 
 -(void)setUpUI{
     self.view.backgroundColor = ColorThemeBackground;
+    //根据当前屏幕宽度j计算，item 宽度
+    _itemWidth = (ScreenWidth - 3) / 3.0f;
+    _itemHeight = _itemWidth * 1.35f; //高度为宽度的1.35倍
     
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.minimumLineSpacing = 1.5;     //行间距
+    layout.minimumInteritemSpacing = 0;  //列间距
     
-    [self.view addSubview:self.mainTableView];
-    
-//#define TOP_SCROLLERTAB_HEIGHT 44
-    
+    //行间距与列间距配合 _itemWidth _itemHeight 达到布局的效果
     CGFloat hyPageHeight = 44.0f;
-
-    
     NSInteger tableViewHeight = ScreenHeight - kNavBarHeight_New - hyPageHeight;
-    
-    self.mainTableView.size = [UIView getSize_width:ScreenWidth height:tableViewHeight];
-    self.mainTableView.origin = [UIView getPoint_x:0 y:0];
-    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.mainTableView.delegate = self;
-    self.mainTableView.dataSource = self;
-    self.mainTableView.backgroundColor = [UIColor clearColor]; //RGBFromColor(0xecedf1);
-    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    //    self.mainTableView.mj_header = nil;
-    self.mainTableView.mj_footer = nil;
-    [self.mainTableView registerClass:SearchResultSubUserCell.class forCellReuseIdentifier:[SearchResultSubUserCell cellId]];
 
-    [self.mainTableView.mj_header beginRefreshing];
+    
+    CGRect frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+    _collectionView = [[UICollectionView  alloc]initWithFrame:frame collectionViewLayout:layout];
+    _collectionView.backgroundColor = ColorClear;
+    
+    
+    if (@available(iOS 11.0, *)) {
+        _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    
+    _collectionView.alwaysBounceVertical = YES; //UIScrollView 的回弹效果
+    _collectionView.showsVerticalScrollIndicator = NO; //不显示滚动条
+    
+    _collectionView.delegate = self;
+    _collectionView.dataSource = self;
+    
+    // 注册cell
+    [_collectionView registerClass:[SearchResultSubVideoCollectionCell class] forCellWithReuseIdentifier:kSearchResultSubVideoCollectionCell];
+    [self.view addSubview:_collectionView];
+    
+    
+    _loadMore = [[LoadMoreControl alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 50) surplusCount:15];
+    [_loadMore startLoading];
+    __weak __typeof(self) wself = self;
+    [_loadMore setOnLoad:^{
+        [wself loadData:wself.pageIndex pageSize:wself.pageSize];
+    }];
+    [_collectionView addSubview:_loadMore];
 }
 
--(void)loadNewData{
+#pragma -mark ------------   request netWork
+
+
+- (void)loadData:(NSInteger)pageIndex pageSize:(NSInteger)pageSize {
     
-    NetWork_mt_getFuzzyAccountList *request = [[NetWork_mt_getFuzzyAccountList alloc] init];
+    
+    NetWork_mt_getFuzzyVideoList *request = [[NetWork_mt_getFuzzyVideoList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.searchName = @"y";
-    request.pageNo = @"1";
-    request.pageSize = @"20";
+    request.pageNo = [NSString stringWithFormat:@"%ld",pageIndex];
+    request.pageSize = [NSString stringWithFormat:@"%ld",pageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {
-        /*暂时不考虑缓存问题*/
-    } finishBlock:^(GetFuzzyAccountListResponse *result, NSString *msg, BOOL finished) {
-        NSLog(@"-------");
-        [self.mainTableView.mj_header endRefreshing];
-//        [self loadBodyDataList]; //加载cell Data
+        /*暂不考虑缓存*/
+    } finishBlock:^(GetFuzzyVideoListResponse *result, NSString *msg, BOOL finished) {
         
-        
-        [self.mainDataArr addObjectsFromArray:result.obj];
-        [self.mainTableView reloadData];
-        
+        NSLog(@"--------");
         if(finished){
-//            [self refreshVideoList:result.obj];
+            self.pageIndex++;
+            
+            [UIView setAnimationsEnabled:NO];
+            [self.collectionView performBatchUpdates:^{
+                [self.favoriteAwemes addObjectsFromArray:result.obj];
+                NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
+                for(NSInteger row = self.favoriteAwemes.count - result.obj.count; row<self.favoriteAwemes.count; row++) {
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+                    [indexPaths addObject:indexPath];
+                }
+                [self.collectionView insertItemsAtIndexPaths:indexPaths];
+            } completion:^(BOOL finished) {
+                [UIView setAnimationsEnabled:YES];
+            }];
+            
+            [self.loadMore endLoading];
+            if(self.favoriteAwemes.count < pageSize || self.favoriteAwemes.count == 0) {
+                [self.loadMore loadingAll];
+            }
         }
         else{
-            [UIWindow showTips:msg];
+            [UIWindow showTips:@"获取喜欢列表失败，请检查网络"];
         }
     }];
 }
 
+#pragma -mark ------------   UICollectionViewDataSource Delegate
 
-#pragma mark --------------- tabbleView代理 -----------------
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    return self.mainDataArr.count;
-}
-//设置cell的样式
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if(self.mainDataArr.count > 0){
-        SearchResultSubUserCell *cell = [tableView dequeueReusableCellWithIdentifier:[SearchResultSubUserCell cellId] forIndexPath:indexPath];
-        GetFuzzyAccountListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
-        [cell fillDataWithModel:model];
-        return cell;
-    }
-    else{
-        /*
-         有时会出现，self.mainDataArr count为0 cellForRowAtIndexPath，却响应的bug。
-         */
-        UITableViewCell * celltemp =  [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellid"];
-        return celltemp;
-    }
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.favoriteAwemes.count;
 }
 
-//设置每一组的高度
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return  SearchResultSubUserCellHeight;
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    SearchResultSubVideoCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSearchResultSubVideoCollectionCell forIndexPath:indexPath];
+    HomeListModel *aweme= [self.favoriteAwemes objectAtIndex:indexPath.row];
+    [cell initData:aweme];
+    return cell;
 }
+
+//UICollectionFlowLayout Delegate
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    return CGSizeZero;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
+    return CGSizeZero;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath { //
+    return  CGSizeMake(_itemWidth, _itemHeight);
+}
+
+//UICollectionViewDelegate Delegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+//    self.selectIndex = indexPath.row;
+//
+//    UserInfoPlayerListViewController *controller;
+//    controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeFavourites];
+//    controller.transitioningDelegate = self;
+//
+//    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+//    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+//    [_swipeLeftInteractiveTransition wireToViewController:controller];
+//    [self presentViewController:controller animated:YES completion:nil];
+}
+
+//网络状态发送变化
+-(void)onNetworkStatusChange:(NSNotification *)notification {
+    
+    [self loadData:_pageIndex pageSize:_pageSize];
+}
+
 
 @end
