@@ -29,6 +29,7 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubTopicCellId";
 
         [_viewBg setBackgroundColor:ColorThemeBackground forState:UIControlStateNormal];
         [_viewBg setBackgroundColor:RGBAlphaColor(29, 32, 42, 1) forState:UIControlStateHighlighted];
+        [_viewBg addTarget:self action:@selector(btnCellClick:) forControlEvents:UIControlEventTouchUpInside];
         
         
         //test
@@ -135,10 +136,10 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubTopicCellId";
 }
 
 
-- (void)btnDelClick:(id)sender{
+- (void)btnCellClick:(id)sender{
     
-    if ([self.subTopicDelegate respondsToSelector:@selector(btnDeleteClick:)]) {
-        [self.subTopicDelegate btnDeleteClick:self.listModel];
+    if ([self.subTopicDelegate respondsToSelector:@selector(btnCellClick:)]) {
+        [self.subTopicDelegate btnCellClick:self.listModel];
     } else {
         NSLog(@"代理没响应，快开看看吧");
     }

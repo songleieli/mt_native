@@ -8,6 +8,9 @@
 
 #import "HomeSearchResultViewController.h"
 
+#import "TopicInfoController.h"
+#import "HomeSearchResultSubTopicViewController.h"
+
 @interface HomeSearchResultViewController ()
 
 @end
@@ -158,16 +161,13 @@
 
 #pragma -mark SubCellDelegate
 
--(void)subCkeckClick:(NSMutableArray *)selectModelList{
+-(void)subCellTopicClick:(GetFuzzyTopicListModel *)model{
     NSLog(@"-------------");
     
-//    self.chenkBoxArray = selectModelList;
+    TopicInfoController *topicInfoController = [[TopicInfoController alloc] init];
+    [self pushNewVC:topicInfoController animated:YES];
+    
 }
-
-//-(void)subCellClick:(ZjPmsPatrolRecordsModel *)model subType:(NSString*)subType{
-//    NSLog(@"-------------");
-//
-//}
 
 #pragma mark - 键盘 show 与 hide
 

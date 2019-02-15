@@ -99,6 +99,7 @@
     
     if(self.mainDataArr.count > 0){
         SearchResultSubTopicCell *cell = [tableView dequeueReusableCellWithIdentifier:[SearchResultSubTopicCell cellId] forIndexPath:indexPath];
+        cell.subTopicDelegate = self;
         GetFuzzyTopicListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
         [cell fillDataWithModel:model];
         return cell;
@@ -115,6 +116,17 @@
 //设置每一组的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return  SearchResultSubTopicCellHeight;
+}
+
+#pragma mark --------------- cell代理 -----------------
+-(void)btnCellClick:(GetFuzzyTopicListModel*)model{
+    NSLog(@"-------------点击Topic %@===========",model.topic);
+    
+    if ([self.delegate respondsToSelector:@selector(subCellTopicClick:)]) {
+        [self.delegate subCellTopicClick:model];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
 }
 
 @end

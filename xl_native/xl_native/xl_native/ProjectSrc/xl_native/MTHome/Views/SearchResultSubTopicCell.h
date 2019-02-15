@@ -13,7 +13,7 @@
 
 @protocol SearchResultSubTopicDelegate <NSObject>
 
--(void)btnDeleteClick:(GetFuzzyTopicListModel*)model;
+-(void)btnCellClick:(GetFuzzyTopicListModel*)model;
 
 @end
 

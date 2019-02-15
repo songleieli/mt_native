@@ -3,7 +3,7 @@
 //  GKNavigationBarViewControllerDemo
 //
 //  Created by gaokun on 2018/9/11.
-//  Copyright © 2018年 gaokun. All rights reserved.
+//  Copyright © 2018年 songleilei. All rights reserved.
 //
 
 #import "HomeSearchResultSubVideoViewController.h"
@@ -76,7 +76,7 @@
 -(void)setUpUI{
     self.view.backgroundColor = ColorThemeBackground;
     //根据当前屏幕宽度j计算，item 宽度
-    _itemWidth = (ScreenWidth - 3) / 3.0f;
+    _itemWidth = (ScreenWidth - 2) / 2.0f;
     _itemHeight = _itemWidth * 1.35f; //高度为宽度的1.35倍
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -88,7 +88,7 @@
     NSInteger tableViewHeight = ScreenHeight - kNavBarHeight_New - hyPageHeight;
 
     
-    CGRect frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+    CGRect frame = CGRectMake(0, 0, ScreenWidth, tableViewHeight);
     _collectionView = [[UICollectionView  alloc]initWithFrame:frame collectionViewLayout:layout];
     _collectionView.backgroundColor = ColorClear;
     
@@ -152,7 +152,7 @@
             }];
             
             [self.loadMore endLoading];
-            if(self.favoriteAwemes.count < pageSize || self.favoriteAwemes.count == 0) {
+            if(result.obj.count < pageSize || self.favoriteAwemes.count == 0) {
                 [self.loadMore loadingAll];
             }
         }

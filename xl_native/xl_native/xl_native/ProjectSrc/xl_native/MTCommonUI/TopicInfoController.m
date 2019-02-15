@@ -6,16 +6,16 @@
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
-#import "UserCollectionController.h"
+#import "TopicInfoController.h"
 #import "HoverViewFlowLayout.h"
 
 #import "UserResponse.h"
 #import "AwemesResponse.h"
 
-NSString * const kUserInfoCell_temp         = @"UserInfoCell";
-NSString * const kAwemeCollectionCell_temp  = @"AwemeCollectionCell";
+//NSString * const kUserInfoCell_temp         = @"UserInfoCell";
+NSString * const kAwemeCollectionCell_temp_2  = @"AwemeCollectionCell";
 
-@interface UserCollectionController ()
+@interface TopicInfoController ()
 
 
 @property (nonatomic, assign) CGFloat                          itemWidth;
@@ -32,22 +32,10 @@ NSString * const kAwemeCollectionCell_temp  = @"AwemeCollectionCell";
 
 @end
 
-@implementation UserCollectionController
+@implementation TopicInfoController
 
 #pragma -mark ---------- 懒加载页面元素 -------------
 
-- (SlideTabBar *)slideTabBar{
-    if (_slideTabBar == nil){
-        
-        _slideTabBar = [[SlideTabBar alloc] init];
-        _slideTabBar.delegate = self;
-        _slideTabBar.size = [UIView getSize_width:ScreenWidth height:kSlideTabBarHeight];
-        _slideTabBar.top = self.navBackGround.height;
-        _slideTabBar.left = 0;
-        [_slideTabBar setLabels:@[@"视频",@"话题",@"音乐"] tabIndex:0];
-    }
-    return _slideTabBar;
-}
 
 -(NSMutableArray*)workAwemes{
     if(!_workAwemes){
@@ -154,7 +142,7 @@ NSString * const kAwemeCollectionCell_temp  = @"AwemeCollectionCell";
     _collectionView.dataSource = self;
     
     // 注册cell
-    [_collectionView registerClass:[AwemeCollectionCell class] forCellWithReuseIdentifier:kAwemeCollectionCell_temp];
+    [_collectionView registerClass:[AwemeCollectionCell class] forCellWithReuseIdentifier:kAwemeCollectionCell_temp_2];
     [self.view addSubview:_collectionView];
     
     _loadMore = [[LoadMoreControl alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 50) surplusCount:15];
@@ -249,7 +237,7 @@ NSString * const kAwemeCollectionCell_temp  = @"AwemeCollectionCell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    AwemeCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kAwemeCollectionCell_temp forIndexPath:indexPath];
+    AwemeCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kAwemeCollectionCell_temp_2 forIndexPath:indexPath];
     HomeListModel *aweme= [self.favoriteAwemes objectAtIndex:indexPath.row];
     [cell initData:aweme];
     return cell;
@@ -271,16 +259,16 @@ NSString * const kAwemeCollectionCell_temp  = @"AwemeCollectionCell";
 
 //UICollectionViewDelegate Delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    self.selectIndex = indexPath.row;
-    
-    UserInfoPlayerListViewController *controller;
-    controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeFavourites];
-    controller.transitioningDelegate = self;
-    
-    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    self.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [_swipeLeftInteractiveTransition wireToViewController:controller];
-    [self presentViewController:controller animated:YES completion:nil];
+//    self.selectIndex = indexPath.row;
+//    
+//    UserInfoPlayerListViewController *controller;
+//    controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeFavourites];
+//    controller.transitioningDelegate = self;
+//    
+//    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+//    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+//    [_swipeLeftInteractiveTransition wireToViewController:controller];
+//    [self presentViewController:controller animated:YES completion:nil];
 }
 
 #pragma mark --------------- UIViewControllerTransitioningDelegate Delegate  Controller 之间的转场动画 -----------------

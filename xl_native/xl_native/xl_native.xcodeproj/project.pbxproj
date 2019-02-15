@@ -61,6 +61,8 @@
 		0420917821FC9DF3004C0524 /* SearchResultSubTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0420917721FC9DF3004C0524 /* SearchResultSubTopicCell.m */; };
 		04274C7020EDC5CC00D4B5E2 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04274C6E20EDC5CC00D4B5E2 /* iCarousel.m */; };
 		042E6573221663B300C56859 /* SearchResultSubVideoCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042E6572221663B300C56859 /* SearchResultSubVideoCollectionCell.m */; };
+		042E6577221693F200C56859 /* NetWork_mt_getHotVideosByTopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 042E6575221693F200C56859 /* NetWork_mt_getHotVideosByTopic.m */; };
+		042E657E22169BA900C56859 /* TopicInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042E657D22169BA900C56859 /* TopicInfoController.m */; };
 		0434BDD221E9E1560059A28C /* PersonalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434BDD121E9E1560059A28C /* PersonalInformationViewController.m */; };
 		0434BDD521E9E1B10059A28C /* NickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434BDD321E9E1B10059A28C /* NickNameViewController.m */; };
 		0434BDD821E9E1E80059A28C /* IntroduceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434BDD621E9E1E80059A28C /* IntroduceViewController.m */; };
@@ -1090,6 +1092,10 @@
 		042B5B1F20F19F1200382BA7 /* ZJCustomTabBarLjhTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCustomTabBarLjhTableViewController.h; sourceTree = "<group>"; };
 		042E6571221663B200C56859 /* SearchResultSubVideoCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultSubVideoCollectionCell.h; sourceTree = "<group>"; };
 		042E6572221663B300C56859 /* SearchResultSubVideoCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultSubVideoCollectionCell.m; sourceTree = "<group>"; };
+		042E6575221693F200C56859 /* NetWork_mt_getHotVideosByTopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getHotVideosByTopic.m; sourceTree = "<group>"; };
+		042E6576221693F200C56859 /* NetWork_mt_getHotVideosByTopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getHotVideosByTopic.h; sourceTree = "<group>"; };
+		042E657C22169BA900C56859 /* TopicInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicInfoController.h; sourceTree = "<group>"; };
+		042E657D22169BA900C56859 /* TopicInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicInfoController.m; sourceTree = "<group>"; };
 		0434BDD021E9E1560059A28C /* PersonalInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInformationViewController.h; sourceTree = "<group>"; };
 		0434BDD121E9E1560059A28C /* PersonalInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInformationViewController.m; sourceTree = "<group>"; };
 		0434BDD321E9E1B10059A28C /* NickNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NickNameViewController.m; sourceTree = "<group>"; };
@@ -2771,6 +2777,24 @@
 				04274C6E20EDC5CC00D4B5E2 /* iCarousel.m */,
 			);
 			path = iCarousel;
+			sourceTree = "<group>";
+		};
+		042E6574221693F200C56859 /* mt_topic */ = {
+			isa = PBXGroup;
+			children = (
+				042E6576221693F200C56859 /* NetWork_mt_getHotVideosByTopic.h */,
+				042E6575221693F200C56859 /* NetWork_mt_getHotVideosByTopic.m */,
+			);
+			path = mt_topic;
+			sourceTree = "<group>";
+		};
+		042E65782216965000C56859 /* MTCommonUI */ = {
+			isa = PBXGroup;
+			children = (
+				042E657C22169BA900C56859 /* TopicInfoController.h */,
+				042E657D22169BA900C56859 /* TopicInfoController.m */,
+			);
+			path = MTCommonUI;
 			sourceTree = "<group>";
 		};
 		0434BDD921EA000B0059A28C /* mt_editPersonal */ = {
@@ -4742,6 +4766,7 @@
 		7375C1FA1CE5660C0059974F /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
+				042E6574221693F200C56859 /* mt_topic */,
 				04A04EB021ECDEA8007CBABF /* mt_search */,
 				0434BDD921EA000B0059A28C /* mt_editPersonal */,
 				04A9199D21E4EA7A002DDB1A /* mt_follow */,
@@ -5171,6 +5196,7 @@
 				04468DAB214B7DB3002F4528 /* MTFollow */,
 				0441FA2A21CFD1C600801225 /* MTMessage */,
 				040E28AA21C0AA4900D15B44 /* MTUserInfo */,
+				042E65782216965000C56859 /* MTCommonUI */,
 				D971BDDF1DD1CA9600BA2A7C /* CMPZjLifeMobileRootViewController.h */,
 				D971BDE01DD1CA9600BA2A7C /* CMPZjLifeMobileRootViewController.m */,
 				04EEBA5D21ABE3EE00A5F6F2 /* PopViewController.h */,
@@ -5927,6 +5953,7 @@
 				04C70D3821E3AC230022D897 /* MTZanListViewController.m in Sources */,
 				04CBC2912179C01200658E47 /* MJRefreshAutoNormalFooter.m in Sources */,
 				04C1720F21CE3EC80077FA6C /* NetWork_mt_delflour.m in Sources */,
+				042E657E22169BA900C56859 /* TopicInfoController.m in Sources */,
 				04AB305D21CA93FB0072808E /* GKDelegateHandler.m in Sources */,
 				0435492F21A7E9AC00AED5A8 /* AFURLSessionManager.m in Sources */,
 				04CBC3C32179C01300658E47 /* GPUImageColorDodgeBlendFilter.m in Sources */,
@@ -6079,6 +6106,7 @@
 				04B0E1E921A6937600ABCF16 /* NSObject+BKAssociatedObjects.m in Sources */,
 				04CBC3192179C01300658E47 /* SVIndefiniteAnimatedView.m in Sources */,
 				04C1720B21CE3EC80077FA6C /* NetWork_mt_getMyVideos.m in Sources */,
+				042E6577221693F200C56859 /* NetWork_mt_getHotVideosByTopic.m in Sources */,
 				D954C50B1DD1A40F003CA535 /* BaseNavigationController.m in Sources */,
 				04CBC4752179C01300658E47 /* SDWebImageDecoder.m in Sources */,
 				0449AB6A2181BBF100D6172D /* ZJLoginService.m in Sources */,
