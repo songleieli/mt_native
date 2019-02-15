@@ -8,6 +8,26 @@
 
 #import "NetWork_mt_getHotVideosByTopic.h"
 
+@implementation GetHotVideosByTopicVideoModel
+
+@end
+
+@implementation GetHotVideosByTopicModel
+
+@end
+
+@implementation GetHotVideosByTopicTempModel
+
+- (NSDictionary *)propertyMappingObjcJson {
+    return @{@"videoList" : @"videoList"};
+}
+- (NSDictionary *)classNameForItemInArray {
+    return @{@"videoList" : @"HomeListModel",@"topic":@"GetHotVideosByTopicModel"};
+}
+
+@end
+
+
 
 @implementation GetHotVideosByTopicResponse
 
@@ -15,7 +35,7 @@
     return @{@"obj" : @"obj"};
 }
 - (NSDictionary *)classNameForItemInArray {
-    return @{@"obj" : @"HomeListModel"};
+    return @{@"obj" : @"GetHotVideosByTopicTempModel"};
 }
 
 @end

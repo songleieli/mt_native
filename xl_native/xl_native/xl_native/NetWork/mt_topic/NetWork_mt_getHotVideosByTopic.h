@@ -10,12 +10,50 @@
 
 #import "NetWork_mt_home_list.h"
 
+@interface GetHotVideosByTopicVideoModel : IObjcJsonBase
+
+@property (strong, nonatomic) NSNumber *hotType;
+@property (copy, nonatomic) NSString *topic;
+@property (copy, nonatomic) NSString *hotCount;
+
+@end
+
+@interface GetHotVideosByTopicModel : IObjcJsonBase
+
+
+/*
+ "id": 0,
+ "topic": "#手工diy",
+ "personSum": 0,
+ "hotCount": null,
+ "playSum": 0,
+ "isCollect": 0
+ */
+
+@property (strong, nonatomic) NSNumber *id;
+@property (copy, nonatomic) NSString *topic;
+@property (strong, nonatomic) NSNumber *personSum;
+@property (strong, nonatomic) NSNumber *hotCount;
+@property (strong, nonatomic) NSNumber *playSum;
+@property (strong, nonatomic) NSNumber *isCollect;
+
+@end
+
+
+@interface GetHotVideosByTopicTempModel : IObjcJsonBase
+
+@property (strong, nonatomic) NSNumber *hotType;
+@property (strong, nonatomic) GetHotVideosByTopicModel *topic;
+@property (strong, nonatomic) NSArray *videoList;
+
+@end
+
 
 @interface GetHotVideosByTopicResponse : IObjcJsonBase
 
 @property(nonatomic,copy) NSString * status;
 @property(nonatomic,copy) NSString * message;
-@property(nonatomic,strong) NSArray * obj;
+@property(nonatomic,strong) GetHotVideosByTopicTempModel * obj;
 
 @end
 

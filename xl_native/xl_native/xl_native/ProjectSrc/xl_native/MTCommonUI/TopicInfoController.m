@@ -12,6 +12,8 @@
 #import "UserResponse.h"
 #import "AwemesResponse.h"
 
+#import "NetWork_mt_getHotVideosByTopic.h"
+
 //NSString * const kUserInfoCell_temp         = @"UserInfoCell";
 NSString * const kAwemeCollectionCell_temp_2  = @"AwemeCollectionCell";
 
@@ -94,7 +96,7 @@ NSString * const kAwemeCollectionCell_temp_2  = @"AwemeCollectionCell";
     self.lableNavTitle.textColor = [UIColor whiteColor];
     self.lableNavTitle.font = [UIFont defaultBoldFontWithSize:16];
     
-    self.title = @"我的收藏";
+    self.title = @"";
     
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     leftButton.size = [UIView getSize_width:20 height:20];
@@ -180,14 +182,13 @@ NSString * const kAwemeCollectionCell_temp_2  = @"AwemeCollectionCell";
 - (void)loadData:(NSInteger)pageIndex pageSize:(NSInteger)pageSize {
     
     
-        NetWork_mt_getLikeVideoList *request = [[NetWork_mt_getLikeVideoList alloc] init];
+        NetWork_mt_getHotVideosByTopic *request = [[NetWork_mt_getHotVideosByTopic alloc] init];
         request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-        request.noodleId = self.userNoodleId;
+        //request.noodleId = self.userNoodleId;
+    request.topicName = @"手工diy";
         request.pageNo = [NSString stringWithFormat:@"%ld",pageIndex];
         request.pageSize = [NSString stringWithFormat:@"%ld",pageSize];
-        [request startGetWithBlock:^(id result, NSString *msg) {
-            /*暂不考虑缓存*/
-        } finishBlock:^(GetLikeVideoListResponse *result, NSString *msg, BOOL finished) {
+        [request startGetWithBlock:^(GetHotVideosByTopicResponse *result, NSString *msg, BOOL finished) {
             
             NSLog(@"--------");
             if(finished){
@@ -195,9 +196,9 @@ NSString * const kAwemeCollectionCell_temp_2  = @"AwemeCollectionCell";
                 
                 [UIView setAnimationsEnabled:NO];
                 [self.collectionView performBatchUpdates:^{
-                    [self.favoriteAwemes addObjectsFromArray:result.obj];
+                    [self.favoriteAwemes addObjectsFromArray:result.obj.videoList];
                     NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
-                    for(NSInteger row = self.favoriteAwemes.count - result.obj.count; row<self.favoriteAwemes.count; row++) {
+                    for(NSInteger row = self.favoriteAwemes.count - result.obj.videoList.count; row<self.favoriteAwemes.count; row++) {
                         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
                         [indexPaths addObject:indexPath];
                     }
