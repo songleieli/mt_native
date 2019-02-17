@@ -89,8 +89,8 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubMusicCellId";
 
 - (void)btnDelClick:(id)sender{
     
-    if ([self.subUserDelegate respondsToSelector:@selector(btnDeleteClick:)]) {
-        [self.subUserDelegate btnDeleteClick:self.listModel];
+    if ([self.subCellDelegate respondsToSelector:@selector(btnCellClick:)]) {
+        [self.subCellDelegate btnCellClick:self.listModel];
     } else {
         NSLog(@"代理没响应，快开看看吧");
     }

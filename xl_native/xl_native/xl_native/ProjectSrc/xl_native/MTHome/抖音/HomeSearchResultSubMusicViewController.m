@@ -33,16 +33,10 @@
 -(void)setUpUI{
     self.view.backgroundColor = ColorThemeBackground;
     
-    
     [self.view addSubview:self.mainTableView];
-    
-//#define TOP_SCROLLERTAB_HEIGHT 44
-    
     CGFloat hyPageHeight = 44.0f;
-
     
     NSInteger tableViewHeight = ScreenHeight - kNavBarHeight_New - hyPageHeight;
-    
     self.mainTableView.size = [UIView getSize_width:ScreenWidth height:tableViewHeight];
     self.mainTableView.origin = [UIView getPoint_x:0 y:0];
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -50,10 +44,8 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.backgroundColor = [UIColor clearColor]; //RGBFromColor(0xecedf1);
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    //    self.mainTableView.mj_header = nil;
     self.mainTableView.mj_footer = nil;
     [self.mainTableView registerClass:SearchResultSubMusicCell.class forCellReuseIdentifier:[SearchResultSubMusicCell cellId]];
-
     [self.mainTableView.mj_header beginRefreshing];
 }
 
@@ -99,6 +91,7 @@
     
     if(self.mainDataArr.count > 0){
         SearchResultSubMusicCell *cell = [tableView dequeueReusableCellWithIdentifier:[SearchResultSubMusicCell cellId] forIndexPath:indexPath];
+        cell.subCellDelegate = self;
         GetFuzzyMusicListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
         [cell fillDataWithModel:model];
         return cell;
@@ -115,6 +108,16 @@
 //设置每一组的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return  SearchResultSubMusicCellHeight;
+}
+
+#pragma mark --------------- cell代理 -----------------
+-(void)btnCellClick:(GetFuzzyMusicListModel*)model{
+    
+    if ([self.delegate respondsToSelector:@selector(subMusicClick:)]) {
+        [self.delegate subMusicClick:model];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
 }
 
 @end

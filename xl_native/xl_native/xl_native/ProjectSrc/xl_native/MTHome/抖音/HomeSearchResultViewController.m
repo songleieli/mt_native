@@ -9,7 +9,9 @@
 #import "HomeSearchResultViewController.h"
 
 #import "TopicInfoController.h"
+#import "MusicInfoController.h"
 #import "HomeSearchResultSubTopicViewController.h"
+#import "HomeSearchResultSubMusicViewController.h"
 
 @interface HomeSearchResultViewController ()
 
@@ -168,6 +170,12 @@
     topicInfoController.topicName = model.topic;
     [self pushNewVC:topicInfoController animated:YES];
     
+}
+
+-(void)subMusicClick:(GetFuzzyMusicListModel *)model{
+    MusicInfoController *musicInfoController = [[MusicInfoController alloc] init];
+    musicInfoController.musicId = model.id;
+    [self pushNewVC:musicInfoController animated:YES];
 }
 
 -(void)subCellVideoClick:(NSMutableArray *)videoList selectIndex:(NSInteger)selectIndex{

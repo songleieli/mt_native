@@ -10,14 +10,6 @@
 
 #import "NetWork_mt_home_list.h"
 
-@interface GetHotVideosByTopicVideoModel : IObjcJsonBase
-
-@property (strong, nonatomic) NSNumber *hotType;
-@property (copy, nonatomic) NSString *topic;
-@property (copy, nonatomic) NSString *hotCount;
-
-@end
-
 @interface GetHotVideosByTopicModel : IObjcJsonBase
 
 

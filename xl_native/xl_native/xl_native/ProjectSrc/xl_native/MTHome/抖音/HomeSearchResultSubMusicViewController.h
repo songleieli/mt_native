@@ -12,13 +12,11 @@
 
 @protocol SubCellDelegate <NSObject>
 
--(void)subCkeckClick:(NSMutableArray *)selectModelList;
-
-//-(void)subCellClick:(ZjPmsPatrolRecordsModel *)model subType:(NSString*)subType;
+-(void)subMusicClick:(GetFuzzyMusicListModel *)model;
 
 @end
 
-@interface HomeSearchResultSubMusicViewController : ZJBaseViewController
+@interface HomeSearchResultSubMusicViewController : ZJBaseViewController<SearchResultSubMusicDelegate>
 
 
 @property(nonatomic,strong) NSString *parameter;         // @"待检",@"已检",@"未检"

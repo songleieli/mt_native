@@ -13,7 +13,7 @@
 
 @protocol SearchResultSubMusicDelegate <NSObject>
 
--(void)btnDeleteClick:(GetFuzzyMusicListModel*)model;
+-(void)btnCellClick:(GetFuzzyMusicListModel*)model;
 
 @end
 
@@ -38,7 +38,7 @@
 @property (nonatomic, strong) UILabel *lableuseCount;
 
 
-@property(nonatomic,weak) id <SearchResultSubMusicDelegate> subUserDelegate;
+@property(nonatomic,weak) id <SearchResultSubMusicDelegate> subCellDelegate;
 
 
 @end

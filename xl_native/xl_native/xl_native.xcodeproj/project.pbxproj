@@ -88,6 +88,8 @@
 		0435493321A7E9AC00AED5A8 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435491121A7E9AC00AED5A8 /* AFNetworkReachabilityManager.m */; };
 		0435493521A7E9AC00AED5A8 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435491221A7E9AC00AED5A8 /* AFSecurityPolicy.m */; };
 		0435493821A7FF0100AED5A8 /* FilterResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0435493721A7FF0100AED5A8 /* FilterResource.bundle */; };
+		043A788B2219770200F20CDC /* MusicInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043A78892219770200F20CDC /* MusicInfoController.m */; };
+		043A788E22197B6E00F20CDC /* NetWork_mt_getHotVideosByMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 043A788C22197B6E00F20CDC /* NetWork_mt_getHotVideosByMusic.m */; };
 		0441A283214670500077EA1F /* UITextFeildCustrom.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441A281214670500077EA1F /* UITextFeildCustrom.m */; };
 		0441FA1A21CF3E8100801225 /* MenuPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441FA1821CF3E8100801225 /* MenuPopView.m */; };
 		0441FA1D21CF3ED200801225 /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441FA1C21CF3ED200801225 /* CircleProgressView.m */; };
@@ -1154,6 +1156,10 @@
 		0435491321A7E9AC00AED5A8 /* AFCompatibilityMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFCompatibilityMacros.h; sourceTree = "<group>"; };
 		0435491421A7E9AC00AED5A8 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		0435493721A7FF0100AED5A8 /* FilterResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FilterResource.bundle; sourceTree = "<group>"; };
+		043A78892219770200F20CDC /* MusicInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicInfoController.m; sourceTree = "<group>"; };
+		043A788A2219770200F20CDC /* MusicInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicInfoController.h; sourceTree = "<group>"; };
+		043A788C22197B6E00F20CDC /* NetWork_mt_getHotVideosByMusic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getHotVideosByMusic.m; sourceTree = "<group>"; };
+		043A788D22197B6E00F20CDC /* NetWork_mt_getHotVideosByMusic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getHotVideosByMusic.h; sourceTree = "<group>"; };
 		0441A281214670500077EA1F /* UITextFeildCustrom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextFeildCustrom.m; sourceTree = "<group>"; };
 		0441A282214670500077EA1F /* UITextFeildCustrom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextFeildCustrom.h; sourceTree = "<group>"; };
 		0441FA1821CF3E8100801225 /* MenuPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuPopView.m; sourceTree = "<group>"; };
@@ -2806,6 +2812,8 @@
 				042E65802217AE5100C56859 /* Views */,
 				042E657C22169BA900C56859 /* TopicInfoController.h */,
 				042E657D22169BA900C56859 /* TopicInfoController.m */,
+				043A788A2219770200F20CDC /* MusicInfoController.h */,
+				043A78892219770200F20CDC /* MusicInfoController.m */,
 			);
 			path = MTCommonUI;
 			sourceTree = "<group>";
@@ -3310,6 +3318,8 @@
 			children = (
 				04C1720121CE3EC70077FA6C /* NetWork_mt_getMusicList.m */,
 				04C1720221CE3EC70077FA6C /* NetWork_mt_getMusicList.h */,
+				043A788D22197B6E00F20CDC /* NetWork_mt_getHotVideosByMusic.h */,
+				043A788C22197B6E00F20CDC /* NetWork_mt_getHotVideosByMusic.m */,
 			);
 			path = mt_music;
 			sourceTree = "<group>";
@@ -6386,6 +6396,7 @@
 				D954C5C81DD1A40F003CA535 /* NSData+AES256.m in Sources */,
 				D9F86DD71DEBEE7600C3A2B6 /* TZPhotoPreviewCell.m in Sources */,
 				04DCA8F321A565D500691A3A /* BottomTabBar.m in Sources */,
+				043A788E22197B6E00F20CDC /* NetWork_mt_getHotVideosByMusic.m in Sources */,
 				04CBC3752179C01300658E47 /* GPUImageHistogramGenerator.m in Sources */,
 				04CBC3F12179C01300658E47 /* GPUImageSubtractBlendFilter.m in Sources */,
 				04CBC41D2179C01300658E47 /* GPUImageHoughTransformLineDetector.m in Sources */,
@@ -6483,6 +6494,7 @@
 				04CBC4732179C01300658E47 /* SDWebImageManager.m in Sources */,
 				D98FCFAC1DEFC3080023C076 /* STPickerArea.m in Sources */,
 				04CBC3E12179C01300658E47 /* GPUImageGaussianBlurFilter.m in Sources */,
+				043A788B2219770200F20CDC /* MusicInfoController.m in Sources */,
 				04DCA8F121A565D500691A3A /* TXCVEFColorPalette.m in Sources */,
 				04CBC3DD2179C01300658E47 /* GPUImageSaturationBlendFilter.m in Sources */,
 				0441FA2921CF547100801225 /* UserCollectionHeader.m in Sources */,

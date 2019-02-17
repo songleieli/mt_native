@@ -6,12 +6,12 @@
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
-#import "TopicInfoController.h"
+#import "MusicInfoController.h"
 
-NSString * const kAwemeCollectionTopicCell  = @"AwemeCollectionCell";
-NSString * const kMyTopicHeaderView         = @"kMyTopicHeaderView";
+NSString * const kAwemeCollectionMusicCell  = @"AwemeCollectionCell";
+NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
 
-@interface TopicInfoController ()
+@interface MusicInfoController ()
 
 
 @property (nonatomic, assign) CGFloat                          itemWidth;
@@ -25,7 +25,7 @@ NSString * const kMyTopicHeaderView         = @"kMyTopicHeaderView";
 
 @end
 
-@implementation TopicInfoController
+@implementation MusicInfoController
 
 #pragma -mark ---------- 懒加载页面元素 -------------
 
@@ -68,7 +68,7 @@ NSString * const kMyTopicHeaderView         = @"kMyTopicHeaderView";
     self.lableNavTitle.textColor = [UIColor whiteColor];
     self.lableNavTitle.font = [UIFont defaultBoldFontWithSize:16];
     
-    self.title = @"话题详情";
+    self.title = @"音乐详情";
     
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     leftButton.size = [UIView getSize_width:20 height:20];
@@ -111,9 +111,9 @@ NSString * const kMyTopicHeaderView         = @"kMyTopicHeaderView";
     _collectionView.dataSource = self;
     
     // 注册区头
-    [_collectionView registerClass:[MyTopicHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kMyTopicHeaderView];
+    [_collectionView registerClass:[MyMusicHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kMyMusicHeaderView];
     // 注册cell
-    [_collectionView registerClass:[AwemeCollectionCell class] forCellWithReuseIdentifier:kAwemeCollectionTopicCell];
+    [_collectionView registerClass:[AwemeCollectionCell class] forCellWithReuseIdentifier:kAwemeCollectionMusicCell];
     
     [self.view addSubview:_collectionView];
     
@@ -130,24 +130,24 @@ NSString * const kMyTopicHeaderView         = @"kMyTopicHeaderView";
 
 - (void)loadData:(NSInteger)pageIndex pageSize:(NSInteger)pageSize {
     
-    //过滤topic携带的 “#” 号，接口不需要
-    NSString *topicNameTemp = self.topicName;
-    NSUInteger location = [topicNameTemp rangeOfString:@"#"].location;
-    if (location == NSNotFound) {
-    } else {
-        topicNameTemp = [topicNameTemp substringFromIndex:1];
-    }
+//    //过滤topic携带的 “#” 号，接口不需要
+//    NSString *topicNameTemp = self.musicId;
+//    NSUInteger location = [topicNameTemp rangeOfString:@"#"].location;
+//    if (location == NSNotFound) {
+//    } else {
+//        topicNameTemp = [topicNameTemp substringFromIndex:1];
+//    }
 
-    NetWork_mt_getHotVideosByTopic *request = [[NetWork_mt_getHotVideosByTopic alloc] init];
+    NetWork_mt_getHotVideosByMusic *request = [[NetWork_mt_getHotVideosByMusic alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.topicName = topicNameTemp;
+    request.musicId = self.musicId;
     request.pageNo = [NSString stringWithFormat:@"%ld",pageIndex];
     request.pageSize = [NSString stringWithFormat:@"%ld",pageSize];
-    [request startGetWithBlock:^(GetHotVideosByTopicResponse *result, NSString *msg, BOOL finished) {
+    [request startGetWithBlock:^(GetHotVideosByMusicResponse *result, NSString *msg, BOOL finished) {
         
         if(finished){
             self.pageIndex++;
-            self.topicModel = result.obj.topic;
+            self.musicModel = result.obj.music;
             [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]]; //加载 head Data
 
             [UIView setAnimationsEnabled:NO];
@@ -183,10 +183,10 @@ NSString * const kMyTopicHeaderView         = @"kMyTopicHeaderView";
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     
     if(indexPath.section == 0 && kind == UICollectionElementKindSectionHeader) {
-        MyTopicHeaderView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kMyTopicHeaderView forIndexPath:indexPath];
+        MyMusicHeaderView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kMyMusicHeaderView forIndexPath:indexPath];
         _topicHeader = header;
-        if(_topicModel) {
-            [header initData:_topicModel];
+        if(_musicModel) {
+            [header initData:_musicModel];
             header.delegate = self;
         }
         return header;
@@ -199,7 +199,7 @@ NSString * const kMyTopicHeaderView         = @"kMyTopicHeaderView";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    AwemeCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kAwemeCollectionTopicCell forIndexPath:indexPath];
+    AwemeCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kAwemeCollectionMusicCell forIndexPath:indexPath];
     HomeListModel *aweme= [self.favoriteAwemes objectAtIndex:indexPath.row];
     [cell initData:aweme];
     return cell;
@@ -251,29 +251,29 @@ NSString * const kMyTopicHeaderView         = @"kMyTopicHeaderView";
 
 #pragma -mark ------------ TopicHeadDelegate ---------
 
--(void)btnCollectionClick:(GetHotVideosByTopicModel*)model{
+-(void)btnCollectionClick:(GetHotVideosByMusicModel*)model{
     NSLog(@"--------点击收藏按钮-------");
-    CollectionTopicContentModel *contentModel = [[CollectionTopicContentModel alloc] init];
-    contentModel.topicName = model.topic;
-    contentModel.topicId = [NSString stringWithFormat:@"%@",model.id];
-    contentModel.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    
-    NetWork_mt_collectionTopic *request = [[NetWork_mt_collectionTopic alloc] init];
-    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.content = [contentModel generateJsonStringForProperties];
-    [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
-        
-        [UIWindow showTips:msg];
-//        if(finished){
+//    CollectionTopicContentModel *contentModel = [[CollectionTopicContentModel alloc] init];
+//    contentModel.topicName = model.topic;
+//    contentModel.topicId = [NSString stringWithFormat:@"%@",model.id];
+//    contentModel.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
 //
-////            self.topicModel.isCollect = [];
+//    NetWork_mt_collectionTopic *request = [[NetWork_mt_collectionTopic alloc] init];
+//    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+//    request.content = [contentModel generateJsonStringForProperties];
+//    [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
 //
-////            [self.topicHeader initData:self.topicModel];
-//            //[header initData:_topicModel];
-//
-//
-//        }
-    }];
+//        [UIWindow showTips:msg];
+////        if(finished){
+////
+//////            self.topicModel.isCollect = [];
+////
+//////            [self.topicHeader initData:self.topicModel];
+////            //[header initData:_topicModel];
+////
+////
+////        }
+//    }];
 }
 
 #pragma -mark ------------Custom Method---------

@@ -6,48 +6,48 @@
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
-#import "NetWork_mt_getHotVideosByTopic.h"
+#import "NetWork_mt_getHotVideosByMusic.h"
 
 //@implementation GetHotVideosByTopicVideoModel
 //
 //@end
 
-@implementation GetHotVideosByTopicModel
+@implementation GetHotVideosByMusicModel
 
 @end
 
-@implementation GetHotVideosByTopicTempModel
+@implementation GetHotVideosByMusicTempModel
 
 - (NSDictionary *)propertyMappingObjcJson {
     return @{@"videoList" : @"videoList"};
 }
 - (NSDictionary *)classNameForItemInArray {
-    return @{@"videoList" : @"HomeListModel",@"topic":@"GetHotVideosByTopicModel"};
+    return @{@"videoList" : @"HomeListModel",@"topic":@"GetHotVideosByMusicModel"};
 }
 
 @end
 
 
 
-@implementation GetHotVideosByTopicResponse
+@implementation GetHotVideosByMusicResponse
 
 - (NSDictionary *)propertyMappingObjcJson {
     return @{@"obj" : @"obj"};
 }
 - (NSDictionary *)classNameForItemInArray {
-    return @{@"obj" : @"GetHotVideosByTopicTempModel"};
+    return @{@"obj" : @"GetHotVideosByMusicTempModel"};
 }
 
 @end
 
 
-@implementation NetWork_mt_getHotVideosByTopic
+@implementation NetWork_mt_getHotVideosByMusic
 
 -(Class)responseType{
-    return [GetHotVideosByTopicResponse class];
+    return [GetHotVideosByMusicResponse class];
 }
 -(NSString*)responseCategory{
-    return @"/miantiao/topic/getHotVideosByTopic";
+    return @"/miantiao/music/getHotVideosByMusic";
 }
 
 
