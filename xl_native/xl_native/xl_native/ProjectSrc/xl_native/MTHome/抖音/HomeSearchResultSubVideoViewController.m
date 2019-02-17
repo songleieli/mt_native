@@ -127,7 +127,7 @@
     
     NetWork_mt_getFuzzyVideoList *request = [[NetWork_mt_getFuzzyVideoList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.searchName = @"y";
+    request.searchName = self.keyWord;
     request.pageNo = [NSString stringWithFormat:@"%ld",pageIndex];
     request.pageSize = [NSString stringWithFormat:@"%ld",pageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {

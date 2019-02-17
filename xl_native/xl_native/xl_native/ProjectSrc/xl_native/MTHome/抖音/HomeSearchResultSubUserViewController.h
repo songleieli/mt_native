@@ -21,7 +21,8 @@
 @interface HomeSearchResultSubUserViewController : ZJBaseViewController
 
 
-@property(nonatomic,strong) NSString *parameter;         // @"待检",@"已检",@"未检"
+@property(nonatomic,strong) NSString *parameter;
+@property(nonatomic,strong) NSString *keyWord;
 @property (nonatomic, weak) id<SubCellDelegate> delegate;
 
 

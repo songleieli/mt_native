@@ -16,7 +16,6 @@
 
 -(void)reloadWithSource:(NSArray*)source dataLoadFinishBlock:(void(^)())dataLoadFinishBlock;
 
-@property(nonatomic,strong) void (^zanClcik)(GetHotSearchSixModel *item,UIButton *btnZan,UILabel *labelZan);
-@property(nonatomic,strong) void (^playVideoClcik)(GetHotSearchSixModel *item);
+@property(nonatomic,copy) void (^topicClickBlock)(GetHotSearchSixModel *model);
 
 @end

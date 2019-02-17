@@ -28,6 +28,7 @@ UIViewControllerTransitioningDelegate
 
 
 @property(nonatomic,strong) NSString *parameter;
+@property(nonatomic,strong) NSString *keyWord;
 @property (nonatomic, weak) id<SubCellDelegate> delegate;
 
 @property (nonatomic, strong) NSMutableArray   *favoriteAwemes;//当前视频数组

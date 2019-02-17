@@ -45,6 +45,18 @@
                                                object:nil];
 }
 
+
+- (instancetype)initWithKeyWord:(NSString*)keyWord{
+    
+    self = [super init];
+    if (self) {
+        self.keyWord = keyWord;
+    }
+    return self;
+
+}
+
+
 -(void)initNavTitle{
     self.isNavBackGroundHiden  = NO;
     self.btnLeft.hidden = YES;
@@ -123,11 +135,11 @@
     /*
      *多个参数写法，ZJMyRepairSubViewController 要声明对应的参数名称
      */
-    NSDictionary *dicOne = @{@"parameter":@"0",@"delegate":self};
-    NSDictionary *dicTwo = @{@"parameter":@"1",@"delegate":self};
-    NSDictionary *dicThree = @{@"parameter":@"2",@"delegate":self};
-     NSDictionary *dicFour = @{@"parameter":@"3",@"delegate":self};
-     NSDictionary *dicFive = @{@"parameter":@"4",@"delegate":self};
+    NSDictionary *dicOne = @{@"parameter":@"0",@"keyWord":self.keyWord,@"delegate":self};
+    NSDictionary *dicTwo = @{@"parameter":@"1",@"keyWord":self.keyWord,@"delegate":self};
+    NSDictionary *dicThree = @{@"parameter":@"2",@"keyWord":self.keyWord,@"delegate":self};
+     NSDictionary *dicFour = @{@"parameter":@"3",@"keyWord":self.keyWord,@"delegate":self};
+     NSDictionary *dicFive = @{@"parameter":@"4",@"keyWord":self.keyWord,@"delegate":self};
     NSArray *arrayParameters = @[dicOne,dicTwo,dicThree,dicFour,dicFive];
     
     self.pageView = [[HYPageView alloc] initWithFrame:CGRectMake(0, kNavBarHeight_New, ScreenWidth, bodyViewHeight+topSpace)

@@ -53,7 +53,7 @@
     
     NetWork_mt_getFuzzyMusicList *request = [[NetWork_mt_getFuzzyMusicList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.searchName = @"y";
+    request.searchName = self.keyWord;
     request.pageNo = @"1";
     request.pageSize = @"20";
     [request startGetWithBlock:^(id result, NSString *msg) {

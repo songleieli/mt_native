@@ -2,7 +2,7 @@
 //  GKDouyinHomeSearchViewController.m
 //  GKNavigationBarViewControllerDemo
 //
-//  Created by gaokun on 2018/9/11.
+//  Created by songlei on 2018/9/11.
 //  Copyright © 2018年 gaokun. All rights reserved.
 //
 
@@ -17,10 +17,16 @@
 - (MTSearchHeadFunctionView *)functionView{
     
     if (!_functionView) {
-//        __weak __typeof(self) weakSelf = self;
+        
+        __weak typeof(self) weakSelf = self;
         CGRect rect =  [UIView getFrame_x:15 y:50 width:ScreenWidth-15*2 height:165];
         _functionView = [[MTSearchHeadFunctionView alloc] initWithFrame:rect];
-//        _functionView.backgroundColor = [UIColor whiteColor];
+        _functionView.topicClickBlock = ^(GetHotSearchSixModel *model) {
+            NSLog(@"-------");
+            HomeSearchResultViewController *homeSearchResultViewController = [[HomeSearchResultViewController alloc] initWithKeyWord:model.topic];
+            [weakSelf pushNewVC:homeSearchResultViewController animated:YES];
+            
+        };
     }
     return  _functionView;
 }
@@ -28,15 +34,11 @@
 - (UIView *)viewHeadBg{
     
     if (!_viewHeadBg) {
-        //        __weak __typeof(self) weakSelf = self;
         CGRect rect =  [UIView getFrame_x:0 y:0 width:ScreenWidth height:165];
         _viewHeadBg = [[UIView alloc] initWithFrame:rect];
-//        _viewHeadBg.backgroundColor = [UIColor redColor];
-        
         [_viewHeadBg addSubview:self.lableHeadTitle];
         [_viewHeadBg addSubview:self.functionView];
         [_viewHeadBg addSubview:self.lableHeadBottomTitle];
-
     }
     return  _viewHeadBg;
 }
@@ -54,6 +56,7 @@
     }
     return _lableHeadTitle;
 }
+
 - (UILabel *) lableHeadBottomTitle{
     if (_lableHeadBottomTitle == nil){ //
         _lableHeadBottomTitle = [[UILabel alloc]init];
@@ -68,11 +71,8 @@
     return _lableHeadBottomTitle;
 }
 
-
-
 -(void)dealloc{
     
-    NSLog(@"---------------%@ dealloc ",NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillShowNotification
                                                   object:nil];
@@ -106,9 +106,7 @@
                                           y:self.navBackGround.height - rightButton.height-9];
     [rightButton setBackgroundImage:[UIImage imageNamed:@"icon_m_s_right"] forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    
     self.btnRight = rightButton;
-    
     
     self.textFieldBgView = [[UIView alloc] init];
     self.textFieldBgView.size = [UIView getSize_width:self.navBackGround.width - 15*2 - rightButton.width - 25
@@ -117,9 +115,7 @@
     self.textFieldBgView.layer.borderWidth = 0.0;
     self.textFieldBgView.layer.cornerRadius = 5.0;
     self.textFieldBgView.layer.borderColor = defaultLineColor.CGColor;
-//    self.textFieldBgView.backgroundColor = [UIColor whiteColor];
     [self.navBackGround addSubview:self.textFieldBgView];
-    
     
     //取消按钮
     self.cancleButton = [[UIButton alloc]init];
@@ -146,7 +142,7 @@
     self.textFieldSearchKey = [[UITextField alloc] init];
     self.textFieldSearchKey.size = [UIView getSize_width:self.textFieldBgView.width - leftView.width height:leftView.height];
     self.textFieldSearchKey.origin = [UIView getPoint_x:leftView.right y:self.textFieldBgView.height - self.textFieldSearchKey.height-5];
-    self.textFieldSearchKey.placeholder = @"娱乐圈";
+    self.textFieldSearchKey.placeholder = @"明星";
     self.textFieldSearchKey.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.textFieldSearchKey.clearsOnBeginEditing = YES;
     self.textFieldSearchKey.delegate = self;
@@ -171,9 +167,7 @@
     
     [self.view addSubview:self.mainTableView];
     
-    
     NSInteger tableViewHeight = ScreenHeight - kNavBarHeight_New;
-    
     self.mainTableView.size = [UIView getSize_width:ScreenWidth height:tableViewHeight];
     self.mainTableView.origin = [UIView getPoint_x:0 y:kNavBarHeight_New];
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -181,7 +175,6 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.backgroundColor = [UIColor clearColor]; //RGBFromColor(0xecedf1);
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    self.mainTableView.mj_header = nil;
     self.mainTableView.mj_footer = nil;
     [self.mainTableView.mj_header beginRefreshing];
     [self.mainTableView registerClass:HomeSearchCell.class forCellReuseIdentifier:[HomeSearchCell cellId]];
@@ -203,25 +196,16 @@
 
 -(void)refreshVideoList:(NSArray*)searchSixModelList{
     
-    
     __weak __typeof(self) weakSelf = self;
     [self.functionView reloadWithSource:searchSixModelList dataLoadFinishBlock:^() {
-        NSLog(@"---------------返回functionView 的高度");
-        
-        //self.viewFooterBg.height = viewHeight;
-        
-//        weakSelf.viewFooterBg.height = weakSelf.functionView.bottom;
-        
         weakSelf.viewHeadBg.height = weakSelf.functionView.height+100;
         self.lableHeadBottomTitle.top = self.functionView.bottom;
-
         weakSelf.mainTableView.tableHeaderView = weakSelf.viewHeadBg;
     }];
     
 }
 
 -(void)loadBodyDataList{
-    
     
     NetWork_mt_getHotVideoList *request = [[NetWork_mt_getHotVideoList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
@@ -230,28 +214,18 @@
     [request startGetWithBlock:^(id result, NSString *msg) {
         /*暂时不考虑缓存问题*/
     } finishBlock:^(GetHotSearchSixResponse *result, NSString *msg, BOOL finished) {
-        NSLog(@"-------");
         
         if(finished){
-//            [self refreshVideoList:result.obj];
-            
-            
             [self.mainDataArr addObjectsFromArray:result.obj];
             [self.mainTableView reloadData];
-            
         }
         else{
             [UIWindow showTips:msg];
         }
     }];
-    
 }
 
-
-
-
 -(void)backBtnClick:(UIButton*)btn{
-//    [self.navigationController popViewControllerAnimated:YES];
     
     if(self.backClickBlock){
         self.backClickBlock();
@@ -272,12 +246,7 @@
         [self loadBodyDataList]; //加载cell Data
 
         if(finished){
-            
             [self refreshVideoList:result.obj];
-            
-            
-            
-            
         }
         else{
             [UIWindow showTips:msg];
@@ -290,8 +259,14 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
+    NSString *topicName = textField.text.trim;
+    if(topicName.length == 0){
+        topicName = textField.placeholder;
+    }
+    
+    
     [textField resignFirstResponder];
-    HomeSearchResultViewController *homeSearchResultViewController = [[HomeSearchResultViewController alloc] init];
+    HomeSearchResultViewController *homeSearchResultViewController = [[HomeSearchResultViewController alloc] initWithKeyWord:topicName];
     [self pushNewVC:homeSearchResultViewController animated:YES];
     return YES;
 }
@@ -305,15 +280,15 @@
     
 }
 
--(void)titleButtonClicked:(UIButton*)btn{
-    
-    //先取消键盘再弹出新页面
-    [self.textFieldSearchKey resignFirstResponder];
-
-    
-    HomeSearchResultViewController *homeSearchResultViewController = [[HomeSearchResultViewController alloc] init];
-    [self pushNewVC:homeSearchResultViewController animated:YES];
-}
+//-(void)titleButtonClicked:(UIButton*)btn{
+//
+//    //先取消键盘再弹出新页面
+//    [self.textFieldSearchKey resignFirstResponder];
+//
+//
+//    HomeSearchResultViewController *homeSearchResultViewController = [[HomeSearchResultViewController alloc] initWithKeyWord:@"明星"];
+//    [self pushNewVC:homeSearchResultViewController animated:YES];
+//}
 
 #pragma mark --------------- tabbleView代理 -----------------
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

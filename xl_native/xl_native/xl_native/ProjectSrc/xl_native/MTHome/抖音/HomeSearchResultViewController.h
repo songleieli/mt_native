@@ -30,7 +30,8 @@
 
 //head
 @property(nonatomic,strong) HYPageView *pageView;
+@property (nonatomic,copy) NSString *keyWord;
 
-@property (nonatomic, copy) void(^backClickBlock)();
+- (instancetype)initWithKeyWord:(NSString*)keyWord;
 
 @end

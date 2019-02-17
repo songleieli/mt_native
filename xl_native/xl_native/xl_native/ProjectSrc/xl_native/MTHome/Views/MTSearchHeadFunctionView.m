@@ -28,10 +28,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         //self.backgroundColor = [UIColor whiteColor];
-        
-        //初始化代码，写这里
     }
-    
     return self;
 }
 
@@ -56,27 +53,26 @@
 //    CGFloat scalwh = (CGFloat)171.5/273;//宽高比
     CGFloat width = (CGFloat)self.width/rowCount; //正方形，高等于宽
     CGFloat height = width; //正方形，高等于宽
-    
     self.height = height*row;
     
     for(int i=0; i<row;i++){
         for(int j=0;j<rowCount;j++){
             
             NSInteger index = i*rowCount+j;
-            UIView *btnSub = [[UIView alloc] init];//[UIButton buttonWithType:UIButtonTypeCustom];
-            btnSub.tag = index;
-            btnSub.size = [UIView getSize_width:width height:height];
-            btnSub.origin = [UIView getPoint_x:j*width y:i*height];
-            btnSub.layer.borderWidth = 0.25;
-            btnSub.layer.borderWidth = 1.0;
-            btnSub.layer.borderColor = ColorThemeBackground.CGColor;
-            [self addSubview:btnSub];
+            UIView *subView = [[UIView alloc] init];//[UIButton buttonWithType:UIButtonTypeCustom];
+            subView.tag = index;
+            subView.size = [UIView getSize_width:width height:height];
+            subView.origin = [UIView getPoint_x:j*width y:i*height];
+            subView.layer.borderWidth = 0.25;
+            subView.layer.borderWidth = 1.0;
+            subView.layer.borderColor = ColorThemeBackground.CGColor;
+            [self addSubview:subView];
             
             if(index < self.source.count){
                 GetHotSearchSixModel *model = [self.source objectAtIndex:index];
                 
                 UIImageView *imageView = [[UIImageView alloc]init];
-                imageView.size = [UIView getSize_width:btnSub.width height:btnSub.height];
+                imageView.size = [UIView getSize_width:subView.width height:subView.height];
                 imageView.origin = [UIView getPoint_x:0 y:0];
                 imageView.contentMode =  UIViewContentModeScaleAspectFill;
                 [imageView sd_setImageWithURL:[NSURL URLWithString:model.noodleVideoCover]
@@ -84,20 +80,23 @@
                 imageView.layer.masksToBounds = YES;
                 imageView.layer.cornerRadius = 4.0f;
                 imageView.userInteractionEnabled = YES;
-                [btnSub addSubview:imageView];
+                [subView addSubview:imageView];
                 
-                UIView *maskView = [[UIView alloc]init];
-                maskView.size = [UIView getSize_width:btnSub.width height:btnSub.height];
-                maskView.origin = [UIView getPoint_x:0 y:0];
-                maskView.backgroundColor = RGBA(0, 0, 0, 0.5);
-                [btnSub addSubview:maskView];
+                UIButton *btnMask = [UIButton buttonWithType:UIButtonTypeCustom];
+                btnMask.tag = index;
+                btnMask.size = [UIView getSize_width:subView.width height:subView.height];
+                btnMask.origin = [UIView getPoint_x:0 y:0];
+                [btnMask setBackgroundColor:RGBA(0, 0, 0, 0.5) forState:UIControlStateNormal];
+                [btnMask setBackgroundColor:RGBA(46, 45, 51, 0.8) forState:UIControlStateHighlighted];
+                [btnMask addTarget:self action:@selector(btnTopicClick:) forControlEvents:UIControlEventTouchUpInside];
+                [subView addSubview:btnMask];
                 
                 
                 UILabel *lableHotTag = [[UILabel alloc]init];
                 lableHotTag.height = 50;
-                lableHotTag.width  = btnSub.width;
+                lableHotTag.width  = subView.width;
                 lableHotTag.textColor = ColorWhite;
-                lableHotTag.centerY = maskView.centerY;
+                lableHotTag.centerY = btnMask.centerY;
                 lableHotTag.centerX = lableHotTag.centerX;
                 lableHotTag.font = BigBoldFont;
                 lableHotTag.text = model.topic;
@@ -105,10 +104,7 @@
                 lableHotTag.textAlignment = NSTextAlignmentCenter;
                 lableHotTag.lineBreakMode = NSLineBreakByCharWrapping;
 
-                [btnSub addSubview:lableHotTag];
-                
-                
-                
+                [subView addSubview:lableHotTag];
             }
         }
     }
@@ -118,24 +114,12 @@
     }
 }
 
--(void)btnPlayClick:(UIButton*)btn{
-//    ListLoginModel *item = [self.source objectAtIndex:btn.tag];
-//    if(self.playVideoClcik){
-//        self.playVideoClcik(item);
-//    }
+-(void)btnTopicClick:(UIButton*)btn{
+    GetHotSearchSixModel *item = [self.source objectAtIndex:btn.tag];
+    if(self.topicClickBlock){
+        self.topicClickBlock(item);
+    }
 }
 
--(void)btnZanClick:(UIButton*)btn{
-    
-//    UIView *btnSub = [self viewWithTag:btn.tag];
-//    UIView *viewSubBg = [btnSub viewWithTag:btn.tag];
-//    UILabel *labelZan = [viewSubBg viewWithTag:9000+btn.tag];
-//
-//
-//    ListLoginModel *item = [self.source objectAtIndex:btn.tag];
-//    if(self.zanClcik){
-//        self.zanClcik(item,btn,labelZan);
-//    }
-}
 
 @end
