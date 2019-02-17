@@ -16,9 +16,7 @@ NSString * const kSearchResultSubVideoCollectionCell  = @"kSearchResultSubVideoC
 
 @protocol SubCellDelegate <NSObject>
 
--(void)subCkeckClick:(NSMutableArray *)selectModelList;
-
-//-(void)subCellClick:(ZjPmsPatrolRecordsModel *)model subType:(NSString*)subType;
+-(void)subCellVideoClick:(NSMutableArray *)videoList selectIndex:(NSInteger)selectIndex;
 
 @end
 
@@ -29,10 +27,10 @@ UIViewControllerTransitioningDelegate
 >
 
 
-@property(nonatomic,strong) NSString *parameter;         // @"待检",@"已检",@"未检"
+@property(nonatomic,strong) NSString *parameter;
 @property (nonatomic, weak) id<SubCellDelegate> delegate;
 
 @property (nonatomic, strong) NSMutableArray   *favoriteAwemes;//当前视频数组
-@property (nonatomic, strong) LoadMoreControl                  *loadMore;
+@property (nonatomic, strong) LoadMoreControl   *loadMore;
 
 @end

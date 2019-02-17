@@ -120,7 +120,6 @@
 
 #pragma mark --------------- cell代理 -----------------
 -(void)btnCellClick:(GetFuzzyTopicListModel*)model{
-    NSLog(@"-------------点击Topic %@===========",model.topic);
     
     if ([self.delegate respondsToSelector:@selector(subCellTopicClick:)]) {
         [self.delegate subCellTopicClick:model];

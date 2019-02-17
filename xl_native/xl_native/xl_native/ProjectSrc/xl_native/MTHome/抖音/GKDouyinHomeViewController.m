@@ -118,12 +118,14 @@
 
 -(void)searchViewControllerDidAppear{
     
+//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [UIApplication sharedApplication].statusBarHidden = NO;
     [self hiddenTabBar:YES isAnimat:YES]; //隐藏tablebar
     [self.playerVC playListCurrPlayDisAppear];
 }
 
 -(void)playListViewControllerDidAppear{
-    
+    [UIApplication sharedApplication].statusBarHidden = YES;
     [self hiddenTabBar:NO isAnimat:YES]; //显示tablebar
     [self.playerVC playListCurrPlayDidAppear];
 }

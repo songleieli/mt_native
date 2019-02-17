@@ -7,15 +7,9 @@
 //
 
 #import "TopicInfoController.h"
-#import "HoverViewFlowLayout.h"
 
-#import "UserResponse.h"
-#import "AwemesResponse.h"
-
-#import "NetWork_mt_getHotVideosByTopic.h"
-
-//NSString * const kUserInfoCell_temp         = @"UserInfoCell";
-NSString * const kAwemeCollectionCell_temp_2  = @"AwemeCollectionCell";
+NSString * const kAwemeCollectionTopicCell  = @"AwemeCollectionCell";
+NSString * const kMyTopicHeaderView         = @"kMyTopicHeaderView";
 
 @interface TopicInfoController ()
 
@@ -27,31 +21,13 @@ NSString * const kAwemeCollectionCell_temp_2  = @"AwemeCollectionCell";
 @property (nonatomic, assign) NSInteger                        pageIndex;
 @property (nonatomic, assign) NSInteger                        pageSize;
 
-@property (nonatomic, strong) NSMutableArray          *workAwemes;
-@property (nonatomic, strong) NSMutableArray          *dynamicAwemes;
 @property (nonatomic, strong) NSMutableArray          *favoriteAwemes;
-
 
 @end
 
 @implementation TopicInfoController
 
 #pragma -mark ---------- 懒加载页面元素 -------------
-
-
--(NSMutableArray*)workAwemes{
-    if(!_workAwemes){
-        _workAwemes = [[NSMutableArray alloc] init];
-    }
-    return _workAwemes;
-}
-
--(NSMutableArray*)dynamicAwemes{
-    if(!_dynamicAwemes){
-        _dynamicAwemes = [[NSMutableArray alloc] init];
-    }
-    return _dynamicAwemes;
-}
 
 -(NSMutableArray*)favoriteAwemes{
     if(!_favoriteAwemes){
@@ -63,12 +39,8 @@ NSString * const kAwemeCollectionCell_temp_2  = @"AwemeCollectionCell";
 
 #pragma -mark ---------- Controller 生命周期 -------------
 
-
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-
-    
     //test
     [self onNetworkStatusChange:nil];// 模仿抖音Demo中，的网络变化，加载数据
 }
@@ -96,7 +68,7 @@ NSString * const kAwemeCollectionCell_temp_2  = @"AwemeCollectionCell";
     self.lableNavTitle.textColor = [UIColor whiteColor];
     self.lableNavTitle.font = [UIFont defaultBoldFontWithSize:16];
     
-    self.title = @"";
+    self.title = @"话题详情";
     
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     leftButton.size = [UIView getSize_width:20 height:20];
@@ -112,24 +84,19 @@ NSString * const kAwemeCollectionCell_temp_2  = @"AwemeCollectionCell";
 -(void)setUpUI{
     
     self.view.backgroundColor = ColorThemeBackground;
-    [self.view addSubview:self.slideTabBar];
-
+    
     //根据当前屏幕宽度j计算，item 宽度
     _itemWidth = (ScreenWidth - 3) / 3.0f;
     _itemHeight = _itemWidth * 1.35f; //高度为宽度的1.35倍
     
-    //SafeAreaTopHeight + kSlideTabBarHeight 为固定的高度
-//    HoverViewFlowLayout *layout = [[HoverViewFlowLayout alloc] initWithTopHeight:SafeAreaTopHeight + kSlideTabBarHeight];
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.minimumLineSpacing = 1.5;     //行间距
     layout.minimumInteritemSpacing = 0;  //列间距
     
     //行间距与列间距配合 _itemWidth _itemHeight 达到布局的效果
-    
-    CGRect frame = CGRectMake(0, self.slideTabBar.bottom, ScreenWidth, ScreenHeight);
+    CGRect frame = CGRectMake(0, kNavBarHeight_New, ScreenWidth, ScreenHeight);
     _collectionView = [[UICollectionView  alloc]initWithFrame:frame collectionViewLayout:layout];
     _collectionView.backgroundColor = ColorClear;
-    
     
     if (@available(iOS 11.0, *)) {
         _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -143,8 +110,11 @@ NSString * const kAwemeCollectionCell_temp_2  = @"AwemeCollectionCell";
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     
+    // 注册区头
+    [_collectionView registerClass:[MyTopicHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kMyTopicHeaderView];
     // 注册cell
-    [_collectionView registerClass:[AwemeCollectionCell class] forCellWithReuseIdentifier:kAwemeCollectionCell_temp_2];
+    [_collectionView registerClass:[AwemeCollectionCell class] forCellWithReuseIdentifier:kAwemeCollectionTopicCell];
+    
     [self.view addSubview:_collectionView];
     
     _loadMore = [[LoadMoreControl alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 50) surplusCount:15];
@@ -158,73 +128,50 @@ NSString * const kAwemeCollectionCell_temp_2  = @"AwemeCollectionCell";
 
 #pragma -mark ----------HTTP data request----------
 
--(void)loadUserData {
-    
-    NetWork_mt_personal_homePage *request = [[NetWork_mt_personal_homePage alloc] init];
-    request.noodleId = self.userNoodleId;
-    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    [request startGetWithBlock:^(id result, NSString *msg) {
-        
-    } finishBlock:^(PersonalHomePageResponse *result, NSString *msg, BOOL finished) {
-        
-        if(finished){
-            [self setTitle:self.user.nickname];
-            self.user = result.obj;
-            [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
-        }
-        else{
-            [UIWindow showTips:msg];
-        }
-    }];
-}
-
-
 - (void)loadData:(NSInteger)pageIndex pageSize:(NSInteger)pageSize {
     
-    
-        NetWork_mt_getHotVideosByTopic *request = [[NetWork_mt_getHotVideosByTopic alloc] init];
-        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-        //request.noodleId = self.userNoodleId;
-    request.topicName = @"手工diy";
-        request.pageNo = [NSString stringWithFormat:@"%ld",pageIndex];
-        request.pageSize = [NSString stringWithFormat:@"%ld",pageSize];
-        [request startGetWithBlock:^(GetHotVideosByTopicResponse *result, NSString *msg, BOOL finished) {
-            
-            NSLog(@"--------");
-            if(finished){
-                self.pageIndex++;
-                
-                [UIView setAnimationsEnabled:NO];
-                [self.collectionView performBatchUpdates:^{
-                    [self.favoriteAwemes addObjectsFromArray:result.obj.videoList];
-                    NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
-                    for(NSInteger row = self.favoriteAwemes.count - result.obj.videoList.count; row<self.favoriteAwemes.count; row++) {
-                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-                        [indexPaths addObject:indexPath];
-                    }
-                    [self.collectionView insertItemsAtIndexPaths:indexPaths];
-                } completion:^(BOOL finished) {
-                    [UIView setAnimationsEnabled:YES];
-                }];
-                
-                [self.loadMore endLoading];
-                if(self.favoriteAwemes.count < pageSize || self.favoriteAwemes.count == 0) {
-                    [self.loadMore loadingAll];
+    //过滤topic携带的 “#” 号，接口不需要
+    NSString *topicNameTemp = self.topicName;
+    NSUInteger location = [topicNameTemp rangeOfString:@"#"].location;
+    if (location == NSNotFound) {
+    } else {
+        topicNameTemp = [topicNameTemp substringFromIndex:1];
+    }
+
+    NetWork_mt_getHotVideosByTopic *request = [[NetWork_mt_getHotVideosByTopic alloc] init];
+    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+    request.topicName = topicNameTemp;
+    request.pageNo = [NSString stringWithFormat:@"%ld",pageIndex];
+    request.pageSize = [NSString stringWithFormat:@"%ld",pageSize];
+    [request startGetWithBlock:^(GetHotVideosByTopicResponse *result, NSString *msg, BOOL finished) {
+        
+        if(finished){
+            self.pageIndex++;
+            self.topicModel = result.obj.topic;
+            [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]]; //加载 head Data
+
+            [UIView setAnimationsEnabled:NO];
+            [self.collectionView performBatchUpdates:^{
+                [self.favoriteAwemes addObjectsFromArray:result.obj.videoList];
+                NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
+                for(NSInteger row = self.favoriteAwemes.count - result.obj.videoList.count; row<self.favoriteAwemes.count; row++) {
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+                    [indexPaths addObject:indexPath];
                 }
+                [self.collectionView insertItemsAtIndexPaths:indexPaths];
+            } completion:^(BOOL finished) {
+                [UIView setAnimationsEnabled:YES];
+            }];
+            
+            [self.loadMore endLoading];
+            if(self.favoriteAwemes.count < pageSize || self.favoriteAwemes.count == 0) {
+                [self.loadMore loadingAll];
             }
-            else{
-                [UIWindow showTips:@"获取喜欢列表失败，请检查网络"];
-            }
-        }];
-}
-
-#pragma -mark ------------   OnTabTapActionDelegate ---------
-
-
-- (void)onTabTapAction:(NSInteger)index{
-    
-    NSLog(@"-------");
-    
+        }
+        else{
+            [UIWindow showTips:@"获取喜欢列表失败，请检查网络"];
+        }
+    }];
 }
 
 #pragma -mark ------------   UICollectionViewDataSource Delegate
@@ -233,12 +180,26 @@ NSString * const kAwemeCollectionCell_temp_2  = @"AwemeCollectionCell";
     return 1;
 }
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    
+    if(indexPath.section == 0 && kind == UICollectionElementKindSectionHeader) {
+        MyTopicHeaderView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kMyTopicHeaderView forIndexPath:indexPath];
+        _topicHeader = header;
+        if(_topicModel) {
+            [header initData:_topicModel];
+            header.delegate = self;
+        }
+        return header;
+    }
+    return [UICollectionReusableView new];
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.favoriteAwemes.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    AwemeCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kAwemeCollectionCell_temp_2 forIndexPath:indexPath];
+    AwemeCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kAwemeCollectionTopicCell forIndexPath:indexPath];
     HomeListModel *aweme= [self.favoriteAwemes objectAtIndex:indexPath.row];
     [cell initData:aweme];
     return cell;
@@ -246,7 +207,9 @@ NSString * const kAwemeCollectionCell_temp_2  = @"AwemeCollectionCell";
 
 //UICollectionFlowLayout Delegate
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-
+    if(section == 0) { //设置header的size
+        return CGSizeMake(ScreenWidth, 150);
+    }
     return CGSizeZero;
 }
 
@@ -260,16 +223,16 @@ NSString * const kAwemeCollectionCell_temp_2  = @"AwemeCollectionCell";
 
 //UICollectionViewDelegate Delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//    self.selectIndex = indexPath.row;
-//    
-//    UserInfoPlayerListViewController *controller;
-//    controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeFavourites];
-//    controller.transitioningDelegate = self;
-//    
-//    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-//    self.modalPresentationStyle = UIModalPresentationCurrentContext;
-//    [_swipeLeftInteractiveTransition wireToViewController:controller];
-//    [self presentViewController:controller animated:YES completion:nil];
+    
+        self.selectIndex = indexPath.row;
+        UserInfoPlayerListViewController *controller;
+        controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeFavourites];
+        controller.transitioningDelegate = self;
+    
+        controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+        self.modalPresentationStyle = UIModalPresentationCurrentContext;
+        [_swipeLeftInteractiveTransition wireToViewController:controller];
+        [self presentViewController:controller animated:YES completion:nil];
 }
 
 #pragma mark --------------- UIViewControllerTransitioningDelegate Delegate  Controller 之间的转场动画 -----------------
@@ -286,6 +249,33 @@ NSString * const kAwemeCollectionCell_temp_2  = @"AwemeCollectionCell";
     return _swipeLeftInteractiveTransition.interacting ? _swipeLeftInteractiveTransition : nil;
 }
 
+#pragma -mark ------------ TopicHeadDelegate ---------
+
+-(void)btnCollectionClick:(GetHotVideosByTopicModel*)model{
+    NSLog(@"--------点击收藏按钮-------");
+    CollectionTopicContentModel *contentModel = [[CollectionTopicContentModel alloc] init];
+    contentModel.topicName = model.topic;
+    contentModel.topicId = [NSString stringWithFormat:@"%@",model.id];
+    contentModel.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+    
+    NetWork_mt_collectionTopic *request = [[NetWork_mt_collectionTopic alloc] init];
+    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+    request.content = [contentModel generateJsonStringForProperties];
+    [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+        
+        [UIWindow showTips:msg];
+//        if(finished){
+//
+////            self.topicModel.isCollect = [];
+//
+////            [self.topicHeader initData:self.topicModel];
+//            //[header initData:_topicModel];
+//
+//
+//        }
+    }];
+}
+
 #pragma -mark ------------Custom Method---------
 
 -(void)backBtnClick:(UIButton*)btn{
@@ -294,11 +284,7 @@ NSString * const kAwemeCollectionCell_temp_2  = @"AwemeCollectionCell";
 
 //网络状态发送变化
 -(void)onNetworkStatusChange:(NSNotification *)notification {
-
     [self loadData:_pageIndex pageSize:_pageSize];
 }
-
-
-
 
 @end

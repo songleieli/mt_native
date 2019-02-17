@@ -22,7 +22,7 @@
 //#import "NetWork_mt_delflour.h"
 
 #import "NetWork_mt_collectionVideo.h"
-
+#import "NetWork_mt_getTopicCollections.h"
 
 
 @interface UserCollectionController : ZJBaseViewController<UICollectionViewDelegate,

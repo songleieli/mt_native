@@ -236,6 +236,21 @@ NSString * const kAwemeCollectionCell_temp  = @"AwemeCollectionCell";
     
     NSLog(@"-------");
     
+    if(index){
+        
+        NetWork_mt_getTopicCollections *request = [[NetWork_mt_getTopicCollections alloc] init];
+        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        request.pageNo = @"1";//[NSString stringWithFormat:@"%ld",self.pageIndex];
+        request.pageSize = [NSString stringWithFormat:@"%ld",self.pageSize];
+        [request startGetWithBlock:^(id result, NSString *msg) {
+            /*暂时先不考虑缓存*/
+        } finishBlock:^(GetTopicCollectionsResponse *result, NSString *msg, BOOL finished) {
+            
+            NSLog(@"-------");
+            
+        }];
+        
+    }
 }
 
 #pragma -mark ------------   UICollectionViewDataSource Delegate

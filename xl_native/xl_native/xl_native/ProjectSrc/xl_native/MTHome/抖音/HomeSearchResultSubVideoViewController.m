@@ -194,6 +194,14 @@
 
 //UICollectionViewDelegate Delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if ([self.delegate respondsToSelector:@selector(subCellVideoClick:selectIndex:)]) {
+        [self.delegate subCellVideoClick:self.favoriteAwemes selectIndex:indexPath.row];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
+    
+    
 //    self.selectIndex = indexPath.row;
 //
 //    UserInfoPlayerListViewController *controller;
