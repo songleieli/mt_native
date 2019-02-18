@@ -667,7 +667,7 @@
             
             NetWork_mt_likeVideo *request = [[NetWork_mt_likeVideo alloc] init];
             request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-            request.noodleVideoId = listModel.noodleVideoId;
+            request.noodleVideoId = [NSString stringWithFormat:@"%@",listModel.noodleVideoId];
             request.noodleVideoCover = listModel.noodleVideoCover;
             request.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
             [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
@@ -686,7 +686,7 @@
         else{ //已赞，取消赞
             NetWork_mt_delLikeVideo *request = [[NetWork_mt_delLikeVideo alloc] init];
             request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-            request.noodleVideoId = listModel.noodleVideoId;
+            request.noodleVideoId = [NSString stringWithFormat:@"%@",listModel.noodleVideoId];
             request.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
             [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
                 if(finished){
@@ -729,19 +729,23 @@
 - (void)musicCDClicked:(HomeListModel *)listModel{
     NSLog(@"----------CD----------");
     
-    //test, 查看测试收藏的视频列表
-    NetWork_mt_getVideoCollections *request = [[NetWork_mt_getVideoCollections alloc] init];
-    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.pageNo = @"1";
-    request.pageSize = @"20";
+    MusicInfoController *musicInfoController = [[MusicInfoController alloc] init];
+    musicInfoController.musicId = [NSString stringWithFormat:@"%@",listModel.musicId];
+    [self pushNewVC:musicInfoController animated:YES];
     
-    [request startGetWithBlock:^(id result, NSString *msg) {
-        /*暂不考虑缓存的问题*/
-    } finishBlock:^(id result, NSString *msg, BOOL finished) {
-        NSLog(@"----------CD----------");
-
-    }];
+    //test, 查看测试收藏的视频列表
+//    NetWork_mt_getVideoCollections *request = [[NetWork_mt_getVideoCollections alloc] init];
+//    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+//    request.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+//    request.pageNo = @"1";
+//    request.pageSize = @"20";
+//
+//    [request startGetWithBlock:^(id result, NSString *msg) {
+//        /*暂不考虑缓存的问题*/
+//    } finishBlock:^(id result, NSString *msg, BOOL finished) {
+//        NSLog(@"----------CD----------");
+//
+//    }];
     
     
 }

@@ -21,6 +21,7 @@
 #import "NetWork_mt_getVideoCollections.h"
 
 #import "UserInfoViewController.h"
+#import "MusicInfoController.h"
 
 
 typedef NS_ENUM(NSInteger,StatusOfRefresh) {

@@ -278,6 +278,7 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
 }
 
 
+#pragma mark ----------- 初始化 --------------
 
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -332,14 +333,9 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
     self.shareNum.text = [NSString formatCount:[model.saveAlbumSum integerValue]];
     self.commentNum.text = [NSString formatCount:[model.commentSum integerValue]];
     self.favoriteNum.text = [NSString stringWithFormat:@"%d",[model.likeSum intValue]];
-    
-    
-//    NSString *playUrl = model.storagePath;
-//    [self.playerView setPlayerWithUrl:playUrl];
-//    [self.playerView play];
 }
 
-
+#pragma mark ----------- 自定义方法 --------------
 
 - (void)play {
     [self.playerView play];
@@ -367,7 +363,6 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
     [self.playerView startDownloadTask:[[NSURL alloc] initWithString:playUrl] isBackground:NO];
 }
 
-#pragma mark - 自定义方法
 
 - (void)playButtonAction:(BOOL)isPlay{
     
@@ -377,13 +372,6 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
     else{
         [self pause];
     }
-    
-//    //响应代理
-//    if ([self.homeDelegate respondsToSelector:@selector(playButtonAction:)]) {
-//        [self.homeDelegate playButtonAction:isPlay];
-//    } else {
-//        NSLog(@"代理没响应，快开看看吧");
-//    }
 }
 
 -(void)showPlayBtn{

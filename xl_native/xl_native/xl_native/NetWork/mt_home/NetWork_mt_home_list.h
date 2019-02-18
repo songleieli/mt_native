@@ -85,7 +85,7 @@
 
 @interface HomeListModel : IObjcJsonBase
 
-@property (copy, nonatomic) NSString *noodleVideoId;
+@property (strong, nonatomic) NSNumber *noodleVideoId;
 @property (copy, nonatomic) NSString *noodleId;
 @property (copy, nonatomic) NSString *noodleVideoName;
 @property (copy, nonatomic) NSString *noodleVideoCover;
@@ -95,6 +95,7 @@
 @property (copy, nonatomic) NSString *stealshowNoodleId;
 @property (copy, nonatomic) NSString *matchshowNoodleId;
 @property (copy, nonatomic) NSString *musicUrl;
+@property (strong, nonatomic) NSNumber *musicId;
 @property (copy, nonatomic) NSString *coverUrl;
 @property (copy, nonatomic) NSString *musicName;
 @property (copy, nonatomic) NSString *title;
