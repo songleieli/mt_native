@@ -147,16 +147,19 @@
     /*
      *多个参数写法，ZJMyRepairSubViewController 要声明对应的参数名称
      */
-    NSDictionary *dicOne = @{@"parameter":@"0",@"keyWord":self.keyWord,@"delegate":self};
+//    NSDictionary *dicOne = @{@"parameter":@"0",@"keyWord":self.keyWord,@"delegate":self};
     NSDictionary *dicTwo = @{@"parameter":@"1",@"keyWord":self.keyWord,@"delegate":self};
     NSDictionary *dicThree = @{@"parameter":@"2",@"keyWord":self.keyWord,@"delegate":self};
      NSDictionary *dicFour = @{@"parameter":@"3",@"keyWord":self.keyWord,@"delegate":self};
      NSDictionary *dicFive = @{@"parameter":@"4",@"keyWord":self.keyWord,@"delegate":self};
-    NSArray *arrayParameters = @[dicOne,dicTwo,dicThree,dicFour,dicFive];
+//    NSArray *arrayParameters = @[dicOne,dicTwo,dicThree,dicFour,dicFive];
+    NSArray *arrayParameters = @[dicTwo,dicThree,dicFour,dicFive];
+    NSArray *arrayTitles = @[@"视频",@"用户",@"音乐",@"话题"];
+    NSArray *arrayControllers = @[@"HomeSearchResultSubVideoViewController",@"HomeSearchResultSubUserViewController",@"HomeSearchResultSubMusicViewController",@"HomeSearchResultSubTopicViewController"];
     
     self.pageView = [[HYPageView alloc] initWithFrame:CGRectMake(0, kNavBarHeight_New, ScreenWidth, bodyViewHeight+topSpace)
-                                           withTitles:@[@"综合",@"视频",@"用户",@"音乐",@"话题",]
-                                  withViewControllers:@[@"HomeSearchResultSubViewController",@"HomeSearchResultSubVideoViewController",@"HomeSearchResultSubUserViewController",@"HomeSearchResultSubMusicViewController",@"HomeSearchResultSubTopicViewController"]
+                                           withTitles:arrayTitles
+                                  withViewControllers:arrayControllers
                                     withParametersDic:arrayParameters];
     
     self.pageView.isTranslucent = NO;

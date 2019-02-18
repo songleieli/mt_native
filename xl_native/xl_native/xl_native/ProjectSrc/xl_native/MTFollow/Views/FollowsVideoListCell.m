@@ -84,16 +84,37 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
 }
 
 -(AVPlayerView*)playerView{
+    
     if(!_playerView){
         CGRect frame = CGRectMake(self.imageVeiwIcon.left, self.labelTitle.bottom, FollowsVideoListCellVideoWidth, FollowsVideoListCellVideoHeight);
         _playerView = [[AVPlayerView alloc] initWithFrame:frame];
         _playerView.layer.cornerRadius = 8.0f;
         _playerView.layer.masksToBounds = YES;
         _playerView.delegate = self;
-        //test
-//        _playerView.backgroundColor = [UIColor blueColor];
+        
+        _singleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
+        [_playerView addGestureRecognizer:_singleTapGesture];
     }
     return _playerView;
+}
+
+/*
+ 暂停按钮
+ */
+- (UIImageView *) pauseIcon{
+    if (_pauseIcon == nil){
+        _pauseIcon = [[UIImageView alloc] init];
+        _pauseIcon.image = [UIImage imageNamed:@"icon_play_pause"];
+        _pauseIcon.contentMode = UIViewContentModeCenter;
+        //众所周知CALayer的zPosition等效于在Z轴上做了个偏移Transform。所以我们可以通过3D Transform来视觉化各个CALayer的zPosition。
+        _pauseIcon.layer.zPosition = 3; //去掉和没去掉，没有多大差别
+        _pauseIcon.width = _pauseIcon.height = 100;
+        //居中
+        _pauseIcon.top = (self.playerView.height - _pauseIcon.height)/2;
+        _pauseIcon.left = (self.playerView.width - _pauseIcon.width)/2;
+//        _pauseIcon.center = self.playerView.center;;
+    }
+    return _pauseIcon;
 }
 
 - (UIImageView *) musicIcon{
@@ -278,6 +299,8 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
     
     [self.playerView addSubview:self.musicIcon];
     [self.playerView addSubview:self.musicName];
+    [self.playerView addSubview:self.pauseIcon];
+
     
     [self.viewBg addSubview:self.bottomView];
     [self.bottomView addSubview:self.favorite];
@@ -306,9 +329,9 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
     self.labelTitle.text = model.title;
     self.musicName.text = model.musicName;
     
-    self.shareNum.text = [NSString stringWithFormat:@"%d",[model.saveAlbumSum intValue] ];
-    self.commentNum.text = [NSString stringWithFormat:@"%d",[model.commentSum intValue] ];
-    self.favoriteNum.text = [NSString stringWithFormat:@"%d",[model.likeSum intValue] ];
+    self.shareNum.text = [NSString formatCount:[model.saveAlbumSum integerValue]];
+    self.commentNum.text = [NSString formatCount:[model.commentSum integerValue]];
+    self.favoriteNum.text = [NSString stringWithFormat:@"%d",[model.likeSum intValue]];
     
     
 //    NSString *playUrl = model.storagePath;
@@ -317,19 +340,20 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
 }
 
 
+
 - (void)play {
     [self.playerView play];
-//    [self.maskView hidePlayBtn];
+    [self hidePlayBtn];
 }
 
 - (void)pause {
     [self.playerView pause];
-//    [self.maskView showPlayBtn];
+    [self showPlayBtn];
 }
 
 - (void)replay {
     [self.playerView replay];
-//    [self.maskView hidePlayBtn];
+    [self hidePlayBtn];
 }
 
 - (void)startDownloadBackgroundTask {
@@ -341,6 +365,64 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
 - (void)startDownloadHighPriorityTask {
     NSString *playUrl = self.listModel.storagePath;
     [self.playerView startDownloadTask:[[NSURL alloc] initWithString:playUrl] isBackground:NO];
+}
+
+#pragma mark - 自定义方法
+
+- (void)playButtonAction:(BOOL)isPlay{
+    
+    if(isPlay){
+        [self play];
+    }
+    else{
+        [self pause];
+    }
+    
+//    //响应代理
+//    if ([self.homeDelegate respondsToSelector:@selector(playButtonAction:)]) {
+//        [self.homeDelegate playButtonAction:isPlay];
+//    } else {
+//        NSLog(@"代理没响应，快开看看吧");
+//    }
+}
+
+-(void)showPlayBtn{
+    
+    [self.pauseIcon setHidden:NO];
+    self.pauseIcon.transform = CGAffineTransformMakeScale(1.8f, 1.8f);
+    self.pauseIcon.alpha = 1.0f;
+    [UIView animateWithDuration:0.25f delay:0
+                        options:UIViewAnimationOptionCurveEaseIn animations:^{
+                            self.pauseIcon.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+                        } completion:^(BOOL finished) {
+                        }];
+    
+}
+
+-(void)hidePlayBtn{
+    [UIView animateWithDuration:0.25f
+                     animations:^{
+                         self.pauseIcon.alpha = 0.0f;
+                     } completion:^(BOOL finished) {
+                         [self.pauseIcon setHidden:YES];
+                     }];
+}
+
+#pragma mark ------------- gesture --------------
+//
+- (void)handleGesture:(UITapGestureRecognizer *)sender {
+    NSLog(@"---------");
+    
+    if(self.pauseIcon.hidden == YES){
+        NSLog(@"---------暂停---------");
+        [self playButtonAction:NO];
+    }
+    else{
+        NSLog(@"---------播放---------");
+        [self playButtonAction:YES];
+    }
+    
+    
 }
 
 #pragma mark ---------AVPlayerUpdateDelegate-------------
