@@ -67,11 +67,7 @@
     [request startGetWithBlock:^(id result, NSString *msg) {
         /*暂时不考虑缓存问题*/
     } finishBlock:^(GetFuzzyAccountListResponse *result, NSString *msg, BOOL finished) {
-        NSLog(@"-------");
         [self.mainTableView.mj_header endRefreshing];
-//        [self loadBodyDataList]; //加载cell Data
-        
-        
         [self.mainDataArr addObjectsFromArray:result.obj];
         [self.mainTableView reloadData];
         
@@ -82,6 +78,15 @@
             [UIWindow showTips:msg];
         }
     }];
+}
+
+#pragma mark --------------- SearchResultSubUserDelegate -----------------
+-(void)btnCellClick:(GetFuzzyAccountListModel*)model{
+    if ([self.delegate respondsToSelector:@selector(subUserClick:)]) {
+        [self.delegate subUserClick:model];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
 }
 
 
@@ -99,6 +104,7 @@
     
     if(self.mainDataArr.count > 0){
         SearchResultSubUserCell *cell = [tableView dequeueReusableCellWithIdentifier:[SearchResultSubUserCell cellId] forIndexPath:indexPath];
+        cell.subCellDelegate = self;
         GetFuzzyAccountListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
         [cell fillDataWithModel:model];
         return cell;

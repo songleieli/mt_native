@@ -10,8 +10,12 @@
 
 #import "TopicInfoController.h"
 #import "MusicInfoController.h"
+#import "UserInfoViewController.h"
 #import "HomeSearchResultSubTopicViewController.h"
 #import "HomeSearchResultSubMusicViewController.h"
+#import "HomeSearchResultSubUserViewController.h"
+
+#import "ScrollPlayerListViewController.h"
 
 @interface HomeSearchResultViewController ()
 
@@ -106,7 +110,9 @@
     self.textFieldSearchKey = [[UITextField alloc] init];
     self.textFieldSearchKey.size = [UIView getSize_width:self.textFieldBgView.width - leftView.width height:leftView.height];
     self.textFieldSearchKey.origin = [UIView getPoint_x:leftView.right y:self.textFieldBgView.height - self.textFieldSearchKey.height-5];
-    self.textFieldSearchKey.placeholder = @"娱乐圈";
+//    self.textFieldSearchKey.placeholder = self.keyWord;
+    self.textFieldSearchKey.text = self.keyWord;
+    self.textFieldSearchKey.textColor = [UIColor whiteColor];
     self.textFieldSearchKey.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.textFieldSearchKey.clearsOnBeginEditing = YES;
     self.textFieldSearchKey.delegate = self;
@@ -175,6 +181,16 @@
 
 #pragma -mark SubCellDelegate
 
+
+-(void)subUserClick:(GetFuzzyAccountListModel *)model{
+    NSLog(@"---------");
+    
+    UserInfoViewController *personalVC = [UserInfoViewController new];
+    personalVC.fromType = FromTypeHome;
+    personalVC.userNoodleId = model.noodleId;
+    [self pushNewVC:personalVC animated:YES];
+}
+
 -(void)subCellTopicClick:(GetFuzzyTopicListModel *)model{
     NSLog(@"-------------");
     
@@ -198,16 +214,16 @@
 //    [self pushNewVC:topicInfoController animated:YES];
     
     
-    //    self.selectIndex = indexPath.row;
-    //
-//        UserInfoPlayerListViewController *controller;
-//        controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:videoList currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeFavourites];
-//        controller.transitioningDelegate = self;
-//    
-//        controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-//        self.modalPresentationStyle = UIModalPresentationCurrentContext;
-//        [_swipeLeftInteractiveTransition wireToViewController:controller];
-//        [self presentViewController:controller animated:YES completion:nil];
+//        self.selectIndex = indexPath.row;
+    
+        ScrollPlayerListViewController *controller;
+        controller = [[ScrollPlayerListViewController alloc] initWithVideoData:videoList currentIndex:selectIndex];
+        controller.transitioningDelegate = self;
+    
+        controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+        self.modalPresentationStyle = UIModalPresentationCurrentContext;
+        [_swipeLeftInteractiveTransition wireToViewController:controller];
+        [self presentViewController:controller animated:YES completion:nil];
     
 }
 

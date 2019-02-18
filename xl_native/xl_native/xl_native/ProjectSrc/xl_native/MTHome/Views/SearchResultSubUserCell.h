@@ -13,7 +13,7 @@
 
 @protocol SearchResultSubUserDelegate <NSObject>
 
--(void)btnDeleteClick:(GetFuzzyAccountListModel*)model;
+-(void)btnCellClick:(GetFuzzyAccountListModel*)model;
 
 @end
 
@@ -38,7 +38,7 @@
 @property (nonatomic, strong) UIButton *focusButton;
 
 
-@property(nonatomic,weak) id <SearchResultSubUserDelegate> subUserDelegate;
+@property(nonatomic,weak) id <SearchResultSubUserDelegate> subCellDelegate;
 
 
 @end

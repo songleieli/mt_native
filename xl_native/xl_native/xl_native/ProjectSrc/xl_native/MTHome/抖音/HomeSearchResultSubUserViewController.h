@@ -10,20 +10,18 @@
 #import "SearchResultSubUserCell.h"
 
 
-@protocol SubCellDelegate <NSObject>
+@protocol SubCellUserDelegate <NSObject>
 
--(void)subCkeckClick:(NSMutableArray *)selectModelList;
-
-//-(void)subCellClick:(ZjPmsPatrolRecordsModel *)model subType:(NSString*)subType;
+-(void)subUserClick:(GetFuzzyAccountListModel *)model;
 
 @end
 
-@interface HomeSearchResultSubUserViewController : ZJBaseViewController
+@interface HomeSearchResultSubUserViewController : ZJBaseViewController<SearchResultSubUserDelegate>
 
 
 @property(nonatomic,strong) NSString *parameter;
 @property(nonatomic,strong) NSString *keyWord;
-@property (nonatomic, weak) id<SubCellDelegate> delegate;
+@property (nonatomic, weak) id<SubCellUserDelegate> delegate;
 
 
 @end

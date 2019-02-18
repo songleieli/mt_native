@@ -143,6 +143,7 @@
     self.textFieldSearchKey.size = [UIView getSize_width:self.textFieldBgView.width - leftView.width height:leftView.height];
     self.textFieldSearchKey.origin = [UIView getPoint_x:leftView.right y:self.textFieldBgView.height - self.textFieldSearchKey.height-5];
     self.textFieldSearchKey.placeholder = @"明星";
+    self.textFieldSearchKey.textColor = [UIColor whiteColor];
     self.textFieldSearchKey.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.textFieldSearchKey.clearsOnBeginEditing = YES;
     self.textFieldSearchKey.delegate = self;
@@ -275,20 +276,8 @@
 #pragma mark - 取消按钮点击事件
 
 -(void)btnCancelClick{
-    
     [self.textFieldSearchKey resignFirstResponder];
-    
 }
-
-//-(void)titleButtonClicked:(UIButton*)btn{
-//
-//    //先取消键盘再弹出新页面
-//    [self.textFieldSearchKey resignFirstResponder];
-//
-//
-//    HomeSearchResultViewController *homeSearchResultViewController = [[HomeSearchResultViewController alloc] initWithKeyWord:@"明星"];
-//    [self pushNewVC:homeSearchResultViewController animated:YES];
-//}
 
 #pragma mark --------------- tabbleView代理 -----------------
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

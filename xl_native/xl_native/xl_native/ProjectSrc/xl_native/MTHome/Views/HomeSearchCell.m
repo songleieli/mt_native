@@ -152,14 +152,14 @@ static NSString* const ViewTableViewCellId = @"HomeSearchCellId";
         self.imageVeiwIcon.image = [UIImage imageNamed:@"icon_m_typic"];
         self.titleLalbe.text = model.topic.topic;
         self.descLalbe.text = @"热门话题";
-        self.playCountLalbe.text = [NSString stringWithFormat:@"%@",model.topic.playSum];
+        self.playCountLalbe.text = [NSString formatCount:[model.topic.playSum integerValue]];
 
     }
     else{
         self.imageVeiwIcon.image = [UIImage imageNamed:@"icon_m_music_red"];
         self.titleLalbe.text = model.music.name;
         self.descLalbe.text = @"热门音乐";
-        self.playCountLalbe.text = [NSString stringWithFormat:@"%@",model.music.hotCount];
+        self.playCountLalbe.text = [NSString formatCount:[model.music.hotCount integerValue]];
 
     }
     
@@ -181,36 +181,6 @@ static NSString* const ViewTableViewCellId = @"HomeSearchCellId";
         
         [self.scrollerBody addSubview:imageViewVideo];
     }];
-    
-    
-    
-    
-
-    
-    
-//    [self.imageVeiwIcon sd_setImageWithURL:[NSURL URLWithString:model.noodleHead] placeholderImage:[UIImage imageNamed:@"img_find_default"]];
-//
-//    self.labelTitle.text = model.topic.topic;
-//    self.labelSign.text = model.noodleSignature.length == 0?@"暂时还没有签名":model.noodleSignature;
-//    self.labelTImes.text = model.time;
 }
-
-//- (void)cellClick:(id)sender
-//{
-//    if ([self.delegate respondsToSelector:@selector(btnClicked:cell:)]) {
-//        [self.delegate btnClicked:sender cell:self];
-//    } else {
-//        NSLog(@"代理没响应，快开看看吧");
-//    }
-//}
-
-//- (void)btnDelClick:(id)sender{
-//
-//    if ([self.getFollowsDelegate respondsToSelector:@selector(btnDeleteClick:)]) {
-//        [self.getFollowsDelegate btnDeleteClick:self.listModel];
-//    } else {
-//        NSLog(@"代理没响应，快开看看吧");
-//    }
-//}
 
 @end

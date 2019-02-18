@@ -122,6 +122,7 @@
 		0487EBBF21E89C2900501B9C /* MyViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487EBBD21E89C2900501B9C /* MyViewTableViewCell.m */; };
 		048BF55221EEC4F2005D3708 /* NetWork_mt_getHotVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 048BF55021EEC4F1005D3708 /* NetWork_mt_getHotVideoList.m */; };
 		048BF55521EEFE1E005D3708 /* HomeSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 048BF55421EEFE1E005D3708 /* HomeSearchCell.m */; };
+		0493CA70221A5B560090968B /* ScrollPlayerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0493CA6E221A5B550090968B /* ScrollPlayerListViewController.m */; };
 		04A04EB321ECDEA8007CBABF /* NetWork_mt_getHotSearchSix.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A04EB121ECDEA8007CBABF /* NetWork_mt_getHotSearchSix.m */; };
 		04A04EB621ECE553007CBABF /* HomeSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A04EB421ECE552007CBABF /* HomeSearchResultViewController.m */; };
 		04A8C1252219013F004980F5 /* NetWork_mt_collectionTopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A8C1232219013E004980F5 /* NetWork_mt_collectionTopic.m */; };
@@ -1229,6 +1230,8 @@
 		048BF55121EEC4F1005D3708 /* NetWork_mt_getHotVideoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getHotVideoList.h; sourceTree = "<group>"; };
 		048BF55321EEFE1E005D3708 /* HomeSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSearchCell.h; sourceTree = "<group>"; };
 		048BF55421EEFE1E005D3708 /* HomeSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSearchCell.m; sourceTree = "<group>"; };
+		0493CA6E221A5B550090968B /* ScrollPlayerListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollPlayerListViewController.m; sourceTree = "<group>"; };
+		0493CA6F221A5B550090968B /* ScrollPlayerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollPlayerListViewController.h; sourceTree = "<group>"; };
 		0495106C2182B00A0005F615 /* NSDate+TimeCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+TimeCategory.h"; sourceTree = "<group>"; };
 		0495106D2182B00A0005F615 /* NSDate+TimeCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TimeCategory.m"; sourceTree = "<group>"; };
 		049E96F221521BB700AE2263 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
@@ -2814,6 +2817,8 @@
 				042E657D22169BA900C56859 /* TopicInfoController.m */,
 				043A788A2219770200F20CDC /* MusicInfoController.h */,
 				043A78892219770200F20CDC /* MusicInfoController.m */,
+				0493CA6F221A5B550090968B /* ScrollPlayerListViewController.h */,
+				0493CA6E221A5B550090968B /* ScrollPlayerListViewController.m */,
 			);
 			path = MTCommonUI;
 			sourceTree = "<group>";
@@ -5999,6 +6004,7 @@
 				04CBC3CD2179C01300658E47 /* GPUImageRGBFilter.m in Sources */,
 				0482F26421BFCA7C00587B38 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				04CBC2E32179C01200658E47 /* BBHoldToSpeakButton.m in Sources */,
+				0493CA70221A5B560090968B /* ScrollPlayerListViewController.m in Sources */,
 				0482F27021BFCA7C00587B38 /* View+MASAdditions.m in Sources */,
 				04CBC4532179C01300658E47 /* GPUImageMosaicFilter.m in Sources */,
 				04A04EB321ECDEA8007CBABF /* NetWork_mt_getHotSearchSix.m in Sources */,
