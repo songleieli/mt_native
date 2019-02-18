@@ -128,6 +128,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self registerForRemoteNotification];
+    
+    //暂时先屏蔽，转场动画
+    //    _scalePresentAnimation = [ScalePresentAnimation new];
+    //    _scaleDismissAnimation = [ScaleDismissAnimation new];
+    //    _swipeLeftInteractiveTransition = [SwipeLeftInteractiveTransition new];
+    
     [self setUpUI];
 }
 

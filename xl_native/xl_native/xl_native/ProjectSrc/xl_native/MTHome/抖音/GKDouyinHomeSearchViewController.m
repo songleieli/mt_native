@@ -8,6 +8,10 @@
 
 #import "GKDouyinHomeSearchViewController.h"
 
+#import "ScrollPlayerListViewController.h"
+#import "TopicInfoController.h"
+#import "MusicInfoController.h"
+
 @interface GKDouyinHomeSearchViewController ()
 
 @end
@@ -159,6 +163,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self registerForRemoteNotification];
+    
+    //暂时先屏蔽，转场动画
+//    _scalePresentAnimation = [ScalePresentAnimation new];
+//    _scaleDismissAnimation = [ScaleDismissAnimation new];
+//    _swipeLeftInteractiveTransition = [SwipeLeftInteractiveTransition new];
+    
     [self setUpUI];
 }
 
@@ -279,6 +289,49 @@
     [self.textFieldSearchKey resignFirstResponder];
 }
 
+#pragma mark --------------- cellDelegate 代理 -----------------
+-(void)btnCellIconClick:(GetHotVideoListModel*)model{
+    NSLog(@"----------");
+    
+    if([model.hotType integerValue] == 1){//话题
+        TopicInfoController *topicInfoController = [[TopicInfoController alloc] init];
+        topicInfoController.topicName = model.topic.topic;
+        [self pushNewVC:topicInfoController animated:YES];
+    }
+    else{//i音乐
+        MusicInfoController *musicInfoController = [[MusicInfoController alloc] init];
+        musicInfoController.musicId = [NSString stringWithFormat:@"%@",model.music.id];
+        [self pushNewVC:musicInfoController animated:YES];
+    }
+    
+}
+
+-(void)btnCellVideoClick:(NSArray*)videoList selectIndex:(NSInteger)selectIndex{
+    
+    ScrollPlayerListViewController *controller;
+    controller = [[ScrollPlayerListViewController alloc] initWithVideoData:[NSMutableArray arrayWithArray:videoList] currentIndex:selectIndex];
+    controller.transitioningDelegate = self;
+    
+    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [_swipeLeftInteractiveTransition wireToViewController:controller];
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+#pragma mark --------------- UIViewControllerTransitioningDelegate Delegate  Controller 之间的转场动画 -----------------
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    return _scalePresentAnimation;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return _scaleDismissAnimation;
+}
+
+-(id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
+    return _swipeLeftInteractiveTransition.interacting ? _swipeLeftInteractiveTransition : nil;
+}
+
 #pragma mark --------------- tabbleView代理 -----------------
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -293,6 +346,7 @@
     
     if(self.mainDataArr.count > 0){
         HomeSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:[HomeSearchCell cellId] forIndexPath:indexPath];
+        cell.cellDelegate = self;
         GetHotVideoListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
         [cell fillDataWithModel:model];
         return cell;

@@ -3278,8 +3278,8 @@
 		04C171E321CDE3070077FA6C /* TransitionAnim */ = {
 			isa = PBXGroup;
 			children = (
-				04C171E621CDE3070077FA6C /* ScalePresentAnimation.m */,
 				04C171E821CDE3070077FA6C /* ScalePresentAnimation.h */,
+				04C171E621CDE3070077FA6C /* ScalePresentAnimation.m */,
 				04C171E521CDE3070077FA6C /* ScaleDismissAnimation.h */,
 				04C171E921CDE3070077FA6C /* ScaleDismissAnimation.m */,
 				04C171E721CDE3070077FA6C /* SwipeLeftInteractiveTransition.h */,

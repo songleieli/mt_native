@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class UserInfoPlayerListViewController;
+//@class UserInfoPlayerListViewController;
 
 @interface SwipeLeftInteractiveTransition : UIPercentDrivenInteractiveTransition
 
 @property (nonatomic, assign) BOOL interacting;
--(void)wireToViewController:(UserInfoPlayerListViewController *)viewController;
+-(void)wireToViewController:(UIViewController *)viewController;
 
 @end

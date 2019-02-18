@@ -44,7 +44,6 @@ static NSString* const ViewTableViewCellId = @"HomeSearchCellId";
         _imageVeiwBg  = [[UIView alloc] init];
         _imageVeiwBg.size = [UIView getSize_width:30 height:30];
         _imageVeiwBg.origin = [UIView getPoint_x:0 y:(_viewTitle.height - _imageVeiwBg.height)/2];
-        
         _imageVeiwBg.layer.cornerRadius = _imageVeiwBg.width/2;
         _imageVeiwBg.layer.borderColor = ColorWhiteAlpha80.CGColor;
         _imageVeiwBg.layer.borderWidth = 0.0;
@@ -52,20 +51,20 @@ static NSString* const ViewTableViewCellId = @"HomeSearchCellId";
         
         //test
         _imageVeiwBg.backgroundColor = RGBA(54, 58, 67, 1);
-        
-        [_imageVeiwBg addSubview:self.imageVeiwIcon];
+        [_imageVeiwBg addSubview:self.btnIcon];
     }
     return _imageVeiwBg;
 }
 
-- (UIImageView *)imageVeiwIcon{
-    if (_imageVeiwIcon == nil){
-        _imageVeiwIcon = [[UIImageView alloc]init];
-        _imageVeiwIcon.size = [UIView getSize_width:15 height:15];
-        _imageVeiwIcon.left = (_imageVeiwBg.width - _imageVeiwIcon.width)/2;
-        _imageVeiwIcon.top = (_imageVeiwBg.height - _imageVeiwIcon.height)/2;
+- (UIButton *)btnIcon{
+    if (_btnIcon == nil){
+        _btnIcon = [UIButton buttonWithType:UIButtonTypeCustom]; //[[UIImageView alloc]init];
+        _btnIcon.size = [UIView getSize_width:15 height:15];
+        _btnIcon.left = (_imageVeiwBg.width - _btnIcon.width)/2;
+        _btnIcon.top = (_imageVeiwBg.height - _btnIcon.height)/2;
+        [_btnIcon addTarget:self action:@selector(btnIconClick:) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _imageVeiwIcon;
+    return _btnIcon;
 }
 
 - (UILabel*)titleLalbe{
@@ -149,14 +148,16 @@ static NSString* const ViewTableViewCellId = @"HomeSearchCellId";
     [self.contentView addSubview:self.scrollerBody];
     
     if([model.hotType integerValue] == 1){
-        self.imageVeiwIcon.image = [UIImage imageNamed:@"icon_m_typic"];
+        //self.btnIcon.image = [UIImage imageNamed:@"icon_m_typic"];
+        [self.btnIcon setImage:[UIImage imageNamed:@"icon_m_typic"] forState:UIControlStateNormal];
         self.titleLalbe.text = model.topic.topic;
         self.descLalbe.text = @"热门话题";
         self.playCountLalbe.text = [NSString formatCount:[model.topic.playSum integerValue]];
 
     }
     else{
-        self.imageVeiwIcon.image = [UIImage imageNamed:@"icon_m_music_red"];
+//        self.btnIcon.image = [UIImage imageNamed:@"icon_m_music_red"];
+        [self.btnIcon setImage:[UIImage imageNamed:@"icon_m_music_red"] forState:UIControlStateNormal];
         self.titleLalbe.text = model.music.name;
         self.descLalbe.text = @"热门音乐";
         self.playCountLalbe.text = [NSString formatCount:[model.music.hotCount integerValue]];
@@ -170,17 +171,41 @@ static NSString* const ViewTableViewCellId = @"HomeSearchCellId";
     [self.scrollerBody removeAllSubviews];
     [model.videoList enumerateObjectsUsingBlock:^(HomeListModel  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        UIImageView *imageViewVideo = [[UIImageView alloc] init];
-        imageViewVideo.height = videoHeight;
-        imageViewVideo.width = videoWidth;
-        imageViewVideo.origin = [UIView getPoint_x:idx*imageViewVideo.width y:0];
-        [imageViewVideo sd_setImageWithURL:[NSURL URLWithString:obj.coverUrl] placeholderImage:[UIImage imageNamed:@"defaul_publishcover"]];
-        imageViewVideo.layer.borderWidth = 0.25;
-        imageViewVideo.layer.borderWidth = 1.0;
-        imageViewVideo.layer.borderColor = ColorThemeBackground.CGColor;
-        
-        [self.scrollerBody addSubview:imageViewVideo];
+        UIButton *btnVideo = [UIButton buttonWithType:UIButtonTypeCustom]; //[[UIImageView alloc] init];
+        btnVideo.tag = idx;
+        btnVideo.height = videoHeight;
+        btnVideo.width = videoWidth;
+        btnVideo.origin = [UIView getPoint_x:idx*btnVideo.width y:0];
+        [btnVideo sd_setImageWithURL:[NSURL URLWithString:obj.coverUrl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"defaul_publishcover"]];
+        btnVideo.layer.borderWidth = 0.25;
+        btnVideo.layer.borderWidth = 1.0;
+        btnVideo.layer.borderColor = ColorThemeBackground.CGColor;
+        [btnVideo addTarget:self action:@selector(btnVideoClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.scrollerBody addSubview:btnVideo];
     }];
 }
+
+#pragma -mark -------- btnClick -------
+
+-(void)btnIconClick:(UIButton*)btn{
+    
+    if([self.cellDelegate respondsToSelector:@selector(btnCellIconClick:)]){
+        [self.cellDelegate btnCellIconClick:self.listModel];
+    }
+    else{
+        NSLog(@"代理没响应，快开看看吧");
+    }
+}
+
+-(void)btnVideoClick:(UIButton*)btn{
+    
+    if([self.cellDelegate respondsToSelector:@selector(btnCellVideoClick:selectIndex:)]){
+        [self.cellDelegate btnCellVideoClick:self.listModel.videoList selectIndex:btn.tag];
+    }
+    else{
+        NSLog(@"代理没响应，快开看看吧");
+    }
+}
+
 
 @end

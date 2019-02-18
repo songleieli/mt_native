@@ -11,6 +11,16 @@
 
 #define HomeSearchCellHeight 200.0f
 
+
+@protocol HomeSearchDelegate <NSObject>
+
+-(void)btnCellIconClick:(GetHotVideoListModel*)model;
+
+-(void)btnCellVideoClick:(NSArray*)videoList selectIndex:(NSInteger)selectIndex;
+
+@end
+
+
 @interface HomeSearchCell : BaseTableViewCell
 
 + (NSString*) cellId;
@@ -22,11 +32,14 @@
 
 @property(nonatomic,strong) UIView * viewTitle;
 @property(nonatomic,strong) UIView * imageVeiwBg;
-@property(nonatomic,strong) UIImageView * imageVeiwIcon;
+@property(nonatomic,strong) UIButton * btnIcon;
 @property(nonatomic,strong) UILabel * titleLalbe;
 @property(nonatomic,strong) UILabel * descLalbe;
 @property(nonatomic,strong) UILabel * playCountLalbe;
 
 @property(nonatomic,strong) UIScrollView * scrollerBody;
+
+@property(nonatomic,weak) id <HomeSearchDelegate> cellDelegate;
+
 
 @end

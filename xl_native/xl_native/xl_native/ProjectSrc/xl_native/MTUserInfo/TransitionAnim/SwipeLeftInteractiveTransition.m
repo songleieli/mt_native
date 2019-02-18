@@ -7,7 +7,7 @@
 //
 
 #import "SwipeLeftInteractiveTransition.h"
-#import "UserInfoPlayerListViewController.h"
+//#import "UserInfoPlayerListViewController.h"
 
 @interface SwipeLeftInteractiveTransition()
 @property (nonatomic, strong) UIViewController *presentingVC;
@@ -15,7 +15,7 @@
 @end
 
 @implementation SwipeLeftInteractiveTransition
--(void)wireToViewController:(UserInfoPlayerListViewController *)viewController {
+-(void)wireToViewController:(UIViewController *)viewController {
     _presentingVC = viewController;
     _viewControllerCenter = viewController.view.center;
     [self prepareGestureRecognizerInView:viewController.view];

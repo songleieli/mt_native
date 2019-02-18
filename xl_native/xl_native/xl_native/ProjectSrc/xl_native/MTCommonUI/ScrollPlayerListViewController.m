@@ -33,6 +33,7 @@
     self = [super init];
     if(self){
         self.mainDataArr = data;
+        self.currentIndex = currentIndex;
     }
     return self;
 }
