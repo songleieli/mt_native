@@ -129,14 +129,6 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
 #pragma -mark ----------HTTP data request----------
 
 - (void)loadData:(NSInteger)pageIndex pageSize:(NSInteger)pageSize {
-    
-//    //过滤topic携带的 “#” 号，接口不需要
-//    NSString *topicNameTemp = self.musicId;
-//    NSUInteger location = [topicNameTemp rangeOfString:@"#"].location;
-//    if (location == NSNotFound) {
-//    } else {
-//        topicNameTemp = [topicNameTemp substringFromIndex:1];
-//    }
 
     NetWork_mt_getHotVideosByMusic *request = [[NetWork_mt_getHotVideosByMusic alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
@@ -252,28 +244,53 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
 #pragma -mark ------------ TopicHeadDelegate ---------
 
 -(void)btnCollectionClick:(GetHotVideosByMusicModel*)model{
-    NSLog(@"--------点击收藏按钮-------");
-//    CollectionTopicContentModel *contentModel = [[CollectionTopicContentModel alloc] init];
-//    contentModel.topicName = model.topic;
-//    contentModel.topicId = [NSString stringWithFormat:@"%@",model.id];
-//    contentModel.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-//
-//    NetWork_mt_collectionTopic *request = [[NetWork_mt_collectionTopic alloc] init];
-//    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-//    request.content = [contentModel generateJsonStringForProperties];
-//    [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
-//
-//        [UIWindow showTips:msg];
-////        if(finished){
-////
-//////            self.topicModel.isCollect = [];
-////
-//////            [self.topicHeader initData:self.topicModel];
-////            //[header initData:_topicModel];
-////
-////
-////        }
-//    }];
+    
+    /*
+     "noodleId": "136728830",
+     "musicId":"343243",
+     "musicName":"324232342",
+     "coverUrl": "/miantiao/musiccover/20181201/16341217658933248.jpg",
+     "playUrl": "/miantiao/music/20181201/16341217658933248.mp3",
+     "musicNoodleId":"54353",
+     "nickname":"张三"
+     */
+    
+    
+    if([model.isCollect integerValue] == 0){ //没有收藏，收藏
+        
+        CollectionMusicContentModel *contentModel = [[CollectionMusicContentModel alloc] init];
+        contentModel.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        contentModel.musicId = [NSString stringWithFormat:@"%@",model.id];
+        contentModel.musicName = model.name;
+        contentModel.coverUrl = model.coverUrl;
+        contentModel.playUrl = model.playUrl;
+        contentModel.musicNoodleId = model.noodleId;
+        contentModel.nickname = model.nickname;
+        
+        NetWork_mt_collectionMusic *request = [[NetWork_mt_collectionMusic alloc] init];
+        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        request.content = [contentModel generateJsonStringForProperties];
+        [request startPostWithBlock:^(CollectionMusicResponse *result, NSString *msg, BOOL finished) {
+            [UIWindow showTips:msg];
+            if(finished){
+                model.isCollect = result.obj;
+                [self.topicHeader initData:model];
+            }
+        }];
+    }
+    else{ //已收藏，取消收藏
+        NetWork_mt_deleteCollection *request = [[NetWork_mt_deleteCollection alloc] init];
+        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        request.id = [NSString stringWithFormat:@"%@",model.isCollect];
+        [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+            
+            [UIWindow showTips:msg];
+            if(finished){
+                model.isCollect = [NSNumber numberWithInt:0];
+                [self.topicHeader initData:model];
+            }
+        }];
+    }
 }
 
 #pragma -mark ------------Custom Method---------

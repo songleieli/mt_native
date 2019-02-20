@@ -125,11 +125,11 @@
     
     self.lableTopicName.text = topicModel.topic;
     self.lablePlayCount.text = [NSString formatCount:[topicModel.playSum integerValue]];
-    if([topicModel.isCollect integerValue] == 1){
-        self.lableCollectionTitle.text = @"已收藏";
+    if([topicModel.isCollect integerValue] == 0){
+        self.lableCollectionTitle.text = @"收藏";
     }
     else{
-        self.lableCollectionTitle.text = @"收藏";
+        self.lableCollectionTitle.text = @"已收藏";
     }
 }
 

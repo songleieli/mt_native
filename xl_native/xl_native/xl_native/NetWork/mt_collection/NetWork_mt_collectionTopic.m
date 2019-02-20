@@ -15,14 +15,6 @@
 
 @implementation CollectionTopicResponse
 
-//- (NSDictionary *)propertyMappingObjcJson {
-//    return @{@"obj" : @"obj"};
-//}
-
-- (NSDictionary *)classNameForItemInArray {
-    return @{@"obj" : @"CollectionVideoModel"};
-}
-
 @end
 
 

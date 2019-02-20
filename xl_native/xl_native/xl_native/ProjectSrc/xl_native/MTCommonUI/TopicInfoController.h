@@ -19,6 +19,7 @@
 
 #import "NetWork_mt_getHotVideosByTopic.h"
 #import "NetWork_mt_collectionTopic.h"
+#import "NetWork_mt_deleteCollection.h"
 
 @interface TopicInfoController : ZJBaseViewController<UICollectionViewDelegate,
                                                                     UICollectionViewDataSource,

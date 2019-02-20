@@ -18,7 +18,8 @@
 #import "MyMusicHeaderView.h"
 
 #import "NetWork_mt_getHotVideosByMusic.h"
-#import "NetWork_mt_collectionTopic.h"
+#import "NetWork_mt_collectionMusic.h"
+#import "NetWork_mt_deleteCollection.h"
 
 @interface MusicInfoController : ZJBaseViewController<UICollectionViewDelegate,
                                                                     UICollectionViewDataSource,

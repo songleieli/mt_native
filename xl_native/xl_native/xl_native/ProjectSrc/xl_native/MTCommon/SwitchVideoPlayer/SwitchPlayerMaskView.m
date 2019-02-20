@@ -340,9 +340,9 @@
     self.nickName.text = [NSString stringWithFormat:@"@%@", listLoginModel.nickname];
     self.nickName.bottom = self.desc.top;
     
-    self.shareNum.text = [NSString stringWithFormat:@"%d",[listLoginModel.saveAlbumSum intValue] ];
-    self.commentNum.text = [NSString stringWithFormat:@"%d",[listLoginModel.commentSum intValue] ];
-    self.favoriteNum.text = [NSString stringWithFormat:@"%d",[listLoginModel.likeSum intValue] ];
+    self.shareNum.text = [NSString formatCount:[listLoginModel.saveAlbumSum intValue]];
+    self.commentNum.text = [NSString formatCount:[listLoginModel.commentSum intValue]];
+    self.favoriteNum.text = [NSString formatCount:[listLoginModel.likeSum intValue]];
     
     if([listLoginModel.isLike integerValue] == 1){
         [self.favorite resetView];

@@ -30,7 +30,7 @@
 
 @property(nonatomic,copy) NSString * status;
 @property(nonatomic,copy) NSString * message;
-@property(nonatomic,strong) NSString * obj;
+@property(nonatomic,strong) NSNumber * obj;
 
 @end
 

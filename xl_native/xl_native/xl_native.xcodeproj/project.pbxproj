@@ -108,6 +108,8 @@
 		044F0355217EC324007D88DF /* MJRefreshBackStateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 044F0352217EC324007D88DF /* MJRefreshBackStateFooter.m */; };
 		044F0356217EC324007D88DF /* MJRefreshBackNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 044F0353217EC324007D88DF /* MJRefreshBackNormalFooter.m */; };
 		0457917A218709A7000AAA2E /* ZJCustomTabCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04579179218709A7000AAA2E /* ZJCustomTabCollectionViewController.m */; };
+		047EE800221CE22100F77B96 /* NetWork_mt_collectionMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE7FE221CE22100F77B96 /* NetWork_mt_collectionMusic.m */; };
+		047EE803221D07B300F77B96 /* NetWork_mt_deleteCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE802221D07B300F77B96 /* NetWork_mt_deleteCollection.m */; };
 		0482F26421BFCA7C00587B38 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0482F24C21BFCA7B00587B38 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		0482F26621BFCA7C00587B38 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0482F25521BFCA7B00587B38 /* ViewController+MASAdditions.m */; };
 		0482F26821BFCA7C00587B38 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0482F25921BFCA7B00587B38 /* MASCompositeConstraint.m */; };
@@ -1197,6 +1199,10 @@
 		044F0353217EC324007D88DF /* MJRefreshBackNormalFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBackNormalFooter.m; sourceTree = "<group>"; };
 		04579178218709A6000AAA2E /* ZJCustomTabCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCustomTabCollectionViewController.h; sourceTree = "<group>"; };
 		04579179218709A7000AAA2E /* ZJCustomTabCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCustomTabCollectionViewController.m; sourceTree = "<group>"; };
+		047EE7FE221CE22100F77B96 /* NetWork_mt_collectionMusic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_collectionMusic.m; sourceTree = "<group>"; };
+		047EE7FF221CE22100F77B96 /* NetWork_mt_collectionMusic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_collectionMusic.h; sourceTree = "<group>"; };
+		047EE801221D07B300F77B96 /* NetWork_mt_deleteCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_deleteCollection.h; sourceTree = "<group>"; };
+		047EE802221D07B300F77B96 /* NetWork_mt_deleteCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_deleteCollection.m; sourceTree = "<group>"; };
 		0482F24B21BFCA7B00587B38 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		0482F24C21BFCA7B00587B38 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		0482F24D21BFCA7B00587B38 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -4776,6 +4782,10 @@
 				04F5E89E21CE8DD100781FCD /* NetWork_mt_collectionVideo.m */,
 				04A8C1242219013E004980F5 /* NetWork_mt_collectionTopic.h */,
 				04A8C1232219013E004980F5 /* NetWork_mt_collectionTopic.m */,
+				047EE7FF221CE22100F77B96 /* NetWork_mt_collectionMusic.h */,
+				047EE7FE221CE22100F77B96 /* NetWork_mt_collectionMusic.m */,
+				047EE801221D07B300F77B96 /* NetWork_mt_deleteCollection.h */,
+				047EE802221D07B300F77B96 /* NetWork_mt_deleteCollection.m */,
 				04F5E8A021CE95A700781FCD /* NetWork_mt_getVideoCollections.h */,
 				04F5E8A121CE95A700781FCD /* NetWork_mt_getVideoCollections.m */,
 				04A8C12622190991004980F5 /* NetWork_mt_getTopicCollections.h */,
@@ -6140,6 +6150,7 @@
 				04CBC41B2179C01300658E47 /* GPUImageMonochromeFilter.m in Sources */,
 				0435493321A7E9AC00AED5A8 /* AFNetworkReachabilityManager.m in Sources */,
 				04DCA85521A5580300691A3A /* UIColor+MLPFlatColors.m in Sources */,
+				047EE803221D07B300F77B96 /* NetWork_mt_deleteCollection.m in Sources */,
 				D9DD56C01DD44D780031085B /* ZJBaseViewController.m in Sources */,
 				04DCA8F021A565D500691A3A /* VideoPreview.m in Sources */,
 				04CBC4132179C01300658E47 /* GPUImageWhiteBalanceFilter.m in Sources */,
@@ -6226,6 +6237,7 @@
 				D9D19BFE1E272F32009C52A8 /* AlerViewJoinCostom.m in Sources */,
 				04DCA88F21A5623500691A3A /* TCLoginParam.m in Sources */,
 				04183B0821C2BC2200383E3F /* CircleTextView.m in Sources */,
+				047EE800221CE22100F77B96 /* NetWork_mt_collectionMusic.m in Sources */,
 				0402A46421C4C94800C35CA9 /* NSAttributedString+Extension.m in Sources */,
 				04CBC36F2179C01300658E47 /* GPUImageAmatorkaFilter.m in Sources */,
 				04CBC48B2179C01300658E47 /* UIView+WebCacheOperation.m in Sources */,

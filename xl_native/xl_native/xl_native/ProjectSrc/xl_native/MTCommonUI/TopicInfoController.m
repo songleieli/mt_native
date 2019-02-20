@@ -137,7 +137,7 @@ NSString * const kMyTopicHeaderView         = @"kMyTopicHeaderView";
     } else {
         topicNameTemp = [topicNameTemp substringFromIndex:1];
     }
-
+    
     NetWork_mt_getHotVideosByTopic *request = [[NetWork_mt_getHotVideosByTopic alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.topicName = topicNameTemp;
@@ -149,7 +149,7 @@ NSString * const kMyTopicHeaderView         = @"kMyTopicHeaderView";
             self.pageIndex++;
             self.topicModel = result.obj.topic;
             [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]]; //加载 head Data
-
+            
             [UIView setAnimationsEnabled:NO];
             [self.collectionView performBatchUpdates:^{
                 [self.favoriteAwemes addObjectsFromArray:result.obj.videoList];
@@ -224,15 +224,15 @@ NSString * const kMyTopicHeaderView         = @"kMyTopicHeaderView";
 //UICollectionViewDelegate Delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-        self.selectIndex = indexPath.row;
-        UserInfoPlayerListViewController *controller;
-        controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeFavourites];
-        controller.transitioningDelegate = self;
+    self.selectIndex = indexPath.row;
+    UserInfoPlayerListViewController *controller;
+    controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeFavourites];
+    controller.transitioningDelegate = self;
     
-        controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-        self.modalPresentationStyle = UIModalPresentationCurrentContext;
-        [_swipeLeftInteractiveTransition wireToViewController:controller];
-        [self presentViewController:controller animated:YES completion:nil];
+    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [_swipeLeftInteractiveTransition wireToViewController:controller];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 #pragma mark --------------- UIViewControllerTransitioningDelegate Delegate  Controller 之间的转场动画 -----------------
@@ -252,28 +252,39 @@ NSString * const kMyTopicHeaderView         = @"kMyTopicHeaderView";
 #pragma -mark ------------ TopicHeadDelegate ---------
 
 -(void)btnCollectionClick:(GetHotVideosByTopicModel*)model{
-    NSLog(@"--------点击收藏按钮-------");
-    CollectionTopicContentModel *contentModel = [[CollectionTopicContentModel alloc] init];
-    contentModel.topicName = model.topic;
-    contentModel.topicId = [NSString stringWithFormat:@"%@",model.id];
-    contentModel.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     
-    NetWork_mt_collectionTopic *request = [[NetWork_mt_collectionTopic alloc] init];
-    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.content = [contentModel generateJsonStringForProperties];
-    [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+    if([model.isCollect integerValue] == 0){ //没有收藏，收藏
         
-        [UIWindow showTips:msg];
-//        if(finished){
-//
-////            self.topicModel.isCollect = [];
-//
-////            [self.topicHeader initData:self.topicModel];
-//            //[header initData:_topicModel];
-//
-//
-//        }
-    }];
+        CollectionTopicContentModel *contentModel = [[CollectionTopicContentModel alloc] init];
+        contentModel.topicName = model.topic;
+        contentModel.topicId = [NSString stringWithFormat:@"%@",model.id];
+        contentModel.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        
+        NetWork_mt_collectionTopic *request = [[NetWork_mt_collectionTopic alloc] init];
+        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        request.content = [contentModel generateJsonStringForProperties];
+        [request startPostWithBlock:^(CollectionTopicResponse *result, NSString *msg, BOOL finished) {
+            [UIWindow showTips:msg];
+            if(finished){
+                model.isCollect = result.obj;
+                [self.topicHeader initData:model];
+            }
+        }];
+        
+    }
+    else{//已收藏，取消收藏
+        NetWork_mt_deleteCollection *request = [[NetWork_mt_deleteCollection alloc] init];
+        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        request.id = [NSString stringWithFormat:@"%@",model.isCollect];
+        [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+            
+            [UIWindow showTips:msg];
+            if(finished){
+                model.isCollect = [NSNumber numberWithInt:0];
+                [self.topicHeader initData:model];
+            }
+        }];
+    }
 }
 
 #pragma -mark ------------Custom Method---------
