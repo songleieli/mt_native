@@ -76,7 +76,4 @@ typedef void (^OnPlayerReady)(void);
 @property (nonatomic, strong) UITapGestureRecognizer   *singleTapGesture; //添加单击手势
 @property (nonatomic ,strong) UIImageView      *pauseIcon;
 
-//@property(nonatomic,weak) id <GetFollowsDelegate> getFollowsDelegate;
-
-
 @end

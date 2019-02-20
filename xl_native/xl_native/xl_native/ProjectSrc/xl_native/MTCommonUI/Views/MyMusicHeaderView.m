@@ -11,32 +11,52 @@
 @implementation MyMusicHeaderView
 
 
-- (UILabel*)lableTopicIcon{
+
+
+
+- (UIImageView*)imageViewCover{
     
-    if (!_lableTopicIcon) {
-        _lableTopicIcon = [[UILabel alloc] init];
-        _lableTopicIcon.font = [UIFont defaultFontWithSize:74];
-        _lableTopicIcon.textColor = [UIColor whiteColor];
-        _lableTopicIcon.size = [UIView getSize_width:120 height:120];
-        _lableTopicIcon.textAlignment = NSTextAlignmentCenter;
-        _lableTopicIcon.text = @"#";
-        _lableTopicIcon.backgroundColor = RGBA(54, 58, 67, 1);
-        _lableTopicIcon.origin = [UIView getPoint_x:15 y:15];
-        
-        //test
-//        _lableTopicIcon.backgroundColor = [UIColor greenColor];
+    if (!_imageViewCover) {
+        _imageViewCover = [[UIImageView alloc] init];
+        _imageViewCover.size = [UIView getSize_width:120 height:120];
+        _imageViewCover.backgroundColor = RGBA(54, 58, 67, 1);
+        _imageViewCover.origin = [UIView getPoint_x:15 y:15];
+        _imageViewCover.userInteractionEnabled  =   YES;
     }
-    return _lableTopicIcon;
+    return _imageViewCover;
 }
+
+/*
+ 暂停按钮
+ */
+- (UIButton *) btnPauseIcon{
+    if (_btnPauseIcon == nil){
+        _btnPauseIcon = [UIButton buttonWithType:UIButtonTypeCustom]; //[[UIImageView alloc] init];
+        //_btnPauseIcon.image = [UIImage imageNamed:@"ugc_play_music"];
+        [_btnPauseIcon setBackgroundImage:[UIImage imageNamed:@"ugc_play_music"] forState:UIControlStateNormal];
+        _btnPauseIcon.contentMode = UIViewContentModeCenter;
+        //众所周知CALayer的zPosition等效于在Z轴上做了个偏移Transform。所以我们可以通过3D Transform来视觉化各个CALayer的zPosition。
+        _btnPauseIcon.layer.zPosition = 3; //去掉和没去掉，没有多大差别
+        _btnPauseIcon.width = _btnPauseIcon.height = 40;
+        [_btnPauseIcon addTarget:self action:@selector(btnPlayMusicClick:) forControlEvents:UIControlEventTouchUpInside];
+        //居中
+        _btnPauseIcon.top = (self.imageViewCover.height - _btnPauseIcon.height)/2;
+        _btnPauseIcon.left = (self.imageViewCover.width - _btnPauseIcon.width)/2;
+    }
+    return _btnPauseIcon;
+}
+
+
+
 - (UILabel*)lableTopicName{
     
     if (!_lableTopicName) {
         _lableTopicName = [[UILabel alloc] init];
         _lableTopicName.font = [UIFont defaultBoldFontWithSize:25];
         _lableTopicName.textColor = [UIColor whiteColor];
-        _lableTopicName.size = [UIView getSize_width:self.width - self.lableTopicIcon.width - 15*3 height:30];
+        _lableTopicName.size = [UIView getSize_width:self.width - self.imageViewCover.width - 15*3 height:30];
         _lableTopicName.textAlignment = NSTextAlignmentLeft;
-        _lableTopicName.origin = [UIView getPoint_x:self.lableTopicIcon.right + 15 y:15];
+        _lableTopicName.origin = [UIView getPoint_x:self.imageViewCover.right + 15 y:15];
     }
     return _lableTopicName;
 }
@@ -98,30 +118,64 @@
     return _lableCollectionTitle;
 }
 
+
+
 - (instancetype)initWithFrame:(CGRect)frame{
     
     self = [super initWithFrame:frame];
     if (self) {
+        self.isPlayMusic = NO;
         [self setUI];
     }
     return self;
 }
 
+#pragma -mark --------- 自定义方法 ------------
+
+
+- (void)destroyPlayer{
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [self.player pause];
+    //移除
+    self.player      = nil;
+}
+
+- (void)pauseMusic{
+    
+    if(self.player){
+        [self.player pause];
+        self.isPlayMusic = NO;
+        [self.btnPauseIcon setBackgroundImage:[UIImage imageNamed:@"ugc_play_music"] forState:UIControlStateNormal];
+    }
+}
+
 
 -(void)setUI{
-    [self addSubview:self.lableTopicIcon];
+    [self addSubview:self.imageViewCover]; //音乐封面
+    [self.imageViewCover addSubview:self.btnPauseIcon]; //播放暂停按钮
+    
     [self addSubview:self.lableTopicName];
     [self addSubview:self.lablePlayCount];
-    
     [self addSubview:self.btnCollectionBg];
 }
 
 
 - (void)initData:(GetHotVideosByMusicModel *)musicModel {
     
-    NSLog(@"-----------");
+    
+    if (!_player) {
+        //获取音频文件
+        NSURL *musicUrl = [NSURL URLWithString:musicModel.playUrl];
+        AVPlayerItem * musicItem = [[AVPlayerItem alloc]initWithURL:musicUrl];
+        _player = [[AVPlayer alloc]initWithPlayerItem:musicItem];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackFinished:) name:AVPlayerItemDidPlayToEndTimeNotification object:musicItem];
+    }
     
     self.topicModel = musicModel;
+    
+    [self.imageViewCover sd_setImageWithURL:[NSURL URLWithString:musicModel.coverUrl] placeholderImage:[UIImage imageNamed:@"default_music_cover"]];
     
     self.lableTopicName.text = musicModel.name;
     self.lablePlayCount.text = [NSString formatCount:[musicModel.useCount integerValue]];
@@ -142,5 +196,32 @@
         NSLog(@"代理没响应，快开看看吧");
     }
 }
+
+
+/*
+ <AVAudioPlayerDelegate>
+ 当播放结束后调用：
+ */
+- (void)playbackFinished:(NSNotification *)notice {
+    
+    NSLog(@"----playbackFinished--");
+}
+
+-(void)btnPlayMusicClick:(UIButton*)btn{
+    
+    self.isPlayMusic = !self.isPlayMusic;
+    if(self.isPlayMusic){ //如果播放，显示暂停按钮，如果暂停显示播放按钮
+        [btn setBackgroundImage:[UIImage imageNamed:@"ugc_pause_music"] forState:UIControlStateNormal];
+        //播放音乐
+        [self.player play];
+    }
+    else{
+        [btn setBackgroundImage:[UIImage imageNamed:@"ugc_play_music"] forState:UIControlStateNormal];
+        //暂停音乐
+        [self.player pause];
+    }
+}
+
+
 
 @end

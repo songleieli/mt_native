@@ -39,6 +39,14 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
 
 #pragma -mark ---------- Controller 生命周期 -------------
 
+-(void)dealloc{
+    NSLog(@"-------MusicInfoController--dealloc-----");
+    if(self.topicHeader){
+        [self.topicHeader destroyPlayer];
+        self.topicHeader = nil;
+    }
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //test
@@ -129,7 +137,7 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
 #pragma -mark ----------HTTP data request----------
 
 - (void)loadData:(NSInteger)pageIndex pageSize:(NSInteger)pageSize {
-
+    
     NetWork_mt_getHotVideosByMusic *request = [[NetWork_mt_getHotVideosByMusic alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.musicId = self.musicId;
@@ -141,7 +149,7 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
             self.pageIndex++;
             self.musicModel = result.obj.music;
             [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]]; //加载 head Data
-
+            
             [UIView setAnimationsEnabled:NO];
             [self.collectionView performBatchUpdates:^{
                 [self.favoriteAwemes addObjectsFromArray:result.obj.videoList];
@@ -216,15 +224,20 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
 //UICollectionViewDelegate Delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-        self.selectIndex = indexPath.row;
-        UserInfoPlayerListViewController *controller;
-        controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeFavourites];
-        controller.transitioningDelegate = self;
     
-        controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-        self.modalPresentationStyle = UIModalPresentationCurrentContext;
-        [_swipeLeftInteractiveTransition wireToViewController:controller];
-        [self presentViewController:controller animated:YES completion:nil];
+    if(self.topicHeader){//如果topicHeader正在播放音乐，暂停
+        [self.topicHeader pauseMusic];
+    }
+    
+    self.selectIndex = indexPath.row;
+    UserInfoPlayerListViewController *controller;
+    controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeFavourites];
+    controller.transitioningDelegate = self;
+    
+    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [_swipeLeftInteractiveTransition wireToViewController:controller];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 #pragma mark --------------- UIViewControllerTransitioningDelegate Delegate  Controller 之间的转场动画 -----------------

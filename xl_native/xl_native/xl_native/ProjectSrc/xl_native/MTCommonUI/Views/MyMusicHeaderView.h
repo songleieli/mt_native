@@ -7,6 +7,8 @@
 //
 
 #import "NetWork_mt_getHotVideosByMusic.h"
+#import <AVFoundation/AVFoundation.h>
+
 
 @protocol MusicHeadDelegate <NSObject>
 
@@ -14,10 +16,16 @@
 
 @end
 
-@interface MyMusicHeaderView : UICollectionReusableView
+@interface MyMusicHeaderView : UICollectionReusableView<AVAudioPlayerDelegate>
 
 
-@property(nonatomic,strong) UILabel *lableTopicIcon;
+@property(nonatomic,strong) UIImageView *imageViewCover;
+@property(nonatomic ,strong) UIButton *btnPauseIcon; //播放暂停按钮
+@property(nonatomic,assign) BOOL isPlayMusic;
+@property (nonatomic,strong) AVPlayer *player;
+
+
+
 @property(nonatomic,strong) UILabel *lableTopicName;
 @property(nonatomic,strong) UILabel *lablePlayCount;
 
@@ -32,5 +40,11 @@
 @property(nonatomic,weak) id <MusicHeadDelegate> delegate;
 
 - (void)initData:(GetHotVideosByMusicModel *)topicModel;
+
+/**销毁播放器*/
+- (void)destroyPlayer;
+
+/**暂停播放器*/
+- (void)pauseMusic;
 
 @end
