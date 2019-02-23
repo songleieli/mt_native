@@ -15,7 +15,8 @@
 #import "SwipeLeftInteractiveTransition.h"
 #import "ScaleDismissAnimation.h"
 
-@interface UserCollectionController_temp : ZJBaseViewController<HYPageViewDelegate,SubCellDelegate,UIViewControllerTransitioningDelegate>
+@interface UserCollectionController_temp : ZJBaseViewController<HYPageViewDelegate,
+UIViewControllerTransitioningDelegate>
 
 //Controller 转场动画
 @property (nonatomic, strong) ScalePresentAnimation            *scalePresentAnimation;
@@ -24,8 +25,5 @@
 
 //head
 @property(nonatomic,strong) HYPageView *pageView;
-@property (nonatomic,copy) NSString *keyWord;
-
-- (instancetype)initWithKeyWord:(NSString*)keyWord;
 
 @end

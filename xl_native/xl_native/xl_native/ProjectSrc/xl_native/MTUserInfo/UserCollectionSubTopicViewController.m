@@ -26,6 +26,10 @@
 }
 
 - (void)viewDidLoad {
+    
+    _pageIndex = 1;
+    _pageSize = 20;
+    
     [super viewDidLoad];
     [self setUpUI];
 }
@@ -52,36 +56,32 @@
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     //    self.mainTableView.mj_header = nil;
     self.mainTableView.mj_footer = nil;
-    [self.mainTableView registerClass:SearchResultSubTopicCell.class forCellReuseIdentifier:[SearchResultSubTopicCell cellId]];
+    [self.mainTableView registerClass:UserCollectionSubTopicCell.class forCellReuseIdentifier:[UserCollectionSubTopicCell cellId]];
 
     [self.mainTableView.mj_header beginRefreshing];
 }
 
 -(void)loadNewData{
     
-    NetWork_mt_getFuzzyTopicList *request = [[NetWork_mt_getFuzzyTopicList alloc] init];
+    NetWork_mt_getTopicCollections *request = [[NetWork_mt_getTopicCollections alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-//    request.searchName = self.keyWord;
-    request.pageNo = @"1";
-    request.pageSize = @"20";
+    request.pageNo = [NSString stringWithFormat:@"%ld",self.pageIndex];//
+    request.pageSize = [NSString stringWithFormat:@"%ld",self.pageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {
-        /*暂时不考虑缓存问题*/
-    } finishBlock:^(GetFuzzyTopicListResponse *result, NSString *msg, BOOL finished) {
-        NSLog(@"-------");
-        [self.mainTableView.mj_header endRefreshing];
-//        [self loadBodyDataList]; //加载cell Data
-        
-        
-        [self.mainDataArr addObjectsFromArray:result.obj];
-        [self.mainTableView reloadData];
+        /*暂时先不考虑缓存*/
+    } finishBlock:^(GetTopicCollectionsResponse *result, NSString *msg, BOOL finished) {
         
         if(finished){
-//            [self refreshVideoList:result.obj];
+            self.pageIndex++;
+            [self.mainTableView.mj_header endRefreshing];
+            [self.mainDataArr addObjectsFromArray:result.obj];
+            [self.mainTableView reloadData];
         }
         else{
             [UIWindow showTips:msg];
         }
     }];
+    
 }
 
 
@@ -98,9 +98,9 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if(self.mainDataArr.count > 0){
-        SearchResultSubTopicCell *cell = [tableView dequeueReusableCellWithIdentifier:[SearchResultSubTopicCell cellId] forIndexPath:indexPath];
+        UserCollectionSubTopicCell *cell = [tableView dequeueReusableCellWithIdentifier:[UserCollectionSubTopicCell cellId] forIndexPath:indexPath];
         cell.subTopicDelegate = self;
-        GetFuzzyTopicListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
+        GetTopicCollectionModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
         [cell fillDataWithModel:model];
         return cell;
     }
@@ -119,7 +119,7 @@
 }
 
 #pragma mark --------------- cell代理 -----------------
--(void)btnCellClick:(GetFuzzyTopicListModel*)model{
+-(void)btnCellClick:(GetTopicCollectionModel*)model{
     
     if ([self.delegate respondsToSelector:@selector(subCellTopicClick:)]) {
         [self.delegate subCellTopicClick:model];

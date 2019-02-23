@@ -6,20 +6,25 @@
 //  Copyright © 2018年 gaokun. All rights reserved.
 //
 
-#import "SearchResultSubTopicCell.h"
+#import "UserCollectionSubTopicCell.h"
 
 
-@protocol SubCellDelegate <NSObject>
+@protocol SubTopicCellDelegate <NSObject>
 
--(void)subCellTopicClick:(GetFuzzyTopicListModel *)model;
+-(void)subCellTopicClick:(GetTopicCollectionModel *)model;
 
 @end
 
 @interface UserCollectionSubTopicViewController : ZJBaseViewController<SearchResultSubTopicDelegate>
 
 
+
+
 @property(nonatomic,strong) NSString *parameter;
-@property (nonatomic, weak) id<SubCellDelegate> delegate;
+@property (nonatomic, weak) id<SubTopicCellDelegate> delegate;
+
+@property (nonatomic, assign) NSInteger                        pageIndex;
+@property (nonatomic, assign) NSInteger                        pageSize;
 
 
 @end

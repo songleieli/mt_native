@@ -6,28 +6,32 @@
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
-#import "NetWork_mt_getVideoCollections.h"
+#import "NetWork_mt_getMusicCollections.h"
 
 
-@implementation GetVideoCollectionsResponse
+@implementation GetMusicCollectionModel
+
+@end
+
+@implementation GetMusicCollectionsResponse
 
 - (NSDictionary *)propertyMappingObjcJson {
     return @{@"obj" : @"obj"};
 }
 - (NSDictionary *)classNameForItemInArray {
-    return @{@"obj" : @"HomeListModel"};
+    return @{@"obj" : @"GetMusicCollectionModel"};
 }
 
 @end
 
 
-@implementation NetWork_mt_getVideoCollections
+@implementation NetWork_mt_getMusicCollections
 
 -(Class)responseType{
-    return [GetVideoCollectionsResponse class];
+    return [GetMusicCollectionsResponse class];
 }
 -(NSString*)responseCategory{
-    return @"/miantiao/collection/getVideoCollections";
+    return @"/miantiao/collection/getMusicCollections";
 }
 
 

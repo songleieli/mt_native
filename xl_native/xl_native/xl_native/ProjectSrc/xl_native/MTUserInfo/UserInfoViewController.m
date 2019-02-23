@@ -519,15 +519,11 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         
         if([self.user.noodleId isEqualToString:[GlobalData sharedInstance].loginDataModel.noodleId]){
             NSLog(@"------查看收藏列表-----");
-            
             UserCollectionController_temp *collectionController = [[UserCollectionController_temp alloc] init];
-//            collectionController.userNoodleId = self.user.noodleId;
             [self pushNewVC:collectionController animated:YES];
-            
         }
         else{
             NSLog(@"------发送消息-----");
-
         }
         
     }

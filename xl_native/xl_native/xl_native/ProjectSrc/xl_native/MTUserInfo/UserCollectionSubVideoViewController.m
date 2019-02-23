@@ -197,23 +197,11 @@ NSString * const userCollectionSubVideoCollectionCell_Temp  = @"userCollectionSu
 //UICollectionViewDelegate Delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-//    if ([self.delegate respondsToSelector:@selector(subCellVideoClick:selectIndex:)]) {
-//        [self.delegate subCellVideoClick:self.favoriteAwemes selectIndex:indexPath.row];
-//    } else {
-//        NSLog(@"代理没响应，快开看看吧");
-//    }
-    
-    
-//    self.selectIndex = indexPath.row;
-//
-//    UserInfoPlayerListViewController *controller;
-//    controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeFavourites];
-//    controller.transitioningDelegate = self;
-//
-//    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-//    self.modalPresentationStyle = UIModalPresentationCurrentContext;
-//    [_swipeLeftInteractiveTransition wireToViewController:controller];
-//    [self presentViewController:controller animated:YES completion:nil];
+    if ([self.delegate respondsToSelector:@selector(subCellVideoClick:selectIndex:)]) {
+        [self.delegate subCellVideoClick:self.favoriteAwemes selectIndex:indexPath.row];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
 }
 
 //网络状态发送变化

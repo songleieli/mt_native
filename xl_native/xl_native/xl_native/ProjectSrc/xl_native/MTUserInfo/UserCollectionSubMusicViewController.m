@@ -27,6 +27,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _pageIndex = 1;
+    _pageSize = 20;
+    
     [self setUpUI];
 }
 
@@ -45,30 +49,25 @@
     self.mainTableView.backgroundColor = [UIColor clearColor]; //RGBFromColor(0xecedf1);
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.mainTableView.mj_footer = nil;
-    [self.mainTableView registerClass:SearchResultSubMusicCell.class forCellReuseIdentifier:[SearchResultSubMusicCell cellId]];
+    [self.mainTableView registerClass:UserCollectionSubMusicCell.class forCellReuseIdentifier:[UserCollectionSubMusicCell cellId]];
     [self.mainTableView.mj_header beginRefreshing];
 }
 
 -(void)loadNewData{
     
-    NetWork_mt_getFuzzyMusicList *request = [[NetWork_mt_getFuzzyMusicList alloc] init];
+    NetWork_mt_getMusicCollections *request = [[NetWork_mt_getMusicCollections alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-//    request.searchName = self.keyWord;
-    request.pageNo = @"1";
-    request.pageSize = @"20";
+    request.pageNo = [NSString stringWithFormat:@"%ld",self.pageIndex];//
+    request.pageSize = [NSString stringWithFormat:@"%ld",self.pageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {
         /*暂时不考虑缓存问题*/
-    } finishBlock:^(GetFuzzyMusicListResponse *result, NSString *msg, BOOL finished) {
-        NSLog(@"-------");
-        [self.mainTableView.mj_header endRefreshing];
-//        [self loadBodyDataList]; //加载cell Data
+    } finishBlock:^(GetMusicCollectionsResponse *result, NSString *msg, BOOL finished) {
         
+        [self.mainTableView.mj_header endRefreshing];
         
         [self.mainDataArr addObjectsFromArray:result.obj];
         [self.mainTableView reloadData];
-        
         if(finished){
-//            [self refreshVideoList:result.obj];
         }
         else{
             [UIWindow showTips:msg];
@@ -90,9 +89,9 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if(self.mainDataArr.count > 0){
-        SearchResultSubMusicCell *cell = [tableView dequeueReusableCellWithIdentifier:[SearchResultSubMusicCell cellId] forIndexPath:indexPath];
+        UserCollectionSubMusicCell *cell = [tableView dequeueReusableCellWithIdentifier:[UserCollectionSubMusicCell cellId] forIndexPath:indexPath];
         cell.subCellDelegate = self;
-        GetFuzzyMusicListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
+        GetMusicCollectionModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
         [cell fillDataWithModel:model];
         return cell;
     }
@@ -111,7 +110,7 @@
 }
 
 #pragma mark --------------- cell代理 -----------------
--(void)btnCellClick:(GetFuzzyMusicListModel*)model{
+-(void)btnCellClick:(GetMusicCollectionModel*)model{
     
     if ([self.delegate respondsToSelector:@selector(subMusicClick:)]) {
         [self.delegate subMusicClick:model];

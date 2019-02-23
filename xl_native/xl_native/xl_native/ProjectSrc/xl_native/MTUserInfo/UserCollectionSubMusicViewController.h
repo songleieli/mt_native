@@ -6,13 +6,12 @@
 //  Copyright © 2018年 gaokun. All rights reserved.
 //
 
-#import "NetWork_mt_getFuzzyMusicList.h"
-#import "SearchResultSubMusicCell.h"
+#import "UserCollectionSubMusicCell.h"
 
 
-@protocol SubCellDelegate <NSObject>
+@protocol SubMusicCellDelegate <NSObject>
 
--(void)subMusicClick:(GetFuzzyMusicListModel *)model;
+-(void)subMusicClick:(GetMusicCollectionModel *)model;
 
 @end
 
@@ -20,7 +19,10 @@
 
 
 @property(nonatomic,strong) NSString *parameter;
-@property (nonatomic, weak) id<SubCellDelegate> delegate;
+@property (nonatomic, weak) id<SubMusicCellDelegate> delegate;
+
+@property (nonatomic, assign) NSInteger                        pageIndex;
+@property (nonatomic, assign) NSInteger                        pageSize;
 
 
 @end

@@ -8,8 +8,8 @@
 
 #import "UserCollectionController_temp.h"
 
-//#import "TopicInfoController.h"
-//#import "MusicInfoController.h"
+#import "TopicInfoController.h"
+#import "MusicInfoController.h"
 //#import "UserInfoViewController.h"
 #import "UserCollectionSubMusicViewController.h"
 #import "UserCollectionSubTopicViewController.h"
@@ -17,7 +17,7 @@
 
 #import "ScrollPlayerListViewController.h"
 
-@interface UserCollectionController_temp ()
+@interface UserCollectionController_temp ()<SubTopicCellDelegate,SubMusicCellDelegate,SubVideoCellDelegate>
 
 @end
 
@@ -27,15 +27,15 @@
     NSLog(@"---------------%@ dealloc ",NSStringFromClass([self class]));
 }
 
-- (instancetype)initWithKeyWord:(NSString*)keyWord{
-    
-    self = [super init];
-    if (self) {
-        self.keyWord = keyWord;
-    }
-    return self;
-
-}
+//- (instancetype)initWithKeyWord:(NSString*)keyWord{
+//    
+//    self = [super init];
+//    if (self) {
+//        self.keyWord = keyWord;
+//    }
+//    return self;
+//
+//}
 
 
 -(void)initNavTitle{
@@ -56,10 +56,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     //暂时先屏蔽，转场动画
-    //    _scalePresentAnimation = [ScalePresentAnimation new];
-    //    _scaleDismissAnimation = [ScaleDismissAnimation new];
-    //    _swipeLeftInteractiveTransition = [SwipeLeftInteractiveTransition new];
+//    _scalePresentAnimation = [ScalePresentAnimation new];
+//    _scaleDismissAnimation = [ScaleDismissAnimation new];
+//    _swipeLeftInteractiveTransition = [SwipeLeftInteractiveTransition new];
     
     [self setUpUI];
 }
@@ -107,27 +108,28 @@
 
 #pragma -mark SubCellDelegate
 
--(void)subCellTopicClick:(GetFuzzyTopicListModel *)model{
+-(void)subCellTopicClick:(GetTopicCollectionModel *)model{
     NSLog(@"-------------");
     
-//    TopicInfoController *topicInfoController = [[TopicInfoController alloc] init];
-//    topicInfoController.topicName = model.topic;
-//    [self pushNewVC:topicInfoController animated:YES];
+    TopicInfoController *topicInfoController = [[TopicInfoController alloc] init];
+    topicInfoController.topicName = model.topicName;
+    [self pushNewVC:topicInfoController animated:YES];
     
 }
 
-//-(void)subMusicClick:(GetFuzzyMusicListModel *)model{
-//    MusicInfoController *musicInfoController = [[MusicInfoController alloc] init];
-//    musicInfoController.musicId = model.id;
-//    [self pushNewVC:musicInfoController animated:YES];
-//}
+-(void)subMusicClick:(GetMusicCollectionModel *)model{
+    NSLog(@"-------------");
+    MusicInfoController *musicInfoController = [[MusicInfoController alloc] init];
+    musicInfoController.musicId = model.musicId;
+    [self pushNewVC:musicInfoController animated:YES];
+}
 
 -(void)subCellVideoClick:(NSMutableArray *)videoList selectIndex:(NSInteger)selectIndex{
     NSLog(@"-------------");
     ScrollPlayerListViewController *controller;
     controller = [[ScrollPlayerListViewController alloc] initWithVideoData:videoList currentIndex:selectIndex];
     controller.transitioningDelegate = self;
-    
+
     controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
     [_swipeLeftInteractiveTransition wireToViewController:controller];

@@ -9,32 +9,7 @@
 #import "WCServiceBase.h"
 
 
-@interface GetVideoCollectionModel : IObjcJsonBase
-
-/*
- "id": 2,
- "noodleId": "3234",
- "type": 1,
- "noodleVideoId": 6443570752422677773,
- "videoNoodleId": "5405288",
- "noodleVideoCover": "http://p3.pstatp.com/large/2d88000eb2d094facfb7.jpeg",
- "likeSum": 1339348,
- "collectionTime": "2018/12/14 13:20:12"
-
-
- */
-
-@property (copy, nonatomic) NSString *id;
-@property (copy, nonatomic) NSString *noodleId;
-@property (copy, nonatomic) NSString *type;
-@property (copy, nonatomic) NSString *noodleVideoId;
-@property (copy, nonatomic) NSString *videoNoodleId;
-@property (copy, nonatomic) NSString *noodleVideoCover;
-@property (copy, nonatomic) NSString *likeSum;
-@property (copy, nonatomic) NSString *collectionTime;
-
-
-@end
+#import "NetWork_mt_home_list.h"
 
 
 

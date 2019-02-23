@@ -29,7 +29,7 @@
 @property (copy, nonatomic) NSString *type;
 @property (copy, nonatomic) NSString *topicId;
 @property (copy, nonatomic) NSString *topicName;
-@property (copy, nonatomic) NSString *playSum;
+@property (strong, nonatomic) NSNumber *playSum;
 @property (copy, nonatomic) NSString *collectionTime;
 
 @end

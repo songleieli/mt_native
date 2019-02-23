@@ -15,7 +15,7 @@
 #import "NetWork_mt_getVideoCollections.h"
 
 
-@protocol SubCellDelegate <NSObject>
+@protocol SubVideoCellDelegate <NSObject>
 
 -(void)subCellVideoClick:(NSMutableArray *)videoList selectIndex:(NSInteger)selectIndex;
 
@@ -29,7 +29,7 @@ UIViewControllerTransitioningDelegate
 
 
 @property(nonatomic,strong) NSString *parameter;
-@property (nonatomic, weak) id<SubCellDelegate> delegate;
+@property (nonatomic, weak) id<SubVideoCellDelegate> delegate;
 
 @property (nonatomic, strong) NSMutableArray   *favoriteAwemes;//当前视频数组
 @property (nonatomic, strong) LoadMoreControl   *loadMore;
