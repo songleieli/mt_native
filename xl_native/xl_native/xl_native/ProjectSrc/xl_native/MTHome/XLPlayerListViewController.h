@@ -19,6 +19,7 @@
 #import "NetWork_mt_saveflour.h"
 #import "NetWork_mt_addVideoPlay.h"
 #import "NetWork_mt_getVideoCollections.h"
+#import "NetWork_mt_collectionVideo.h"
 
 #import "UserInfoViewController.h"
 #import "MusicInfoController.h"

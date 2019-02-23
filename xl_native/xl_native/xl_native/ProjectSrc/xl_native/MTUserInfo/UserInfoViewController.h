@@ -37,7 +37,7 @@ typedef enum{
 #import "NetWork_mt_saveflour.h"
 #import "NetWork_mt_delflour.h"
 
-#import "UserCollectionController.h"
+#import "UserCollectionController_temp.h"
 #import "SettingViewController.h"
 
 

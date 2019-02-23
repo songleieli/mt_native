@@ -25,6 +25,10 @@
 		0402A46421C4C94800C35CA9 /* NSAttributedString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402A46321C4C94800C35CA9 /* NSAttributedString+Extension.m */; };
 		0402A46D21C4FE1E00C35CA9 /* NetWork_mt_getLikeVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402A46B21C4FE1D00C35CA9 /* NetWork_mt_getLikeVideoList.m */; };
 		0403662021C3A5D1000FDC5E /* CommentsPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403661E21C3A5D1000FDC5E /* CommentsPopView.m */; };
+		0405BE7F2220F6F90098D590 /* UserCollectionSubTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0405BE792220F6F70098D590 /* UserCollectionSubTopicViewController.m */; };
+		0405BE802220F6F90098D590 /* UserCollectionSubMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0405BE7B2220F6F80098D590 /* UserCollectionSubMusicViewController.m */; };
+		0405BE812220F6F90098D590 /* UserCollectionSubVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0405BE7C2220F6F80098D590 /* UserCollectionSubVideoViewController.m */; };
+		0405BE842220FBD50098D590 /* UserCollectionController_temp.m in Sources */ = {isa = PBXBuildFile; fileRef = 0405BE832220FBD40098D590 /* UserCollectionController_temp.m */; };
 		0406761F21F7158700543917 /* HomeSearchResultSubMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406761E21F7158700543917 /* HomeSearchResultSubMusicViewController.m */; };
 		0406762221F7175800543917 /* HomeSearchResultSubTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406762121F7175800543917 /* HomeSearchResultSubTopicViewController.m */; };
 		0406762521F718B000543917 /* HomeSearchResultSubVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406762421F718B000543917 /* HomeSearchResultSubVideoViewController.m */; };
@@ -1031,6 +1035,14 @@
 		0402A46C21C4FE1E00C35CA9 /* NetWork_mt_getLikeVideoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getLikeVideoList.h; sourceTree = "<group>"; };
 		0403661E21C3A5D1000FDC5E /* CommentsPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsPopView.m; sourceTree = "<group>"; };
 		0403661F21C3A5D1000FDC5E /* CommentsPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsPopView.h; sourceTree = "<group>"; };
+		0405BE792220F6F70098D590 /* UserCollectionSubTopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCollectionSubTopicViewController.m; sourceTree = "<group>"; };
+		0405BE7A2220F6F70098D590 /* UserCollectionSubVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCollectionSubVideoViewController.h; sourceTree = "<group>"; };
+		0405BE7B2220F6F80098D590 /* UserCollectionSubMusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCollectionSubMusicViewController.m; sourceTree = "<group>"; };
+		0405BE7C2220F6F80098D590 /* UserCollectionSubVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCollectionSubVideoViewController.m; sourceTree = "<group>"; };
+		0405BE7D2220F6F80098D590 /* UserCollectionSubTopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCollectionSubTopicViewController.h; sourceTree = "<group>"; };
+		0405BE7E2220F6F80098D590 /* UserCollectionSubMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCollectionSubMusicViewController.h; sourceTree = "<group>"; };
+		0405BE822220FBD40098D590 /* UserCollectionController_temp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCollectionController_temp.h; sourceTree = "<group>"; };
+		0405BE832220FBD40098D590 /* UserCollectionController_temp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCollectionController_temp.m; sourceTree = "<group>"; };
 		0406761D21F7158600543917 /* HomeSearchResultSubMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSearchResultSubMusicViewController.h; sourceTree = "<group>"; };
 		0406761E21F7158700543917 /* HomeSearchResultSubMusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSearchResultSubMusicViewController.m; sourceTree = "<group>"; };
 		0406762021F7175700543917 /* HomeSearchResultSubTopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSearchResultSubTopicViewController.h; sourceTree = "<group>"; };
@@ -2707,6 +2719,14 @@
 				04ED451B21CBE3E1009DE89F /* UserInfoPlayerListViewController.m */,
 				0441FA2521CF4CAD00801225 /* UserCollectionController.h */,
 				0441FA2421CF4CAD00801225 /* UserCollectionController.m */,
+				0405BE822220FBD40098D590 /* UserCollectionController_temp.h */,
+				0405BE832220FBD40098D590 /* UserCollectionController_temp.m */,
+				0405BE7E2220F6F80098D590 /* UserCollectionSubMusicViewController.h */,
+				0405BE7B2220F6F80098D590 /* UserCollectionSubMusicViewController.m */,
+				0405BE7D2220F6F80098D590 /* UserCollectionSubTopicViewController.h */,
+				0405BE792220F6F70098D590 /* UserCollectionSubTopicViewController.m */,
+				0405BE7A2220F6F70098D590 /* UserCollectionSubVideoViewController.h */,
+				0405BE7C2220F6F80098D590 /* UserCollectionSubVideoViewController.m */,
 				040E28AB21C0AA4900D15B44 /* UserInfoViewController.h */,
 				040E28AC21C0AA4900D15B44 /* UserInfoViewController.m */,
 			);
@@ -6182,12 +6202,14 @@
 				04CBC4452179C01300658E47 /* GPUImageDilationFilter.m in Sources */,
 				04DCA88C21A55FF700691A3A /* TCLoginModel.m in Sources */,
 				D954C5161DD1A40F003CA535 /* NSData+Base64.m in Sources */,
+				0405BE812220F6F90098D590 /* UserCollectionSubVideoViewController.m in Sources */,
 				D9EE757F1EF8C610001A1299 /* SDPhotoBrowser.m in Sources */,
 				04DCA8E521A565D500691A3A /* TCVideoEditPrevViewController.m in Sources */,
 				04CBC27B2179C01200658E47 /* UIScrollView+MJRefresh.m in Sources */,
 				D9BD11B71F02B134006CE841 /* WYStoryboardPopoverSegue.m in Sources */,
 				04CBC4172179C01300658E47 /* GPUImageRGBErosionFilter.m in Sources */,
 				04CBC27D2179C01200658E47 /* MJRefreshConst.m in Sources */,
+				0405BE802220F6F90098D590 /* UserCollectionSubMusicViewController.m in Sources */,
 				04B0E1FF21A6937600ABCF16 /* A2DynamicDelegate.m in Sources */,
 				04CBC3172179C01300658E47 /* SVProgressHUD.m in Sources */,
 				04CBC3132179C01300658E47 /* SVRadialGradientLayer.m in Sources */,
@@ -6505,6 +6527,7 @@
 				04CBC41F2179C01300658E47 /* GPUImageMotionDetector.m in Sources */,
 				04CBC47D2179C01300658E47 /* UIImage+MultiFormat.m in Sources */,
 				04CBC3852179C01300658E47 /* GPUImageMultiplyBlendFilter.m in Sources */,
+				0405BE842220FBD50098D590 /* UserCollectionController_temp.m in Sources */,
 				040E28B921C0E20200D15B44 /* SlideTabBar.m in Sources */,
 				040E28DB21C1047F00D15B44 /* UserResponse.m in Sources */,
 				D954C5E21DD1A40F003CA535 /* GlobalFunc.m in Sources */,
@@ -6534,6 +6557,7 @@
 				04C1720C21CE3EC80077FA6C /* NetWork_mt_getDynamics.m in Sources */,
 				04AB304221CA91310072808E /* GKDouyinHomeSearchViewController.m in Sources */,
 				D9F86DC81DEBEE7600C3A2B6 /* TZAssetModel.m in Sources */,
+				0405BE7F2220F6F90098D590 /* UserCollectionSubTopicViewController.m in Sources */,
 				04A919A421E4F045002DDB1A /* FollowsVideoListCell.m in Sources */,
 				04C2615921A68FB200374E4D /* TCBGMCell.m in Sources */,
 				04CBC3C12179C01300658E47 /* GPUImageXYDerivativeFilter.m in Sources */,

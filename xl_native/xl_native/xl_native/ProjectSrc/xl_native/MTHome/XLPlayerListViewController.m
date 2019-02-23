@@ -587,12 +587,12 @@
     
     
     
-    //test
-    NSLog(@"------查看收藏列表-----");
-    
-    UserCollectionController *collectionController = [[UserCollectionController alloc] init];
-    collectionController.userNoodleId = @"18818714082349056";
-    [self pushNewVC:collectionController animated:YES];
+//    //test
+//    NSLog(@"------查看收藏列表-----");
+//
+//    UserCollectionController *collectionController = [[UserCollectionController alloc] init];
+//    collectionController.userNoodleId = @"18818714082349056";
+//    [self pushNewVC:collectionController animated:YES];
 }
 
 #pragma mark --------------- HomeDelegate代理 -----------------
@@ -732,22 +732,6 @@
     MusicInfoController *musicInfoController = [[MusicInfoController alloc] init];
     musicInfoController.musicId = [NSString stringWithFormat:@"%@",listModel.musicId];
     [self pushNewVC:musicInfoController animated:YES];
-    
-    //test, 查看测试收藏的视频列表
-//    NetWork_mt_getVideoCollections *request = [[NetWork_mt_getVideoCollections alloc] init];
-//    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-//    request.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-//    request.pageNo = @"1";
-//    request.pageSize = @"20";
-//
-//    [request startGetWithBlock:^(id result, NSString *msg) {
-//        /*暂不考虑缓存的问题*/
-//    } finishBlock:^(id result, NSString *msg, BOOL finished) {
-//        NSLog(@"----------CD----------");
-//
-//    }];
-    
-    
 }
 
 - (void)playButtonAction:(BOOL)isPlay{
@@ -769,7 +753,7 @@
         NSLog(@"---------点击f收藏-------");
         CollectionContentModel *contentModel = [[CollectionContentModel alloc] init];
         contentModel.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;//当前登录者面条号
-        contentModel.noodleVideoId = self.currentCell.listModel.noodleVideoId; //视频Id
+        contentModel.noodleVideoId = [NSString stringWithFormat:@"%@",self.currentCell.listModel.noodleVideoId]; //视频Id
         contentModel.videoNoodleId = self.currentCell.listModel.noodleId;      //视频所属者面条好
         contentModel.noodleVideoCover = self.currentCell.listModel.coverUrl;    //
         
@@ -785,9 +769,7 @@
                 [UIWindow showTips:@"收藏失败"];
             }
         }];
-        
     }
-    
 }
 
 @end
