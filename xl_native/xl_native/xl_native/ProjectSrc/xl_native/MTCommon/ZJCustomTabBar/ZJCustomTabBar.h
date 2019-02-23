@@ -26,6 +26,7 @@
 
 - (void)selectTabAtIndex:(NSInteger)index;
 - (void)tabBarButtonClicked:(id)sender;
+
 @end
 
 @protocol ZJCustomTabBarDelegate<NSObject>

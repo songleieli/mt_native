@@ -86,8 +86,18 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
-    NSLog(@"----------viewDidAppear-------");
+
+    /*
+        1.根据当前页面显示的是，视频播放列表，还是搜索页面
+        2.如果是视频播放列表，隐藏状态栏
+        3.如果是搜索页面，显示状态栏
+     */
+    if(self.isTableHiden){ //搜索页面
+        [UIApplication sharedApplication].statusBarHidden = NO;
+    }
+    else{//视频播放列表页面
+        [UIApplication sharedApplication].statusBarHidden = YES;
+    }
 }
 
 - (void)viewDidLoad {
@@ -109,6 +119,8 @@
     self.scrollView.contentSize = CGSizeMake(self.childVCs.count * w, 0);
     // 默认显示播放器页
     self.scrollView.contentOffset = CGPointMake(w, 0);
+    //显示播放器的时候隐藏状态栏
+    [UIApplication sharedApplication].statusBarHidden = YES;
     // 设置左滑push代理
     self.gk_pushDelegate = self;
 }

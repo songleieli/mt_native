@@ -95,6 +95,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarFrameDidChange:) name : UIApplicationDidChangeStatusBarFrameNotification object : nil ];
 
     NSArray *titles     = @[@"首页",@"关注",@"",@"消息",@"我"];
@@ -128,6 +130,8 @@
     self.tabBar.frame = CGRectMake(0, [self getTabbarTop], ScreenWidth, kTabBarHeight_New);
     [self.tabBar selectTabAtIndex:_selectedIndex];
     
+    self.isTableHiden = NO;
+    
 //    _tabBar.delegate = self;
     [self.view addSubview:self.tabBar];
 }
@@ -160,6 +164,9 @@
 #pragma mark - Private methods
 
 - (void)hiddenTabBar:(BOOL)hidden isAnimat:(BOOL)isAnimat{
+    
+    self.isTableHiden = hidden;
+    
     if(isAnimat){
         if(hidden && self.tabBar.frame.origin.y == self.view.height - kTabBarHeight_New){       //隐藏tabbar
             [UIView beginAnimations:nil context:nil];
