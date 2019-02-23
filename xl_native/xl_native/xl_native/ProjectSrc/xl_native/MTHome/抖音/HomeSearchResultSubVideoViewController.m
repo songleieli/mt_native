@@ -124,10 +124,17 @@
 
 - (void)loadData:(NSInteger)pageIndex pageSize:(NSInteger)pageSize {
     
+    //过滤Music携带的 “#” 号，接口不需要
+    NSString *videoNameTemp = self.keyWord;
+    NSUInteger location = [videoNameTemp rangeOfString:@"#"].location;
+    if (location == NSNotFound) {
+    } else {
+        videoNameTemp = [videoNameTemp substringFromIndex:1];
+    }
     
     NetWork_mt_getFuzzyVideoList *request = [[NetWork_mt_getFuzzyVideoList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.searchName = self.keyWord;
+    request.searchName = videoNameTemp;
     request.pageNo = [NSString stringWithFormat:@"%ld",pageIndex];
     request.pageSize = [NSString stringWithFormat:@"%ld",pageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {

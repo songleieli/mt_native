@@ -23,5 +23,8 @@
 @property(nonatomic,strong) NSString *keyWord;
 @property (nonatomic, weak) id<SubCellDelegate> delegate;
 
+@property (nonatomic, assign) NSInteger                        pageIndex;
+@property (nonatomic, assign) NSInteger                        pageSize;
+
 
 @end

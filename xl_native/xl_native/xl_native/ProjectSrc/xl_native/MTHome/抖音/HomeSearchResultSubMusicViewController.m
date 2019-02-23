@@ -21,12 +21,16 @@
 
 -(void)initNavTitle{
     self.isNavBackGroundHiden  = YES;
-
-
+    
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _pageIndex = 1;
+    _pageSize = 20;
+    
     [self setUpUI];
 }
 
@@ -49,26 +53,52 @@
     [self.mainTableView.mj_header beginRefreshing];
 }
 
+
+#pragma mark ------- 数据加载代理 -------
+
 -(void)loadNewData{
+    self.mainTableView.mj_footer.hidden = YES;
+    self.currentPage = 0;
+    
+    [self initRequest];
+    
+    
+}
+
+-(void)loadMoreData{
+    self.mainTableView.mj_header.hidden = YES;
+    [self initRequest];
+    //    if (self.totalCount == self.listDataArray.count) {
+    //        [self showFaliureHUD:@"暂无更多数据"];
+    //        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+    //        self.tableView.mj_footer.hidden = YES;
+    //    }
+}
+
+#pragma mark ------- 加载网络请求 -------
+
+-(void)initRequest{
+    
+    //过滤Music携带的 “#” 号，接口不需要
+    NSString *musicNameTemp = self.keyWord;
+    NSUInteger location = [musicNameTemp rangeOfString:@"#"].location;
+    if (location == NSNotFound) {
+    } else {
+        musicNameTemp = [musicNameTemp substringFromIndex:1];
+    }
     
     NetWork_mt_getFuzzyMusicList *request = [[NetWork_mt_getFuzzyMusicList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.searchName = self.keyWord;
-    request.pageNo = @"1";
-    request.pageSize = @"20";
+    request.searchName = musicNameTemp;
+    request.pageNo = [NSString stringWithFormat:@"%ld",self.pageIndex];//
+    request.pageSize = [NSString stringWithFormat:@"%ld",self.pageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {
         /*暂时不考虑缓存问题*/
     } finishBlock:^(GetFuzzyMusicListResponse *result, NSString *msg, BOOL finished) {
-        NSLog(@"-------");
         [self.mainTableView.mj_header endRefreshing];
-//        [self loadBodyDataList]; //加载cell Data
-        
-        
-        [self.mainDataArr addObjectsFromArray:result.obj];
-        [self.mainTableView reloadData];
-        
+        [self.mainTableView.mj_footer endRefreshing];
         if(finished){
-//            [self refreshVideoList:result.obj];
+            [self loadMusicData:result];
         }
         else{
             [UIWindow showTips:msg];
@@ -76,6 +106,18 @@
     }];
 }
 
+-(void)loadMusicData:(GetFuzzyMusicListResponse *)result{
+    
+    if (self.currentPage == 0 ) {
+        [self.mainDataArr removeAllObjects];
+        self.mainDataArr = nil;
+        self.mainDataArr = [[NSMutableArray alloc]init];
+        [self refreshNoDataViewWithListCount:result.obj.count];
+    }
+    [self.mainDataArr addObjectsFromArray:result.obj];
+    self.currentPage += 1;
+    [self.mainTableView reloadData];
+}
 
 #pragma mark --------------- tabbleView代理 -----------------
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

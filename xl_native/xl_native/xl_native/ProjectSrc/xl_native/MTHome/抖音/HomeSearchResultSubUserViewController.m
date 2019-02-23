@@ -59,9 +59,17 @@
 
 -(void)loadNewData{
     
+    //过滤Music携带的 “#” 号，接口不需要
+    NSString *userNameTemp = self.keyWord;
+    NSUInteger location = [userNameTemp rangeOfString:@"#"].location;
+    if (location == NSNotFound) {
+    } else {
+        userNameTemp = [userNameTemp substringFromIndex:1];
+    }
+    
     NetWork_mt_getFuzzyAccountList *request = [[NetWork_mt_getFuzzyAccountList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.searchName = self.keyWord;
+    request.searchName = userNameTemp;
     request.pageNo = @"1";
     request.pageSize = @"20";
     [request startGetWithBlock:^(id result, NSString *msg) {

@@ -53,7 +53,30 @@
     [self.mainTableView.mj_header beginRefreshing];
 }
 
+#pragma mark ------- 数据加载代理 -------
+
 -(void)loadNewData{
+    self.mainTableView.mj_footer.hidden = YES;
+    self.currentPage = 0;
+    
+    [self initRequest];
+    
+
+}
+
+-(void)loadMoreData{
+    self.mainTableView.mj_header.hidden = YES;
+    [self initRequest];
+//    if (self.totalCount == self.listDataArray.count) {
+//        [self showFaliureHUD:@"暂无更多数据"];
+//        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+//        self.tableView.mj_footer.hidden = YES;
+//    }
+}
+
+#pragma mark ------- 加载网络请求 -------
+
+-(void)initRequest{
     
     NetWork_mt_getMusicCollections *request = [[NetWork_mt_getMusicCollections alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
@@ -64,15 +87,27 @@
     } finishBlock:^(GetMusicCollectionsResponse *result, NSString *msg, BOOL finished) {
         
         [self.mainTableView.mj_header endRefreshing];
-        
-        [self.mainDataArr addObjectsFromArray:result.obj];
-        [self.mainTableView reloadData];
+        [self.mainTableView.mj_footer endRefreshing];
         if(finished){
+            [self loadMusicData:result];
         }
         else{
             [UIWindow showTips:msg];
         }
     }];
+}
+
+-(void)loadMusicData:(GetMusicCollectionsResponse *)result{
+    
+    if (self.currentPage == 0 ) {
+        [self.mainDataArr removeAllObjects];
+        self.mainDataArr = nil;
+        self.mainDataArr = [[NSMutableArray alloc]init];
+        [self refreshNoDataViewWithListCount:result.obj.count];
+    }
+    [self.mainDataArr addObjectsFromArray:result.obj];
+    self.currentPage += 1;
+    [self.mainTableView reloadData];
 }
 
 
