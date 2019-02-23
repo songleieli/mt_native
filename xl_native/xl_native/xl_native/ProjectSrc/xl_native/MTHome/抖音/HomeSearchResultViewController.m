@@ -233,7 +233,6 @@
         self.modalPresentationStyle = UIModalPresentationCurrentContext;
         [_swipeLeftInteractiveTransition wireToViewController:controller];
         [self presentViewController:controller animated:YES completion:nil];
-    
 }
 
 #pragma mark --------------- UIViewControllerTransitioningDelegate Delegate  Controller 之间的转场动画 -----------------

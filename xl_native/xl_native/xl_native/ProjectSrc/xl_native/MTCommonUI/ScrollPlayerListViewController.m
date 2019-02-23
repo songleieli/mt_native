@@ -172,7 +172,10 @@
 }
 
 - (void) dismiss {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        //播放列表消失后，显示状态栏
+        [UIApplication sharedApplication].statusBarHidden = NO;
+    }];
 }
 
 #pragma mark --------------- tabbleView代理 -----------------
