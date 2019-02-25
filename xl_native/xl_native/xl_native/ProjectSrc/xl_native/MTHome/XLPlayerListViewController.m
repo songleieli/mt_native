@@ -605,7 +605,7 @@
         
         NetWork_mt_addVideoPlay *request = [[NetWork_mt_addVideoPlay alloc] init];
         request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-        request.noodleVideoId = listModel.noodleVideoId;
+        request.noodleVideoId = [NSString stringWithFormat:@"%@",listModel.noodleVideoId];
         [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
             if(finished){
                 NSLog(@"-----------播放量增加-----------");

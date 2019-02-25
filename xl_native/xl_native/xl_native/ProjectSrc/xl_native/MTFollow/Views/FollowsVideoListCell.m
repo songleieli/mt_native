@@ -167,6 +167,7 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
 - (FavoriteView *) favorite{
     if (_favorite == nil){ //
         
+        __weak __typeof(self) weakSelf = self;
         CGRect frame = CGRectMake(0, 0, 30, 28);
         _favorite = [[FavoriteView alloc]initWithFrame:frame];
         _favorite.favoriteAfter.contentMode = UIViewContentModeScaleAspectFit;
@@ -175,11 +176,11 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
         _favorite.top = (self.bottomView.height-_favorite.height)/2;//上下居中
         _favorite.likeClickBlock = ^(FavoriteView *favoriteView) {
             //点赞按钮响应事件
-//            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(zanButtonAction:)]) {
-//                [weakSelf.delegate zanButtonAction:favoriteView];
-//            }else{
-//                NSLog(@"没有实现代理或者没有设置代理人");
-//            }
+            if (weakSelf.followDelegate && [weakSelf.followDelegate respondsToSelector:@selector(zanClicked:)]) {
+                [weakSelf.followDelegate zanClicked:weakSelf.listModel];
+            }else{
+                NSLog(@"没有实现代理或者没有设置代理人");
+            }
         };
         //test
 //        _favorite.backgroundColor = [UIColor redColor];
@@ -214,8 +215,8 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
         _comment.contentMode = UIViewContentModeScaleAspectFit;
         _comment.image = [UIImage imageNamed:@"icon_home_comment"];
         _comment.userInteractionEnabled = YES;
-//        _singleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
-//        [_comment addGestureRecognizer:_singleTapGesture];
+        _singleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
+        [_comment addGestureRecognizer:_singleTapGesture];
         
         _comment.width = 30;
         _comment.height = 28;
@@ -249,8 +250,8 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
         _share.contentMode = UIViewContentModeScaleAspectFit;
         _share.image = [UIImage imageNamed:@"icon_home_share"];
         _share.userInteractionEnabled = YES;
-//        _singleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
-//        [_share addGestureRecognizer:_singleTapGesture];
+        _singleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
+        [_share addGestureRecognizer:_singleTapGesture];
         
         _share.width = 30;
         _share.height = 28;
@@ -324,6 +325,14 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
     
     self.listModel = model;
     
+    //设置喜欢视频
+    [self.favorite resetView];
+    if([model.isLike integerValue] == 1){
+        [self.favorite setUserLike];
+    }
+    else{
+        [self.favorite setUserUnLike];
+    }
     
     [self.imageVeiwIcon sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"img_find_default"]];
     self.labelUserName.text = [NSString stringWithFormat:@"@%@",model.nickname];
@@ -399,15 +408,32 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
 #pragma mark ------------- gesture --------------
 //
 - (void)handleGesture:(UITapGestureRecognizer *)sender {
-    NSLog(@"---------");
     
-    if(self.pauseIcon.hidden == YES){
-        NSLog(@"---------暂停---------");
-        [self playButtonAction:NO];
+    if(sender.view == self.playerView){ //点击播放器
+        if(self.pauseIcon.hidden == YES){
+            [self playButtonAction:NO];
+        }
+        else{
+            [self playButtonAction:YES];
+        }
     }
-    else{
-        NSLog(@"---------播放---------");
-        [self playButtonAction:YES];
+    
+    if(sender.view == self.comment){//点击评论
+        
+        if (self.followDelegate && [self.followDelegate respondsToSelector:@selector(commentClicked:)]) {
+            [self.followDelegate commentClicked:self.listModel];
+        }else{
+            NSLog(@"没有实现代理或者没有设置代理人");
+        }
+    }
+    
+    if(sender.view == self.share){//点击分享按钮
+        
+        if (self.followDelegate && [self.followDelegate respondsToSelector:@selector(shareClicked:)]) {
+            [self.followDelegate shareClicked:self.listModel];
+        }else{
+            NSLog(@"没有实现代理或者没有设置代理人");
+        }
     }
     
     

@@ -14,12 +14,15 @@
 
 typedef void (^OnPlayerReady)(void);
 
-//@protocol GetFollowsDelegate <NSObject>
-//
-//
-//-(void)btnDeleteClick:(HomeListModel*)model;
-//
-//@end
+@protocol GetFollowsDelegate <NSObject>
+
+- (void)zanClicked:(HomeListModel *)listModel;
+
+- (void)commentClicked:(HomeListModel *)listModel;
+
+- (void)shareClicked:(HomeListModel *)listModel;
+
+@end
 
 #define FollowsVideoListCellSpace 10.0f   //上下space间隔 高度
 #define FollowsVideoListCellIconHeight 50.0f   //icon+上下space 高度
@@ -56,6 +59,9 @@ typedef void (^OnPlayerReady)(void);
 
 @property (nonatomic, strong) UIImageView      *musicIcon;
 @property (nonatomic, strong) CircleTextView   *musicName;
+
+@property(nonatomic, weak)id <GetFollowsDelegate> followDelegate;
+
 
 - (void)play;
 - (void)pause;

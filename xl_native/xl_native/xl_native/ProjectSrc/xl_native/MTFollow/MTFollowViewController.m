@@ -150,6 +150,68 @@
     
 }
 
+#pragma mark --------------- GetFollowsDelegate -----------------
+
+- (void)zanClicked:(HomeListModel *)listModel{
+    
+    if([listModel.isLike intValue] == 0){ //点赞
+        
+        NetWork_mt_likeVideo *request = [[NetWork_mt_likeVideo alloc] init];
+        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        request.noodleVideoId = [NSString stringWithFormat:@"%@",listModel.noodleVideoId];
+        request.noodleVideoCover = listModel.noodleVideoCover;
+        request.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+            if(finished){
+                //赞成功，修改数值重新加载cell
+                listModel.isLike = [NSNumber numberWithInt:1];
+                listModel.likeSum = [NSNumber numberWithInt:[listModel.likeSum intValue]+1];
+                
+                [self.currentCell fillDataWithModel:listModel];
+            }
+            else{
+                [self showFaliureHUD:msg];
+            }
+        }];
+    }
+    else{ //已赞，取消赞
+        NetWork_mt_delLikeVideo *request = [[NetWork_mt_delLikeVideo alloc] init];
+        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        request.noodleVideoId = [NSString stringWithFormat:@"%@",listModel.noodleVideoId];
+        request.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+            if(finished){
+                
+                //取消赞成功，修改数值后重新加载cell
+                listModel.isLike = [NSNumber numberWithInt:0];
+                listModel.likeSum = [NSNumber numberWithInt:[listModel.likeSum intValue]-1];
+                [self.currentCell fillDataWithModel:listModel];
+            }
+            else{
+                [self showFaliureHUD:msg];
+            }
+        }];
+    }
+    
+}
+
+- (void)commentClicked:(HomeListModel *)listModel{
+    
+    CommentsPopView *popView = [[CommentsPopView alloc] initWithAwemeId:listModel];
+    [popView setCommitResult:^(BOOL finish, NSInteger totalCount) {
+        
+        listModel.commentSum = [NSString stringWithFormat:@"%ld",totalCount];
+        [self.currentCell fillDataWithModel:listModel];
+    }];
+    [popView show];
+}
+
+- (void)shareClicked:(HomeListModel *)listModel{
+    SharePopView *popView = [[SharePopView alloc] init];
+    popView.delegate = self;
+    [popView show];
+}
+
 #pragma mark --------------- tabbleView代理 -----------------
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -165,7 +227,7 @@
     if(self.mainDataArr.count > 0){
         FollowsVideoListCell *cell = [tableView dequeueReusableCellWithIdentifier:[FollowsVideoListCell cellId] forIndexPath:indexPath];
         HomeListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
-//        cell.getFollowsDelegate = self;
+        cell.followDelegate = self;
         [cell fillDataWithModel:model];
         [cell startDownloadBackgroundTask];
         return cell;

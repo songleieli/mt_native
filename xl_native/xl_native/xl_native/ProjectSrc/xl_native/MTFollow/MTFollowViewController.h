@@ -9,9 +9,14 @@
 #import "ZJCustomTabBarLjhTableViewController.h"
 
 #import "FollowsVideoListCell.h"
-#import "NetWork_mt_getFollowsVideoList.h"
+#import "CommentsPopView.h"
+#import "SharePopView.h"
 
-@interface MTFollowViewController : ZJCustomTabBarLjhTableViewController
+#import "NetWork_mt_getFollowsVideoList.h"
+#import "NetWork_mt_likeVideo.h"
+#import "NetWork_mt_delLikeVideo.h"
+
+@interface MTFollowViewController : ZJCustomTabBarLjhTableViewController<GetFollowsDelegate>
 
 @property (nonatomic, assign)BOOL isFirstLoad; //判断是否第一加载
 @property (nonatomic, assign) NSInteger currentIndex;
