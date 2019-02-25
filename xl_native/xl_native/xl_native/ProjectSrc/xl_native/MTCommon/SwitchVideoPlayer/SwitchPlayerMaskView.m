@@ -344,14 +344,15 @@
     self.commentNum.text = [NSString formatCount:[listLoginModel.commentSum intValue]];
     self.favoriteNum.text = [NSString formatCount:[listLoginModel.likeSum intValue]];
     
+    [self.favorite resetView];
     if([listLoginModel.isLike integerValue] == 1){
-        [self.favorite resetView];
         [self.favorite setUserLike];
     }
     else{
-         [self.favorite resetView];
         [self.favorite setUserUnLike];
     }
+    
+    [self.focus resetView];
     if([listLoginModel.isFlour integerValue] == 1){
         [self.focus setUserFollow];
     }

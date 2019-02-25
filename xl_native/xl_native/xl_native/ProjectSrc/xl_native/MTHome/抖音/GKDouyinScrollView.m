@@ -45,12 +45,12 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         // 设置手势滑动的位置距屏幕左边的区域
         CGFloat locationDistance = [UIScreen mainScreen].bounds.size.width;
         
-        NSLog(@"---------point = %@",NSStringFromCGPoint(point));
-        NSLog(@"---------locationDistance = %f",locationDistance);
+//        NSLog(@"---------point = %@",NSStringFromCGPoint(point));
+//        NSLog(@"---------locationDistance = %f",locationDistance);
         if (state == UIGestureRecognizerStateBegan || state == UIGestureRecognizerStatePossible) {
             CGPoint location = [gestureRecognizer locationInView:self];
-            NSLog(@"---------location = %@",NSStringFromCGPoint(point));
-            NSLog(@"---------self.contentOffset.x = %f",self.contentOffset.x);
+//            NSLog(@"---------location = %@",NSStringFromCGPoint(point));
+//            NSLog(@"---------self.contentOffset.x = %f",self.contentOffset.x);
             if (point.x > 0 && location.x < locationDistance && self.contentOffset.x <= 0) {
                 return YES;
             }

@@ -646,7 +646,11 @@
         request.content = [contentModel generateJsonStringForProperties];
         [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
             NSLog(@"----------");
-            if(finished){}
+            if(finished){
+                
+                _currentCell.listModel.isFlour = [NSNumber numberWithInteger:1];
+                
+            }
             else{
                 [UIWindow showTips:msg];
             }
