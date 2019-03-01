@@ -11,6 +11,7 @@
 
 #import "AlerViewJoinCostom.h"
 
+#import <TencentOpenAPI/TencentOAuth.h>
 #import "WXApi.h"
 #import "WeiboSDK.h"
 #import "WXApiManager.h"

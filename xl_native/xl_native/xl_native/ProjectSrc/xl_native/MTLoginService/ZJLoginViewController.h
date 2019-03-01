@@ -9,11 +9,15 @@
 //#import "JPUSHService.h"
 
 //#import "RegisterViewController.h"
+#import <TencentOpenAPI/TencentOAuth.h>
 
-@interface ZJLoginViewController : ZJBaseViewController
+@interface ZJLoginViewController : ZJBaseViewController<TencentSessionDelegate>
 
 /*注册成功后，需要带上手机号 RegisterViewController 中调用*/
 @property(nonatomic,strong)UITextField * textFieldUser;//userTextField;
 @property(nonatomic,strong)UITextField * textFieldPass;
+
+@property (nonatomic, strong)TencentOAuth *oauth;
+
 
 @end

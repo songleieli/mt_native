@@ -214,29 +214,29 @@
     }
     
     
-    /*
-     *增加根据 user_phone 和 project_id_owner 过滤缓存数据的 dic
-     */
+//    /*
+//     *增加根据 user_phone 和 project_id_owner 过滤缓存数据的 dic
+//     */
     NSMutableDictionary *filterDic = [[NSMutableDictionary alloc] init];
-    NSString *project_id_owner = [WCBaseContext sharedInstance].project_id_owner;
-    if(project_id_owner.trim.length > 0){
-        [filterDic setObject:project_id_owner forKey:@"project_id"];
-    }
-    NSString *user_phone = [WCBaseContext sharedInstance].user_phone;
-    if(user_phone.length > 0){
-        [filterDic setObject:user_phone forKey:@"user_phone"];
-    }
+//    NSString *project_id_owner = [WCBaseContext sharedInstance].project_id_owner;
+//    if(project_id_owner.trim.length > 0){
+//        [filterDic setObject:project_id_owner forKey:@"project_id"];
+//    }
+//    NSString *user_phone = [WCBaseContext sharedInstance].user_phone;
+//    if(user_phone.length > 0){
+//        [filterDic setObject:user_phone forKey:@"user_phone"];
+//    }
     
     NSString *tableName = [NSString stringWithFormat:@"%@_%@",self.interfaceName,NSStringFromClass([self responseType])];
     NSString *columName = NSStringFromClass([self responseType]);
     NSString *md5Str = [NSString stringWithFormat:@"%@_%@_%@",tableName,columName,propertiesStr];
     
-    /*
-     *MD5Str 添加过滤缓存字段
-     */
-    for(NSString *key in filterDic.allKeys){
-        md5Str = [NSString stringWithFormat:@"%@_cache_filter_%@",md5Str,[filterDic objectForKey:key]];
-    }
+//    /*
+//     *MD5Str 添加过滤缓存字段
+//     */
+//    for(NSString *key in filterDic.allKeys){
+//        md5Str = [NSString stringWithFormat:@"%@_cache_filter_%@",md5Str,[filterDic objectForKey:key]];
+//    }
     
     [[TSStorageManager sharedStorageManager] saveInterFaceCache:[result generateJsonStringForProperties]
                                                       tableName:tableName
@@ -284,14 +284,14 @@
      *增加根据 user_phone 和 project_id 过滤缓存数据的 dic
      */
     NSMutableDictionary *filterDic = [[NSMutableDictionary alloc] init];
-    NSString *project_id_owner = [WCBaseContext sharedInstance].project_id_owner;
-    if(project_id_owner.trim.length > 0){
-        [filterDic setObject:project_id_owner forKey:@"project_id"];
-    }
-    NSString *user_phone = [WCBaseContext sharedInstance].user_phone;
-    if(user_phone.length > 0){
-        [filterDic setObject:user_phone forKey:@"user_phone"];
-    }
+//    NSString *project_id_owner = [WCBaseContext sharedInstance].project_id_owner;
+//    if(project_id_owner.trim.length > 0){
+//        [filterDic setObject:project_id_owner forKey:@"project_id"];
+//    }
+//    NSString *user_phone = [WCBaseContext sharedInstance].user_phone;
+//    if(user_phone.length > 0){
+//        [filterDic setObject:user_phone forKey:@"user_phone"];
+//    }
     
     
     NSString *tableName = [NSString stringWithFormat:@"%@_%@",self.interfaceName,NSStringFromClass([self responseType])];

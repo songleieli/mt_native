@@ -60,30 +60,24 @@
 + (QQApiSendResultCode)SendReqToQZone:(QQBaseReq *)req;
 
 /**
- 向手Q 群部落发起分享请求
- \note H5分享只支持单张网络图片的传递
- \param req 分享内容的请求
- \return 请求发送结果码
- */
-+ (QQApiSendResultCode)SendReqToQQGroupTribe:(QQBaseReq *)req;
-
-/**
- 向手Q发送应答消息
- \param resp 应答消息
- \return 应答发送结果码
- */
-+ (QQApiSendResultCode)sendResp:(QQBaseResp *)resp;
-
-/**
  检测是否已安装QQ
  \return 如果QQ已安装则返回YES，否则返回NO
+
+ \note SDK目前已经支持QQ、TIM授权登录及分享功能， 会按照QQ>TIM的顺序进行调用。
+ 只要用户安装了QQ、TIM中任意一个应用，都可为第三方应用进行授权登录、分享功能。
+ 第三方应用在接入SDK时不需要判断是否安装QQ、TIM。若有判断安装QQ、TIM的逻辑建议移除。
  */
 + (BOOL)isQQInstalled;
 
 /**
- 批量检测QQ号码是否在线
+ 检测是否已安装TIM
+ \return 如果TIM已安装则返回YES，否则返回NO
+ 
+ \note SDK目前已经支持QQ、TIM授权登录及分享功能， 会按照QQ>TIM的顺序进行调用。
+ 只要用户安装了QQ、TIM中任意一个应用，都可为第三方应用进行授权登录、分享功能。
+ 第三方应用在接入SDK时不需要判断是否安装QQ、TIM。若有判断安装QQ、TIM的逻辑建议移除。
  */
-+ (void)getQQUinOnlineStatues:(NSArray *)QQUins delegate:(id<QQApiInterfaceDelegate>)delegate;
++ (BOOL)isTIMInstalled;
 
 /**
  检测QQ是否支持API调用
@@ -92,10 +86,34 @@
 + (BOOL)isQQSupportApi;
 
 /**
+ 检测TIM是否支持API调用
+ \return 如果当前安装TIM版本支持API调用则返回YES，否则返回NO
+ */
++ (BOOL)isTIMSupportApi;
+
+/**
+ 检测是否支持分享
+ \return 如果当前已安装QQ且QQ版本支持API调用 或者 当前已安装TIM且TIM版本支持API调用则返回YES，否则返回NO
+ */
++ (BOOL)isSupportShareToQQ;
+
+/**
+ 检测是否支持分享到QQ结合版QZone
+ \return 如果当前已安装QQ且QQ版本支持API调用则返回YES，否则返回NO
+ */
++ (BOOL)isSupportPushToQZone;
+
+/**
  启动QQ
  \return 成功返回YES，否则返回NO
  */
 + (BOOL)openQQ;
+
+/**
+ 启动TIM
+ \return 成功返回YES，否则返回NO
+ */
++ (BOOL)openTIM;
 
 /**
  获取QQ下载地址
@@ -105,4 +123,11 @@
  */
 + (NSString *)getQQInstallUrl;
 
+/**
+ 获取TIM下载地址
+ 
+ 如果App通过<code>QQApiInterface#isTIMInstalled</code>和<code>QQApiInterface#isTIMSupportApi</code>检测发现TIM没安装或当前版本TIM不支持API调用，可引导用户通过打开此链接下载最新版TIM。
+ \return iPhoneTIM下载地址
+ */
++ (NSString *)getTIMInstallUrl;
 @end

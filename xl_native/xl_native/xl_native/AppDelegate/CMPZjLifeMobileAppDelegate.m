@@ -7,13 +7,7 @@
 //
 
 #import "CMPZjLifeMobileAppDelegate.h"
-
 #import "TSStorageManager.h"
-//#import "JPUSHService.h"
-
-
-#define ZJ_JPUSH_KEY             @"c4983bc34ae2570bb4e8610e"  //极光推送
-
 
 @interface CMPZjLifeMobileAppDelegate ()<WXApiDelegate>
 
@@ -24,18 +18,13 @@
 
 #pragma mark ------------------静态方法------------------------
 +(CMPZjLifeMobileAppDelegate *)shareApp{
-    
     return (CMPZjLifeMobileAppDelegate *)[UIApplication sharedApplication].delegate;
-    
 }
 
 
 #pragma mark  ------------- 重载基类的方法-------------------
 
-
-
-- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
-{
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application{
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
 }
 
@@ -47,9 +36,9 @@
      */
     [super onBaseContextWillStartupWithOptions:launchOptions];
     
+    //打开数据库连接
     [[TSStorageManager sharedStorageManager] open];
     [[WCBaseContext sharedInstance] startupWithConfiguration:[GlobalFunc sharedInstance].gWCOnbConfiguration];
-    
     
     // 李振华添加键盘自动弹起事件
     IQKeyboardManager * manager = [IQKeyboardManager sharedManager];
@@ -58,22 +47,17 @@
     manager.shouldToolbarUsesTextFieldTintColor = NO;
     manager.enableAutoToolbar = NO;
     
-    
     //微信注册
-    [WXApi registerApp:[WCBaseContext sharedInstance].wxWgAppKey];
+    [WXApi registerApp:[WCBaseContext sharedInstance].wxAppId];
     //注册微博分享
     [WeiboSDK enableDebugMode:YES];
-    [WeiboSDK registerApp:[WCBaseContext sharedInstance].sinaWgAppKey];
+    [WeiboSDK registerApp:[WCBaseContext sharedInstance].sinaAppKey];
     
     //腾讯短视频
-    NSString *licenceURL = @"http://license.vod2.myqcloud.com/license/v1/d93b9f3fccc64773e5e283453fd26151/TXUgcSDK.licence";
-    NSString * licenceKey = @"c55e9e11f1132d8578b8aaf642699dc1";
-    [TXUGCBase setLicenceURL:licenceURL key:licenceKey];
+    [TXUGCBase setLicenceURL:[WCBaseContext sharedInstance].txShortVideoLicenceURL
+                         key:[WCBaseContext sharedInstance].txShortVideoLicenceKey];
     [TXLiveBase setConsoleEnabled:YES];
-    NSLog(@"SDK Version = %@", [TXLiveBase getSDKVersionStr]);
-    
-    
-    NSLog(@"--------");
+    NSLog(@"TXUGCBase SDK Version = %@", [TXLiveBase getSDKVersionStr]);
 }
 
 - (void)onBaseContextDidStartupWithOptions:(NSDictionary *)launchOptions{
@@ -98,12 +82,27 @@
     return vc;
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
-}
+/*
+ 1.OpenURL是你通过打开一个url的方式打开其它的应用或链接，
+ 2.handleOpenURL是其它应用通过调用你的app中设置的URL scheme打开你的应用。
+ */
+
+//- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+//    return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+//}
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [WXApi handleOpenURL:url delegate:self];
+   
+    NSString* urlstr = [url absoluteString];
+    if ([urlstr hasPrefix:@"wx"]) {//从微信返回面条
+        return [WXApi handleOpenURL:url delegate:self];
+    }
+    if([urlstr hasPrefix:@"tencent"]){//从qq返回面条
+        if (YES == [TencentOAuth CanHandleOpenURL:url]){
+            return [TencentOAuth HandleOpenURL:url];
+        }
+    }
+    return NO;
 }
 
 #pragma mark - 子类重载方法
@@ -141,12 +140,9 @@
                 [_thirddelegate loginSuccessByWechat:resp2.code];
             }
         }else{ //失败
-            
             //[self.rootViewController showFaliureHUD:[NSString stringWithFormat: @"登录失败，原因%@",resp.errStr]];
         }
     }
-    
-    
 }
 
 

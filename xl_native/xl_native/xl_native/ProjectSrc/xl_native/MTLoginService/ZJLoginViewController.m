@@ -667,7 +667,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json", @"text/json",@"text/plain", nil];
     
-    NSString *url = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code",[WCBaseContext sharedInstance].wxWgAppKey,@"cda2546b3248d1986e1a516f14c4d605",code];
+    NSString *url = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code",[WCBaseContext sharedInstance].wxAppId,@"cda2546b3248d1986e1a516f14c4d605",code];
     
     [manager GET:url parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
@@ -751,6 +751,52 @@
     
 }
 
+#pragma mark ------------- 腾讯登录Delegete ------------
+//登录成功回调
+- (void)tencentDidLogin {
+    
+    if (_oauth.accessToken && 0 != [_oauth.accessToken length])
+    {
+        //记录登录⽤用户的OpenID、Token以及过期时间
+        
+        
+        if ([_oauth getUserInfo])
+        {
+            NSLog(@"------");
+            //NSAssert(NO,@"获取用户信息失败");
+        }
+        
+        
+        
+    }
+    else
+    {
+        //登录不不成功 没有获取到accesstoken }
+    }
+}
+
+//⾮非⽹网络错误导致登录失败:
+- (void)tencentDidNotLogin:(BOOL)cancelled{
+    if (cancelled){ //⽤用户取消登录
+    }
+    else{
+            //登录失败
+    }
+}
+
+/**
+ * 登录时网络有问题的回调
+ */
+- (void)tencentDidNotNetWork{
+     //检查⽹网络设置
+}
+
+- (void)getUserInfoResponse:(APIResponse*) response{
+    
+    NSLog(@"--------");
+    
+}
+
 
 
 
@@ -758,17 +804,31 @@
 
 - (void)sendWeiboAuth{
     
-    if ([WeiboSDK isWeiboAppInstalled]) {
-        WBAuthorizeRequest *request = [WBAuthorizeRequest request];
-        //回调地址与 新浪微博开放平台中 我的应用  --- 应用信息 -----高级应用    -----授权设置 ---应用回调中的url保持一致就好了
-        request.redirectURI = [WCBaseContext sharedInstance].sinaCallBackURl;
-        //SCOPE 授权说明参考  http://open.weibo.com/wiki/
-        request.scope = @"all";
-        request.userInfo = nil;
-        [WeiboSDK sendRequest:request];
-    }else{
-        [self showFaliureHUD:@"请先安装微博客户端"];
-    }
+    
+
+    
+        //注册腾讯SDK
+        NSMutableArray * permissions = [[NSMutableArray alloc] initWithObjects:kOPEN_PERMISSION_GET_USER_INFO, kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,nil];
+        NSString *appid = [WCBaseContext sharedInstance].txAppId;
+        _oauth = [[TencentOAuth alloc] initWithAppId:appid
+                                         andDelegate:self];
+        //登录授权
+        _oauth.authMode = kAuthModeClientSideToken;
+        [_oauth authorize:permissions inSafari:NO];
+    
+    
+    
+//    if ([WeiboSDK isWeiboAppInstalled]) {
+//        WBAuthorizeRequest *request = [WBAuthorizeRequest request];
+//        //回调地址与 新浪微博开放平台中 我的应用  --- 应用信息 -----高级应用    -----授权设置 ---应用回调中的url保持一致就好了
+//        request.redirectURI = [WCBaseContext sharedInstance].sinaCallBackURl;
+//        //SCOPE 授权说明参考  http://open.weibo.com/wiki/
+//        request.scope = @"all";
+//        request.userInfo = nil;
+//        [WeiboSDK sendRequest:request];
+//    }else{
+//        [self showFaliureHUD:@"请先安装微博客户端"];
+//    }
     
     
 }

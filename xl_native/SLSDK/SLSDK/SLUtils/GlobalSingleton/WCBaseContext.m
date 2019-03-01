@@ -53,18 +53,14 @@ static BOOL _hasSetup;
 }
 
 -(NSString *)getAppInterfaceServer{
-    
-    NSString *groupName = [WCBaseContext sharedInstance].configuration.group_name;
-    groupName = groupName.trim;
-    
-    /*
+        /*
      * adressType 为 1.是测试环境。 2.为生产环境。
      */
     
     NSString *appServerAdress = @"";
     
     if ([[WCBaseContext sharedInstance].configuration.adressType isEqualToString:@"1"]){
-        appServerAdress = @"http://60.247.77.173:8090";
+        appServerAdress = @"http://106.13.57.126:8080";
     }
     else if ([[WCBaseContext sharedInstance].configuration.adressType isEqualToString:@"2"]){
         appServerAdress = @"https://csp.zmsq.net";
@@ -75,44 +71,12 @@ static BOOL _hasSetup;
     return appServerAdress;
 }
 
--(NSString *)getH5Server{
-    /*
-     * adressType 为 1.是测试环境。 2.为生产环境。3.为UAT环境
-     */
-    
-    NSString *h5BaseAdress = @"";
-    
-    // adressType 接口地址类型 1.测试环境 2.生产环境
-    if([[WCBaseContext sharedInstance].configuration.adressType isEqualToString:@"1"]){
-        h5BaseAdress = @"http://60.247.77.173:8090";
-    }
-    else if ([[WCBaseContext sharedInstance].configuration.adressType isEqualToString:@"2"]){
-        h5BaseAdress = @"https://hshop.zmsq.net";
-    }    else {
-        h5BaseAdress = @"https://hshop.zmsq.net";
-    }
-    return h5BaseAdress;
+-(NSString *)getWxAppId{
+    return @"wxffee1a1910728294";
 }
-
--(NSString *)getGameServer{
-    /*
-     * adressType 为 1.是测试环境。 2.为生产环境。3.为UAT环境
-     */
-    
-    NSString *h5BaseAdress = @"";
-    
-    // adressType 接口地址类型 1.测试环境 2.生产环境
-    if([[WCBaseContext sharedInstance].configuration.adressType isEqualToString:@"1"]){
-        h5BaseAdress = @"http://60.247.77.173:8090";
-    }
-    else if ([[WCBaseContext sharedInstance].configuration.adressType isEqualToString:@"2"]){
-        h5BaseAdress = @"https://hshop.zmsq.net";
-    }    else {
-        h5BaseAdress = @"https://hshop.zmsq.net";
-    }
-    return h5BaseAdress;
+-(NSString *)getTxAppId{
+    return @"101535022";
 }
-
 
 -(NSString *)getSinaAppKey{
     return @"2367230463";
@@ -122,35 +86,17 @@ static BOOL _hasSetup;
     return @"https://hshop.zmsq.net";
 }
 
--(NSString *)getWxAppKey{
-    return @"wx2dc4df89ef659f03";
+-(NSString *)getShortVideoLicenceURL{
+    return @"http://license.vod2.myqcloud.com/license/v1/d93b9f3fccc64773e5e283453fd26151/TXUgcSDK.licence";
 }
 
--(NSString *)getSinaWgAppKey{
-    return @"1171656667";
-}
-
--(NSString *)getSinaWgCallBackURl{
-    return @"https://hshop.zmsq.net";
-}
-
--(NSString *)getWxWgAppKey{
-    return @"wxffee1a1910728294";
+-(NSString *)getShortVideoLicenceKey{
+    return @"c55e9e11f1132d8578b8aaf642699dc1";
 }
 
 
-+ (double)randomDoubleStart:(double)a end:(double)b
-{
-    double random = ((double) arc4random()) / (double) ARC4RANDOM_MAX;
-    double diff = b - a;
-    double r = random * diff;
-    return a + r;
-}
 
-/*
- @property (strong, nonatomic,getter=getLatitude,setter=setLatitude:) NSString *latitude;   //当前用户经度
- @property (strong, nonatomic,getter=getLongitude,setter=setLongitude:) NSString *longitude; //当前用户纬度
- */
+
 
 -(void)setLatitude:(NSString*)latitude{
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
@@ -190,93 +136,6 @@ static BOOL _hasSetup;
     
     return longitude;
 }
-
-
-/*
- *中民居家Token，project_id和Url， user_phone
- */
-
--(void)setSourceUrl:(NSString*)sourceUrl{
-    
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setObject:sourceUrl forKey:ZJ_APP_USER_APP_SOURCE_URL];
-    [prefs synchronize];
-    
-    NSString *sourceUrlTemp = [prefs objectForKey:ZJ_APP_USER_APP_SOURCE_URL];
-    
-    NSLog(@"----------%@",sourceUrlTemp);
-    
-}
-
--(NSString*)getSourceUrl{
-    
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSString *sourceUrl = [prefs objectForKey:ZJ_APP_USER_APP_SOURCE_URL];
-    
-    return sourceUrl;
-}
-
--(void)setSourceToken:(NSString*)sourceToken{
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setObject:sourceToken forKey:ZJ_APP_USER_APP_SOURCE_TOKEN];
-    [prefs synchronize];
-}
-
--(NSString*)getSourceToken{
-    
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSString *sourceToken = [prefs objectForKey:ZJ_APP_USER_APP_SOURCE_TOKEN];
-    
-    return sourceToken;
-}
-
--(void)setProject_id:(NSString*)project_id{
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setObject:project_id forKey:ZJ_APP_USER_APP_PROJECT_ID];
-    [prefs synchronize];
-}
-
--(NSString*)getProject_id{
-    
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSString *project_id = [prefs objectForKey:ZJ_APP_USER_APP_PROJECT_ID];
-    
-    return project_id;
-}
-
--(void)setProject_id_owner:(NSString *)project_id_owner{
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setObject:project_id_owner forKey:ZJ_APP_USER_APP_PROJECT_ID_OWNER];
-    [prefs synchronize];
-}
-
--(NSString*)getProject_id_owmer{
-    
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSString *project_id_owner = [prefs objectForKey:ZJ_APP_USER_APP_PROJECT_ID_OWNER];
-    
-    return project_id_owner;
-}
-
--(void)setUser_phone:(NSString*)user_phone{
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setObject:user_phone forKey:ZJ_APP_USER_APP_USER_PHONE];
-    [prefs synchronize];
-}
-
--(NSString*)getUser_phone{
-    
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSString *user_phone = [prefs objectForKey:ZJ_APP_USER_APP_USER_PHONE];
-    
-    return user_phone;
-}
-
-
-
-
-
-
 
 
 - (WCPlistHelper *)plistHelper{

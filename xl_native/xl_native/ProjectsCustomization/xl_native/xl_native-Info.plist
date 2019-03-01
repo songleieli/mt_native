@@ -13,7 +13,7 @@
 	<key>CFBundleIcons~ipad</key>
 	<dict/>
 	<key>CFBundleIdentifier</key>
-	<string>com.mian.test</string>
+	<string>com.sworder.miaotiaotest</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -36,6 +36,16 @@
 				<string>wxffee1a1910728294</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>tencent</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>tencent101535022</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>136</string>
@@ -45,8 +55,6 @@
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>zmit</string>
-		<string>com.cmzhongjia.service</string>
 		<string>weibosdk2.5</string>
 		<string>weibosdk</string>
 		<string>sinaweibohdsso</string>
@@ -54,17 +62,27 @@
 		<string>sinaweibohd</string>
 		<string>sinaweibo</string>
 		<string>mqq</string>
-		<string>mqzone</string>
-		<string>mqqwpa</string>
 		<string>mqqapi</string>
-		<string>wtloginmqq2</string>
-		<string>mqqopensdkapiV3</string>
-		<string>mqqopensdkapiV2</string>
+		<string>mqqwpa</string>
+		<string>mqqbrowser</string>
+		<string>mttbrowser</string>
 		<string>mqqOpensdkSSoLogin</string>
-		<string>mqzoneopensdkapiV2</string>
-		<string>mqzoneopensdkapi19</string>
-		<string>mqzoneopensdkapi</string>
+		<string>mqqopensdkapiV2</string>
+		<string>mqqopensdkapiV3</string>
+		<string>mqqopensdkapiV4</string>
+		<string>wtloginmqq2</string>
+		<string>mqzone</string>
 		<string>mqzoneopensdk</string>
+		<string>mqzoneopensdkapi</string>
+		<string>mqzoneopensdkapi19</string>
+		<string>mqzoneopensdkapiV2</string>
+		<string>mqqapiwallet</string>
+		<string>mqqopensdkfriend</string>
+		<string>mqqopensdkdataline</string>
+		<string>mqqgamebindinggroup</string>
+		<string>mqqopensdkgrouptribeshare</string>
+		<string>tencentapi.qq.reqContent</string>
+		<string>tencentapi.qzone.reqContent</string>
 		<string>alipayshare</string>
 		<string>alipay</string>
 		<string>weixin</string>

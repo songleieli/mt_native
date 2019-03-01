@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0400F30B21AF8CD60038E16C /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0400F30921AF8CD50038E16C /* TencentOpenApi_IOS_Bundle.bundle */; };
 		0400F30D21AF8CD60038E16C /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0400F30A21AF8CD50038E16C /* TencentOpenAPI.framework */; };
 		0400F31521AF96F10038E16C /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0400F31221AF96F10038E16C /* README.txt */; };
 		0400F31721AF96F10038E16C /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0400F31421AF96F10038E16C /* libWeChatSDK.a */; };
@@ -1003,7 +1002,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0400F30921AF8CD50038E16C /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		0400F30A21AF8CD50038E16C /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		0400F31021AF96F10038E16C /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		0400F31121AF96F10038E16C /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
@@ -1448,8 +1446,6 @@
 		04C8820E2109AB9800811DAD /* BaseWKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWKWebViewController.m; sourceTree = "<group>"; };
 		04C8820F2109AB9800811DAD /* BaseWKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWKWebViewController.h; sourceTree = "<group>"; };
 		04CBB6012179ADAA00658E47 /* xl_native_toB.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = xl_native_toB.bundle; sourceTree = "<group>"; };
-		04CBB6032179B83400658E47 /* XlNativeToBDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XlNativeToBDelegate.m; sourceTree = "<group>"; };
-		04CBB6042179B83400658E47 /* XlNativeToBDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XlNativeToBDelegate.h; sourceTree = "<group>"; };
 		04CBC0082179C00F00658E47 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		04CBC0092179C00F00658E47 /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
 		04CBC00A2179C00F00658E47 /* UIScrollView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJExtension.h"; sourceTree = "<group>"; };
@@ -2668,7 +2664,6 @@
 		0400F30821AF8CD50038E16C /* QQShare */ = {
 			isa = PBXGroup;
 			children = (
-				0400F30921AF8CD50038E16C /* TencentOpenApi_IOS_Bundle.bundle */,
 				0400F30A21AF8CD50038E16C /* TencentOpenAPI.framework */,
 			);
 			path = QQShare;
@@ -4907,8 +4902,6 @@
 				738866761CE2C7E700296E79 /* BaseDelegate */,
 				D954C6901DD1B05A003CA535 /* CMPZjLifeMobileAppDelegate.h */,
 				D954C6911DD1B05A003CA535 /* CMPZjLifeMobileAppDelegate.m */,
-				04CBB6042179B83400658E47 /* XlNativeToBDelegate.h */,
-				04CBB6032179B83400658E47 /* XlNativeToBDelegate.m */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -5597,8 +5590,8 @@
 				ORGANIZATIONNAME = CMP_Ljh;
 				TargetAttributes = {
 					D954C4AE1DD1A40F003CA535 = {
-						DevelopmentTeam = Q9N9BB8PF8;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = XMEH9TYDPF;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -5786,7 +5779,6 @@
 				04CBC2F12179C01200658E47 /* ic_record@2x.png in Resources */,
 				04E6E8F021A8FFDC007C8A16 /* ghostshadow-16.png in Resources */,
 				04E6E9D221A8FFDC007C8A16 /* phantom-7.png in Resources */,
-				0400F30B21AF8CD60038E16C /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				D954C68E1DD1AB2C003CA535 /* onbConfiguration.plist in Resources */,
 				04E6E98321A8FFDC007C8A16 /* fenlie5.png in Resources */,
 				04E6E94421A8FFDC007C8A16 /* donggan6.png in Resources */,
@@ -6704,8 +6696,8 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q9N9BB8PF8;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = XMEH9TYDPF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6764,10 +6756,10 @@
 					"-ObjC",
 					"-fobjc-arc",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shotvideo.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sworder.miaotiaotest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = ss;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/xl_native/3rd/JPush-iOS-SDK-2.1-2.7/lib";
 			};
 			name = Debug;
@@ -6779,9 +6771,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q9N9BB8PF8;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = XMEH9TYDPF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6840,10 +6832,10 @@
 					"-ObjC",
 					"-fobjc-arc",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shotvideo.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sworder.miaotiaotest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = ss;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/xl_native/3rd/JPush-iOS-SDK-2.1-2.7/lib";
 			};
 			name = Release;
