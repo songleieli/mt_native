@@ -439,6 +439,14 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
     
 }
 
+-(void)prepareForReuse {
+    [super prepareForReuse];
+    
+    _isPlayerReady = NO;
+    [self.playerView cancelLoading];
+//    [self.maskView hidePlayBtn];
+}
+
 #pragma mark ---------AVPlayerUpdateDelegate-------------
 
 //播放进度更新回调方法

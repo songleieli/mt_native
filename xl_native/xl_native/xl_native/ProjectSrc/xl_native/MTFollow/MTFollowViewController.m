@@ -24,8 +24,8 @@
     [UIApplication sharedApplication].statusBarHidden = NO;
     self.tabBar.top = [self getTabbarTop];    //  重新设置tabbar的高度
     
-    [self.mainDataArr removeAllObjects]; //加载页面内容时，先清除老数据
-    [self initRequest];
+//    [self.mainDataArr removeAllObjects]; //加载页面内容时，先清除老数据
+//    [self initRequest];
 }
 
 -(void)initNavTitle{
@@ -62,19 +62,9 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.backgroundColor = [UIColor clearColor]; //RGBFromColor(0xecedf1);
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.mainTableView.mj_header = nil;
-    self.mainTableView.mj_footer = nil;
     [self.mainTableView registerClass:FollowsVideoListCell.class forCellReuseIdentifier:[FollowsVideoListCell cellId]];
     
-    /*
-     滚动到指定的行，此时并没有响应 scrollViewDidEndDecelerating
-     */
-//    NSIndexPath *curIndexPath = [NSIndexPath indexPathForRow:self.currentIndex inSection:0];
-//    [self.mainTableView scrollToRowAtIndexPath:curIndexPath atScrollPosition:UITableViewScrollPositionMiddle
-//                                      animated:NO];
-    
-//    self.currentCell = [self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentIndex inSection:0]];
-//    [self playCurCellVideo];
+    [self.mainTableView.mj_header beginRefreshing];
 }
 
 //预先计算cell的g高度
@@ -118,6 +108,25 @@
     }
 }
 
+-(void)loadVideoData:(GetFollowsVideoListResponse *)result{
+    if (self.currentPageIndex == 0 ) {
+        [self.mainDataArr removeAllObjects];
+        [self refreshNoDataViewWithListCount:result.obj.count];
+    }
+    [self countCellHeight:result.obj]; //计算cell的高度
+    [self.mainDataArr addObjectsFromArray:result.obj];
+    [self.mainTableView reloadData];
+    
+    if(self.isFirstLoad){//第一次加载
+        self.isFirstLoad = NO;
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentIndex inSection:0];
+        self.currentCell = [self.mainTableView cellForRowAtIndexPath:indexPath];
+        [self playCurCellVideo];
+    }
+}
+
+
 #pragma mark ------ initRequest  ------
 
 -(void)initRequest{
@@ -133,21 +142,30 @@
     } finishBlock:^(GetFollowsVideoListResponse *result, NSString *msg, BOOL finished) {
         NSLog(@"----------------");
         
-        
-        [self countCellHeight:result.obj]; //计算cell的高度
-
-        [self.mainDataArr addObjectsFromArray:result.obj];
-        [self.mainTableView reloadData];
-        
-        if(self.isFirstLoad){//第一次加载
-            self.isFirstLoad = NO;
-            
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentIndex inSection:0];
-            self.currentCell = [self.mainTableView cellForRowAtIndexPath:indexPath];
-            [self playCurCellVideo];
+        [self.mainTableView.mj_header endRefreshing];
+        if(finished){
+            [self loadVideoData:result];
         }
     }];
     
+}
+
+#pragma mark - 数据加载代理
+-(void)loadNewData{
+    self.mainTableView.mj_footer.hidden = YES;
+
+    self.currentPageIndex = 0;
+    [self initRequest];
+}
+
+-(void)loadMoreData{
+//    self.tableView.mj_header.hidden = YES;
+//    [self initRequest];
+//    if (self.totalCount == self.listDataArray.count) {
+//        [self showFaliureHUD:@"暂无更多数据"];
+//        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+//        self.tableView.mj_footer.hidden = YES;
+//    }
 }
 
 #pragma mark --------------- GetFollowsDelegate -----------------

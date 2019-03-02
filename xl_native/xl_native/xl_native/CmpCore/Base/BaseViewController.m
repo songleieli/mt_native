@@ -34,9 +34,16 @@
 
 @implementation BaseViewController
 
-+ (instancetype)classViewController {
+- (instancetype)init {
     
-    return [[[self class] alloc] init];
+    if(self = [super init]){
+        /*
+         初始化页面Index和PageSize
+         */
+        self.currentPageIndex = 0;
+        self.currentPageSize = 20;
+    }
+    return self;
 }
 
 - (UIView *)navBackGround{
@@ -230,14 +237,7 @@
     
     [self.view endEditing:YES];
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    
     [self.navigationController popViewControllerAnimated:YES];
-    
-//    if (self.presentingViewController) {
-//        [self dismissViewControllerAnimated:YES completion:nil];
-//    } else {
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }
 }
 
 #pragma -mark WCServiceJrLoanDelegate

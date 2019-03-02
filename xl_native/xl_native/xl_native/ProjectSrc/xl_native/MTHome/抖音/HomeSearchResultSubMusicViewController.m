@@ -58,7 +58,7 @@
 
 -(void)loadNewData{
     self.mainTableView.mj_footer.hidden = YES;
-    self.currentPage = 0;
+    self.currentPageIndex = 0;
     
     [self initRequest];
     
@@ -108,14 +108,14 @@
 
 -(void)loadMusicData:(GetFuzzyMusicListResponse *)result{
     
-    if (self.currentPage == 0 ) {
+    if (self.currentPageIndex == 0 ) {
         [self.mainDataArr removeAllObjects];
         self.mainDataArr = nil;
         self.mainDataArr = [[NSMutableArray alloc]init];
         [self refreshNoDataViewWithListCount:result.obj.count];
     }
     [self.mainDataArr addObjectsFromArray:result.obj];
-    self.currentPage += 1;
+    self.currentPageIndex += 1;
     [self.mainTableView reloadData];
 }
 

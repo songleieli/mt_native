@@ -38,7 +38,7 @@
         
         self.mainDataArr = data;
         self.currentIndex = currentIndex;
-        self.currentPage = pageIndex;
+        self.currentPageIndex = pageIndex;
         self.pageSize = pageSize;
         self.videoType = videoType;
         
@@ -178,7 +178,7 @@
 -(void)loadNewListData{
     self.currentIndex = 0; //默认第一条视频
     self.isFirstLoad = YES;
-    self.currentPage = 0;
+    self.currentPageIndex = 0;
     [self.mainDataArr removeAllObjects];
     [self initRequest];
 }
@@ -219,7 +219,7 @@
 -(void)initRequest {
     
     NetWork_mt_home_list *request = [[NetWork_mt_home_list alloc] init];
-    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPage+1];
+    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex+1];
     request.pageSize = @"20";
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     [request startGetWithBlock:^(HomeListResponse *result, NSString *msg) {
@@ -313,7 +313,7 @@
     
     NSInteger offset = self.mainDataArr.count - self.currentIndex;
     if(offset == 2){ //开始加载下一页
-        self.currentPage += 1;
+        self.currentPageIndex += 1;
         [self initRequest];
     }
 }
@@ -329,7 +329,7 @@
         
         NetWork_mt_addVideoPlay *request = [[NetWork_mt_addVideoPlay alloc] init];
         request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-        request.noodleVideoId = listModel.noodleVideoId;
+        request.noodleVideoId = [NSString stringWithFormat:@"%@",listModel.noodleVideoId];
         [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
             if(finished){
                 NSLog(@"-----------播放量增加-----------");

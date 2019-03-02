@@ -125,9 +125,9 @@
 }
 
 -(void)loadNewListData{
-    self.currentIndex = 0; //默认第一条视频
+    self.currentPlayVideoIndex = 0; //默认第一条视频
     self.isFirstLoad = YES;
-    self.currentPage = 0;
+    self.currentPageIndex = 0; //刷新是显示第一页美容
     [self.mainDataArr removeAllObjects];
     [self initRequest];
 }
@@ -150,7 +150,7 @@
         //当前cell的视频源还未准备好播放，则实现cell的OnPlayerReady Block 用于等待视频准备好后通知播放
         self.currentCell.onPlayerReady = ^{
             NSIndexPath *indexPath = [wself.mainTableView indexPathForCell:wcell];
-            if(!wself.isCurPlayerPause && indexPath && indexPath.row == wself.currentIndex) {
+            if(!wself.isCurPlayerPause && indexPath && indexPath.row == wself.currentPlayVideoIndex) {
                 [wcell play];
             }
         };
@@ -388,8 +388,8 @@
             
         }];
         
-        self.currentIndex = 1;
-        self.currentCell = [self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_currentIndex inSection:0]];
+        self.currentPlayVideoIndex = 1;
+        self.currentCell = [self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentPlayVideoIndex inSection:0]];
         [self playCurCellVideo];
     }
     else{
@@ -461,8 +461,8 @@
 -(void)initRequest {
     
     NetWork_mt_home_list *request = [[NetWork_mt_home_list alloc] init];
-    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPage+1];
-    request.pageSize = @"20";
+    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex+1];
+    request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     [request startGetWithBlock:^(HomeListResponse *result, NSString *msg) {
         /*
@@ -479,7 +479,7 @@
             if(self.isFirstLoad){//第一次加载
                 self.isFirstLoad = NO;
                 
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentIndex inSection:0];
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentPlayVideoIndex inSection:0];
                 self.currentCell = [self.mainTableView cellForRowAtIndexPath:indexPath];
                 [self playCurCellVideo];
             }
@@ -551,16 +551,16 @@
     
     CGPoint rect = scrollView.contentOffset;
     NSInteger index = rect.y / self.view.height;
-    if (self.currentIndex != index) {
-        self.currentIndex = index;
+    if (self.currentPlayVideoIndex != index) {
+        self.currentPlayVideoIndex = index;
         
-        self.currentCell = [self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentIndex inSection:0]];
+        self.currentCell = [self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentPlayVideoIndex inSection:0]];
         [self playCurCellVideo];
     }
     
-    NSInteger offset = self.mainDataArr.count - self.currentIndex;
+    NSInteger offset = self.mainDataArr.count - self.currentPlayVideoIndex;
     if(offset == 2){ //开始加载下一页
-        self.currentPage += 1;
+        self.currentPageIndex += 1;
         [self initRequest];
     }
 }
@@ -584,15 +584,6 @@
 
 -(void)scanBtnClick{
     NSLog(@"------scanBtnClick----------");
-    
-    
-    
-//    //test
-//    NSLog(@"------查看收藏列表-----");
-//
-//    UserCollectionController *collectionController = [[UserCollectionController alloc] init];
-//    collectionController.userNoodleId = @"18818714082349056";
-//    [self pushNewVC:collectionController animated:YES];
 }
 
 #pragma mark --------------- HomeDelegate代理 -----------------

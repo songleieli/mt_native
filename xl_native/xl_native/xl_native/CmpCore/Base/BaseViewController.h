@@ -26,8 +26,6 @@
 @property (nonatomic, assign) BOOL          isGroup;
 
 
-+ (instancetype)classViewController;
-
 - (void)setTitle:(NSString *)title;
 
 -(void)setBtnRight:(UIButton *)btnRight;
@@ -77,9 +75,14 @@
  */
 @property (nonatomic, strong) MJTableView * mainTableView;
 /*
- *当前页,默认值是1
+ *当前页,默认值是0，
  */
-@property (nonatomic, assign) NSInteger     currentPage;
+@property (nonatomic, assign) NSInteger     currentPageIndex;
+
+/*
+ *当前页面请求数量,默认值20
+ */
+@property (nonatomic, assign) NSInteger     currentPageSize;
 /*
  *总条数
  */
