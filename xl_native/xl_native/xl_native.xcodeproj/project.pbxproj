@@ -134,6 +134,7 @@
 		04A04EB321ECDEA8007CBABF /* NetWork_mt_getHotSearchSix.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A04EB121ECDEA8007CBABF /* NetWork_mt_getHotSearchSix.m */; };
 		04A04EB621ECE553007CBABF /* HomeSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A04EB421ECE552007CBABF /* HomeSearchResultViewController.m */; };
 		04A308F0222A4EEC000BC762 /* NSNotification+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A308EE222A4EEB000BC762 /* NSNotification+Extension.m */; };
+		04A308F7222A8346000BC762 /* FlourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A308F5222A8345000BC762 /* FlourCell.m */; };
 		04A8C1252219013F004980F5 /* NetWork_mt_collectionTopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A8C1232219013E004980F5 /* NetWork_mt_collectionTopic.m */; };
 		04A8C12822190992004980F5 /* NetWork_mt_getTopicCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A8C12722190992004980F5 /* NetWork_mt_getTopicCollections.m */; };
 		04A919A021E4EA7A002DDB1A /* NetWork_mt_getFollowsVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A9199E21E4EA7A002DDB1A /* NetWork_mt_getFollowsVideoList.m */; };
@@ -1267,6 +1268,8 @@
 		04A04EB521ECE553007CBABF /* HomeSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSearchResultViewController.h; sourceTree = "<group>"; };
 		04A308EE222A4EEB000BC762 /* NSNotification+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotification+Extension.m"; sourceTree = "<group>"; };
 		04A308EF222A4EEB000BC762 /* NSNotification+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotification+Extension.h"; sourceTree = "<group>"; };
+		04A308F5222A8345000BC762 /* FlourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlourCell.m; sourceTree = "<group>"; };
+		04A308F6222A8346000BC762 /* FlourCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlourCell.h; sourceTree = "<group>"; };
 		04A8C1232219013E004980F5 /* NetWork_mt_collectionTopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_collectionTopic.m; sourceTree = "<group>"; };
 		04A8C1242219013E004980F5 /* NetWork_mt_collectionTopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_collectionTopic.h; sourceTree = "<group>"; };
 		04A8C12622190991004980F5 /* NetWork_mt_getTopicCollections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getTopicCollections.h; sourceTree = "<group>"; };
@@ -4138,6 +4141,8 @@
 		04D9B4CB21D343A300DEC8B9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				04A308F6222A8346000BC762 /* FlourCell.h */,
+				04A308F5222A8345000BC762 /* FlourCell.m */,
 				04D9B4CD21D343A300DEC8B9 /* MessageCell.h */,
 				04D9B4CC21D343A300DEC8B9 /* MessageCell.m */,
 			);
@@ -6575,6 +6580,7 @@
 				D9F86DC81DEBEE7600C3A2B6 /* TZAssetModel.m in Sources */,
 				0405BE7F2220F6F90098D590 /* UserCollectionSubTopicViewController.m in Sources */,
 				04A919A421E4F045002DDB1A /* FollowsVideoListCell.m in Sources */,
+				04A308F7222A8346000BC762 /* FlourCell.m in Sources */,
 				04C2615921A68FB200374E4D /* TCBGMCell.m in Sources */,
 				04CBC3C12179C01300658E47 /* GPUImageXYDerivativeFilter.m in Sources */,
 				04AB304021CA91310072808E /* GKDouyinScrollView.m in Sources */,

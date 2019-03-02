@@ -58,12 +58,10 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.backgroundColor = [UIColor clearColor]; //RGBFromColor(0xecedf1);
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.mainTableView.mj_header = nil;
-    self.mainTableView.mj_footer = nil;
     [self.mainTableView registerClass:MessageCell.class forCellReuseIdentifier:[MessageCell cellId]];
-
-    
     self.mainTableView.tableHeaderView = [self getHeadView];
+    
+    [self.mainTableView.mj_header beginRefreshing];
 }
 
 -(UIView*)getHeadView{
@@ -137,6 +135,23 @@
     }
 }
 
+#pragma mark - 数据加载代理
+-(void)loadNewData{
+    self.mainTableView.mj_footer.hidden = YES;
+    self.currentPageIndex = 0;
+    [self initRequest];
+}
+
+-(void)loadMoreData{
+    //    self.tableView.mj_header.hidden = YES;
+    //    [self initRequest];
+    //    if (self.totalCount == self.listDataArray.count) {
+    //        [self showFaliureHUD:@"暂无更多数据"];
+    //        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+    //        self.tableView.mj_footer.hidden = YES;
+    //    }
+}
+
 #pragma mark ------ initRequest  ------
 
 -(void)initRequest{
@@ -144,20 +159,29 @@
     NetWork_mt_getFollows *request = [[NetWork_mt_getFollows alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.pageNo = @"1";
-    request.pageSize = @"20";
+    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex+1];
+    request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {
         /*
          *暂不考虑缓存问题
          */
     } finishBlock:^(GetFollowsResponse *result, NSString *msg, BOOL finished) {
-        NSLog(@"");
-        
-        [self.mainDataArr addObjectsFromArray:result.obj];
-        [self.mainTableView reloadData];
+        [self.mainTableView.mj_header endRefreshing];
+        if(finished){
+            [self loadData:result];
+        }
     }];
-    
 }
+
+-(void)loadData:(GetFollowsResponse *)result{
+    if (self.currentPageIndex == 0 ) {
+        [self.mainDataArr removeAllObjects];
+        [self refreshNoDataViewWithListCount:result.obj.count];
+    }
+    [self.mainDataArr addObjectsFromArray:result.obj];
+    [self.mainTableView reloadData];
+}
+
 
 #pragma mark --------------- tabbleView代理 -----------------
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

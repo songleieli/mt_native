@@ -133,8 +133,8 @@
     
     NetWork_mt_getFollowsVideoList *request = [[NetWork_mt_getFollowsVideoList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.pageNo = @"1";
-    request.pageSize = @"20";
+    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex+1];
+    request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {
         /*
          *暂不考虑缓存问题
@@ -153,7 +153,6 @@
 #pragma mark - 数据加载代理
 -(void)loadNewData{
     self.mainTableView.mj_footer.hidden = YES;
-
     self.currentPageIndex = 0;
     [self initRequest];
 }

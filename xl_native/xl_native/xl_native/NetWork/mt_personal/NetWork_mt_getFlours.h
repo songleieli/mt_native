@@ -56,5 +56,8 @@
 @interface NetWork_mt_getFlours : WCServiceBase
 
 @property (nonatomic,strong) NSString * currentNoodleId;
+@property (nonatomic,strong) NSString * noodleId;
+@property (nonatomic,strong) NSString * pageNo;
+@property (nonatomic,strong) NSString * pageSize;
 
 @end
