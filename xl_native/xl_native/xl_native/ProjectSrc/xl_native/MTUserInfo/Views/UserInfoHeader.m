@@ -279,7 +279,7 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
     }];
     
     _city = [[UITextView alloc] init];
-    _city.text = @"上海";
+    _city.text = @"";
     _city.textColor = ColorWhite;
     _city.font = SuperSmallFont;
     _city.scrollEnabled = NO;
@@ -357,6 +357,13 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
     }
     else{
         _sendMessage.text = @"发消息";
+    }
+    
+    if(user.city.length > 0){
+        _city.text = user.city;
+    }
+    else{
+        _city.text = @"暂无城市";
     }
     
     [_douyinNum setText:[NSString stringWithFormat:@"面条号:%@", user.noodleId]];

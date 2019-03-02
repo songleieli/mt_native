@@ -275,7 +275,7 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
     
     NetWork_mt_getCommentList *request = [[NetWork_mt_getCommentList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.noodleVideoId = self.listModel.noodleVideoId;
+    request.noodleVideoId = [NSString stringWithFormat:@"%@",self.listModel.noodleVideoId];
     request.pageNo = [NSString stringWithFormat:@"%ld",pageIndex];
     request.pageSize = [NSString stringWithFormat:@"%ld",pageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {
@@ -496,6 +496,10 @@ static const CGFloat kCommentTextViewTopBottomInset          = 15;
         _placeholderLabel.frame = CGRectMake(kCommentTextViewLeftInset, 0, ScreenWidth - kCommentTextViewLeftInset - kCommentTextViewRightInset, 50);
         [_textView addSubview:_placeholderLabel];
         
+        
+        //test
+//        _textView.backgroundColor = [UIColor redColor];
+        
         _atImageView = [[UIImageView alloc] init];
         _atImageView.contentMode = UIViewContentModeCenter;
         _atImageView.image = [UIImage imageNamed:@"iconWhiteaBefore"];
@@ -531,7 +535,9 @@ static const CGFloat kCommentTextViewTopBottomInset          = 15;
 
 //keyboard notification
 - (void)keyboardWillShow:(NSNotification *)notification {
-    //    _keyboardHeight = [notification keyBoardHeight];
+    
+    _keyboardHeight = [notification keyBoardHeight];
+    
     [self updateTextViewFrame];
     _atImageView.image = [UIImage imageNamed:@"iconBlackaBefore"];
     _container.backgroundColor = ColorWhite;

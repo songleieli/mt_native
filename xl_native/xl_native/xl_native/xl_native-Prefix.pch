@@ -58,6 +58,8 @@
 #import "iToast.h"
 #import "UIWindow+Extension.h"
 #import "NSAttributedString+Extension.h"
+#import "NSNotification+Extension.h"
+
 
 /*
  *AVPlayer

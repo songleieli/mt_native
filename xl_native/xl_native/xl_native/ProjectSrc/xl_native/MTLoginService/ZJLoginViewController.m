@@ -755,19 +755,22 @@
 //登录成功回调
 - (void)tencentDidLogin {
     
-    if (_oauth.accessToken && 0 != [_oauth.accessToken length])
-    {
+    if (_oauth.accessToken && 0 != [_oauth.accessToken length]){
         //记录登录⽤用户的OpenID、Token以及过期时间
         
+        NetWork_mt_login *request = [[NetWork_mt_login alloc] init];
+        request.accoutType = @"2";//qq登录
+        request.accessToken = _oauth.accessToken;
         
-        if ([_oauth getUserInfo])
-        {
-            NSLog(@"------");
-            //NSAssert(NO,@"获取用户信息失败");
-        }
-        
-        
-        
+        [request showWaitMsg:@"正在登陆，请稍后......" handle:self];
+        [request startPostWithBlock:^(LoginResponse *result, NSString *msg, BOOL finished) {
+            
+            
+            if(finished){
+                [self deal_loginRespones:result.obj];
+            }
+            NSLog(@"----");
+        }];
     }
     else
     {

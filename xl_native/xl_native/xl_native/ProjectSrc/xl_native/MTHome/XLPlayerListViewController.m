@@ -713,13 +713,18 @@
 
 - (void)commentClicked:(HomeListModel *)listModel{
     
-    CommentsPopView *popView = [[CommentsPopView alloc] initWithAwemeId:listModel];
-    [popView setCommitResult:^(BOOL finish, NSInteger totalCount) {
-        
-        listModel.commentSum = [NSString stringWithFormat:@"%ld",totalCount];
-        [self.currentCell fillDataWithModel:listModel];
-    }];
-    [popView show];
+    [[ZJLoginService sharedInstance] authenticateWithCompletion:^(BOOL success) {
+        CommentsPopView *popView = [[CommentsPopView alloc] initWithAwemeId:listModel];
+        [popView setCommitResult:^(BOOL finish, NSInteger totalCount) {
+            listModel.commentSum = [NSString stringWithFormat:@"%ld",totalCount];
+            [self.currentCell fillDataWithModel:listModel];
+        }];
+        [popView show];
+    } cancelBlock:nil isAnimat:YES];
+    
+
+    
+    
 }
 
 - (void)shareClicked:(HomeListModel *)listModel{
