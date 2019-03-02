@@ -8,7 +8,7 @@
 
 #import "MTMyCommentViewController.h"
 
-@interface MTMyCommentViewController ()<GetFollowsDelegate>
+@interface MTMyCommentViewController ()<CommentMeListDelegate>
 
 @property (copy, nonatomic) NSString *myCallBack;
 
@@ -68,35 +68,60 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.backgroundColor = [UIColor clearColor]; //RGBFromColor(0xecedf1);
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.mainTableView.mj_header = nil;
-    self.mainTableView.mj_footer = nil;
-    [self.mainTableView registerClass:MessageCell.class forCellReuseIdentifier:[MessageCell cellId]];    
+    [self.mainTableView registerClass:CommentMeListCell.class forCellReuseIdentifier:[CommentMeListCell cellId]];
+    [self.mainTableView.mj_header beginRefreshing];
 }
 
 -(void)backBtnClick:(UIButton*)btn{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - 数据加载代理
+-(void)loadNewData{
+    self.mainTableView.mj_footer.hidden = YES;
+    self.currentPageIndex = 0;
+    [self initRequest];
+}
+
+-(void)loadMoreData{
+    //    self.tableView.mj_header.hidden = YES;
+    //    [self initRequest];
+    //    if (self.totalCount == self.listDataArray.count) {
+    //        [self showFaliureHUD:@"暂无更多数据"];
+    //        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+    //        self.tableView.mj_footer.hidden = YES;
+    //    }
+}
+
 #pragma mark ------ initRequest  ------
 
 -(void)initRequest{
     
-    NetWork_mt_getFollows *request = [[NetWork_mt_getFollows alloc] init];
+    NetWork_mt_getCommentMeList *request = [[NetWork_mt_getCommentMeList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.pageNo = @"1";
-    request.pageSize = @"20";
+    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex+1];
+    request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {
         /*
          *暂不考虑缓存问题
          */
-    } finishBlock:^(GetFollowsResponse *result, NSString *msg, BOOL finished) {
-        NSLog(@"");
-        
-        [self.mainDataArr addObjectsFromArray:result.obj];
-        [self.mainTableView reloadData];
+    } finishBlock:^(GetCommentMeListResponse *result, NSString *msg, BOOL finished) {
+        [self.mainTableView.mj_header endRefreshing];
+        if(finished){
+            [self loadData:result];
+        }
     }];
     
+}
+
+-(void)loadData:(GetCommentMeListResponse *)result{
+    if (self.currentPageIndex == 0 ) {
+        [self.mainDataArr removeAllObjects];
+        [self refreshNoDataViewWithListCount:result.obj.count];
+    }
+    [self.mainDataArr addObjectsFromArray:result.obj];
+    [self.mainTableView reloadData];
 }
 
 #pragma mark --------------- tabbleView代理 -----------------
@@ -112,9 +137,9 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if(self.mainDataArr.count > 0){
-        MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:[MessageCell cellId] forIndexPath:indexPath];
-        GetFollowsModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
-        cell.getFollowsDelegate = self;
+        CommentMeListCell *cell = [tableView dequeueReusableCellWithIdentifier:[CommentMeListCell cellId] forIndexPath:indexPath];
+        GetCommentMeListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
+        cell.commentMeListDelegate = self;
         [cell fillDataWithModel:model];
         return cell;
     }
@@ -130,13 +155,13 @@
 //设置每一组的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return ZJMessageCellHeight;
+    return CommentMeListCellHeight;
 }
 
--(void)btnDeleteClick:(GetFollowsModel*)model{
+-(void)btnCellClick:(GetCommentMeListModel*)model{
     
     UserInfoViewController *userInfoViewController = [[UserInfoViewController alloc] init];
-    userInfoViewController.userNoodleId = model.noodleId;
+    userInfoViewController.userNoodleId = model.commentNoodleId;
     userInfoViewController.fromType = FromTypeHome; //我的页面，需要显示返回按钮，隐藏TabBar
     [self pushNewVC:userInfoViewController animated:YES];
     

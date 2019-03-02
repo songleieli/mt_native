@@ -135,6 +135,8 @@
 		04A04EB621ECE553007CBABF /* HomeSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A04EB421ECE552007CBABF /* HomeSearchResultViewController.m */; };
 		04A308F0222A4EEC000BC762 /* NSNotification+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A308EE222A4EEB000BC762 /* NSNotification+Extension.m */; };
 		04A308F7222A8346000BC762 /* FlourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A308F5222A8345000BC762 /* FlourCell.m */; };
+		04A308FA222A8D41000BC762 /* NetWork_mt_getCommentMeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A308F9222A8D40000BC762 /* NetWork_mt_getCommentMeList.m */; };
+		04A308FD222A8EC8000BC762 /* NetWork_mt_getLikeMeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A308FB222A8EC7000BC762 /* NetWork_mt_getLikeMeList.m */; };
 		04A8C1252219013F004980F5 /* NetWork_mt_collectionTopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A8C1232219013E004980F5 /* NetWork_mt_collectionTopic.m */; };
 		04A8C12822190992004980F5 /* NetWork_mt_getTopicCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A8C12722190992004980F5 /* NetWork_mt_getTopicCollections.m */; };
 		04A919A021E4EA7A002DDB1A /* NetWork_mt_getFollowsVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A9199E21E4EA7A002DDB1A /* NetWork_mt_getFollowsVideoList.m */; };
@@ -182,6 +184,9 @@
 		04B0E1FE21A6937600ABCF16 /* NSObject+A2BlockDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0E1DB21A6937500ABCF16 /* NSObject+A2BlockDelegate.m */; };
 		04B0E1FF21A6937600ABCF16 /* A2DynamicDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0E1DD21A6937500ABCF16 /* A2DynamicDelegate.m */; };
 		04B0E20021A6937600ABCF16 /* NSObject+A2DynamicDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0E1DE21A6937500ABCF16 /* NSObject+A2DynamicDelegate.m */; };
+		04B36299222AB8E000735B18 /* ZanListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B36298222AB8E000735B18 /* ZanListCell.m */; };
+		04B3629C222AB94600735B18 /* CommentMeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B3629A222AB94500735B18 /* CommentMeListCell.m */; };
+		04B3629F222ABA3400735B18 /* AMeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B3629D222ABA3400735B18 /* AMeListCell.m */; };
 		04B66E9921C15D41000D6C56 /* awemes.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B66E9721C15D40000D6C56 /* awemes.json */; };
 		04B66E9A21C15D41000D6C56 /* favorites.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B66E9821C15D41000D6C56 /* favorites.json */; };
 		04B66E9D21C15DF3000D6C56 /* AwemesResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B66E9C21C15DF2000D6C56 /* AwemesResponse.m */; };
@@ -1270,6 +1275,10 @@
 		04A308EF222A4EEB000BC762 /* NSNotification+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotification+Extension.h"; sourceTree = "<group>"; };
 		04A308F5222A8345000BC762 /* FlourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlourCell.m; sourceTree = "<group>"; };
 		04A308F6222A8346000BC762 /* FlourCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlourCell.h; sourceTree = "<group>"; };
+		04A308F8222A8D40000BC762 /* NetWork_mt_getCommentMeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getCommentMeList.h; sourceTree = "<group>"; };
+		04A308F9222A8D40000BC762 /* NetWork_mt_getCommentMeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getCommentMeList.m; sourceTree = "<group>"; };
+		04A308FB222A8EC7000BC762 /* NetWork_mt_getLikeMeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getLikeMeList.m; sourceTree = "<group>"; };
+		04A308FC222A8EC7000BC762 /* NetWork_mt_getLikeMeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getLikeMeList.h; sourceTree = "<group>"; };
 		04A8C1232219013E004980F5 /* NetWork_mt_collectionTopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_collectionTopic.m; sourceTree = "<group>"; };
 		04A8C1242219013E004980F5 /* NetWork_mt_collectionTopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_collectionTopic.h; sourceTree = "<group>"; };
 		04A8C12622190991004980F5 /* NetWork_mt_getTopicCollections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getTopicCollections.h; sourceTree = "<group>"; };
@@ -1369,6 +1378,12 @@
 		04B0E1DD21A6937500ABCF16 /* A2DynamicDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A2DynamicDelegate.m; sourceTree = "<group>"; };
 		04B0E1DE21A6937500ABCF16 /* NSObject+A2DynamicDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+A2DynamicDelegate.m"; sourceTree = "<group>"; };
 		04B0E1DF21A6937500ABCF16 /* NSObject+A2BlockDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+A2BlockDelegate.h"; sourceTree = "<group>"; };
+		04B36297222AB8E000735B18 /* ZanListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZanListCell.h; sourceTree = "<group>"; };
+		04B36298222AB8E000735B18 /* ZanListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZanListCell.m; sourceTree = "<group>"; };
+		04B3629A222AB94500735B18 /* CommentMeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentMeListCell.m; sourceTree = "<group>"; };
+		04B3629B222AB94500735B18 /* CommentMeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentMeListCell.h; sourceTree = "<group>"; };
+		04B3629D222ABA3400735B18 /* AMeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMeListCell.m; sourceTree = "<group>"; };
+		04B3629E222ABA3400735B18 /* AMeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMeListCell.h; sourceTree = "<group>"; };
 		04B66E9721C15D40000D6C56 /* awemes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awemes.json; sourceTree = "<group>"; };
 		04B66E9821C15D41000D6C56 /* favorites.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = favorites.json; sourceTree = "<group>"; };
 		04B66E9B21C15DF2000D6C56 /* AwemesResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwemesResponse.h; sourceTree = "<group>"; };
@@ -3511,8 +3526,12 @@
 		04C70D2C21E3A7C90022D897 /* mt_message */ = {
 			isa = PBXGroup;
 			children = (
+				04A308F8222A8D40000BC762 /* NetWork_mt_getCommentMeList.h */,
+				04A308F9222A8D40000BC762 /* NetWork_mt_getCommentMeList.m */,
 				04C70D2D21E3A7C90022D897 /* NetWork_mt_aMeList.h */,
 				04C70D2E21E3A7C90022D897 /* NetWork_mt_aMeList.m */,
+				04A308FC222A8EC7000BC762 /* NetWork_mt_getLikeMeList.h */,
+				04A308FB222A8EC7000BC762 /* NetWork_mt_getLikeMeList.m */,
 			);
 			path = mt_message;
 			sourceTree = "<group>";
@@ -4141,6 +4160,12 @@
 		04D9B4CB21D343A300DEC8B9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				04B3629E222ABA3400735B18 /* AMeListCell.h */,
+				04B3629D222ABA3400735B18 /* AMeListCell.m */,
+				04B36297222AB8E000735B18 /* ZanListCell.h */,
+				04B36298222AB8E000735B18 /* ZanListCell.m */,
+				04B3629B222AB94500735B18 /* CommentMeListCell.h */,
+				04B3629A222AB94500735B18 /* CommentMeListCell.m */,
 				04A308F6222A8346000BC762 /* FlourCell.h */,
 				04A308F5222A8345000BC762 /* FlourCell.m */,
 				04D9B4CD21D343A300DEC8B9 /* MessageCell.h */,
@@ -6057,6 +6082,7 @@
 				04A04EB321ECDEA8007CBABF /* NetWork_mt_getHotSearchSix.m in Sources */,
 				04CBC4032179C01300658E47 /* GPUImageSmoothToonFilter.m in Sources */,
 				04DCA87A21A55C5B00691A3A /* TVCUtils.m in Sources */,
+				04B36299222AB8E000735B18 /* ZanListCell.m in Sources */,
 				04CBC3392179C01300658E47 /* GPUImageHighPassFilter.m in Sources */,
 				04B0E1F621A6937600ABCF16 /* UIImagePickerController+BlocksKit.m in Sources */,
 				04CBC3272179C01300658E47 /* GPUImageColorBurnBlendFilter.m in Sources */,
@@ -6077,6 +6103,7 @@
 				04443E9721B41A0B00C8DD34 /* HomeVideoCell.m in Sources */,
 				04CBC3972179C01300658E47 /* GPUImageSaturationFilter.m in Sources */,
 				04DCA86121A5580300691A3A /* TCUtil.m in Sources */,
+				04A308FD222A8EC8000BC762 /* NetWork_mt_getLikeMeList.m in Sources */,
 				040E28D521C0F0D400D15B44 /* GroupChat.m in Sources */,
 				040E28D721C0F0D400D15B44 /* Comment.m in Sources */,
 				0405BE8D222118FB0098D590 /* UserCollectionSubMusicCell.m in Sources */,
@@ -6095,6 +6122,7 @@
 				D954C4C71DD1A40F003CA535 /* VUILable.m in Sources */,
 				04CBC46D2179C01300658E47 /* GPUImageDarkenBlendFilter.m in Sources */,
 				0402A46D21C4FE1E00C35CA9 /* NetWork_mt_getLikeVideoList.m in Sources */,
+				04B3629C222AB94600735B18 /* CommentMeListCell.m in Sources */,
 				04443E9321B3FA6300C8DD34 /* MJTableView.m in Sources */,
 				04B66E9D21C15DF3000D6C56 /* AwemesResponse.m in Sources */,
 				04CBC29D2179C01200658E47 /* MJRefreshBackFooter.m in Sources */,
@@ -6334,6 +6362,7 @@
 				04C2615521A68FB200374E4D /* TCBGMSliderCutView.m in Sources */,
 				04CBC3572179C01300658E47 /* GPUImageFASTCornerDetectionFilter.m in Sources */,
 				D98FCFB51DEFC3080023C076 /* STPickerSingle.m in Sources */,
+				04B3629F222ABA3400735B18 /* AMeListCell.m in Sources */,
 				040E28AD21C0AA4900D15B44 /* UserInfoViewController.m in Sources */,
 				0434BDD521E9E1B10059A28C /* NickNameViewController.m in Sources */,
 				04CBC42F2179C01300658E47 /* GPUImageTwoInputCrossTextureSamplingFilter.m in Sources */,
@@ -6354,6 +6383,7 @@
 				0400F32E21AFA62D0038E16C /* SendMessageToWXReq+requestWithTextOrMediaMessage.m in Sources */,
 				04DCEE8B21F59DD9007AC5B0 /* HomeSearchResultSubViewController.m in Sources */,
 				D957AD591DD2CB2F00B7EE09 /* IQUIWindow+Hierarchy.m in Sources */,
+				04A308FA222A8D41000BC762 /* NetWork_mt_getCommentMeList.m in Sources */,
 				04CBC4672179C01300658E47 /* GPUImageStillCamera.m in Sources */,
 				04C1720E21CE3EC80077FA6C /* NetWork_mt_personal_homePage.m in Sources */,
 				04B0E1FD21A6937600ABCF16 /* NSURLConnection+BlocksKit.m in Sources */,

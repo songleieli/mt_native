@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger,StatusOfRefresh) {
 };
 
 #define MaxDistance 25 //向下拖拽最大点-刷新临界值
-#define MaxScroll 200 //向上拖拽最大点-到达最大点就动画让tableview滚动到第二个cell
+#define MaxScroll 300 //向上拖拽最大点-到达最大点就动画让tableview滚动到第二个cell
 
 @interface XLPlayerListViewController : ZJBaseViewController
 

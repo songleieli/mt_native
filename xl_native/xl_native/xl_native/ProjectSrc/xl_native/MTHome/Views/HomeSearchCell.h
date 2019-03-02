@@ -33,7 +33,7 @@
 @property(nonatomic,strong) UIView * viewTitle;
 @property(nonatomic,strong) UIView * imageVeiwBg;
 @property(nonatomic,strong) UIButton * btnIcon;
-@property(nonatomic,strong) UILabel * titleLalbe;
+@property(nonatomic,strong) UIButton * titleLalbe;
 @property(nonatomic,strong) UILabel * descLalbe;
 @property(nonatomic,strong) UILabel * playCountLalbe;
 

@@ -190,6 +190,9 @@
     [self.view addSubview:self.clearView];
     [self.view addSubview:self.refreshNavigitionView];
     
+    //test
+//    self.clearView.backgroundColor = [UIColor redColor];
+    
     //添加观察者
     [self.mainTableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
 }
@@ -223,8 +226,6 @@
     if (self.mainTableView.contentOffset.y <=0 && self.refreshStatus == REFRESH_Normal) {
         //当tableview停在第一个cell并且是正常状态才记录起始触摸点，防止页面在刷新时用户再次向下拖拽页面造成多次下拉刷新
         self.startPoint = [touches.anyObject locationInView:self.view];
-        
-        
     }else{
         //否则就隐藏透明视图，让页面能响应tableview的拖拽手势
         _clearView.hidden = YES;
@@ -281,18 +282,13 @@
         }
     }
     else{//上拉
+        
+        NSLog(@"-----");
+        
         self.refreshStatus = REFRESH_MoveUp;
         //tableview被上拉了
         moveDistance = self.startPoint.y - currentPoint.y;//转换为正数
-//        NSLog(@"-----------------------%f------------------",moveDistance);
-
-        if (moveDistance > MaxScroll) {
-            //上拉距离超过MaxScroll，就让tableview滚动到第二个cell，模仿tableview翻页效果
-            _clearView.hidden = YES;
-        }
-        else if(moveDistance >0&& moveDistance < MaxScroll){
-            self.mainTableView.contentOffset = CGPointMake(0, moveDistance);
-        }
+        _clearView.hidden = YES;
         self.mainTableView.contentOffset = CGPointMake(0, moveDistance);
     }
 }

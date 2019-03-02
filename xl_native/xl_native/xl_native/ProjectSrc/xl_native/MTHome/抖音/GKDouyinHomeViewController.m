@@ -162,15 +162,13 @@
 #pragma mark --------------- UIScrollView 代理 -----------------
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
     CGPoint rect = scrollView.contentOffset;
-
     CGFloat w = self.view.frame.size.width;
     if(rect.x == 0.0f){ //搜索页面，显示完成
-        NSLog(@"-----搜索页面，显示完成------");
         [self searchViewControllerDidAppear];
     }
     else if(rect.x == w){//视频播放列表显示完成
-        NSLog(@"-----视频播放列表显示完成------");
         [self playListViewControllerDidAppear];
     }
 }

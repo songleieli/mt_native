@@ -67,12 +67,15 @@ static NSString* const ViewTableViewCellId = @"HomeSearchCellId";
     return _btnIcon;
 }
 
-- (UILabel*)titleLalbe{
+- (UIButton*)titleLalbe{
     
     if (!_titleLalbe) {
-        _titleLalbe = [[UILabel alloc] init];
-        _titleLalbe.font = [UIFont defaultBoldFontWithSize:14];
-        _titleLalbe.textColor = [UIColor whiteColor];
+        _titleLalbe = [UIButton buttonWithType:UIButtonTypeCustom]; //[[UIImageView alloc]init];
+        _titleLalbe.titleLabel.font = [UIFont defaultBoldFontWithSize:14];
+        _titleLalbe.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [_titleLalbe setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_titleLalbe setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+        [_titleLalbe addTarget:self action:@selector(btnIconClick:) forControlEvents:UIControlEventTouchUpInside];
         _titleLalbe.size = [UIView getSize_width:250 height:20];
         _titleLalbe.origin = [UIView getPoint_x:self.imageVeiwBg.right+5
                                               y:(self.imageVeiwBg.centerY - _titleLalbe.height)];
@@ -92,9 +95,6 @@ static NSString* const ViewTableViewCellId = @"HomeSearchCellId";
         _descLalbe.size = [UIView getSize_width:250 height:20];
         _descLalbe.origin = [UIView getPoint_x:self.imageVeiwBg.right+5
                                               y:self.imageVeiwBg.centerY];
-        
-        //test
-//        _descLalbe.backgroundColor = [UIColor orangeColor];
     }
     return _descLalbe;
 }
@@ -150,7 +150,8 @@ static NSString* const ViewTableViewCellId = @"HomeSearchCellId";
     if([model.hotType integerValue] == 1){
         //self.btnIcon.image = [UIImage imageNamed:@"icon_m_typic"];
         [self.btnIcon setImage:[UIImage imageNamed:@"icon_m_typic"] forState:UIControlStateNormal];
-        self.titleLalbe.text = model.topic.topic;
+        [self.titleLalbe setTitle:model.topic.topic forState:UIControlStateNormal];
+//        self.titleLalbe.text = model.topic.topic;
         self.descLalbe.text = @"热门话题";
         self.playCountLalbe.text = [NSString formatCount:[model.topic.playSum integerValue]];
 
@@ -158,7 +159,9 @@ static NSString* const ViewTableViewCellId = @"HomeSearchCellId";
     else{
 //        self.btnIcon.image = [UIImage imageNamed:@"icon_m_music_red"];
         [self.btnIcon setImage:[UIImage imageNamed:@"icon_m_music_red"] forState:UIControlStateNormal];
-        self.titleLalbe.text = model.music.name;
+//        self.titleLalbe.text = model.music.name;
+        [self.titleLalbe setTitle:model.music.name forState:UIControlStateNormal];
+
         self.descLalbe.text = @"热门音乐";
         self.playCountLalbe.text = [NSString formatCount:[model.music.hotCount integerValue]];
 
