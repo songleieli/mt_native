@@ -87,7 +87,7 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubTopicCellId";
     
     if (!_useCountLalbe) {
         _useCountLalbe = [[UILabel alloc] init];
-        _useCountLalbe.size = [UIView getSize_width:80 height:30];
+        _useCountLalbe.size = [UIView getSize_width:120 height:30];
         _useCountLalbe.right = ScreenWidth - 15;
         _useCountLalbe.top = (SearchResultSubTopicCellHeight - _titleLalbe.height)/2;
         _useCountLalbe.font = [UIFont defaultFontWithSize:14];
@@ -128,7 +128,7 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubTopicCellId";
     
     self.listModel = model;
     self.titleLalbe.text = model.topic;
-    self.useCountLalbe.text = model.hotCount;
+    self.useCountLalbe.text = [NSString stringWithFormat:@"%@次播放",[NSString formatCount:[model.hotCount integerValue]]];
 //    [self.imageVeiwIcon sd_setImageWithURL:[NSURL URLWithString:model.coverUrl] placeholderImage:[UIImage imageNamed:@"img_find_default"]];
 //
 //    self.labelTitle.text = [NSString stringWithFormat:@"%@",model.name];

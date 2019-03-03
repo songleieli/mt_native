@@ -200,7 +200,7 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
     }];
     
     //test,test by songlei
-    //_nickName.backgroundColor = [UIColor redColor];
+//    _nickName.backgroundColor = [UIColor redColor];
     
     _douyinNum = [[UILabel alloc] init];
     _douyinNum.text = @"面条号：";

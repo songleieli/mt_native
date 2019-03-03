@@ -134,16 +134,14 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     [leftButton addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     self.btnLeft = leftButton;
-    self.navBackGround.backgroundColor = [UIColor clearColor]; //标注颜色，方便调试
+    
+//    self.navBackGround.backgroundColor = [UIColor redColor]; //标注颜色，方便调试
 }
 
 
 -(void)setUpUI{
     
-    //[self setBackgroundColor:ColorThemeBackground];
-    
     self.view.backgroundColor = ColorThemeBackground;
-    
     
     //根据当前屏幕宽度j计算，item 宽度
     _itemWidth = (ScreenWidth - 3) / 3.0f;
@@ -155,11 +153,9 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     layout.minimumInteritemSpacing = 0;  //列间距
     
     //行间距与列间距配合 _itemWidth _itemHeight 达到布局的效果
-    
-    CGRect frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+    CGRect frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight  - kTabBarHeight_New);
     _collectionView = [[UICollectionView  alloc]initWithFrame:frame collectionViewLayout:layout];
     _collectionView.backgroundColor = ColorClear;
-    
     
     if (@available(iOS 11.0, *)) {
         _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -204,8 +200,9 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     } finishBlock:^(PersonalHomePageResponse *result, NSString *msg, BOOL finished) {
         
         if(finished){
-            [self setTitle:self.user.nickname];
+//            [self setTitle:self.user.nickname];
             self.user = result.obj;
+            self.lableNavTitle.text = self.user.nickname;
             [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
         }
         else{
@@ -240,15 +237,13 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
                         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
                         [indexPaths addObject:indexPath];
                     }
-                    NSLog(@"-------------numberOfRowsInSection: %d",[self.collectionView numberOfSections]);
-                    
                     [self.collectionView insertItemsAtIndexPaths:indexPaths];
                 } completion:^(BOOL finished) {
                     [UIView setAnimationsEnabled:YES];
                 }];
                 
                 [self.loadMore endLoading];
-                if(self.workAwemes.count < pageSize || self.workAwemes.count == 0) {
+                if(self.workAwemes.count < pageSize || result.obj.count == 0) {
                     [self.loadMore loadingAll];
                 }
             }
@@ -281,16 +276,14 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
                         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
                         [indexPaths addObject:indexPath];
                     }
-                    NSLog(@"-------------numberOfRowsInSection: %d indexPaths =%@",[self.collectionView numberOfSections],indexPaths);
                     [self.collectionView insertItemsAtIndexPaths:indexPaths];
-                    NSLog(@"-------------numberOfRowsInSection: %d indexPaths =%@",[self.collectionView numberOfSections],indexPaths);
                     
                 } completion:^(BOOL finished) {
                     [UIView setAnimationsEnabled:YES];
                 }];
                 
                 [self.loadMore endLoading];
-                if(self.dynamicAwemes.count < pageSize || self.dynamicAwemes.count == 0) {
+                if(self.dynamicAwemes.count < pageSize || result.obj.count == 0) {
                     [self.loadMore loadingAll];
                 }
             }
@@ -322,19 +315,13 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
                         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
                         [indexPaths addObject:indexPath];
                     }
-                    
-                    //                    NSLog(@"numberOfRowsInSection: %d", [self tableView:self.tableView numberOfRowsInSection:0]);
-                    NSLog(@"-------------numberOfRowsInSection: %d",[self.collectionView numberOfSections]);
-                    
                     [self.collectionView insertItemsAtIndexPaths:indexPaths];
-                    
-                    
                 } completion:^(BOOL finished) {
                     [UIView setAnimationsEnabled:YES];
                 }];
                 
                 [self.loadMore endLoading];
-                if(self.favoriteAwemes.count < pageSize || self.favoriteAwemes.count == 0) {
+                if(self.favoriteAwemes.count < pageSize || result.obj.count == 0) {
                     [self.loadMore loadingAll];
                 }
             }
@@ -357,6 +344,8 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     }
     if (offsetY > kUserInfoHeaderHeight - self.navBackGround.height) {
         self.lableNavTitle.textColor = [UIColor whiteColor];
+        
+        //test
     }
 }
 

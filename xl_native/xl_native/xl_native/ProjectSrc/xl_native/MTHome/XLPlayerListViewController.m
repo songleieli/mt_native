@@ -554,11 +554,11 @@
         [self playCurCellVideo];
     }
     
-    NSInteger offset = self.mainDataArr.count - self.currentPlayVideoIndex;
-    if(offset == 2){ //开始加载下一页
-        self.currentPageIndex += 1;
-        [self initRequest];
-    }
+//    NSInteger offset = self.mainDataArr.count - self.currentPlayVideoIndex;
+//    if(offset == 2){ //开始加载下一页
+//        self.currentPageIndex += 1;
+//        [self initRequest];
+//    }
 }
 
 #pragma mark --------------- MtHomeTopDelegate代理 -----------------

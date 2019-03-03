@@ -83,7 +83,8 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubMusicCellId";
     [self.imageVeiwIcon sd_setImageWithURL:[NSURL URLWithString:model.coverUrl] placeholderImage:[UIImage imageNamed:@"img_find_default"]];
     
     self.labelTitle.text = [NSString stringWithFormat:@"%@",model.name];
-    self.lableuseCount.text = [NSString stringWithFormat:@"%@",model.hotCount];
+    self.labelSign.text = model.nickname;
+    self.lableuseCount.text = [NSString stringWithFormat:@"%@人使用",[NSString formatCount:[model.hotCount integerValue]]];
 }
 
 
