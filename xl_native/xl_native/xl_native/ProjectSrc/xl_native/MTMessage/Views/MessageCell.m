@@ -98,8 +98,8 @@ static NSString* const ViewTableViewCellId = @"MessageCellId";
 
 - (void)btnDelClick:(id)sender{
     
-    if ([self.getFollowsDelegate respondsToSelector:@selector(btnDeleteClick:)]) {
-        [self.getFollowsDelegate btnDeleteClick:self.listModel];
+    if ([self.getFollowsDelegate respondsToSelector:@selector(btnCellClick:)]) {
+        [self.getFollowsDelegate btnCellClick:self.listModel];
     } else {
         NSLog(@"代理没响应，快开看看吧");
     }

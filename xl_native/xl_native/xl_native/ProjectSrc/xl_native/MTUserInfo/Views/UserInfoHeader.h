@@ -17,9 +17,15 @@ static const NSInteger UserInfoHeaderFocusCancelTag = 0x04;
 static const NSInteger UserInfoHeaderSettingTag = 0x05;
 static const NSInteger UserInfoHeaderGithubTag = 0x06;
 
-@protocol UserInfoDelegate
+@protocol UserInfoDelegate<NSObject>
 
 - (void)onUserActionTap:(NSInteger)tag;
+
+- (void)onZanActionTap:(PersonalModel*)user;    //点击赞
+
+- (void)onFollowActionTap:(PersonalModel*)user; //点击关注
+
+- (void)onFlourActionTap:(PersonalModel*)user;  //点击面粉
 
 @end
 
@@ -45,12 +51,13 @@ static const NSInteger UserInfoHeaderGithubTag = 0x06;
 @property (nonatomic, strong) UILabel                      *brief;
 @property (nonatomic, strong) UIImageView                  *genderIcon;
 @property (nonatomic, strong) UITextView                   *city;
-@property (nonatomic, strong) UILabel                      *likeNum;
-@property (nonatomic, strong) UILabel                      *followNum;
-@property (nonatomic, strong) UILabel                      *followedNum;
+
+@property (nonatomic, strong) UIButton                      *likeNum;        //获赞
+@property (nonatomic, strong) UIButton                      *followNum;      //关注
+@property (nonatomic, strong) UIButton                      *followedNum;    //粉丝
 
 @property (nonatomic, strong) SlideTabBar                  *slideTabBar;
-//@property (nonatomic, strong) PersonalModel                *user;
+@property (nonatomic, strong) PersonalModel                *user;
 
 - (void)initData:(PersonalModel *)user;
 - (void)overScrollAction:(CGFloat) offsetY;

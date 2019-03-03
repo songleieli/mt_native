@@ -13,7 +13,7 @@
 
 @protocol GetFollowsDelegate <NSObject>
 
--(void)btnDeleteClick:(GetFollowsModel*)model;
+-(void)btnCellClick:(GetFollowsModel*)model;
 
 @end
 

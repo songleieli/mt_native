@@ -119,6 +119,7 @@
     
     if(btn.tag == 0){//面粉
         MTMyFansViewController *myFansViewController = [[MTMyFansViewController alloc] init];
+        myFansViewController.userNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
         [self pushNewVC:myFansViewController animated:YES];
     }
     else if(btn.tag == 1){//赞我的
@@ -217,7 +218,7 @@
     return ZJMessageCellHeight;
 }
 
--(void)btnDeleteClick:(GetFollowsModel*)model{
+-(void)btnCellClick:(GetFollowsModel*)model{
     
     UserInfoViewController *userInfoViewController = [[UserInfoViewController alloc] init];
     userInfoViewController.userNoodleId = model.noodleId;

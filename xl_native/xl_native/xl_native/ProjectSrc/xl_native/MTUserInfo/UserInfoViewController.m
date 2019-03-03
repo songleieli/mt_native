@@ -12,6 +12,9 @@
 #import "UserResponse.h"
 #import "AwemesResponse.h"
 
+#import "MTMyFansViewController.h"
+#import "MTMyFollowViewController.h"
+
 NSString * const kUserInfoCell         = @"UserInfoCell";
 NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 
@@ -615,6 +618,47 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     
     return;
 }
+
+
+- (void)onZanActionTap:(PersonalModel*)user{    //点击赞
+    
+    NSString *msg = [NSString stringWithFormat:@"\"%@\" 共获得%@个赞",user.nickname,user.likeTotal];
+     UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+     [alert show];
+}
+- (void)onFollowActionTap:(PersonalModel*)user{//点击关注
+    
+    if([user.followSum integerValue] <=0){
+        
+        NSString *msg = [NSString stringWithFormat:@"\"%@\" 没有关注用户",user.nickname];
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else{//跳转到关注用户页面
+        MTMyFollowViewController *myFollowViewController = [[MTMyFollowViewController alloc] init];
+        myFollowViewController.userNoodleId = user.noodleId;
+        [self pushNewVC:myFollowViewController animated:YES];
+    }
+    
+}
+
+- (void)onFlourActionTap:(PersonalModel*)user{  //点击关注
+    if([user.flourSum integerValue] <=0){
+        
+        NSString *msg = [NSString stringWithFormat:@"\"%@\" 没有面粉",user.nickname];
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else{//跳转到面粉页面
+        
+        MTMyFansViewController *myFansViewController = [[MTMyFansViewController alloc] init];
+        myFansViewController.userNoodleId = user.noodleId;
+        [self pushNewVC:myFansViewController animated:YES];
+        
+    }
+}
+
+
 
 #pragma -mark ------------OnTabTapDelegate---------
 

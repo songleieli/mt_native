@@ -189,7 +189,7 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
 
 - (void)initInfoView {
     _nickName = [[UILabel alloc] init];
-    _nickName.text = @"name";
+    _nickName.text = @"";
     _nickName.textColor = ColorWhite;
     _nickName.font = SuperBigBoldFont;
     [_containerView addSubview:_nickName];
@@ -296,30 +296,37 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
         make.top.height.equalTo(self.genderIcon);
     }];
     
-    _likeNum = [[UILabel alloc] init];
-    _likeNum.text = @"0获赞";
-    _likeNum.textColor = ColorWhite;
-    _likeNum.font = BigBoldFont;
+    _likeNum = [UIButton buttonWithType:UIButtonTypeCustom]; //[[UILabel alloc] init];
+    [_likeNum setTitle:@"0获赞" forState:UIControlStateNormal];
+    [_likeNum setTitleColor:ColorWhite forState:UIControlStateNormal];
+    [_likeNum setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    _likeNum.titleLabel.font = BigBoldFont;
+    [_likeNum addTarget:self action:@selector(btnZanClick) forControlEvents:UIControlEventTouchUpInside];
     [_containerView addSubview:_likeNum];
     [_likeNum mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.genderIcon.mas_bottom).offset(15);
         make.left.equalTo(self.avatar);
     }];
     
-    _followNum = [[UILabel alloc] init];
-    _followNum.text = @"0关注";
-    _followNum.textColor = ColorWhite;
-    _followNum.font = BigBoldFont;
+    _followNum =[UIButton buttonWithType:UIButtonTypeCustom];;
+    [_followNum setTitle:@"0关注" forState:UIControlStateNormal];
+    [_followNum setTitleColor:ColorWhite forState:UIControlStateNormal];
+    [_followNum setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    _followNum.titleLabel.font = BigBoldFont;
+    [_followNum addTarget:self action:@selector(btnFollowClick) forControlEvents:UIControlEventTouchUpInside];
     [_containerView addSubview:_followNum];
     [_followNum mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.likeNum);
         make.left.equalTo(self.likeNum.mas_right).offset(30);
     }];
     
-    _followedNum = [[UILabel alloc] init];
-    _followedNum.text = @"0粉丝";
-    _followedNum.textColor = ColorWhite;
-    _followedNum.font = BigBoldFont;
+    _followedNum = [UIButton buttonWithType:UIButtonTypeCustom];;
+    [_followedNum setTitle:@"0面粉" forState:UIControlStateNormal];
+    [_followedNum setTitleColor:ColorWhite forState:UIControlStateNormal];
+    [_followedNum setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    _followedNum.titleLabel.font = BigBoldFont;
+    [_followedNum addTarget:self action:@selector(btnFlourClick) forControlEvents:UIControlEventTouchUpInside];
+
     [_containerView addSubview:_followedNum];
     [_followedNum mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.likeNum);
@@ -337,7 +344,7 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
 
 - (void)initData:(PersonalModel *)user {
     
-
+    self.user = user;
 
     
     [_avatar sd_setImageWithURL:[NSURL URLWithString:user.head] placeholderImage:[UIImage imageNamed:@"img_find_default"]];
@@ -356,7 +363,8 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
         _sendMessage.text = @"收藏";
     }
     else{
-        _sendMessage.text = @"发消息";
+        _sendMessage.text = @"";
+        _sendMessage.hidden = YES;
     }
     
     if(user.city.length > 0){
@@ -371,9 +379,10 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
         [_brief setText:user.signature];
     }
     [_genderIcon setImage:[UIImage imageNamed:[user.sex intValue] == 1 ? @"iconUserProfileBoy" : @"iconUserProfileGirl"]];
-    [_likeNum setText:[NSString stringWithFormat:@"%@%@",user.likeTotal,@"获赞"]];
-    [_followNum setText:[NSString stringWithFormat:@"%@%@",user.followSum,@"关注"]];
-    [_followedNum setText:[NSString stringWithFormat:@"%@%@",user.flourSum,@"粉丝"]];
+    [_likeNum setTitle:[NSString stringWithFormat:@"%@%@",[NSString formatCount:[user.likeTotal integerValue]],@"获赞"] forState:UIControlStateNormal];
+    [_followNum setTitle:[NSString stringWithFormat:@"%@%@",user.followSum,@"关注"] forState:UIControlStateNormal];
+    [_followedNum setTitle:[NSString stringWithFormat:@"%@%@",user.flourSum,@"面粉"] forState:UIControlStateNormal];
+
     
     [_slideTabBar setLabels:@[[@"作品" stringByAppendingString:[NSString stringWithFormat:@"%@", user.videoSum]],
                               [@"动态" stringByAppendingString:[NSString stringWithFormat:@"%@", user.dynamics]],
@@ -381,13 +390,37 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
                    tabIndex:0];
 }
 
+#pragma -mark           ------ 点击事件 ----
+
 - (void)onTapAction:(UITapGestureRecognizer *)sender {
-    if(self.delegate) {
-        [self.delegate onUserActionTap:sender.view.tag];
+    
+    if ([self.delegate respondsToSelector:@selector(onUserActionTap:)]) {
+         [self.delegate onUserActionTap:sender.view.tag];
     }
 }
 
-#pragma update position when over scroll
+-(void)btnZanClick{
+    
+    if([self.delegate respondsToSelector:@selector(onZanActionTap:)]){
+        [self.delegate onZanActionTap:self.user];
+    }
+    
+}
+
+-(void)btnFollowClick{
+    if([self.delegate respondsToSelector:@selector(onFollowActionTap:)]){
+        [self.delegate onFollowActionTap:self.user];
+    }
+}
+
+-(void)btnFlourClick{
+    if([self.delegate respondsToSelector:@selector(onFlourActionTap:)]){
+        [self.delegate onFlourActionTap:self.user];
+    }
+}
+
+
+#pragma -mark  ----- update position when over scroll
 
 - (void)overScrollAction:(CGFloat) offsetY {
     CGFloat scaleRatio = fabs(offsetY)/370.0f;
@@ -409,6 +442,7 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
 }
 
 - (void)showSendMessageAnimation {
+    
     if(!_isFollowed) {
         [_focusIcon setHidden:NO];
         [_sendMessage setHidden:NO];
@@ -416,6 +450,14 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
     if(_isFollowed) {
         [_focusButton setHidden:NO];
     }
+    
+    
+    //如果不是自己，需要隐藏发消息按钮，modify by 2019.03.03, 暂时屏蔽，如果需要还会放开。
+    if(![self.user.noodleId isEqualToString:[GlobalData sharedInstance].loginDataModel.noodleId]){
+        [_sendMessage setHidden:YES];
+    }
+
+    
     
     _focusButton.userInteractionEnabled = NO;
     _focusIcon.userInteractionEnabled = NO;

@@ -832,6 +832,7 @@
 		04E6EA0221A93215007C8A16 /* NSData+CommonTX.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6EA0021A93214007C8A16 /* NSData+CommonTX.m */; };
 		04E700D3219FBD8B0096099F /* NetWork_mt_home_list.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E700D2219FBD8B0096099F /* NetWork_mt_home_list.m */; };
 		04E700D9219FF5C10096099F /* MtHomeTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E700D7219FF5C00096099F /* MtHomeTopView.m */; };
+		04EB6895222B83DD00D5C0C1 /* MTMyFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EB6894222B83DC00D5C0C1 /* MTMyFollowViewController.m */; };
 		04ED451921CBD897009DE89F /* NetWork_mt_delLikeVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ED451821CBD896009DE89F /* NetWork_mt_delLikeVideo.m */; };
 		04ED451C21CBE3E2009DE89F /* UserInfoPlayerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ED451B21CBE3E1009DE89F /* UserInfoPlayerListViewController.m */; };
 		04EEBA5F21ABE3EE00A5F6F2 /* PopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EEBA5E21ABE3EE00A5F6F2 /* PopViewController.m */; };
@@ -2379,6 +2380,8 @@
 		04E700D2219FBD8B0096099F /* NetWork_mt_home_list.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_home_list.m; sourceTree = "<group>"; };
 		04E700D7219FF5C00096099F /* MtHomeTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MtHomeTopView.m; sourceTree = "<group>"; };
 		04E700D8219FF5C10096099F /* MtHomeTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MtHomeTopView.h; sourceTree = "<group>"; };
+		04EB6893222B83DC00D5C0C1 /* MTMyFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMyFollowViewController.h; sourceTree = "<group>"; };
+		04EB6894222B83DC00D5C0C1 /* MTMyFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMyFollowViewController.m; sourceTree = "<group>"; };
 		04ED451721CBD896009DE89F /* NetWork_mt_delLikeVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_delLikeVideo.h; sourceTree = "<group>"; };
 		04ED451821CBD896009DE89F /* NetWork_mt_delLikeVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_delLikeVideo.m; sourceTree = "<group>"; };
 		04ED451A21CBE3E1009DE89F /* UserInfoPlayerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoPlayerListViewController.h; sourceTree = "<group>"; };
@@ -2970,6 +2973,8 @@
 				04D9B4CB21D343A300DEC8B9 /* Views */,
 				040208FF21D3D09700765F06 /* MTMyFansViewController.h */,
 				040208FE21D3D09700765F06 /* MTMyFansViewController.m */,
+				04EB6893222B83DC00D5C0C1 /* MTMyFollowViewController.h */,
+				04EB6894222B83DC00D5C0C1 /* MTMyFollowViewController.m */,
 				04C70D3121E3A8F90022D897 /* MTAMeListViewController.h */,
 				04C70D3021E3A8F90022D897 /* MTAMeListViewController.m */,
 				04C70D3621E3AC230022D897 /* MTMyCommentViewController.h */,
@@ -6557,6 +6562,7 @@
 				0406762521F718B000543917 /* HomeSearchResultSubVideoViewController.m in Sources */,
 				0457917A218709A7000AAA2E /* ZJCustomTabCollectionViewController.m in Sources */,
 				04CBC3F32179C01300658E47 /* GPUImageCrosshairGenerator.m in Sources */,
+				04EB6895222B83DD00D5C0C1 /* MTMyFollowViewController.m in Sources */,
 				04CBC4332179C01300658E47 /* GPUImageMotionBlurFilter.m in Sources */,
 				D957AD5F1DD2CB2F00B7EE09 /* IQTextView.m in Sources */,
 				D9F86DD11DEBEE7600C3A2B6 /* TZImagePickerController.m in Sources */,
