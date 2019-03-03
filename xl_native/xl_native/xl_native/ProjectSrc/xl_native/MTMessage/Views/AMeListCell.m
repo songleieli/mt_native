@@ -31,7 +31,7 @@ static NSString* const ViewTableViewCellId = @"AMeListCellId";
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     self.viewBg = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.viewBg.size = [UIView getSize_width:ScreenWidth height:FlourCellHeight];
+    self.viewBg.size = [UIView getSize_width:ScreenWidth height:AMeListCellHeight];
     self.viewBg.origin = [UIView getPoint_x:0 y:0];
     [self.viewBg setBackgroundColor:ColorThemeBackground forState:UIControlStateNormal];
     [self.viewBg setBackgroundColor:RGBAlphaColor(29, 32, 42, 1) forState:UIControlStateHighlighted];
@@ -40,7 +40,7 @@ static NSString* const ViewTableViewCellId = @"AMeListCellId";
     [self.contentView addSubview:self.viewBg];
 
     self.imageVeiwIcon = [[UIImageView alloc]init];
-    self.imageVeiwIcon.size = [UIView getSize_width:FlourCellHeight/3*2 height:FlourCellHeight/3*2];
+    self.imageVeiwIcon.size = [UIView getSize_width:AMeListCellHeight/3*2 height:AMeListCellHeight/3*2];
     self.imageVeiwIcon.origin = [UIView getPoint_x:10 y:(self.viewBg.height - self.imageVeiwIcon.height)/2];
     
     self.imageVeiwIcon.layer.cornerRadius = self.imageVeiwIcon.width/2;

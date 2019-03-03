@@ -98,7 +98,7 @@
 
 -(void)initRequest{
     
-    NetWork_mt_getFollows *request = [[NetWork_mt_getFollows alloc] init];
+    NetWork_mt_aMeList *request = [[NetWork_mt_aMeList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex=self.currentPageIndex+1];
@@ -107,17 +107,20 @@
         /*
          *暂不考虑缓存问题
          */
-    } finishBlock:^(GetFollowsResponse *result, NSString *msg, BOOL finished) {
+    } finishBlock:^(AMeListResponse *result, NSString *msg, BOOL finished) {
         [self.mainTableView.mj_header endRefreshing];
         if(finished){
             [self loadData:result];
+        }
+        else{
+            [self refreshNoDataViewWithListCount:0];
         }
     }];
     
 }
 
--(void)loadData:(GetFollowsResponse *)result{
-    if (self.currentPageIndex == 0 ) {
+-(void)loadData:(AMeListResponse *)result{
+    if (self.currentPageIndex == 1 ) {
         [self.mainDataArr removeAllObjects];
         [self refreshNoDataViewWithListCount:result.obj.count];
     }
@@ -156,10 +159,10 @@
 //设置每一组的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return FlourCellHeight;
+    return AMeListCellHeight;
 }
 
--(void)btnDeleteClick:(GetFollowsModel*)model{
+-(void)btnCellClick:(AMeListModel*)model{
     
     UserInfoViewController *userInfoViewController = [[UserInfoViewController alloc] init];
     userInfoViewController.userNoodleId = model.noodleId;

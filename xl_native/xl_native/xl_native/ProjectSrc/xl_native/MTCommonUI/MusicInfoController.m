@@ -281,6 +281,14 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
     }
 }
 
+-(void)btnAuthorClick:(GetHotVideosByMusicModel*)model{
+    
+    UserInfoViewController *userInfoViewController = [[UserInfoViewController alloc] init];
+    userInfoViewController.userNoodleId = model.noodleId;
+    userInfoViewController.fromType = FromTypeHome; //我的页面，需要显示返回按钮，隐藏TabBar
+    [self pushNewVC:userInfoViewController animated:YES];
+}
+
 #pragma -mark ------------Custom Method---------
 
 -(void)backBtnClick:(UIButton*)btn{

@@ -18,8 +18,8 @@
 @end
 
 
-#define FlourCellHeight 80.0f
-#define FlourCellSpace 6.0f
+#define AMeListCellHeight 80.0f
+#define AMeListCellSpace 6.0f
 
 
 @interface AMeListCell : BaseTableViewCell

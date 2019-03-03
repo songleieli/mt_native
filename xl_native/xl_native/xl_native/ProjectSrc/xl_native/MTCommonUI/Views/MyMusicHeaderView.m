@@ -52,7 +52,7 @@
     
     if (!_lableTopicName) {
         _lableTopicName = [[UILabel alloc] init];
-        _lableTopicName.font = [UIFont defaultBoldFontWithSize:25];
+        _lableTopicName.font = [UIFont defaultBoldFontWithSize:20];
         _lableTopicName.textColor = [UIColor whiteColor];
         _lableTopicName.size = [UIView getSize_width:self.width - self.imageViewCover.width - 15*3 height:30];
         _lableTopicName.textAlignment = NSTextAlignmentLeft;
@@ -60,12 +60,29 @@
     }
     return _lableTopicName;
 }
+
+- (UIButton*)btnAuthor{
+
+    if (!_btnAuthor) {
+        _btnAuthor = [UIButton buttonWithType:UIButtonTypeCustom]; //[[UILabel alloc]init];
+        _btnAuthor.size = [UIView getSize_width:220 height:30];
+        _btnAuthor.origin = [UIView getPoint_x:self.lableTopicName.left y:self.lableTopicName.bottom];
+        _btnAuthor.titleLabel.font = [UIFont defaultFontWithSize:14];
+        [_btnAuthor setTitleColor:RGBA(120, 122, 132, 1) forState:UIControlStateNormal];
+        [_btnAuthor setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+        _btnAuthor.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [_btnAuthor addTarget:self action:@selector(btnAuthorClick:) forControlEvents:UIControlEventTouchUpInside];
+
+    }
+    return _btnAuthor;
+}
+
 - (UILabel*)lablePlayCount{
     
     if (!_lablePlayCount) {
         _lablePlayCount = [[UILabel alloc]init];
-        _lablePlayCount.size = [UIView getSize_width:220 height:35];
-        _lablePlayCount.origin = [UIView getPoint_x:self.lableTopicName.left y:self.lableTopicName.bottom];
+        _lablePlayCount.size = [UIView getSize_width:220 height:30];
+        _lablePlayCount.origin = [UIView getPoint_x:self.lableTopicName.left y:self.btnAuthor.bottom];
         _lablePlayCount.font = [UIFont defaultFontWithSize:14];
         _lablePlayCount.textColor = RGBA(120, 122, 132, 1);
     }
@@ -84,7 +101,7 @@
         _btnCollectionBg.layer.masksToBounds = true;//给按钮添加边框效果
         [_btnCollectionBg addSubview:self.imageViewCollectionIcon];
         [_btnCollectionBg addSubview:self.lableCollectionTitle];
-        [_btnCollectionBg addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_btnCollectionBg addTarget:self action:@selector(btnCollectionClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnCollectionBg;
 }
@@ -157,6 +174,7 @@
     [self.imageViewCover addSubview:self.btnPauseIcon]; //播放暂停按钮
     
     [self addSubview:self.lableTopicName];
+    [self addSubview:self.btnAuthor];
     [self addSubview:self.lablePlayCount];
     [self addSubview:self.btnCollectionBg];
 }
@@ -176,9 +194,10 @@
     self.topicModel = musicModel;
     
     [self.imageViewCover sd_setImageWithURL:[NSURL URLWithString:musicModel.coverUrl] placeholderImage:[UIImage imageNamed:@"default_music_cover"]];
-    
     self.lableTopicName.text = musicModel.name;
-    self.lablePlayCount.text = [NSString formatCount:[musicModel.useCount integerValue]];
+//    self.lableAuthor.text = [NSString stringWithFormat:@"%@ >",musicModel.nickname];
+    [self.btnAuthor setTitle:[NSString stringWithFormat:@"%@ >",musicModel.nickname] forState:UIControlStateNormal];
+    self.lablePlayCount.text = [NSString stringWithFormat:@"%@人参与",[NSString formatCount:[musicModel.useCount integerValue]]];
     if([musicModel.isCollect integerValue] == 0){
         self.lableCollectionTitle.text = @"收藏";
     }
@@ -188,7 +207,20 @@
 }
 
 #pragma -mark --------- 点击事件 ------------
--(void)btnClick:(UIButton*)btn{
+
+-(void)btnAuthorClick:(UIButton*)btn{
+    
+    /*
+     音乐的作者信息没有爬下来，所以暂时先屏蔽这个功能。
+     */
+//    if ([self.delegate respondsToSelector:@selector(btnAuthorClick:)]) {
+//        [self.delegate btnAuthorClick:self.topicModel];
+//    } else {
+//        NSLog(@"代理没响应，快开看看吧");
+//    }
+}
+
+-(void)btnCollectionClick:(UIButton*)btn{
     
     if ([self.delegate respondsToSelector:@selector(btnCollectionClick:)]) {
         [self.delegate btnCollectionClick:self.topicModel];

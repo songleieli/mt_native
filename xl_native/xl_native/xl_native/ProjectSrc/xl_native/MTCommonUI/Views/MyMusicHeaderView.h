@@ -14,6 +14,8 @@
 
 -(void)btnCollectionClick:(GetHotVideosByMusicModel*)model;
 
+-(void)btnAuthorClick:(GetHotVideosByMusicModel*)model;
+
 @end
 
 @interface MyMusicHeaderView : UICollectionReusableView<AVAudioPlayerDelegate>
@@ -27,6 +29,7 @@
 
 
 @property(nonatomic,strong) UILabel *lableTopicName;
+@property(nonatomic,strong) UIButton *btnAuthor; //音乐作者
 @property(nonatomic,strong) UILabel *lablePlayCount;
 
 @property (nonatomic, strong) UIButton  *btnCollectionBg; //收藏按钮背景

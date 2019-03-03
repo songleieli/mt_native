@@ -254,6 +254,11 @@
 
 - (void)userInfoClicked:(HomeListModel *)listModel{
     
+    
+    UserInfoViewController *userInfoViewController = [[UserInfoViewController alloc] init];
+    userInfoViewController.userNoodleId = listModel.noodleId;
+    userInfoViewController.fromType = FromTypeHome; //我的页面，需要显示返回按钮，隐藏TabBar
+    [self pushNewVC:userInfoViewController animated:YES];
 }
 
 - (void)followClicked:(HomeListModel *)listModel{
@@ -354,11 +359,13 @@
 }
 
 - (void)shareClicked:(HomeListModel *)listModel{
-    NSLog(@"----------分享----------");
+    
+    SharePopView *popView = [[SharePopView alloc] init];
+    popView.delegate = self;
+    [popView show];
 }
 
 - (void)musicCDClicked:(HomeListModel *)listModel{
-    NSLog(@"----------CD----------");
     
     MusicInfoController *musicInfoController = [[MusicInfoController alloc] init];
     musicInfoController.musicId = [NSString stringWithFormat:@"%@",listModel.musicId];

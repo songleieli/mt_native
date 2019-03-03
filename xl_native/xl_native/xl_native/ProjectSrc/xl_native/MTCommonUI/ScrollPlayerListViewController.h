@@ -9,10 +9,12 @@
 #import "ZJCustomTabBarLjhTableViewController.h"
 
 #import "MusicInfoController.h"
+#import "UserInfoViewController.h"
 
 #import "UserInfoPlayerCell.h"
 #import "CommentsPopView.h"
 #import "LoadMoreControl.h"
+#import "SharePopView.h"
 
 #import "NetWork_mt_likeVideo.h"
 #import "NetWork_mt_delLikeVideo.h"

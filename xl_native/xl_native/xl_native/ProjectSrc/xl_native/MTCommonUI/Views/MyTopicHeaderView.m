@@ -124,7 +124,7 @@
     self.topicModel = topicModel;
     
     self.lableTopicName.text = topicModel.topic;
-    self.lablePlayCount.text = [NSString formatCount:[topicModel.playSum integerValue]];
+    self.lablePlayCount.text = [NSString stringWithFormat:@"%@次播放",[NSString formatCount:[topicModel.playSum integerValue]]];
     if([topicModel.isCollect integerValue] == 0){
         self.lableCollectionTitle.text = @"收藏";
     }
