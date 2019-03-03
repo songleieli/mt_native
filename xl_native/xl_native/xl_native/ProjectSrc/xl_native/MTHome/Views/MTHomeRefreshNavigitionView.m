@@ -16,17 +16,17 @@
     self = [super initWithFrame:frame];
     if (self) {
 
-        UILabel *titleLable = [[UILabel alloc] init];
-        titleLable.size = [UIView getSize_width:100 height:44];
-        titleLable.center = self.center;
+        _titleLable = [[UILabel alloc] init];
+        _titleLable.size = [UIView getSize_width:100 height:44];
+        _titleLable.center = self.center;
 //        titleLable.origin = [UIView getPoint_x:self. y:0];
-        titleLable.backgroundColor = [UIColor clearColor];
-        titleLable.textColor = [UIColor whiteColor];
-        titleLable.textAlignment = NSTextAlignmentCenter;
-        titleLable.numberOfLines = 0;
-        titleLable.font = [UIFont defaultFontWithSize:16];
-        titleLable.text = @"下拉刷新内容";
-        [self addSubview:titleLable];
+        _titleLable.backgroundColor = [UIColor clearColor];
+        _titleLable.textColor = [UIColor whiteColor];
+        _titleLable.textAlignment = NSTextAlignmentCenter;
+        _titleLable.numberOfLines = 0;
+        _titleLable.font = [UIFont defaultFontWithSize:16];
+        _titleLable.text = @"下拉刷新内容";
+        [self addSubview:_titleLable];
         
         _circleImage = [[UIImageView alloc] init];
         _circleImage.size = [UIView getSize_width:18 height:18];

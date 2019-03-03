@@ -35,7 +35,7 @@
     if (_recommendButton == nil){
         _recommendButton = [[UIButton alloc] init];
         _recommendButton.size = [UIView getSize_width:40 height:23];
-        _recommendButton.origin = [UIView getPoint_x:self.width/2 - _recommendButton.width -10
+        _recommendButton.origin = [UIView getPoint_x:(self.width - _recommendButton.width)/2
                                                    y:self.height - _recommendButton.height-20];
         _recommendButton.titleLabel.font = [UIFont defaultBoldFontWithSize:18];
         [_recommendButton setTitle:@"推荐" forState:UIControlStateNormal];
@@ -72,7 +72,7 @@
         _refreshButton.origin = [UIView getPoint_x:self.width - _refreshButton.width-15
                                                  y:self.height - _refreshButton.height-25];
         [_refreshButton setImage:[BundleUtil getCurrentBundleImageByName:@"icon_m_list"] forState:UIControlStateNormal];
-        //        [_searchButton addTarget:self action:@selector(searchButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_refreshButton addTarget:self action:@selector(refreshButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _refreshButton;
 }
@@ -85,7 +85,7 @@
         _scanButton.origin = [UIView getPoint_x:self.refreshButton.left - _scanButton.width - 15
                                               y:self.height - _scanButton.height-20];
         [_scanButton setImage:[BundleUtil getCurrentBundleImageByName:@"icon_m_scan"] forState:UIControlStateNormal];
-        [_scanButton addTarget:self action:@selector(scanButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_scanButton addTarget:self action:@selector(refreshButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _scanButton;
 }
@@ -104,9 +104,9 @@
 
     [self addSubview:self.searchButton];       //搜索按钮
     [self addSubview:self.recommendButton];    //推荐按钮
-    [self addSubview:self.cityButton];         //城市按钮
+//    [self addSubview:self.cityButton];         //城市按钮
     [self addSubview:self.refreshButton];      //刷新按钮
-    [self addSubview:self.scanButton];         //扫描按钮
+//    [self addSubview:self.scanButton];         //扫描按钮
 }
 
 #pragma mark - 按钮点击事件
@@ -141,6 +141,15 @@
     
     if ([self.mtHomeTopDelegate respondsToSelector:@selector(scanBtnClick)]) {
         [self.mtHomeTopDelegate scanBtnClick];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
+}
+
+- (void)refreshButtonAction:(id)sender{
+    
+    if ([self.mtHomeTopDelegate respondsToSelector:@selector(refreshBtnClick)]) {
+        [self.mtHomeTopDelegate refreshBtnClick];
     } else {
         NSLog(@"代理没响应，快开看看吧");
     }

@@ -10,6 +10,7 @@
 
 @interface MTHomeRefreshNavigitionView : UIView
 
+@property(nonatomic, strong)UILabel *titleLable;
 @property(nonatomic, strong)UIImageView *circleImage;
 
 @end

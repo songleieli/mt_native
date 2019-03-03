@@ -18,6 +18,8 @@
 
 -(void)scanBtnClick;
 
+-(void)refreshBtnClick;
+
 @end
 
 

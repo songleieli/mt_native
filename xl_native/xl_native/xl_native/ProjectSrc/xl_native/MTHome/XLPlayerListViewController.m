@@ -476,8 +476,12 @@
                 self.isFirstLoad = NO;
                 
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentPlayVideoIndex inSection:0];
+                [self.mainTableView scrollToRowAtIndexPath:indexPath
+                                          atScrollPosition:UITableViewScrollPositionTop
+                                                  animated:NO];
                 self.currentCell = [self.mainTableView cellForRowAtIndexPath:indexPath];
                 [self playCurCellVideo];
+                
             }
         }
         else{
@@ -580,6 +584,16 @@
 
 -(void)scanBtnClick{
     NSLog(@"------scanBtnClick----------");
+}
+-(void)refreshBtnClick{
+    NSLog(@"刷新页面");
+    
+    self.refreshNavigitionView.alpha = 1.0f;
+    self.refreshNavigitionView.titleLable.text = @"正在刷新";
+    self.topView.alpha = 0.0f;
+    [self startAnimation];
+    
+    [self loadNewListData];
 }
 
 #pragma mark --------------- HomeDelegate代理 -----------------
