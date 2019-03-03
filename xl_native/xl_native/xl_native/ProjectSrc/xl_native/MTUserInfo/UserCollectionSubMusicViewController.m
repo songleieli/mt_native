@@ -28,9 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _pageIndex = 1;
-    _pageSize = 20;
-    
     [self setUpUI];
 }
 
@@ -80,8 +77,8 @@
     
     NetWork_mt_getMusicCollections *request = [[NetWork_mt_getMusicCollections alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.pageNo = [NSString stringWithFormat:@"%ld",self.pageIndex];//
-    request.pageSize = [NSString stringWithFormat:@"%ld",self.pageSize];
+    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex=self.currentPageIndex+1];
+    request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {
         /*暂时不考虑缓存问题*/
     } finishBlock:^(GetMusicCollectionsResponse *result, NSString *msg, BOOL finished) {

@@ -8,13 +8,9 @@
 
 #import "AwemeCollectionCell.h"
 #import "LoadMoreControl.h"
-//转场动画
-#import "ScalePresentAnimation.h"
-#import "SwipeLeftInteractiveTransition.h"
-#import "ScaleDismissAnimation.h"
 
 
-#import "UserInfoPlayerListViewController.h"
+#import "ScrollPlayerListViewController.h"
 #import "MyMusicHeaderView.h"
 
 #import "NetWork_mt_getHotVideosByMusic.h"
@@ -32,11 +28,6 @@
 @property (nonatomic, strong) MyMusicHeaderView             *topicHeader;
 @property (nonatomic, strong) LoadMoreControl                  *loadMore;
 @property (nonatomic, strong) GetHotVideosByMusicModel         *musicModel;
-
-//Controller 转场动画
-@property (nonatomic, strong) ScalePresentAnimation            *scalePresentAnimation;
-@property (nonatomic, strong) ScaleDismissAnimation            *scaleDismissAnimation;
-@property (nonatomic, strong) SwipeLeftInteractiveTransition   *swipeLeftInteractiveTransition;
 
 @property (nonatomic, copy) NSString                        *musicId;
 

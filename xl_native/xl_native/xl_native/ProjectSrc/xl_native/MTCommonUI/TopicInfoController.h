@@ -8,13 +8,9 @@
 
 #import "AwemeCollectionCell.h"
 #import "LoadMoreControl.h"
-//转场动画
-#import "ScalePresentAnimation.h"
-#import "SwipeLeftInteractiveTransition.h"
-#import "ScaleDismissAnimation.h"
 
 
-#import "UserInfoPlayerListViewController.h"
+#import "ScrollPlayerListViewController.h"
 #import "MyTopicHeaderView.h"
 
 #import "NetWork_mt_getHotVideosByTopic.h"
@@ -32,11 +28,6 @@
 @property (nonatomic, strong) MyTopicHeaderView             *topicHeader;
 @property (nonatomic, strong) LoadMoreControl                  *loadMore;
 @property (nonatomic, strong) GetHotVideosByTopicModel         *topicModel;
-
-//Controller 转场动画
-@property (nonatomic, strong) ScalePresentAnimation            *scalePresentAnimation;
-@property (nonatomic, strong) ScaleDismissAnimation            *scaleDismissAnimation;
-@property (nonatomic, strong) SwipeLeftInteractiveTransition   *swipeLeftInteractiveTransition;
 
 @property (nonatomic, copy) NSString                        *topicName;
 

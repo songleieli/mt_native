@@ -8,6 +8,7 @@
 
 #import "UserCollectionController.h"
 #import "HoverViewFlowLayout.h"
+#import "ScrollPlayerListViewController.h"
 
 #import "UserResponse.h"
 #import "AwemesResponse.h"
@@ -89,13 +90,9 @@ NSString * const kAwemeCollectionCell_temp  = @"AwemeCollectionCell";
 }
 
 - (void)viewDidLoad {
-    _pageIndex = 1;
-    _pageSize = 20;
+
     _tabIndex = 0;
-    
-    _scalePresentAnimation = [ScalePresentAnimation new];
-    _scaleDismissAnimation = [ScaleDismissAnimation new];
-    _swipeLeftInteractiveTransition = [SwipeLeftInteractiveTransition new];
+
     
     [super viewDidLoad];
     [self setUpUI];
@@ -288,29 +285,11 @@ NSString * const kAwemeCollectionCell_temp  = @"AwemeCollectionCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     self.selectIndex = indexPath.row;
     
-    UserInfoPlayerListViewController *controller;
-    controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeFavourites];
-    controller.transitioningDelegate = self;
-    
-    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    self.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [_swipeLeftInteractiveTransition wireToViewController:controller];
-    [self presentViewController:controller animated:YES completion:nil];
+    ScrollPlayerListViewController *controller;
+    controller = [[ScrollPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex];
+    [self pushNewVC:controller animated:YES];
 }
 
-#pragma mark --------------- UIViewControllerTransitioningDelegate Delegate  Controller 之间的转场动画 -----------------
-
-- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    return _scalePresentAnimation;
-}
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    return _scaleDismissAnimation;
-}
-
--(id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
-    return _swipeLeftInteractiveTransition.interacting ? _swipeLeftInteractiveTransition : nil;
-}
 
 #pragma -mark ------------Custom Method---------
 

@@ -26,6 +26,16 @@
     return _listData;
 }
 
+-(void)dealloc{
+    
+    [self.mainTableView.layer removeAllAnimations];
+    NSArray<UserInfoPlayerCell *> *cells = [self.mainTableView visibleCells];
+    for(UserInfoPlayerCell *cell in cells) {
+        [cell.playerView cancelLoading];
+    }
+    [[AVPlayerManager shareManager] removeAllPlayers];
+}
+
 
 -(instancetype)initWithVideoData:(NSMutableArray<HomeListModel *> *)data
                     currentIndex:(NSInteger)currentIndex{
@@ -60,37 +70,8 @@
     }
 }
 
--(void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    [self.mainTableView.layer removeAllAnimations];
-    NSArray<UserInfoPlayerCell *> *cells = [self.mainTableView visibleCells];
-    for(UserInfoPlayerCell *cell in cells) {
-        [cell.playerView cancelLoading];
-    }
-    [[AVPlayerManager shareManager] removeAllPlayers];
-}
-
 -(void)initNavTitle{
     self.isNavBackGroundHiden = YES;
-}
-
--(void)dealloc{    
-    /*dealloc*/
-    
-//    [self.mainTableView removeObserver:self forKeyPath:@"contentOffset"];
-    
-    
-//        [self.tableView.layer removeAllAnimations];
-//        NSArray<AwemeListCell *> *cells = [self.mainTableView visibleCells];
-//        for(AwemeListCell *cell in cells) {
-//            [cell.playerView cancelLoading];
-//        }
-//        [[AVPlayerManager shareManager] removeAllPlayers];
-    
-    //    //移除 currentIndex 值变化的监听
-    //    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    //    [self removeObserver:self forKeyPath:@"currentIndex"];
-    //    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad {
@@ -172,10 +153,13 @@
 }
 
 - (void) dismiss {
-    [self dismissViewControllerAnimated:YES completion:^{
-        //播放列表消失后，显示状态栏
-        [UIApplication sharedApplication].statusBarHidden = NO;
-    }];
+//    [self dismissViewControllerAnimated:YES completion:^{
+//        //播放列表消失后，显示状态栏
+//        [UIApplication sharedApplication].statusBarHidden = NO;
+//    }];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+
 }
 
 #pragma mark --------------- tabbleView代理 -----------------
@@ -375,6 +359,10 @@
 
 - (void)musicCDClicked:(HomeListModel *)listModel{
     NSLog(@"----------CD----------");
+    
+    MusicInfoController *musicInfoController = [[MusicInfoController alloc] init];
+    musicInfoController.musicId = [NSString stringWithFormat:@"%@",listModel.musicId];
+    [self pushNewVC:musicInfoController animated:YES];
 }
 
 @end

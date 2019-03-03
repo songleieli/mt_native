@@ -8,6 +8,8 @@
 
 #import "ZJCustomTabBarLjhTableViewController.h"
 
+#import "MusicInfoController.h"
+
 #import "UserInfoPlayerCell.h"
 #import "CommentsPopView.h"
 #import "LoadMoreControl.h"
@@ -23,11 +25,8 @@
 
 @property (nonatomic, assign)BOOL isFirstLoad; //判断是否第一加载
 @property (nonatomic, assign) NSInteger currentIndex;
-//@property (nonatomic, assign) NSInteger pageSize;
 @property (nonatomic, strong)UserInfoPlayerCell *currentCell;  //当前显示到屏幕的cell
 
-//@property (nonatomic, assign) VideoType    videoType;
-//@property (nonatomic, strong) LoadMoreControl  *loadMore;
 
 -(instancetype)initWithVideoData:(NSMutableArray<HomeListModel *> *)data
                     currentIndex:(NSInteger)currentIndex;

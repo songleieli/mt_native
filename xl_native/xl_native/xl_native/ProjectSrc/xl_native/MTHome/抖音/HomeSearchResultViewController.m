@@ -218,35 +218,9 @@
 -(void)subCellVideoClick:(NSMutableArray *)videoList selectIndex:(NSInteger)selectIndex{
     NSLog(@"-------------");
     
-//    TopicInfoController *topicInfoController = [[TopicInfoController alloc] init];
-//    topicInfoController.topicName = model.topic;
-//    [self pushNewVC:topicInfoController animated:YES];
-    
-    
-//        self.selectIndex = indexPath.row;
-    
-        ScrollPlayerListViewController *controller;
-        controller = [[ScrollPlayerListViewController alloc] initWithVideoData:videoList currentIndex:selectIndex];
-        controller.transitioningDelegate = self;
-    
-        controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-        self.modalPresentationStyle = UIModalPresentationCurrentContext;
-        [_swipeLeftInteractiveTransition wireToViewController:controller];
-        [self presentViewController:controller animated:YES completion:nil];
-}
-
-#pragma mark --------------- UIViewControllerTransitioningDelegate Delegate  Controller 之间的转场动画 -----------------
-
-- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    return _scalePresentAnimation;
-}
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    return _scaleDismissAnimation;
-}
-
--(id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
-    return _swipeLeftInteractiveTransition.interacting ? _swipeLeftInteractiveTransition : nil;
+    ScrollPlayerListViewController *controller;
+    controller = [[ScrollPlayerListViewController alloc] initWithVideoData:videoList currentIndex:selectIndex];
+    [self pushNewVC:controller animated:YES];
 }
 
 

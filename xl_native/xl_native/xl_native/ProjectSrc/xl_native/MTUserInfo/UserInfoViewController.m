@@ -25,8 +25,6 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 @property (nonatomic, assign) CGFloat                          itemHeight;
 
 @property (nonatomic, assign) NSInteger                        tabIndex;
-@property (nonatomic, assign) NSInteger                        pageIndex;
-@property (nonatomic, assign) NSInteger                        pageSize;
 
 @property (nonatomic, strong) NSMutableArray          *workAwemes;
 @property (nonatomic, strong) NSMutableArray          *dynamicAwemes;
@@ -110,13 +108,11 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 }
 
 - (void)viewDidLoad {
-    _pageIndex = 1;
-    _pageSize = 20;
     _tabIndex = 0;
     
-    _scalePresentAnimation = [ScalePresentAnimation new];
-    _scaleDismissAnimation = [ScaleDismissAnimation new];
-    _swipeLeftInteractiveTransition = [SwipeLeftInteractiveTransition new];
+    //    _scalePresentAnimation = [ScalePresentAnimation new];
+    //    _scaleDismissAnimation = [ScaleDismissAnimation new];
+    //    _swipeLeftInteractiveTransition = [SwipeLeftInteractiveTransition new];
     
     [self registerForRemoteNotification];
     
@@ -138,7 +134,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     
     self.btnLeft = leftButton;
     
-//    self.navBackGround.backgroundColor = [UIColor redColor]; //标注颜色，方便调试
+    //    self.navBackGround.backgroundColor = [UIColor redColor]; //标注颜色，方便调试
 }
 
 
@@ -186,7 +182,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     [_loadMore startLoading];
     __weak __typeof(self) wself = self;
     [_loadMore setOnLoad:^{
-        [wself loadData:wself.pageIndex pageSize:wself.pageSize];
+        [wself loadData];
     }];
     [_collectionView addSubview:_loadMore];
 }
@@ -203,7 +199,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     } finishBlock:^(PersonalHomePageResponse *result, NSString *msg, BOOL finished) {
         
         if(finished){
-//            [self setTitle:self.user.nickname];
+            //            [self setTitle:self.user.nickname];
             self.user = result.obj;
             self.lableNavTitle.text = self.user.nickname;
             [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
@@ -215,22 +211,21 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 }
 
 
-- (void)loadData:(NSInteger)pageIndex pageSize:(NSInteger)pageSize {
+- (void)loadData{
     
     if(_tabIndex == 0){
         
         NetWork_mt_getMyVideos *request = [[NetWork_mt_getMyVideos alloc] init];
         request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
         request.noodleId = self.userNoodleId;
-        request.pageNo = [NSString stringWithFormat:@"%ld",pageIndex];
-        request.pageSize = [NSString stringWithFormat:@"%ld",pageSize];
+        request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex=self.currentPageIndex+1];
+        request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];
         [request startGetWithBlock:^(id result, NSString *msg) {
             /*暂不考虑缓存*/
         } finishBlock:^(GetLikeVideoListResponse *result, NSString *msg, BOOL finished) {
             
             NSLog(@"--------");
             if(finished){
-                self.pageIndex++;
                 
                 [UIView setAnimationsEnabled:NO];
                 [self.collectionView performBatchUpdates:^{
@@ -246,7 +241,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
                 }];
                 
                 [self.loadMore endLoading];
-                if(self.workAwemes.count < pageSize || result.obj.count == 0) {
+                if(self.workAwemes.count < self.currentPageSize || result.obj.count == 0) {
                     [self.loadMore loadingAll];
                 }
             }
@@ -261,15 +256,14 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         NetWork_mt_getDynamics *request = [[NetWork_mt_getDynamics alloc] init];
         request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
         request.noodleId = self.userNoodleId;
-        request.pageNo = [NSString stringWithFormat:@"%ld",pageIndex];
-        request.pageSize = [NSString stringWithFormat:@"%ld",pageSize];
+        request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex=self.currentPageIndex+1];
+        request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];
         [request startGetWithBlock:^(id result, NSString *msg) {
             /*暂不考虑缓存*/
         } finishBlock:^(GetLikeVideoListResponse *result, NSString *msg, BOOL finished) {
             
             NSLog(@"--------");
             if(finished){
-                self.pageIndex++;
                 
                 [UIView setAnimationsEnabled:NO];
                 [self.collectionView performBatchUpdates:^{
@@ -286,7 +280,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
                 }];
                 
                 [self.loadMore endLoading];
-                if(self.dynamicAwemes.count < pageSize || result.obj.count == 0) {
+                if(self.dynamicAwemes.count < self.currentPageSize || result.obj.count == 0) {
                     [self.loadMore loadingAll];
                 }
             }
@@ -297,18 +291,18 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         
     }
     else if(_tabIndex == 2){
+        
+        
         NetWork_mt_getLikeVideoList *request = [[NetWork_mt_getLikeVideoList alloc] init];
         request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
         request.noodleId = self.userNoodleId;
-        request.pageNo = [NSString stringWithFormat:@"%ld",pageIndex];
-        request.pageSize = [NSString stringWithFormat:@"%ld",pageSize];
+        request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex=self.currentPageIndex+1];
+        request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];
         [request startGetWithBlock:^(id result, NSString *msg) {
             /*暂不考虑缓存*/
         } finishBlock:^(GetLikeVideoListResponse *result, NSString *msg, BOOL finished) {
             
-            NSLog(@"--------");
             if(finished){
-                self.pageIndex++;
                 
                 [UIView setAnimationsEnabled:NO];
                 [self.collectionView performBatchUpdates:^{
@@ -324,7 +318,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
                 }];
                 
                 [self.loadMore endLoading];
-                if(self.favoriteAwemes.count < pageSize || result.obj.count == 0) {
+                if(self.favoriteAwemes.count < self.currentPageSize || result.obj.count == 0) {
                     [self.loadMore loadingAll];
                 }
             }
@@ -431,39 +425,22 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     self.selectIndex = indexPath.row;
     
-    UserInfoPlayerListViewController *controller;
+    ScrollPlayerListViewController *playerListViewController;
     if(_tabIndex == 0){ //我的作品
-        controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.workAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeWorks];
+        playerListViewController = [[ScrollPlayerListViewController alloc] initWithVideoData:self.workAwemes currentIndex:self.selectIndex];
     }
     else if (_tabIndex == 1){ //动态
-        controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.dynamicAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeDynamics];
+        playerListViewController = [[ScrollPlayerListViewController alloc] initWithVideoData:self.dynamicAwemes currentIndex:self.selectIndex];
         
     }
     else{//喜欢
-        controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeFavourites];
+        playerListViewController = [[ScrollPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex];
         
     }
-    controller.transitioningDelegate = self;
-    
-    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    self.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [_swipeLeftInteractiveTransition wireToViewController:controller];
-    [self presentViewController:controller animated:YES completion:nil];
+    [self pushNewVC:playerListViewController animated:YES];
 }
 
-#pragma mark --------------- UIViewControllerTransitioningDelegate Delegate  Controller 之间的转场动画 -----------------
 
-- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    return _scalePresentAnimation;
-}
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    return _scaleDismissAnimation;
-}
-
--(id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
-    return _swipeLeftInteractiveTransition.interacting ? _swipeLeftInteractiveTransition : nil;
-}
 
 #pragma -mark ------------UIScrollViewDelegate---------
 
@@ -485,14 +462,13 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 
 //网络状态发送变化
 -(void)onNetworkStatusChange:(NSNotification *)notification {
-    //    if(![NetworkHelper isNotReachableStatus:[NetworkHelper networkStatus]]) {
+    
     if(_user == nil) {
         [self loadUserData];
     }
     if(self.favoriteAwemes.count == 0 && self.workAwemes.count == 0 && self.dynamicAwemes.count == 0) {
-        [self loadData:_pageIndex pageSize:_pageSize];
+        [self loadData];
     }
-    //    }
 }
 
 
@@ -500,7 +476,6 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 
 #pragma -mark ------------UserInfoDelegate---------
 - (void)onUserActionTap:(NSInteger)tag {
-    
     
     if(tag == UserInfoHeaderAvatarTag){ //点击头像
         
@@ -587,32 +562,6 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         
         SettingViewController *settingViewController = [[SettingViewController alloc] init];
         [self pushNewVC:settingViewController animated:YES];
-        
-        
-        /*
-        NSArray *titles = nil;
-        if(self.fromType == FromTypeMy){
-            titles = @[@"退出登录",@"清除缓存"];
-        }
-        else{
-            titles = @[@"清除缓存"];
-        }
-        MenuPopView *menu = [[MenuPopView alloc] initWithTitles:titles];
-        [menu setOnAction:^(NSInteger index) {
-            if(index == 0){
-                [UIWindow showTips:[NSString stringWithFormat:@"已经清除缓存"]];
-            }
-            else if (index == 1){
-                [GlobalData cleanAccountInfo];
-                [[CMPZjLifeMobileAppDelegate shareApp].rootViewController selectTabAtIndex:0];
-            }
-            
-            //                [[WebCacheHelpler sharedWebCache] clearCache:^(NSString *cacheSize) {
-            //                    [UIWindow showTips:[NSString stringWithFormat:@"已经清除%@M缓存",cacheSize]];
-            //                }];
-        }];
-        [menu show];
-        */
     }
     
     
@@ -623,8 +572,8 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 - (void)onZanActionTap:(PersonalModel*)user{    //点击赞
     
     NSString *msg = [NSString stringWithFormat:@"\"%@\" 共获得%@个赞",user.nickname,user.likeTotal];
-     UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
-     [alert show];
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+    [alert show];
 }
 - (void)onFollowActionTap:(PersonalModel*)user{//点击关注
     
@@ -667,7 +616,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         return;
     }
     _tabIndex = index;
-    _pageIndex = 1;
+    self.currentPageIndex = 0;
     
     [UIView setAnimationsEnabled:NO];
     [self.collectionView performBatchUpdates:^{
@@ -684,7 +633,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         [self.loadMore reset];
         [self.loadMore startLoading];
         
-        [self loadData:self.pageIndex pageSize:self.pageSize];
+        [self loadData];
     }];
     
 }

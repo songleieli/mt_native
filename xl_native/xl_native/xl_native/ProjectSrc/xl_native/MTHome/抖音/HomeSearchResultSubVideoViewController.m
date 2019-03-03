@@ -7,10 +7,6 @@
 //
 
 #import "HomeSearchResultSubVideoViewController.h"
-//转场动画
-#import "ScalePresentAnimation.h"
-#import "SwipeLeftInteractiveTransition.h"
-#import "ScaleDismissAnimation.h"
 
 @interface HomeSearchResultSubVideoViewController ()
 
@@ -20,11 +16,6 @@
 @property (nonatomic, assign) NSInteger                        tabIndex;
 @property (nonatomic, assign) NSInteger                        pageIndex;
 @property (nonatomic, assign) NSInteger                        pageSize;
-
-//Controller 转场动画
-@property (nonatomic, strong) ScalePresentAnimation            *scalePresentAnimation;
-@property (nonatomic, strong) ScaleDismissAnimation            *scaleDismissAnimation;
-@property (nonatomic, strong) SwipeLeftInteractiveTransition   *swipeLeftInteractiveTransition;
 
 @property (nonatomic, strong) NSMutableArray          *workAwemes;
 
@@ -62,13 +53,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _pageIndex = 1;
-    _pageSize = 20;
     _tabIndex = 0;
-    
-    _scalePresentAnimation = [ScalePresentAnimation new];
-    _scaleDismissAnimation = [ScaleDismissAnimation new];
-    _swipeLeftInteractiveTransition = [SwipeLeftInteractiveTransition new];
     
     [self setUpUI];
 }

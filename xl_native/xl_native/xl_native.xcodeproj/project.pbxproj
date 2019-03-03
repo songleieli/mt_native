@@ -192,9 +192,6 @@
 		04B66E9D21C15DF3000D6C56 /* AwemesResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B66E9C21C15DF2000D6C56 /* AwemesResponse.m */; };
 		04BC59872197C88700D5EA12 /* XLProjectWkWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BC59862197C88600D5EA12 /* XLProjectWkWebViewController.m */; };
 		04C171E221CDDE9E0077FA6C /* UserInfoPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */; };
-		04C171EA21CDE3070077FA6C /* SwipeLeftInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E421CDE3070077FA6C /* SwipeLeftInteractiveTransition.m */; };
-		04C171EB21CDE3070077FA6C /* ScalePresentAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E621CDE3070077FA6C /* ScalePresentAnimation.m */; };
-		04C171EC21CDE3070077FA6C /* ScaleDismissAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E921CDE3070077FA6C /* ScaleDismissAnimation.m */; };
 		04C1720B21CE3EC80077FA6C /* NetWork_mt_getMyVideos.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171F421CE3EC70077FA6C /* NetWork_mt_getMyVideos.m */; };
 		04C1720C21CE3EC80077FA6C /* NetWork_mt_getDynamics.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171F821CE3EC70077FA6C /* NetWork_mt_getDynamics.m */; };
 		04C1720D21CE3EC80077FA6C /* NetWork_mt_saveflour.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171FA21CE3EC70077FA6C /* NetWork_mt_saveflour.m */; };
@@ -834,7 +831,6 @@
 		04E700D9219FF5C10096099F /* MtHomeTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E700D7219FF5C00096099F /* MtHomeTopView.m */; };
 		04EB6895222B83DD00D5C0C1 /* MTMyFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EB6894222B83DC00D5C0C1 /* MTMyFollowViewController.m */; };
 		04ED451921CBD897009DE89F /* NetWork_mt_delLikeVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ED451821CBD896009DE89F /* NetWork_mt_delLikeVideo.m */; };
-		04ED451C21CBE3E2009DE89F /* UserInfoPlayerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ED451B21CBE3E1009DE89F /* UserInfoPlayerListViewController.m */; };
 		04EEBA5F21ABE3EE00A5F6F2 /* PopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EEBA5E21ABE3EE00A5F6F2 /* PopViewController.m */; };
 		04F5E89B21CE7FB600781FCD /* SharePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5E89A21CE7FB600781FCD /* SharePopView.m */; };
 		04F5E89F21CE8DD200781FCD /* NetWork_mt_collectionVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5E89E21CE8DD100781FCD /* NetWork_mt_collectionVideo.m */; };
@@ -1393,12 +1389,6 @@
 		04BC59862197C88600D5EA12 /* XLProjectWkWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLProjectWkWebViewController.m; sourceTree = "<group>"; };
 		04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoPlayerCell.m; sourceTree = "<group>"; };
 		04C171E121CDDE9E0077FA6C /* UserInfoPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoPlayerCell.h; sourceTree = "<group>"; };
-		04C171E421CDE3070077FA6C /* SwipeLeftInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeLeftInteractiveTransition.m; sourceTree = "<group>"; };
-		04C171E521CDE3070077FA6C /* ScaleDismissAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleDismissAnimation.h; sourceTree = "<group>"; };
-		04C171E621CDE3070077FA6C /* ScalePresentAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScalePresentAnimation.m; sourceTree = "<group>"; };
-		04C171E721CDE3070077FA6C /* SwipeLeftInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeLeftInteractiveTransition.h; sourceTree = "<group>"; };
-		04C171E821CDE3070077FA6C /* ScalePresentAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScalePresentAnimation.h; sourceTree = "<group>"; };
-		04C171E921CDE3070077FA6C /* ScaleDismissAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleDismissAnimation.m; sourceTree = "<group>"; };
 		04C171F321CE3EC70077FA6C /* NetWork_mt_getDynamics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getDynamics.h; sourceTree = "<group>"; };
 		04C171F421CE3EC70077FA6C /* NetWork_mt_getMyVideos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getMyVideos.m; sourceTree = "<group>"; };
 		04C171F521CE3EC70077FA6C /* NetWork_mt_saveflour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_saveflour.h; sourceTree = "<group>"; };
@@ -2384,8 +2374,6 @@
 		04EB6894222B83DC00D5C0C1 /* MTMyFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMyFollowViewController.m; sourceTree = "<group>"; };
 		04ED451721CBD896009DE89F /* NetWork_mt_delLikeVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_delLikeVideo.h; sourceTree = "<group>"; };
 		04ED451821CBD896009DE89F /* NetWork_mt_delLikeVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_delLikeVideo.m; sourceTree = "<group>"; };
-		04ED451A21CBE3E1009DE89F /* UserInfoPlayerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoPlayerListViewController.h; sourceTree = "<group>"; };
-		04ED451B21CBE3E1009DE89F /* UserInfoPlayerListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoPlayerListViewController.m; sourceTree = "<group>"; };
 		04EEBA5D21ABE3EE00A5F6F2 /* PopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopViewController.h; sourceTree = "<group>"; };
 		04EEBA5E21ABE3EE00A5F6F2 /* PopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopViewController.m; sourceTree = "<group>"; };
 		04F5E89921CE7FB600781FCD /* SharePopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharePopView.h; sourceTree = "<group>"; };
@@ -2740,11 +2728,8 @@
 			isa = PBXGroup;
 			children = (
 				0487EBB521E89ADD00501B9C /* Settings */,
-				04C171E321CDE3070077FA6C /* TransitionAnim */,
 				04C171DF21CDDE9E0077FA6C /* Views */,
 				040E28BD21C0F0D400D15B44 /* Entity */,
-				04ED451A21CBE3E1009DE89F /* UserInfoPlayerListViewController.h */,
-				04ED451B21CBE3E1009DE89F /* UserInfoPlayerListViewController.m */,
 				0441FA2521CF4CAD00801225 /* UserCollectionController.h */,
 				0441FA2421CF4CAD00801225 /* UserCollectionController.m */,
 				0405BE822220FBD40098D590 /* UserCollectionController_temp.h */,
@@ -3335,19 +3320,6 @@
 				040E28B321C0E20100D15B44 /* AwemeCollectionCell.m */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		04C171E321CDE3070077FA6C /* TransitionAnim */ = {
-			isa = PBXGroup;
-			children = (
-				04C171E821CDE3070077FA6C /* ScalePresentAnimation.h */,
-				04C171E621CDE3070077FA6C /* ScalePresentAnimation.m */,
-				04C171E521CDE3070077FA6C /* ScaleDismissAnimation.h */,
-				04C171E921CDE3070077FA6C /* ScaleDismissAnimation.m */,
-				04C171E721CDE3070077FA6C /* SwipeLeftInteractiveTransition.h */,
-				04C171E421CDE3070077FA6C /* SwipeLeftInteractiveTransition.m */,
-			);
-			path = TransitionAnim;
 			sourceTree = "<group>";
 		};
 		04C171F221CE3EC70077FA6C /* mt_personal */ = {
@@ -6165,7 +6137,6 @@
 				04CBC29F2179C01200658E47 /* MJRefreshAutoFooter.m in Sources */,
 				0435492521A7E9AC00AED5A8 /* UIWebView+AFNetworking.m in Sources */,
 				D957AD5B1DD2CB2F00B7EE09 /* IQKeyboardManager.m in Sources */,
-				04C171EA21CDE3070077FA6C /* SwipeLeftInteractiveTransition.m in Sources */,
 				04CBC38D2179C01300658E47 /* GPUImageAdaptiveThresholdFilter.m in Sources */,
 				04C882102109AB9800811DAD /* BaseWKWebViewController.m in Sources */,
 				04CBC2FB2179C01200658E47 /* BBVoiceRecordPowerAnimationView.m in Sources */,
@@ -6316,7 +6287,6 @@
 				04CBC36F2179C01300658E47 /* GPUImageAmatorkaFilter.m in Sources */,
 				04CBC48B2179C01300658E47 /* UIView+WebCacheOperation.m in Sources */,
 				0435491921A7E9AC00AED5A8 /* UIProgressView+AFNetworking.m in Sources */,
-				04ED451C21CBE3E2009DE89F /* UserInfoPlayerListViewController.m in Sources */,
 				0441FA2621CF4CAD00801225 /* UserCollectionController.m in Sources */,
 				D957AD631DD2CB2F00B7EE09 /* IQTitleBarButtonItem.m in Sources */,
 				04183B0721C2BC2200383E3F /* FocusView.m in Sources */,
@@ -6507,7 +6477,6 @@
 				04C2615221A68FB200374E4D /* V8HorizontalPickerView.m in Sources */,
 				04B0E1E321A6937600ABCF16 /* NSObject+BKBlockObservation.m in Sources */,
 				0415F08A21C7D463000440F4 /* MTHomeRefreshNavigitionView.m in Sources */,
-				04C171EC21CDE3070077FA6C /* ScaleDismissAnimation.m in Sources */,
 				D98FCFC41DEFC41A0023C076 /* STPickerViewConst.m in Sources */,
 				04DCA87D21A55C5B00691A3A /* TVCReport.m in Sources */,
 				04CBC32D2179C01300658E47 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
@@ -6517,7 +6486,6 @@
 				0482F27621BFCA7C00587B38 /* MASViewAttribute.m in Sources */,
 				04DCEE9121F5B4B9007AC5B0 /* SearchResultSubUserCell.m in Sources */,
 				04183B1821C2C09600383E3F /* Callback_token.m in Sources */,
-				04C171EB21CDE3070077FA6C /* ScalePresentAnimation.m in Sources */,
 				04DCA8ED21A565D500691A3A /* VideoPasterView.m in Sources */,
 				04CBC4152179C01300658E47 /* GPUImageRawDataInput.m in Sources */,
 				04BC59872197C88700D5EA12 /* XLProjectWkWebViewController.m in Sources */,

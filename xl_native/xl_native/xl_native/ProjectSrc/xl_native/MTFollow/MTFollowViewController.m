@@ -133,7 +133,7 @@
     
     NetWork_mt_getFollowsVideoList *request = [[NetWork_mt_getFollowsVideoList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex+1];
+    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex=self.currentPageIndex+1];
     request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {
         /*

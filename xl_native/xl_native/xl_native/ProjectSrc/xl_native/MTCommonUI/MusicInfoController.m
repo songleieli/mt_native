@@ -18,8 +18,6 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
 @property (nonatomic, assign) CGFloat                          itemHeight;
 
 @property (nonatomic, assign) NSInteger                        tabIndex;
-@property (nonatomic, assign) NSInteger                        pageIndex;
-@property (nonatomic, assign) NSInteger                        pageSize;
 
 @property (nonatomic, strong) NSMutableArray          *favoriteAwemes;
 
@@ -51,6 +49,8 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
     [super viewWillAppear:animated];
     //test
     [self onNetworkStatusChange:nil];// 模仿抖音Demo中，的网络变化，加载数据
+    
+    [UIApplication sharedApplication].statusBarHidden = NO;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -59,13 +59,7 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
 }
 
 - (void)viewDidLoad {
-    _pageIndex = 1;
-    _pageSize = 20;
     _tabIndex = 0;
-    
-    _scalePresentAnimation = [ScalePresentAnimation new];
-    _scaleDismissAnimation = [ScaleDismissAnimation new];
-    _swipeLeftInteractiveTransition = [SwipeLeftInteractiveTransition new];
     
     [super viewDidLoad];
     [self setUpUI];
@@ -129,24 +123,23 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
     [_loadMore startLoading];
     __weak __typeof(self) wself = self;
     [_loadMore setOnLoad:^{
-        [wself loadData:wself.pageIndex pageSize:wself.pageSize];
+        [wself loadData];
     }];
     [_collectionView addSubview:_loadMore];
 }
 
 #pragma -mark ----------HTTP data request----------
 
-- (void)loadData:(NSInteger)pageIndex pageSize:(NSInteger)pageSize {
+- (void)loadData{
     
     NetWork_mt_getHotVideosByMusic *request = [[NetWork_mt_getHotVideosByMusic alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.musicId = self.musicId;
-    request.pageNo = [NSString stringWithFormat:@"%ld",pageIndex];
-    request.pageSize = [NSString stringWithFormat:@"%ld",pageSize];
+    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex=self.currentPageIndex+1];
+    request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];
     [request startGetWithBlock:^(GetHotVideosByMusicResponse *result, NSString *msg, BOOL finished) {
         
         if(finished){
-            self.pageIndex++;
             self.musicModel = result.obj.music;
             [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]]; //加载 head Data
             
@@ -164,7 +157,7 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
             }];
             
             [self.loadMore endLoading];
-            if(self.favoriteAwemes.count < pageSize || result.obj.videoList.count == 0) {
+            if(self.favoriteAwemes.count < self.currentPageSize || result.obj.videoList.count == 0) {
                 [self.loadMore loadingAll];
             }
         }
@@ -224,35 +217,17 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
 //UICollectionViewDelegate Delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    
     if(self.topicHeader){//如果topicHeader正在播放音乐，暂停
         [self.topicHeader pauseMusic];
     }
     
     self.selectIndex = indexPath.row;
-    UserInfoPlayerListViewController *controller;
-    controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeFavourites];
-    controller.transitioningDelegate = self;
     
-    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    self.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [_swipeLeftInteractiveTransition wireToViewController:controller];
-    [self presentViewController:controller animated:YES completion:nil];
+    ScrollPlayerListViewController *controller;
+    controller = [[ScrollPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex];
+    [self pushNewVC:controller animated:YES];
 }
 
-#pragma mark --------------- UIViewControllerTransitioningDelegate Delegate  Controller 之间的转场动画 -----------------
-
-- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    return _scalePresentAnimation;
-}
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    return _scaleDismissAnimation;
-}
-
--(id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
-    return _swipeLeftInteractiveTransition.interacting ? _swipeLeftInteractiveTransition : nil;
-}
 
 #pragma -mark ------------ TopicHeadDelegate ---------
 
@@ -314,7 +289,7 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
 
 //网络状态发送变化
 -(void)onNetworkStatusChange:(NSNotification *)notification {
-    [self loadData:_pageIndex pageSize:_pageSize];
+    [self loadData];
 }
 
 @end

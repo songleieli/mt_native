@@ -21,8 +21,5 @@
 @property(nonatomic,strong) NSString *parameter;
 @property (nonatomic, weak) id<SubMusicCellDelegate> delegate;
 
-@property (nonatomic, assign) NSInteger                        pageIndex;
-@property (nonatomic, assign) NSInteger                        pageSize;
-
 
 @end

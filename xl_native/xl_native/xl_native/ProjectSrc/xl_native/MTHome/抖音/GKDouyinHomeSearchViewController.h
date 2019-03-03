@@ -14,11 +14,6 @@
 
 #import "HomeSearchCell.h"
 
-//转场动画
-#import "ScalePresentAnimation.h"
-#import "SwipeLeftInteractiveTransition.h"
-#import "ScaleDismissAnimation.h"
-
 @interface GKDouyinHomeSearchViewController : ZJBaseViewController<HomeSearchDelegate,UIViewControllerTransitioningDelegate>
 
 //title
@@ -26,13 +21,6 @@
 @property (nonatomic,strong) UIButton *cancleButton;
 @property (nonatomic,strong) UITextField * textFieldSearchKey;
 @property (nonatomic,assign) BOOL hasKeyBordShow;
-
-//Controller 转场动画
-@property (nonatomic, strong) ScalePresentAnimation            *scalePresentAnimation;
-@property (nonatomic, strong) ScaleDismissAnimation            *scaleDismissAnimation;
-@property (nonatomic, strong) SwipeLeftInteractiveTransition   *swipeLeftInteractiveTransition;
-
-
 
 //返回播放列表Block
 @property (nonatomic, copy) void(^backClickBlock)();

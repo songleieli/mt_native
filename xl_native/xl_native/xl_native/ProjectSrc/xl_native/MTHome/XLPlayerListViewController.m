@@ -457,7 +457,7 @@
 -(void)initRequest {
     
     NetWork_mt_home_list *request = [[NetWork_mt_home_list alloc] init];
-    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex+1];
+    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex=self.currentPageIndex+1];
     request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     [request startGetWithBlock:^(HomeListResponse *result, NSString *msg) {
@@ -737,7 +737,6 @@
 }
 
 - (void)musicCDClicked:(HomeListModel *)listModel{
-    NSLog(@"----------CD----------");
     
     MusicInfoController *musicInfoController = [[MusicInfoController alloc] init];
     musicInfoController.musicId = [NSString stringWithFormat:@"%@",listModel.musicId];
