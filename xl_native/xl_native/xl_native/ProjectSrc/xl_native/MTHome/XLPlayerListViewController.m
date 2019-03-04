@@ -183,6 +183,9 @@
     }
     self.refreshBlock = block;
     
+    
+    NSLog(@"=================addJXRefreshWithTableView==");
+    
     //用来响应touch的view
     self.clearView = [[UIView alloc] init];
     self.clearView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
@@ -202,6 +205,8 @@
     [self resumeNormal];
     [self.refreshNavigitionView.circleImage.layer removeAnimationForKey:@"rotationAnimation"];
     _clearView.hidden = NO;
+    
+    NSLog(@"---------endRefresh-----------");
 }
 
 #pragma mark --------- Kvo ------------
@@ -240,24 +245,21 @@
     }
     
     CGPoint currentPoint = [touches.anyObject locationInView:self.view];
-    float moveDistance = currentPoint.y - self.startPoint.y;
-    
-    
+    float moveYDistance = currentPoint.y - self.startPoint.y;
+
+    //在第一页下拉和上滑的过程中，停止右滑，在 touchesEnded 中开启右滑
+    [self dealIsScrolling:YES];
+
     if (self.mainTableView.contentOffset.y <=0){ //下拉
         
-        //在第一页下拉的过程中，停止右华
-        if(self.scrollBlock){
-            self.scrollBlock(YES);
-        }
-        
         //根据触摸点移动方向判断用户是下拉还是上拉
-        if( moveDistance > 0 && moveDistance < MaxDistance) {
+        if( moveYDistance > 0 && moveYDistance < MaxDistance) {
             
             self.refreshStatus = REFRESH_MoveDown;
             //只判断当前触摸点与起始触摸点y轴方向的移动距离，只要y比起始触摸点的y大就证明是下拉，这中间可能存在先下拉一段距离没松手又上滑了一点的情况
-            float alpha = moveDistance/MaxDistance;
+            float alpha = moveYDistance/MaxDistance;
             self.refreshNavigitionView.alpha = alpha;
-            self.refreshNavigitionView.top = moveDistance;
+            self.refreshNavigitionView.top = moveYDistance;
             self.topView.alpha = 1 - alpha;
             
             //在整体判断为下拉刷新的情况下，还需要对上一个触摸点和当前触摸点进行比对，判断圆圈旋转方向，下移逆时针，上移顺时针
@@ -269,27 +271,25 @@
                 _refreshNavigitionView.circleImage.transform= CGAffineTransformRotate(_refreshNavigitionView.circleImage.transform,0.08);
             }
         }
-        else if(moveDistance >= MaxDistance){
+        else if(moveYDistance >= MaxDistance){
             //_refreshNavigitionView和topView就保持透明度和位置，不再移动
             self.refreshStatus = REFRESH_MoveDown;
             self.refreshNavigitionView.alpha = 1;
             self.topView.alpha = 0;
         }
-        else if(moveDistance < 0){
+        else if(moveYDistance < 0){
             self.refreshStatus = REFRESH_MoveUp;
             //moveDistance<0则是上拉 根据移动距离修改tableview.contentOffset，模仿tableview的拖拽效果，一旦执行了这行代码，下个触摸点就会走外层else代码
-            self.mainTableView.contentOffset = CGPointMake(0, -moveDistance);
+            self.mainTableView.contentOffset = CGPointMake(0, -moveYDistance);
         }
     }
     else{//上拉
         
-        NSLog(@"-----");
-        
         self.refreshStatus = REFRESH_MoveUp;
         //tableview被上拉了
-        moveDistance = self.startPoint.y - currentPoint.y;//转换为正数
+        moveYDistance = self.startPoint.y - currentPoint.y;//转换为正数
         _clearView.hidden = YES;
-        self.mainTableView.contentOffset = CGPointMake(0, moveDistance);
+        self.mainTableView.contentOffset = CGPointMake(0, moveYDistance);
     }
 }
 
@@ -297,18 +297,15 @@
 - (void)touchesEnded:(NSSet *)touches
            withEvent:(UIEvent *)event{
     
-
     CGPoint currentPoint = [touches.anyObject locationInView:self.view];
-    float moveDistance = currentPoint.y-self.startPoint.y;
-    if (moveDistance==0) { //如果moveDistance == 0 表示的是点击页面
-        
+    float moveYDistance = currentPoint.y-self.startPoint.y;
+
+    if (moveYDistance==0) { //如果moveDistance == 0 表示的是点击页面
         
         if(self.startPoint.y < self.topView.height){
             //如果点击的是top的位置，直接返回，不想赢touch。
             return;
         }
-        
-        
         
         //通过point所在位置 判断应该响应那个蒙版下面的按钮
         BOOL isExitFlollow = CGRectContainsPoint(_currentCell.maskView.focus.frame,currentPoint);
@@ -365,23 +362,17 @@
         }
         return;
     }
-    
-    //清除起始触摸点
-    self.startPoint = CGPointZero;
-    
-    
-    NSLog(@"-------touchesEnded----");
+
+
     
     //1.在第一页，松开手后，判断向下滚动还是向上滚动
-    if(self.mainTableView.contentOffset.y > ScreenHeight/2){
+    if(self.mainTableView.contentOffset.y > ScreenHeight/4){ //第一页，如果上滑超过1/4,显示第二页。
+        
         [UIView animateWithDuration:0.3 animations:^{
             self.mainTableView.contentOffset = CGPointMake(0, ScreenHeight);
         } completion:^(BOOL finished) {
-            
-            if(self.scrollBlock){
-                self.scrollBlock(NO);
-            }
-            
+            //处理是否可以右滑出搜索页面
+            [self dealIsScrolling:NO];
         }];
         
         self.currentPlayVideoIndex = 1;
@@ -392,9 +383,10 @@
         [UIView animateWithDuration:0.3 animations:^{
             self.mainTableView.contentOffset = CGPointMake(0, 0);
         } completion:^(BOOL finished) {
-            if(self.scrollBlock){
-                self.scrollBlock(NO);
-            }
+            
+            //处理是否可以右滑出搜索页面
+            [self dealIsScrolling:NO];
+            
         }];
     }
     
@@ -421,11 +413,12 @@
         }
     } completion:^(BOOL finished) {
         
-        //松手回弹后，启用右滑
-        if(self.scrollBlock){
-            self.scrollBlock(NO);
-        }
+        //处理是否可以右滑出搜索页面
+        [self dealIsScrolling:NO];
     }];
+    
+    //清除起始触摸点
+    self.startPoint = CGPointZero;
 }
 
 
@@ -452,6 +445,14 @@
     [self.refreshNavigitionView.circleImage.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
 }
 
+//松手回弹后，是否启用右滑 YES，禁止右滑，NO，允许右滑
+-(void)dealIsScrolling:(BOOL)isScrolling{
+    
+    if(self.scrollBlock){
+        self.scrollBlock(isScrolling);
+    }
+}
+
 #pragma mark --------- 网络请求 ------------
 
 -(void)initRequest {
@@ -468,26 +469,30 @@
         NSLog(@"----");
         
         if(finished){
-            self.mainTableView.mj_footer.hidden = NO;
             [self.mainDataArr addObjectsFromArray:result.obj];
             [self.mainTableView reloadData];
             
-            if(self.isFirstLoad){//第一次加载
-                self.isFirstLoad = NO;
-                
+//            if(self.isFirstLoad){//第一次加载
+////                NSLog(@"--------------------self.isFirstLoad------------------");
+//                self.isFirstLoad = NO;
+            
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentPlayVideoIndex inSection:0];
                 [self.mainTableView scrollToRowAtIndexPath:indexPath
                                           atScrollPosition:UITableViewScrollPositionTop
                                                   animated:NO];
                 self.currentCell = [self.mainTableView cellForRowAtIndexPath:indexPath];
                 [self playCurCellVideo];
-                
-            }
+//            }
         }
         else{
             [UIWindow showTips:@"网络不给力"];
         }
-        [self endRefresh];
+        
+        if(self.isRefreshClick){
+            self.isRefreshClick = NO;
+            [self endRefresh];
+            
+        }
     }];
 }
 
@@ -554,15 +559,17 @@
     if (self.currentPlayVideoIndex != index) {
         self.currentPlayVideoIndex = index;
         
+        NSInteger offset = self.mainDataArr.count - self.currentPlayVideoIndex;
+        if(offset != 1){
         self.currentCell = [self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentPlayVideoIndex inSection:0]];
         [self playCurCellVideo];
+        }
     }
     
-//    NSInteger offset = self.mainDataArr.count - self.currentPlayVideoIndex;
-//    if(offset == 2){ //开始加载下一页
-//        self.currentPageIndex += 1;
-//        [self initRequest];
-//    }
+    NSInteger offset = self.mainDataArr.count - self.currentPlayVideoIndex;
+    if(offset == 1){ //开始加载下一页
+        [self initRequest];
+    }
 }
 
 #pragma mark --------------- MtHomeTopDelegate代理 -----------------
@@ -586,13 +593,13 @@
     NSLog(@"------scanBtnClick----------");
 }
 -(void)refreshBtnClick{
-    NSLog(@"刷新页面");
     
+    
+    self.isRefreshClick = YES;
     self.refreshNavigitionView.alpha = 1.0f;
     self.refreshNavigitionView.titleLable.text = @"正在刷新";
     self.topView.alpha = 0.0f;
     [self startAnimation];
-    
     [self loadNewListData];
 }
 
@@ -604,14 +611,14 @@
     if(current == 0.0f){
         NSLog(@"-------调用，视频播放接口-----");
         
-        NetWork_mt_addVideoPlay *request = [[NetWork_mt_addVideoPlay alloc] init];
-        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-        request.noodleVideoId = [NSString stringWithFormat:@"%@",listModel.noodleVideoId];
-        [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
-            if(finished){
-                NSLog(@"-----------播放量增加-----------");
-            }
-        }];
+//        NetWork_mt_addVideoPlay *request = [[NetWork_mt_addVideoPlay alloc] init];
+//        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+//        request.noodleVideoId = [NSString stringWithFormat:@"%@",listModel.noodleVideoId];
+//        [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+//            if(finished){
+//                NSLog(@"-----------播放量增加-----------");
+//            }
+//        }];
         
     }
 }
