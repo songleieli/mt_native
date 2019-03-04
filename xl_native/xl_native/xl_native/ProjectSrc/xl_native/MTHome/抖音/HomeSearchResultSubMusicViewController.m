@@ -108,7 +108,7 @@
 
 -(void)loadMusicData:(GetFuzzyMusicListResponse *)result{
     
-    if (self.currentPageIndex == 0 ) {
+    if (self.currentPageIndex == 1 ) {
         [self.mainDataArr removeAllObjects];
         self.mainDataArr = nil;
         self.mainDataArr = [[NSMutableArray alloc]init];

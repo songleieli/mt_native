@@ -109,7 +109,7 @@
 }
 
 -(void)loadVideoData:(GetFollowsVideoListResponse *)result{
-    if (self.currentPageIndex == 0 ) {
+    if (self.currentPageIndex == 1 ) {
         [self.mainDataArr removeAllObjects];
         [self refreshNoDataViewWithListCount:result.obj.count];
     }

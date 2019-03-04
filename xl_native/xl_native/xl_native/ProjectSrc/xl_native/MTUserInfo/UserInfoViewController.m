@@ -205,7 +205,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
             [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
         }
         else{
-            [UIWindow showTips:msg];
+            [UIWindow showTips:@"用户信息获取失败，请检查网络。"];
         }
     }];
 }

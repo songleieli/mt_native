@@ -225,38 +225,41 @@ NSString * const kMyTopicHeaderView         = @"kMyTopicHeaderView";
 
 -(void)btnCollectionClick:(GetHotVideosByTopicModel*)model{
     
-    if([model.isCollect integerValue] == 0){ //没有收藏，收藏
+    [[ZJLoginService sharedInstance] authenticateWithCompletion:^(BOOL success) {
         
-        CollectionTopicContentModel *contentModel = [[CollectionTopicContentModel alloc] init];
-        contentModel.topicName = model.topic;
-        contentModel.topicId = [NSString stringWithFormat:@"%@",model.id];
-        contentModel.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-        
-        NetWork_mt_collectionTopic *request = [[NetWork_mt_collectionTopic alloc] init];
-        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-        request.content = [contentModel generateJsonStringForProperties];
-        [request startPostWithBlock:^(CollectionTopicResponse *result, NSString *msg, BOOL finished) {
-            [UIWindow showTips:msg];
-            if(finished){
-                model.isCollect = result.obj;
-                [self.topicHeader initData:model];
-            }
-        }];
-        
-    }
-    else{//已收藏，取消收藏
-        NetWork_mt_deleteCollection *request = [[NetWork_mt_deleteCollection alloc] init];
-        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-        request.id = [NSString stringWithFormat:@"%@",model.isCollect];
-        [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+        if([model.isCollect integerValue] == 0){ //没有收藏，收藏
             
-            [UIWindow showTips:msg];
-            if(finished){
-                model.isCollect = [NSNumber numberWithInt:0];
-                [self.topicHeader initData:model];
-            }
-        }];
-    }
+            CollectionTopicContentModel *contentModel = [[CollectionTopicContentModel alloc] init];
+            contentModel.topicName = model.topic;
+            contentModel.topicId = [NSString stringWithFormat:@"%@",model.id];
+            contentModel.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+            
+            NetWork_mt_collectionTopic *request = [[NetWork_mt_collectionTopic alloc] init];
+            request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+            request.content = [contentModel generateJsonStringForProperties];
+            [request startPostWithBlock:^(CollectionTopicResponse *result, NSString *msg, BOOL finished) {
+                [UIWindow showTips:msg];
+                if(finished){
+                    model.isCollect = result.obj;
+                    [self.topicHeader initData:model];
+                }
+            }];
+            
+        }
+        else{//已收藏，取消收藏
+            NetWork_mt_deleteCollection *request = [[NetWork_mt_deleteCollection alloc] init];
+            request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+            request.id = [NSString stringWithFormat:@"%@",model.isCollect];
+            [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+                
+                [UIWindow showTips:msg];
+                if(finished){
+                    model.isCollect = [NSNumber numberWithInt:0];
+                    [self.topicHeader initData:model];
+                }
+            }];
+        }
+    } cancelBlock:nil isAnimat:YES];
 }
 
 #pragma -mark ------------Custom Method---------

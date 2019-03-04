@@ -101,7 +101,7 @@
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex=self.currentPageIndex+1];
-    request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];
+    request.pageSize = [NSString stringWithFormat:@"%ld",(long)self.currentPageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {
         /*
          *暂不考虑缓存问题
@@ -111,12 +111,16 @@
         if(finished){
             [self loadData:result];
         }
+        else{
+            [UIWindow showTips:@"列表获取失败，请检查网络"];
+            [self refreshNoDataViewWithListCount:0];
+        }
     }];
     
 }
 
 -(void)loadData:(GetLikeMeListResponse *)result{
-    if (self.currentPageIndex == 0 ) {
+    if (self.currentPageIndex == 1 ) {
         [self.mainDataArr removeAllObjects];
         [self refreshNoDataViewWithListCount:result.obj.count];
     }

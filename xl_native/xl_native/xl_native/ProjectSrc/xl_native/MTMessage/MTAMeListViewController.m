@@ -113,6 +113,7 @@
             [self loadData:result];
         }
         else{
+            [UIWindow showTips:@"列表获取失败，请检查网络"];
             [self refreshNoDataViewWithListCount:0];
         }
     }];

@@ -111,12 +111,16 @@
         if(finished){
             [self loadData:result];
         }
+        else{
+            [UIWindow showTips:@"列表获取失败，请检查网络"];
+            [self refreshNoDataViewWithListCount:0];
+        }
     }];
     
 }
 
 -(void)loadData:(GetCommentMeListResponse *)result{
-    if (self.currentPageIndex == 0 ) {
+    if (self.currentPageIndex == 1 ) {
         [self.mainDataArr removeAllObjects];
         [self refreshNoDataViewWithListCount:result.obj.count];
     }
