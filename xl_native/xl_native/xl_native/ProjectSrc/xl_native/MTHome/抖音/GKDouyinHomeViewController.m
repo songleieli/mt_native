@@ -129,7 +129,17 @@
     [UIApplication sharedApplication].statusBarHidden = YES;
     // 设置左滑push代理
     self.gk_pushDelegate = self;
+    
+//    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(move:)];
+//   [self.scrollView addGestureRecognizer:pan];
 }
+
+//- (void)move:(UIPanGestureRecognizer *)pan {
+//
+//   CGPoint point = [pan locationInView:self.scrollView];//self.view是手势作用在哪个view上。以父 view左上角为原点；
+//    CGPoint transPoint = [pan translationInView:self.scrollView];//以自身的左上角为原点；每次移动后，原点都置0；计算的是相对于上一个位置的偏移；
+//   NSLog(@"locationInView:%f--%f\n -- translationInView:%f--%f",point.x,point.y,transPoint.x,transPoint.y);
+//}
 
 #pragma mark ----------- CustomMethod ----------
 
@@ -160,6 +170,15 @@
 }
 
 #pragma mark --------------- UIScrollView 代理 -----------------
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSLog(@"----scrollViewDidScroll-----");
+    CGFloat w = self.view.frame.size.width;
+
+    self.scrollView.contentOffset = CGPointMake(w, 0);
+
+}
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     

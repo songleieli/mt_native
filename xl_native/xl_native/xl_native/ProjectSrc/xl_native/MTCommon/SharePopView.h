@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NetWork_mt_home_list.h"
 
 @class SharePopView;
 
@@ -25,6 +26,7 @@
 @property (nonatomic, strong) UIView           *container;
 @property (nonatomic, strong) UIButton         *cancel;
 
+@property(nonatomic,strong) HomeListModel * homeListModel;
 @property(nonatomic, weak)id <VideoSahreDelegate> delegate;
 
 

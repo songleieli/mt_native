@@ -366,7 +366,7 @@
 
     
     //1.在第一页，松开手后，判断向下滚动还是向上滚动
-    if(self.mainTableView.contentOffset.y > ScreenHeight/4){ //第一页，如果上滑超过1/4,显示第二页。
+    if(self.mainTableView.contentOffset.y > kTabBarHeight_New*2){ //第一页，如果上滑超过1/4,显示第二页。
         
         [UIView animateWithDuration:0.3 animations:^{
             self.mainTableView.contentOffset = CGPointMake(0, ScreenHeight);
@@ -386,7 +386,6 @@
             
             //处理是否可以右滑出搜索页面
             [self dealIsScrolling:NO];
-            
         }];
     }
     
@@ -459,7 +458,7 @@
     
     NetWork_mt_home_list *request = [[NetWork_mt_home_list alloc] init];
     request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex=self.currentPageIndex+1];
-    request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];
+    request.pageSize = [NSString stringWithFormat:@"%ld",(long)self.currentPageSize];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     [request startGetWithBlock:^(HomeListResponse *result, NSString *msg) {
         /*
@@ -739,6 +738,7 @@
     NSLog(@"----------分享----------");
     
     SharePopView *popView = [[SharePopView alloc] init];
+    popView.homeListModel = listModel;
     popView.delegate = self;
     [popView show];
 }

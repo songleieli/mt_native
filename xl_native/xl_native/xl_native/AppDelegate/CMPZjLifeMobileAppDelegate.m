@@ -49,6 +49,10 @@
     
     //微信注册
     [WXApi registerApp:[WCBaseContext sharedInstance].wxAppId];
+    //注册腾讯qq
+    NSString *appid = [WCBaseContext sharedInstance].txAppId;
+    _oauth = [[TencentOAuth alloc] initWithAppId:appid andDelegate:self];
+    
     //注册微博分享
     [WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:[WCBaseContext sharedInstance].sinaAppKey];
@@ -103,6 +107,56 @@
         }
     }
     return NO;
+}
+
+#pragma mark ------------- 腾讯登录Delegete ------------
+//登录成功回调
+- (void)tencentDidLogin {
+    
+    if (_oauth.accessToken && 0 != [_oauth.accessToken length]){
+        //记录登录⽤用户的OpenID、Token以及过期时间
+        
+        //发送qq用户登录成功 通知
+        
+//        NetWork_mt_login *request = [[NetWork_mt_login alloc] init];
+//        request.accoutType = @"2";//qq登录
+//        request.accessToken = _oauth.accessToken;
+//
+//        [request showWaitMsg:@"正在登陆，请稍后......" handle:self];
+//        [request startPostWithBlock:^(LoginResponse *result, NSString *msg, BOOL finished) {
+//
+//
+//            if(finished){
+//                //[self deal_loginRespones:result.obj];
+//            }
+//            NSLog(@"----");
+//        }];
+    }
+    else{
+        //登录不不成功 没有获取到accesstoken }
+    }
+}
+
+//⾮非⽹网络错误导致登录失败:
+- (void)tencentDidNotLogin:(BOOL)cancelled{
+    if (cancelled){ //⽤用户取消登录
+    }
+    else{
+        //登录失败
+    }
+}
+
+/**
+ * 登录时网络有问题的回调
+ */
+- (void)tencentDidNotNetWork{
+    //检查⽹网络设置
+}
+
+- (void)getUserInfoResponse:(APIResponse*) response{
+    
+    NSLog(@"--------");
+    
 }
 
 #pragma mark - 子类重载方法

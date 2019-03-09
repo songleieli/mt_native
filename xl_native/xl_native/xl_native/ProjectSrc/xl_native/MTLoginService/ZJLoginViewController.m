@@ -812,12 +812,16 @@
     
         //注册腾讯SDK
         NSMutableArray * permissions = [[NSMutableArray alloc] initWithObjects:kOPEN_PERMISSION_GET_USER_INFO, kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,nil];
-        NSString *appid = [WCBaseContext sharedInstance].txAppId;
-        _oauth = [[TencentOAuth alloc] initWithAppId:appid
-                                         andDelegate:self];
+//        NSString *appid = [WCBaseContext sharedInstance].txAppId;
+//        _oauth = [[TencentOAuth alloc] initWithAppId:appid
+//                                         andDelegate:self];
+    
+    [CMPZjLifeMobileAppDelegate shareApp].oauth.authMode = kAuthModeClientSideToken;
+    [[CMPZjLifeMobileAppDelegate shareApp].oauth authorize:permissions inSafari:NO];
+
         //登录授权
-        _oauth.authMode = kAuthModeClientSideToken;
-        [_oauth authorize:permissions inSafari:NO];
+//        _oauth.authMode = kAuthModeClientSideToken;
+//        [_oauth authorize:permissions inSafari:NO];
     
     
     

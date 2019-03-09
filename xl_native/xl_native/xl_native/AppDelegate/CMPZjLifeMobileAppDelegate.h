@@ -15,6 +15,10 @@
 #import "WXApi.h"
 #import "WeiboSDK.h"
 #import "WXApiManager.h"
+//qq互联
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+//#import <TencentOpenAPI/TencentOAuthObject.h>
 
 @class ZJHomeViewController;
 
@@ -31,7 +35,7 @@
 
 @end
 
-@interface CMPZjLifeMobileAppDelegate : AppDelegateBase<UIAlertViewDelegate>
+@interface CMPZjLifeMobileAppDelegate : AppDelegateBase<UIAlertViewDelegate,TencentSessionDelegate,QQApiInterfaceDelegate>
 
 @property (nonatomic, assign) id<ThirdLoginDelegate> thirddelegate;
 
@@ -39,6 +43,7 @@
 @property (nonatomic, strong) CMPZjLifeMobileRootViewController *rootViewController;
 @property (nonatomic, strong) NSDictionary *dicPushUserInfo;
 @property (nonatomic, copy) NSString *pushSourceSystemCommunityId;
+@property(nonatomic,strong) TencentOAuth * oauth;
 
 +(CMPZjLifeMobileAppDelegate *)shareApp;
 
