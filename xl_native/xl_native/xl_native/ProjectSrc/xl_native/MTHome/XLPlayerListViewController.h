@@ -38,7 +38,7 @@ typedef NS_ENUM(NSInteger,StatusOfRefresh) {
 @interface XLPlayerListViewController : ZJBaseViewController
 
 @property (nonatomic, assign)BOOL isFirstLoad; //判断是否第一加载
-@property (nonatomic, assign)BOOL isRefreshClick; //是否首页刷新按钮点击
+//@property (nonatomic, assign)BOOL isRefreshClick; //是否首页刷新按钮点击
 @property (nonatomic,strong) MtHomeTopView *topView;
 @property (nonatomic, assign) NSInteger currentPlayVideoIndex; //当前播放视频的Index
 @property (nonatomic, strong)HomeVideoCell *currentCell;  //当前显示到屏幕的cell

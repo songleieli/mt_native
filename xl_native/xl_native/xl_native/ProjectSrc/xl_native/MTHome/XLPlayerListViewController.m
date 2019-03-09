@@ -411,7 +411,6 @@
             [self resumeNormal];
         }
     } completion:^(BOOL finished) {
-        
         //处理是否可以右滑出搜索页面
         [self dealIsScrolling:NO];
     }];
@@ -487,10 +486,8 @@
             [UIWindow showTips:@"网络不给力"];
         }
         
-        if(self.isRefreshClick){
-            self.isRefreshClick = NO;
+        if(self.refreshStatus == XDREFRESH_BeginRefresh){
             [self endRefresh];
-            
         }
     }];
 }
@@ -594,7 +591,8 @@
 -(void)refreshBtnClick{
     
     
-    self.isRefreshClick = YES;
+//    self.isRefreshClick = YES;
+    self.refreshStatus = XDREFRESH_BeginRefresh;
     self.refreshNavigitionView.alpha = 1.0f;
     self.refreshNavigitionView.titleLable.text = @"正在刷新";
     self.topView.alpha = 0.0f;
@@ -728,10 +726,6 @@
         }];
         [popView show];
     } cancelBlock:nil isAnimat:YES];
-    
-
-    
-    
 }
 
 - (void)shareClicked:(HomeListModel *)listModel{
@@ -751,10 +745,7 @@
 }
 
 - (void)playButtonAction:(BOOL)isPlay{
-    
     self.isDisAppearPlay = isPlay;
-    
-    NSLog(@"-----------self.isDisAppearPlay -=%d---",self.isDisAppearPlay);
 }
 
 #pragma mark --------------- VideoSahreDelegate 代理 -----------------

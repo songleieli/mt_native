@@ -17,7 +17,7 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer {
     if (self.navigationController.gk_openScrollLeftPush) {
         // 开启了左滑push功能
-        NSLog(@"------开启了左滑push功能------");
+        //NSLog(@"------开启了左滑push功能------");
 
     }else {
         // 忽略根控制器

@@ -11,4 +11,6 @@
 
 @interface GKDouyinHomeViewController : ZJCustomTabBarLjhTableViewController
 
+@property (atomic, assign) CGFloat  offset; //判断是否向右滑动的变量
+
 @end
