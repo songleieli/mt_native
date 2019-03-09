@@ -418,3 +418,5 @@ alpha:1.0]
 /*面条全局通知定义*/
 #define NSNotificationUserInfoChange @"NSNotificationUserInfoChange"    //用户信息修改成功通知
 
+#define NSNotificationUserQQLoginSuccess @"NSNotificationUserQQLoginSuccess"    //用户QQ第三方登录成功
+#define NSNotificationUserQQLoginFail @"NSNotificationUserQQLoginFail"    //用户QQ第三方登录失败

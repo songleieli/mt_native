@@ -35,7 +35,7 @@
 
 @end
 
-@interface CMPZjLifeMobileAppDelegate : AppDelegateBase<UIAlertViewDelegate,TencentSessionDelegate,QQApiInterfaceDelegate>
+@interface CMPZjLifeMobileAppDelegate : AppDelegateBase<UIAlertViewDelegate,TencentSessionDelegate>
 
 @property (nonatomic, assign) id<ThirdLoginDelegate> thirddelegate;
 

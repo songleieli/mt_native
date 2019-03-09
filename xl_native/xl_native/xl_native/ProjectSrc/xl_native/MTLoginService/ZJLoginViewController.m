@@ -182,16 +182,42 @@
     //[super initNavTitle]; //不响应BaseView中的方法
 }
 
+- (void)dealloc{
+    NSLog(@"dealloc");
+    
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSNotificationUserQQLoginSuccess
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSNotificationUserQQLoginFail
+                                                  object:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [CMPZjLifeMobileAppDelegate shareApp].thirddelegate = self;
 
+    [self registerForRemoteNotification];
     [self creatUI];
 }
 
+
+-(void)registerForRemoteNotification{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(tencentDidLogin:)
+                                                 name:NSNotificationUserQQLoginSuccess
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(tencentLoginFail:)
+                                                 name:NSNotificationUserQQLoginFail
+                                               object:nil];
+}
+
 -(void)creatUI{
-    
-    
     
     //模糊效果
     UIBlurEffect *blurEffect =[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
@@ -199,15 +225,9 @@
     visualEffectView.frame = self.view.bounds;
     visualEffectView.alpha = 1;
     [self.view addSubview:visualEffectView];
-    
     [self.view addSubview:self.btnCancel];
     
     
-    
-    
-    
-    
-
     self.view.backgroundColor = RGBAlphaColor(0, 0, 0, 0.5); //[UIColor clearColor];
     self.bgView = [[UIView alloc]init];
     self.bgView.size = [UIView getSize_width:ScreenWidth-2*21 height:350];
@@ -260,14 +280,10 @@
     lableUser.text = @"账号";
     lableUser.textColor = RGBAlphaColor(167, 167, 167, 1);
     lableUser.font = [UIFont defaultFontWithSize:17];
-    
-    
-    
-    
+
     self.textFieldUser.leftView = lableUser;
     self.textFieldUser.delegate  = self;
     self.textFieldUser.leftViewMode = UITextFieldViewModeAlways;
-    
     
     UILabel * colorLable = [[UILabel alloc]init];
     colorLable.frame = [UIView getFrame_x:0 y:userViwe.y-1 width:userViwe.width height:1];
@@ -575,8 +591,6 @@
     NSString *key = @"head";
     [fileDic setObject:imageData forKey:key];
     
-    
-    
 //    NetWork_mt_login *request = [[NetWork_mt_login alloc] init];
 ////    request.head = head;
 //    request.content = [model generateJsonStringForProperties];
@@ -592,22 +606,6 @@
 //    }];
     
 }
-
-//注册JPush推送标签
--(void)tagsAliasCallback:(int)iResCode tags:(NSSet*)tags alias:(NSString*)alias
-{
-    NSLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, tags , alias);
-    
-        NSString *message = [NSString stringWithFormat:@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, tags , alias];
-    
-    
-//        UIAlertView *alertOne = [[UIAlertView alloc]initWithTitle:@"alias设置成功。" message:message delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
-//        [alertOne show];
-    
-}
-
-
-
 
 #pragma mark- YBAttributeTapActionDelegate
 
@@ -657,187 +655,44 @@
         NSLog(@"----");
     }];
     
-    
     return;
+}
+
+#pragma mark ------------- 腾讯登录Delegete ------------\
+
+-(void)tencentDidLogin:(NSNotification *)notification{
     
-    
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json", @"text/json",@"text/plain", nil];
-    
-    NSString *url = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code",[WCBaseContext sharedInstance].wxAppId,@"cda2546b3248d1986e1a516f14c4d605",code];
-    
-    [manager GET:url parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSDictionary *resultDic = notification.userInfo;
+    NSString  *accessToken = [resultDic objectForKey:@"accessToken"];
+    NetWork_mt_login *request = [[NetWork_mt_login alloc] init];
+    request.accoutType = @"2";//qq登录
+    request.accessToken = accessToken;
+    [request showWaitMsg:@"正在登陆，请稍后......" handle:self];
+    [request startPostWithBlock:^(LoginResponse *result, NSString *msg, BOOL finished) {
         
-        NSDictionary *dic = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"dic  ==== %@",dic);
-        
-        NSString *token = [dic objectForKey:@"access_token"];
-        NSString *openid = [dic objectForKey:@"openid"];
-        
-        [self requestUserInfoByToken:token andOpenid:openid];
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"error %@",error.localizedFailureReason);
-        
-        [self showFaliureHUD:[NSString stringWithFormat:@"登录失败，%@",error.localizedFailureReason]];
+        if(finished){
+            [self deal_loginRespones:result.obj];
+        }
+        else{
+            [UIWindow showTips:@"登录失败，请检查网络！"];
+        }
     }];
-    
-    
-    
-    
-    
-//    __weak __typeof(self) weakSelf = self;
-    
-//    NetWork_third_login *request = [[NetWork_third_login alloc] init];
-//    request.thirdChannelCode = @"wx";
-//    request.appId = [WCBaseContext sharedInstance].wxAppKey;
-//    request.code = code;
-//    [request showWaitMsg:@"正在处理请稍后..." handle:self];
-//    [request startPostWithBlock:^(ThirdLoignRespone *result, NSString *msg, BOOL finished) {
-//
-//        if(finished){
-//            NSLog(@"登录成功");
-//            [weakSelf thirdLoginSuccess:result];
-//        }
-//        else if([result.status isEqualToString:@"10010"]){  //"status":"10010","message":"登录失败，该UUID未绑定帐号",
-//            ValidatePhoneViewController* ctl = [[ValidatePhoneViewController alloc] init];
-//            ctl.thirdChannelCode = request.thirdChannelCode;
-//            ctl.appId = request.appId;
-//            ctl.code = request.code;
-//            ctl.delegate = self;
-//            [weakSelf pushNewVC:ctl animated:YES];
-//        }
-//        else{
-//            [weakSelf showFaliureHUD:msg];
-//        }
-//    }];
-    
 }
-
-//第二步：通过code获取access_token
-
-
-
-
-
-// 第三部 获取用户信息
--(void)requestUserInfoByToken:(NSString *)token andOpenid:(NSString *)openID{
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json", @"text/json",@"text/plain", nil];
-    
-    [manager GET:[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@",token,openID] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-        NSDictionary *dic = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"dic  ==== %@",dic);
-        
-        NSString *headimgurl = [dic objectForKey:@"headimgurl"];
-        NSString *openid = [dic objectForKey:@"openid"];
-        NSString *nickname = [dic objectForKey:@"nickname"];
-        
-        [self mtLogin:nickname head:headimgurl openid:openid];
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"error %@",error.localizedFailureReason);
-        
-        [self showFaliureHUD:[NSString stringWithFormat:@"登录失败，%@",error.localizedFailureReason]];
-    }];
-    
-    
-}
-
-#pragma mark ------------- 腾讯登录Delegete ------------
-//登录成功回调
-- (void)tencentDidLogin {
-    
-    if (_oauth.accessToken && 0 != [_oauth.accessToken length]){
-        //记录登录⽤用户的OpenID、Token以及过期时间
-        
-        NetWork_mt_login *request = [[NetWork_mt_login alloc] init];
-        request.accoutType = @"2";//qq登录
-        request.accessToken = _oauth.accessToken;
-        
-        [request showWaitMsg:@"正在登陆，请稍后......" handle:self];
-        [request startPostWithBlock:^(LoginResponse *result, NSString *msg, BOOL finished) {
-            
-            
-            if(finished){
-                [self deal_loginRespones:result.obj];
-            }
-            NSLog(@"----");
-        }];
-    }
-    else
-    {
-        //登录不不成功 没有获取到accesstoken }
-    }
-}
-
-//⾮非⽹网络错误导致登录失败:
-- (void)tencentDidNotLogin:(BOOL)cancelled{
-    if (cancelled){ //⽤用户取消登录
-    }
-    else{
-            //登录失败
-    }
-}
-
-/**
- * 登录时网络有问题的回调
- */
-- (void)tencentDidNotNetWork{
-     //检查⽹网络设置
-}
-
-- (void)getUserInfoResponse:(APIResponse*) response{
-    
-    NSLog(@"--------");
-    
+-(void)tencentLoginFail:(NSNotification *)notification{
+    NSDictionary *resultDic = notification.userInfo;
+    NSString  *reson = [resultDic objectForKey:@"reson"];
+    [UIWindow showTips:reson];
 }
 
 
-
-
-#pragma mark 微博登录
+#pragma mark ------------ qq登录 ------------
 
 - (void)sendWeiboAuth{
-    
-    
 
-    
-        //注册腾讯SDK
-        NSMutableArray * permissions = [[NSMutableArray alloc] initWithObjects:kOPEN_PERMISSION_GET_USER_INFO, kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,nil];
-//        NSString *appid = [WCBaseContext sharedInstance].txAppId;
-//        _oauth = [[TencentOAuth alloc] initWithAppId:appid
-//                                         andDelegate:self];
-    
+    //调用qq进行登录
+    NSMutableArray * permissions = [[NSMutableArray alloc] initWithObjects:kOPEN_PERMISSION_GET_USER_INFO, kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,nil];
     [CMPZjLifeMobileAppDelegate shareApp].oauth.authMode = kAuthModeClientSideToken;
     [[CMPZjLifeMobileAppDelegate shareApp].oauth authorize:permissions inSafari:NO];
-
-        //登录授权
-//        _oauth.authMode = kAuthModeClientSideToken;
-//        [_oauth authorize:permissions inSafari:NO];
-    
-    
-    
-//    if ([WeiboSDK isWeiboAppInstalled]) {
-//        WBAuthorizeRequest *request = [WBAuthorizeRequest request];
-//        //回调地址与 新浪微博开放平台中 我的应用  --- 应用信息 -----高级应用    -----授权设置 ---应用回调中的url保持一致就好了
-//        request.redirectURI = [WCBaseContext sharedInstance].sinaCallBackURl;
-//        //SCOPE 授权说明参考  http://open.weibo.com/wiki/
-//        request.scope = @"all";
-//        request.userInfo = nil;
-//        [WeiboSDK sendRequest:request];
-//    }else{
-//        [self showFaliureHUD:@"请先安装微博客户端"];
-//    }
-    
-    
 }
 
 #pragma mark- textFiled的代理方法

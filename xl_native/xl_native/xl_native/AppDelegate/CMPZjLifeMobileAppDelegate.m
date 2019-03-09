@@ -114,49 +114,40 @@
 - (void)tencentDidLogin {
     
     if (_oauth.accessToken && 0 != [_oauth.accessToken length]){
-        //记录登录⽤用户的OpenID、Token以及过期时间
         
-        //发送qq用户登录成功 通知
-        
-//        NetWork_mt_login *request = [[NetWork_mt_login alloc] init];
-//        request.accoutType = @"2";//qq登录
-//        request.accessToken = _oauth.accessToken;
-//
-//        [request showWaitMsg:@"正在登陆，请稍后......" handle:self];
-//        [request startPostWithBlock:^(LoginResponse *result, NSString *msg, BOOL finished) {
-//
-//
-//            if(finished){
-//                //[self deal_loginRespones:result.obj];
-//            }
-//            NSLog(@"----");
-//        }];
+        NSDictionary *resultDic = @{@"accessToken":_oauth.accessToken};
+        NSNotification *notification =[NSNotification notificationWithName:NSNotificationUserQQLoginSuccess object:nil userInfo:resultDic];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
     }
     else{
         //登录不不成功 没有获取到accesstoken }
+        NSDictionary *resultDic = @{@"reson":@"没有获得accesstoken"};
+        NSNotification *notification =[NSNotification notificationWithName:NSNotificationUserQQLoginFail object:nil userInfo:resultDic];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
     }
 }
-
 //⾮非⽹网络错误导致登录失败:
 - (void)tencentDidNotLogin:(BOOL)cancelled{
-    if (cancelled){ //⽤用户取消登录
+    if (cancelled){ //用户取消登录
+        NSDictionary *resultDic = @{@"reson":@"用户取消登录"};
+        NSNotification *notification =[NSNotification notificationWithName:NSNotificationUserQQLoginFail object:nil userInfo:resultDic];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
     }
     else{
         //登录失败
+        NSDictionary *resultDic = @{@"reson":@"用户登录失败"};
+        NSNotification *notification =[NSNotification notificationWithName:NSNotificationUserQQLoginFail object:nil userInfo:resultDic];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
     }
 }
-
 /**
  * 登录时网络有问题的回调
  */
 - (void)tencentDidNotNetWork{
     //检查⽹网络设置
-}
-
-- (void)getUserInfoResponse:(APIResponse*) response{
-    
-    NSLog(@"--------");
-    
+    NSDictionary *resultDic = @{@"reson":@"登录时网络有问题"};
+    NSNotification *notification =[NSNotification notificationWithName:NSNotificationUserQQLoginFail object:nil userInfo:resultDic];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
 }
 
 #pragma mark - 子类重载方法
