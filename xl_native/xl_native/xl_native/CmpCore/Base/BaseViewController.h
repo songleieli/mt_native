@@ -77,16 +77,16 @@
 /*
  *当前页,默认值是0，
  */
-@property (nonatomic, assign) NSInteger     currentPageIndex;
+@property (nonatomic, assign) int     currentPageIndex;
 
 /*
  *当前页面请求数量,默认值20
  */
-@property (nonatomic, assign) NSInteger     currentPageSize;
+@property (nonatomic, assign) int     currentPageSize;
 /*
  *总条数
  */
-@property (nonatomic, assign) NSInteger     totalCount;
+@property (nonatomic, assign) int     totalCount;
 
 //-(void)headerRereshing;
 //-(void)footerRereshing;

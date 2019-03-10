@@ -76,21 +76,14 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - 数据加载代理
+#pragma mark - --------- 数据加载代理 ------------
 -(void)loadNewData{
-    self.mainTableView.mj_footer.hidden = YES;
     self.currentPageIndex = 0;
     [self initRequest];
 }
 
 -(void)loadMoreData{
-    //    self.tableView.mj_header.hidden = YES;
-    //    [self initRequest];
-    //    if (self.totalCount == self.listDataArray.count) {
-    //        [self showFaliureHUD:@"暂无更多数据"];
-    //        [self.tableView.mj_footer endRefreshingWithNoMoreData];
-    //        self.tableView.mj_footer.hidden = YES;
-    //    }
+    [self initRequest];
 }
 
 #pragma mark ------ initRequest  ------
@@ -100,20 +93,23 @@
     NetWork_mt_getLikeMeList *request = [[NetWork_mt_getLikeMeList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex=self.currentPageIndex+1];
-    request.pageSize = [NSString stringWithFormat:@"%ld",(long)self.currentPageSize];
+    request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
+    request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {
         /*
          *暂不考虑缓存问题
          */
     } finishBlock:^(GetLikeMeListResponse *result, NSString *msg, BOOL finished) {
+        
         [self.mainTableView.mj_header endRefreshing];
+        [self.mainTableView.mj_footer endRefreshing];
+        
         if(finished){
             [self loadData:result];
         }
         else{
-            [UIWindow showTips:@"列表获取失败，请检查网络"];
-            [self refreshNoDataViewWithListCount:0];
+            [UIWindow showTips:@"数据获取失败，请检查网络"];
+            [self.mainTableView.mj_footer endRefreshingWithNoMoreData];
         }
     }];
     
@@ -122,10 +118,13 @@
 -(void)loadData:(GetLikeMeListResponse *)result{
     if (self.currentPageIndex == 1 ) {
         [self.mainDataArr removeAllObjects];
-        [self refreshNoDataViewWithListCount:result.obj.count];
     }
     [self.mainDataArr addObjectsFromArray:result.obj];
     [self.mainTableView reloadData];
+    
+    if(self.mainDataArr.count < self.currentPageSize || result.obj.count == 0) {//最后一页数据
+        [self.mainTableView.mj_footer endRefreshingWithNoMoreData];
+    }
 }
 
 #pragma mark --------------- tabbleView代理 -----------------

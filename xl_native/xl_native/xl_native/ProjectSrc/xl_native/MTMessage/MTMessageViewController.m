@@ -45,9 +45,7 @@
     self.view.backgroundColor = ColorThemeBackground;
     [self.view addSubview:self.mainTableView];
     
-    
     NSInteger tableViewHeight = ScreenHeight -kTabBarHeight_New - kNavBarHeight_New;
-    
     self.mainTableView.size = [UIView getSize_width:ScreenWidth height:tableViewHeight];
     self.mainTableView.origin = [UIView getPoint_x:0 y:kNavBarHeight_New];
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -73,19 +71,14 @@
     lineLabel.backgroundColor = [UIColor grayColor]; //RGBAlphaColor(222, 222, 222, 0.8);
     [self.viewHeadBg addSubview:lineLabel];
     
-    
     NSArray *titleArray = @[@"面粉",@"赞",@"@我的",@"评论"];
-    
-//    NSInteger count = titleArray;
     CGFloat width = (CGFloat)self.viewHeadBg.width/titleArray.count;
     CGFloat offX = 0;
-
-    
     for (int i = 0; i < titleArray.count; i++){
         UIView *bgView = [[UIView alloc] init];
         bgView.frame = CGRectMake(offX, 0, width, self.viewHeadBg.height);
         [self.viewHeadBg addSubview:bgView];
-
+        
         UIButton *imgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         imgBtn.tag = i;
         imgBtn.size = [UIView getSize_width:bgView.height/2 height:bgView.height/2];
@@ -105,7 +98,7 @@
         [titleBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [titleBtn setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
         [bgView addSubview:titleBtn];
-
+        
         offX += width;
     }
     return self.viewHeadBg;
@@ -132,21 +125,14 @@
     }
 }
 
-#pragma mark - 数据加载代理
+#pragma mark - --------- 数据加载代理 ------------
 -(void)loadNewData{
-    self.mainTableView.mj_footer.hidden = YES;
     self.currentPageIndex = 0;
     [self initRequest];
 }
 
 -(void)loadMoreData{
-    //    self.tableView.mj_header.hidden = YES;
-    //    [self initRequest];
-    //    if (self.totalCount == self.listDataArray.count) {
-    //        [self showFaliureHUD:@"暂无更多数据"];
-    //        [self.tableView.mj_footer endRefreshingWithNoMoreData];
-    //        self.tableView.mj_footer.hidden = YES;
-    //    }
+    [self initRequest];
 }
 
 #pragma mark ------ initRequest  ------
@@ -156,20 +142,23 @@
     NetWork_mt_getFollows *request = [[NetWork_mt_getFollows alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex=self.currentPageIndex+1];
-    request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];
+    request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
+    request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {
         /*
          *暂不考虑缓存问题
          */
     } finishBlock:^(GetFollowsResponse *result, NSString *msg, BOOL finished) {
+        
         [self.mainTableView.mj_header endRefreshing];
+        [self.mainTableView.mj_footer endRefreshing];
+        
         if(finished){
             [self loadData:result];
         }
         else{
-            [UIWindow showTips:@"列表获取失败，请检查网络"];
-            [self refreshNoDataViewWithListCount:0];
+            [UIWindow showTips:@"数据获取失败，请检查网络"];
+            [self.mainTableView.mj_footer endRefreshingWithNoMoreData];
         }
     }];
 }
@@ -177,10 +166,13 @@
 -(void)loadData:(GetFollowsResponse *)result{
     if (self.currentPageIndex == 1 ) {
         [self.mainDataArr removeAllObjects];
-        [self refreshNoDataViewWithListCount:result.obj.count];
     }
     [self.mainDataArr addObjectsFromArray:result.obj];
     [self.mainTableView reloadData];
+    
+    if(self.mainDataArr.count < self.currentPageSize || result.obj.count == 0) {//最后一页数据
+        [self.mainTableView.mj_footer endRefreshingWithNoMoreData];
+    }
 }
 
 

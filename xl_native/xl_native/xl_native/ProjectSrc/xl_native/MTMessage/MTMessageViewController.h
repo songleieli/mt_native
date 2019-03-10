@@ -8,8 +8,7 @@
 
 //#import <UIKit/UIKit.h>
 #import "ZJCustomTabBarLjhTableViewController.h"
-//#import "MyScrollView.h"
-//#import "XLGCBodyView.h"
+
 #import "MessageCell.h"
 #import "UserInfoViewController.h"
 #import "MTMyFansViewController.h"
@@ -23,11 +22,6 @@
 
 @interface MTMessageViewController : ZJCustomTabBarLjhTableViewController
 
-
-
-
 @property (nonatomic,strong) UIView * viewHeadBg;
-@property (nonatomic,strong) UIView * viewFooterBg;
-
 
 @end

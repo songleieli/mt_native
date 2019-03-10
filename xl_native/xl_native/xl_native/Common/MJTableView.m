@@ -18,8 +18,8 @@
 
 @implementation MJTableView
 
-- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)tableViewStyle
-{
+- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)tableViewStyle{
+    
     self = [super initWithFrame:frame style:tableViewStyle];
     if (self) {
         // Initialization code

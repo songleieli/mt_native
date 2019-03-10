@@ -54,14 +54,24 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.backgroundColor = [UIColor clearColor]; //RGBFromColor(0xecedf1);
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    //    self.mainTableView.mj_header = nil;
-    self.mainTableView.mj_footer = nil;
     [self.mainTableView registerClass:UserCollectionSubTopicCell.class forCellReuseIdentifier:[UserCollectionSubTopicCell cellId]];
 
     [self.mainTableView.mj_header beginRefreshing];
 }
 
+#pragma mark - --------- 数据加载代理 ------------
 -(void)loadNewData{
+    self.currentPageIndex = 0;
+    [self initRequest];
+}
+
+-(void)loadMoreData{
+    [self initRequest];
+}
+
+#pragma mark ------- 加载网络请求 -------
+
+-(void)initRequest{
     
     NetWork_mt_getTopicCollections *request = [[NetWork_mt_getTopicCollections alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
@@ -71,17 +81,30 @@
         /*暂时先不考虑缓存*/
     } finishBlock:^(GetTopicCollectionsResponse *result, NSString *msg, BOOL finished) {
         
+        [self.mainTableView.mj_header endRefreshing];
+        [self.mainTableView.mj_footer endRefreshing];
+        
         if(finished){
-            self.pageIndex++;
-            [self.mainTableView.mj_header endRefreshing];
-            [self.mainDataArr addObjectsFromArray:result.obj];
-            [self.mainTableView reloadData];
+            [self loadData:result];
         }
         else{
-            [UIWindow showTips:msg];
+            [UIWindow showTips:@"数据获取失败，请检查网络"];
+            [self.mainTableView.mj_footer endRefreshingWithNoMoreData];
         }
     }];
     
+}
+
+-(void)loadData:(GetTopicCollectionsResponse *)result{
+    if (self.currentPageIndex == 1 ) {
+        [self.mainDataArr removeAllObjects];
+    }
+    [self.mainDataArr addObjectsFromArray:result.obj];
+    [self.mainTableView reloadData];
+    
+    if(self.mainDataArr.count < self.currentPageSize || result.obj.count == 0) {//最后一页数据
+        [self.mainTableView.mj_footer endRefreshingWithNoMoreData];
+    }
 }
 
 

@@ -27,16 +27,6 @@
     NSLog(@"---------------%@ dealloc ",NSStringFromClass([self class]));
 }
 
-//- (instancetype)initWithKeyWord:(NSString*)keyWord{
-//    
-//    self = [super init];
-//    if (self) {
-//        self.keyWord = keyWord;
-//    }
-//    return self;
-//
-//}
-
 
 -(void)initNavTitle{
     self.isNavBackGroundHiden  = NO;
@@ -55,13 +45,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    //暂时先屏蔽，转场动画
-//    _scalePresentAnimation = [ScalePresentAnimation new];
-//    _scaleDismissAnimation = [ScaleDismissAnimation new];
-//    _swipeLeftInteractiveTransition = [SwipeLeftInteractiveTransition new];
-    
+
     [self setUpUI];
 }
 

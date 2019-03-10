@@ -50,39 +50,60 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.backgroundColor = [UIColor clearColor]; //RGBFromColor(0xecedf1);
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    //    self.mainTableView.mj_header = nil;
-    self.mainTableView.mj_footer = nil;
     [self.mainTableView registerClass:SearchResultSubTopicCell.class forCellReuseIdentifier:[SearchResultSubTopicCell cellId]];
-
     [self.mainTableView.mj_header beginRefreshing];
 }
 
+#pragma mark - --------- 数据加载代理 ------------
 -(void)loadNewData{
+    self.currentPageIndex = 0;
+    [self initRequest];
+}
+
+-(void)loadMoreData{
+    [self initRequest];
+}
+
+#pragma mark ------- 加载网络请求 -------
+
+-(void)initRequest{
     
     NetWork_mt_getFuzzyTopicList *request = [[NetWork_mt_getFuzzyTopicList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.searchName = self.keyWord;
-    request.pageNo = @"1";
-    request.pageSize = @"20";
+    request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
+    request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {
         /*暂时不考虑缓存问题*/
     } finishBlock:^(GetFuzzyTopicListResponse *result, NSString *msg, BOOL finished) {
-        NSLog(@"-------");
+        
         [self.mainTableView.mj_header endRefreshing];
-//        [self loadBodyDataList]; //加载cell Data
-        
-        
-        [self.mainDataArr addObjectsFromArray:result.obj];
-        [self.mainTableView reloadData];
+        [self.mainTableView.mj_footer endRefreshing];
         
         if(finished){
-//            [self refreshVideoList:result.obj];
+            [self loadData:result];
         }
         else{
-            [UIWindow showTips:msg];
+            [UIWindow showTips:@"数据获取失败，请检查网络"];
+            [self.mainTableView.mj_footer endRefreshingWithNoMoreData];
         }
     }];
 }
+
+-(void)loadData:(GetFuzzyTopicListResponse *)result{
+    if (self.currentPageIndex == 1 ) {
+        [self.mainDataArr removeAllObjects];
+    }
+    [self.mainDataArr addObjectsFromArray:result.obj];
+    [self.mainTableView reloadData];
+    
+    if(self.mainDataArr.count < self.currentPageSize || result.obj.count == 0) {//最后一页数据
+        [self.mainTableView.mj_footer endRefreshingWithNoMoreData];
+    }
+}
+
+
+
 
 
 #pragma mark --------------- tabbleView代理 -----------------

@@ -7,7 +7,6 @@
 //
 
 #import "HomeSearchResultSubViewController.h"
-#import "NetWork_mt_getHotSearchSix.h"
 #import "HYPageView.h"
 
 @interface UserCollectionController : ZJBaseViewController<HYPageViewDelegate,

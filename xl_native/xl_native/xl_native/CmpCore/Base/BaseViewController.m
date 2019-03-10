@@ -407,8 +407,8 @@
         self.mainTableView.estimatedSectionFooterHeight = 0;
         self.mainTableView.estimatedSectionHeaderHeight = 0;
         
-        [_mainTableView.mj_header setRefreshingTarget:self refreshingAction:@selector(loadNewData)];
-        [_mainTableView.mj_footer setRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+        [self.mainTableView.mj_header setRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+        [self.mainTableView.mj_footer setRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
         if (@available(iOS 11.0, *)) {
             self.mainTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {

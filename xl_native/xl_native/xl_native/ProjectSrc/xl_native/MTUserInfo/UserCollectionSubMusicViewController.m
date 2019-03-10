@@ -45,30 +45,18 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.backgroundColor = [UIColor clearColor]; //RGBFromColor(0xecedf1);
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.mainTableView.mj_footer = nil;
     [self.mainTableView registerClass:UserCollectionSubMusicCell.class forCellReuseIdentifier:[UserCollectionSubMusicCell cellId]];
     [self.mainTableView.mj_header beginRefreshing];
 }
 
-#pragma mark ------- 数据加载代理 -------
-
+#pragma mark - --------- 数据加载代理 ------------
 -(void)loadNewData{
-    self.mainTableView.mj_footer.hidden = YES;
     self.currentPageIndex = 0;
-    
     [self initRequest];
-    
-
 }
 
 -(void)loadMoreData{
-    self.mainTableView.mj_header.hidden = YES;
     [self initRequest];
-//    if (self.totalCount == self.listDataArray.count) {
-//        [self showFaliureHUD:@"暂无更多数据"];
-//        [self.tableView.mj_footer endRefreshingWithNoMoreData];
-//        self.tableView.mj_footer.hidden = YES;
-//    }
 }
 
 #pragma mark ------- 加载网络请求 -------
@@ -77,34 +65,35 @@
     
     NetWork_mt_getMusicCollections *request = [[NetWork_mt_getMusicCollections alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex=self.currentPageIndex+1];
-    request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];
+    request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
+    request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {
         /*暂时不考虑缓存问题*/
     } finishBlock:^(GetMusicCollectionsResponse *result, NSString *msg, BOOL finished) {
         
         [self.mainTableView.mj_header endRefreshing];
         [self.mainTableView.mj_footer endRefreshing];
+        
         if(finished){
-            [self loadMusicData:result];
+            [self loadData:result];
         }
         else{
-            [UIWindow showTips:msg];
+            [UIWindow showTips:@"数据获取失败，请检查网络"];
+            [self.mainTableView.mj_footer endRefreshingWithNoMoreData];
         }
     }];
 }
 
--(void)loadMusicData:(GetMusicCollectionsResponse *)result{
-    
+-(void)loadData:(GetMusicCollectionsResponse *)result{
     if (self.currentPageIndex == 1 ) {
         [self.mainDataArr removeAllObjects];
-        self.mainDataArr = nil;
-        self.mainDataArr = [[NSMutableArray alloc]init];
-        [self refreshNoDataViewWithListCount:result.obj.count];
     }
     [self.mainDataArr addObjectsFromArray:result.obj];
-    self.currentPageIndex += 1;
     [self.mainTableView reloadData];
+    
+    if(self.mainDataArr.count < self.currentPageSize || result.obj.count == 0) {//最后一页数据
+        [self.mainTableView.mj_footer endRefreshingWithNoMoreData];
+    }
 }
 
 
