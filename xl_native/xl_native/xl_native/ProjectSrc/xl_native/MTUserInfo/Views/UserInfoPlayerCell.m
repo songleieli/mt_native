@@ -23,7 +23,7 @@ static NSString* const ViewTableViewCellId = @"UserInfoPlayerCellId";
         _playerView = [[AVPlayerView alloc] initWithFrame:frame];
         _playerView.delegate = self;
         //test
-//        _playerView.backgroundColor = [UIColor blueColor];
+        //        _playerView.backgroundColor = [UIColor blueColor];
     }
     return _playerView;
 }
@@ -51,8 +51,8 @@ static NSString* const ViewTableViewCellId = @"UserInfoPlayerCellId";
     self.contentView.width = ScreenWidth;
     [self setBackgroundImage:@"img_video_loading"]; //cell 设置背景图
     [self bringSubviewToFront:self.contentView];
-
-//    self.contentView.backgroundColor = [GlobalFunc randomColor];
+    
+    //    self.contentView.backgroundColor = [GlobalFunc randomColor];
     [self.contentView addSubview:self.playerView];
     [self.contentView addSubview:self.maskView];
 }
@@ -70,7 +70,7 @@ static NSString* const ViewTableViewCellId = @"UserInfoPlayerCellId";
     self.listModel = model;
     self.maskView.listLoginModel = model;
     
-
+    
 }
 
 
@@ -128,20 +128,37 @@ static NSString* const ViewTableViewCellId = @"UserInfoPlayerCellId";
 -(void)onPlayItemStatusUpdate:(AVPlayerItemStatus)status { //播放状态更新
     switch (status) {
         case AVPlayerItemStatusUnknown:
-//            [self startLoadingPlayItemAnim:YES];
+            //            [self startLoadingPlayItemAnim:YES];
             break;
         case AVPlayerItemStatusReadyToPlay:
-//            [self startLoadingPlayItemAnim:NO];
-            
+        {
             _isPlayerReady = YES;
-//            [_musicAlum startAnimation:_aweme.rate];
+            //            [_musicAlum startAnimation:_aweme.rate];
+            //根据视频的宽高比例，显示视频的填充方式
+            NSArray *array = self.playerView.urlAsset.tracks;
+            CGSize videoSize = CGSizeZero;
+            for (AVAssetTrack *track in array) {
+                if ([track.mediaType isEqualToString:AVMediaTypeVideo]) {
+                    videoSize = track.naturalSize;
+                }
+            }
+            
+            //视频宽高比
+            CGFloat whScale = videoSize.width/videoSize.height;
+            if(whScale > 0.6){
+                self.playerView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
+            }
+            else{
+                self.playerView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+            }
             
             if(_onPlayerReady) {
                 _onPlayerReady();
             }
+        }
             break;
         case AVPlayerItemStatusFailed:
-//            [self startLoadingPlayItemAnim:NO];
+            //            [self startLoadingPlayItemAnim:NO];
             [UIWindow showTips:@"加载失败"];
             break;
         default:

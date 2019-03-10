@@ -133,8 +133,6 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     [leftButton addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     self.btnLeft = leftButton;
-    
-    //    self.navBackGround.backgroundColor = [UIColor redColor]; //标注颜色，方便调试
 }
 
 
@@ -486,7 +484,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         
         if([self.user.noodleId isEqualToString:[GlobalData sharedInstance].loginDataModel.noodleId]){
             NSLog(@"------查看收藏列表-----");
-            UserCollectionController_temp *collectionController = [[UserCollectionController_temp alloc] init];
+            UserCollectionController *collectionController = [[UserCollectionController alloc] init];
             [self pushNewVC:collectionController animated:YES];
         }
         else{
@@ -560,8 +558,17 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     }
     else if (tag == UserInfoHeaderSettingTag){//点击设置
         
-        SettingViewController *settingViewController = [[SettingViewController alloc] init];
-        [self pushNewVC:settingViewController animated:YES];
+        //如果是当前用户，进入个人设置
+        if([self.userNoodleId isEqualToString:[GlobalData sharedInstance].loginDataModel.noodleId]){
+            
+            MySettingViewController *mySettingViewController = [[MySettingViewController alloc] init];
+            [self pushNewVC:mySettingViewController animated:YES];
+        }
+        else{ //进入用户设置页面
+            UserSettingViewController *userSettingViewController = [[UserSettingViewController alloc] init];
+            userSettingViewController.user = self.user;
+            [self pushNewVC:userSettingViewController animated:YES];
+        }
     }
     
     

@@ -35,8 +35,9 @@ typedef enum{
 #import "NetWork_mt_saveflour.h"
 #import "NetWork_mt_delflour.h"
 
-#import "UserCollectionController_temp.h"
-#import "SettingViewController.h"
+#import "UserCollectionController.h"
+#import "MySettingViewController.h"
+#import "UserSettingViewController.h"
 
 
 @interface UserInfoViewController : ZJCustomTabBarLjhTableViewController<UICollectionViewDelegate,
@@ -54,7 +55,7 @@ typedef enum{
 @property (nonatomic, strong) LoadMoreControl                  *loadMore;
 
 @property (nonatomic, assign) FromType                        fromType;
-@property (nonatomic, copy) NSString                        *userNoodleId;
+@property (nonatomic, copy) NSString                          *userNoodleId;
 
 
 @end

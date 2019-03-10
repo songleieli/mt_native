@@ -23,9 +23,6 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [UIApplication sharedApplication].statusBarHidden = NO;
     self.tabBar.top = [self getTabbarTop];    //  重新设置tabbar的高度
-    
-    [self.mainDataArr removeAllObjects]; //加载页面内容时，先清除老数据
-    [self initRequest];
 }
 
 -(void)initNavTitle{
@@ -60,7 +57,6 @@
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.mainTableView registerClass:MessageCell.class forCellReuseIdentifier:[MessageCell cellId]];
     self.mainTableView.tableHeaderView = [self getHeadView];
-    
     [self.mainTableView.mj_header beginRefreshing];
 }
 

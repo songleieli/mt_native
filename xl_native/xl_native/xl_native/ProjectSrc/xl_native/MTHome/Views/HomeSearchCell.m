@@ -148,25 +148,18 @@ static NSString* const ViewTableViewCellId = @"HomeSearchCellId";
     [self.contentView addSubview:self.scrollerBody];
     
     if([model.hotType integerValue] == 1){
-        //self.btnIcon.image = [UIImage imageNamed:@"icon_m_typic"];
+        
         [self.btnIcon setImage:[UIImage imageNamed:@"icon_m_typic"] forState:UIControlStateNormal];
         [self.titleLalbe setTitle:model.topic.topic forState:UIControlStateNormal];
-//        self.titleLalbe.text = model.topic.topic;
         self.descLalbe.text = @"热门话题";
         self.playCountLalbe.text = [NSString formatCount:[model.topic.playSum integerValue]];
-
     }
     else{
-//        self.btnIcon.image = [UIImage imageNamed:@"icon_m_music_red"];
         [self.btnIcon setImage:[UIImage imageNamed:@"icon_m_music_red"] forState:UIControlStateNormal];
-//        self.titleLalbe.text = model.music.name;
         [self.titleLalbe setTitle:model.music.name forState:UIControlStateNormal];
-
         self.descLalbe.text = @"热门音乐";
         self.playCountLalbe.text = [NSString formatCount:[model.music.hotCount integerValue]];
-
     }
-    
     
     CGFloat videoHeight = 130;
     CGFloat videoWidth = (CGFloat)videoHeight/1.35;
@@ -180,6 +173,7 @@ static NSString* const ViewTableViewCellId = @"HomeSearchCellId";
         btnVideo.width = videoWidth;
         btnVideo.origin = [UIView getPoint_x:idx*btnVideo.width y:0];
         [btnVideo sd_setImageWithURL:[NSURL URLWithString:obj.noodleVideoCover] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"defaul_publishcover"]];
+        [[btnVideo imageView] setContentMode:UIViewContentModeScaleAspectFill];
         btnVideo.layer.borderWidth = 0.25;
         btnVideo.layer.borderWidth = 1.0;
         btnVideo.layer.borderColor = ColorThemeBackground.CGColor;

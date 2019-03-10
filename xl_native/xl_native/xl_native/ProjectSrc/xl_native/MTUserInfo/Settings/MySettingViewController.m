@@ -6,7 +6,7 @@
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
-#import "SettingViewController.h"
+#import "MySettingViewController.h"
 
 @implementation MyViewTableViewSelectionModel
 
@@ -14,12 +14,12 @@
 @end
 
 
-@interface SettingViewController ()
+@interface MySettingViewController ()
 
 
 @end
 
-@implementation SettingViewController
+@implementation MySettingViewController
 
 - (NSMutableArray *)dataList{
     

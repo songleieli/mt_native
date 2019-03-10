@@ -139,6 +139,8 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
             _isPlayerReady = YES;
 //            [_musicAlum startAnimation:_aweme.rate];
             
+            
+            //根据视频的宽高比例，显示视频的填充方式
             NSArray *array = self.playerView.urlAsset.tracks;
             CGSize videoSize = CGSizeZero;
             for (AVAssetTrack *track in array) {
@@ -156,12 +158,9 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
                 self.playerView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
             }
             
-            NSLog(@"-------------videoSize = %@",NSStringFromCGSize(videoSize));
-            NSLog(@"-------------whScale = %f",whScale);
+//            NSLog(@"-------------videoSize = %@",NSStringFromCGSize(videoSize));
+//            NSLog(@"-------------whScale = %f",whScale);
 
-//            if()
-            
-            
             if(_onPlayerReady) {
                 _onPlayerReady();
             }

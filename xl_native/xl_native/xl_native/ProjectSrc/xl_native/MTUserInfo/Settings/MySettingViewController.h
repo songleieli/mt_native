@@ -20,15 +20,11 @@
 @end
 
 
-@interface SettingViewController : ZJBaseViewController<MyCellDelegate>
+@interface MySettingViewController : ZJBaseViewController<MyCellDelegate>
 
 /*
  *数据源
  */
 @property (nonatomic,strong)NSMutableArray * dataList;
-
-
-
-
 
 @end

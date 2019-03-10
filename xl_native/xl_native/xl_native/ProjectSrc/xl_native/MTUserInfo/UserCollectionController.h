@@ -1,39 +1,19 @@
 //
-//  UserInfoViewController.h
-//  CMPLjhMobile
+//  GKDouyinHomeSearchViewController.h
+//  GKNavigationBarViewControllerDemo
 //
-//  Created by lei song on 2016/11/8.
-//  Copyright © 2016年 CMP_Ljh. All rights reserved.
+//  Created by gaokun on 2018/9/11.
+//  Copyright © 2018年 gaokun. All rights reserved.
 //
 
-#import "UserCollectionHeader.h"
-#import "AwemeCollectionCell.h"
-#import "LoadMoreControl.h"
-#import "PhotoView.h"
-#import "MenuPopView.h"
+#import "HomeSearchResultSubViewController.h"
+#import "NetWork_mt_getHotSearchSix.h"
+#import "HYPageView.h"
 
-#import "NetWork_mt_collectionVideo.h"
-#import "NetWork_mt_getTopicCollections.h"
+@interface UserCollectionController : ZJBaseViewController<HYPageViewDelegate,
+UIViewControllerTransitioningDelegate>
 
-
-@interface UserCollectionController : ZJBaseViewController<UICollectionViewDelegate,
-                                                                    UICollectionViewDataSource,
-                                                                    UICollectionViewDelegateFlowLayout,
-                                                                    UIViewControllerTransitioningDelegate,
-                                                                    UserInfoDelegate,
-                                                                    OnTabTapActionDelegate>
-
-
-@property (nonatomic, strong) UICollectionView                 *collectionView;
-@property (nonatomic, assign) NSInteger                        selectIndex;
-@property (nonatomic, strong) PersonalModel                     *user;
-@property (nonatomic, strong) UserCollectionHeader             *collectionHeader;
-@property (nonatomic, strong) LoadMoreControl                  *loadMore;
-
-@property (nonatomic, copy) NSString                        *userNoodleId;
-
-@property (nonatomic, strong) SlideTabBar                  *slideTabBar;
-
-
+//head
+@property(nonatomic,strong) HYPageView *pageView;
 
 @end
