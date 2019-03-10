@@ -25,17 +25,17 @@
                                  @"icon_profile_share_wxTimeline",
                                  @"icon_profile_share_wechat",
                                  @"icon_profile_share_qqZone",
-                                 @"icon_profile_share_qq",
-                                 @"icon_profile_share_weibo",
-                                 @"iconHomeAllshareXitong"
+                                 @"icon_profile_share_qq"
+//                                 @"icon_profile_share_weibo",
+//                                 @"iconHomeAllshareXitong"
                                  ];
         NSArray *topTexts = @[
                              @"朋友圈",
                              @"微信好友",
                              @"QQ空间",
-                             @"QQ好友",
-                             @"微博",
-                             @"更多分享"
+                             @"QQ好友"
+//                             @"微博",
+//                             @"更多分享"
                              ];
         NSArray *bottomIconsName = @[
                                     @"icon_home_all_share_collention",
@@ -145,14 +145,15 @@
     }
     
     
-    
     NSString *shareTitle = [NSString stringWithFormat:@"@%@",self.homeListModel.nickname];
     NSString *shareDescription = self.homeListModel.title;
     NSString *apiBaseUrl = [WCBaseContext sharedInstance].appInterfaceServer;
     NSString *shareUrl = [NSString stringWithFormat:@"%@/miantiao/home/shareVideo?videosrc=%@",apiBaseUrl,self.homeListModel.storagePath];
+     NSString *shareType = @"";//分享类型1.微信好友2.微信朋友圈3.QQ好友4.QQ空间
 
     
     if(sender.view.tag == 0){ //分享到微信朋友圈
+        
         
         if (![WXApi isWXAppInstalled]) {
             //判断是否有微信
@@ -160,20 +161,22 @@
             [[[iToast makeText:@"您的手机没有安装微信"] setGravity:iToastGravityCenter] show];
         }
         else{
+            shareType = @"2"; //朋友圈
+            //分享朋友圈只显示title，所以将title和描述合在一起。
+            shareTitle = [NSString stringWithFormat:@"@%@ %@",self.homeListModel.nickname,shareDescription];
+
+            
             //创建发送对象实例
             SendMessageToWXReq *sendReq = [[SendMessageToWXReq alloc] init];
             sendReq.bText = NO;//不使用文本信息
             sendReq.scene = 1;//0 = 好友列表 1 = 朋友圈 2 = 收藏
             //创建分享内容对象
             WXMediaMessage *urlMessage = [WXMediaMessage message];
-            if (shareTitle.length > 19) {
-                NSString *str=[shareDescription substringToIndex:19];
-                urlMessage.title = [NSString stringWithFormat:@"%@...",str];//分享描述
-            }else{
-                urlMessage.title = shareTitle;
-            }
-            urlMessage.description = shareDescription;//分享描述
-            [urlMessage setThumbImage:[UIImage imageNamed:@"login_icon"]];//分享图片,使用SDK的setThumbImage方法可压缩图片大小
+            urlMessage.title = shareTitle;
+            
+            UIImage * image =  [UIImage imageWithData:[NSData dataWithContentsOfURL:
+                                                       [NSURL URLWithString:self.homeListModel.noodleVideoCover]]];
+            [urlMessage setThumbImage:image];//分享图片,使用SDK的setThumbImage方法可压缩图片大小
 
             //创建多媒体对象
             WXWebpageObject *webObj = [WXWebpageObject object];
@@ -192,6 +195,7 @@
             [[[iToast makeText:@"您的手机没有安装微信"] setGravity:iToastGravityCenter] show];
         }
         else{
+            shareType = @"1"; //微信好友
             //创建发送对象实例
             SendMessageToWXReq *sendReq = [[SendMessageToWXReq alloc] init];
             sendReq.bText = NO;//不使用文本信息
@@ -205,10 +209,9 @@
             }else{
                 urlMessage.description = shareDescription;
             }
-            
-            
-            [urlMessage setThumbImage:[UIImage imageNamed:@"login_icon"]];//分享图片,使用SDK的setThumbImage方法可压缩图片大小
-            
+            UIImage * image =  [UIImage imageWithData:[NSData dataWithContentsOfURL:
+                                                       [NSURL URLWithString:self.homeListModel.noodleVideoCover]]];
+            [urlMessage setThumbImage:image];//分享图片,使用SDK的setThumbImage方法可压缩图片大小
             WXWebpageObject *webObj = [WXWebpageObject object];
             webObj.webpageUrl = shareUrl;
             //完成发送对象实例
@@ -224,7 +227,8 @@
             [[[iToast makeText:@"您的手机没有安装QQ"] setGravity:iToastGravityCenter] show];
         }
         else{
-            QQApiNewsObject  * newsObj = [QQApiNewsObject objectWithURL:[NSURL URLWithString:shareUrl] title:shareTitle description:shareDescription previewImageData:UIImagePNGRepresentation([UIImage imageNamed:@"login_icon"])];
+            shareType = @"4"; //qq空间
+            QQApiNewsObject  * newsObj = [QQApiNewsObject objectWithURL:[NSURL URLWithString:shareUrl] title:shareTitle description:shareDescription previewImageURL:[NSURL URLWithString:self.homeListModel.noodleVideoCover]];
             //这个貌似是直接拉起QQ空间分享的值，0为NO，1为YES.文档上没有。
             uint64_t cflag = 1;
             [newsObj  setCflag:cflag];
@@ -238,14 +242,27 @@
             [[[iToast makeText:@"您的手机没有安装QQ"] setGravity:iToastGravityCenter] show];
         }
         else{
-            
-            QQApiNewsObject  * newsObj = [QQApiNewsObject objectWithURL:[NSURL URLWithString:shareUrl] title:shareTitle description:shareDescription previewImageData:UIImagePNGRepresentation([UIImage imageNamed:@"login_icon"])];
+            shareType = @"3"; //qq好友
+            QQApiNewsObject  * newsObj = [QQApiNewsObject objectWithURL:[NSURL URLWithString:shareUrl] title:shareTitle description:shareDescription previewImageURL:[NSURL URLWithString:self.homeListModel.noodleVideoCover]];
             SendMessageToQQReq * req = [SendMessageToQQReq reqWithContent:newsObj];
             QQApiSendResultCode sent = [QQApiInterface sendReq:req];
             [self handleSendResult:sent];
 
         }
     }
+    
+    
+    
+    NetWork_mt_forwardVideoCount *request = [[NetWork_mt_forwardVideoCount alloc] init];
+    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+    request.noodleVideoId = [NSString stringWithFormat:@"%@",self.homeListModel.noodleVideoId];
+    request.forwardType = shareType;
+    [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+        if(finished){
+            NSLog(@"-----------分享量增加-----------");
+        }
+    }];
+    
     
     [self dismiss];
     

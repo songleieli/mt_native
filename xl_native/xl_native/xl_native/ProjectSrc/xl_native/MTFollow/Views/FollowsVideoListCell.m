@@ -341,7 +341,7 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
     
     self.shareNum.text = [NSString formatCount:[model.saveAlbumSum integerValue]];
     self.commentNum.text = [NSString formatCount:[model.commentSum integerValue]];
-    self.favoriteNum.text = [NSString stringWithFormat:@"%d",[model.likeSum intValue]];
+    self.favoriteNum.text = [NSString formatCount:[model.likeSum integerValue]];
 }
 
 #pragma mark ----------- 自定义方法 --------------

@@ -31,6 +31,10 @@
 //封装了AVPlayerLayer的自定义View
 @interface AVPlayerView : UIView
 
+@property (nonatomic ,strong) AVPlayerLayer        *playerLayer;            //视频播放器图形化载体
+@property (nonatomic ,strong) AVURLAsset           *urlAsset; //视频资源
+
+
 //播放进度、状态更新代理
 @property(nonatomic, weak) id<AVPlayerUpdateDelegate> delegate;
 

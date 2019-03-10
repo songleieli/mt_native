@@ -221,6 +221,7 @@
 		04C2615D21A68FB200374E4D /* TCBGMListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2614821A68FB200374E4D /* TCBGMListViewController.m */; };
 		04C2615E21A68FB200374E4D /* SmallButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2614A21A68FB200374E4D /* SmallButton.m */; };
 		04C2615F21A68FB200374E4D /* VerticalButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2614C21A68FB200374E4D /* VerticalButton.m */; };
+		04C430482234A33F00AD260F /* NetWork_mt_forwardVideoCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C430472234A33F00AD260F /* NetWork_mt_forwardVideoCount.m */; };
 		04C70D2F21E3A7C90022D897 /* NetWork_mt_aMeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C70D2E21E3A7C90022D897 /* NetWork_mt_aMeList.m */; };
 		04C70D3221E3A8F90022D897 /* MTAMeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C70D3021E3A8F90022D897 /* MTAMeListViewController.m */; };
 		04C70D3721E3AC230022D897 /* MTMyCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C70D3321E3AC220022D897 /* MTMyCommentViewController.m */; };
@@ -1445,6 +1446,8 @@
 		04C2614B21A68FB200374E4D /* VerticalButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalButton.h; sourceTree = "<group>"; };
 		04C2614C21A68FB200374E4D /* VerticalButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalButton.m; sourceTree = "<group>"; };
 		04C2614D21A68FB200374E4D /* SmallButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallButton.h; sourceTree = "<group>"; };
+		04C430462234A33E00AD260F /* NetWork_mt_forwardVideoCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_forwardVideoCount.h; sourceTree = "<group>"; };
+		04C430472234A33F00AD260F /* NetWork_mt_forwardVideoCount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_forwardVideoCount.m; sourceTree = "<group>"; };
 		04C70D2D21E3A7C90022D897 /* NetWork_mt_aMeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_aMeList.h; sourceTree = "<group>"; };
 		04C70D2E21E3A7C90022D897 /* NetWork_mt_aMeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_aMeList.m; sourceTree = "<group>"; };
 		04C70D3021E3A8F90022D897 /* MTAMeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAMeListViewController.m; sourceTree = "<group>"; };
@@ -4801,6 +4804,8 @@
 		04E700D0219FBD8B0096099F /* mt_home */ = {
 			isa = PBXGroup;
 			children = (
+				04C430462234A33E00AD260F /* NetWork_mt_forwardVideoCount.h */,
+				04C430472234A33F00AD260F /* NetWork_mt_forwardVideoCount.m */,
 				04C1721621CE42C40077FA6C /* NetWork_mt_addVideoPlay.h */,
 				04C1721521CE42C30077FA6C /* NetWork_mt_addVideoPlay.m */,
 				04352BC021BBA6A9005F60E1 /* NetWork_mt_likeVideo.h */,
@@ -6337,6 +6342,7 @@
 				04C2615521A68FB200374E4D /* TCBGMSliderCutView.m in Sources */,
 				04CBC3572179C01300658E47 /* GPUImageFASTCornerDetectionFilter.m in Sources */,
 				D98FCFB51DEFC3080023C076 /* STPickerSingle.m in Sources */,
+				04C430482234A33F00AD260F /* NetWork_mt_forwardVideoCount.m in Sources */,
 				04B3629F222ABA3400735B18 /* AMeListCell.m in Sources */,
 				040E28AD21C0AA4900D15B44 /* UserInfoViewController.m in Sources */,
 				0434BDD521E9E1B10059A28C /* NickNameViewController.m in Sources */,

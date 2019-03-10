@@ -340,7 +340,7 @@
     self.nickName.text = [NSString stringWithFormat:@"@%@", listLoginModel.nickname];
     self.nickName.bottom = self.desc.top;
     
-    self.shareNum.text = [NSString formatCount:[listLoginModel.saveAlbumSum intValue]];
+    self.shareNum.text = [NSString formatCount:[listLoginModel.forwardSum intValue]];
     self.commentNum.text = [NSString formatCount:[listLoginModel.commentSum intValue]];
     self.favoriteNum.text = [NSString formatCount:[listLoginModel.likeSum intValue]];
     

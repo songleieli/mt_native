@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "NetWork_mt_home_list.h"
+#import "NetWork_mt_forwardVideoCount.h" //统计分享数量
+
 
 @class SharePopView;
 

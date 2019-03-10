@@ -11,10 +11,8 @@
 @interface AVPlayerView () <NSURLSessionTaskDelegate, NSURLSessionDataDelegate,  AVAssetResourceLoaderDelegate>
 @property (nonatomic ,strong) NSURL                *sourceURL;              //视频路径
 @property (nonatomic ,strong) NSString             *sourceScheme;           //路径Scheme
-@property (nonatomic ,strong) AVURLAsset           *urlAsset;               //视频资源
 @property (nonatomic ,strong) AVPlayerItem         *playerItem;             //视频资源载体
 @property (nonatomic ,strong) AVPlayer             *player;                 //视频播放器
-@property (nonatomic ,strong) AVPlayerLayer        *playerLayer;            //视频播放器图形化载体
 @property (nonatomic ,strong) id                   timeObserver;            //视频播放器周期性调用的观察者
 
 @property (nonatomic, strong) NSMutableData        *data;                   //视频缓冲数据
@@ -91,6 +89,7 @@
             wself.urlAsset = [AVURLAsset URLAssetWithURL:wself.sourceURL options:nil];
             //设置AVAssetResourceLoaderDelegate代理
             [wself.urlAsset.resourceLoader setDelegate:wself queue:dispatch_get_main_queue()];
+            
             //初始化AVPlayerItem
             wself.playerItem = [AVPlayerItem playerItemWithAsset:wself.urlAsset];
             //观察playerItem.status属性

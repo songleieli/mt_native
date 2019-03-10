@@ -133,14 +133,39 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
 //            [self startLoadingPlayItemAnim:YES];
             break;
         case AVPlayerItemStatusReadyToPlay:
+        {
 //            [self startLoadingPlayItemAnim:NO];
             
             _isPlayerReady = YES;
 //            [_musicAlum startAnimation:_aweme.rate];
             
+            NSArray *array = self.playerView.urlAsset.tracks;
+            CGSize videoSize = CGSizeZero;
+            for (AVAssetTrack *track in array) {
+                if ([track.mediaType isEqualToString:AVMediaTypeVideo]) {
+                    videoSize = track.naturalSize;
+                }
+            }
+            
+            //视频宽高比
+            CGFloat whScale = videoSize.width/videoSize.height;
+            if(whScale > 0.6){
+                self.playerView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
+            }
+            else{
+                self.playerView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+            }
+            
+            NSLog(@"-------------videoSize = %@",NSStringFromCGSize(videoSize));
+            NSLog(@"-------------whScale = %f",whScale);
+
+//            if()
+            
+            
             if(_onPlayerReady) {
                 _onPlayerReady();
             }
+    }
             break;
         case AVPlayerItemStatusFailed:
 //            [self startLoadingPlayItemAnim:NO];
