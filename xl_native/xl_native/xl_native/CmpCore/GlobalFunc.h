@@ -162,8 +162,25 @@
 
 + (BOOL)isSimulator;
 
+/**
+ 替换lable中subStr的颜色
+ @param content 父字符串
+ @param subStr 子字符串
+ @param subColor 子字符串颜色
+ @param contentLabel 要替换的lable
+ */
++ (void)setContentLabelColor:(NSString *)content
+                      subStr:(NSString *)subStr
+                    subColor:(UIColor*)subColor
+                contentLabel:(UILabel*)contentLabel;
 
-
+/**
+ 查找子字符串在父字符串中的所有位置
+ @param content 父字符串
+ @param tab 子字符串
+ @return 返回位置数组
+ */
++ (NSMutableArray*)calculateSubStringCount:(NSString *)content str:(NSString *)tab;
 
 @end
 

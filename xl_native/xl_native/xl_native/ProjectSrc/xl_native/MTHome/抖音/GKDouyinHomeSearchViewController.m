@@ -27,7 +27,15 @@
         _functionView = [[MTSearchHeadFunctionView alloc] initWithFrame:rect];
         _functionView.topicClickBlock = ^(GetHotSearchSixModel *model) {
             NSLog(@"-------");
-            HomeSearchResultViewController *homeSearchResultViewController = [[HomeSearchResultViewController alloc] initWithKeyWord:model.topic];
+            
+                NSString *keyWord = model.topic;
+                NSUInteger location = [keyWord rangeOfString:@"#"].location;
+                if (location == NSNotFound) {
+                } else {
+                    keyWord = [keyWord substringFromIndex:1];
+                }
+            
+            HomeSearchResultViewController *homeSearchResultViewController = [[HomeSearchResultViewController alloc] initWithKeyWord:keyWord];
             [weakSelf pushNewVC:homeSearchResultViewController animated:YES];
             
         };
@@ -274,6 +282,13 @@
         topicName = textField.placeholder;
     }
     
+    
+    //过滤携带的 “#” 号，接口不需要
+    NSUInteger location = [topicName rangeOfString:@"#"].location;
+    if (location == NSNotFound) {
+    } else {
+        topicName = [topicName substringFromIndex:1];
+    }
     
     [textField resignFirstResponder];
     HomeSearchResultViewController *homeSearchResultViewController = [[HomeSearchResultViewController alloc] initWithKeyWord:topicName];

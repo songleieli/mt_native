@@ -99,7 +99,7 @@
     [_loadMore startLoading];
     __weak __typeof(self) wself = self;
     [_loadMore setOnLoad:^{
-        [wself loadData:wself.pageIndex pageSize:wself.pageSize];
+        [wself loadData];
     }];
     [_collectionView addSubview:_loadMore];
 }
@@ -107,7 +107,7 @@
 #pragma -mark ------------   request netWork
 
 
-- (void)loadData:(NSInteger)pageIndex pageSize:(NSInteger)pageSize {
+- (void)loadData{
     
     //过滤Music携带的 “#” 号，接口不需要
     NSString *videoNameTemp = self.keyWord;
@@ -120,8 +120,8 @@
     NetWork_mt_getFuzzyVideoList *request = [[NetWork_mt_getFuzzyVideoList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.searchName = videoNameTemp;
-    request.pageNo = [NSString stringWithFormat:@"%ld",pageIndex];
-    request.pageSize = [NSString stringWithFormat:@"%ld",pageSize];
+    request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
+    request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {
         /*暂不考虑缓存*/
     } finishBlock:^(GetFuzzyVideoListResponse *result, NSString *msg, BOOL finished) {
@@ -144,7 +144,7 @@
             }];
             
             [self.loadMore endLoading];
-            if(result.obj.count < pageSize || self.favoriteAwemes.count == 0) {
+            if(self.favoriteAwemes.count < self.currentPageSize || result.obj.count == 0) {//最后一页数据
                 [self.loadMore loadingAll];
             }
         }
@@ -167,7 +167,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SearchResultSubVideoCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSearchResultSubVideoCollectionCell forIndexPath:indexPath];
     HomeListModel *aweme= [self.favoriteAwemes objectAtIndex:indexPath.row];
-    [cell initData:aweme];
+    [cell initData:aweme withKeyWord:self.keyWord];
     return cell;
 }
 
@@ -209,7 +209,7 @@
 //网络状态发送变化
 -(void)onNetworkStatusChange:(NSNotification *)notification {
     
-    [self loadData:_pageIndex pageSize:_pageSize];
+    [self loadData];
 }
 
 

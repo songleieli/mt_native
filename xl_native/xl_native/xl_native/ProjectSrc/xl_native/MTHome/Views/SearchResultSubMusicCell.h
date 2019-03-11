@@ -26,7 +26,6 @@
 
 + (NSString*) cellId;
 
-- (void)fillDataWithModel:(GetFuzzyMusicListModel *)listModel;
 
 @property(nonatomic,strong) GetFuzzyMusicListModel * listModel;
 @property(nonatomic,strong) UIButton * viewBg;
@@ -39,6 +38,9 @@
 
 
 @property(nonatomic,weak) id <SearchResultSubMusicDelegate> subCellDelegate;
+
+- (void)fillDataWithModel:(GetFuzzyMusicListModel *)listModel withKeyWord:(NSString*)withKeyWord;
+
 
 
 @end

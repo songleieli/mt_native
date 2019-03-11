@@ -48,32 +48,43 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubUserCellId";
     self.imageVeiwIcon.layer.borderWidth = 0.0;
     [self.imageVeiwIcon.layer setMasksToBounds:YES];
     self.imageVeiwIcon.userInteractionEnabled = YES;
-    
     [self.viewBg addSubview:self.imageVeiwIcon];
     
 
-    self.labelTitle = [[UILabel alloc]init];
-    self.labelTitle.size = [UIView getSize_width:200 height:20];
-    self.labelTitle.origin = [UIView getPoint_x:self.imageVeiwIcon.right+10 y:18];
-    self.labelTitle.font = [UIFont defaultBoldFontWithSize:15];
-    self.labelTitle.textColor = [UIColor whiteColor];
+    self.labelTitle = [[VUILable alloc]init];
+    self.labelTitle.size = [UIView getSize_width:210 height:40];
+    self.labelTitle.origin = [UIView getPoint_x:self.imageVeiwIcon.right+10 y:0];
+    self.labelTitle.font = BigBoldFont;
+    self.labelTitle.verticalAlignment = VerticalAlignmentBottom;
+    self.labelTitle.textColor = ColorWhite;
     [self.viewBg addSubview:self.labelTitle];
+    
+    self.labelNoodleInfo = [[VUILable alloc]init];
+    self.labelNoodleInfo.size = [UIView getSize_width:220 height:20];
+    self.labelNoodleInfo.origin = [UIView getPoint_x:self.labelTitle.left y:self.labelTitle.bottom];
+    self.labelNoodleInfo.font = SmallFont;
+    self.labelNoodleInfo.textColor = ColorWhiteAlpha60;
+    self.labelNoodleInfo.verticalAlignment = VerticalAlignmentMiddle;
+    [self.viewBg addSubview:self.labelNoodleInfo];
+    
+    //test
 
-    self.labelSign = [[UILabel alloc]init];
-    self.labelSign.size = [UIView getSize_width:220 height:20];
-    self.labelSign.origin = [UIView getPoint_x:self.labelTitle.left y:self.labelTitle.bottom+5];
-    self.labelSign.font = [UIFont defaultFontWithSize:14];
-    self.labelSign.textColor = RGBA(120, 122, 132, 1);
+    self.labelSign = [[VUILable alloc]init];
+    self.labelSign.size = [UIView getSize_width:230 height:30];
+    self.labelSign.origin = [UIView getPoint_x:self.labelTitle.left y:self.labelNoodleInfo.bottom];
+    self.labelSign.font = SmallFont;
+    self.labelSign.textColor = ColorWhiteAlpha60;
+    self.labelSign.verticalAlignment = VerticalAlignmentTop;
     [self.viewBg addSubview:self.labelSign];
     
     
     self.focusButton = [[UIButton alloc] init];
-    self.focusButton.size = [UIView getSize_width:80 height:30];
-    self.focusButton.right = ScreenWidth - 15;
+    self.focusButton.size = [UIView getSize_width:70.0f height:28.5f];
+    self.focusButton.right = ScreenWidth - 10;
     self.focusButton.top = (SearchResultSubUserCellHeight - self.focusButton.height)/2;
     [self.focusButton setTitle:@"关注" forState:UIControlStateNormal];
     [self.focusButton setTitleColor:ColorWhite forState:UIControlStateNormal];
-    self.focusButton.titleLabel.font = [UIFont defaultFontWithSize:14];
+    self.focusButton.titleLabel.font = SmallFont;
     self.focusButton.clipsToBounds = YES;
     [self.focusButton setImage:[UIImage imageNamed:@"icon_personal_add_little"] forState:UIControlStateNormal];
     [self.focusButton setImageEdgeInsets:UIEdgeInsetsMake(0, -2, 0, 0)];
@@ -81,14 +92,27 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubUserCellId";
     self.focusButton.layer.cornerRadius = 2;
     [self.viewBg addSubview:self.focusButton];
 }
-- (void)fillDataWithModel:(GetFuzzyAccountListModel *)model{
+- (void)fillDataWithModel:(GetFuzzyAccountListModel *)listModel withKeyWord:(NSString*)withKeyWord{
     
-    self.listModel = model;
-    [self.imageVeiwIcon sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"img_find_default"]];
+    self.listModel = listModel;
+    [self.imageVeiwIcon sd_setImageWithURL:[NSURL URLWithString:listModel.head] placeholderImage:[UIImage imageNamed:@"img_find_default"]];
     
-    self.labelTitle.text = [NSString stringWithFormat:@"@%@",model.nickname];
-    self.labelSign.text = model.signature.length == 0?@"暂时还没有签名":model.signature;
+    NSString *content = [NSString stringWithFormat:@"@%@",listModel.nickname];
+    [GlobalFunc setContentLabelColor:content
+                        subStr:withKeyWord
+                      subColor:[UIColor yellowColor]
+                  contentLabel:self.labelTitle];
+    
+    self.labelNoodleInfo.text = [NSString stringWithFormat:@"面条号:%@ 获赞:%@",listModel.noodleId,listModel.likeTotal];
+    
+    NSString *signature = listModel.signature.length == 0?@"暂时还没有签名":listModel.signature;
+    [GlobalFunc setContentLabelColor:signature
+                              subStr:withKeyWord
+                            subColor:[UIColor yellowColor]
+                        contentLabel:self.labelSign];
 }
+
+
 
 
 - (void)btnDelClick:(id)sender{

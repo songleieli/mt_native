@@ -26,7 +26,6 @@
 
 + (NSString*) cellId;
 
-- (void)fillDataWithModel:(GetFuzzyTopicListModel *)listModel;
 
 @property(nonatomic,strong) GetFuzzyTopicListModel * listModel;
 @property(nonatomic,strong) UIButton * viewBg;
@@ -37,5 +36,8 @@
 @property(nonatomic,strong) UILabel * useCountLalbe;
 
 @property(nonatomic,weak) id <SearchResultSubTopicDelegate> subTopicDelegate;
+
+- (void)fillDataWithModel:(GetFuzzyTopicListModel *)listModel withKeyWord:(NSString*)withKeyWord;
+
 
 @end

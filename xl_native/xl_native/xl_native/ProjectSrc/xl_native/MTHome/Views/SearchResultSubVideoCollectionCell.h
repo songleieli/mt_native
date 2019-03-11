@@ -7,18 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "NetWork_mt_getLikeVideoList.h"
-//#import "NetWork_mt_getMyVideos.h"
-//#import "NetWork_mt_getDynamics.h"
-#import "NetWork_mt_getFuzzyVideoList.h"
 
-//@class WebPImageView;
+#import "NetWork_mt_getFuzzyVideoList.h"
 
 @interface SearchResultSubVideoCollectionCell : UICollectionViewCell
 
 @property (nonatomic, strong) UIImageView    *imageView;
+@property (nonatomic, strong) UIImageView    *imageViewUser;
+@property (nonatomic,strong) UILabel *labelNickName;
+@property (nonatomic,strong) UILabel *labelDesc;
+
 @property (nonatomic, strong) UIButton         *favoriteNum;
 
-- (void)initData:(HomeListModel *)aweme;
+- (void)initData:(HomeListModel *)aweme withKeyWord:(NSString*)withKeyWord;
 
 @end

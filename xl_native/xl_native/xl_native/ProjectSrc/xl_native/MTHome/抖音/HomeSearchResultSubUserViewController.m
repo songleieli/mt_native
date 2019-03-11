@@ -69,17 +69,17 @@
 
 -(void)initRequest{
     
-    //过滤Music携带的 “#” 号，接口不需要
-    NSString *userNameTemp = self.keyWord;
-    NSUInteger location = [userNameTemp rangeOfString:@"#"].location;
-    if (location == NSNotFound) {
-    } else {
-        userNameTemp = [userNameTemp substringFromIndex:1];
-    }
+//    //过滤Music携带的 “#” 号，接口不需要
+//    NSString *userNameTemp = self.keyWord;
+//    NSUInteger location = [userNameTemp rangeOfString:@"#"].location;
+//    if (location == NSNotFound) {
+//    } else {
+//        userNameTemp = [userNameTemp substringFromIndex:1];
+//    }
     
     NetWork_mt_getFuzzyAccountList *request = [[NetWork_mt_getFuzzyAccountList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.searchName = userNameTemp;
+    request.searchName = self.keyWord;
     request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
     request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {
@@ -142,7 +142,7 @@
         SearchResultSubUserCell *cell = [tableView dequeueReusableCellWithIdentifier:[SearchResultSubUserCell cellId] forIndexPath:indexPath];
         cell.subCellDelegate = self;
         GetFuzzyAccountListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
-        [cell fillDataWithModel:model];
+        [cell fillDataWithModel:model withKeyWord:self.keyWord];
         return cell;
     }
     else{

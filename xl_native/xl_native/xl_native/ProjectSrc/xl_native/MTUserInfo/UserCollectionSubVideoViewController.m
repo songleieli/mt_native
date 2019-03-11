@@ -164,7 +164,7 @@ NSString * const userCollectionSubVideoCollectionCell_Temp  = @"userCollectionSu
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SearchResultSubVideoCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:userCollectionSubVideoCollectionCell_Temp forIndexPath:indexPath];
     HomeListModel *aweme= [self.favoriteAwemes objectAtIndex:indexPath.row];
-    [cell initData:aweme];
+    [cell initData:aweme withKeyWord:@""];
     return cell;
 }
 

@@ -64,17 +64,17 @@
 
 -(void)initRequest{
     
-    //过滤Music携带的 “#” 号，接口不需要
-    NSString *musicNameTemp = self.keyWord;
-    NSUInteger location = [musicNameTemp rangeOfString:@"#"].location;
-    if (location == NSNotFound) {
-    } else {
-        musicNameTemp = [musicNameTemp substringFromIndex:1];
-    }
+//    //过滤Music携带的 “#” 号，接口不需要
+//    NSString *musicNameTemp = self.keyWord;
+//    NSUInteger location = [musicNameTemp rangeOfString:@"#"].location;
+//    if (location == NSNotFound) {
+//    } else {
+//        musicNameTemp = [musicNameTemp substringFromIndex:1];
+//    }
     
     NetWork_mt_getFuzzyMusicList *request = [[NetWork_mt_getFuzzyMusicList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.searchName = musicNameTemp;
+    request.searchName = self.keyWord;
     request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
     request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {
@@ -122,7 +122,7 @@
         SearchResultSubMusicCell *cell = [tableView dequeueReusableCellWithIdentifier:[SearchResultSubMusicCell cellId] forIndexPath:indexPath];
         cell.subCellDelegate = self;
         GetFuzzyMusicListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
-        [cell fillDataWithModel:model];
+        [cell fillDataWithModel:model withKeyWord:self.keyWord];
         return cell;
     }
     else{

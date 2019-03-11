@@ -70,7 +70,7 @@
 @property (copy, nonatomic) NSString *nickname;
 @property (copy, nonatomic) NSString *signature;
 @property (strong, nonatomic) NSNumber *followSum;
-
+@property (strong, nonatomic) NSNumber *likeTotal;
 
 @end
 

@@ -1183,43 +1183,6 @@ static GlobalFunc *sharedInstance;
     
 }
 
-//test
-//+ (void)beginLogPageView:(NSString *)pageName{
-//
-//    [MobClick beginLogPageView:pageName];
-//    return;
-//
-//}
-//+ (void)endLogPageView:(NSString *)pageName{
-//    [MobClick endLogPageView:pageName];
-//    return;
-//}
-
-//+ (void)event:(NSString *)eventId{
-//    [MobClick event:eventId];
-//}
-//+ (void)event:(NSString *)eventId label:(NSString *)label{
-//    [MobClick event:eventId label:label];
-//}
-
-//+ (void)profileSignInWithPUID:(NSString *)puid{
-//
-//    [MobClick profileSignInWithPUID:puid];
-//
-//
-//}
-//+ (void)profileSignInWithPUID:(NSString *)puid provider:(NSString *)provider{
-//
-//    [MobClick profileSignInWithPUID:puid provider:provider];
-//
-//}
-//+(void)profileSignOff{
-//    
-//    [MobClick profileSignOff];
-//    
-//}
-
-
 + (NSString*)dataTojsonString:(id)object
 {
     NSString *jsonString = nil;
@@ -1316,6 +1279,59 @@ static GlobalFunc *sharedInstance;
 #else
     return NO;
 #endif
+}
+
+
+/**
+ 改变UILabel部分字符颜色
+ */
++ (void)setContentLabelColor:(NSString *)content
+                      subStr:(NSString *)subStr
+                    subColor:(UIColor*)subColor
+                contentLabel:(UILabel*)contentLabel{
+    
+    
+    NSMutableArray *locationArr = [GlobalFunc calculateSubStringCount:content str:subStr];
+    NSMutableAttributedString *attstr = [[NSMutableAttributedString alloc] initWithString:content];
+    for (int i=0; i<locationArr.count; i++) {
+        NSNumber *location = locationArr[i];
+        [attstr addAttribute:NSForegroundColorAttributeName value:subColor range:NSMakeRange(location.integerValue, subStr.length)];//改变\n前边的10位字符颜色，
+    }
+    contentLabel.attributedText = attstr;
+}
+
+/**
+ 查找子字符串在父字符串中的所有位置
+ @param content 父字符串
+ @param tab 子字符串
+ @return 返回位置数组
+ */
++ (NSMutableArray*)calculateSubStringCount:(NSString *)content str:(NSString *)tab {
+    
+    int location = 0;
+    NSMutableArray *locationArr = [NSMutableArray new];
+    NSRange range = [content rangeOfString:tab];
+    if (range.location == NSNotFound){
+        return locationArr;
+    }
+    //声明一个临时字符串,记录截取之后的字符串
+    NSString * subStr = content;
+    while (range.location != NSNotFound) {
+        if (location == 0) {
+            location += range.location;
+        } else {
+            location += range.location + tab.length;
+        }
+        //记录位置
+        NSNumber *number = [NSNumber numberWithUnsignedInteger:location];
+        [locationArr addObject:number];
+        //每次记录之后,把找到的字串截取掉
+        subStr = [subStr substringFromIndex:range.location + range.length];
+        NSLog(@"subStr %@",subStr);
+        range = [subStr rangeOfString:tab];
+        NSLog(@"rang %@",NSStringFromRange(range));
+    }
+    return locationArr;
 }
 
 

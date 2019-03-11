@@ -7,7 +7,7 @@
 //
 
 #import "BaseTableViewCell.h"
-
+#import "VUILable.h"
 #import "NetWork_mt_getFuzzyAccountList.h"
 
 
@@ -18,7 +18,7 @@
 @end
 
 
-#define SearchResultSubUserCellHeight 80.0f
+#define SearchResultSubUserCellHeight 90.0f
 #define SearchResultSubUserCellSpace 6.0f
 
 
@@ -26,19 +26,22 @@
 
 + (NSString*) cellId;
 
-- (void)fillDataWithModel:(GetFuzzyAccountListModel *)listModel;
+
+
+@property(nonatomic,strong) UIButton * viewBg;
+
+@property(nonatomic,strong) UIImageView * imageVeiwIcon;
+@property(nonatomic,strong) VUILable * labelTitle;
+@property(nonatomic,strong) VUILable * labelNoodleInfo;
+@property(nonatomic,strong) VUILable * labelSign;
+
+@property (nonatomic, strong) UIButton *focusButton;
+@property(nonatomic,weak) id <SearchResultSubUserDelegate> subCellDelegate;
 
 @property(nonatomic,strong) GetFuzzyAccountListModel * listModel;
-@property(nonatomic,strong) UIButton * viewBg;
-@property(nonatomic,strong) UIImageView * imageVeiwIcon;
 
-@property(nonatomic,strong) UILabel * labelReadStatus;
-@property(nonatomic,strong) UILabel * labelTitle;
-@property(nonatomic,strong) UILabel * labelSign;
-@property (nonatomic, strong) UIButton *focusButton;
+- (void)fillDataWithModel:(GetFuzzyAccountListModel *)listModel withKeyWord:(NSString*)withKeyWord;
 
-
-@property(nonatomic,weak) id <SearchResultSubUserDelegate> subCellDelegate;
 
 
 @end

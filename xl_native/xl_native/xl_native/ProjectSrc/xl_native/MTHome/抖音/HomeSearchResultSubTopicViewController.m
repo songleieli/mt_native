@@ -122,7 +122,7 @@
         SearchResultSubTopicCell *cell = [tableView dequeueReusableCellWithIdentifier:[SearchResultSubTopicCell cellId] forIndexPath:indexPath];
         cell.subTopicDelegate = self;
         GetFuzzyTopicListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
-        [cell fillDataWithModel:model];
+        [cell fillDataWithModel:model withKeyWord:self.keyWord];
         return cell;
     }
     else{

@@ -216,8 +216,8 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         NetWork_mt_getMyVideos *request = [[NetWork_mt_getMyVideos alloc] init];
         request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
         request.noodleId = self.userNoodleId;
-        request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex=self.currentPageIndex+1];
-        request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];
+        request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
+        request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
         [request startGetWithBlock:^(id result, NSString *msg) {
             /*暂不考虑缓存*/
         } finishBlock:^(GetLikeVideoListResponse *result, NSString *msg, BOOL finished) {
@@ -254,8 +254,8 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         NetWork_mt_getDynamics *request = [[NetWork_mt_getDynamics alloc] init];
         request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
         request.noodleId = self.userNoodleId;
-        request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex=self.currentPageIndex+1];
-        request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];
+        request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
+        request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
         [request startGetWithBlock:^(id result, NSString *msg) {
             /*暂不考虑缓存*/
         } finishBlock:^(GetLikeVideoListResponse *result, NSString *msg, BOOL finished) {
@@ -294,8 +294,8 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         NetWork_mt_getLikeVideoList *request = [[NetWork_mt_getLikeVideoList alloc] init];
         request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
         request.noodleId = self.userNoodleId;
-        request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex=self.currentPageIndex+1];
-        request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];
+        request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
+        request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
         [request startGetWithBlock:^(id result, NSString *msg) {
             /*暂不考虑缓存*/
         } finishBlock:^(GetLikeVideoListResponse *result, NSString *msg, BOOL finished) {

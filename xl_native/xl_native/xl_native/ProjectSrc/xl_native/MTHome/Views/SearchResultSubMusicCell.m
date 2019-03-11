@@ -56,34 +56,47 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubMusicCellId";
     self.labelTitle = [[UILabel alloc]init];
     self.labelTitle.size = [UIView getSize_width:200 height:20];
     self.labelTitle.origin = [UIView getPoint_x:self.imageVeiwIcon.right+10 y:18];
-    self.labelTitle.font = [UIFont defaultBoldFontWithSize:15];
-    self.labelTitle.textColor = [UIColor whiteColor];
+    self.labelTitle.font = BigBoldFont;
+    self.labelTitle.textColor = ColorWhite;
     [self.viewBg addSubview:self.labelTitle];
 
     self.labelSign = [[UILabel alloc]init];
     self.labelSign.size = [UIView getSize_width:220 height:20];
     self.labelSign.origin = [UIView getPoint_x:self.labelTitle.left y:self.labelTitle.bottom+5];
-    self.labelSign.font = [UIFont defaultFontWithSize:14];
-    self.labelSign.textColor = RGBA(120, 122, 132, 1);
+    self.labelSign.font = SmallFont;
+    self.labelSign.textColor = ColorWhiteAlpha60;
     [self.viewBg addSubview:self.labelSign];
     
     
     self.lableuseCount = [[UILabel alloc] init];
-    self.lableuseCount.size = [UIView getSize_width:80 height:30];
-    self.lableuseCount.right = ScreenWidth - 15;
+    self.lableuseCount.size = [UIView getSize_width:120 height:30];
+    self.lableuseCount.right = ScreenWidth - 10;
     self.lableuseCount.top = (SearchResultSubMusicCellHeight - self.lableuseCount.height)/2;
-    self.lableuseCount.font = [UIFont defaultFontWithSize:14];
+    self.lableuseCount.font = SmallFont;
     self.lableuseCount.clipsToBounds = YES;
-    self.lableuseCount.textColor = RGBA(120, 122, 132, 1);
+    self.lableuseCount.textColor = ColorWhiteAlpha60;
+    self.lableuseCount.textAlignment = NSTextAlignmentRight;
     [self.viewBg addSubview:self.lableuseCount];
+    
+    //test
+//    self.lableuseCount.backgroundColor = [UIColor redColor];
 }
-- (void)fillDataWithModel:(GetFuzzyMusicListModel *)model{
+- (void)fillDataWithModel:(GetFuzzyMusicListModel *)model withKeyWord:(NSString*)withKeyWord{
     
     self.listModel = model;
     [self.imageVeiwIcon sd_setImageWithURL:[NSURL URLWithString:model.coverUrl] placeholderImage:[UIImage imageNamed:@"img_find_default"]];
     
-    self.labelTitle.text = [NSString stringWithFormat:@"%@",model.name];
-    self.labelSign.text = model.nickname;
+    [GlobalFunc setContentLabelColor:model.name.trim
+                              subStr:withKeyWord
+                            subColor:[UIColor yellowColor]
+                        contentLabel:self.labelTitle];
+    
+    
+    [GlobalFunc setContentLabelColor:model.nickname.trim
+                              subStr:withKeyWord
+                            subColor:[UIColor yellowColor]
+                        contentLabel:self.labelSign];
+    
     self.lableuseCount.text = [NSString stringWithFormat:@"%@人使用",[NSString formatCount:[model.hotCount integerValue]]];
 }
 

@@ -74,9 +74,9 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubTopicCellId";
     
     if (!_titleLalbe) {
         _titleLalbe = [[UILabel alloc] init];
-        _titleLalbe.font = [UIFont defaultBoldFontWithSize:14];
+        _titleLalbe.font = BigBoldFont;
         _titleLalbe.textColor = [UIColor whiteColor];
-        _titleLalbe.size = [UIView getSize_width:250 height:20];
+        _titleLalbe.size = [UIView getSize_width:230 height:20];
         _titleLalbe.left = self.imageVeiwBg.right+5;
         _titleLalbe.centerY = self.imageVeiwBg.centerY;
     }
@@ -88,27 +88,15 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubTopicCellId";
     if (!_useCountLalbe) {
         _useCountLalbe = [[UILabel alloc] init];
         _useCountLalbe.size = [UIView getSize_width:120 height:30];
-        _useCountLalbe.right = ScreenWidth - 15;
+        _useCountLalbe.right = ScreenWidth - 10;
         _useCountLalbe.top = (SearchResultSubTopicCellHeight - _titleLalbe.height)/2;
-        _useCountLalbe.font = [UIFont defaultFontWithSize:14];
+        _useCountLalbe.font = SmallFont;
         _useCountLalbe.clipsToBounds = YES;
-        _useCountLalbe.textColor = RGBA(120, 122, 132, 1);
+        _useCountLalbe.textColor = ColorWhiteAlpha60;
         _useCountLalbe.textAlignment = NSTextAlignmentRight;
     }
     return _useCountLalbe;
 }
-
-//self.lableuseCount = [[UILabel alloc] init];
-//self.lableuseCount.size = [UIView getSize_width:80 height:30];
-//self.lableuseCount.right = ScreenWidth - 15;
-//self.lableuseCount.top = (SearchResultSubMusicCellHeight - self.lableuseCount.height)/2;
-//self.lableuseCount.font = [UIFont defaultFontWithSize:14];
-//self.lableuseCount.clipsToBounds = YES;
-//self.lableuseCount.textColor = RGBA(120, 122, 132, 1);
-//[self.viewBg addSubview:self.lableuseCount];
-
-
-
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -124,15 +112,17 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubTopicCellId";
     [self.viewBg addSubview:self.titleLalbe];
     [self.viewBg addSubview:self.useCountLalbe];
 }
-- (void)fillDataWithModel:(GetFuzzyTopicListModel *)model{
+- (void)fillDataWithModel:(GetFuzzyTopicListModel *)model withKeyWord:(NSString*)withKeyWord{
     
     self.listModel = model;
-    self.titleLalbe.text = model.topic;
+//    self.titleLalbe.text = model.topic;
+    
+    [GlobalFunc setContentLabelColor:model.topic.trim
+                              subStr:withKeyWord
+                            subColor:[UIColor yellowColor]
+                        contentLabel:self.titleLalbe];
+    
     self.useCountLalbe.text = [NSString stringWithFormat:@"%@次播放",[NSString formatCount:[model.hotCount integerValue]]];
-//    [self.imageVeiwIcon sd_setImageWithURL:[NSURL URLWithString:model.coverUrl] placeholderImage:[UIImage imageNamed:@"img_find_default"]];
-//
-//    self.labelTitle.text = [NSString stringWithFormat:@"%@",model.name];
-//    self.lableuseCount.text = [NSString stringWithFormat:@"%@",model.hotCount];
 }
 
 
