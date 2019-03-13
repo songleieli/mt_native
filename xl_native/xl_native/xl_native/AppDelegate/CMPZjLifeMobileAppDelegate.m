@@ -8,6 +8,7 @@
 
 #import "CMPZjLifeMobileAppDelegate.h"
 #import "TSStorageManager.h"
+#import "WebCacheHelpler.h"
 
 @interface CMPZjLifeMobileAppDelegate ()<WXApiDelegate>
 
@@ -69,6 +70,14 @@
      *在此处加载通用功能，比如引导页，广告等。。。
      */
     [super onBaseContextDidStartupWithOptions:launchOptions];
+    
+    /*
+     *清理缓存
+     */
+    
+    [[WebCacheHelpler sharedWebCache] clearCache:^(NSString *cacheSize) {
+        NSLog(@"-------清理缓存----cacheSize = %@ M----",cacheSize);
+    } isClearAllVideoCacle:NO];
     
     /*
      *版本更新

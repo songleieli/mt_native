@@ -123,7 +123,8 @@
 + (UIImage *) scaleToSizeAlpha:(UIImage *)img fixedHeight:(float)fixedHeight;
 
 +(NSString*) getCurrentTime;
-+(NSString*)getCurrentTimeWithFormatter:(NSString*)formattter;
++(NSString*) getCurrentTimeWithFormatter:(NSString*)formattter;
++(NSString*) getTimeWithFormatter:(NSDate*)date  formattter:(NSString*)formattter;
 
 
 

@@ -1195,7 +1195,26 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
     CGImageRef image = [assetGen copyCGImageAtTime:time actualTime:&actualTime error:&error];
     UIImage *videoImage = [[UIImage alloc] initWithCGImage:image];
     CGImageRelease(image);
-    return videoImage;
+    
+    
+    /*
+     *图片尺寸已640为准进行改变尺寸，所有的缩放都以
+     */
+    UIImage *sizeImage = nil;
+    NSInteger maxSize = 320;
+    if(videoImage.size.width > maxSize){ //宽大于高以宽为标准，高等比例变化
+        sizeImage = [GlobalFunc scaleToSizeAlpha:videoImage fixedWith:maxSize];
+    }
+    else{ // 如果宽和高都小于640，不进行压缩
+        sizeImage = videoImage;
+    }
+    
+//    NSData *imageData = UIImageJPEGRepresentation(sizeImage, 1.0);
+    //scaleToSizeAlpha 宽高按照等比例缩放
+    NSData *imageData  = UIImageJPEGRepresentation(sizeImage, 0.7); //压缩图片质量，保留。
+    
+    UIImage *returnImage = [UIImage imageWithData:imageData];
+    return returnImage;
 }
 
 #pragma mark - TXVideoPublishListener

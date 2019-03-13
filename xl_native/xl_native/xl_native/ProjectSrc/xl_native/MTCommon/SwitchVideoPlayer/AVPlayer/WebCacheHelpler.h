@@ -60,8 +60,13 @@ typedef void(^WebDownloaderCancelBlock)(void);
 
 - (void)storeDataToDiskCache:(NSData *)data key:(NSString *)key extension:(NSString *)extension;
 
-//清除本地磁盘缓存数据
-- (void)clearCache:(WebCacheClearCompletedBlock) cacheClearCompletedBlock;
+/*
+ * 1.清楚本地磁盘的视频缓存
+ * 2.cacheClearCompletedBlock 清除缓存后返回清楚的文件大小，单位M
+ * 3.isClearAllVideoCacle 为 YES，清除所有的视频缓存  NO，清除一天之前的缓存
+ */
+
+- (void)clearCache:(WebCacheClearCompletedBlock) cacheClearCompletedBlock isClearAllVideoCacle:(BOOL)isClearAllVideoCacle;
 
 @end
 

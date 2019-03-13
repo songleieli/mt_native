@@ -866,7 +866,6 @@ static GlobalFunc *sharedInstance;
 /*
  *宽高按照比例缩放
  */
-
 + (UIImage *) scaleToSizeAlpha:(UIImage *)img alpha:(float)alpha{
     // 创建一个bitmap的context
     // 并把它设置成为当前正在使用的context
@@ -945,6 +944,19 @@ static GlobalFunc *sharedInstance;
     
     return dateString;
 }
+
++(NSString*) getTimeWithFormatter:(NSDate*)date  formattter:(NSString*)formattter{
+    NSTimeZone* localzone = [NSTimeZone localTimeZone];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:formattter];
+    [dateFormatter setTimeZone:localzone];
+    
+    NSString *dateString = [dateFormatter stringFromDate:date];
+    
+    return dateString;
+}
+
 
 #pragma mark - UIImagePickerControllerDelegate
 

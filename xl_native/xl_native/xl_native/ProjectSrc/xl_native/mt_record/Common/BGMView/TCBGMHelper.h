@@ -54,12 +54,6 @@ if(BGM_DEBUG)NSLog(__VA_ARGS__);\
 
 -(void) setDelegate:(nonnull id<TCBGMHelperListener>) delegate;
 
-//-(void) initBGMListWithJsonFile:(NSString* _Nonnull)url;
-
-//@property(nonatomic,strong) NSMutableDictionary * listModel;
-//@property(nonatomic,strong) NSMutableDictionary* bgmDict;
-//@property(nonatomic,strong) NSMutableDictionary* bgmList;//只用来存储路径
-
 + (instancetype)sharedInstance;
 /**
  下载BGM

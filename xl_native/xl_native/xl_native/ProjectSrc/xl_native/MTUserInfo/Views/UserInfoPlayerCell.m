@@ -49,7 +49,7 @@ static NSString* const ViewTableViewCellId = @"UserInfoPlayerCellId";
     //contentView 的默认高度是 44 ，需要先设置一下宽和高
     self.contentView.height = HomeVideoCellHeight;
     self.contentView.width = ScreenWidth;
-    [self setBackgroundImage:@"img_video_loading"]; //cell 设置背景图
+    [self setBackgroundImage:@"default_bg_cover"]; //cell 设置背景图
     [self bringSubviewToFront:self.contentView];
     
     //    self.contentView.backgroundColor = [GlobalFunc randomColor];

@@ -92,7 +92,7 @@
 
 -(void)setupUI{
     
-    [self setBackgroundImage:@"img_video_loading"]; //cell 设置背景图
+    [self setBackgroundImage:@"default_bg_cover"]; //cell 设置背景图
     [self.view addSubview:self.mainTableView];
     
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];

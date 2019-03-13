@@ -183,10 +183,10 @@
     return [self diskCachePathForKey:key extension:nil];
 }
 //清除内存和本地磁盘缓存数据
-- (void)clearCache:(WebCacheClearCompletedBlock) cacheClearCompletedBlock {
+- (void)clearCache:(WebCacheClearCompletedBlock) cacheClearCompletedBlock isClearAllVideoCacle:(BOOL)isClearAllVideoCacle{
     dispatch_async(_ioQueue, ^{
         [self clearMemoryCache];
-        NSString *cacheSize = [self clearDiskCache];
+        NSString *cacheSize = [self clearDiskCache:isClearAllVideoCacle];
         if(cacheClearCompletedBlock) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 cacheClearCompletedBlock(cacheSize);
@@ -200,16 +200,40 @@
     [_memCache removeAllObjects];
 }
 //清除本地磁盘缓存数据
-- (NSString *)clearDiskCache {
+- (NSString *)clearDiskCache:(BOOL)isClearAllVideoCacle{
+    
     NSArray *contents = [_fileManager contentsOfDirectoryAtPath:_diskCacheDirectoryURL.path error:nil];
     NSEnumerator *enumerator = [contents objectEnumerator];
     NSString *fileName;
     CGFloat folderSize = 0.0f;
     
     while((fileName = [enumerator nextObject])) {
+        
         NSString *filePath = [_diskCacheDirectoryURL.path stringByAppendingPathComponent:fileName];
-        folderSize += [_fileManager attributesOfItemAtPath:filePath error:nil].fileSize;
-        [_fileManager removeItemAtPath:filePath error:NULL];
+        NSDictionary *fileAttrs=[_fileManager attributesOfItemAtPath:filePath error:nil];
+        NSDate *fileCreateDate = fileAttrs.fileCreationDate;
+        NSDate *nowData = [NSDate date];
+//        NSLog(@" ======文件创建的本地时区时间====== %@",[GlobalFunc getTimeWithFormatter:fileCreateDate formattter:@"YYYY-MM-dd HH:mm"]);
+//        NSLog(@" ======当前本地时区时间====== %@",[GlobalFunc getTimeWithFormatter:nowData formattter:@"YYYY-MM-dd HH:mm"]);
+//
+//        NSLog(@"文件的基本信息  %@",fileAttrs);
+//        NSLog(@"------------fileCreateData  %@",[GlobalFunc getCurrentTime]);
+        
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSCalendarUnit type = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+        NSDateComponents *cmps = [calendar components:type fromDate:fileCreateDate toDate:nowData options:0];
+//        NSLog(@"两个时间相差%ld年%ld月%ld日%ld小时%ld分钟%ld秒", cmps.year, cmps.month, cmps.day, cmps.hour, cmps.minute, cmps.second);
+        
+        if(isClearAllVideoCacle){//全部清除
+            folderSize += fileAttrs.fileSize;
+            [_fileManager removeItemAtPath:filePath error:NULL];
+        }
+        else{//全部创建12个小时以上的文件
+            if(cmps.hour>=12){
+                folderSize += fileAttrs.fileSize;
+                [_fileManager removeItemAtPath:filePath error:NULL];
+            }
+        }
     }
     return [NSString stringWithFormat:@"%.2f",folderSize/1024.0f/1024.0f];
 }

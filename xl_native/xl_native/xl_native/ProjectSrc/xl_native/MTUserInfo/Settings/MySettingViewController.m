@@ -7,6 +7,7 @@
 //
 
 #import "MySettingViewController.h"
+#import "WebCacheHelpler.h"
 
 @implementation MyViewTableViewSelectionModel
 
@@ -369,6 +370,19 @@
         
         [GlobalData cleanAccountInfo];
         [[CMPZjLifeMobileAppDelegate shareApp].rootViewController selectTabAtIndex:0];
+    }
+    else if(model.cellTag == MyCellTag_cleanCache){
+        
+        /*
+         *清理缓存
+         */
+//        [self startWithCursor:@"正在清理缓存"];
+        [[WebCacheHelpler sharedWebCache] clearCache:^(NSString *cacheSize) {
+            //NSLog(@"-------清理缓存----cacheSize = %@ M----",cacheSize);
+//            [self stopWatiCursor:@"正在清理缓存"];
+            [UIWindow showTips:[NSString stringWithFormat:@"清理缓存[%@ M]",cacheSize]];
+            
+        } isClearAllVideoCacle:YES];
     }
 }
 
