@@ -130,7 +130,11 @@
     [self addChildViewController:self.topicNavViewController];
     [self addChildViewController:self.messageNavViewController];
     [self addChildViewController:self.userInfoNavViewController];
-    [[UINavigationBar appearance] setBarTintColor:defaultZjBlueColor];
+    
+    //[[UINavigationBar appearance] setBarTintColor:defaultZjBlueColor];
+    //（这里就很费解，按照系统文档上解释的话，默认应该是YES才对，可是事实证明系统默认是NO）
+//    [[UINavigationBar appearance] setBarTintColor:[UIColor clearColor]];
+//    [[UINavigationBar appearance] setTranslucent:NO];//这句话是控制导航栏颜色是否透明。//导航栏颜色透明
     
     self.currentViewController = self.xlHomeNavViewController;
     [self.view addSubview:self.xlHomeNavViewController.view];

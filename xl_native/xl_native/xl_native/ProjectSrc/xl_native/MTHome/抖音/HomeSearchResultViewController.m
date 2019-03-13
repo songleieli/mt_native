@@ -163,8 +163,8 @@
                                     withParametersDic:arrayParameters];
     
     self.pageView.isTranslucent = NO;
-    self.pageView.selectedColor = [UIColor whiteColor];
-    self.pageView.unselectedColor = RGBA(120, 122, 132, 1);
+    self.pageView.selectedColor = ColorWhite;
+    self.pageView.unselectedColor = ColorWhiteAlpha60;
     self.pageView.topTabScrollViewBgColor = ColorThemeBackground;
     self.pageView.topTabBottomLineColor = [UIColor grayColor];
     self.pageView.delegate = self;

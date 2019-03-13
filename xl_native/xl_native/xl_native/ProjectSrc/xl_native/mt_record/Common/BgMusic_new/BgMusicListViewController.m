@@ -2,26 +2,25 @@
 //  GKDouyinHomeSearchViewController.m
 //  GKNavigationBarViewControllerDemo
 //
-//  Created by gaokun on 2018/9/11.
+//  Created by songlei on 2018/9/11.
 //  Copyright © 2018年 gaokun. All rights reserved.
 //
 
-#import "UserCollectionController.h"
+#import "BgMusicListViewController.h"
 
-#import "TopicInfoController.h"
-#import "MusicInfoController.h"
+//#import "TopicInfoController.h"
+//#import "MusicInfoController.h"
 
-#import "UserCollectionSubMusicViewController.h"
-#import "UserCollectionSubTopicViewController.h"
-#import "UserCollectionSubVideoViewController.h"
+#import "BgMusicListHotSubViewController.h"
+#import "BgMusicListCollectionSubViewController.h"
 
-#import "ScrollPlayerListViewController.h"
+//#import "ScrollPlayerListViewController.h"
 
-@interface UserCollectionController ()<SubTopicCellDelegate,SubMusicCellDelegate,SubVideoCellDelegate>
+@interface BgMusicListViewController ()<SubCollectionDelegate,SubHotDelegate>
 
 @end
 
-@implementation UserCollectionController
+@implementation BgMusicListViewController
 
 -(void)dealloc{
     NSLog(@"---------------%@ dealloc ",NSStringFromClass([self class]));
@@ -31,8 +30,9 @@
 -(void)initNavTitle{
     self.isNavBackGroundHiden  = NO;
     self.btnLeft.hidden = YES;
-    self.lableNavTitle.textColor = ColorWhite;
-    self.lableNavTitle.font = BigBoldFont; //[UIFont defaultBoldFontWithSize:16];
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [UIApplication sharedApplication].statusBarHidden = NO;
     
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     leftButton.size = [UIView getSize_width:20 height:20];
@@ -41,9 +41,7 @@
     [leftButton addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     self.btnLeft = leftButton;
-    
-
-    self.title = @"收藏";
+    self.title = @"音乐";
 }
 
 - (void)viewDidLoad {
@@ -64,11 +62,9 @@
      */
     NSDictionary *dicOne = @{@"parameter":@"0",@"delegate":self};
     NSDictionary *dicTwo = @{@"parameter":@"1",@"delegate":self};
-    NSDictionary *dicThree = @{@"parameter":@"2",@"delegate":self};
-//    NSArray *arrayParameters = @[dicOne,dicTwo,dicThree,dicFour,dicFive];
-    NSArray *arrayParameters = @[dicOne,dicTwo,dicThree];
-    NSArray *arrayTitles = @[@"视频",@"话题",@"音乐"];
-    NSArray *arrayControllers = @[@"UserCollectionSubVideoViewController",@"UserCollectionSubTopicViewController",@"UserCollectionSubMusicViewController"];
+    NSArray *arrayParameters = @[dicOne,dicTwo];
+    NSArray *arrayTitles = @[@"热门",@"收藏"];
+    NSArray *arrayControllers = @[@"BgMusicListHotSubViewController",@"BgMusicListCollectionSubViewController"];
     
     self.pageView = [[HYPageView alloc] initWithFrame:CGRectMake(0, kNavBarHeight_New, ScreenWidth, bodyViewHeight+topSpace)
                                            withTitles:arrayTitles
@@ -90,31 +86,33 @@
 
 
 -(void)backBtnClick:(UIButton*)btn{
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    [UIApplication sharedApplication].statusBarHidden = YES;
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma -mark SubCellDelegate
 
--(void)subCellTopicClick:(GetTopicCollectionModel *)model{
+-(void)subCellTopicClick:(GetMusicCollectionModel *)model{
     
-    TopicInfoController *topicInfoController = [[TopicInfoController alloc] init];
-    topicInfoController.topicName = model.topicName;
-    [self pushNewVC:topicInfoController animated:YES];
+//    TopicInfoController *topicInfoController = [[TopicInfoController alloc] init];
+//    topicInfoController.topicName = model.topicName;
+//    [self pushNewVC:topicInfoController animated:YES];
     
 }
 
 -(void)subMusicClick:(GetMusicCollectionModel *)model{
     
-    MusicInfoController *musicInfoController = [[MusicInfoController alloc] init];
-    musicInfoController.musicId = model.musicId;
-    [self pushNewVC:musicInfoController animated:YES];
+//    MusicInfoController *musicInfoController = [[MusicInfoController alloc] init];
+//    musicInfoController.musicId = model.musicId;
+//    [self pushNewVC:musicInfoController animated:YES];
 }
 
 -(void)subCellVideoClick:(NSMutableArray *)videoList selectIndex:(NSInteger)selectIndex{
     
-    ScrollPlayerListViewController *controller;
-    controller = [[ScrollPlayerListViewController alloc] initWithVideoData:videoList currentIndex:selectIndex];
-    [self pushNewVC:controller animated:YES];
+//    ScrollPlayerListViewController *controller;
+//    controller = [[ScrollPlayerListViewController alloc] initWithVideoData:videoList currentIndex:selectIndex];
+//    [self pushNewVC:controller animated:YES];
 }
 
 @end

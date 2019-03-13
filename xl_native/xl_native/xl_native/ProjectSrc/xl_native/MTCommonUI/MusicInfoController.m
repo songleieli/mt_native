@@ -67,8 +67,8 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
 
 -(void)initNavTitle{
     self.isNavBackGroundHiden  = NO;
-    self.lableNavTitle.textColor = [UIColor whiteColor];
-    self.lableNavTitle.font = [UIFont defaultBoldFontWithSize:16];
+    self.lableNavTitle.textColor = ColorWhite;
+    self.lableNavTitle.font = BigBoldFont; //[UIFont defaultBoldFontWithSize:16];
     
     self.title = @"音乐详情";
     

@@ -10,7 +10,12 @@
 #import "TCVideoRecordProcessView.h"
 #import "V8HorizontalPickerView.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+
+
 #import "TCBGMListViewController.h"
+#import "BaseNavigationController.h"
+#import "BgMusicListViewController.h"
+
 #import "BeautySettingPanel.h"
 #import "MBProgressHUD.h"
 #import "UIAlertView+BlocksKit.h"
@@ -98,7 +103,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     SoundMixView  *_soundMixView;
     
     BOOL                            _navigationBarHidden;
-    BOOL                            _statusBarHidden;
+//    BOOL                            _statusBarHidden;
     BOOL                            _appForeground;
     BOOL                            _isPaused;
     
@@ -197,11 +202,10 @@ typedef NS_ENUM(NSInteger,CaptureMode)
 
 @implementation TCVideoRecordViewController
 
--(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+    
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self)
-    {
+    if (self){
         _appForeground = YES;
         _cameraFront = YES;
         _lampOpened = NO;
@@ -370,8 +374,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
 }
 
@@ -395,12 +398,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    _navigationBarHidden = self.navigationController.navigationBar.hidden;
-    _statusBarHidden = [UIApplication sharedApplication].statusBarHidden;
     [self.navigationController setNavigationBarHidden:YES];
-    //[[UIApplication sharedApplication]setStatusBarHidden:YES];
-    [UIApplication sharedApplication].statusBarHidden = YES;
     
     if (_cameraPreviewing == NO) {
         [self startCameraPreview];
@@ -417,17 +415,9 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     }
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-    [self.navigationController setNavigationBarHidden:_navigationBarHidden];
-    [[UIApplication sharedApplication]setStatusBarHidden:_statusBarHidden];
-}
-
 #pragma mark - Notification Handler
--(void)onAudioSessionEvent:(NSNotification*)notification
-{
+-(void)onAudioSessionEvent:(NSNotification*)notification{
+    
     NSDictionary *info = notification.userInfo;
     AVAudioSessionInterruptionType type = [info[AVAudioSessionInterruptionTypeKey] unsignedIntegerValue];
     if (type == AVAudioSessionInterruptionTypeBegan) {
@@ -990,11 +980,26 @@ typedef NS_ENUM(NSInteger,CaptureMode)
         _musicView.hidden = !_musicView.hidden;
         [self hideBottomView:!_musicView.hidden];
     }else{
+        
+
+        BgMusicListViewController *bgMusicListViewController = [[BgMusicListViewController alloc] init];
+        BaseNavigationController *nv = [[BaseNavigationController alloc] initWithRootViewController:bgMusicListViewController];
+//        [nv.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+//        nv.navigationBar.barTintColor = [UIColor redColor]; //RGB(25, 29, 38);
+        [self presentViewController:nv animated:YES completion:nil];
+        
+        
+        
+        /* 暂时屏蔽
+        
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:_bgmListVC];
         [nv.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
         nv.navigationBar.barTintColor = RGB(25, 29, 38);
         [self presentViewController:nv animated:YES completion:nil];
         [_bgmListVC loadBGMList];
+        
+        */
+        
         
     }
 }
