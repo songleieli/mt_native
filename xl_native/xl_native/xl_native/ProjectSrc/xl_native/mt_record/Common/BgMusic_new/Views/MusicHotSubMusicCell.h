@@ -13,7 +13,11 @@
 
 @protocol MusicHotSubDelegate <NSObject>
 
--(void)btnCellClick:(MusicModel*)model;
+//-(void)btnCellClick:(MusicModel*)model;
+
+-(void)playMusic:(MusicModel*)model;
+
+-(void)pauseMusic;
 
 @end
 
@@ -31,6 +35,8 @@
 @property(nonatomic,strong) MusicModel * listModel;
 @property(nonatomic,strong) UIButton * viewBg;
 @property(nonatomic,strong) UIImageView * imageVeiwIcon;
+@property(nonatomic ,strong) UIButton *btnPauseIcon; //播放暂停按钮
+@property(nonatomic,assign) BOOL isPlayMusic;
 
 @property(nonatomic,strong) UILabel * labelReadStatus;
 @property(nonatomic,strong) UILabel * labelTitle;

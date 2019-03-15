@@ -21,5 +21,7 @@
 @property(nonatomic,strong) NSString *parameter;
 @property (nonatomic, weak) id<SubHotDelegate> delegate;
 
+@property (nonatomic,strong) AVPlayer *player;
+
 
 @end

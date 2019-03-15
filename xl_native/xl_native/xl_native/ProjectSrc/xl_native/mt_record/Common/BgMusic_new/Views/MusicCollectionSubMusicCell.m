@@ -19,6 +19,79 @@ static NSString* const ViewTableViewCellId = @"MusicCollectionSubMusicCellId";
     return ViewTableViewCellId;
 }
 
+#pragma mark ---------- 懒加载 ------
+
+- (UIButton *) viewBg{
+    if (_viewBg == nil){
+        
+        _viewBg = [UIButton buttonWithType:UIButtonTypeCustom];
+        _viewBg.size = [UIView getSize_width:ScreenWidth height:MusicCollectionSubMusicCellHeight];
+        _viewBg.origin = [UIView getPoint_x:0 y:0];
+        [_viewBg setBackgroundColor:ColorThemeBackground forState:UIControlStateNormal];
+        [_viewBg setBackgroundColor:RGBAlphaColor(29, 32, 42, 1) forState:UIControlStateHighlighted];
+        
+        //        [self.viewBg addTarget:self action:@selector(btnDelClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _viewBg;
+}
+
+- (UIImageView *) imageVeiwIcon{
+    if (_imageVeiwIcon == nil){
+        
+        _imageVeiwIcon = [[UIImageView alloc]init];
+        _imageVeiwIcon.size = [UIView getSize_width:MusicCollectionSubMusicCellHeight/5*3
+                                             height:MusicCollectionSubMusicCellHeight/5*3];
+        _imageVeiwIcon.origin = [UIView getPoint_x:10 y:(self.viewBg.height - _imageVeiwIcon.height)/2];
+        
+        _imageVeiwIcon.layer.cornerRadius = 3.0f;
+        _imageVeiwIcon.layer.borderColor = ColorWhiteAlpha80.CGColor;
+        _imageVeiwIcon.layer.borderWidth = 0.0;
+        [_imageVeiwIcon.layer setMasksToBounds:YES];
+        _imageVeiwIcon.userInteractionEnabled = YES;
+    }
+    return _imageVeiwIcon;
+}
+
+- (UILabel *) labelTitle{
+    if (_labelTitle == nil){
+        
+        _labelTitle = [[UILabel alloc]init];
+        _labelTitle.size = [UIView getSize_width:200 height:20];
+        _labelTitle.origin = [UIView getPoint_x:self.imageVeiwIcon.right+10 y:18];
+        _labelTitle.font = [UIFont defaultBoldFontWithSize:15];
+        _labelTitle.textColor = [UIColor whiteColor];
+    }
+    return _labelTitle;
+}
+
+- (UILabel *) labelSign{
+    if (_labelSign == nil){
+        
+        _labelSign = [[UILabel alloc]init];
+        _labelSign.size = [UIView getSize_width:220 height:20];
+        _labelSign.origin = [UIView getPoint_x:self.labelTitle.left y:self.labelTitle.bottom+5];
+        _labelSign.font = [UIFont defaultFontWithSize:14];
+        _labelSign.textColor = RGBA(120, 122, 132, 1);
+    }
+    return _labelSign;
+}
+
+- (UILabel *) lableuseCount{
+    
+    if (_lableuseCount == nil){
+        _lableuseCount = [[UILabel alloc] init];
+        _lableuseCount.size = [UIView getSize_width:80 height:30];
+        _lableuseCount.right = ScreenWidth - 15;
+        _lableuseCount.top = (MusicCollectionSubMusicCellHeight - self.lableuseCount.height)/2;
+        _lableuseCount.font = [UIFont defaultFontWithSize:14];
+        _lableuseCount.clipsToBounds = YES;
+        _lableuseCount.textColor = RGBA(120, 122, 132, 1);
+    }
+    return _lableuseCount;
+}
+
+
+
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -30,51 +103,10 @@ static NSString* const ViewTableViewCellId = @"MusicCollectionSubMusicCellId";
 - (void)setup {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    self.viewBg = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.viewBg.size = [UIView getSize_width:ScreenWidth height:MusicCollectionSubMusicCellHeight];
-    self.viewBg.origin = [UIView getPoint_x:0 y:0];
-    [self.viewBg setBackgroundColor:ColorThemeBackground forState:UIControlStateNormal];
-    [self.viewBg setBackgroundColor:RGBAlphaColor(29, 32, 42, 1) forState:UIControlStateHighlighted];
-    
-    [self.viewBg addTarget:self action:@selector(btnDelClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.viewBg];
-
-    self.imageVeiwIcon = [[UIImageView alloc]init];
-    self.imageVeiwIcon.size = [UIView getSize_width:MusicCollectionSubMusicCellHeight/5*3
-                                             height:MusicCollectionSubMusicCellHeight/5*3];
-    self.imageVeiwIcon.origin = [UIView getPoint_x:10 y:(self.viewBg.height - self.imageVeiwIcon.height)/2];
-    
-    self.imageVeiwIcon.layer.cornerRadius = 3.0f;
-    self.imageVeiwIcon.layer.borderColor = ColorWhiteAlpha80.CGColor;
-    self.imageVeiwIcon.layer.borderWidth = 0.0;
-    [self.imageVeiwIcon.layer setMasksToBounds:YES];
-    self.imageVeiwIcon.userInteractionEnabled = YES;
-    
     [self.viewBg addSubview:self.imageVeiwIcon];
-    
-
-    self.labelTitle = [[UILabel alloc]init];
-    self.labelTitle.size = [UIView getSize_width:200 height:20];
-    self.labelTitle.origin = [UIView getPoint_x:self.imageVeiwIcon.right+10 y:18];
-    self.labelTitle.font = [UIFont defaultBoldFontWithSize:15];
-    self.labelTitle.textColor = [UIColor whiteColor];
     [self.viewBg addSubview:self.labelTitle];
-
-    self.labelSign = [[UILabel alloc]init];
-    self.labelSign.size = [UIView getSize_width:220 height:20];
-    self.labelSign.origin = [UIView getPoint_x:self.labelTitle.left y:self.labelTitle.bottom+5];
-    self.labelSign.font = [UIFont defaultFontWithSize:14];
-    self.labelSign.textColor = RGBA(120, 122, 132, 1);
     [self.viewBg addSubview:self.labelSign];
-    
-    
-    self.lableuseCount = [[UILabel alloc] init];
-    self.lableuseCount.size = [UIView getSize_width:80 height:30];
-    self.lableuseCount.right = ScreenWidth - 15;
-    self.lableuseCount.top = (MusicCollectionSubMusicCellHeight - self.lableuseCount.height)/2;
-    self.lableuseCount.font = [UIFont defaultFontWithSize:14];
-    self.lableuseCount.clipsToBounds = YES;
-    self.lableuseCount.textColor = RGBA(120, 122, 132, 1);
     [self.viewBg addSubview:self.lableuseCount];
 }
 - (void)fillDataWithModel:(GetMusicCollectionModel *)model{

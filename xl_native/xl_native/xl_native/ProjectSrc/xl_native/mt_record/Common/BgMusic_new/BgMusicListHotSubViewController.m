@@ -17,14 +17,21 @@
 @implementation BgMusicListHotSubViewController
 
 -(void)dealloc{
-    
     NSLog(@"---------------%@ dealloc ",NSStringFromClass([self class]));
 }
 
 -(void)initNavTitle{
     self.isNavBackGroundHiden  = YES;
+}
 
-
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    if(self.player){ //页面消失的时候释放播放器
+        [self.player pause];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:self.player.currentItem];
+        self.player = nil;
+    }
 }
 
 - (void)viewDidLoad {
@@ -132,14 +139,40 @@
     return  MusicHotSubMusicCellHeight;
 }
 
-#pragma mark --------------- cell代理 -----------------
--(void)btnCellClick:(MusicModel*)model{
+#pragma mark --------------- MusicHotSubDelegate -----------------
+
+-(void)playMusic:(MusicModel*)model{
     
-    if ([self.delegate respondsToSelector:@selector(subMusicClick:)]) {
-        [self.delegate subMusicClick:model];
-    } else {
-        NSLog(@"代理没响应，快开看看吧");
+    
+    if(self.player){
+        [self.player pause];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:self.player.currentItem];
+
+        self.player = nil;
     }
+    NSURL *musicUrl = [NSURL URLWithString:model.playUrl];
+    AVPlayerItem * musicItem = [[AVPlayerItem alloc]initWithURL:musicUrl];
+    self.player = [[AVPlayer alloc]initWithPlayerItem:musicItem];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackFinished:) name:AVPlayerItemDidPlayToEndTimeNotification object:musicItem];
+    [self.player play];
+    
+}
+
+-(void)pauseMusic{
+    
+    [self.player pause];
+    
+}
+
+#pragma mark --------------- 当播放结束后调用： -----------------
+
+/*
+ <AVAudioPlayerDelegate>
+ 当播放结束后调用：
+ */
+- (void)playbackFinished:(NSNotification *)notice {
+    
+    NSLog(@"----playbackFinished--");
 }
 
 @end

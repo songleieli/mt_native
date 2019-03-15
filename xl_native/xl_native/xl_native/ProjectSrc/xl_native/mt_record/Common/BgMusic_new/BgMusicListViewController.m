@@ -81,38 +81,27 @@
     [self.view addSubview:self.pageView];
 }
 
-
-
-
-
 -(void)backBtnClick:(UIButton*)btn{
     
     [UIApplication sharedApplication].statusBarHidden = YES;
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma -mark SubCellDelegate
 
 -(void)subCellTopicClick:(GetMusicCollectionModel *)model{
     
-//    TopicInfoController *topicInfoController = [[TopicInfoController alloc] init];
-//    topicInfoController.topicName = model.topicName;
-//    [self pushNewVC:topicInfoController animated:YES];
     
 }
 
 -(void)subMusicClick:(GetMusicCollectionModel *)model{
     
-//    MusicInfoController *musicInfoController = [[MusicInfoController alloc] init];
-//    musicInfoController.musicId = model.musicId;
-//    [self pushNewVC:musicInfoController animated:YES];
+
 }
 
 -(void)subCellVideoClick:(NSMutableArray *)videoList selectIndex:(NSInteger)selectIndex{
-    
-//    ScrollPlayerListViewController *controller;
-//    controller = [[ScrollPlayerListViewController alloc] initWithVideoData:videoList currentIndex:selectIndex];
-//    [self pushNewVC:controller animated:YES];
+
 }
 
 @end
