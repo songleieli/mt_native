@@ -103,7 +103,7 @@ static NSString* const ViewTableViewCellId = @"MusicHotSubMusicCellId";
         _lableuseCount.size = [UIView getSize_width:80 height:30];
         _lableuseCount.right = ScreenWidth - 15;
         _lableuseCount.top = (MusicHotSubMusicCellHeight - self.lableuseCount.height)/2;
-        _lableuseCount.font = [UIFont defaultFontWithSize:14];
+        _lableuseCount.font = BigFont;
         _lableuseCount.clipsToBounds = YES;
         _lableuseCount.textColor = RGBA(120, 122, 132, 1);
     }
@@ -117,19 +117,30 @@ static NSString* const ViewTableViewCellId = @"MusicHotSubMusicCellId";
 - (UIButton *) btnDownLoad{
     if (_btnDownLoad == nil){
         _btnDownLoad = [[UIButton alloc] init];
-        _btnDownLoad.size = [UIView getSize_width:70.0f height:28.5f];
+        _btnDownLoad.size = [UIView getSize_width:75.0f height:30.5f];
         _btnDownLoad.right = ScreenWidth - 10;
         _btnDownLoad.top = (MusicHotSubMusicCellHeight - _btnDownLoad.height)/2;
-        [_btnDownLoad setTitle:@"下载" forState:UIControlStateNormal];
+        [_btnDownLoad setTitle:@"使用" forState:UIControlStateNormal];
         [_btnDownLoad setTitleColor:ColorWhite forState:UIControlStateNormal];
-        [_btnDownLoad setBackgroundColor:RGBA(50, 57, 70, 1) forState:UIControlStateNormal];
+        [_btnDownLoad setBackgroundColor:RGBA(252, 89, 82, 1) forState:UIControlStateNormal];
         [_btnDownLoad addTarget:self action:@selector(download:) forControlEvents:UIControlEventTouchUpInside];
         
-        _btnDownLoad.titleLabel.font = SmallFont;
+        _btnDownLoad.titleLabel.font = MediumFont;;
         _btnDownLoad.clipsToBounds = YES;
         _btnDownLoad.layer.cornerRadius = 8;
     }
     return _btnDownLoad;
+}
+
+- (TCBGMProgressView *) progressView{
+    if (_progressView == nil){
+        _progressView = [[TCBGMProgressView alloc] initWithFrame:self.btnDownLoad.frame];
+         _progressView.layer.cornerRadius = 8;
+        _progressView.backgroundColor = [UIColor clearColor];
+        _progressView.progressBackgroundColor = [UIColor yellowColor];
+        _progressView.hidden = YES;
+    }
+    return _progressView;
 }
 
 
@@ -153,6 +164,10 @@ static NSString* const ViewTableViewCellId = @"MusicHotSubMusicCellId";
     [self.viewBg addSubview:self.labelSign];
     [self.viewBg addSubview:self.lableuseCount];
     [self.viewBg addSubview:self.btnDownLoad];
+    
+    [self.viewBg addSubview:self.progressView];
+    
+    
 
 }
 
@@ -164,14 +179,6 @@ static NSString* const ViewTableViewCellId = @"MusicHotSubMusicCellId";
     
     self.labelTitle.text = model.name;
     self.labelSign.text = model.nickname;
-    if([GlobalFunc isFileExist:model.localUrl]){
-        [self.btnDownLoad setTitle:@"使用" forState:UIControlStateNormal];
-        [_btnDownLoad setBackgroundColor:RGBA(252, 89, 82, 1) forState:UIControlStateNormal];
-    }
-    else{
-        [self.btnDownLoad setTitle:@"下载" forState:UIControlStateNormal];
-        [_btnDownLoad setBackgroundColor:RGBA(50, 57, 70, 1) forState:UIControlStateNormal];
-    }
 }
 
 
@@ -207,17 +214,49 @@ static NSString* const ViewTableViewCellId = @"MusicHotSubMusicCellId";
     
     if([GlobalFunc isFileExist:self.listModel.localUrl]){
         NSLog(@"使用音乐");
+        
+        if ([self.subCellDelegate respondsToSelector:@selector(useMusicClick:)]) {
+            [self.subCellDelegate useMusicClick:self.listModel];
+        } else {
+            NSLog(@"代理没响应，快开看看吧");
+        }
     }
     else{
-        
-        [[MusicDownloadHelper sharedInstance] downloadMusicWithBlock:self.listModel downloadBlock:^(float percent) {
+        NSLog(@"---下载音乐---%@-------",self.listModel.playUrl);
+        [self.btnDownLoad setTitle:@"下载中..." forState:UIControlStateNormal];
+        [[MusicDownloadHelper sharedInstance] downloadMusicWithBlock:self.listModel downloadBlock:^(float percent,NSString *msg) {
             NSLog(@"-------%f",percent);
-            if(percent == 0.0f){
-                NSLog(@"------%@--下载完成-----",self.listModel.nickname);
+            if(percent >= 0.0f){
+                if(percent == 0.0f){
+                    NSLog(@"------%@--下载完成-----",self.listModel.nickname);
+                    [self.btnDownLoad setTitle:@"使用" forState:UIControlStateNormal];
+                    [self.btnDownLoad setBackgroundColor:RGBA(252, 89, 82, 1) forState:UIControlStateNormal];
+                    
+                    if ([self.subCellDelegate respondsToSelector:@selector(useMusicClick:)]) {
+                        [self.subCellDelegate useMusicClick:self.listModel];
+                    } else {
+                        NSLog(@"代理没响应，快开看看吧");
+                    }
+                }
+                [self setDownloadProgress:percent];
+            }
+            else{
                 [self.btnDownLoad setTitle:@"使用" forState:UIControlStateNormal];
-                [_btnDownLoad setBackgroundColor:RGBA(252, 89, 82, 1) forState:UIControlStateNormal];
+                [UIWindow showTips:msg];
             }
         }];
+    }
+}
+
+-(void) setDownloadProgress:(CGFloat)progress{
+    
+    if(progress == 0.0f){
+        self.progressView.hidden = YES;
+    }
+    else{
+        [self.btnDownLoad setTitle:@"下载中..." forState:UIControlStateNormal];
+        self.progressView.hidden = NO;
+        self.progressView.progress = progress;
     }
 }
 

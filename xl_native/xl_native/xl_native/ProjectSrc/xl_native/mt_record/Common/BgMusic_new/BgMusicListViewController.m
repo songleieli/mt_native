@@ -8,11 +8,7 @@
 
 #import "BgMusicListViewController.h"
 
-//#import "TopicInfoController.h"
-//#import "MusicInfoController.h"
 
-#import "BgMusicListHotSubViewController.h"
-#import "BgMusicListCollectionSubViewController.h"
 
 //#import "ScrollPlayerListViewController.h"
 
@@ -90,13 +86,19 @@
 
 #pragma -mark SubCellDelegate
 
--(void)subCellTopicClick:(GetMusicCollectionModel *)model{
-    
-    
-}
 
--(void)subMusicClick:(GetMusicCollectionModel *)model{
+-(void)subMusicClick:(MusicModel *)model{
     
+    NSLog(@"----------");
+    
+    if ([self.delegate respondsToSelector:@selector(useHotMusicClick:)]) {
+        [self.delegate useHotMusicClick:model.localUrl];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
+    
+    [UIApplication sharedApplication].statusBarHidden = YES;
+    [self dismissViewControllerAnimated:YES completion:nil];
 
 }
 

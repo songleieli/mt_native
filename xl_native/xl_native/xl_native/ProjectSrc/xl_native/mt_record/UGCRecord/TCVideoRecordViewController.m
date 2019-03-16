@@ -74,7 +74,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
 @end
 #endif
 
-@interface TCVideoRecordViewController()<TXUGCRecordListener,V8HorizontalPickerViewDelegate,V8HorizontalPickerViewDataSource,MPMediaPickerControllerDelegate,TCBGMControllerListener,TXVideoJoinerListener>
+@interface TCVideoRecordViewController()<TXUGCRecordListener,V8HorizontalPickerViewDelegate,V8HorizontalPickerViewDataSource,MPMediaPickerControllerDelegate,UseHotMusicDelegate,TXVideoJoinerListener>
 {
     BOOL                            _cameraFront;
     BOOL                            _lampOpened;
@@ -983,6 +983,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
         
 
         BgMusicListViewController *bgMusicListViewController = [[BgMusicListViewController alloc] init];
+        bgMusicListViewController.delegate = self;
         BaseNavigationController *nv = [[BaseNavigationController alloc] initWithRootViewController:bgMusicListViewController];
         [self presentViewController:nv animated:YES completion:nil];
         
@@ -1735,9 +1736,12 @@ typedef NS_ENUM(NSInteger,CaptureMode)
 
 
 #pragma mark TCBGMControllerListener 已选择北京音乐 path ，北京音乐在本地的路径
--(void) onBGMControllerPlay:(NSObject*) path{
-    if(path == nil) return;
-    [self onSetBGM:path]; //设置北京音乐
+
+-(void)useHotMusicClick:(NSString *)musiLocalPath{
+    
+    
+    if(musiLocalPath == nil) return;
+    [self onSetBGM:musiLocalPath]; //设置北京音乐
     //试听音乐这里要把RecordSpeed 设置为VIDEO_RECORD_SPEED_NOMAL，否则音乐可能会出现加速或则慢速播现象
     [[TXUGCRecord shareInstance] setRecordSpeed:VIDEO_RECORD_SPEED_NOMAL];
     [self playBGM:0]; //背景音乐从0开始播放
@@ -1749,6 +1753,24 @@ typedef NS_ENUM(NSInteger,CaptureMode)
         }
     });
 }
+
+
+//-(void) onBGMControllerPlay:(NSObject*) path{
+//
+//
+//    if(path == nil) return;
+//    [self onSetBGM:path]; //设置北京音乐
+//    //试听音乐这里要把RecordSpeed 设置为VIDEO_RECORD_SPEED_NOMAL，否则音乐可能会出现加速或则慢速播现象
+//    [[TXUGCRecord shareInstance] setRecordSpeed:VIDEO_RECORD_SPEED_NOMAL];
+//    [self playBGM:0]; //背景音乐从0开始播放
+//    dispatch_async(dispatch_get_main_queue(), ^(){ //在主线程显示音乐编辑View
+//        [_musicView resetCutView];
+//        if(_musicView.hidden){
+//            _musicView.hidden = !_musicView.hidden;
+//            [self hideBottomView:!_musicView.hidden];
+//        }
+//    });
+//}
 
 #pragma mark - SoundMixView
 #pragma mark   * SoundMixViewDelegate
@@ -1781,11 +1803,18 @@ typedef NS_ENUM(NSInteger,CaptureMode)
 
 -(void)onBtnMusicSelected
 {
-    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:_bgmListVC];
-    [nv.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    nv.navigationBar.barTintColor = RGB(25, 29, 38);
+//    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:_bgmListVC];
+//    [nv.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+//    nv.navigationBar.barTintColor = RGB(25, 29, 38);
+//    [self presentViewController:nv animated:YES completion:nil];
+//    [_bgmListVC loadBGMList];
+    
+    
+    BgMusicListViewController *bgMusicListViewController = [[BgMusicListViewController alloc] init];
+    bgMusicListViewController.delegate = self;
+    BaseNavigationController *nv = [[BaseNavigationController alloc] initWithRootViewController:bgMusicListViewController];
     [self presentViewController:nv animated:YES completion:nil];
-    [_bgmListVC loadBGMList];
+    
 }
 
 -(void)onBtnMusicStoped

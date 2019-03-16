@@ -7,13 +7,15 @@
 //
 
 #import "BaseTableViewCell.h"
+#import "TCBGMProgressView.h"
+
 
 #import "NetWork_mt_getMusicList.h"
 
 
 @protocol MusicHotSubDelegate <NSObject>
 
-//-(void)btnCellClick:(MusicModel*)model;
+-(void)useMusicClick:(MusicModel*)model;
 
 -(void)playMusic:(MusicModel*)model;
 
@@ -44,6 +46,7 @@
 @property (nonatomic, strong) UILabel *lableuseCount;
 
 @property (nonatomic, strong) UIButton *btnDownLoad;
+@property (nonatomic, strong) TCBGMProgressView *progressView;
 
 
 @property(nonatomic,weak) id <MusicHotSubDelegate> subCellDelegate;

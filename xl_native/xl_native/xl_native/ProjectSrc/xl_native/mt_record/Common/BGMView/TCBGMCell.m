@@ -28,10 +28,10 @@
 
     if (_progressView == nil) {
         _progressView = [[TCBGMProgressView alloc] initWithFrame:_downLoadBtn.bounds];
-        _progressView.label.text = NSLocalizedString(@"Common.Downloading", nil);
-        _progressView.label.textColor = [UIColor whiteColor];
+//        _progressView.label.text = NSLocalizedString(@"Common.Downloading", nil);
+//        _progressView.label.textColor = [UIColor whiteColor];
         _progressView.backgroundColor = [UIColor clearColor];
-        _progressView.progressBackgroundColor = [UIColor colorWithRed:0.21 green:0.22 blue:0.27 alpha:1.00];
+//        _progressView.progressBackgroundColor = [UIColor colorWithRed:0.21 green:0.22 blue:0.27 alpha:1.00];
         _progressView.translatesAutoresizingMaskIntoConstraints = NO;
         [self.contentView addSubview:_progressView];
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_progressView
@@ -56,8 +56,8 @@
                                                                     multiplier:1
                                                                       constant:-8]];
     }
-    _progress = progress;
-    _progressView.progress = progress;
+//    _progress = progress;
+//    _progressView.progress = progress;
     if (progress == 1.0) {
         [self.downLoadBtn setTitle:@"使用" forState:UIControlStateNormal];
         [self.downLoadBtn setBackgroundImage:image forState:UIControlStateNormal];

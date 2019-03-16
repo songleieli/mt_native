@@ -3410,7 +3410,6 @@
 				04DF9DBA22392FC600935A89 /* BgMusic_new */,
 				04C2612421A68FB200374E4D /* TextView */,
 				04C2612721A68FB200374E4D /* NavigationController */,
-				04C2612A21A68FB200374E4D /* Progress */,
 				04C2612D21A68FB200374E4D /* Label */,
 				04C2613021A68FB200374E4D /* V8HorizontalPickerView */,
 				04C2613421A68FB200374E4D /* TXVideoRangeSlider */,
@@ -4407,6 +4406,7 @@
 		04DF9DBA22392FC600935A89 /* BgMusic_new */ = {
 			isa = PBXGroup;
 			children = (
+				04C2612A21A68FB200374E4D /* Progress */,
 				04DF9DC7223946D200935A89 /* Views */,
 				04DF9DBB22392FC600935A89 /* BgMusicListViewController.h */,
 				04DF9DBE22392FC600935A89 /* BgMusicListViewController.m */,

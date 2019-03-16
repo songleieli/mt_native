@@ -76,7 +76,7 @@ static pthread_mutex_t _instanceLock = PTHREAD_MUTEX_INITIALIZER;
 //    pthread_cond_destroy(&_cond);
 }
 
--(void) downloadMusicWithBlock:(MusicModel*) musicModel downloadBlock:(void(^)(float percent))downloadBlock{
+-(void) downloadMusicWithBlock:(MusicModel*) musicModel downloadBlock:(void(^)(float percent,NSString *msg))downloadBlock{
     
     
     /*
@@ -109,7 +109,7 @@ static pthread_mutex_t _instanceLock = PTHREAD_MUTEX_INITIALIZER;
             
             //更新下载进度
             if(downloadBlock){
-                downloadBlock(percent);
+                downloadBlock(percent,path);
             }
         });
         
@@ -154,7 +154,7 @@ typedef void(^DownLoadCallback)(float percent, NSString* url);
     } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
         if (error) {
             if(callback){
-                callback(-1, nil);
+                callback(-1, @"音乐加载失败，请稍后再试.");
             }
             return;
         }

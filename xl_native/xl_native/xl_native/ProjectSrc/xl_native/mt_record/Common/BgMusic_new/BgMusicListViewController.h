@@ -7,11 +7,26 @@
 //
 
 #import "HomeSearchResultSubViewController.h"
+
+
 #import "HYPageView.h"
+
+#import "BgMusicListHotSubViewController.h"
+#import "BgMusicListCollectionSubViewController.h"
+
+@protocol UseHotMusicDelegate <NSObject>
+
+-(void)useHotMusicClick:(NSString *)musiLocalPath;
+
+@end
 
 @interface BgMusicListViewController : ZJBaseViewController<HYPageViewDelegate>
 
+
+
+
 //head
 @property(nonatomic,strong) HYPageView *pageView;
+@property (nonatomic, weak) id<UseHotMusicDelegate> delegate;
 
 @end

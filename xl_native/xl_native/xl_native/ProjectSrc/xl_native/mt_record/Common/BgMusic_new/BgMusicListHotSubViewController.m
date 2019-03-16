@@ -106,6 +106,9 @@
     for(MusicModel *musicModel in result.obj){ //给请求结果，添加本地文件路径
         
         NSString *fileName = [musicModel.playUrl pathExtension];
+        if(fileName.trim.length == 0){
+            fileName = @"mp3";
+        }
         NSString *filePath = [self.bgmPath stringByAppendingPathComponent:musicModel.name];
         musicModel.localUrl = [NSString stringWithFormat:@"%@.%@",filePath,fileName];
 //        NSLog(@"------- musicModel.localUrl=%@",musicModel.localUrl);
@@ -154,6 +157,16 @@
 }
 
 #pragma mark --------------- MusicHotSubDelegate -----------------
+
+-(void)useMusicClick:(MusicModel*)model;{
+    
+    if ([self.delegate respondsToSelector:@selector(subMusicClick:)]) {
+        [self.delegate subMusicClick:model];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
+}
+
 
 -(void)playMusic:(MusicModel*)model{
     
