@@ -43,6 +43,8 @@
 @property(nonatomic,strong) UILabel * labelSign;
 @property (nonatomic, strong) UILabel *lableuseCount;
 
+@property (nonatomic, strong) UIButton *btnDownLoad;
+
 
 @property(nonatomic,weak) id <MusicHotSubDelegate> subCellDelegate;
 

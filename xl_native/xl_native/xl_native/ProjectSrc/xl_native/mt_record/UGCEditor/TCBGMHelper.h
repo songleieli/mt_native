@@ -29,19 +29,20 @@ if(BGM_DEBUG)NSLog(__VA_ARGS__);\
 /**
  从json文件创建BGM列表，失败dict返回nil
  */
-@required
+//@required
 -(void) onBGMListLoad:(NSDictionary*)dict;
 
 /**
  每首BGM的进度回调
  */
-@optional
+//@optional
 -(void) onBGMDownloading:(TCBGMElement*)current percent:(float)percent;
 
 /**
  下载结束回调，失败current返回nil
  */
-@optional
+//@optional
+
 -(void) onBGMDownloadDone:(TCBGMElement*)element;
 
 

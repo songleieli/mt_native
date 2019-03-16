@@ -1346,6 +1346,15 @@ static GlobalFunc *sharedInstance;
     return locationArr;
 }
 
+//判断文件是否已经在沙盒中已经存在？
++ (BOOL) isFileExist:(NSString *)fileName{
+
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    return [fileManager fileExistsAtPath:fileName];
+//    NSLog(@"这个文件已经存在：%@",result?@"是的":@"不存在");
+    ;
+}
+
 
 @end
 

@@ -8,6 +8,9 @@
 
 #import "MusicHotSubMusicCell.h"
 
+#import "MusicDownloadHelper.h"
+
+
 static NSString* const ViewTableViewCellId = @"MusicHotSubMusicCellId";
 
 
@@ -108,6 +111,31 @@ static NSString* const ViewTableViewCellId = @"MusicHotSubMusicCellId";
 }
 
 
+/*
+ 下载按钮
+ */
+- (UIButton *) btnDownLoad{
+    if (_btnDownLoad == nil){
+        _btnDownLoad = [[UIButton alloc] init];
+        _btnDownLoad.size = [UIView getSize_width:70.0f height:28.5f];
+        _btnDownLoad.right = ScreenWidth - 10;
+        _btnDownLoad.top = (MusicHotSubMusicCellHeight - _btnDownLoad.height)/2;
+        [_btnDownLoad setTitle:@"下载" forState:UIControlStateNormal];
+        [_btnDownLoad setTitleColor:ColorWhite forState:UIControlStateNormal];
+        [_btnDownLoad setBackgroundColor:RGBA(50, 57, 70, 1) forState:UIControlStateNormal];
+        [_btnDownLoad addTarget:self action:@selector(download:) forControlEvents:UIControlEventTouchUpInside];
+        
+        _btnDownLoad.titleLabel.font = SmallFont;
+        _btnDownLoad.clipsToBounds = YES;
+        _btnDownLoad.layer.cornerRadius = 8;
+    }
+    return _btnDownLoad;
+}
+
+
+
+
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setup];
@@ -124,6 +152,8 @@ static NSString* const ViewTableViewCellId = @"MusicHotSubMusicCellId";
     [self.viewBg addSubview:self.labelTitle];
     [self.viewBg addSubview:self.labelSign];
     [self.viewBg addSubview:self.lableuseCount];
+    [self.viewBg addSubview:self.btnDownLoad];
+
 }
 
 
@@ -134,7 +164,14 @@ static NSString* const ViewTableViewCellId = @"MusicHotSubMusicCellId";
     
     self.labelTitle.text = model.name;
     self.labelSign.text = model.nickname;
-//    self.lableuseCount.text = [NSString stringWithFormat:@"%@",model.];
+    if([GlobalFunc isFileExist:model.localUrl]){
+        [self.btnDownLoad setTitle:@"使用" forState:UIControlStateNormal];
+        [_btnDownLoad setBackgroundColor:RGBA(252, 89, 82, 1) forState:UIControlStateNormal];
+    }
+    else{
+        [self.btnDownLoad setTitle:@"下载" forState:UIControlStateNormal];
+        [_btnDownLoad setBackgroundColor:RGBA(50, 57, 70, 1) forState:UIControlStateNormal];
+    }
 }
 
 
@@ -162,6 +199,25 @@ static NSString* const ViewTableViewCellId = @"MusicHotSubMusicCellId";
         } else {
             NSLog(@"代理没响应，快开看看吧");
         }
+    }
+}
+
+- (void)download:(id)sender {
+    
+    
+    if([GlobalFunc isFileExist:self.listModel.localUrl]){
+        NSLog(@"使用音乐");
+    }
+    else{
+        
+        [[MusicDownloadHelper sharedInstance] downloadMusicWithBlock:self.listModel downloadBlock:^(float percent) {
+            NSLog(@"-------%f",percent);
+            if(percent == 0.0f){
+                NSLog(@"------%@--下载完成-----",self.listModel.nickname);
+                [self.btnDownLoad setTitle:@"使用" forState:UIControlStateNormal];
+                [_btnDownLoad setBackgroundColor:RGBA(252, 89, 82, 1) forState:UIControlStateNormal];
+            }
+        }];
     }
 }
 

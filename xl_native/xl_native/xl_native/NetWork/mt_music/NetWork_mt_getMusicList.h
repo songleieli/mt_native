@@ -29,6 +29,10 @@
 @property (copy, nonatomic) NSString *nickname;
 @property (copy, nonatomic) NSString *hotCount;
 
+//下载本地音乐到本地的路径
+@property (copy, nonatomic) NSString* localUrl;
+
+
 @end
 
 

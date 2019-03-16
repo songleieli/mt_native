@@ -37,6 +37,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    self.bgmHelper = [MusicDownloadHelper sharedInstance];
+    self.bgmPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/bgm"];
+
+    
     [self setUpUI];
 }
 
@@ -97,6 +101,16 @@
     if (self.currentPageIndex == 1 ) {
         [self.mainDataArr removeAllObjects];
     }
+    
+    
+    for(MusicModel *musicModel in result.obj){ //给请求结果，添加本地文件路径
+        
+        NSString *fileName = [musicModel.playUrl pathExtension];
+        NSString *filePath = [self.bgmPath stringByAppendingPathComponent:musicModel.name];
+        musicModel.localUrl = [NSString stringWithFormat:@"%@.%@",filePath,fileName];
+//        NSLog(@"------- musicModel.localUrl=%@",musicModel.localUrl);
+    }
+    
     [self.mainDataArr addObjectsFromArray:result.obj];
     [self.mainTableView reloadData];
     
@@ -173,6 +187,22 @@
 - (void)playbackFinished:(NSNotification *)notice {
     
     NSLog(@"----playbackFinished--");
+}
+
+#pragma mark --------------- MusicDownloadListener -----------------
+
+/**
+ 每首BGM的进度回调
+ */
+-(void) onBGMDownloading:(MusicModel*)current percent:(float)percent{
+    
+}
+
+/**
+ 下载结束回调，失败current返回nil
+ */
+-(void) onBGMDownloadDone:(MusicModel*)element{
+    
 }
 
 @end

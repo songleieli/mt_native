@@ -7,6 +7,7 @@
 //
 
 #import "MusicHotSubMusicCell.h"
+#import "MusicDownloadHelper.h"
 
 
 @protocol SubHotDelegate <NSObject>
@@ -22,6 +23,12 @@
 @property (nonatomic, weak) id<SubHotDelegate> delegate;
 
 @property (nonatomic,strong) AVPlayer *player;
+
+
+@property(nonatomic,strong) MusicDownloadHelper* bgmHelper;
+//@property(nonatomic,weak) id<MusicDownloadListener> bgmListener;
+@property(nonatomic,copy) NSString*bgmPath;
+
 
 
 @end

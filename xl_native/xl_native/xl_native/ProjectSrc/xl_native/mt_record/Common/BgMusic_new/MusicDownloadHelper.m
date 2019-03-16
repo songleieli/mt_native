@@ -6,48 +6,48 @@
 //  Copyright © 2017年 tencent. All rights reserved.
 //
 
-#import "TCBGMHelper.h"
+#import "MusicDownloadHelper.h"
 #import "AFHTTPSessionManager.h"
 #import "pthread.h"
 #import "TCLoginModel.h"
 #import "TCConstants.h"
 
-@interface TCBGMHelper(){
+@interface MusicDownloadHelper(){
     NSDictionary* _configs;
     NSUserDefaults* _userDefaults;
     NSString* _userIDKey;
 //    NSMutableDictionary* _tasks;
     NSURLSessionDownloadTask* _currentTask;
-    TCBGMElement* _currentEle;
+//    MusicModel* _currentEle;
     NSString* _bgmPath;
 }
 //@property(nonatomic, assign)pthread_mutex_t lock;
 //@property(nonatomic, assign)pthread_cond_t cond;
 //@property(nonatomic, strong)dispatch_queue_t queue;
 
-@property(nonatomic,weak) id <TCBGMHelperListener>delegate;
+//@property(nonatomic,weak) id <MusicDownloadListener>delegate;
 @end
 
-static TCBGMHelper* _sharedInstance;
+static MusicDownloadHelper* _sharedInstance;
 static pthread_mutex_t _instanceLock = PTHREAD_MUTEX_INITIALIZER;
-@implementation TCBGMHelper
+@implementation MusicDownloadHelper
 
 + (instancetype)sharedInstance {
     if(!_sharedInstance){
         pthread_mutex_lock(&_instanceLock);
-        _sharedInstance = [TCBGMHelper new];
+        _sharedInstance = [MusicDownloadHelper new];
         pthread_mutex_unlock(&_instanceLock);
     }
     return _sharedInstance;
 }
 
--(void) setDelegate:(nonnull id<TCBGMHelperListener>) delegate{
-    _delegate = delegate;
-}
+//-(void) setDelegate:(nonnull id<MusicDownloadListener>) delegate{
+//    _delegate = delegate;
+//}
 
 -(id) init{
     if(self = [super init]){
-
+        
         NSFileManager *fileManager = [NSFileManager defaultManager];
         _bgmPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/bgm"];
         if(![fileManager fileExistsAtPath:_bgmPath]){
@@ -76,7 +76,7 @@ static pthread_mutex_t _instanceLock = PTHREAD_MUTEX_INITIALIZER;
 //    pthread_cond_destroy(&_cond);
 }
 
--(void) downloadBGM:(TCBGMElement*) current{
+-(void) downloadMusicWithBlock:(MusicModel*) musicModel downloadBlock:(void(^)(float percent))downloadBlock{
     
     
     /*
@@ -96,23 +96,34 @@ static pthread_mutex_t _instanceLock = PTHREAD_MUTEX_INITIALIZER;
 
     }
     */
+
     
-    NSURLSessionDownloadTask* task = [TCBGMHelper downloadFile:current.netUrl dstUrl:current.localUrl callback:^(float percent, NSString* path){
+    NSURLSessionDownloadTask* task = [MusicDownloadHelper downloadFile:musicModel.playUrl dstUrl:musicModel.localUrl callback:^(float percent, NSString* path){
         
-        NSLog(@"-------percent = %f----",percent);
-        if(percent == 0){
-            [self.delegate onBGMDownloadDone:current];
-        }
-        else{
-            [self.delegate onBGMDownloading:current percent:percent];
-        }
+//        NSLog(@"-------percent = %f----",percent);
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            
+            
+            //更新下载进度
+            if(downloadBlock){
+                downloadBlock(percent);
+            }
+        });
+        
+//        if(percent == 0){
+//            [self.delegate onBGMDownloadDone:current];
+//        }
+//        else{
+//            [self.delegate onBGMDownloading:current percent:percent];
+//        }
     }];
     
     _currentTask = task;
-    _currentEle = current;
-
+//    _currentEle = musicModel;
 }
-
 
 /**
  下载函数回调
@@ -122,9 +133,15 @@ static pthread_mutex_t _instanceLock = PTHREAD_MUTEX_INITIALIZER;
  */
 typedef void(^DownLoadCallback)(float percent, NSString* url);
 
+
+
 +(NSURLSessionDownloadTask*) downloadFile:(NSString*)srcUrl dstUrl:(NSString*)dstUrl callback:(DownLoadCallback)callback{
-    //    __weak __typeof(self) weakSelf = self;
-    NSURLRequest *downloadReq = [NSURLRequest requestWithURL:[NSURL URLWithString:srcUrl] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:300.f];
+    
+    
+    NSURLRequest *downloadReq = [NSURLRequest requestWithURL:[NSURL URLWithString:srcUrl]
+                                                 cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                             timeoutInterval:300.f];
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     //注意这里progress/destination是异步线程 completionHandler是main-thread
@@ -152,31 +169,3 @@ typedef void(^DownLoadCallback)(float percent, NSString* url);
 }
 @end
 
-
-@implementation TCBGMElement
-- (id) initWithCoder: (NSCoder *)coder
-{
-    if (self = [super init])
-    {
-        self.name = [coder decodeObjectForKey:@"name"];
-        self.netUrl = [coder decodeObjectForKey:@"netUrl"];
-        self.localUrl = [coder decodeObjectForKey:@"localUrl"];
-        self.author = [coder decodeObjectForKey:@"author"];
-        self.title = [coder decodeObjectForKey:@"title"];
-        self.isValid = [coder decodeObjectForKey:@"isValid"];
-        self.duration = [coder decodeObjectForKey:@"duration"];
-    }
-    return self;
-}
-
-- (void) encodeWithCoder: (NSCoder *)coder
-{
-    [coder encodeObject:_name forKey:@"name"];
-    [coder encodeObject:_netUrl forKey:@"netUrl"];
-    [coder encodeObject:_localUrl forKey:@"localUrl"];
-    [coder encodeObject:_author forKey:@"author"];
-    [coder encodeObject:_title forKey:@"title"];
-    [coder encodeObject:_isValid forKey:@"isValid"];
-    [coder encodeObject:_duration forKey:@"duration"];
-}
-@end

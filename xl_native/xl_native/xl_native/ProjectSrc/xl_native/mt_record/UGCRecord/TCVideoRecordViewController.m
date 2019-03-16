@@ -984,21 +984,19 @@ typedef NS_ENUM(NSInteger,CaptureMode)
 
         BgMusicListViewController *bgMusicListViewController = [[BgMusicListViewController alloc] init];
         BaseNavigationController *nv = [[BaseNavigationController alloc] initWithRootViewController:bgMusicListViewController];
-//        [nv.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-//        nv.navigationBar.barTintColor = [UIColor redColor]; //RGB(25, 29, 38);
         [self presentViewController:nv animated:YES completion:nil];
         
         
         
-        /* 暂时屏蔽
         
+        /* 暂时屏蔽
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:_bgmListVC];
         [nv.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
         nv.navigationBar.barTintColor = RGB(25, 29, 38);
         [self presentViewController:nv animated:YES completion:nil];
         [_bgmListVC loadBGMList];
         
-        */
+ */
         
         
     }

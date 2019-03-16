@@ -183,6 +183,9 @@
  */
 + (NSMutableArray*)calculateSubStringCount:(NSString *)content str:(NSString *)tab;
 
+//判断文件是否已经在沙盒中已经存在？
++ (BOOL) isFileExist:(NSString *)fileName;
+
 @end
 
 
