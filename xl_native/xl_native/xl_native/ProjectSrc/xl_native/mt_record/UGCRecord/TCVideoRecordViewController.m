@@ -12,7 +12,7 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 
 
-#import "TCBGMListViewController.h"
+//#import "TCBGMListViewController.h"
 #import "BaseNavigationController.h"
 #import "BgMusicListViewController.h"
 
@@ -124,7 +124,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     V8HorizontalPickerView  *_greenPickerView;
     NSMutableArray *_greenArray;
     
-    TCBGMListViewController*        _bgmListVC;
+//    TCBGMListViewController*        _bgmListVC;
     UIButton *_speedChangeBtn;
     
     NSInteger    _greenIndex;;
@@ -364,8 +364,8 @@ typedef NS_ENUM(NSInteger,CaptureMode)
         _aspectRatio = VIDEO_ASPECT_RATIO_9_16;
         [TXUGCRecord shareInstance].recordDelegate = self;
         
-        _bgmListVC = [[TCBGMListViewController alloc] init];
-        [_bgmListVC setBGMControllerListener:self];
+//        _bgmListVC = [[TCBGMListViewController alloc] init];
+//        [_bgmListVC setBGMControllerListener:self];
         _recordVideoPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"outputRecord.mp4"];
         _joinVideoPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"outputJoin.mp4"];
         

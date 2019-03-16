@@ -7,7 +7,7 @@
 //
 
 #import "TCVideoEditViewController.h"
-#import "TCBGMListViewController.h"
+//#import "TCBGMListViewController.h"
 #import "SDKHeader.h"
 #import <MediaPlayer/MPMediaPickerController.h>
 #import "VideoPreview.h"
@@ -90,13 +90,13 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
 };
 
 
-@interface TCVideoEditViewController ()<TXVideoGenerateListener,VideoPreviewDelegate, BottomTabBarDelegate, VideoCutViewDelegate,EffectSelectViewDelegate, PasterAddViewDelegate, VideoPasterViewDelegate ,VideoTextFieldDelegate ,TXVideoPublishListener,TCBGMControllerListener,VideoRecordMusicViewDelegate,UIActionSheetDelegate, UITabBarDelegate , UIPickerViewDelegate ,UIPickerViewDelegate ,UIAlertViewDelegate>
+@interface TCVideoEditViewController ()<TXVideoGenerateListener,VideoPreviewDelegate, BottomTabBarDelegate, VideoCutViewDelegate,EffectSelectViewDelegate, PasterAddViewDelegate, VideoPasterViewDelegate ,VideoTextFieldDelegate ,TXVideoPublishListener,VideoRecordMusicViewDelegate,UIActionSheetDelegate, UITabBarDelegate , UIPickerViewDelegate ,UIPickerViewDelegate ,UIAlertViewDelegate>
 
 @end
 
 @implementation TCVideoEditViewController
 {
-    TCBGMListViewController *_bgmListVC;
+    //TCBGMListViewController *_bgmListVC;
     
     TXVideoEditer*   _ugcEdit;        //sdk编辑器
     VideoPreview*    _videoPreview;   //视频预览
@@ -391,8 +391,8 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
     [self.view addSubview:_musicView];
     
     
-    _bgmListVC = [[TCBGMListViewController alloc] init];
-    [_bgmListVC setBGMControllerListener:self];
+//    _bgmListVC = [[TCBGMListViewController alloc] init];
+//    [_bgmListVC setBGMControllerListener:self];
     
 
     [self initVideoEditor];
@@ -662,13 +662,13 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
     }else{
         [self resetVideoProgress];
         
-        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:_bgmListVC];
-//        [nv.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-//        nv.navigationBar.barTintColor = RGB(25, 29, 38);
-        [self presentViewController:nv animated:YES completion:nil];
-        
-        
-        [_bgmListVC loadBGMList];
+//        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:_bgmListVC];
+////        [nv.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+////        nv.navigationBar.barTintColor = RGB(25, 29, 38);
+//        [self presentViewController:nv animated:YES completion:nil];
+//
+//
+//        [_bgmListVC loadBGMList];
     }
 }
 
@@ -2043,12 +2043,12 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
 #pragma mark VideoRecordMusicViewDelegate
 -(void)onBtnMusicSelected
 {
-    [self resetVideoProgress];
-    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:_bgmListVC];
-    [nv.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    nv.navigationBar.barTintColor = RGB(25, 29, 38);
-    [self presentViewController:nv animated:YES completion:nil];
-    [_bgmListVC loadBGMList];
+//    [self resetVideoProgress];
+//    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:_bgmListVC];
+//    [nv.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+//    nv.navigationBar.barTintColor = RGB(25, 29, 38);
+//    [self presentViewController:nv animated:YES completion:nil];
+//    [_bgmListVC loadBGMList];
 }
 -(void)onBtnMusicStoped
 {
