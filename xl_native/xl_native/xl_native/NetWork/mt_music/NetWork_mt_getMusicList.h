@@ -31,6 +31,8 @@
 
 //下载本地音乐到本地的路径
 @property (copy, nonatomic) NSString* localUrl;
+@property (copy, nonatomic) NSString *musicName;
+@property (copy, nonatomic) NSString *musicId;
 
 
 @end

@@ -532,7 +532,6 @@
 		04DF9DC322392FC600935A89 /* BgMusicListHotSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DF9DC022392FC600935A89 /* BgMusicListHotSubViewController.m */; };
 		04DF9DC6223941B000935A89 /* BgMusicListCollectionSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DF9DC5223941B000935A89 /* BgMusicListCollectionSubViewController.m */; };
 		04DF9DCC223946D200935A89 /* MusicHotSubMusicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DF9DC9223946D200935A89 /* MusicHotSubMusicCell.m */; };
-		04DF9DCD223946D200935A89 /* MusicCollectionSubMusicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DF9DCA223946D200935A89 /* MusicCollectionSubMusicCell.m */; };
 		04E28F71218ABB96006A91DA /* XLGameWkWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E28F6F218ABB96006A91DA /* XLGameWkWebViewController.m */; };
 		04E6E8DA21A8FFDC007C8A16 /* ghostshadow-19.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E6E7AF21A8FFDB007C8A16 /* ghostshadow-19.png */; };
 		04E6E8DB21A8FFDC007C8A16 /* ghostshadow-18.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E6E7B021A8FFDB007C8A16 /* ghostshadow-18.png */; };
@@ -2065,9 +2064,7 @@
 		04DF9DC022392FC600935A89 /* BgMusicListHotSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BgMusicListHotSubViewController.m; sourceTree = "<group>"; };
 		04DF9DC4223941AF00935A89 /* BgMusicListCollectionSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BgMusicListCollectionSubViewController.h; sourceTree = "<group>"; };
 		04DF9DC5223941B000935A89 /* BgMusicListCollectionSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BgMusicListCollectionSubViewController.m; sourceTree = "<group>"; };
-		04DF9DC8223946D200935A89 /* MusicCollectionSubMusicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicCollectionSubMusicCell.h; sourceTree = "<group>"; };
 		04DF9DC9223946D200935A89 /* MusicHotSubMusicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicHotSubMusicCell.m; sourceTree = "<group>"; };
-		04DF9DCA223946D200935A89 /* MusicCollectionSubMusicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicCollectionSubMusicCell.m; sourceTree = "<group>"; };
 		04DF9DCB223946D200935A89 /* MusicHotSubMusicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicHotSubMusicCell.h; sourceTree = "<group>"; };
 		04E28F6F218ABB96006A91DA /* XLGameWkWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLGameWkWebViewController.m; sourceTree = "<group>"; };
 		04E28F70218ABB96006A91DA /* XLGameWkWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLGameWkWebViewController.h; sourceTree = "<group>"; };
@@ -4339,8 +4336,6 @@
 				0499B50A223CC3580080A1B1 /* TCVideoRecordMusicView.m */,
 				04DF9DCB223946D200935A89 /* MusicHotSubMusicCell.h */,
 				04DF9DC9223946D200935A89 /* MusicHotSubMusicCell.m */,
-				04DF9DC8223946D200935A89 /* MusicCollectionSubMusicCell.h */,
-				04DF9DCA223946D200935A89 /* MusicCollectionSubMusicCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -6450,7 +6445,6 @@
 				04CBC4572179C01300658E47 /* GPUImageLuminosityBlendFilter.m in Sources */,
 				04C70D3B21E3AE600022D897 /* MTFollowViewController.m in Sources */,
 				0482F27621BFCA7C00587B38 /* MASViewAttribute.m in Sources */,
-				04DF9DCD223946D200935A89 /* MusicCollectionSubMusicCell.m in Sources */,
 				04DCEE9121F5B4B9007AC5B0 /* SearchResultSubUserCell.m in Sources */,
 				04183B1821C2C09600383E3F /* Callback_token.m in Sources */,
 				04DCA8ED21A565D500691A3A /* VideoPasterView.m in Sources */,

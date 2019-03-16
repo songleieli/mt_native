@@ -7,6 +7,7 @@
 //
 
 #import "BgMusicListCollectionSubViewController.h"
+#import "NetWork_mt_getMusicCollections.h"
 
 @interface BgMusicListCollectionSubViewController ()
 
@@ -21,12 +22,22 @@
 
 -(void)initNavTitle{
     self.isNavBackGroundHiden  = YES;
+}
 
-
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    if(self.player){ //页面消失的时候释放播放器
+        [self.player pause];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:self.player.currentItem];
+        self.player = nil;
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.bgmPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/bgm"];
     
     [self setUpUI];
 }
@@ -45,7 +56,7 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.backgroundColor = [UIColor clearColor]; //RGBFromColor(0xecedf1);
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.mainTableView registerClass:UserCollectionSubMusicCell.class forCellReuseIdentifier:[UserCollectionSubMusicCell cellId]];
+    [self.mainTableView registerClass:MusicHotSubMusicCell.class forCellReuseIdentifier:[MusicHotSubMusicCell cellId]];
     [self.mainTableView.mj_header beginRefreshing];
 }
 
@@ -88,6 +99,17 @@
     if (self.currentPageIndex == 1 ) {
         [self.mainDataArr removeAllObjects];
     }
+    for(MusicModel *musicModel in result.obj){ //给请求结果，添加本地文件路径
+        
+        NSString *fileName = [musicModel.playUrl pathExtension];
+        if(fileName.trim.length == 0){
+            fileName = @"mp3";
+        }
+        NSString *filePath = [self.bgmPath stringByAppendingPathComponent:musicModel.name];
+        musicModel.localUrl = [NSString stringWithFormat:@"%@.%@",filePath,fileName];
+        //        NSLog(@"------- musicModel.localUrl=%@",musicModel.localUrl);
+    }
+    
     [self.mainDataArr addObjectsFromArray:result.obj];
     [self.mainTableView reloadData];
     
@@ -110,9 +132,9 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if(self.mainDataArr.count > 0){
-        UserCollectionSubMusicCell *cell = [tableView dequeueReusableCellWithIdentifier:[UserCollectionSubMusicCell cellId] forIndexPath:indexPath];
+        MusicHotSubMusicCell *cell = [tableView dequeueReusableCellWithIdentifier:[MusicHotSubMusicCell cellId] forIndexPath:indexPath];
         cell.subCellDelegate = self;
-        GetMusicCollectionModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
+        MusicModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
         [cell fillDataWithModel:model];
         return cell;
     }
@@ -127,17 +149,53 @@
 
 //设置每一组的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return  SearchResultSubMusicCellHeight;
+    return  MusicHotSubMusicCellHeight;
 }
 
-#pragma mark --------------- cell代理 -----------------
--(void)btnCellClick:(GetMusicCollectionModel*)model{
+#pragma mark --------------- MusicHotSubDelegate -----------------
+
+-(void)useMusicClick:(MusicModel*)model;{
     
     if ([self.delegate respondsToSelector:@selector(subMusicClick:)]) {
         [self.delegate subMusicClick:model];
     } else {
         NSLog(@"代理没响应，快开看看吧");
     }
+}
+
+
+-(void)playMusic:(MusicModel*)model{
+    
+    
+    if(self.player){
+        [self.player pause];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:self.player.currentItem];
+        
+        self.player = nil;
+    }
+    NSURL *musicUrl = [NSURL URLWithString:model.playUrl];
+    AVPlayerItem * musicItem = [[AVPlayerItem alloc]initWithURL:musicUrl];
+    self.player = [[AVPlayer alloc]initWithPlayerItem:musicItem];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackFinished:) name:AVPlayerItemDidPlayToEndTimeNotification object:musicItem];
+    [self.player play];
+    
+}
+
+-(void)pauseMusic{
+    
+    [self.player pause];
+    
+}
+
+#pragma mark --------------- 当播放结束后调用： -----------------
+
+/*
+ <AVAudioPlayerDelegate>
+ 当播放结束后调用：
+ */
+- (void)playbackFinished:(NSNotification *)notice {
+    
+    NSLog(@"----playbackFinished--");
 }
 
 @end

@@ -12,7 +12,7 @@
 
 //#import "ScrollPlayerListViewController.h"
 
-@interface BgMusicListViewController ()<SubCollectionDelegate,SubHotDelegate>
+@interface BgMusicListViewController ()<SubCollectionDelegate,SubHotDelegate,SubCollectionDelegate>
 
 @end
 
@@ -84,12 +84,10 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma -mark SubCellDelegate
+#pragma -mark ------------- SubCellDelegate  SubCollectionDelegate ---------
 
 
 -(void)subMusicClick:(MusicModel *)model{
-    
-    NSLog(@"----------");
     
     if ([self.delegate respondsToSelector:@selector(useHotMusicClick:)]) {
         [self.delegate useHotMusicClick:model.localUrl];
@@ -99,10 +97,6 @@
     
     [UIApplication sharedApplication].statusBarHidden = YES;
     [self dismissViewControllerAnimated:YES completion:nil];
-
-}
-
--(void)subCellVideoClick:(NSMutableArray *)videoList selectIndex:(NSInteger)selectIndex{
 
 }
 

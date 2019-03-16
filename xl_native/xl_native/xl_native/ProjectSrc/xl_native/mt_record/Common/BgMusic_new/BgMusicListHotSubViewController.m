@@ -37,9 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.bgmHelper = [MusicDownloadHelper sharedInstance];
     self.bgmPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/bgm"];
-
     
     [self setUpUI];
 }
@@ -200,22 +198,6 @@
 - (void)playbackFinished:(NSNotification *)notice {
     
     NSLog(@"----playbackFinished--");
-}
-
-#pragma mark --------------- MusicDownloadListener -----------------
-
-/**
- 每首BGM的进度回调
- */
--(void) onBGMDownloading:(MusicModel*)current percent:(float)percent{
-    
-}
-
-/**
- 下载结束回调，失败current返回nil
- */
--(void) onBGMDownloadDone:(MusicModel*)element{
-    
 }
 
 @end

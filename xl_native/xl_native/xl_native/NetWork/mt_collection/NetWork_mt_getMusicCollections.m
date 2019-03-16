@@ -9,9 +9,9 @@
 #import "NetWork_mt_getMusicCollections.h"
 
 
-@implementation GetMusicCollectionModel
-
-@end
+//@implementation GetMusicCollectionModel
+//
+//@end
 
 @implementation GetMusicCollectionsResponse
 
@@ -19,7 +19,7 @@
     return @{@"obj" : @"obj"};
 }
 - (NSDictionary *)classNameForItemInArray {
-    return @{@"obj" : @"GetMusicCollectionModel"};
+    return @{@"obj" : @"MusicModel"};
 }
 
 @end

@@ -133,13 +133,15 @@ static NSString* const ViewTableViewCellId = @"MusicHotSubMusicCellId";
 }
 
 - (TCBGMProgressView *) progressView{
+    
     if (_progressView == nil){
         _progressView = [[TCBGMProgressView alloc] initWithFrame:self.btnDownLoad.frame];
          _progressView.layer.cornerRadius = 8;
         _progressView.backgroundColor = [UIColor clearColor];
-        _progressView.progressBackgroundColor = [UIColor yellowColor];
+        _progressView.progressBackgroundColor = RGBA(252, 89, 82, 0.8);
         _progressView.hidden = YES;
     }
+    
     return _progressView;
 }
 
@@ -224,6 +226,8 @@ static NSString* const ViewTableViewCellId = @"MusicHotSubMusicCellId";
     else{
         NSLog(@"---下载音乐---%@-------",self.listModel.playUrl);
         [self.btnDownLoad setTitle:@"下载中..." forState:UIControlStateNormal];
+        [self.btnDownLoad setBackgroundColor:RGBA(50, 57, 70, 1) forState:UIControlStateNormal];
+
         [[MusicDownloadHelper sharedInstance] downloadMusicWithBlock:self.listModel downloadBlock:^(float percent,NSString *msg) {
             NSLog(@"-------%f",percent);
             if(percent >= 0.0f){

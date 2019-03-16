@@ -11,7 +11,7 @@
 
 @protocol SubMusicCellDelegate <NSObject>
 
--(void)subMusicClick:(GetMusicCollectionModel *)model;
+-(void)subMusicClick:(MusicModel *)model;
 
 @end
 
