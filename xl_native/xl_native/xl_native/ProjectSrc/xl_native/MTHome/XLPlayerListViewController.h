@@ -25,6 +25,11 @@
 #import "MusicInfoController.h"
 
 
+#import "ASIHTTPRequest.h"
+#import "ASIOperationWrapper.h"
+#import "ASIFormDataRequest.h"
+
+
 typedef NS_ENUM(NSInteger,StatusOfRefresh) {
     REFRESH_Normal = 0,     //正常状态
     REFRESH_MoveDown ,     //手指下拉

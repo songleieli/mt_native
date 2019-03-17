@@ -11,7 +11,7 @@
 
 @protocol SubCollectionDelegate <NSObject>
 
--(void)subMusicClick:(MusicModel *)model;
+-(void)subMusicClick:(MusicSearchModel *)model;
 
 @end
 

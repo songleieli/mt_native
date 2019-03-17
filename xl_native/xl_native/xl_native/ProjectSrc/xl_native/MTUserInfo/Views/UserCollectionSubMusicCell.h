@@ -13,7 +13,7 @@
 
 @protocol SearchResultSubMusicDelegate <NSObject>
 
--(void)btnCellClick:(MusicModel*)model;
+-(void)btnCellClick:(MusicSearchModel*)model;
 
 @end
 
@@ -26,9 +26,9 @@
 
 + (NSString*) cellId;
 
-- (void)fillDataWithModel:(MusicModel *)listModel;
+- (void)fillDataWithModel:(MusicSearchModel *)listModel;
 
-@property(nonatomic,strong) MusicModel * listModel;
+@property(nonatomic,strong) MusicSearchModel * listModel;
 @property(nonatomic,strong) UIButton * viewBg;
 @property(nonatomic,strong) UIImageView * imageVeiwIcon;
 

@@ -138,6 +138,8 @@
 		0499B54B223CC5210080A1B1 /* TCBGMCutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0499B53E223CC5210080A1B1 /* TCBGMCutView.m */; };
 		0499B55F223CC5AA0080A1B1 /* LabelCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0499B557223CC5A90080A1B1 /* LabelCollectionCell.xib */; };
 		0499B564223CC7900080A1B1 /* Label.m in Sources */ = {isa = PBXBuildFile; fileRef = 0499B563223CC78F0080A1B1 /* Label.m */; };
+		0499B568223D0E750080A1B1 /* NetWork_mt_getUploadSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 0499B566223D0E740080A1B1 /* NetWork_mt_getUploadSignature.m */; };
+		0499B56B223D366A0080A1B1 /* NetWork_mt_search_getMusicList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0499B56A223D366A0080A1B1 /* NetWork_mt_search_getMusicList.m */; };
 		04A04EB321ECDEA8007CBABF /* NetWork_mt_getHotSearchSix.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A04EB121ECDEA8007CBABF /* NetWork_mt_getHotSearchSix.m */; };
 		04A04EB621ECE553007CBABF /* HomeSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A04EB421ECE552007CBABF /* HomeSearchResultViewController.m */; };
 		04A308F0222A4EEC000BC762 /* NSNotification+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A308EE222A4EEB000BC762 /* NSNotification+Extension.m */; };
@@ -1273,6 +1275,10 @@
 		0499B557223CC5A90080A1B1 /* LabelCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelCollectionCell.xib; sourceTree = "<group>"; };
 		0499B562223CC78F0080A1B1 /* Label.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Label.h; sourceTree = "<group>"; };
 		0499B563223CC78F0080A1B1 /* Label.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Label.m; sourceTree = "<group>"; };
+		0499B566223D0E740080A1B1 /* NetWork_mt_getUploadSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getUploadSignature.m; sourceTree = "<group>"; };
+		0499B567223D0E740080A1B1 /* NetWork_mt_getUploadSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getUploadSignature.h; sourceTree = "<group>"; };
+		0499B569223D366A0080A1B1 /* NetWork_mt_search_getMusicList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_search_getMusicList.h; sourceTree = "<group>"; };
+		0499B56A223D366A0080A1B1 /* NetWork_mt_search_getMusicList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_search_getMusicList.m; sourceTree = "<group>"; };
 		049E96F221521BB700AE2263 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		04A04EB121ECDEA8007CBABF /* NetWork_mt_getHotSearchSix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getHotSearchSix.m; sourceTree = "<group>"; };
 		04A04EB221ECDEA8007CBABF /* NetWork_mt_getHotSearchSix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getHotSearchSix.h; sourceTree = "<group>"; };
@@ -3107,6 +3113,8 @@
 				04A04EB121ECDEA8007CBABF /* NetWork_mt_getHotSearchSix.m */,
 				048BF55121EEC4F1005D3708 /* NetWork_mt_getHotVideoList.h */,
 				048BF55021EEC4F1005D3708 /* NetWork_mt_getHotVideoList.m */,
+				0499B569223D366A0080A1B1 /* NetWork_mt_search_getMusicList.h */,
+				0499B56A223D366A0080A1B1 /* NetWork_mt_search_getMusicList.m */,
 			);
 			path = mt_search;
 			sourceTree = "<group>";
@@ -3350,6 +3358,8 @@
 			children = (
 				04C171FF21CE3EC70077FA6C /* NetWork_mt_saveVideo.h */,
 				04C171FE21CE3EC70077FA6C /* NetWork_mt_saveVideo.m */,
+				0499B567223D0E740080A1B1 /* NetWork_mt_getUploadSignature.h */,
+				0499B566223D0E740080A1B1 /* NetWork_mt_getUploadSignature.m */,
 			);
 			path = mt_video;
 			sourceTree = "<group>";
@@ -4095,8 +4105,8 @@
 				04DCA82421A5576600691A3A /* TCVideoRecordViewController.h */,
 				04DCA82C21A5576600691A3A /* TCVideoRecordViewController.m */,
 				04DCA82D21A5576600691A3A /* TCVideoRecordViewController.xib */,
-				04DCA82321A5576600691A3A /* TCVideoRecordProcessView.m */,
 				04DCA82521A5576600691A3A /* TCVideoRecordProcessView.h */,
+				04DCA82321A5576600691A3A /* TCVideoRecordProcessView.m */,
 				04DCA82621A5576600691A3A /* Views */,
 			);
 			path = UGCRecord;
@@ -6071,6 +6081,7 @@
 				04DCA85821A5580300691A3A /* UIView+Additions.m in Sources */,
 				04C2615021A68FB200374E4D /* TCBGMProgressView.m in Sources */,
 				04DCA83121A5576700691A3A /* TCVideoRecordViewController.m in Sources */,
+				0499B56B223D366A0080A1B1 /* NetWork_mt_search_getMusicList.m in Sources */,
 				0482F27421BFCA7C00587B38 /* MASViewConstraint.m in Sources */,
 				04CBC36B2179C01300658E47 /* GPUImageHueFilter.m in Sources */,
 				0402A45C21C4AA0600C35CA9 /* UIWindow+Extension.m in Sources */,
@@ -6175,6 +6186,7 @@
 				04CBC28D2179C01200658E47 /* MJRefreshAutoStateFooter.m in Sources */,
 				04F5E89B21CE7FB600781FCD /* SharePopView.m in Sources */,
 				04DCA91021A5687600691A3A /* QBVideoIconView.m in Sources */,
+				0499B568223D0E750080A1B1 /* NetWork_mt_getUploadSignature.m in Sources */,
 				04CBC39F2179C01300658E47 /* GPUImageTextureInput.m in Sources */,
 				C5336F9B1E83739600618975 /* UIViewController+TTPopupView.m in Sources */,
 				04DCA87E21A55C5B00691A3A /* TVCCommon.m in Sources */,

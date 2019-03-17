@@ -77,7 +77,7 @@ static NSString* const ViewTableViewCellId = @"UserCollectionSubMusicCellId";
     self.lableuseCount.textColor = RGBA(120, 122, 132, 1);
     [self.viewBg addSubview:self.lableuseCount];
 }
-- (void)fillDataWithModel:(MusicModel *)model{
+- (void)fillDataWithModel:(MusicSearchModel *)model{
     
     self.listModel = model;
     [self.imageVeiwIcon sd_setImageWithURL:[NSURL URLWithString:model.coverUrl] placeholderImage:[UIImage imageNamed:@"img_find_default"]];

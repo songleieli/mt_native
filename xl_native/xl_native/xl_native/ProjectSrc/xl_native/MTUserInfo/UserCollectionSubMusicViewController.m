@@ -112,7 +112,7 @@
     if(self.mainDataArr.count > 0){
         UserCollectionSubMusicCell *cell = [tableView dequeueReusableCellWithIdentifier:[UserCollectionSubMusicCell cellId] forIndexPath:indexPath];
         cell.subCellDelegate = self;
-        MusicModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
+        MusicSearchModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
         [cell fillDataWithModel:model];
         return cell;
     }
@@ -131,7 +131,7 @@
 }
 
 #pragma mark --------------- cell代理 -----------------
--(void)btnCellClick:(MusicModel*)model{
+-(void)btnCellClick:(MusicSearchModel*)model{
     
     if ([self.delegate respondsToSelector:@selector(subMusicClick:)]) {
         [self.delegate subMusicClick:model];

@@ -152,6 +152,7 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
 
     NSObject*     _BGMPath;
     NSString*    _videoOutputPath;
+    NSString*    _videoOutputCoverPath;
     BOOL          _isReverse;
     BOOL          _isSeek;
     BOOL          _isPlay;
@@ -171,6 +172,8 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
         _effectType = -1;
         _cutPathList = [NSMutableArray array];
         _videoOutputPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"outputCut.mp4"];
+        _videoOutputCoverPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"outputCut_cover.png"];
+
     
         _pasterEffectArray = [NSMutableArray array];
         [_pasterEffectArray addObject:({
@@ -1101,70 +1104,106 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
 }
 
 #pragma mark TXVideoGenerateListener
--(void) onGenerateProgress:(float)progress
-{
+-(void) onGenerateProgress:(float)progress{
+    
     _generateProgressView.progress = progress;
 }
 
--(void) onGenerateComplete:(TXGenerateResult *)result
-{
+-(void) onGenerateComplete:(TXGenerateResult *)result{
+    
     _generationView.hidden = YES; //进度条页面消失
 
     NSString *localVideoPath = _videoOutputPath;
+    
+    NSString *filePath = [NSString stringWithFormat:@"file://%@",localVideoPath];
+    UIImage *coverImage = [self getVideoPreViewImage:[NSURL URLWithString:filePath]];
+    NSData *coverData = UIImagePNGRepresentation(coverImage);
+    [coverData writeToFile:_videoOutputCoverPath atomically:YES];
+//    _videoOutputCoverPath
+    
+    //NSString *coverPath = [NSString stringWithFormat:@"file://%@",localVideoPath];
+
     
     
     if (result.retCode == 0) {
         if (_actionType == ActionType_Publish) {
             
             
-            /*
-             *调用上传视频接口
-             */
-            NSString *filePath = [NSString stringWithFormat:@"file://%@",localVideoPath];
-
-            UIImage *coverImage = [self getVideoPreViewImage:[NSURL URLWithString:filePath]];
-            NSData *coverData = UIImagePNGRepresentation(coverImage);
-
-            NSMutableDictionary *fileDic = [[NSMutableDictionary alloc]init];
-            NSData *imageData = [NSData dataWithContentsOfFile:localVideoPath];
             
-            [fileDic setObject:imageData forKey:@"videoFile"];
-            [fileDic setObject:coverData forKey:@"videoCoverFile"];
-            
-            [fileDic setObject:coverData forKey:@"musicCoverFile"];
-            [fileDic setObject:imageData forKey:@"musicFile"];
-            
-            
-            SaveVideoContentModel *model = [[SaveVideoContentModel alloc] init];
-            model.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-            model.nickname = [GlobalData sharedInstance].loginDataModel.nickname;
-            model.addr = @"北京市朝阳区北苑路180号";
-            model.size = @"720p";
-            model.title = @"title";
-            model.topic = @"#万圣节";
-            
-            NetWork_mt_saveVideo *request = [[NetWork_mt_saveVideo alloc] init];
+            NetWork_mt_getUploadSignature *request = [[NetWork_mt_getUploadSignature alloc] init];
             request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-            request.content = [model generateJsonStringForProperties];
-            request.uploadFilesDic = fileDic;
-            [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+            [request startGetWithBlock:^(GetUploadSignatureResponse *result, NSString *msg, BOOL finished) {
                 
+                NSLog(@"------------");
                 
-                NSLog(@"------");
+                TXPublishParam * param = [[TXPublishParam alloc] init];
+                
+                param.signature = result.obj;                                // 需要填写第四步中计算的上传签名
+                
+                // 录制生成的视频文件路径 TXVideoRecordListener 的 onRecordComplete 回调中可以获取
+                param.videoPath = _videoPath;
+                // 录制生成的视频首帧预览图路径。值为通过调用startRecord指定的封面路径，或者指定一个路径，然后将TXVideoRecordListener 的 onRecordComplete 回调中获取到的UIImage保存到指定路径下，可以置为 nil。
+                param.coverPath = _videoOutputCoverPath; //_coverPath;
+                
+                TXUGCPublish *_ugcPublish = [[TXUGCPublish alloc] init];
+                // 文件发布默认是采用断点续传
+                _ugcPublish.delegate = self;                                 // 设置 TXVideoPublishListener 回调
+                [_ugcPublish publishVideo:param];
                 
                 
             }];
             
             
             
-            //上传成功后，页面消失
-            [self performSelector:@selector(dismissViewController) withObject:nil afterDelay:1];
+            
+            
 
             
-//            _generationTitleLabel.text = NSLocalizedString(@"TCVideoEditView.VideoReleasing", nil);
-//            _generateProgressView.progress = 0;
-//            _generateCannelBtn.hidden = YES;
-//            [self publishVideo];
+            
+            
+//            /*
+//             *调用上传视频接口
+//             */
+//            NSString *filePath = [NSString stringWithFormat:@"file://%@",localVideoPath];
+//
+//            UIImage *coverImage = [self getVideoPreViewImage:[NSURL URLWithString:filePath]];
+//            NSData *coverData = UIImagePNGRepresentation(coverImage);
+//
+//            NSMutableDictionary *fileDic = [[NSMutableDictionary alloc]init];
+//            NSData *imageData = [NSData dataWithContentsOfFile:localVideoPath];
+//
+//            [fileDic setObject:imageData forKey:@"videoFile"];
+//            [fileDic setObject:coverData forKey:@"videoCoverFile"];
+//
+//            [fileDic setObject:coverData forKey:@"musicCoverFile"];
+//            [fileDic setObject:imageData forKey:@"musicFile"];
+//
+//
+//            SaveVideoContentModel *model = [[SaveVideoContentModel alloc] init];
+//            model.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+//            model.nickname = [GlobalData sharedInstance].loginDataModel.nickname;
+//            model.addr = @"北京市朝阳区北苑路180号";
+//            model.size = @"720p";
+//            model.title = @"title";
+//            model.topic = @"#万圣节";
+//
+//            NetWork_mt_saveVideo *request = [[NetWork_mt_saveVideo alloc] init];
+//            request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+//            request.content = [model generateJsonStringForProperties];
+//            request.uploadFilesDic = fileDic;
+//            [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+//
+//
+//                NSLog(@"------");
+//
+//
+//            }];
+//
+//
+//
+//            //上传成功后，页面消失
+//            [self performSelector:@selector(dismissViewController) withObject:nil afterDelay:1];
+            
         }else{
 //            _generationView.hidden = YES;
             ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
@@ -1223,13 +1262,47 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
     _generateProgressView.progress = (float)uploadBytes / totalBytes;;
 }
 
--(void) onPublishComplete:(TXPublishResult*)result
-{
+-(void) onPublishComplete:(TXPublishResult*)result{
+    
+    NSLog(@"---腾讯云上传成功----%@",result);
+    
+    SaveVideoContentModel *model = [[SaveVideoContentModel alloc] init];
+    model.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+    model.nickname = [GlobalData sharedInstance].loginDataModel.nickname;
+    model.fileId = result.videoId;
+    model.noodleVideoCover = result.coverURL;
+    model.storagePath = result.videoURL;
+    model.noodleVideoName = [result.videoURL lastPathComponent];
+    model.musicId = [NSString stringWithFormat:@"%@",self.musicModel.musicId];
+    model.musicName = self.musicModel.musicName;
+    model.musicUrl = self.musicModel.playUrl;
+    model.coverUrl = self.musicModel.coverUrl;
+    model.addr = @"北京市朝阳区北苑路180号";
+    model.size = @"720p";
+    model.title = @"songlei 发布内容测试";
+    model.topic = @"#万圣节";
+    
+    NetWork_mt_saveVideo *request = [[NetWork_mt_saveVideo alloc] init];
+    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+    request.content = [model generateJsonStringForProperties];
+//    request.isBodyParam = YES;
+//    request.uploadFilesDic = fileDic;
+    [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+        
+        if(finished){
+            [self performSelector:@selector(dismissViewController) withObject:nil afterDelay:1];
+        }
+        NSLog(@"------");
+    }];
+    
+    
+    /*
     [TCUtil report:xiaoshipin_videouploadvod userName:nil code:result.retCode msg:result.descMsg];
     _generationView.hidden = YES;
     if (result.retCode != 0) {
         [self toastTip:NSLocalizedString(@"TCVideoEditView.VideoReleasingFailed", nil)];
-    }else{
+    }
+    else{
         NSString *title = @"小视频";
         NSDictionary* dictParam = @{@"userid" :@"Songleilei",
                                     @"file_id" : result.videoId,
@@ -1247,6 +1320,10 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
             [self performSelector:@selector(dismissViewController) withObject:nil afterDelay:1];
         }];
     }
+    
+    */
+    
+    
 }
 
 - (void)dismissViewController

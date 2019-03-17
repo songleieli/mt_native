@@ -8,7 +8,7 @@
 
 #import "BgMusicListHotSubViewController.h"
 
-#import "NetWork_mt_getMusicList.h"
+//#import "NetWork_mt_search_getMusicList.h"
 
 @interface BgMusicListHotSubViewController ()
 
@@ -74,13 +74,14 @@
 
 -(void)initRequest{
     
-    NetWork_mt_getMusicList *request = [[NetWork_mt_getMusicList alloc] init];
+    NetWork_mt_search_getMusicList *request = [[NetWork_mt_search_getMusicList alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
-    request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
+    //音乐榜就30个,不需要分页
+//    request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
+//    request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
     [request startGetWithBlock:^(id result, NSString *msg) {
         /*暂时不考虑缓存问题*/
-    } finishBlock:^(GetMusicListResponse *result, NSString *msg, BOOL finished) {
+    } finishBlock:^(GetSearchMusicListResponse *result, NSString *msg, BOOL finished) {
         
         [self.mainTableView.mj_header endRefreshing];
         [self.mainTableView.mj_footer endRefreshing];
@@ -95,19 +96,20 @@
     }];
 }
 
--(void)loadData:(GetMusicListResponse *)result{
-    if (self.currentPageIndex == 1 ) {
-        [self.mainDataArr removeAllObjects];
-    }
+-(void)loadData:(GetSearchMusicListResponse *)result{
+//    if (self.currentPageIndex == 1 ) {
+//        [self.mainDataArr removeAllObjects];
+//    }
+    [self.mainDataArr removeAllObjects];
+
     
-    
-    for(MusicModel *musicModel in result.obj){ //给请求结果，添加本地文件路径
+    for(MusicSearchModel *musicModel in result.obj){ //给请求结果，添加本地文件路径
         
         NSString *fileName = [musicModel.playUrl pathExtension];
         if(fileName.trim.length == 0){
             fileName = @"mp3";
         }
-        NSString *filePath = [self.bgmPath stringByAppendingPathComponent:musicModel.name];
+        NSString *filePath = [self.bgmPath stringByAppendingPathComponent:musicModel.musicName];
         musicModel.localUrl = [NSString stringWithFormat:@"%@.%@",filePath,fileName];
 //        NSLog(@"------- musicModel.localUrl=%@",musicModel.localUrl);
     }
@@ -115,9 +117,11 @@
     [self.mainDataArr addObjectsFromArray:result.obj];
     [self.mainTableView reloadData];
     
-    if(self.mainDataArr.count < self.currentPageSize || result.obj.count == 0) {//最后一页数据
-        [self.mainTableView.mj_footer endRefreshingWithNoMoreData];
-    }
+    [self.mainTableView.mj_footer endRefreshingWithNoMoreData];
+    
+//    if(self.mainDataArr.count < self.currentPageSize || result.obj.count == 0) {//最后一页数据
+//        [self.mainTableView.mj_footer endRefreshingWithNoMoreData];
+//    }
 }
 
 
@@ -136,7 +140,7 @@
     if(self.mainDataArr.count > 0){
         MusicHotSubMusicCell *cell = [tableView dequeueReusableCellWithIdentifier:[MusicHotSubMusicCell cellId] forIndexPath:indexPath];
         cell.subCellDelegate = self;
-        MusicModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
+        MusicSearchModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
         [cell fillDataWithModel:model];
         return cell;
     }
@@ -156,7 +160,7 @@
 
 #pragma mark --------------- MusicHotSubDelegate -----------------
 
--(void)useMusicClick:(MusicModel*)model;{
+-(void)useMusicClick:(MusicSearchModel*)model;{
     
     if ([self.delegate respondsToSelector:@selector(subMusicClick:)]) {
         [self.delegate subMusicClick:model];
@@ -166,7 +170,7 @@
 }
 
 
--(void)playMusic:(MusicModel*)model{
+-(void)playMusic:(MusicSearchModel*)model{
     
     
     if(self.player){

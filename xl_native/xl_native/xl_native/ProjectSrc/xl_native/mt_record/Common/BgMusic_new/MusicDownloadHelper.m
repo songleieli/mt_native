@@ -76,7 +76,7 @@ static pthread_mutex_t _instanceLock = PTHREAD_MUTEX_INITIALIZER;
 //    pthread_cond_destroy(&_cond);
 }
 
--(void) downloadMusicWithBlock:(MusicModel*) musicModel downloadBlock:(void(^)(float percent,NSString *msg))downloadBlock{
+-(void) downloadMusicWithBlock:(MusicSearchModel*) musicModel downloadBlock:(void(^)(float percent,NSString *msg))downloadBlock{
     
     
     /*
@@ -140,7 +140,7 @@ typedef void(^DownLoadCallback)(float percent, NSString* url);
     
     NSURLRequest *downloadReq = [NSURLRequest requestWithURL:[NSURL URLWithString:srcUrl]
                                                  cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                             timeoutInterval:300.f];
+                                             timeoutInterval:5.0f];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     

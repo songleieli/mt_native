@@ -14,7 +14,7 @@
 if(BGM_DEBUG)NSLog(__VA_ARGS__);\
 }
 
-#import "NetWork_mt_getMusicList.h"
+#import "NetWork_mt_search_getMusicList.h"
 
 //@protocol MusicDownloadListener <NSObject>
 //
@@ -45,7 +45,7 @@ if(BGM_DEBUG)NSLog(__VA_ARGS__);\
 
  @param name BGM名称
  */
--(void) downloadMusicWithBlock:(MusicModel*) musicModel downloadBlock:(void(^)(float percent,NSString *msg))downloadBlock;
+-(void) downloadMusicWithBlock:(MusicSearchModel*) musicModel downloadBlock:(void(^)(float percent,NSString *msg))downloadBlock;
 
 ////更新下载进度，block
 //@property(nonatomic,copy) void (^downloadBlock)(MusicModel *current,float percent);

@@ -99,13 +99,13 @@
     if (self.currentPageIndex == 1 ) {
         [self.mainDataArr removeAllObjects];
     }
-    for(MusicModel *musicModel in result.obj){ //给请求结果，添加本地文件路径
+    for(MusicSearchModel *musicModel in result.obj){ //给请求结果，添加本地文件路径
         
         NSString *fileName = [musicModel.playUrl pathExtension];
         if(fileName.trim.length == 0){
             fileName = @"mp3";
         }
-        NSString *filePath = [self.bgmPath stringByAppendingPathComponent:musicModel.name];
+        NSString *filePath = [self.bgmPath stringByAppendingPathComponent:musicModel.musicName];
         musicModel.localUrl = [NSString stringWithFormat:@"%@.%@",filePath,fileName];
         //        NSLog(@"------- musicModel.localUrl=%@",musicModel.localUrl);
     }
@@ -134,7 +134,7 @@
     if(self.mainDataArr.count > 0){
         MusicHotSubMusicCell *cell = [tableView dequeueReusableCellWithIdentifier:[MusicHotSubMusicCell cellId] forIndexPath:indexPath];
         cell.subCellDelegate = self;
-        MusicModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
+        MusicSearchModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
         [cell fillDataWithModel:model];
         return cell;
     }
@@ -154,7 +154,7 @@
 
 #pragma mark --------------- MusicHotSubDelegate -----------------
 
--(void)useMusicClick:(MusicModel*)model;{
+-(void)useMusicClick:(MusicSearchModel*)model;{
     
     if ([self.delegate respondsToSelector:@selector(subMusicClick:)]) {
         [self.delegate subMusicClick:model];
@@ -164,7 +164,7 @@
 }
 
 
--(void)playMusic:(MusicModel*)model{
+-(void)playMusic:(MusicSearchModel*)model{
     
     
     if(self.player){

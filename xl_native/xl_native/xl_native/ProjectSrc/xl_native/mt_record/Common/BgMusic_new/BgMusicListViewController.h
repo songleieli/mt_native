@@ -16,7 +16,7 @@
 
 @protocol UseHotMusicDelegate <NSObject>
 
--(void)useHotMusicClick:(NSString *)musiLocalPath;
+-(void)useHotMusicClick:(MusicSearchModel *)musicModel;
 
 @end
 

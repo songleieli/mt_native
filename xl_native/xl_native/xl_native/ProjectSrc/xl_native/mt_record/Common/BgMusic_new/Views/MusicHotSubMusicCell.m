@@ -174,12 +174,12 @@ static NSString* const ViewTableViewCellId = @"MusicHotSubMusicCellId";
 }
 
 
-- (void)fillDataWithModel:(MusicModel *)model{
+- (void)fillDataWithModel:(MusicSearchModel *)model{
     
     self.listModel = model;
     [self.imageVeiwIcon sd_setImageWithURL:[NSURL URLWithString:model.coverUrl] placeholderImage:[UIImage imageNamed:@"default_music_cover"]];
     
-    self.labelTitle.text = model.name;
+    self.labelTitle.text = model.musicName;
     self.labelSign.text = model.nickname;
 }
 

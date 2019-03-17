@@ -6,14 +6,10 @@
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
-#import "NetWork_mt_saveVideo.h"
-
-@implementation SaveVideoContentModel
-
-@end
+#import "NetWork_mt_getUploadSignature.h"
 
 
-@implementation SaveVideoResponse
+@implementation GetUploadSignatureResponse
 
 //- (NSDictionary *)propertyMappingObjcJson {
 //    return @{@"obj" : @"obj"};
@@ -25,13 +21,13 @@
 @end
 
 
-@implementation NetWork_mt_saveVideo
+@implementation NetWork_mt_getUploadSignature
 
 -(Class)responseType{
-    return [SaveVideoResponse class];
+    return [GetUploadSignatureResponse class];
 }
 -(NSString*)responseCategory{
-    return @"/miantiao/video/saveVideo";
+    return @"/miantiao/video/getUploadSignature";
 }
 
 

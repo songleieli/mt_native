@@ -103,7 +103,7 @@
     
 }
 
--(void)subMusicClick:(MusicModel *)model{
+-(void)subMusicClick:(MusicSearchModel *)model{
     
     MusicInfoController *musicInfoController = [[MusicInfoController alloc] init];
     musicInfoController.musicId = model.musicId;

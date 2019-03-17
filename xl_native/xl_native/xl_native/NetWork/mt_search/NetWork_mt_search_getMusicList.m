@@ -6,14 +6,14 @@
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
-#import "NetWork_mt_getMusicCollections.h"
+#import "NetWork_mt_search_getMusicList.h"
 
 
-//@implementation GetMusicCollectionModel
-//
-//@end
+@implementation MusicSearchModel
 
-@implementation GetMusicCollectionsResponse
+@end
+
+@implementation GetSearchMusicListResponse
 
 - (NSDictionary *)propertyMappingObjcJson {
     return @{@"obj" : @"obj"};
@@ -25,13 +25,13 @@
 @end
 
 
-@implementation NetWork_mt_getMusicCollections
+@implementation NetWork_mt_search_getMusicList
 
 -(Class)responseType{
-    return [GetMusicCollectionsResponse class];
+    return [GetSearchMusicListResponse class];
 }
 -(NSString*)responseCategory{
-    return @"/miantiao/collection/getMusicCollections";
+    return @"/miantiao/search/getMusicList";
 }
 
 

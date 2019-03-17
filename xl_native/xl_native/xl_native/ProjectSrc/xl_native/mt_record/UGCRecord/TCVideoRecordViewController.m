@@ -197,6 +197,9 @@ typedef NS_ENUM(NSInteger,CaptureMode)
 
 @property (assign, nonatomic) CaptureMode captureMode;
 
+@property(nonatomic,strong) MusicSearchModel * selectMusicModel;
+
+
 @end
 
 
@@ -1395,6 +1398,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
             [self stopCameraPreview];
             TCVideoEditViewController *vc = [[TCVideoEditViewController alloc] init];
             vc.videoPath = _recordVideoPath;
+            vc.musicModel = self.selectMusicModel;
             [self.navigationController pushViewController:vc animated:YES];
         }else{
             CGFloat width = 720;
@@ -1615,6 +1619,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
         [self stopCameraPreview];
         TCVideoEditViewController *vc = [[TCVideoEditViewController alloc] init];
         vc.videoPath = _joinVideoPath;
+        vc.musicModel = self.selectMusicModel;
         vc.isFromChorus = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }else{
@@ -1737,11 +1742,12 @@ typedef NS_ENUM(NSInteger,CaptureMode)
 
 #pragma mark TCBGMControllerListener 已选择北京音乐 path ，北京音乐在本地的路径
 
--(void)useHotMusicClick:(NSString *)musiLocalPath{
+-(void)useHotMusicClick:(MusicSearchModel *)musicModel{
     
+    self.selectMusicModel = musicModel;
     
-    if(musiLocalPath == nil) return;
-    [self onSetBGM:musiLocalPath]; //设置北京音乐
+    if(musicModel.localUrl == nil) return;
+    [self onSetBGM:musicModel.localUrl]; //设置北京音乐
     //试听音乐这里要把RecordSpeed 设置为VIDEO_RECORD_SPEED_NOMAL，否则音乐可能会出现加速或则慢速播现象
     [[TXUGCRecord shareInstance] setRecordSpeed:VIDEO_RECORD_SPEED_NOMAL];
     [self playBGM:0]; //背景音乐从0开始播放

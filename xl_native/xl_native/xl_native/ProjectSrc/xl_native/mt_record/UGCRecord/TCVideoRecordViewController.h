@@ -11,7 +11,10 @@
  *  短视频录制VC
  */
 @interface TCVideoRecordViewController : UIViewController
+
 @property (nonatomic,strong) NSString *videoPath;
 @property (nonatomic,assign) BOOL savePath;
 @property (nonatomic,assign) BOOL preloadingVideos;
+
+
 @end

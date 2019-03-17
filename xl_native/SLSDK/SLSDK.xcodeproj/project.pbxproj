@@ -578,7 +578,6 @@
 				5E2EA7541B05FE6C00BC8A74 /* SLExternal */,
 				5E9AC6F41B05DC4D00AD0158 /* SLDB */,
 				5E9AC6F81B05DC4D00AD0158 /* SLAdditions */,
-				5E9AC6FA1B05DC4D00AD0158 /* SLAccount */,
 				5E8964651B059B0800810553 /* SLSDK.h */,
 				5E89648B1B05A4C100810553 /* SLSDK.m */,
 			);
@@ -623,13 +622,6 @@
 				04DCE5AA21492C240045F75E /* UIColor+Category.m */,
 			);
 			path = SLAdditions;
-			sourceTree = "<group>";
-		};
-		5E9AC6FA1B05DC4D00AD0158 /* SLAccount */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SLAccount;
 			sourceTree = "<group>";
 		};
 		5E9AC7AA1B05E3E300AD0158 /* Frameworks */ = {

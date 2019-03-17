@@ -87,10 +87,10 @@
 #pragma -mark ------------- SubCellDelegate  SubCollectionDelegate ---------
 
 
--(void)subMusicClick:(MusicModel *)model{
+-(void)subMusicClick:(MusicSearchModel *)model{
     
     if ([self.delegate respondsToSelector:@selector(useHotMusicClick:)]) {
-        [self.delegate useHotMusicClick:model.localUrl];
+        [self.delegate useHotMusicClick:model];
     } else {
         NSLog(@"代理没响应，快开看看吧");
     }

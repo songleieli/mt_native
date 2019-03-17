@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NetWork_mt_getUploadSignature.h"
+#import "NetWork_mt_search_getMusicList.h"
 
 @interface TCVideoEditViewController : UIViewController
 
-@property (strong,nonatomic) NSString *videoPath;
+@property (copy,nonatomic) NSString *videoPath;
 
 @property (strong,nonatomic) AVAsset  *videoAsset;
 
@@ -21,4 +23,10 @@
 @property (assign,nonatomic) BOOL     isFromChorus;
 
 @property (assign, nonatomic) int     renderRotation;
+
+
+@property (strong,nonatomic) MusicSearchModel  *musicModel;
+
+
+
 @end
