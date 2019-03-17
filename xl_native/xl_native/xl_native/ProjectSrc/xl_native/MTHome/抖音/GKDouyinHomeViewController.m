@@ -7,8 +7,7 @@
 //
 
 #import "GKDouyinHomeViewController.h"
-#import "GKDouyinHomeSearchViewController.h"
-#import "XLPlayerListViewController.h"
+
 #import "UserInfoViewController.h"
 #import "GKDouyinScrollView.h"
 
@@ -17,8 +16,8 @@
 
 @property (nonatomic, strong) GKDouyinScrollView  *scrollView;
 
-@property (nonatomic, strong) GKDouyinHomeSearchViewController  *searchVC; //左侧Controller
-@property (nonatomic, strong) XLPlayerListViewController  *playerVC; //右侧Controller
+
+
 @property (nonatomic, strong) NSArray  *childVCs;
 
 @end
@@ -81,7 +80,7 @@
 
 
 - (void)dealloc {
-    NSLog(@"%@ dealloc", NSStringFromClass([self class]));
+//    NSLog(@"%@ dealloc", NSStringFromClass([self class]));
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -103,7 +102,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    NSLog(@"%@ -----viewWillAppear-----------", NSStringFromClass([self class]));
+//    NSLog(@"%@ -----viewWillAppear-----------", NSStringFromClass([self class]));
 }
 
 - (void)viewDidLoad {

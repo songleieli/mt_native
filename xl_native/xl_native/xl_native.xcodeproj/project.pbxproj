@@ -213,7 +213,6 @@
 		04C1721421CE3EC80077FA6C /* NetWork_mt_login.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1720921CE3EC80077FA6C /* NetWork_mt_login.m */; };
 		04C1721721CE42C40077FA6C /* NetWork_mt_addVideoPlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1721521CE42C30077FA6C /* NetWork_mt_addVideoPlay.m */; };
 		04C2615021A68FB200374E4D /* TCBGMProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2612C21A68FB200374E4D /* TCBGMProgressView.m */; };
-		04C2615221A68FB200374E4D /* V8HorizontalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2613121A68FB200374E4D /* V8HorizontalPickerView.m */; };
 		04C2615E21A68FB200374E4D /* SmallButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2614A21A68FB200374E4D /* SmallButton.m */; };
 		04C2615F21A68FB200374E4D /* VerticalButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2614C21A68FB200374E4D /* VerticalButton.m */; };
 		04C430482234A33F00AD260F /* NetWork_mt_forwardVideoCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C430472234A33F00AD260F /* NetWork_mt_forwardVideoCount.m */; };
@@ -1429,9 +1428,6 @@
 		04C1721621CE42C40077FA6C /* NetWork_mt_addVideoPlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_addVideoPlay.h; sourceTree = "<group>"; };
 		04C2612B21A68FB200374E4D /* TCBGMProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBGMProgressView.h; sourceTree = "<group>"; };
 		04C2612C21A68FB200374E4D /* TCBGMProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBGMProgressView.m; sourceTree = "<group>"; };
-		04C2613121A68FB200374E4D /* V8HorizontalPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = V8HorizontalPickerView.m; sourceTree = "<group>"; };
-		04C2613221A68FB200374E4D /* V8HorizontalPickerViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V8HorizontalPickerViewProtocol.h; sourceTree = "<group>"; };
-		04C2613321A68FB200374E4D /* V8HorizontalPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = V8HorizontalPickerView.h; sourceTree = "<group>"; };
 		04C2614A21A68FB200374E4D /* SmallButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallButton.m; sourceTree = "<group>"; };
 		04C2614B21A68FB200374E4D /* VerticalButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalButton.h; sourceTree = "<group>"; };
 		04C2614C21A68FB200374E4D /* VerticalButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalButton.m; sourceTree = "<group>"; };
@@ -3400,7 +3396,6 @@
 			children = (
 				0499B561223CC7380080A1B1 /* Label */,
 				04DF9DBA22392FC600935A89 /* BgMusic_new */,
-				04C2613021A68FB200374E4D /* V8HorizontalPickerView */,
 				04C2614921A68FB200374E4D /* Button */,
 			);
 			path = Common;
@@ -3415,23 +3410,13 @@
 			path = Progress;
 			sourceTree = "<group>";
 		};
-		04C2613021A68FB200374E4D /* V8HorizontalPickerView */ = {
-			isa = PBXGroup;
-			children = (
-				04C2613121A68FB200374E4D /* V8HorizontalPickerView.m */,
-				04C2613221A68FB200374E4D /* V8HorizontalPickerViewProtocol.h */,
-				04C2613321A68FB200374E4D /* V8HorizontalPickerView.h */,
-			);
-			path = V8HorizontalPickerView;
-			sourceTree = "<group>";
-		};
 		04C2614921A68FB200374E4D /* Button */ = {
 			isa = PBXGroup;
 			children = (
+				04C2614D21A68FB200374E4D /* SmallButton.h */,
 				04C2614A21A68FB200374E4D /* SmallButton.m */,
 				04C2614B21A68FB200374E4D /* VerticalButton.h */,
 				04C2614C21A68FB200374E4D /* VerticalButton.m */,
-				04C2614D21A68FB200374E4D /* SmallButton.h */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -6446,7 +6431,6 @@
 				04FB536B21C61036000ED131 /* AVPlayerView.m in Sources */,
 				04CBC3692179C01300658E47 /* GPUImageTransformFilter.m in Sources */,
 				04CBC42D2179C01300658E47 /* GPUImageScreenBlendFilter.m in Sources */,
-				04C2615221A68FB200374E4D /* V8HorizontalPickerView.m in Sources */,
 				04B0E1E321A6937600ABCF16 /* NSObject+BKBlockObservation.m in Sources */,
 				0415F08A21C7D463000440F4 /* MTHomeRefreshNavigitionView.m in Sources */,
 				D98FCFC41DEFC41A0023C076 /* STPickerViewConst.m in Sources */,
@@ -6738,6 +6722,7 @@
 					"$(PROJECT_DIR)/xl_native/3rd/lame",
 					"$(PROJECT_DIR)/xl_native/3rd/OpenSDK1.8.3",
 				);
+				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-fobjc-arc",
@@ -6814,6 +6799,7 @@
 					"$(PROJECT_DIR)/xl_native/3rd/lame",
 					"$(PROJECT_DIR)/xl_native/3rd/OpenSDK1.8.3",
 				);
+				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-fobjc-arc",

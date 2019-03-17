@@ -4,17 +4,11 @@
 #import <MediaPlayer/MPMediaPickerController.h>
 #import "SDKHeader.h"
 #import "TCVideoRecordViewController.h"
-//#import "TCVideoPublishController.h"
 #import "TCVideoEditViewController.h"
 #import "TCVideoRecordMusicView.h"
 #import "TCVideoRecordProcessView.h"
-#import "V8HorizontalPickerView.h"
-#import <MBProgressHUD/MBProgressHUD.h>
 
 
-//#import "TCBGMListViewController.h"
-#import "BaseNavigationController.h"
-#import "BgMusicListViewController.h"
 
 #import "BeautySettingPanel.h"
 #import "MBProgressHUD.h"
@@ -65,16 +59,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
 @implementation RecordMusicInfo
 @end
 
-#if POD_PITU
-#import "MCCameraDynamicView.h"
-#import "MaterialManager.h"
-#import "MCTip.h"
-@interface TCVideoRecordViewController () <MCCameraDynamicDelegate,VideoRecordMusicViewDelegate,BeautySettingPanelDelegate,BeautyLoadPituDelegate, SoundMixViewDelegate>
-
-@end
-#endif
-
-@interface TCVideoRecordViewController()<TXUGCRecordListener,V8HorizontalPickerViewDelegate,V8HorizontalPickerViewDataSource,MPMediaPickerControllerDelegate,UseHotMusicDelegate,TXVideoJoinerListener>
+@interface TCVideoRecordViewController()<TXUGCRecordListener,MPMediaPickerControllerDelegate,UseHotMusicDelegate,TXVideoJoinerListener>
 {
     BOOL                            _cameraFront;
     BOOL                            _lampOpened;
@@ -93,17 +78,10 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     UIButton *                      _btnTorch;
     CGFloat                         _currentRecordTime;
     
-    
     UIButton *                      _btnRatio;
     
-    V8HorizontalPickerView *        _filterPickerView;
-    NSMutableArray *                _filterArray;
-    NSInteger                       _filterIndex;
-    
-    SoundMixView  *_soundMixView;
-    
+    SoundMixView  *_soundMixView; //单击混音按钮，显示混音View
     BOOL                            _navigationBarHidden;
-//    BOOL                            _statusBarHidden;
     BOOL                            _appForeground;
     BOOL                            _isPaused;
     
@@ -115,18 +93,9 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     UIView *_countDownView;
     NSTimer *_countDownTimer;
     
-#if POD_PITU
-    MCCameraDynamicView   *_tmplBar;
-    NSString              *_materialID;
-#else
     UIView                *_tmplBar;
-#endif
-    V8HorizontalPickerView  *_greenPickerView;
-    NSMutableArray *_greenArray;
-    
-//    TCBGMListViewController*        _bgmListVC;
+
     UIButton *_speedChangeBtn;
-    
     NSInteger    _greenIndex;;
     
     float  _eye_level;
@@ -142,11 +111,11 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     BOOL                      _isBackDelete;
     BOOL                      _isFlash;
     
-    TCVideoRecordMusicView *  _musicView;    //选择音乐
+    TCVideoRecordMusicView *  _musicView;    //使用音乐后，编辑音乐View
     TXVideoAspectRatio        _aspectRatio;
     SpeedMode                 _speedMode;
     
-    BeautySettingPanel *      _vBeauty;
+    BeautySettingPanel *      _vBeauty; //是用美颜后，美颜编辑View
     MBProgressHUD*            _hub;
     CGFloat                   _bgmBeginTime;
     BOOL                      _bgmRecording;
@@ -197,7 +166,6 @@ typedef NS_ENUM(NSInteger,CaptureMode)
 
 @property (assign, nonatomic) CaptureMode captureMode;
 
-@property(nonatomic,strong) MusicSearchModel * selectMusicModel;
 
 
 @end
@@ -209,6 +177,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self){
+        
         _appForeground = YES;
         _cameraFront = YES;
         _lampOpened = NO;
@@ -228,147 +197,9 @@ typedef NS_ENUM(NSInteger,CaptureMode)
         _voiceChangeType = -1; // 无变声
         _soundMixChangeType = -1; // 无混音效果
 
-        _greenArray = [NSMutableArray new];
-        [_greenArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"无";
-            v.file = nil;
-            v.face = [UIImage imageNamed:@"greens_no"];
-            v;
-        })];
-        [_greenArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"卡通";
-            v.file = [[NSBundle mainBundle] URLForResource:@"goodluck" withExtension:@"mp4"];;
-            v.face = [UIImage imageNamed:@"greens_1"];
-            v;
-        })];
-        [_greenArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"DJ";
-            v.file = [[NSBundle mainBundle] URLForResource:@"2gei_5" withExtension:@"mp4"];
-            v.face = [UIImage imageNamed:@"greens_2"];
-            v;
-        })];
-        
-        _filterIndex = 0;
-        _filterArray = [NSMutableArray new];
-        [_filterArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"原图";
-            v.face = [UIImage imageNamed:@"orginal"];
-            v;
-        })];
-        [_filterArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"标准";
-            v.face = [UIImage imageNamed:@"biaozhun"];
-            v;
-        })];
-        [_filterArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"樱红";
-            v.face = [UIImage imageNamed:@"yinghong"];
-            v;
-        })];
-        [_filterArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"云裳";
-            v.face = [UIImage imageNamed:@"yunshang"];
-            v;
-        })];
-        [_filterArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"纯真";
-            v.face = [UIImage imageNamed:@"chunzhen"];
-            v;
-        })];
-        [_filterArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"白兰";
-            v.face = [UIImage imageNamed:@"bailan"];
-            v;
-        })];
-        [_filterArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"元气";
-            v.face = [UIImage imageNamed:@"yuanqi"];
-            v;
-        })];
-        [_filterArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"超脱";
-            v.face = [UIImage imageNamed:@"chaotuo"];
-            v;
-        })];
-        [_filterArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"香氛";
-            v.face = [UIImage imageNamed:@"xiangfen"];
-            v;
-        })];
-        
-        [_filterArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"美白";
-            v.face = [UIImage imageNamed:@"fwhite"];
-            v;
-        })];
-        
-        [_filterArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"浪漫";
-            v.face = [UIImage imageNamed:@"langman"];
-            v;
-        })];
-        [_filterArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"清新";
-            v.face = [UIImage imageNamed:@"qingxin"];
-            v;
-        })];
-        [_filterArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"唯美";
-            v.face = [UIImage imageNamed:@"weimei"];
-            v;
-        })];
-        [_filterArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"粉嫩";
-            v.face = [UIImage imageNamed:@"fennen"];
-            v;
-        })];
-        [_filterArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"怀旧";
-            v.face = [UIImage imageNamed:@"huaijiu"];
-            v;
-        })];
-        [_filterArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"蓝调";
-            v.face = [UIImage imageNamed:@"landiao"];
-            v;
-        })];
-        [_filterArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"清凉";
-            v.face = [UIImage imageNamed:@"qingliang"];
-            v;
-        })];
-        [_filterArray addObject:({
-            V8LabelNode *v = [V8LabelNode new];
-            v.title = @"日系";
-            v.face = [UIImage imageNamed:@"rixi"];
-            v;
-        })];
-        
         _aspectRatio = VIDEO_ASPECT_RATIO_9_16;
         [TXUGCRecord shareInstance].recordDelegate = self;
         
-//        _bgmListVC = [[TCBGMListViewController alloc] init];
-//        [_bgmListVC setBGMControllerListener:self];
         _recordVideoPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"outputRecord.mp4"];
         _joinVideoPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"outputJoin.mp4"];
         
@@ -462,23 +293,20 @@ typedef NS_ENUM(NSInteger,CaptureMode)
 }
 
 #pragma mark ---- Common UI ----
--(void)initUI
-{
+-(void)initUI{
+    
     self.title = @"";
     self.view.backgroundColor = UIColor.blackColor;
-    [_btnNext setTitle:NSLocalizedString(@"Common.Next", nil)
-              forState:UIControlStateNormal];
-    [_btnMusic setTitle:NSLocalizedString(@"TCVideoRecordView.BeautyLabelMusic", nil)
-               forState:UIControlStateNormal];
-    [_btnBeauty setTitle:NSLocalizedString(@"TCVideoRecordView.BeautyLabelBeauty", nil)
-                forState:UIControlStateNormal];    
-    [_btnAudioMix setTitle:NSLocalizedString(@"TCVideoRecordView.AudioMix", nil)
-                  forState:UIControlStateNormal];
-    [_btnCountDown setTitle:NSLocalizedString(@"TCVideoRecordView.CountDown", nil)
-                   forState:UIControlStateNormal];
-    _stillModeLabel.text = NSLocalizedString(@"TCVideoRecordView.StillPhoto",nil);
-    _tapModeLabel.text = NSLocalizedString(@"TCVideoRecordView.TapCapture", nil);
-    _pressModeLabel.text = NSLocalizedString(@"TCVideoRecordView.PressCapture", nil);
+    
+    
+    [_btnNext setTitle:@"下一步" forState:UIControlStateNormal];
+    [_btnMusic setTitle:@"音乐" forState:UIControlStateNormal];
+    [_btnBeauty setTitle:@"美颜" forState:UIControlStateNormal];
+    [_btnAudioMix setTitle:@"混音" forState:UIControlStateNormal];
+    [_btnCountDown setTitle:@"倒计时" forState:UIControlStateNormal];
+    _stillModeLabel.text = @"拍照";
+    _tapModeLabel.text = @"单击拍";
+    _pressModeLabel.text = @"长按拍";
     
     self.recordTimeLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
     self.recordTimeLabel.edgeInsets = UIEdgeInsetsMake(2, 8, 2, 8);
@@ -489,7 +317,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     _videoRecordView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self.view insertSubview:_videoRecordView atIndex:0];
     
-    if (_videoPath) {
+    if (_videoPath) { //根据 _videoPath 判断是否合唱
         // 合唱
         self.speedView.hidden = YES;
         self.speedViewHeight.constant = 1;
@@ -558,12 +386,13 @@ typedef NS_ENUM(NSInteger,CaptureMode)
         param.renderMode = PREVIEW_RENDER_MODE_FILL_EDGE;
         //用于模仿视频播放
         _videoEditer = [[TXVideoEditer alloc] initWithPreview:param];
-        [_videoEditer setVideoPath:_videoPath];
+        [_videoEditer setVideoPath:_videoPath]; //合唱在返回后会闪退，因为在模拟器启用，播放视频。
         //用于模仿视频和录制视频的合成
         _videoJoiner = [[TXVideoJoiner alloc] initWithPreview:nil];
         _videoJoiner.joinerDelegate = self;
         [self.view layoutIfNeeded];
-    }else{
+    }
+    else{
         self.btnCountDown.hidden = YES;
         _videoRecordView.frame = self.view.bounds;
         MAX_RECORD_TIME = 16;
@@ -575,7 +404,6 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     [_videoRecordView addGestureRecognizer:pinchGensture];
     
     _btnNext.enabled = NO;
-    
     
     
     _btnRatio169.tag = VIDEO_ASPECT_RATIO_9_16;
@@ -610,25 +438,12 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     [self configSpeedView];
     UIPanGestureRecognizer* panGensture = [[UIPanGestureRecognizer alloc] initWithTarget:self action: @selector (handlePanSlide:)];
     [self.view addGestureRecognizer:panGensture];
-    //    switch (_videoRatio) {
-    //        case VIDEO_ASPECT_RATIO_3_4:
-    //            [self onBtnRatioClicked:_btnRatio43];
-    //            break;
-    //        case VIDEO_ASPECT_RATIO_1_1:
-    //            [self onBtnRatioClicked:_btnRatio11];
-    //            break;
-    //        case VIDEO_ASPECT_RATIO_9_16:
-    //            [self onBtnRatioClicked:_btnRatio169];
-    //            break;
-    //            
-    //        default:
-    //            break;
-    //    }
 }
 
-#pragma mark ---- Video Beauty UI ----
--(void)initBeautyUI
-{
+#pragma mark ---- 美颜 UI ----
+
+-(void)initBeautyUI{
+    
     NSUInteger controlHeight = [BeautySettingPanel getHeight];
     CGFloat offset = 0;
     if (@available(iOS 11, *)) {
@@ -643,8 +458,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
 }
 
 //加速录制
--(void)configSpeedView
-{
+-(void)configSpeedView{
     _speedBtnList = [NSMutableArray array];
     
     _speedView.layer.cornerRadius = _speedView.size.height / 2;
@@ -685,8 +499,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     }
 }
 
-- (void)setSelectedSpeed:(SpeedMode)tag
-{
+- (void)setSelectedSpeed:(SpeedMode)tag{
     if (tag >= _speedBtnList.count) {
         return;
     }
@@ -715,8 +528,8 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     _speedMode = tag;
 }
 
-- (void)viewDidLayoutSubviews
-{
+- (void)viewDidLayoutSubviews{
+    
     CGFloat btnSpace = 0;
     CGFloat padding = 16 * kScaleX;
     CGFloat btnWidth = (_speedView.width -  2 * padding - btnSpace * 4 ) / 5;
@@ -808,9 +621,12 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     return NO;
 }
 
-#pragma mark - Actions
+#pragma mark ------------ 点击事件 ----------
+
 - (void)takePhoto {
+    
     [[TXUGCRecord shareInstance] snapshot:^(UIImage *image) {
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
             UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void*)imageView);
@@ -828,8 +644,8 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     }];
 }
 
--(void)startVideoRecord
-{
+-(void)startVideoRecord{
+    
     self.btnCountDown.enabled = NO;
     [self startCameraPreview];
     [self setSpeedRate];
@@ -916,8 +732,9 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     }
 }
 
-#pragma mark - Properties
+#pragma mark ---------- Properties 设置录制属性----------
 -(void)setSpeedRate{
+    
     switch (_speedMode) {
         case SpeedMode_VerySlow:
             [[TXUGCRecord shareInstance] setRecordSpeed:VIDEO_RECORD_SPEED_SLOWEST];
@@ -939,19 +756,22 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     }
 }
 
-#pragma mark - Left Side Button Event Handler
--(IBAction)onBtnPopClicked:(id)sender
-{
+#pragma mark --------- 左侧按钮点击事件 ----------
+-(IBAction)onBtnPopClicked:(id)sender{
+    
     NSArray *videoPaths = [[TXUGCRecord shareInstance].partsManager getVideoPathList];
     if (videoPaths.count > 0) {
         UIAlertView *alert = [UIAlertView bk_showAlertViewWithTitle:NSLocalizedString(@"TCVideoRecordView.AbandonRecord", nil) message:nil cancelButtonTitle:NSLocalizedString(@"Common.Cancel", nil) otherButtonTitles:@[NSLocalizedString(@"Common.OK", nil)] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
             if (buttonIndex == 1) {
                 [[NSUserDefaults standardUserDefaults] setObject:nil forKey:CACHE_PATH_LIST];
+                
                 if (_recordType == RecordType_Normal) {
                     [self dismissViewControllerAnimated:YES completion:nil];
                 }else{
-                    [self.navigationController popViewControllerAnimated:YES];
+                    //[self.navigationController popViewControllerAnimated:YES];
+                    [self dismissViewControllerAnimated:YES completion:nil];
                 }
+                
             }else{
                 return;
             }
@@ -959,15 +779,19 @@ typedef NS_ENUM(NSInteger,CaptureMode)
         [alert show];
     }else{
         [[NSUserDefaults standardUserDefaults] setObject:nil forKey:CACHE_PATH_LIST];
+        
         if (_recordType == RecordType_Normal) {
             [self dismissViewControllerAnimated:YES completion:nil];
         }else{
-            [self.navigationController popViewControllerAnimated:YES];
+//            [self.navigationController popViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
     }
 }
 
-#pragma mark - Right Side Button Event Handler
+#pragma mark --------- 右侧按钮点击事件 ----------
+
+//下一步
 - (IBAction)onBtnDoneClicked:(id)sender
 {
 //    if (!_videoRecording)
@@ -975,7 +799,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     
     [self stopVideoRecord];
 }
-
+//选择音乐
 - (IBAction)onBtnMusicClicked:(id)sender
 {
     _vBeauty.hidden = YES;
@@ -1005,7 +829,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
         
     }
 }
-
+//录制视频比例
 - (IBAction)onBtnRatioClicked:(UIButton *)btn
 {
     TXVideoAspectRatio targetRatio = btn.tag;
@@ -1051,7 +875,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
         self.btnRatioMenu.hidden = NO;
     }   
 }
-
+//美颜
 -(IBAction)onBtnBeautyClicked:(id)sender
 {
     _vBeautyShow = !_vBeautyShow;
@@ -1059,7 +883,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     _vBeauty.hidden = !_vBeautyShow;
     [self hideBottomView:_vBeautyShow];
 }
-
+//混音
 - (IBAction)onBtnAudioMix:(id)sender {
     [self hideBottomView:YES];
     _soundMixView.hidden = NO;
@@ -1075,14 +899,14 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     animation.type = kCATransitionFade;
     [_soundMixView.layer addAnimation:animation forKey:nil];
 }
-
+//合拍是显示的倒计时
 - (IBAction)onCountDown:(id)sender {
     [self hideBottomView:YES];
     [self startCountDown];
 }
 
-
 #pragma mark * Bottom Control Tap Handler
+
 -(void)onBtnSpeedClicked:(UIButton *)btn
 {
     [UIView animateWithDuration:0.3 animations:^{
@@ -1090,7 +914,6 @@ typedef NS_ENUM(NSInteger,CaptureMode)
         [self setSelectedSpeed:_speedMode];
     }];
 }
-
 
 -(IBAction)onBtnFlashClicked
 {
@@ -1289,14 +1112,10 @@ typedef NS_ENUM(NSInteger,CaptureMode)
 }
 
 
--(void)startCameraPreview
-{
-    if (_cameraPreviewing == NO)
-    {
-        //简单设置
-        //        TXUGCSimpleConfig * param = [[TXUGCSimpleConfig alloc] init];
-        //        param.videoQuality = VIDEO_QUALITY_MEDIUM;
-        //        [[TXUGCRecord shareInstance] startCameraSimple:param preview:_videoRecordView];
+-(void)startCameraPreview{
+    
+    if (_cameraPreviewing == NO){
+
         //自定义设置
         TXUGCCustomConfig * param = [[TXUGCCustomConfig alloc] init];
         param.videoResolution =  VIDEO_RESOLUTION_720_1280;
@@ -1309,23 +1128,16 @@ typedef NS_ENUM(NSInteger,CaptureMode)
         [[TXUGCRecord shareInstance] startCameraCustom:param preview:_videoRecordView];
         [[TXUGCRecord shareInstance] setBeautyStyle:0 beautyLevel:_beautyDepth whitenessLevel:_whitenDepth ruddinessLevel:0];
         [[TXUGCRecord shareInstance] setVideoRenderMode:VIDEO_RENDER_MODE_ADJUST_RESOLUTION];
-        if (_greenIndex >=0 || _greenIndex < _greenArray.count) {
-            V8LabelNode *v = [_greenArray objectAtIndex:_greenIndex];
-            [[TXUGCRecord shareInstance] setGreenScreenFile:v.file];
-        }
-        
         [[TXUGCRecord shareInstance] setEyeScaleLevel:_eye_level];
         [[TXUGCRecord shareInstance] setFaceScaleLevel:_face_level];
+        
+        //录制视频的时候添加水印
         UIImage *watermark = [UIImage imageNamed:@"watermark.png"];
         CGRect watermarkFrame = (CGRect){0.01, 0.01, 0.3 , 0};
         [[TXUGCRecord shareInstance] setWaterMark:watermark normalizationFrame:watermarkFrame];
         
-#if POD_PITU
-        [self motionTmplSelected:_materialID];
-#endif
         
-        //加载缓存视频
-        if (_preloadingVideos) {
+        if (_preloadingVideos) { //加载缓存视频
             NSArray *cachePathList = [[NSUserDefaults standardUserDefaults] objectForKey:CACHE_PATH_LIST];
             NSString *cacheFolder = [[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"TXUGC"] stringByAppendingPathComponent:@"TXUGCParts"];
             //预加载视频 -> SDK
@@ -1348,17 +1160,17 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     }
 }
 
--(void)stopCameraPreview
-{
-    if (_cameraPreviewing == YES)
-    {
+-(void)stopCameraPreview{
+    
+    if (_cameraPreviewing == YES){
+        
         [[TXUGCRecord shareInstance] stopCameraPreview];
         _cameraPreviewing = NO;
     }
 }
 
--(void)alert:(NSString *)title msg:(NSString *)msg
-{
+-(void)alert:(NSString *)title msg:(NSString *)msg{
+    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self cancelButtonTitle:NSLocalizedString(@"Common.OK", nil) otherButtonTitles:nil, nil];
     [alert show];
 }
@@ -1391,8 +1203,8 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     [[NSUserDefaults standardUserDefaults] setObject:cachePathList forKey:CACHE_PATH_LIST];
 }
 
--(void)joinAllPartsResult:(int)result
-{
+-(void)joinAllPartsResult:(int)result{
+    
     if(0 == result){
         if (_recordType == RecordType_Normal) {
             [self stopCameraPreview];
@@ -1489,8 +1301,6 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     }
 }
 
-
-
 ///  选拍照模式
 - (void)setCaptureMode:(CaptureMode)captureMode
 {
@@ -1558,8 +1368,8 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     }
 }
 
--(void)refreshRecordTime:(CGFloat)second
-{
+-(void)refreshRecordTime:(CGFloat)second{
+    
     _currentRecordTime = second;
     [_progressView update:_currentRecordTime / MAX_RECORD_TIME];
     long min = (int)_currentRecordTime / 60;
@@ -1568,9 +1378,10 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     [_recordTimeLabel setText:[NSString stringWithFormat:@"%02ld:%02ld", min, sec]];
 }
 
-#pragma mark TXUGCRecordListener
--(void) onRecordProgress:(NSInteger)milliSecond;
-{
+#pragma mark ------ TXUGCRecordListener 录制视频delegate   --------
+
+-(void) onRecordProgress:(NSInteger)milliSecond{
+    
     _recordTime =  milliSecond / 1000.0;
     [self refreshRecordTime: _recordTime];
     
@@ -1590,30 +1401,29 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     }
 }
 
--(void) onRecordComplete:(TXUGCRecordResult*)result;
-{
-    if (_appForeground)
-    {
-        if (_currentRecordTime >= MIN_RECORD_TIME)
-        {
+-(void) onRecordComplete:(TXUGCRecordResult*)result{
+    
+    if (_appForeground){
+        if (_currentRecordTime >= MIN_RECORD_TIME){
             if (result.retCode != UGC_RECORD_RESULT_FAILED) {
                 [self stopVideoRecord];
             }else{
-                [self toastTip:NSLocalizedString(@"TCVideoRecordView.ErrorREC", nil)];
+                [self toastTip:@"录制失败"];
             }
         } else {
-            [self toastTip:NSLocalizedString(@"TCVideoRecordView.ErrorTime", nil)];
+            [self toastTip:@"至少要录制5秒"];
         }
     }
 }
 
-#pragma mark TXVideoJoinerListener
--(void) onJoinProgress:(float)progress
-{
+#pragma mark -------- TXVideoJoinerListener 视频合成Delegate--------
+
+-(void) onJoinProgress:(float)progress{
+    
     _hub.label.text = [NSString stringWithFormat:@"%@%d%%",NSLocalizedString(@"TCVideoEditPrevView.VideoSynthesizing",nil), (int)(progress * 100)];
 }
--(void) onJoinComplete:(TXJoinerResult *)result
-{
+-(void) onJoinComplete:(TXJoinerResult *)result{
+    
     [_hub hideAnimated:YES];
     if (_appForeground && result.retCode == RECORD_RESULT_OK) {
         [self stopCameraPreview];
@@ -1630,29 +1440,6 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     [TCUtil report:xiaoshipin_videojoiner userName:nil code:result.retCode msg:result.descMsg];
 }
 
-#if POD_PITU
-- (void)motionTmplSelected:(NSString *)materialID {
-    if (materialID == nil) {
-        [MCTip hideText];
-    }
-    _materialID = materialID;
-    if ([MaterialManager isOnlinePackage:materialID]) {
-        [[TXUGCRecord shareInstance] selectMotionTmpl:materialID inDir:[MaterialManager packageDownloadDir]];
-    } else {
-        NSString *localPackageDir = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Resource"];
-        [[TXUGCRecord shareInstance] selectMotionTmpl:materialID inDir:localPackageDir];
-    }
-}
-#endif
-#pragma mark - HorizontalPickerView DataSource
-- (NSInteger)numberOfElementsInHorizontalPickerView:(V8HorizontalPickerView *)picker {
-    if (picker == _greenPickerView) {
-        return [_greenArray count];
-    } else if(picker == _filterPickerView) {
-        return [_filterArray count];
-    }
-    return 0;
-}
 
 #pragma mark - BeautyLoadPituDelegate
 - (void)onLoadPituStart
@@ -1759,24 +1546,6 @@ typedef NS_ENUM(NSInteger,CaptureMode)
         }
     });
 }
-
-
-//-(void) onBGMControllerPlay:(NSObject*) path{
-//
-//
-//    if(path == nil) return;
-//    [self onSetBGM:path]; //设置北京音乐
-//    //试听音乐这里要把RecordSpeed 设置为VIDEO_RECORD_SPEED_NOMAL，否则音乐可能会出现加速或则慢速播现象
-//    [[TXUGCRecord shareInstance] setRecordSpeed:VIDEO_RECORD_SPEED_NOMAL];
-//    [self playBGM:0]; //背景音乐从0开始播放
-//    dispatch_async(dispatch_get_main_queue(), ^(){ //在主线程显示音乐编辑View
-//        [_musicView resetCutView];
-//        if(_musicView.hidden){
-//            _musicView.hidden = !_musicView.hidden;
-//            [self hideBottomView:!_musicView.hidden];
-//        }
-//    });
-//}
 
 #pragma mark - SoundMixView
 #pragma mark   * SoundMixViewDelegate
@@ -1908,114 +1677,6 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     }
 }
 
-
-#pragma mark - HorizontalPickerView Delegate Methods
-- (UIView *)horizontalPickerView:(V8HorizontalPickerView *)picker viewForElementAtIndex:(NSInteger)index {
-    if (picker == _greenPickerView) {
-        V8LabelNode *v = [_greenArray objectAtIndex:index];
-        return [[UIImageView alloc] initWithImage:v.face];
-    } else if(picker == _filterPickerView) {
-        V8LabelNode *v = [_filterArray objectAtIndex:index];
-        return [[UIImageView alloc] initWithImage:v.face];
-    }
-    return nil;
-}
-
-- (NSInteger) horizontalPickerView:(V8HorizontalPickerView *)picker widthForElementAtIndex:(NSInteger)index {
-    if (picker == _greenPickerView) {
-        return 70;
-    }
-    return 90;
-}
-
-- (void)horizontalPickerView:(V8HorizontalPickerView *)picker didSelectElementAtIndex:(NSInteger)index
-{
-    if (picker == _greenPickerView) {
-        _greenIndex = index;
-        V8LabelNode *v = [_greenArray objectAtIndex:index];
-        [[TXUGCRecord shareInstance] setGreenScreenFile:v.file];
-        return;
-    }
-    if (picker == _filterPickerView) {
-        _filterIndex = index;
-        
-        [self setFilter:_filterIndex];
-    }
-}
-
-- (void)setFilter:(NSInteger)index
-{
-    NSString* lookupFileName = @"";
-    
-    switch (index) {
-        case FilterType_None:
-            break;
-        case FilterType_biaozhun:
-            lookupFileName = @"filter_biaozhun";
-            break;
-        case FilterType_yinghong:
-            lookupFileName = @"filter_yinghong";
-            break;
-        case FilterType_yunshang:
-            lookupFileName = @"filter_yunshang";
-            break;
-        case FilterType_chunzhen:
-            lookupFileName = @"filter_chunzhen";
-            break;
-        case FilterType_bailan:
-            lookupFileName = @"filter_bailan";
-            break;
-        case FilterType_yuanqi:
-            lookupFileName = @"filter_yuanqi";
-            break;
-        case FilterType_chaotuo:
-            lookupFileName = @"filter_chaotuo";
-            break;
-        case FilterType_xiangfen:
-            lookupFileName = @"filter_xiangfen";
-            break;
-        case FilterType_white:
-            lookupFileName = @"filter_white";
-            break;
-        case FilterType_langman:
-            lookupFileName = @"filter_langman";
-            break;
-        case FilterType_qingxin:
-            lookupFileName = @"filter_qingxin";
-            break;
-        case FilterType_weimei:
-            lookupFileName = @"filter_weimei";
-            break;
-        case FilterType_fennen:
-            lookupFileName = @"filter_fennen";
-            break;
-        case FilterType_huaijiu:
-            lookupFileName = @"filter_huaijiu";
-            break;
-        case FilterType_landiao:
-            lookupFileName = @"filter_landiao";
-            break;
-        case FilterType_qingliang:
-            lookupFileName = @"filter_qingliang";
-            break;
-        case FilterType_rixi:
-            lookupFileName = @"filter_rixi";
-            break;
-        default:
-            break;
-    }
-    
-    NSString * path = [[NSBundle mainBundle] pathForResource:lookupFileName ofType:@"png"];
-    if (path != nil && index != FilterType_None)
-    {
-        [[TXUGCRecord shareInstance] setFilter:[UIImage imageWithContentsOfFile:path]];
-    }
-    else
-    {
-        [[TXUGCRecord shareInstance] setFilter:nil];
-    }
-}
-
 #pragma mark - Misc Methods
 
 - (float) heightForString:(UITextView *)textView andWidth:(float)width{
@@ -2052,8 +1713,8 @@ typedef NS_ENUM(NSInteger,CaptureMode)
 }
 
 #pragma mark - gesture handler
-- (void)handlePanSlide:(UIPanGestureRecognizer*)recognizer
-{
+- (void)handlePanSlide:(UIPanGestureRecognizer*)recognizer{
+    
     CGPoint translation = [recognizer translationInView:self.view.superview];
     [recognizer velocityInView:self.view];
     CGPoint speed = [recognizer velocityInView:self.view];
@@ -2164,6 +1825,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
 }
 
 - (void)uinit{
+    
     [[TXUGCRecord shareInstance] stopRecord];
     [[TXUGCRecord shareInstance] stopCameraPreview];
     [[TXUGCRecord shareInstance].partsManager deleteAllParts];

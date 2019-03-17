@@ -10,9 +10,6 @@
 #import "PituMotionAddress.h"
 #import "TextCell.h"
 #import "AFNetworking.h"
-#if POD_PITU
-#import "ZipArchive.h"
-#endif
 #import "ColorMacro.h"
 
 #define BeautyViewMargin 8
@@ -550,54 +547,7 @@
 }
 
 - (void)startLoadPitu:(NSString *)pituDir pituName:(NSString *)pituName packageURL:(NSURL *)packageURL{
-#if POD_PITU
-    if (self.operation) {
-        if (self.operation.state != NSURLSessionTaskStateRunning) {
-            [self.operation resume];
-        }
-    }
-    NSString *targetPath = [NSString stringWithFormat:@"%@/%@.zip", pituDir, pituName];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:targetPath]) {
-        [[NSFileManager defaultManager] removeItemAtPath:targetPath error:nil];
-    }
-    
-    __weak __typeof(self) weakSelf = self;
-    NSURLRequest *downloadReq = [NSURLRequest requestWithURL:packageURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30.f];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    __weak AFHTTPSessionManager *weakManager = manager;
-    [self.pituDelegate onLoadPituStart];
-    self.operation = [manager downloadTaskWithRequest:downloadReq progress:^(NSProgress * _Nonnull downloadProgress) {
-        if (weakSelf.pituDelegate) {
-            CGFloat progress = (float)downloadProgress.completedUnitCount / (float)downloadProgress.totalUnitCount;
-            [weakSelf.pituDelegate onLoadPituProgress:progress];
-        }
-    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath_, NSURLResponse * _Nonnull response) {
-        return [NSURL fileURLWithPath:targetPath];
-    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
-        [weakManager invalidateSessionCancelingTasks:YES];
-        if (error) {
-            [weakSelf.pituDelegate onLoadPituFailed];
-            return;
-        }
-        // 解压
-        BOOL unzipSuccess = NO;
-        ZipArchive *zipArchive = [[ZipArchive alloc] init];
-        if ([zipArchive UnzipOpenFile:targetPath]) {
-            unzipSuccess = [zipArchive UnzipFileTo:pituDir overWrite:YES];
-            [zipArchive UnzipCloseFile];
-            
-            // 删除zip文件
-            [[NSFileManager defaultManager] removeItemAtPath:targetPath error:&error];
-        }
-        if (unzipSuccess) {
-            [weakSelf.pituDelegate onLoadPituFinished];
-            [weakSelf.delegate onSelectMotionTmpl:pituName inDir:pituDir];
-        } else {
-            [weakSelf.pituDelegate onLoadPituFailed];
-        }
-    }];
-    [self.operation resume];
-#endif
+
 }
 
 #pragma mark - height

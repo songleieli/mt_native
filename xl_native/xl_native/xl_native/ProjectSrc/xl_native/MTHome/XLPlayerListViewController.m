@@ -394,64 +394,10 @@
 
 - (void)shareClicked:(HomeListModel *)listModel{
     
-//    SharePopView *popView = [[SharePopView alloc] init];
-//    popView.homeListModel = listModel;
-//    popView.delegate = self;
-//    [popView show];
-    
-    
-//    NSDictionary *sinaDBDictionary = [sinaDBArray objectAtIndex:0];
-    NSString *currentNoodleId = @"49271173787291648";
-    NSString *content = @"{\"noodleId\":\"49271173787291648\",\"musicName\":\"@KillerD创作的原声\",\"musicId\":\"6584922963072518919\",\"fileId\":\"5285890786874115491\",\"musicUrl\":\"http://p3-dy.bytecdn.cn/obj/a10b0002a3b2c4ea81f8\",\"addr\":\"北京市朝阳区北苑路180号\",\"size\":\"720p\",\"title\":\"songlei 发布内容测试\",\"topic\":\"#万圣节\",\"noodleVideoName\":\"SFgkEQwEe8YA.mp4\",\"coverUrl\":\"https://p22-dy.bytecdn.cn/aweme/1080x1080/1c9af00026150f891676d.jpeg\",\"nickname\":\"sll\",\"noodleVideoCover\":\"http://1258810953.vod2.myqcloud.com/26f8b0acvodcq1258810953/a36324f75285890786874115491/5285890786874115492.png\",\"storagePath\":\"http://1258810953.vod2.myqcloud.com/26f8b0acvodcq1258810953/a36324f75285890786874115491/SFgkEQwEe8YA.mp4\"}";
-    
-    NSString *boundary = @"14745591349540787582088777204";
-    
-    
-    //设置请求体中内容
-    NSMutableString *bodyString = [NSMutableString string];
-    [bodyString appendFormat:@"-----------------------------%@\r\n", boundary];
-    [bodyString appendString:@"Content-Disposition: form-data; name=\"currentNoodleId\"\r\n"];
-    [bodyString appendString:@"\r\n"];
-    [bodyString appendString:currentNoodleId];
-    [bodyString appendString:@"\r\n"];
-    [bodyString appendFormat:@"-----------------------------%@\r\n", boundary];
-    [bodyString appendString:@"Content-Disposition: form-data; name=\"content\"\r\n"];
-    [bodyString appendString:@"\r\n"];
-    [bodyString appendString:content];
-    [bodyString appendString:@"\r\n"];
-    [bodyString appendFormat:@"-----------------------------%@--\r\n",boundary];
-    
-    
-    
-    NSString *strTest = @"-----------------------------14745591349540787582088777204Content-Disposition:form-data;name=\"currentNoodleId\"49271173787291648-----------------------------14745591349540787582088777204Content-Disposition:form-data;name=\"content\"{\"noodleId\":\"49271173787291648\",\"musicName\":\"@KillerD创作的原声\",\"musicId\":\"6584922963072518919\",\"fileId\":\"5285890786874115491\",\"musicUrl\":\"http://p3-dy.bytecdn.cn/obj/a10b0002a3b2c4ea81f8\",\"addr\":\"北京市朝阳区北苑路180号\",\"size\":\"720p\",\"title\":\"songlei 发布内容测试\",\"topic\":\"#万圣节\",\"noodleVideoName\":\"SFgkEQwEe8YA.mp4\",\"coverUrl\":\"https://p22-dy.bytecdn.cn/aweme/1080x1080/1c9af00026150f891676d.jpeg\",\"nickname\":\"sll\",\"noodleVideoCover\":\"http://1258810953.vod2.myqcloud.com/26f8b0acvodcq1258810953/a36324f75285890786874115491/5285890786874115492.png\",\"storagePath\":\"http://1258810953.vod2.myqcloud.com/26f8b0acvodcq1258810953/a36324f75285890786874115491/SFgkEQwEe8YA.mp4\"}-----------------------------14745591349540787582088777204--";
-    
-    NSMutableData *bodyData = [[NSMutableData alloc]initWithLength:0];
-    NSData *bodyStringData = [strTest dataUsingEncoding:NSUTF8StringEncoding];
-    [bodyData appendData:bodyStringData];
-    
-    NSString *len = [NSString stringWithFormat:@"%lu",(unsigned long)[bodyData length]];
-    
-    NSString *s = [NSString stringWithFormat:@"multipart/form-data; boundary=---------------------------%@", boundary];
-    
-    
-    NSString *url = @"http://106.13.57.126:8080/miantiao/video/saveVideo";
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL: [NSURL URLWithString: url]];
-    request.defaultResponseEncoding = NSUTF8StringEncoding;
-    request.useCookiePersistence = YES;
-    [request setRequestMethod:@"POST"];
-    [request addRequestHeader:@"Content-Type" value:s];
-    [request addRequestHeader:@"Content-Length" value:len];
-    [request setPostBody:bodyData];
-    
-    
-    [request startSynchronous];
-    
-    NSError *error = request.error;
-    if (!error) {
-         NSLog(@"%@",[request responseString]);
-    }else{
-         NSLog(@"%@",[[request error]localizedDescription]);
-    }
+    SharePopView *popView = [[SharePopView alloc] init];
+    popView.homeListModel = listModel;
+    popView.delegate = self;
+    [popView show];
 }
 
 - (void)musicCDClicked:(HomeListModel *)listModel{

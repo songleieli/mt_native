@@ -62,14 +62,5 @@
 #define ENABLE_LOG 0
 
 
-#ifndef POD_PITU
-#define POD_PITU 0
-#endif
-
-#ifndef YOUTU_AUTH
-#define YOUTU_AUTH 0
-#endif
-
-
 #endif /* TCConstants_h */
 

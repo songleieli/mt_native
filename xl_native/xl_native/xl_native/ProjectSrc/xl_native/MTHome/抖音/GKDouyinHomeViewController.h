@@ -9,8 +9,14 @@
 #import "ZJCustomTabBarLjhTableViewController.h"
 #import "UINavigationController+GKCategory.h"
 
+#import "GKDouyinHomeSearchViewController.h"
+#import "XLPlayerListViewController.h"
+
 @interface GKDouyinHomeViewController : ZJCustomTabBarLjhTableViewController
 
 @property (atomic, assign) CGFloat  offset; //判断是否向右滑动的变量
+
+@property (nonatomic, strong) GKDouyinHomeSearchViewController  *searchVC; //左侧Controller
+@property (nonatomic, strong) XLPlayerListViewController  *playerVC; //右侧Controller
 
 @end

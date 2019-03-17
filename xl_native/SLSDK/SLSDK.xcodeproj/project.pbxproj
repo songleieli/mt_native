@@ -62,8 +62,6 @@
 		5E06B7AC1B05EB2300F877A7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E06B7AB1B05EB2300F877A7 /* CoreData.framework */; };
 		5E6702771B0B3D4A0078D67B /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6702761B0B3D4A0078D67B /* SFHFKeychainUtils.m */; };
 		5E67027A1B0B3E6A0078D67B /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6702791B0B3E6A0078D67B /* UIDevice+Hardware.m */; };
-		5E8964661B059B0800810553 /* SLSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5E8964651B059B0800810553 /* SLSDK.h */; };
-		5E89648C1B05A4C100810553 /* SLSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E89648B1B05A4C100810553 /* SLSDK.m */; };
 		5E9AC7AC1B05E41800AD0158 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9AC7AB1B05E41800AD0158 /* CFNetwork.framework */; };
 		5E9AC7AE1B05E42C00AD0158 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9AC7AD1B05E42C00AD0158 /* SystemConfiguration.framework */; };
 		5E9AC7B21B05E46100AD0158 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9AC7B11B05E46100AD0158 /* MobileCoreServices.framework */; };
@@ -93,7 +91,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				5E8964661B059B0800810553 /* SLSDK.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,8 +211,6 @@
 		5E6702781B0B3E6A0078D67B /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
 		5E6702791B0B3E6A0078D67B /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
 		5E8964621B059B0800810553 /* libSLSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSLSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E8964651B059B0800810553 /* SLSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLSDK.h; sourceTree = "<group>"; };
-		5E89648B1B05A4C100810553 /* SLSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSDK.m; sourceTree = "<group>"; };
 		5E9AC6F11B05A94E00AD0158 /* SLGlobalDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLGlobalDefines.h; sourceTree = "<group>"; };
 		5E9AC7AB1B05E41800AD0158 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5E9AC7AD1B05E42C00AD0158 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -578,8 +573,6 @@
 				5E2EA7541B05FE6C00BC8A74 /* SLExternal */,
 				5E9AC6F41B05DC4D00AD0158 /* SLDB */,
 				5E9AC6F81B05DC4D00AD0158 /* SLAdditions */,
-				5E8964651B059B0800810553 /* SLSDK.h */,
-				5E89648B1B05A4C100810553 /* SLSDK.m */,
 			);
 			path = SLSDK;
 			sourceTree = "<group>";
@@ -765,7 +758,6 @@
 				03A9A0201B08C7F100256251 /* ASIFormDataRequest.m in Sources */,
 				8812BFA31C3CAD81007B565A /* ZS_PerformanceLog.m in Sources */,
 				0385AFD71B0A0CB900C446AD /* WCBaseContext.m in Sources */,
-				5E89648C1B05A4C100810553 /* SLSDK.m in Sources */,
 				03A9A0211B08C7F100256251 /* ASIHTTPRequest.m in Sources */,
 				03FD5AAF1BFC8EDE003445CC /* NSString+Encryption.m in Sources */,
 				04DCE5AC21492C250045F75E /* UIColor+Category.m in Sources */,

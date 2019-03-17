@@ -235,16 +235,26 @@
 
 -(void)onloadVideoComplete:(NSString *)videoPath {
     if (videoPath) {
+        HomeListModel *homeListModel= self.homeNewViewController.playerVC.currentCell.listModel;
+
+        MusicSearchModel *musicSearchModel = [[MusicSearchModel alloc] init];
+        musicSearchModel.musicId = homeListModel.musicId;
+        musicSearchModel.musicName = homeListModel.musicName;
+        musicSearchModel.coverUrl = homeListModel.coverUrl;
+        musicSearchModel.playUrl = homeListModel.musicUrl;
+        
+        
         TCVideoRecordViewController *vc = [[TCVideoRecordViewController alloc] init];
         vc.videoPath = videoPath;
         vc.savePath = YES;
+        vc.selectMusicModel = musicSearchModel;
+        
+        musicSearchModel = nil;
         
         BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
-
         [self presentViewController:nav animated:YES completion:nil];
-
-//        [[TCBaseAppDelegate sharedAppDelegate] pushViewController:vc animated:YES];
         [_hub hideAnimated:YES];
+        
     }else{
         _hub.label.text = NSLocalizedString(@"TCVodPlay.VideoLoadFailed", nil);
         [_hub hideAnimated:YES afterDelay:1.0];
@@ -277,12 +287,32 @@
         _hub.label.text = NSLocalizedString(@"TCVodPlay.VideoLoading", nil);
         
         __weak __typeof(self) weakSelf = self;
-        NSString *ducumentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-        NSString *cachePath = [ducumentPath stringByAppendingPathComponent: @"Chorus.mp4"];
-        if ([[NSFileManager defaultManager] fileExistsAtPath:cachePath]){
-            [self onloadVideoComplete:cachePath];
+        
+        
+        //获取本地磁盘缓存文件夹路径，同视频缓存同一个目录，缓存一天后删除
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        NSString *path = [paths lastObject];
+        NSString *diskCachePath = [NSString stringWithFormat:@"%@%@",path,@"/webCache"];
+        
+        //当前视频播放Model
+        HomeListModel *homeListModel= self.homeNewViewController.playerVC.currentCell.listModel;
+        NSString *name = [NSString stringWithFormat:@"/chorus_%@.mp4",homeListModel.noodleVideoId];
+        
+        NSString *chorusFileName = [NSString stringWithFormat:@"%@%@",diskCachePath,name];
+        
+        
+//        NSString *ducumentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//        NSString *cachePath = [ducumentPath stringByAppendingPathComponent: @"Chorus.mp4"];
+        
+
+        if ([[NSFileManager defaultManager] fileExistsAtPath:chorusFileName]){
+            [self onloadVideoComplete:chorusFileName];
         }else{
-            [TCUtil downloadVideo:DEFAULT_CHORUS_URL cachePath:cachePath  process:^(CGFloat process) {
+            
+            //下载视频
+            NSString *videoUrl = self.homeNewViewController.playerVC.currentCell.listModel.storagePath;
+            
+            [TCUtil downloadVideo:videoUrl cachePath:chorusFileName  process:^(CGFloat process) {
                 [weakSelf onloadVideoProcess:process];
             } complete:^(NSString *videoPath) {
                 [weakSelf onloadVideoComplete:videoPath];

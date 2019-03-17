@@ -50,8 +50,6 @@
 @property (nonatomic) QBImagePickerMediaType mediaType;
 
 
-
-
 - (void)selectTabAtIndex:(NSInteger)toIndex;
 
 @end
