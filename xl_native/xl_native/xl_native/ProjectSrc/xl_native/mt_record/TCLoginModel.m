@@ -8,7 +8,7 @@
 
 #import "TCLoginModel.h"
 #import "TCUserInfoModel.h"
-#import "TCLiveListModel.h"
+//#import "TCLiveListModel.h"
 #import "TCConstants.h"
 #import "TCUtil.h"
 #ifndef APP_EXT
@@ -16,7 +16,7 @@
 #endif
 #import "AFNetworking.h"
 #import "NSString+CommonTX.h"
-#import "TCLiveListModel.h"
+//#import "TCLiveListModel.h"
 
 #define kAutoLoginKey         @"kAutoLoginKey"
 #define kEachKickErrorCode    6208   //互踢下线错误码

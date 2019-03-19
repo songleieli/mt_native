@@ -9,7 +9,6 @@
 #import "MusicDownloadHelper.h"
 #import "AFHTTPSessionManager.h"
 #import "pthread.h"
-#import "TCLoginModel.h"
 #import "TCConstants.h"
 
 @interface MusicDownloadHelper(){

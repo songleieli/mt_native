@@ -8,7 +8,6 @@
 
 #import "TCUploadHelper.h"
 #import "TCUserInfoModel.h"
-#import "TCLoginModel.h"
 #import "TCUtil.h"
 #import <QCloudCore/QCloudCore.h>
 #import <QCloudCOSXML/QCloudCOSXML.h>
@@ -157,64 +156,7 @@ static TCUploadHelper *_shareInstance = nil;
 
 - (void)getCOSSign:(void (^)(int errCode))handler
 {
-    [[TCLoginModel sharedInstance] getCosSign:^(int errCode, NSString *msg, NSDictionary *resultDict) {
-        if (errCode != 200)
-        {
-            DebugLog(@"getCOSSign failed");
-            handler(errCode);
-        }
-        else
-        {
-            NSString* strSignKey = nil;
-            NSString* strKeyTime = nil;
-            if (resultDict && [resultDict objectForKey:@"signKey"])
-            {
-                strSignKey = resultDict[@"signKey"];
-            }
-            if (resultDict && [resultDict objectForKey:@"keyTime"])
-            {
-                strKeyTime = resultDict[@"keyTime"];
-            }
-            
-            
-            if (_creator == nil) {
-                _creator = [[QCloudAuthentationHeadV5Creator alloc] initWithSignKey:[[TCUserInfoModel sharedInstance] getUserProfile].secretId  signKey:strSignKey keyTime:strKeyTime];
-            } else {
-                [_creator setSignKey:[[TCUserInfoModel sharedInstance] getUserProfile].secretId signKey:strSignKey keyTime:strKeyTime];
-            }
-            handler(errCode);
-        }
-    }];
     
-    //    NSDictionary* dictParam = @{@"Action" : @"GetCOSSignV2"};
-    //    [TCUtil asyncSendHttpRequest:dictParam handler:^(int result, NSDictionary *resultDict) {
-    //        if (result != 0)
-    //        {
-    //            DebugLog(@"getCOSSign failed");
-    //            handler(result);
-    //        }
-    //        else
-    //        {
-    //            NSString* strSignKey = nil;
-    //            NSString* strKeyTime = nil;
-    //            if (resultDict && [resultDict objectForKey:@"signKey"])
-    //            {
-    //                strSignKey = resultDict[@"signKey"];
-    //            }
-    //            if (resultDict && [resultDict objectForKey:@"keyTime"])
-    //            {
-    //                strKeyTime = resultDict[@"keyTime"];
-    //            }
-    //
-    //
-    //            if (_creator == nil) {
-    //                _creator = [[QCloudAuthentationHeadV5Creator alloc] initWithSignKey:kTCCOSSecretId signKey:strSignKey keyTime:strKeyTime];
-    //            } else {
-    //                [_creator setSignKey:kTCCOSSecretId signKey:strSignKey keyTime:strKeyTime];
-    //            }
-    //            handler(result);
-    //        }
-    //    }];
 }
 
 @end

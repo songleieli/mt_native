@@ -7,7 +7,6 @@
 //
 
 #import "TCUtil.h"
-//#import "MCTip.h"
 #import "NSData+CommonTX.h"
 #import "NSString+CommonTX.h"
 #import <mach/mach.h>
@@ -15,7 +14,6 @@
 #import <mach/mach.h>
 #import <sys/types.h>
 #import <sys/sysctl.h>
-#import "TCUserInfoModel.h"
 #import "TCLoginParam.h"
 #import "AFNetworking.h"
 

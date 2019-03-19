@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "NetWork_mt_getUploadSignature.h"
-#import "NetWork_mt_search_getMusicList.h"
+#import "PublishViewController.h"
 
-@interface TCVideoEditViewController : UIViewController
+@interface TCVideoEditViewController : ZJBaseViewController
 
 @property (copy,nonatomic) NSString *videoPath;
 

@@ -199,6 +199,8 @@
 		04B66E9921C15D41000D6C56 /* awemes.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B66E9721C15D40000D6C56 /* awemes.json */; };
 		04B66E9A21C15D41000D6C56 /* favorites.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B66E9821C15D41000D6C56 /* favorites.json */; };
 		04B66E9D21C15DF3000D6C56 /* AwemesResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B66E9C21C15DF2000D6C56 /* AwemesResponse.m */; };
+		04B6E2C4224140F900F3B51E /* TCLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B6E2C2224140F800F3B51E /* TCLoginModel.m */; };
+		04B6E2C72241423B00F3B51E /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B6E2C62241423B00F3B51E /* PublishViewController.m */; };
 		04BC59872197C88700D5EA12 /* XLProjectWkWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BC59862197C88600D5EA12 /* XLProjectWkWebViewController.m */; };
 		04C171E221CDDE9E0077FA6C /* UserInfoPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */; };
 		04C1720B21CE3EC80077FA6C /* NetWork_mt_getMyVideos.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171F421CE3EC70077FA6C /* NetWork_mt_getMyVideos.m */; };
@@ -486,9 +488,7 @@
 		04DCA88121A55C5B00691A3A /* TVCClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA87721A55C5A00691A3A /* TVCClient.m */; };
 		04DCA88221A55C5B00691A3A /* TVCClientInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA87921A55C5A00691A3A /* TVCClientInner.m */; };
 		04DCA88921A55E3E00691A3A /* TCUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA88721A55E3D00691A3A /* TCUserInfoModel.m */; };
-		04DCA88C21A55FF700691A3A /* TCLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA88A21A55FF600691A3A /* TCLoginModel.m */; };
 		04DCA88F21A5623500691A3A /* TCLoginParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA88D21A5623300691A3A /* TCLoginParam.m */; };
-		04DCA89221A5634700691A3A /* TCLiveListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA89121A5634600691A3A /* TCLiveListModel.m */; };
 		04DCA8D721A565D500691A3A /* TCVideoCutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA89721A565D400691A3A /* TCVideoCutViewController.m */; };
 		04DCA8D921A565D500691A3A /* TXVideoLoadingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DCA89921A565D400691A3A /* TXVideoLoadingController.xib */; };
 		04DCA8DA21A565D500691A3A /* TCVideoLoadingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA89A21A565D400691A3A /* TCVideoLoadingController.m */; };
@@ -1400,6 +1400,10 @@
 		04B66E9821C15D41000D6C56 /* favorites.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = favorites.json; sourceTree = "<group>"; };
 		04B66E9B21C15DF2000D6C56 /* AwemesResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwemesResponse.h; sourceTree = "<group>"; };
 		04B66E9C21C15DF2000D6C56 /* AwemesResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwemesResponse.m; sourceTree = "<group>"; };
+		04B6E2C2224140F800F3B51E /* TCLoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLoginModel.m; sourceTree = "<group>"; };
+		04B6E2C3224140F900F3B51E /* TCLoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLoginModel.h; sourceTree = "<group>"; };
+		04B6E2C52241423B00F3B51E /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
+		04B6E2C62241423B00F3B51E /* PublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
 		04BC59852197C88600D5EA12 /* XLProjectWkWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLProjectWkWebViewController.h; sourceTree = "<group>"; };
 		04BC59862197C88600D5EA12 /* XLProjectWkWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLProjectWkWebViewController.m; sourceTree = "<group>"; };
 		04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoPlayerCell.m; sourceTree = "<group>"; };
@@ -1977,12 +1981,8 @@
 		04DCA87921A55C5A00691A3A /* TVCClientInner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVCClientInner.m; sourceTree = "<group>"; };
 		04DCA88721A55E3D00691A3A /* TCUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUserInfoModel.m; sourceTree = "<group>"; };
 		04DCA88821A55E3E00691A3A /* TCUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUserInfoModel.h; sourceTree = "<group>"; };
-		04DCA88A21A55FF600691A3A /* TCLoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLoginModel.m; sourceTree = "<group>"; };
-		04DCA88B21A55FF700691A3A /* TCLoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLoginModel.h; sourceTree = "<group>"; };
 		04DCA88D21A5623300691A3A /* TCLoginParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLoginParam.m; sourceTree = "<group>"; };
 		04DCA88E21A5623400691A3A /* TCLoginParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLoginParam.h; sourceTree = "<group>"; };
-		04DCA89021A5634500691A3A /* TCLiveListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLiveListModel.h; sourceTree = "<group>"; };
-		04DCA89121A5634600691A3A /* TCLiveListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLiveListModel.m; sourceTree = "<group>"; };
 		04DCA89321A563CA00691A3A /* TCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCConstants.h; sourceTree = "<group>"; };
 		04DCA89721A565D400691A3A /* TCVideoCutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCVideoCutViewController.m; sourceTree = "<group>"; };
 		04DCA89921A565D400691A3A /* TXVideoLoadingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TXVideoLoadingController.xib; sourceTree = "<group>"; };
@@ -2983,12 +2983,10 @@
 				04DCA86321A55A2D00691A3A /* SDKHeader.h */,
 				043548EB21A79ED700AED5A8 /* Localizable.strings */,
 				04DCA89321A563CA00691A3A /* TCConstants.h */,
-				04DCA89021A5634500691A3A /* TCLiveListModel.h */,
-				04DCA89121A5634600691A3A /* TCLiveListModel.m */,
 				04DCA88821A55E3E00691A3A /* TCUserInfoModel.h */,
 				04DCA88721A55E3D00691A3A /* TCUserInfoModel.m */,
-				04DCA88B21A55FF700691A3A /* TCLoginModel.h */,
-				04DCA88A21A55FF600691A3A /* TCLoginModel.m */,
+				04B6E2C3224140F900F3B51E /* TCLoginModel.h */,
+				04B6E2C2224140F800F3B51E /* TCLoginModel.m */,
 				04DCA88E21A5623400691A3A /* TCLoginParam.h */,
 				04DCA88D21A5623300691A3A /* TCLoginParam.m */,
 				04B0E19421A6937500ABCF16 /* BlocksKit */,
@@ -4194,6 +4192,8 @@
 				04DCA89C21A565D400691A3A /* TCVideoLoadingController.xib */,
 				04DCA8B321A565D400691A3A /* TCVideoEditViewController.h */,
 				04DCA89E21A565D400691A3A /* TCVideoEditViewController.m */,
+				04B6E2C52241423B00F3B51E /* PublishViewController.h */,
+				04B6E2C62241423B00F3B51E /* PublishViewController.m */,
 				04DCA8A321A565D400691A3A /* TCVideoCutViewController.h */,
 				04DCA8A621A565D400691A3A /* TXVideoLoadingController.m */,
 				04DCA8A721A565D400691A3A /* TCVideoLoadingController.h */,
@@ -6180,7 +6180,6 @@
 				042E65862217B00200C56859 /* MyMusicHeaderView.m in Sources */,
 				04CBC3B32179C01300658E47 /* GPUImageDivideBlendFilter.m in Sources */,
 				04CBC4452179C01300658E47 /* GPUImageDilationFilter.m in Sources */,
-				04DCA88C21A55FF700691A3A /* TCLoginModel.m in Sources */,
 				D954C5161DD1A40F003CA535 /* NSData+Base64.m in Sources */,
 				0405BE812220F6F90098D590 /* UserCollectionSubVideoViewController.m in Sources */,
 				D9EE757F1EF8C610001A1299 /* SDPhotoBrowser.m in Sources */,
@@ -6283,6 +6282,7 @@
 				C552FC221E7136EA003D3E2E /* MyScrollView.m in Sources */,
 				04CBC4252179C01300658E47 /* GPUImageLinearBurnBlendFilter.m in Sources */,
 				04DCA85921A5580300691A3A /* QCloudAuthentationHeadV5Creator.m in Sources */,
+				04B6E2C4224140F900F3B51E /* TCLoginModel.m in Sources */,
 				04DCA91621A5687600691A3A /* QBAssetsViewController.m in Sources */,
 				04DCA91521A5687600691A3A /* QBAlbumsViewController.m in Sources */,
 				04DCA91321A5687600691A3A /* QBAlbumCell.m in Sources */,
@@ -6481,7 +6481,6 @@
 				04468F17214B8F14002F4528 /* ZJCustomTabWebController.m in Sources */,
 				D98FCFAF1DEFC3080023C076 /* NSCalendar+ST.m in Sources */,
 				04CBC35F2179C01300658E47 /* GPUImageVignetteFilter.m in Sources */,
-				04DCA89221A5634700691A3A /* TCLiveListModel.m in Sources */,
 				04C70D3721E3AC230022D897 /* MTMyCommentViewController.m in Sources */,
 				0400F33621AFA62D0038E16C /* WXApiManager.m in Sources */,
 				0406762521F718B000543917 /* HomeSearchResultSubVideoViewController.m in Sources */,
@@ -6507,6 +6506,7 @@
 				04CBC47D2179C01300658E47 /* UIImage+MultiFormat.m in Sources */,
 				04CBC3852179C01300658E47 /* GPUImageMultiplyBlendFilter.m in Sources */,
 				0405BE842220FBD50098D590 /* UserCollectionController.m in Sources */,
+				04B6E2C72241423B00F3B51E /* PublishViewController.m in Sources */,
 				040E28B921C0E20200D15B44 /* SlideTabBar.m in Sources */,
 				040E28DB21C1047F00D15B44 /* UserResponse.m in Sources */,
 				D954C5E21DD1A40F003CA535 /* GlobalFunc.m in Sources */,

@@ -57,18 +57,11 @@
 }
 
 -(int) publishVideo:(TXPublishParam*)param{
+    
     if (_publishing == YES) {
-        //NSLog(@"there is existing uncompleted publish task");
+        NSLog(@"there is existing uncompleted publish task");
         return -1;
     }
-    
-//    NSString* strVer = [TXLiveBase getSDKVersionStr];
-    
-//    [TXDRApi txReportDAU:DR_DAU_EVENT_ID_UGC_PUBLISH
-//             withErrCode:0
-//             withErrInfo:@""
-//               withSdkId:DR_SDK_ID_RTMPSDK
-//          withSdkVersion:strVer];
 
     if (param == nil) {
        // NSLog(@"publishVideo: invalid param");
@@ -80,10 +73,10 @@
 //        return -3;
 //    }
     
-    if (param.signature == nil || param.signature.length == 0) {
-        NSLog(@"publishVideo: invalid signature");
-        return -4;
-    }
+//    if (param.signature == nil || param.signature.length == 0) {
+//        NSLog(@"publishVideo: invalid signature");
+//        return -4;
+//    }
     
     if (param.videoPath == nil || param.videoPath.length == 0 || [[NSFileManager defaultManager] fileExistsAtPath:param.videoPath] == NO) {
         NSLog(@"publishVideo: invalid video file");
@@ -100,14 +93,12 @@
     //_tvcConfig.cosRegion = param.cosRegion;
     
     _tvcParam  = [[TVCUploadParam alloc] init];
-    
     _tvcParam.videoPath = param.videoPath;
-
     _tvcParam.coverPath = param.coverPath;
-    
     _tvcParam.videoName = param.fileName;
-    
     _tvcClient = [[TVCClient alloc] initWithConfig:_tvcConfig];
+    
+    
     [_tvcClient uploadVideo:_tvcParam result:^(TVCUploadResponse *resp) {
         if (resp) {
             
