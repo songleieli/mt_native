@@ -1120,8 +1120,13 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
         
         if (_actionType == ActionType_Publish) {
             
-            
+            //
+            [_ugcEdit stopPlay];
+
             PublishViewController *publishViewController = [[PublishViewController alloc] init];
+            publishViewController.videoOutputCoverPath = _videoOutputCoverPath; //视频路径
+            publishViewController.musicModel = self.musicModel; //选择路径
+            publishViewController.videoPath = _videoPath;  //封面路径
             [self pushNewVC:publishViewController animated:YES];
             
             

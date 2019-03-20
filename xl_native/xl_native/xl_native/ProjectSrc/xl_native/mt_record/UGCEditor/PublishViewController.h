@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import "NetWork_mt_search_getMusicList.h"
+#import "TCBGMProgressView.h"
 
 
 @interface PublishViewController : ZJBaseViewController<UITextViewDelegate>
@@ -23,7 +24,7 @@
 
 @property (strong,nonatomic) MusicSearchModel  *musicModel;
 
-@property (copy,nonatomic) UIProgressView* _generateProgressView;
+@property (nonatomic, strong) TCBGMProgressView *progressView;
 
 
 @end

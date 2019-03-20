@@ -19,6 +19,60 @@
 
 @implementation PublishViewController
 
+#pragma mark ------------- 懒加载  ----------
+
+- (UITextView *) speakTextView{
+    
+    if (_progressView == nil){
+        
+        CGFloat textViewHeight = sizeScale(125);
+        CGFloat videoWidth = textViewHeight/1.35f;
+        
+        _speakTextView = [[UITextView alloc] init];
+        _speakTextView.backgroundColor = ColorThemeBackground;
+        _speakTextView.frame = CGRectMake(0, 0,self.scrollView.width-videoWidth, sizeScale(125));
+        _speakTextView.delegate = self;
+        _speakTextView.textColor = ColorWhite;
+        _speakTextView.returnKeyType = UIReturnKeyDefault;
+        _speakTextView.font = [UIFont systemFontOfSize:16.0];
+        [_speakTextView becomeFirstResponder];
+    }
+    
+    return _speakTextView;
+}
+
+
+- (UILabel *) placeHoldelLebel{
+    
+    if (_placeHoldelLebel == nil){
+        
+        _placeHoldelLebel = [[UILabel alloc]init];
+        _placeHoldelLebel.frame = [UIView getScaleFrame_x:10 y:0 width:100 height:30];
+        _placeHoldelLebel.text = @"这一刻我想说......";
+        _placeHoldelLebel.textColor = ColorWhiteAlpha60;
+        _placeHoldelLebel.font = [UIFont systemFontOfSize:16.0];
+    }
+    
+    return _placeHoldelLebel;
+}
+
+
+
+
+- (TCBGMProgressView *) progressView{
+    
+    if (_progressView == nil){
+        
+        CGRect frame = CGRectMake(self.speakTextView.left, self.speakTextView.bottom, self.scrollView.width, 3.0f);
+        
+        _progressView = [[TCBGMProgressView alloc] initWithFrame:frame];
+        _progressView.backgroundColor = [UIColor clearColor];
+        _progressView.progressBackgroundColor = [UIColor yellowColor];
+        _progressView.hidden = YES;
+    }
+    
+    return _progressView;
+}
 
 
 -(void)initNavTitle{
@@ -31,20 +85,15 @@
     leftButton.size = [UIView getSize_width:20 height:20];
     leftButton.origin = [UIView getPoint_x:15.0f y:self.navBackGround.height -leftButton.height-11];
     [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_titlebar_whiteback"] forState:UIControlStateNormal];
-//    [leftButton addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    
     self.btnLeft = leftButton;
     
     UIButton * rightBarButton = [[UIButton alloc]init];
-//    rightBarButton.origin = [UIView getPoint_x:15.0f y:self.navBackGround.height -leftButton.height-11];
 
     rightBarButton.size = [UIView getSize_width:50 height:50];
     rightBarButton.right = self.navBackGround.width - 5;
-    rightBarButton.bottom = self.navBackGround.bottom - 5;
+    rightBarButton.bottom = self.navBackGround.bottom ;
     [rightBarButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    rightBarButton.titleLabel.font = [UIFont defaultFontWithSize:17];
-    //    rightBarButton.titleLabel.textColor = [UIColor whiteColor] ;
-    rightBarButton.enabled = YES;
+    rightBarButton.titleLabel.font = [UIFont defaultBoldFontWithSize:16];;
     [rightBarButton setTitle:@"保存" forState:UIControlStateNormal];
     [rightBarButton addTarget:self action:@selector(btnClcik) forControlEvents:UIControlEventTouchUpInside];
     self.btnRight = rightBarButton;
@@ -66,29 +115,15 @@
 
     CGRect frame = CGRectMake(0, self.navBackGround.bottom, ScreenWidth, ScreenHeight - kNavBarHeight_New);
     self.scrollView = [[UIScrollView alloc] initWithFrame:frame];
-//    self.scrollView.alwaysBounceHorizontal = YES; // 垂直
-    self.scrollView.alwaysBounceVertical = YES; // 水平
-    
-
-
-//    self.scrollView.contentSize = [UIView getSize_width:self.scrollView.width height:self.scrollView.height+1];
-    
+    self.scrollView.alwaysBounceVertical = YES; //垂直方向添加弹簧效果
     [self.view addSubview:self.scrollView];
     
-    self.speakTextView = [[UITextView alloc] init];
-    self.speakTextView.frame = CGRectMake(0, 0,self.scrollView.width, sizeScale(125));
-    self.speakTextView.delegate = self;
-    self.speakTextView.returnKeyType = UIReturnKeyDefault;
-    self.speakTextView.font = [UIFont systemFontOfSize:16.0];
     [self.scrollView addSubview:self.speakTextView];
+    [self.scrollView addSubview:self.progressView];
     
-    
-    self.placeHoldelLebel = [[UILabel alloc]init];
-    self.placeHoldelLebel.frame = [UIView getScaleFrame_x:10 y:0 width:100 height:30];
-    self.placeHoldelLebel.text = @"这一刻我想说......";
-    self.placeHoldelLebel.textColor = [UIColor lightGrayColor];
-    self.placeHoldelLebel.font = [UIFont systemFontOfSize:14];
     [self.speakTextView addSubview:self.placeHoldelLebel];
+    
+    
 }
 
 -(void)textViewDidBeginEditing:(UITextView *)textView{
@@ -103,11 +138,6 @@
 
 -(void)btnClcik{
     NSLog(@"发表视频");
-    
-    
-    
-    
-    
     
     NetWork_mt_getUploadSignature *request = [[NetWork_mt_getUploadSignature alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
@@ -126,22 +156,27 @@
         [_ugcPublish publishVideo:param];
         
     }];
-    
-    
-    
 }
 
 
-#pragma mark - TXVideoPublishListener
+#pragma mark ----------  TXVideoPublishListener 上传腾讯云 进度  -------------
 
 -(void) onPublishProgress:(uint64_t)uploadBytes totalBytes: (uint64_t)totalBytes{
     
-//    _generateProgressView.progress = (float)uploadBytes / totalBytes;
+    CGFloat progress = (float)uploadBytes / totalBytes;
+    if(progress == 0.0f){
+        self.progressView.hidden = YES;
+    }
+    else{
+        self.progressView.hidden = NO;
+        self.progressView.progress = progress;
+    }
     
 }
 
 -(void) onPublishComplete:(TXPublishResult*)result{
     
+    NSString *strContent = self.speakTextView.text.trim;
     SaveVideoContentModel *model = [[SaveVideoContentModel alloc] init];
     model.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     model.nickname = [GlobalData sharedInstance].loginDataModel.nickname;
@@ -153,10 +188,10 @@
     model.musicName = self.musicModel.musicName;
     model.musicUrl = self.musicModel.playUrl;
     model.coverUrl = self.musicModel.coverUrl;
-    model.addr = @"北京市朝阳区北苑路180号";
+//    model.addr = @"北京市朝阳区北苑路180号";
     model.size = @"720p";
-    model.title = @"songlei 发布内容测试";
-    model.topic = @"#万圣节";
+    model.title = strContent;
+//    model.topic = @"#万圣节";
     
     NetWork_mt_saveVideo *request = [[NetWork_mt_saveVideo alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
@@ -170,6 +205,12 @@
         else{
             [UIWindow showTips:@"视频上传失败，请稍再试。"];
         }
+    }];
+}
+
+- (void)dismissViewController{
+    
+    [self dismissViewControllerAnimated:YES completion:^{
     }];
 }
 
