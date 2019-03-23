@@ -60,8 +60,11 @@
 #pragma -mark ------------- 接口属性相关处理 ---------------
 
 - (NSString *)getInterfaceName{
-    NSArray *aArray = [NSStringFromClass([self class]) componentsSeparatedByString:@"_"];
-    return [aArray objectAtIndex:1];
+    
+   return  NSStringFromClass([self class]);
+    
+//    NSArray *aArray = [NSStringFromClass([self class]) componentsSeparatedByString:@"_"];
+//    return [aArray objectAtIndex:1];
 }
 
 - (NSString *)prepareRequestUrl:(ERequstType_JrLoan)requstType{
@@ -342,6 +345,10 @@
         }
         return;
     }
+    if([self.delegate respondsToSelector:@selector(startWithCursor:interfaceName:)]){
+        [self.delegate startWithCursor:self.waitMsg interfaceName:self.interfaceName];
+    }
+
     
     id<WCNetworkOperationProvider> connectionProvider= [[WCBaseContext sharedInstance] connectionProvider];
     self.operation=[connectionProvider createGetRequest:requestUrlString

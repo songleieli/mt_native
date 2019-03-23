@@ -17,6 +17,16 @@
 @property (nonatomic,strong) UIScrollView * scrollView;
 @property (nonatomic,strong) UITextView * speakTextView;
 @property (nonatomic,strong) UILabel * placeHoldelLebel;
+@property (nonatomic, strong) UIImageView  *imageViewCover; //视频封面
+
+
+@property (nonatomic,strong) UIButton * btnTopic;
+@property (nonatomic,strong) UIButton * btnAFriend;
+
+@property (nonatomic,strong) UIButton * btnLocation; //位置View
+@property (nonatomic, strong) UIButton  *btnDraft; //草稿按钮
+@property (nonatomic, strong) UIButton  *btnSave; //保存按钮
+
 
 
 @property (copy,nonatomic) NSString *videoPath;
@@ -25,6 +35,8 @@
 @property (strong,nonatomic) MusicSearchModel  *musicModel;
 
 @property (nonatomic, strong) TCBGMProgressView *progressView;
+
+
 
 
 @end

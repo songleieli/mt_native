@@ -95,8 +95,8 @@
         _btnCollectionBg = [UIButton buttonWithType:UIButtonTypeCustom];
         _btnCollectionBg.size = [UIView getSize_width:85 height:25];
         _btnCollectionBg.origin = [UIView getPoint_x:self.lableTopicName.left y:self.lablePlayCount.bottom];
-        [_btnCollectionBg setBackgroundColor:RGBA(54, 58, 67, 1) forState:UIControlStateNormal];
-        [_btnCollectionBg setBackgroundColor:RGBA(120, 122, 132, 1) forState:UIControlStateHighlighted];
+        [_btnCollectionBg setBackgroundColor:MTColorBtnNormal forState:UIControlStateNormal];
+        [_btnCollectionBg setBackgroundColor:MTColorBtnHighlighted forState:UIControlStateHighlighted];
         _btnCollectionBg.layer.cornerRadius = 2.0f;
         _btnCollectionBg.layer.masksToBounds = true;//给按钮添加边框效果
         [_btnCollectionBg addSubview:self.imageViewCollectionIcon];

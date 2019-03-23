@@ -11,6 +11,9 @@
 #import "WYPopoverController.h"
 #import "QBImagePickerController.h"
 
+//test
+#import "PublishViewController.h"
+
 
 @class BaseNavigationController;
 

@@ -188,6 +188,11 @@ isIPhoneXAll = [[UIApplication sharedApplication] delegate].window.safeAreaInset
 
 #define defaultBgColor          [UIColor colorWithRed:243/255.0 green:243/255.0 blue:243/255.0 alpha:1]//F3F3F3
 
+#define MTColorLine                RGBA(36, 39, 49, 1)   //传家宝线条颜色  RGBA(54, 58, 67, 1)
+#define MTColorBtnNormal           RGBA(54, 58, 67, 1)   //传家宝线条颜色
+#define MTColorBtnHighlighted      RGBA(120, 122, 132, 1)   //传家宝线条颜色
+#define MTColorBtnRedNormal        RGBA(252, 48, 88, 1)   //按钮红色正常颜色
+#define MTColorBtnRedHighlighted        RGBA(137, 36, 60, 1)   //按钮红色正常颜色
 
 /*
  定义全局的颜色值 乐家慧
