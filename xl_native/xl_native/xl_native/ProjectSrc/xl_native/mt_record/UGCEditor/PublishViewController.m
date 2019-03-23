@@ -23,7 +23,7 @@
 
 - (UITextView *) speakTextView{
     
-    if (_progressView == nil){
+    if (_speakTextView == nil){
         
         CGFloat textViewHeight = sizeScale(125);
         CGFloat videoWidth = textViewHeight/1.35f;
@@ -77,8 +77,6 @@
     return _imageViewCover;
 }
 
-
-
 - (UIButton*)btnTopic{
     
     if (!_btnTopic) {
@@ -119,7 +117,7 @@
     
     if (_progressView == nil){
         
-        CGRect frame = CGRectMake(self.speakTextView.left, self.btnTopic.bottom, self.scrollView.width, 3.0f);
+        CGRect frame = CGRectMake(self.speakTextView.left, self.btnTopic.bottom + 5, self.scrollView.width, 3.0f);
         
         _progressView = [[TCBGMProgressView alloc] initWithFrame:frame];
         _progressView.backgroundColor = [UIColor clearColor];
@@ -130,6 +128,19 @@
     return _progressView;
 }
 
+- (UIView*)viewLine{
+    
+    if (!_viewLine) {
+        _viewLine = [[UIView alloc] init];
+        _viewLine.left = 0;
+        _viewLine.size = [UIView getSize_width:ScreenWidth height:0.4];
+        _viewLine.bottom = self.progressView.bottom + sizeScale(10);
+        _viewLine.backgroundColor = MTColorLine;
+    }
+    return _viewLine;
+}
+
+
 - (UIButton *)btnLocation{
     
     if (!_btnLocation) {
@@ -138,7 +149,7 @@
         [_btnLocation setBackgroundColor:ColorThemeBackground forState:UIControlStateNormal];
         [_btnLocation setBackgroundColor:MTColorBtnNormal forState:UIControlStateHighlighted];
         _btnLocation.size = [UIView getSize_width:ScreenWidth height:sizeScale(40)];
-        _btnLocation.top = self.btnTopic.bottom + sizeScale(12);
+        _btnLocation.top = self.viewLine.bottom;
         
         
         UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_m_location"]];
@@ -297,8 +308,8 @@
     [self.scrollView addSubview:self.speakTextView];
     [self.speakTextView addSubview:self.placeHoldelLebel];
     [self.scrollView addSubview:self.imageViewCover];
-    
     [self.scrollView addSubview:self.progressView];
+    [self.scrollView addSubview:self.viewLine];
     [self.scrollView addSubview:self.btnTopic];
     [self.scrollView addSubview:self.btnAFriend];
     [self.scrollView addSubview:self.btnLocation];
@@ -306,13 +317,7 @@
     [self.scrollView addSubview:self.btnSave];
     
     
-    UIView *viewLine = [[UIView alloc] init];
-    viewLine.left = 0;
-    viewLine.size = [UIView getSize_width:ScreenWidth - viewLine.left height:0.4];
-    viewLine.bottom = self.btnTopic.bottom + 10;
-    viewLine.backgroundColor = MTColorLine;
     
-    [self.scrollView addSubview:viewLine];
     
 }
 
@@ -339,9 +344,6 @@
 #pragma mark ----------  btnClick  -------------
 
 -(void)btnSaveClcik{
-    
-    NSString *strContent = self.speakTextView.text.trim;
-
     
     NetWork_mt_getUploadSignature *request = [[NetWork_mt_getUploadSignature alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
@@ -403,10 +405,13 @@
     model.noodleVideoCover = result.coverURL;
     model.storagePath = result.videoURL;
     model.noodleVideoName = [result.videoURL lastPathComponent];
-    model.musicId = [NSString stringWithFormat:@"%@",self.musicModel.musicId];
-    model.musicName = self.musicModel.musicName;
-    model.musicUrl = self.musicModel.playUrl;
-    model.coverUrl = self.musicModel.coverUrl;
+    
+    if(self.musicModel){
+        model.musicId = [NSString stringWithFormat:@"%@",self.musicModel.musicId];
+        model.musicName = self.musicModel.musicName;
+        model.musicUrl = self.musicModel.playUrl;
+        model.coverUrl = self.musicModel.coverUrl;
+    }
     //    model.addr = @"北京市朝阳区北苑路180号";
     model.size = @"720p";
     model.title = strContent;

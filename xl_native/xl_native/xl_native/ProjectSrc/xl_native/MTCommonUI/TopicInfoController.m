@@ -134,8 +134,8 @@ NSString * const kMyTopicHeaderView         = @"kMyTopicHeaderView";
     NetWork_mt_getHotVideosByTopic *request = [[NetWork_mt_getHotVideosByTopic alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.topicName = topicNameTemp;
-    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex=self.currentPageIndex+1];
-    request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];    [request startGetWithBlock:^(GetHotVideosByTopicResponse *result, NSString *msg, BOOL finished) {
+    request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
+    request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];    [request startGetWithBlock:^(GetHotVideosByTopicResponse *result, NSString *msg, BOOL finished) {
         
         if(finished){
             self.topicModel = result.obj.topic;

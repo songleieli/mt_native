@@ -22,6 +22,8 @@
 
 @property (nonatomic,strong) UIButton * btnTopic;
 @property (nonatomic,strong) UIButton * btnAFriend;
+@property (nonatomic,strong) UIView *viewLine;
+
 
 @property (nonatomic,strong) UIButton * btnLocation; //位置View
 @property (nonatomic, strong) UIButton  *btnDraft; //草稿按钮
