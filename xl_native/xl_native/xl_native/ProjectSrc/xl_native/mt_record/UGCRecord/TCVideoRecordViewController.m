@@ -20,7 +20,7 @@
 #import "UIColor+MLPFlatColors.h"
 #import "UIView+Additions.h"
 #import "ColorMacro.h"
-#import "TCUtil.h"
+//#import "TCUtil.h"
 #import "TCConstants.h"
 
 #define BUTTON_RECORD_SIZE          75
@@ -1244,9 +1244,9 @@ typedef NS_ENUM(NSInteger,CaptureMode)
                 [self alert:NSLocalizedString(@"TCVideoEditPrevView.HintVideoSynthesizeFailed",nil) msg:NSLocalizedString(@"TCVideoEditPrevView.TryAgain",nil)];
             }
         }
-        [TCUtil report:xiaoshipin_videorecord userName:nil code:0 msg:@"视频录制成功"];
+//        [TCUtil report:xiaoshipin_videorecord userName:nil code:0 msg:@"视频录制成功"];
     }else{
-        [TCUtil report:xiaoshipin_videorecord userName:nil code:-1 msg:@"视频录制失败"];
+//        [TCUtil report:xiaoshipin_videorecord userName:nil code:-1 msg:@"视频录制失败"];
     }
 }
 
@@ -1437,7 +1437,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
         }];
         [alert show];
     }
-    [TCUtil report:xiaoshipin_videojoiner userName:nil code:result.retCode msg:result.descMsg];
+//    [TCUtil report:xiaoshipin_videojoiner userName:nil code:result.retCode msg:result.descMsg];
 }
 
 
@@ -1830,10 +1830,29 @@ typedef NS_ENUM(NSInteger,CaptureMode)
     [[TXUGCRecord shareInstance] stopCameraPreview];
     [[TXUGCRecord shareInstance].partsManager deleteAllParts];
     if (!_savePath) {
-        [TCUtil removeCacheFile:_videoPath];
+//        [TCUtil removeCacheFile:_videoPath];
+        
+        
+        NSError * error;
+        if ([[NSFileManager defaultManager] fileExistsAtPath:_videoPath] == YES) {
+            [[NSFileManager defaultManager] removeItemAtPath:_videoPath error:&error];
+        }
+        
     }
-    [TCUtil removeCacheFile:_recordVideoPath];
-    [TCUtil removeCacheFile:_joinVideoPath];
+//    [TCUtil removeCacheFile:_recordVideoPath];
+    
+    NSError * errorOne;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:_recordVideoPath] == YES) {
+        [[NSFileManager defaultManager] removeItemAtPath:_recordVideoPath error:&errorOne];
+    }
+    
+    
+//    [TCUtil removeCacheFile:_joinVideoPath];
+    
+    NSError * errorTwo;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:_joinVideoPath] == YES) {
+        [[NSFileManager defaultManager] removeItemAtPath:_joinVideoPath error:&errorTwo];
+    }
 }
 
 - (void)dealloc

@@ -22,16 +22,12 @@
 #import "EffectSelectView.h"
 #import "VideoPasterView.h"
 #import "VideoTextFiled.h"
-#import "TCBGMHelper.h"
-#import "TXUGCPublish.h"
-#import "TCUserInfoModel.h"
 #import "VideoInfo.h"
 #import "UIActionSheet+BlocksKit.h"
 #import "UIAlertView+BlocksKit.h"
 #import <AFNetworking.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "TXCVEFColorPalette.h"
-#import "TCUtil.h"
 #import "TCConstants.h"
 
 #import "BaseNavigationController.h"
@@ -86,7 +82,7 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
 };
 
 
-@interface TCVideoEditViewController ()<TXVideoGenerateListener,VideoPreviewDelegate, BottomTabBarDelegate, VideoCutViewDelegate,EffectSelectViewDelegate, PasterAddViewDelegate, VideoPasterViewDelegate ,VideoTextFieldDelegate ,TXVideoPublishListener,VideoRecordMusicViewDelegate,UIActionSheetDelegate, UITabBarDelegate , UIPickerViewDelegate ,UIPickerViewDelegate ,UIAlertViewDelegate>
+@interface TCVideoEditViewController ()<TXVideoGenerateListener,VideoPreviewDelegate, BottomTabBarDelegate, VideoCutViewDelegate,EffectSelectViewDelegate, PasterAddViewDelegate, VideoPasterViewDelegate ,VideoTextFieldDelegate,VideoRecordMusicViewDelegate,UIActionSheetDelegate, UITabBarDelegate , UIPickerViewDelegate ,UIPickerViewDelegate ,UIAlertViewDelegate>
 
 @end
 
@@ -120,7 +116,7 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
     UIButton*           _playBtn;
 
     //pulish
-    TXUGCPublish*       _videoPublish;
+//    TXUGCPublish*       _videoPublish;
     
     BottomTabBar*       _bottomBar;          //底部栏
     VideoCutView*       _videoCutView;       //裁剪
@@ -395,7 +391,7 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
     
 
     [self initVideoEditor];
-    [self initVideoPublish];
+//    [self initVideoPublish];
 }
 
 - (void)initVideoEditor
@@ -424,13 +420,6 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
     float y = (videoMsg.height - height) / 2 / videoMsg.height;
     [_ugcEdit setTailWaterMark:tailWaterimage normalizationFrame:CGRectMake(x,y,w,0) duration:1];
 }
-
-- (void)initVideoPublish
-{
-    _videoPublish = [[TXUGCPublish alloc] initWithUserID:[[TCUserInfoModel sharedInstance] getUserProfile].identifier];
-    _videoPublish.delegate = self;
-}
-
 
 - (UIView*)generatingView
 {
@@ -1207,47 +1196,6 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
     
     UIImage *returnImage = [UIImage imageWithData:imageData];
     return returnImage;
-}
-
-#pragma mark - TXVideoPublishListener
-
--(void) onPublishProgress:(uint64_t)uploadBytes totalBytes: (uint64_t)totalBytes{
-    
-    _generateProgressView.progress = (float)uploadBytes / totalBytes;
-    
-}
-
--(void) onPublishComplete:(TXPublishResult*)result{
-    
-    SaveVideoContentModel *model = [[SaveVideoContentModel alloc] init];
-    model.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    model.nickname = [GlobalData sharedInstance].loginDataModel.nickname;
-    model.fileId = result.videoId;
-    model.noodleVideoCover = result.coverURL;
-    model.storagePath = result.videoURL;
-    model.noodleVideoName = [result.videoURL lastPathComponent];
-    model.musicId = [NSString stringWithFormat:@"%@",self.musicModel.musicId];
-    model.musicName = self.musicModel.musicName;
-    model.musicUrl = self.musicModel.playUrl;
-    model.coverUrl = self.musicModel.coverUrl;
-    model.addr = @"北京市朝阳区北苑路180号";
-    model.size = @"720p";
-    model.title = @"songlei 发布内容测试";
-    model.topic = @"#万圣节";
-    
-    NetWork_mt_saveVideo *request = [[NetWork_mt_saveVideo alloc] init];
-    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.content = [model generateJsonStringForProperties];
-    [request showWaitMsg:@"正在发布" handle:self];
-    
-    [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
-        if(finished){
-            [self performSelector:@selector(dismissViewController) withObject:nil afterDelay:1];
-        }
-        else{
-            [UIWindow showTips:@"视频上传失败，请稍再试。"];
-        }
-    }];
 }
 
 - (void)dismissViewController

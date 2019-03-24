@@ -8,7 +8,7 @@
 
 #import "MusicHotSubMusicCell.h"
 
-#import "MusicDownloadHelper.h"
+#import "FileHelper.h"
 
 
 static NSString* const ViewTableViewCellId = @"MusicHotSubMusicCellId";
@@ -227,22 +227,21 @@ static NSString* const ViewTableViewCellId = @"MusicHotSubMusicCellId";
         NSLog(@"---下载音乐---%@-------",self.listModel.playUrl);
         [self.btnDownLoad setTitle:@"下载中..." forState:UIControlStateNormal];
         [self.btnDownLoad setBackgroundColor:RGBA(50, 57, 70, 1) forState:UIControlStateNormal];
-
-        [[MusicDownloadHelper sharedInstance] downloadMusicWithBlock:self.listModel downloadBlock:^(float percent,NSString *msg) {
-            NSLog(@"-------%f",percent);
-            if(percent >= 0.0f){
-                if(percent == 0.0f){
-                    NSLog(@"------%@--下载完成-----",self.listModel.nickname);
-                    [self.btnDownLoad setTitle:@"使用" forState:UIControlStateNormal];
-                    [self.btnDownLoad setBackgroundColor:RGBA(252, 89, 82, 1) forState:UIControlStateNormal];
-                    
-                    if ([self.subCellDelegate respondsToSelector:@selector(useMusicClick:)]) {
-                        [self.subCellDelegate useMusicClick:self.listModel];
-                    } else {
-                        NSLog(@"代理没响应，快开看看吧");
-                    }
+        
+        [FileHelper downloadFile:self.listModel.localUrl playUrl:self.listModel.playUrl processBlock:^(float percent) {
+            [self setDownloadProgress:percent];
+        } completionBlock:^(BOOL result, NSString *msg) {
+            
+            if(result){
+                NSLog(@"------%@--下载完成-----",self.listModel.nickname);
+                [self.btnDownLoad setTitle:@"使用" forState:UIControlStateNormal];
+                [self.btnDownLoad setBackgroundColor:RGBA(252, 89, 82, 1) forState:UIControlStateNormal];
+                
+                if ([self.subCellDelegate respondsToSelector:@selector(useMusicClick:)]) {
+                    [self.subCellDelegate useMusicClick:self.listModel];
+                } else {
+                    NSLog(@"代理没响应，快开看看吧");
                 }
-                [self setDownloadProgress:percent];
             }
             else{
                 [self.btnDownLoad setTitle:@"使用" forState:UIControlStateNormal];

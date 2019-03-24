@@ -22,7 +22,6 @@
 #import "SmallButton.h"
 
 #import "UIColor+MLPFlatColors.h"
-#import "TCUtil.h"
 #import "ColorMacro.h"
 
 typedef  NS_ENUM(NSInteger,VideoType)
@@ -471,11 +470,11 @@ typedef  NS_ENUM(NSInteger,VideoType)
             [alertView show];
         }
     }
-    if (_videoType == VideoType_Video) {
-        [TCUtil report:xiaoshipin_videoedit userName:nil code:result.retCode msg:result.descMsg];
-    }else{
-        [TCUtil report:xiaoshipin_pictureedit userName:nil code:result.retCode msg:result.descMsg];
-    }
+//    if (_videoType == VideoType_Video) {
+//        [TCUtil report:xiaoshipin_videoedit userName:nil code:result.retCode msg:result.descMsg];
+//    }else{
+//        [TCUtil report:xiaoshipin_pictureedit userName:nil code:result.retCode msg:result.descMsg];
+//    }
 }
 
 #pragma mark VideoPreviewDelegate

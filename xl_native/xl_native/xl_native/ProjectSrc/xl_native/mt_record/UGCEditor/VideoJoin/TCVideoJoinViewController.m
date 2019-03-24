@@ -16,7 +16,7 @@
 
 #import "UIColor+MLPFlatColors.h"
 #import "ColorMacro.h"
-#import "TCUtil.h"
+//#import "TCUtil.h"
 
 static NSString *indetifer = @"TCVideoJoinCell";
 
@@ -277,7 +277,7 @@ static NSString *indetifer = @"TCVideoJoinCell";
         [self.navigationController pushViewController:vc animated:YES];
         _generationView.hidden = YES;
     }
-    [TCUtil report:xiaoshipin_videojoiner userName:nil code:result.retCode msg:result.descMsg];
+//    [TCUtil report:xiaoshipin_videojoiner userName:nil code:result.retCode msg:result.descMsg];
 }
 
 @end

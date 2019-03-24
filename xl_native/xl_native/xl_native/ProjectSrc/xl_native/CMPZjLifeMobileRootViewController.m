@@ -15,7 +15,7 @@
 #import "UserInfoViewController.h"
 
 #import "TCVideoRecordViewController.h"
-#import "TCUtil.h"
+//#import "TCUtil.h"
 #import "MBProgressHUD.h"
 #import "TCVideoLoadingController.h"
 
@@ -301,8 +301,6 @@
         _hub.mode = MBProgressHUDModeText;
         _hub.label.text = NSLocalizedString(@"TCVodPlay.VideoLoading", nil);
         
-        __weak __typeof(self) weakSelf = self;
-        
         
         //获取本地磁盘缓存文件夹路径，同视频缓存同一个目录，缓存一天后删除
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
@@ -315,23 +313,22 @@
         
         NSString *chorusFileName = [NSString stringWithFormat:@"%@%@",diskCachePath,name];
         
-        
-//        NSString *ducumentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-//        NSString *cachePath = [ducumentPath stringByAppendingPathComponent: @"Chorus.mp4"];
-        
-
         if ([[NSFileManager defaultManager] fileExistsAtPath:chorusFileName]){
             [self onloadVideoComplete:chorusFileName];
         }else{
-            
-            //下载视频
             NSString *videoUrl = self.homeNewViewController.playerVC.currentCell.listModel.storagePath;
             
-            [TCUtil downloadVideo:videoUrl cachePath:chorusFileName  process:^(CGFloat process) {
-                [weakSelf onloadVideoProcess:process];
-            } complete:^(NSString *videoPath) {
-                [weakSelf onloadVideoComplete:videoPath];
+            [FileHelper downloadFile:chorusFileName playUrl:videoUrl processBlock:^(float percent) {
+                [self onloadVideoProcess:percent];
+            } completionBlock:^(BOOL result, NSString *msg) {
+                if(result){
+                    [self onloadVideoComplete:chorusFileName];
+                }
+                else{
+                    [UIWindow showTips:msg];
+                }
             }];
+            
         }
         
     }

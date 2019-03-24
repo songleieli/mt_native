@@ -130,7 +130,7 @@
 		048BF55221EEC4F2005D3708 /* NetWork_mt_getHotVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 048BF55021EEC4F1005D3708 /* NetWork_mt_getHotVideoList.m */; };
 		048BF55521EEFE1E005D3708 /* HomeSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 048BF55421EEFE1E005D3708 /* HomeSearchCell.m */; };
 		0493CA70221A5B560090968B /* ScrollPlayerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0493CA6E221A5B550090968B /* ScrollPlayerListViewController.m */; };
-		0499B4FE223C767B0080A1B1 /* MusicDownloadHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0499B4FD223C767B0080A1B1 /* MusicDownloadHelper.m */; };
+		0499B4FE223C767B0080A1B1 /* FileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0499B4FD223C767B0080A1B1 /* FileHelper.m */; };
 		0499B51A223CC3590080A1B1 /* TCVideoRecordMusicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0499B50A223CC3580080A1B1 /* TCVideoRecordMusicView.m */; };
 		0499B532223CC4260080A1B1 /* TCBGMSliderCutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0499B521223CC4250080A1B1 /* TCBGMSliderCutView.m */; };
 		0499B538223CC4260080A1B1 /* SoundMixView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0499B52E223CC4250080A1B1 /* SoundMixView.m */; };
@@ -199,7 +199,6 @@
 		04B66E9921C15D41000D6C56 /* awemes.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B66E9721C15D40000D6C56 /* awemes.json */; };
 		04B66E9A21C15D41000D6C56 /* favorites.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B66E9821C15D41000D6C56 /* favorites.json */; };
 		04B66E9D21C15DF3000D6C56 /* AwemesResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B66E9C21C15DF2000D6C56 /* AwemesResponse.m */; };
-		04B6E2C4224140F900F3B51E /* TCLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B6E2C2224140F800F3B51E /* TCLoginModel.m */; };
 		04B6E2C72241423B00F3B51E /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B6E2C62241423B00F3B51E /* PublishViewController.m */; };
 		04BC59872197C88700D5EA12 /* XLProjectWkWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BC59862197C88600D5EA12 /* XLProjectWkWebViewController.m */; };
 		04C171E221CDDE9E0077FA6C /* UserInfoPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */; };
@@ -468,18 +467,9 @@
 		04DCA83121A5576700691A3A /* TCVideoRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA82C21A5576600691A3A /* TCVideoRecordViewController.m */; };
 		04DCA83221A5576700691A3A /* TCVideoRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DCA82D21A5576600691A3A /* TCVideoRecordViewController.xib */; };
 		04DCA85521A5580300691A3A /* UIColor+MLPFlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA83821A5580300691A3A /* UIColor+MLPFlatColors.m */; };
-		04DCA85621A5580300691A3A /* TCUploadHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA83B21A5580300691A3A /* TCUploadHelper.m */; };
 		04DCA85721A5580300691A3A /* NSObject+CommonBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA83D21A5580300691A3A /* NSObject+CommonBlock.m */; };
 		04DCA85821A5580300691A3A /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA83F21A5580300691A3A /* UIView+Additions.m */; };
-		04DCA85921A5580300691A3A /* QCloudAuthentationHeadV5Creator.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA84021A5580300691A3A /* QCloudAuthentationHeadV5Creator.m */; };
-		04DCA85A21A5580300691A3A /* UIButton+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA84121A5580300691A3A /* UIButton+Additions.m */; };
-		04DCA85C21A5580300691A3A /* TCLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA84421A5580300691A3A /* TCLog.m */; };
-		04DCA85D21A5580300691A3A /* HUDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA84521A5580300691A3A /* HUDHelper.m */; };
-		04DCA85E21A5580300691A3A /* NSString+CommonTX.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA84621A5580300691A3A /* NSString+CommonTX.m */; };
-		04DCA85F21A5580300691A3A /* UIButton+Glossy.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA84821A5580300691A3A /* UIButton+Glossy.m */; };
 		04DCA86021A5580300691A3A /* UIView+CustomAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA84921A5580300691A3A /* UIView+CustomAutoLayout.m */; };
-		04DCA86121A5580300691A3A /* TCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA84E21A5580300691A3A /* TCUtil.m */; };
-		04DCA86221A5580300691A3A /* UIImage+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA85121A5580300691A3A /* UIImage+Additions.m */; };
 		04DCA87A21A55C5B00691A3A /* TVCUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA86521A55C5A00691A3A /* TVCUtils.m */; };
 		04DCA87B21A55C5B00691A3A /* TXUGCPublish.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA86721A55C5A00691A3A /* TXUGCPublish.m */; };
 		04DCA87C21A55C5B00691A3A /* TXUGCPublishUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA86C21A55C5A00691A3A /* TXUGCPublishUtil.m */; };
@@ -487,8 +477,6 @@
 		04DCA87E21A55C5B00691A3A /* TVCCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA86F21A55C5A00691A3A /* TVCCommon.m */; };
 		04DCA88121A55C5B00691A3A /* TVCClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA87721A55C5A00691A3A /* TVCClient.m */; };
 		04DCA88221A55C5B00691A3A /* TVCClientInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA87921A55C5A00691A3A /* TVCClientInner.m */; };
-		04DCA88921A55E3E00691A3A /* TCUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA88721A55E3D00691A3A /* TCUserInfoModel.m */; };
-		04DCA88F21A5623500691A3A /* TCLoginParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA88D21A5623300691A3A /* TCLoginParam.m */; };
 		04DCA8D721A565D500691A3A /* TCVideoCutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA89721A565D400691A3A /* TCVideoCutViewController.m */; };
 		04DCA8D921A565D500691A3A /* TXVideoLoadingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DCA89921A565D400691A3A /* TXVideoLoadingController.xib */; };
 		04DCA8DA21A565D500691A3A /* TCVideoLoadingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA89A21A565D400691A3A /* TCVideoLoadingController.m */; };
@@ -825,7 +813,6 @@
 		04E6E9FD21A902D1007C8A16 /* Paster.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04E6E9FA21A902D0007C8A16 /* Paster.bundle */; };
 		04E6E9FE21A902D1007C8A16 /* AnimatedPaster.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04E6E9FB21A902D1007C8A16 /* AnimatedPaster.bundle */; };
 		04E6E9FF21A902D1007C8A16 /* bubbleText.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04E6E9FC21A902D1007C8A16 /* bubbleText.bundle */; };
-		04E6EA0221A93215007C8A16 /* NSData+CommonTX.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6EA0021A93214007C8A16 /* NSData+CommonTX.m */; };
 		04E700D3219FBD8B0096099F /* NetWork_mt_home_list.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E700D2219FBD8B0096099F /* NetWork_mt_home_list.m */; };
 		04E700D9219FF5C10096099F /* MtHomeTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E700D7219FF5C00096099F /* MtHomeTopView.m */; };
 		04EB6895222B83DD00D5C0C1 /* MTMyFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EB6894222B83DC00D5C0C1 /* MTMyFollowViewController.m */; };
@@ -1260,8 +1247,8 @@
 		0493CA6F221A5B550090968B /* ScrollPlayerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollPlayerListViewController.h; sourceTree = "<group>"; };
 		0495106C2182B00A0005F615 /* NSDate+TimeCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+TimeCategory.h"; sourceTree = "<group>"; };
 		0495106D2182B00A0005F615 /* NSDate+TimeCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TimeCategory.m"; sourceTree = "<group>"; };
-		0499B4FC223C767B0080A1B1 /* MusicDownloadHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicDownloadHelper.h; sourceTree = "<group>"; };
-		0499B4FD223C767B0080A1B1 /* MusicDownloadHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicDownloadHelper.m; sourceTree = "<group>"; };
+		0499B4FC223C767B0080A1B1 /* FileHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileHelper.h; sourceTree = "<group>"; };
+		0499B4FD223C767B0080A1B1 /* FileHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileHelper.m; sourceTree = "<group>"; };
 		0499B503223CC3580080A1B1 /* TCVideoRecordMusicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCVideoRecordMusicView.h; sourceTree = "<group>"; };
 		0499B50A223CC3580080A1B1 /* TCVideoRecordMusicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCVideoRecordMusicView.m; sourceTree = "<group>"; };
 		0499B521223CC4250080A1B1 /* TCBGMSliderCutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBGMSliderCutView.m; sourceTree = "<group>"; };
@@ -1400,8 +1387,6 @@
 		04B66E9821C15D41000D6C56 /* favorites.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = favorites.json; sourceTree = "<group>"; };
 		04B66E9B21C15DF2000D6C56 /* AwemesResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwemesResponse.h; sourceTree = "<group>"; };
 		04B66E9C21C15DF2000D6C56 /* AwemesResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwemesResponse.m; sourceTree = "<group>"; };
-		04B6E2C2224140F800F3B51E /* TCLoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLoginModel.m; sourceTree = "<group>"; };
-		04B6E2C3224140F900F3B51E /* TCLoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLoginModel.h; sourceTree = "<group>"; };
 		04B6E2C52241423B00F3B51E /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
 		04B6E2C62241423B00F3B51E /* PublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
 		04BC59852197C88600D5EA12 /* XLProjectWkWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLProjectWkWebViewController.h; sourceTree = "<group>"; };
@@ -1932,34 +1917,13 @@
 		04DCA82C21A5576600691A3A /* TCVideoRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCVideoRecordViewController.m; sourceTree = "<group>"; };
 		04DCA82D21A5576600691A3A /* TCVideoRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCVideoRecordViewController.xib; sourceTree = "<group>"; };
 		04DCA83521A5580300691A3A /* UIView+CustomAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CustomAutoLayout.h"; sourceTree = "<group>"; };
-		04DCA83621A5580300691A3A /* UIButton+Glossy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Glossy.h"; sourceTree = "<group>"; };
-		04DCA83721A5580300691A3A /* TipUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipUtility.h; sourceTree = "<group>"; };
 		04DCA83821A5580300691A3A /* UIColor+MLPFlatColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MLPFlatColors.m"; sourceTree = "<group>"; };
-		04DCA83921A5580300691A3A /* NSString+CommonTX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CommonTX.h"; sourceTree = "<group>"; };
-		04DCA83A21A5580300691A3A /* CommonMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMacro.h; sourceTree = "<group>"; };
-		04DCA83B21A5580300691A3A /* TCUploadHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUploadHelper.m; sourceTree = "<group>"; };
-		04DCA83C21A5580300691A3A /* UIImage+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Additions.h"; sourceTree = "<group>"; };
 		04DCA83D21A5580300691A3A /* NSObject+CommonBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CommonBlock.m"; sourceTree = "<group>"; };
-		04DCA83E21A5580300691A3A /* TCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUtil.h; sourceTree = "<group>"; };
 		04DCA83F21A5580300691A3A /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
-		04DCA84021A5580300691A3A /* QCloudAuthentationHeadV5Creator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCloudAuthentationHeadV5Creator.m; sourceTree = "<group>"; };
-		04DCA84121A5580300691A3A /* UIButton+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Additions.m"; sourceTree = "<group>"; };
-		04DCA84321A5580300691A3A /* ColorHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorHeaders.h; sourceTree = "<group>"; };
-		04DCA84421A5580300691A3A /* TCLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLog.m; sourceTree = "<group>"; };
-		04DCA84521A5580300691A3A /* HUDHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDHelper.m; sourceTree = "<group>"; };
-		04DCA84621A5580300691A3A /* NSString+CommonTX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CommonTX.m"; sourceTree = "<group>"; };
 		04DCA84721A5580300691A3A /* UIColor+MLPFlatColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MLPFlatColors.h"; sourceTree = "<group>"; };
-		04DCA84821A5580300691A3A /* UIButton+Glossy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Glossy.m"; sourceTree = "<group>"; };
 		04DCA84921A5580300691A3A /* UIView+CustomAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CustomAutoLayout.m"; sourceTree = "<group>"; };
-		04DCA84A21A5580300691A3A /* UIButton+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Additions.h"; sourceTree = "<group>"; };
 		04DCA84C21A5580300691A3A /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
-		04DCA84D21A5580300691A3A /* QCloudAuthentationHeadV5Creator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCloudAuthentationHeadV5Creator.h; sourceTree = "<group>"; };
-		04DCA84E21A5580300691A3A /* TCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUtil.m; sourceTree = "<group>"; };
 		04DCA84F21A5580300691A3A /* NSObject+CommonBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CommonBlock.h"; sourceTree = "<group>"; };
-		04DCA85021A5580300691A3A /* TCUploadHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUploadHelper.h; sourceTree = "<group>"; };
-		04DCA85121A5580300691A3A /* UIImage+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Additions.m"; sourceTree = "<group>"; };
-		04DCA85221A5580300691A3A /* HUDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDHelper.h; sourceTree = "<group>"; };
-		04DCA85321A5580300691A3A /* TCLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLog.h; sourceTree = "<group>"; };
 		04DCA85421A5580300691A3A /* ColorMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMacro.h; sourceTree = "<group>"; };
 		04DCA86321A55A2D00691A3A /* SDKHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDKHeader.h; sourceTree = "<group>"; };
 		04DCA86521A55C5A00691A3A /* TVCUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVCUtils.m; sourceTree = "<group>"; };
@@ -1979,10 +1943,6 @@
 		04DCA87721A55C5A00691A3A /* TVCClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVCClient.m; sourceTree = "<group>"; };
 		04DCA87821A55C5A00691A3A /* TVCCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVCCommon.h; sourceTree = "<group>"; };
 		04DCA87921A55C5A00691A3A /* TVCClientInner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVCClientInner.m; sourceTree = "<group>"; };
-		04DCA88721A55E3D00691A3A /* TCUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUserInfoModel.m; sourceTree = "<group>"; };
-		04DCA88821A55E3E00691A3A /* TCUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUserInfoModel.h; sourceTree = "<group>"; };
-		04DCA88D21A5623300691A3A /* TCLoginParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLoginParam.m; sourceTree = "<group>"; };
-		04DCA88E21A5623400691A3A /* TCLoginParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLoginParam.h; sourceTree = "<group>"; };
 		04DCA89321A563CA00691A3A /* TCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCConstants.h; sourceTree = "<group>"; };
 		04DCA89721A565D400691A3A /* TCVideoCutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCVideoCutViewController.m; sourceTree = "<group>"; };
 		04DCA89921A565D400691A3A /* TXVideoLoadingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TXVideoLoadingController.xib; sourceTree = "<group>"; };
@@ -2361,8 +2321,6 @@
 		04E6E9FA21A902D0007C8A16 /* Paster.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Paster.bundle; sourceTree = "<group>"; };
 		04E6E9FB21A902D1007C8A16 /* AnimatedPaster.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AnimatedPaster.bundle; sourceTree = "<group>"; };
 		04E6E9FC21A902D1007C8A16 /* bubbleText.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = bubbleText.bundle; sourceTree = "<group>"; };
-		04E6EA0021A93214007C8A16 /* NSData+CommonTX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonTX.m"; sourceTree = "<group>"; };
-		04E6EA0121A93214007C8A16 /* NSData+CommonTX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonTX.h"; sourceTree = "<group>"; };
 		04E700D1219FBD8B0096099F /* NetWork_mt_home_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_home_list.h; sourceTree = "<group>"; };
 		04E700D2219FBD8B0096099F /* NetWork_mt_home_list.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_home_list.m; sourceTree = "<group>"; };
 		04E700D7219FF5C00096099F /* MtHomeTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MtHomeTopView.m; sourceTree = "<group>"; };
@@ -2983,12 +2941,6 @@
 				04DCA86321A55A2D00691A3A /* SDKHeader.h */,
 				043548EB21A79ED700AED5A8 /* Localizable.strings */,
 				04DCA89321A563CA00691A3A /* TCConstants.h */,
-				04DCA88821A55E3E00691A3A /* TCUserInfoModel.h */,
-				04DCA88721A55E3D00691A3A /* TCUserInfoModel.m */,
-				04B6E2C3224140F900F3B51E /* TCLoginModel.h */,
-				04B6E2C2224140F800F3B51E /* TCLoginModel.m */,
-				04DCA88E21A5623400691A3A /* TCLoginParam.h */,
-				04DCA88D21A5623300691A3A /* TCLoginParam.m */,
 				04B0E19421A6937500ABCF16 /* BlocksKit */,
 				04C2612321A68FB200374E4D /* Common */,
 				04DCA8F621A5687500691A3A /* QBImagePickerController */,
@@ -4112,37 +4064,14 @@
 			isa = PBXGroup;
 			children = (
 				04DCA83521A5580300691A3A /* UIView+CustomAutoLayout.h */,
-				04DCA83621A5580300691A3A /* UIButton+Glossy.h */,
-				04DCA83721A5580300691A3A /* TipUtility.h */,
+				04DCA84921A5580300691A3A /* UIView+CustomAutoLayout.m */,
 				04DCA84721A5580300691A3A /* UIColor+MLPFlatColors.h */,
 				04DCA83821A5580300691A3A /* UIColor+MLPFlatColors.m */,
-				04DCA83921A5580300691A3A /* NSString+CommonTX.h */,
-				04DCA84621A5580300691A3A /* NSString+CommonTX.m */,
-				04DCA83A21A5580300691A3A /* CommonMacro.h */,
-				04DCA83B21A5580300691A3A /* TCUploadHelper.m */,
-				04DCA83C21A5580300691A3A /* UIImage+Additions.h */,
+				04DCA84F21A5580300691A3A /* NSObject+CommonBlock.h */,
 				04DCA83D21A5580300691A3A /* NSObject+CommonBlock.m */,
-				04DCA83E21A5580300691A3A /* TCUtil.h */,
-				04DCA84E21A5580300691A3A /* TCUtil.m */,
-				04DCA84A21A5580300691A3A /* UIButton+Additions.h */,
 				04DCA84C21A5580300691A3A /* UIView+Additions.h */,
 				04DCA83F21A5580300691A3A /* UIView+Additions.m */,
-				04DCA84021A5580300691A3A /* QCloudAuthentationHeadV5Creator.m */,
-				04DCA84121A5580300691A3A /* UIButton+Additions.m */,
-				04DCA84321A5580300691A3A /* ColorHeaders.h */,
-				04DCA84421A5580300691A3A /* TCLog.m */,
-				04DCA84521A5580300691A3A /* HUDHelper.m */,
-				04DCA84821A5580300691A3A /* UIButton+Glossy.m */,
-				04DCA84921A5580300691A3A /* UIView+CustomAutoLayout.m */,
-				04DCA84D21A5580300691A3A /* QCloudAuthentationHeadV5Creator.h */,
-				04DCA84F21A5580300691A3A /* NSObject+CommonBlock.h */,
-				04DCA85021A5580300691A3A /* TCUploadHelper.h */,
-				04DCA85121A5580300691A3A /* UIImage+Additions.m */,
-				04DCA85221A5580300691A3A /* HUDHelper.h */,
-				04DCA85321A5580300691A3A /* TCLog.h */,
 				04DCA85421A5580300691A3A /* ColorMacro.h */,
-				04E6EA0121A93214007C8A16 /* NSData+CommonTX.h */,
-				04E6EA0021A93214007C8A16 /* NSData+CommonTX.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -4152,15 +4081,16 @@
 			children = (
 				04DCA86521A55C5A00691A3A /* TVCUtils.m */,
 				04DCA86621A55C5A00691A3A /* TVCHeader.h */,
+				04DCA86B21A55C5A00691A3A /* TXUGCPublish.h */,
 				04DCA86721A55C5A00691A3A /* TXUGCPublish.m */,
 				04DCA86821A55C5A00691A3A /* include */,
+				04DCA87521A55C5A00691A3A /* TXUGCPublishUtil.h */,
 				04DCA86C21A55C5A00691A3A /* TXUGCPublishUtil.m */,
 				04DCA86D21A55C5A00691A3A /* TVCReport.m */,
 				04DCA86E21A55C5A00691A3A /* TVCClientInner.h */,
 				04DCA86F21A55C5A00691A3A /* TVCCommon.m */,
 				04DCA87021A55C5A00691A3A /* TVCClient.h */,
 				04DCA87421A55C5A00691A3A /* TVCReport.h */,
-				04DCA87521A55C5A00691A3A /* TXUGCPublishUtil.h */,
 				04DCA87621A55C5A00691A3A /* TVCUtils.h */,
 				04DCA87721A55C5A00691A3A /* TVCClient.m */,
 				04DCA87821A55C5A00691A3A /* TVCCommon.h */,
@@ -4174,7 +4104,6 @@
 			children = (
 				04DCA86921A55C5A00691A3A /* TXUGCPublishListener.h */,
 				04DCA86A21A55C5A00691A3A /* TXUGCPublishTypeDef.h */,
-				04DCA86B21A55C5A00691A3A /* TXUGCPublish.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -4310,8 +4239,8 @@
 				04DF9DC022392FC600935A89 /* BgMusicListHotSubViewController.m */,
 				04DF9DC4223941AF00935A89 /* BgMusicListCollectionSubViewController.h */,
 				04DF9DC5223941B000935A89 /* BgMusicListCollectionSubViewController.m */,
-				0499B4FC223C767B0080A1B1 /* MusicDownloadHelper.h */,
-				0499B4FD223C767B0080A1B1 /* MusicDownloadHelper.m */,
+				0499B4FC223C767B0080A1B1 /* FileHelper.h */,
+				0499B4FD223C767B0080A1B1 /* FileHelper.m */,
 			);
 			path = BgMusic_new;
 			sourceTree = "<group>";
@@ -6011,7 +5940,7 @@
 				0482F27021BFCA7C00587B38 /* View+MASAdditions.m in Sources */,
 				04CBC4532179C01300658E47 /* GPUImageMosaicFilter.m in Sources */,
 				04A04EB321ECDEA8007CBABF /* NetWork_mt_getHotSearchSix.m in Sources */,
-				0499B4FE223C767B0080A1B1 /* MusicDownloadHelper.m in Sources */,
+				0499B4FE223C767B0080A1B1 /* FileHelper.m in Sources */,
 				04CBC4032179C01300658E47 /* GPUImageSmoothToonFilter.m in Sources */,
 				04DCA87A21A55C5B00691A3A /* TVCUtils.m in Sources */,
 				04B36299222AB8E000735B18 /* ZanListCell.m in Sources */,
@@ -6035,7 +5964,6 @@
 				04CBC2932179C01200658E47 /* MJRefreshNormalHeader.m in Sources */,
 				04443E9721B41A0B00C8DD34 /* HomeVideoCell.m in Sources */,
 				04CBC3972179C01300658E47 /* GPUImageSaturationFilter.m in Sources */,
-				04DCA86121A5580300691A3A /* TCUtil.m in Sources */,
 				04A308FD222A8EC8000BC762 /* NetWork_mt_getLikeMeList.m in Sources */,
 				040E28D521C0F0D400D15B44 /* GroupChat.m in Sources */,
 				040E28D721C0F0D400D15B44 /* Comment.m in Sources */,
@@ -6116,7 +6044,6 @@
 				D957AD5D1DD2CB2F00B7EE09 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				0441FA2321CF3FBA00801225 /* LoadMoreControl.m in Sources */,
 				D98FCFC71DEFC41A0023C076 /* STPickerViewUI.m in Sources */,
-				04DCA85C21A5580300691A3A /* TCLog.m in Sources */,
 				04183B1921C2C09600383E3F /* Callback_userInfo.m in Sources */,
 				04FD7DE021EE2DB7004A57CA /* MTSearchHeadFunctionView.m in Sources */,
 				04CBC3EB2179C01300658E47 /* GPUImageMaskFilter.m in Sources */,
@@ -6154,7 +6081,6 @@
 				04CBC4132179C01300658E47 /* GPUImageWhiteBalanceFilter.m in Sources */,
 				04CBC28F2179C01200658E47 /* MJRefreshAutoGifFooter.m in Sources */,
 				04CBC39D2179C01300658E47 /* GPUImagePixellateFilter.m in Sources */,
-				04DCA88921A55E3E00691A3A /* TCUserInfoModel.m in Sources */,
 				04C1721221CE3EC80077FA6C /* NetWork_mt_publishComment.m in Sources */,
 				04CBC3512179C01300658E47 /* GPUImageMovie.m in Sources */,
 				04B0E1E921A6937600ABCF16 /* NSObject+BKAssociatedObjects.m in Sources */,
@@ -6175,7 +6101,6 @@
 				04CBC39F2179C01300658E47 /* GPUImageTextureInput.m in Sources */,
 				C5336F9B1E83739600618975 /* UIViewController+TTPopupView.m in Sources */,
 				04DCA87E21A55C5B00691A3A /* TVCCommon.m in Sources */,
-				04DCA85621A5580300691A3A /* TCUploadHelper.m in Sources */,
 				0400F32C21AFA62D0038E16C /* GetMessageFromWXResp+responseWithTextOrMediaMessage.m in Sources */,
 				042E65862217B00200C56859 /* MyMusicHeaderView.m in Sources */,
 				04CBC3B32179C01300658E47 /* GPUImageDivideBlendFilter.m in Sources */,
@@ -6211,7 +6136,6 @@
 				04CBC3F72179C01300658E47 /* GPUImageAverageColor.m in Sources */,
 				04CBC3B92179C01300658E47 /* GPUImagePosterizeFilter.m in Sources */,
 				0482F26621BFCA7C00587B38 /* ViewController+MASAdditions.m in Sources */,
-				04DCA85F21A5580300691A3A /* UIButton+Glossy.m in Sources */,
 				04CBC3532179C01300658E47 /* GPUImageLevelsFilter.m in Sources */,
 				04DCA82E21A5576700691A3A /* TCVideoRecordProcessView.m in Sources */,
 				04DCA8D721A565D500691A3A /* TCVideoCutViewController.m in Sources */,
@@ -6237,7 +6161,6 @@
 				04CBC2832179C01200658E47 /* NSBundle+MJRefresh.m in Sources */,
 				04CBC3712179C01300658E47 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
 				D9D19BFE1E272F32009C52A8 /* AlerViewJoinCostom.m in Sources */,
-				04DCA88F21A5623500691A3A /* TCLoginParam.m in Sources */,
 				04183B0821C2BC2200383E3F /* CircleTextView.m in Sources */,
 				047EE800221CE22100F77B96 /* NetWork_mt_collectionMusic.m in Sources */,
 				0402A46421C4C94800C35CA9 /* NSAttributedString+Extension.m in Sources */,
@@ -6255,7 +6178,6 @@
 				D9F86DCB1DEBEE7600C3A2B6 /* TZImageManager.m in Sources */,
 				0420916B21FB53D1004C0524 /* SearchResultSubMusicCell.m in Sources */,
 				04CBC3332179C01300658E47 /* GPUImageFilterGroup.m in Sources */,
-				04DCA85A21A5580300691A3A /* UIButton+Additions.m in Sources */,
 				04B0E1FB21A6937600ABCF16 /* A2BlockInvocation.m in Sources */,
 				04F5E89F21CE8DD200781FCD /* NetWork_mt_collectionVideo.m in Sources */,
 				04CBC3EF2179C01300658E47 /* GPUImageSoftLightBlendFilter.m in Sources */,
@@ -6281,8 +6203,6 @@
 				04CBC4272179C01300658E47 /* GPUImageMedianFilter.m in Sources */,
 				C552FC221E7136EA003D3E2E /* MyScrollView.m in Sources */,
 				04CBC4252179C01300658E47 /* GPUImageLinearBurnBlendFilter.m in Sources */,
-				04DCA85921A5580300691A3A /* QCloudAuthentationHeadV5Creator.m in Sources */,
-				04B6E2C4224140F900F3B51E /* TCLoginModel.m in Sources */,
 				04DCA91621A5687600691A3A /* QBAssetsViewController.m in Sources */,
 				04DCA91521A5687600691A3A /* QBAlbumsViewController.m in Sources */,
 				04DCA91321A5687600691A3A /* QBAlbumCell.m in Sources */,
@@ -6423,7 +6343,6 @@
 				04CBC3F12179C01300658E47 /* GPUImageSubtractBlendFilter.m in Sources */,
 				04CBC41D2179C01300658E47 /* GPUImageHoughTransformLineDetector.m in Sources */,
 				04CBC44B2179C01300658E47 /* GPUImageCrosshatchFilter.m in Sources */,
-				04DCA86221A5580300691A3A /* UIImage+Additions.m in Sources */,
 				04CBC48D2179C01300658E47 /* UIButton+WebCache.m in Sources */,
 				04183B0921C2BC2200383E3F /* NSString+Extension.m in Sources */,
 				04B0E1EF21A6937600ABCF16 /* UIWebView+BlocksKit.m in Sources */,
@@ -6454,9 +6373,7 @@
 				0400F33421AFA62D0038E16C /* WXApiRequestHandler.m in Sources */,
 				D9E6670E1E711F4A00147D22 /* AppDelegateBase.m in Sources */,
 				04B0E1EC21A6937600ABCF16 /* NSIndexSet+BlocksKit.m in Sources */,
-				04DCA85D21A5580300691A3A /* HUDHelper.m in Sources */,
 				04B0E1E521A6937600ABCF16 /* NSInvocation+BlocksKit.m in Sources */,
-				04E6EA0221A93215007C8A16 /* NSData+CommonTX.m in Sources */,
 				04CBC3412179C01300658E47 /* GPUImageColorPackingFilter.m in Sources */,
 				04C1721021CE3EC80077FA6C /* NetWork_mt_saveVideo.m in Sources */,
 				04CBC4592179C01300658E47 /* GPUImageLuminanceRangeFilter.m in Sources */,
@@ -6476,7 +6393,6 @@
 				04DCEE9421F5C92E007AC5B0 /* NetWork_mt_getFuzzyAccountList.m in Sources */,
 				D954C5D11DD1A40F003CA535 /* iToast.m in Sources */,
 				D957AD671DD2CB2F00B7EE09 /* IQUIView+IQKeyboardToolbar.m in Sources */,
-				04DCA85E21A5580300691A3A /* NSString+CommonTX.m in Sources */,
 				04CBC3FB2179C01300658E47 /* GPUImageContrastFilter.m in Sources */,
 				04468F17214B8F14002F4528 /* ZJCustomTabWebController.m in Sources */,
 				D98FCFAF1DEFC3080023C076 /* NSCalendar+ST.m in Sources */,
