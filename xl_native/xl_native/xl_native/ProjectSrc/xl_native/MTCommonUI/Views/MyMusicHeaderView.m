@@ -68,7 +68,7 @@
         _btnAuthor.size = [UIView getSize_width:220 height:30];
         _btnAuthor.origin = [UIView getPoint_x:self.lableTopicName.left y:self.lableTopicName.bottom];
         _btnAuthor.titleLabel.font = [UIFont defaultFontWithSize:14];
-        [_btnAuthor setTitleColor:RGBA(120, 122, 132, 1) forState:UIControlStateNormal];
+        [_btnAuthor setTitleColor:ColorWhiteAlpha80 forState:UIControlStateNormal];
         [_btnAuthor setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
         _btnAuthor.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [_btnAuthor addTarget:self action:@selector(btnAuthorClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -84,7 +84,7 @@
         _lablePlayCount.size = [UIView getSize_width:220 height:30];
         _lablePlayCount.origin = [UIView getPoint_x:self.lableTopicName.left y:self.btnAuthor.bottom];
         _lablePlayCount.font = [UIFont defaultFontWithSize:14];
-        _lablePlayCount.textColor = RGBA(120, 122, 132, 1);
+        _lablePlayCount.textColor = ColorWhiteAlpha80;
     }
     return _lablePlayCount;
 }

@@ -91,7 +91,7 @@ static NSString* const ViewTableViewCellId = @"HomeSearchCellId";
     if (!_descLalbe) {
         _descLalbe = [[UILabel alloc] init];
         _descLalbe.font = [UIFont defaultFontWithSize:14];
-        _descLalbe.textColor = RGBA(123, 125, 134, 1);
+        _descLalbe.textColor = ColorWhiteAlpha80;
         _descLalbe.size = [UIView getSize_width:250 height:20];
         _descLalbe.origin = [UIView getPoint_x:self.imageVeiwBg.right+5
                                               y:self.imageVeiwBg.centerY];
