@@ -107,7 +107,7 @@
 #pragma mark - 展示一般的警告
 + (void)showAlertHUD:(NSString *)message;
 + (void)showAlertHUD:(NSString *)message timeOut:(NSInteger)timeOut;
-+ (NSString *)deviceVersion;
+
 + (UIImage *)imageWithColor:(UIColor *)color;
 + (CGSize)sizeWithText:(NSString *)text font:(UIFont *)font size:(CGSize)size;
 
@@ -126,29 +126,12 @@
 +(NSString*) getCurrentTimeWithFormatter:(NSString*)formattter;
 +(NSString*) getTimeWithFormatter:(NSDate*)date  formattter:(NSString*)formattter;
 
++(NSDate*) getDateWithTimeStr:(NSString*)timestr;
 
-
-#pragma mark - 过滤表情
-+(NSString *)disableEmoji:(NSString *)text;
-+(BOOL)stringContainsEmoji:(NSString *)string;
-
-//根据图片url获取图片尺寸
-+(CGSize)getImageSizeWithURL:(id)imageURL;
-
-/*
- * data 转string
- */
-+ (NSString*)dataTojsonString:(id)object;
-
-#pragma  - cache file folder ------
-
-+(NSString*)getImageFileFolder;
 
 //随机色
 +(UIColor *)randomColor;
 
-//找到导航栏最下面黑线视图
-+ (UIImageView *)getLineViewInNavigationBar:(UIView *)view;
 
 /**
  倒计时

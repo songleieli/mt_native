@@ -86,7 +86,7 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubMusicCellId";
     self.listModel = model;
     [self.imageVeiwIcon sd_setImageWithURL:[NSURL URLWithString:model.coverUrl] placeholderImage:[UIImage imageNamed:@"img_find_default"]];
     
-    [GlobalFunc setContentLabelColor:model.name.trim
+    [GlobalFunc setContentLabelColor:model.musicName.trim
                               subStr:withKeyWord
                             subColor:[UIColor yellowColor]
                         contentLabel:self.labelTitle];

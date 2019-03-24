@@ -407,6 +407,13 @@
         self.mainTableView.estimatedSectionFooterHeight = 0;
         self.mainTableView.estimatedSectionHeaderHeight = 0;
         
+        NSLog(@"------------------%f",self.mainTableView.mj_header.height);
+        
+        /*
+         *54为原来的高度，KNavBarHeightOffset_New 为IPhoneX与原先Nav的差值，即刘海的高度
+         */
+        self.mainTableView.mj_header.height = 54 + KNavBarHeightOffset_New;
+        
         [self.mainTableView.mj_header setRefreshingTarget:self refreshingAction:@selector(loadNewData)];
         [self.mainTableView.mj_footer setRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
         if (@available(iOS 11.0, *)) {

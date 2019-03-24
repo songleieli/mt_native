@@ -50,6 +50,8 @@ typedef void (^OnPlayerReady)(void);
 @property (nonatomic, strong) AVPlayerView     *playerView;
 @property (nonatomic, strong) OnPlayerReady    onPlayerReady;
 @property (nonatomic, assign) BOOL             isPlayerReady;
+@property (nonatomic, strong) UIView           *playerStatusBar;
+
 
 /**遮罩*/
 @property (nonatomic, strong) SwitchPlayerMaskView *maskView;

@@ -167,14 +167,14 @@
 //        NSLog(@"----视频播放列表--");
         CGFloat w = self.view.frame.size.width;
         
-        NSLog(@"============fabs(self.offset) = %f",fabs(self.offset));
-        NSLog(@"============self.scrollView.contentOffset.x = %f",self.scrollView.contentOffset.x);
+//        NSLog(@"============fabs(self.offset) = %f",fabs(self.offset));
+//        NSLog(@"============self.scrollView.contentOffset.x = %f",self.scrollView.contentOffset.x);
         self.offset +=  self.scrollView.contentOffset.x - w;
-        NSLog(@"============fabs(self.offset) = %f",fabs(self.offset));
+//        NSLog(@"============fabs(self.offset) = %f",fabs(self.offset));
 
         if(fabs(self.offset) <= 50.0f){
-            NSLog(@"============self.offset = %f",self.offset);
-            NSLog(@"============fabs(self.offset) = %f",fabs(self.offset));
+//            NSLog(@"============self.offset = %f",self.offset);
+//            NSLog(@"============fabs(self.offset) = %f",fabs(self.offset));
             self.scrollView.contentOffset = CGPointMake(w, 0);
         }
         
@@ -205,9 +205,9 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
-    NSLog(@"----scrollViewDidEndDragging--");
+//    NSLog(@"----scrollViewDidEndDragging--");
     self.offset = 0.0f;
-    NSLog(@"-------------------------------------------------fabs(self.offset) = %f",fabs(self.offset));
+//    NSLog(@"-------------------------------------------------fabs(self.offset) = %f",fabs(self.offset));
     
     CGPoint rect = scrollView.contentOffset;
     CGFloat w = self.view.frame.size.width;

@@ -50,9 +50,27 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubUserCellId";
     self.imageVeiwIcon.userInteractionEnabled = YES;
     [self.viewBg addSubview:self.imageVeiwIcon];
     
+    
+    self.focusButton = [[UIButton alloc] init];
+    self.focusButton.size = [UIView getSize_width:sizeScale(60.0f) height:sizeScale(25.5f)];
+    self.focusButton.right = ScreenWidth - 10;
+    self.focusButton.top = (SearchResultSubUserCellHeight - self.focusButton.height)/2;
+    [self.focusButton setTitle:@"关注" forState:UIControlStateNormal];
+    [self.focusButton setTitleColor:ColorWhite forState:UIControlStateNormal];
+    self.focusButton.titleLabel.font = MediumBoldFont;
+    self.focusButton.clipsToBounds = YES;
+    [self.focusButton setImage:[UIImage imageNamed:@"icon_personal_add_little"] forState:UIControlStateNormal];
+    [self.focusButton setImageEdgeInsets:UIEdgeInsetsMake(0, -2, 0, 0)];
+    [self.focusButton setBackgroundColor:MTColorBtnRedNormal forState:UIControlStateNormal];
+    [self.focusButton setBackgroundColor:MTColorBtnRedHighlighted forState:UIControlStateHighlighted];
+    self.focusButton.layer.cornerRadius = 2;
+    [self.viewBg addSubview:self.focusButton];
+    
 
     self.labelTitle = [[VUILable alloc]init];
-    self.labelTitle.size = [UIView getSize_width:210 height:40];
+    //宽度根据屏幕适配
+    self.labelTitle.size = [UIView getSize_width:self.viewBg.width - self.imageVeiwIcon.right - self.focusButton.width - 30
+                                          height:40];
     self.labelTitle.origin = [UIView getPoint_x:self.imageVeiwIcon.right+10 y:0];
     self.labelTitle.font = BigBoldFont;
     self.labelTitle.verticalAlignment = VerticalAlignmentBottom;
@@ -60,37 +78,22 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubUserCellId";
     [self.viewBg addSubview:self.labelTitle];
     
     self.labelNoodleInfo = [[VUILable alloc]init];
-    self.labelNoodleInfo.size = [UIView getSize_width:220 height:20];
+    self.labelNoodleInfo.size = [UIView getSize_width:self.labelTitle.width height:20];
     self.labelNoodleInfo.origin = [UIView getPoint_x:self.labelTitle.left y:self.labelTitle.bottom];
     self.labelNoodleInfo.font = SmallFont;
-    self.labelNoodleInfo.textColor = ColorWhiteAlpha60;
+    self.labelNoodleInfo.textColor = ColorWhiteAlpha80;
     self.labelNoodleInfo.verticalAlignment = VerticalAlignmentMiddle;
     [self.viewBg addSubview:self.labelNoodleInfo];
     
     //test
 
     self.labelSign = [[VUILable alloc]init];
-    self.labelSign.size = [UIView getSize_width:230 height:30];
+    self.labelSign.size = [UIView getSize_width:self.labelTitle.width height:30];
     self.labelSign.origin = [UIView getPoint_x:self.labelTitle.left y:self.labelNoodleInfo.bottom];
     self.labelSign.font = SmallFont;
-    self.labelSign.textColor = ColorWhiteAlpha60;
+    self.labelSign.textColor = ColorWhiteAlpha80;
     self.labelSign.verticalAlignment = VerticalAlignmentTop;
     [self.viewBg addSubview:self.labelSign];
-    
-    
-    self.focusButton = [[UIButton alloc] init];
-    self.focusButton.size = [UIView getSize_width:70.0f height:28.5f];
-    self.focusButton.right = ScreenWidth - 10;
-    self.focusButton.top = (SearchResultSubUserCellHeight - self.focusButton.height)/2;
-    [self.focusButton setTitle:@"关注" forState:UIControlStateNormal];
-    [self.focusButton setTitleColor:ColorWhite forState:UIControlStateNormal];
-    self.focusButton.titleLabel.font = SmallFont;
-    self.focusButton.clipsToBounds = YES;
-    [self.focusButton setImage:[UIImage imageNamed:@"icon_personal_add_little"] forState:UIControlStateNormal];
-    [self.focusButton setImageEdgeInsets:UIEdgeInsetsMake(0, -2, 0, 0)];
-    self.focusButton.layer.backgroundColor = ColorThemeRed.CGColor;
-    self.focusButton.layer.cornerRadius = 2;
-    [self.viewBg addSubview:self.focusButton];
 }
 - (void)fillDataWithModel:(GetFuzzyAccountListModel *)listModel withKeyWord:(NSString*)withKeyWord{
     

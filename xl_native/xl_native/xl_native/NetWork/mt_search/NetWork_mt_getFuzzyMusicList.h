@@ -23,7 +23,7 @@
 
 
 @property (copy, nonatomic) NSString *id;
-@property (copy, nonatomic) NSString *name;
+@property (copy, nonatomic) NSString *musicName;
 @property (copy, nonatomic) NSString *coverUrl;
 @property (copy, nonatomic) NSString *playUrl;
 @property (copy, nonatomic) NSString *noodleId;

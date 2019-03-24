@@ -29,6 +29,19 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
 }
 
 
+-(UIView*)playerStatusBar{
+    if(!_playerStatusBar){
+        _playerStatusBar = [[UIView alloc]init];
+        _playerStatusBar.size = [UIView getSize_width:1.0f height:0.5];
+        _playerStatusBar.centerX = ScreenWidth/2;
+        _playerStatusBar.bottom = HomeVideoCellHeight - kTabBarHeight_New;
+        _playerStatusBar.backgroundColor = [UIColor yellowColor];
+        [_playerStatusBar setHidden:YES];
+    }
+    return _playerStatusBar;
+}
+
+
 //遮罩
 - (SwitchPlayerMaskView *) maskView{
     if (_maskView == nil){
@@ -54,8 +67,13 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
 
 //    self.contentView.backgroundColor = [GlobalFunc randomColor];
     [self.contentView addSubview:self.playerView];
+    [self.contentView addSubview:self.playerStatusBar];
+    
     [self.contentView addSubview:self.maskView];
 }
+
+#pragma mark --------- CustomMethod -------------
+
 
 - (void) setBackgroundImage:(NSString *)imageName {
     UIImageView *background = [[UIImageView alloc] initWithFrame:self.contentView.bounds];
@@ -100,6 +118,42 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
     [self.playerView startDownloadTask:[[NSURL alloc] initWithString:playUrl] isBackground:NO];
 }
 
+
+//加载动画
+-(void)startLoadingPlayItemAnim:(BOOL)isStart {
+    if (isStart) {
+        _playerStatusBar.backgroundColor = [UIColor yellowColor];
+        [_playerStatusBar setHidden:NO];
+        [_playerStatusBar.layer removeAllAnimations];
+        
+        CAAnimationGroup *animationGroup = [[CAAnimationGroup alloc]init];
+        animationGroup.duration = 0.5;
+        animationGroup.beginTime = CACurrentMediaTime() + 0.5;
+        animationGroup.repeatCount = MAXFLOAT;
+        animationGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        
+        CABasicAnimation * scaleAnimation = [CABasicAnimation animation];
+        scaleAnimation.keyPath = @"transform.scale.x";
+        scaleAnimation.fromValue = @(1.0f);
+        scaleAnimation.toValue = @(1.0f * ScreenWidth);
+        
+        CABasicAnimation * alphaAnimation = [CABasicAnimation animation];
+        alphaAnimation.keyPath = @"opacity";
+        alphaAnimation.fromValue = @(1.0f);
+        alphaAnimation.toValue = @(0.5f);
+        [animationGroup setAnimations:@[scaleAnimation, alphaAnimation]];
+        [self.playerStatusBar.layer addAnimation:animationGroup forKey:nil];
+    } else {
+        [self.playerStatusBar.layer removeAllAnimations];
+        [self.playerStatusBar setHidden:YES];
+    }
+    
+}
+
+
+
+#pragma mark --------- prepareForReuse j-------------
+
 /*
  cell被重用如何提前知道? 重写cell的prepareForReuse官方头文件中有说明.当前已经被分配的cell如果被重用了(通常是滚动出屏幕外了),会调用cell的prepareForReuse通知cell.注意这里重写方法的时候,注意一定要调用父类方法[super prepareForReuse] .这个在使用cell作为网络访问的代理容器时尤其要注意,需要在这里通知取消掉前一次网络请求.不要再给这个cell发数据了.
  */
@@ -130,11 +184,11 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
 -(void)onPlayItemStatusUpdate:(AVPlayerItemStatus)status { //播放状态更新
     switch (status) {
         case AVPlayerItemStatusUnknown:
-//            [self startLoadingPlayItemAnim:YES];
+            [self startLoadingPlayItemAnim:YES];
             break;
         case AVPlayerItemStatusReadyToPlay:
         {
-//            [self startLoadingPlayItemAnim:NO];
+            [self startLoadingPlayItemAnim:NO];
             
             _isPlayerReady = YES;
 //            [_musicAlum startAnimation:_aweme.rate];

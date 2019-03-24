@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0400F30D21AF8CD60038E16C /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0400F30A21AF8CD50038E16C /* TencentOpenAPI.framework */; };
-		0400F31521AF96F10038E16C /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0400F31221AF96F10038E16C /* README.txt */; };
 		0400F31721AF96F10038E16C /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0400F31421AF96F10038E16C /* libWeChatSDK.a */; };
 		0400F32A21AFA62D0038E16C /* UIAlertView+WX.m in Sources */ = {isa = PBXBuildFile; fileRef = 0400F31A21AFA62C0038E16C /* UIAlertView+WX.m */; };
 		0400F32C21AFA62D0038E16C /* GetMessageFromWXResp+responseWithTextOrMediaMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0400F31B21AFA62C0038E16C /* GetMessageFromWXResp+responseWithTextOrMediaMessage.m */; };
@@ -388,8 +387,6 @@
 		04CBC4692179C01300658E47 /* GPUImageLightenBlendFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC2112179C01100658E47 /* GPUImageLightenBlendFilter.m */; };
 		04CBC46B2179C01300658E47 /* GPUImageCGAColorspaceFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC2142179C01100658E47 /* GPUImageCGAColorspaceFilter.m */; };
 		04CBC46D2179C01300658E47 /* GPUImageDarkenBlendFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC2182179C01100658E47 /* GPUImageDarkenBlendFilter.m */; };
-		04CBC46F2179C01300658E47 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 04CBC2192179C01100658E47 /* README.md */; };
-		04CBC4712179C01300658E47 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04CBC21A2179C01100658E47 /* License.txt */; };
 		04CBC4732179C01300658E47 /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC21E2179C01100658E47 /* SDWebImageManager.m */; };
 		04CBC4752179C01300658E47 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC21F2179C01100658E47 /* SDWebImageDecoder.m */; };
 		04CBC4772179C01300658E47 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC2212179C01100658E47 /* UIImageView+HighlightedWebCache.m */; };
@@ -405,8 +402,6 @@
 		04CBC48B2179C01300658E47 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC2332179C01100658E47 /* UIView+WebCacheOperation.m */; };
 		04CBC48D2179C01300658E47 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC2372179C01100658E47 /* UIButton+WebCache.m */; };
 		04CBC48F2179C01300658E47 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC23A2179C01200658E47 /* MBProgressHUD.m */; };
-		04CBC4912179C01300658E47 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 04CBC23B2179C01200658E47 /* LICENSE */; };
-		04CBC4932179C01300658E47 /* README.mdown in Resources */ = {isa = PBXBuildFile; fileRef = 04CBC23D2179C01200658E47 /* README.mdown */; };
 		04CBC4BF2179C01300658E47 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC2722179C01200658E47 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		04D9B4C821D327B300DEC8B9 /* NetWork_mt_getFollows.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9B4C621D327B300DEC8B9 /* NetWork_mt_getFollows.m */; };
 		04D9B4CE21D343A400DEC8B9 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9B4CC21D343A300DEC8B9 /* MessageCell.m */; };
@@ -762,8 +757,6 @@
 		04F3B5A62247498E00F4C82E /* NSObject+A2BlockDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B5A32247498D00F4C82E /* NSObject+A2BlockDelegate.m */; };
 		04F3B60922474A8800F4C82E /* A2DynamicDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B60722474A8700F4C82E /* A2DynamicDelegate.m */; };
 		04F3B66922474B4200F4C82E /* A2BlockInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B66822474B4200F4C82E /* A2BlockInvocation.m */; };
-		04F3B68222474D8400F4C82E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 04F3B66B22474D8400F4C82E /* LICENSE */; };
-		04F3B68322474D8400F4C82E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 04F3B66C22474D8400F4C82E /* README.md */; };
 		04F3B68422474D8400F4C82E /* QBVideoIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B67122474D8400F4C82E /* QBVideoIconView.m */; };
 		04F3B68522474D8400F4C82E /* QBVideoIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B67222474D8400F4C82E /* QBVideoIndicatorView.m */; };
 		04F3B68622474D8400F4C82E /* QBImagePicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04F3B67322474D8400F4C82E /* QBImagePicker.bundle */; };
@@ -2943,7 +2936,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		04AB303321CA91310072808E /* 抖音 */ = {
+		04AB303321CA91310072808E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				04AB303421CA91310072808E /* GKDouyinScrollView.h */,
@@ -2965,7 +2958,7 @@
 				0406762321F718B000543917 /* HomeSearchResultSubVideoViewController.h */,
 				0406762421F718B000543917 /* HomeSearchResultSubVideoViewController.m */,
 			);
-			path = "抖音";
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		04AB304321CA91D60072808E /* 其他 */ = {
@@ -3118,7 +3111,7 @@
 			isa = PBXGroup;
 			children = (
 				04E28F59218942C7006A91DA /* Views */,
-				04AB303321CA91310072808E /* 抖音 */,
+				04AB303321CA91310072808E /* Controllers */,
 				04AB304321CA91D60072808E /* 其他 */,
 				04443E8E21B3F91400C8DD34 /* XLPlayerListViewController.h */,
 				04443E8F21B3F91400C8DD34 /* XLPlayerListViewController.m */,
@@ -5327,7 +5320,6 @@
 				04E6E90721A8FFDC007C8A16 /* lightning-1.png in Resources */,
 				04E6E95F21A8FFDC007C8A16 /* ghost-11.png in Resources */,
 				04E6E9DB21A8FFDC007C8A16 /* phantom-9.png in Resources */,
-				0400F31521AF96F10038E16C /* README.txt in Resources */,
 				04E6E90021A8FFDC007C8A16 /* lightning-19.png in Resources */,
 				04E6E9CA21A8FFDC007C8A16 /* phantom-10.png in Resources */,
 				04E6E98221A8FFDC007C8A16 /* fenlie7.png in Resources */,
@@ -5342,7 +5334,6 @@
 				D9F704D41EF907CD007A69CF /* xl_native-Info.plist in Resources */,
 				04E6E8E321A8FFDC007C8A16 /* ghostshadow-0.png in Resources */,
 				04E6E93D21A8FFDC007C8A16 /* donggan22.png in Resources */,
-				04CBC4712179C01300658E47 /* License.txt in Resources */,
 				D9F86DA41DEBEE7600C3A2B6 /* photo_number_icon@2x.png in Resources */,
 				04E6E93A21A8FFDC007C8A16 /* donggan21.png in Resources */,
 				04E6E9A221A8FFDC007C8A16 /* shutter-15.png in Resources */,
@@ -5360,7 +5351,6 @@
 				04E6E91B21A8FFDC007C8A16 /* anhei10.png in Resources */,
 				04E6E95821A8FFDC007C8A16 /* ghost-13.png in Resources */,
 				04E6E96421A8FFDC007C8A16 /* ghost-16.png in Resources */,
-				04F3B68322474D8400F4C82E /* README.md in Resources */,
 				D9F86D981DEBEE7600C3A2B6 /* MMVideoPreviewPlayHL@2x.png in Resources */,
 				04E6E9E821A8FFDC007C8A16 /* mirror-7.png in Resources */,
 				04E6E8DD21A8FFDC007C8A16 /* ghostshadow-21.png in Resources */,
@@ -5418,7 +5408,6 @@
 				D9F86D9B1DEBEE7600C3A2B6 /* navi_back@2x.png in Resources */,
 				04E6E95E21A8FFDC007C8A16 /* ghost-1.png in Resources */,
 				04E6E97321A8FFDC007C8A16 /* linghun7.png in Resources */,
-				04CBC4912179C01300658E47 /* LICENSE in Resources */,
 				04E6E9F821A8FFDC007C8A16 /* mirror-8.png in Resources */,
 				04E6E99821A8FFDC007C8A16 /* fenlie9.png in Resources */,
 				04E6E9EC21A8FFDC007C8A16 /* mirror-11.png in Resources */,
@@ -5440,7 +5429,6 @@
 				04E6E9E421A8FFDC007C8A16 /* mirror-1.png in Resources */,
 				04E6E91C21A8FFDC007C8A16 /* anhei0.png in Resources */,
 				04E6E99921A8FFDC007C8A16 /* fenlie8.png in Resources */,
-				04F3B68222474D8400F4C82E /* LICENSE in Resources */,
 				04E6E8F121A8FFDC007C8A16 /* ghostshadow-17.png in Resources */,
 				04E6E8FA21A8FFDC007C8A16 /* lightning-13.png in Resources */,
 				04E6E9B621A8FFDC007C8A16 /* illusion-11.png in Resources */,
@@ -5492,7 +5480,6 @@
 				04E6E8FE21A8FFDC007C8A16 /* lightning-20.png in Resources */,
 				04E6E8F821A8FFDC007C8A16 /* lightning-10.png in Resources */,
 				04E6E8F621A8FFDC007C8A16 /* lightning-15.png in Resources */,
-				04CBC4932179C01300658E47 /* README.mdown in Resources */,
 				04E6E94521A8FFDC007C8A16 /* donggan11.png in Resources */,
 				04E6E9A921A8FFDC007C8A16 /* shutter-11.png in Resources */,
 				D9F86DBC1DEBEE7600C3A2B6 /* TZAlbumCell.xib in Resources */,
@@ -5578,7 +5565,6 @@
 				04E6E97421A8FFDC007C8A16 /* linghun5.png in Resources */,
 				04E6E9C721A8FFDC007C8A16 /* illusion-20.png in Resources */,
 				04E6E9A721A8FFDC007C8A16 /* shutter-12.png in Resources */,
-				04CBC46F2179C01300658E47 /* README.md in Resources */,
 				04E6E8DC21A8FFDC007C8A16 /* ghostshadow-20.png in Resources */,
 				04E6E9D621A8FFDC007C8A16 /* phantom-1.png in Resources */,
 				04E6E93621A8FFDC007C8A16 /* jump_13.png in Resources */,

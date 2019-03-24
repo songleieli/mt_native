@@ -29,6 +29,7 @@
 
 
 -(void)initNavTitle{
+    
     self.isNavBackGroundHiden  = NO;
     self.btnLeft.hidden = YES;
     self.lableNavTitle.textColor = ColorWhite;
@@ -39,11 +40,14 @@
     leftButton.origin = [UIView getPoint_x:15.0f y:self.navBackGround.height -leftButton.height-11];
     [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_titlebar_whiteback"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    
     self.btnLeft = leftButton;
     
-
     self.title = @"收藏";
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [UIApplication sharedApplication].statusBarHidden = NO;
 }
 
 - (void)viewDidLoad {
@@ -106,7 +110,7 @@
 -(void)subMusicClick:(MusicSearchModel *)model{
     
     MusicInfoController *musicInfoController = [[MusicInfoController alloc] init];
-    musicInfoController.musicId = model.musicId;
+    musicInfoController.musicId = [NSString stringWithFormat:@"%@",model.musicId];
     [self pushNewVC:musicInfoController animated:YES];
 }
 

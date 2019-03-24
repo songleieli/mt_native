@@ -55,7 +55,7 @@
         _musicName = [[CircleTextView alloc]init];
         _musicName.left = self.musicIcon.right;
         _musicName.textColor = ColorWhite;
-        _musicName.font = MediumFont;
+        _musicName.font = BigFont;
         _musicName.width = self.width/2;
         _musicName.height = 24;
         _musicName.centerY = self.musicIcon.centerY; //centerY 需要放在宽高设置完成之后，要不然不起作用。
@@ -85,11 +85,11 @@
     if (_desc == nil){ //
         _desc = [[UILabel alloc]init];
         _desc.numberOfLines = 0;
-        _desc.textColor = ColorWhiteAlpha80;
-        _desc.font = MediumFont;
+        _desc.textColor = MTColorTitle;
+        _desc.font = BigFont;
         _desc.left = 10;
         _desc.bottom = self.musicIcon.top;
-        _desc.width = ScreenWidth/5*3;
+        _desc.width = ScreenWidth/7*5;
     }
     return _desc;
 }

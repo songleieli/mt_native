@@ -62,7 +62,7 @@
         _labelNickName = [[UILabel alloc]init];
         _labelNickName.size = [UIView getSize_width:200 height:self.favoriteNum.height];
         _labelNickName.origin = [UIView getPoint_x:self.imageViewUser.right+5 y:self.favoriteNum.top];
-        _labelNickName.font = [UIFont systemFontOfSize:10.0];
+        _labelNickName.font = SmallFont;
         _labelNickName.textColor = ColorWhiteAlpha80;
     }
     return _labelNickName;
@@ -73,7 +73,7 @@
         _labelDesc = [[UILabel alloc]init];
         _labelDesc.numberOfLines = 0;
         _labelDesc.textColor = ColorWhite;
-        _labelDesc.font = [UIFont boldSystemFontOfSize:11.0];
+        _labelDesc.font = MediumBoldFont;
         _labelDesc.left = 5;
         _labelDesc.bottom = self.favoriteNum.top;
         _labelDesc.width = self.imageView.width-10;
@@ -137,7 +137,7 @@
 
 - (void)initData:(HomeListModel *)aweme  withKeyWord:(NSString*)withKeyWord{
     
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:aweme.noodleVideoCover] placeholderImage:[UIImage imageNamed:@"img_video_loading"]];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:aweme.noodleVideoCover] placeholderImage:[UIImage imageNamed:@"default_bg_cover"]];
     [self.imageViewUser sd_setImageWithURL:[NSURL URLWithString:aweme.head] placeholderImage:[UIImage imageNamed:@"user_default_icon"]];
     
     self.labelNickName.text = aweme.nickname;

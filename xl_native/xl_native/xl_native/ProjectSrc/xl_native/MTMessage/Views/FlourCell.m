@@ -56,25 +56,27 @@ static NSString* const ViewTableViewCellId = @"FlourCellId";
     self.labelTitle.size = [UIView getSize_width:200 height:20];
     self.labelTitle.origin = [UIView getPoint_x:self.imageVeiwIcon.right+10 y:18];
     self.labelTitle.font = [UIFont defaultBoldFontWithSize:15];
-    self.labelTitle.textColor = [UIColor whiteColor];
+    self.labelTitle.textColor = MTColorTitle;
     [self.viewBg addSubview:self.labelTitle];
-
-    self.labelSign = [[UILabel alloc]init];
-    self.labelSign.size = [UIView getSize_width:220 height:20];
-    self.labelSign.origin = [UIView getPoint_x:self.labelTitle.left y:self.labelTitle.bottom+5];
-    self.labelSign.font = [UIFont defaultFontWithSize:14];
-    self.labelSign.textColor = RGBA(120, 122, 132, 1);
-    [self.viewBg addSubview:self.labelSign];
-    
     
     self.labelTImes = [[UILabel alloc]init];
-    self.labelTImes.size = [UIView getSize_width:150 height:20];
-    self.labelTImes.origin = [UIView getPoint_x:self.viewBg.width - self.labelTImes.width -20
-                                              y:self.labelTitle.bottom - 5];
+    self.labelTImes.size = [UIView getSize_width:50 height:20];
+    self.labelTImes.right = self.viewBg.width - 15;
+    self.labelTImes.centerY = self.viewBg.height/2;
     self.labelTImes.font = [UIFont defaultFontWithSize:12];
-    self.labelTImes.textColor = RGBA(120, 122, 132, 1);
+    self.labelTImes.textColor = MTColorDesc;
     self.labelTImes.textAlignment = NSTextAlignmentRight;
     [self.viewBg addSubview:self.labelTImes];
+    
+    
+    self.labelSign = [[UILabel alloc]init];
+    //根据屏幕屏幕宽度适配
+    self.labelSign.size = [UIView getSize_width:self.viewBg.width - self.labelTImes.width - 15 - self.imageVeiwIcon.right - 15
+                                         height:20];
+    self.labelSign.origin = [UIView getPoint_x:self.labelTitle.left y:self.labelTitle.bottom+5];
+    self.labelSign.font = [UIFont defaultFontWithSize:14];
+    self.labelSign.textColor = MTColorDesc;
+    [self.viewBg addSubview:self.labelSign];
 
 }
 - (void)fillDataWithModel:(GetFloursModel *)model{
@@ -84,8 +86,8 @@ static NSString* const ViewTableViewCellId = @"FlourCellId";
     
     self.labelTitle.text = model.flourNickname;
     self.labelSign.text = model.flourSignature.length == 0?@"暂时还没有签名":model.flourSignature;
-    self.labelTImes.text = model.time;
-}
+    NSDate *date = [GlobalFunc getDateWithTimeStr:model.time];
+    self.labelTImes.text = [GlobalFunc getTimeWithFormatter:date formattter:@"yy-MM-dd"];}
 
 //- (void)cellClick:(id)sender
 //{

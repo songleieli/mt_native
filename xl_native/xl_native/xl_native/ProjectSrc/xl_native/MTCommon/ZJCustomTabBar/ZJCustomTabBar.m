@@ -61,8 +61,8 @@
                                                y:lineLabel.bottom];
             titleBtn.titleLabel.font = [UIFont defaultBoldFontWithSize: 15.0];
             [titleBtn setTitle:[titleArray objectAtIndex:i] forState:UIControlStateNormal];
-            [titleBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-            [titleBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+            [titleBtn setTitleColor:ColorWhiteAlpha60 forState:UIControlStateNormal];
+            [titleBtn setTitleColor:MTColorTitle forState:UIControlStateSelected];
             [titleBtn addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
             [btn addSubview:titleBtn];
             

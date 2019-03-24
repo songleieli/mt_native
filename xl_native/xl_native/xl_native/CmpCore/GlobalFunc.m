@@ -154,22 +154,6 @@ static GlobalFunc *sharedInstance;
     
 }
 
-//找到导航栏最下面黑线视图
-+ (UIImageView *)getLineViewInNavigationBar:(UIView *)view
-{
-    if ([view isKindOfClass:UIImageView.class] && view.bounds.size.height <= 1.0) {
-        return (UIImageView *)view;
-    }
-    
-    for (UIView *subview in view.subviews) {
-        UIImageView *imageView = [self getLineViewInNavigationBar:subview];
-        if (imageView) {
-            return imageView;
-        }
-    }
-    
-    return nil;
-}
 
 //十进制转十六进制
 + (NSString *)ToHex:(int)tmpid
@@ -590,68 +574,6 @@ static GlobalFunc *sharedInstance;
     return NO;
 }
 
-
-+ (NSString *)deviceVersion
-{
-    // 需要#import "sys/utsname.h"
-    struct utsname systemInfo;
-    uname(&systemInfo);
-    NSString *platform = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
-    NSLog(@"deviceString:%@",platform);
-    
-    if ([platform isEqualToString:@"iPhone1,1"]) return @"iPhone 2G";
-    if ([platform isEqualToString:@"iPhone1,2"]) return @"iPhone 3G";
-    if ([platform isEqualToString:@"iPhone2,1"]) return @"iPhone 3GS";
-    if ([platform isEqualToString:@"iPhone3,1"]) return @"iPhone 4";
-    if ([platform isEqualToString:@"iPhone3,2"]) return @"iPhone 4";
-    if ([platform isEqualToString:@"iPhone3,3"]) return @"iPhone 4";
-    if ([platform isEqualToString:@"iPhone4,1"]) return @"iPhone 4S";
-    if ([platform isEqualToString:@"iPhone5,1"]) return @"iPhone 5";
-    if ([platform isEqualToString:@"iPhone5,2"]) return @"iPhone 5";
-    if ([platform isEqualToString:@"iPhone5,3"]) return @"iPhone 5c";
-    if ([platform isEqualToString:@"iPhone5,4"]) return @"iPhone 5c";
-    if ([platform isEqualToString:@"iPhone6,1"]) return @"iPhone 5s";
-    if ([platform isEqualToString:@"iPhone6,2"]) return @"iPhone 5s";
-    if ([platform isEqualToString:@"iPhone7,1"]) return @"iPhone 6";
-    if ([platform isEqualToString:@"iPhone7,2"]) return @"iPhone 6p";
-    if ([platform isEqualToString:@"iPhone8,1"]) return @"iPhone 6s";
-    
-    if ([platform isEqualToString:@"iPod1,1"])   return @"iPod Touch 1G";
-    if ([platform isEqualToString:@"iPod2,1"])   return @"iPod Touch 2G";
-    if ([platform isEqualToString:@"iPod3,1"])   return @"iPod Touch 3G";
-    if ([platform isEqualToString:@"iPod4,1"])   return @"iPod Touch 4G";
-    if ([platform isEqualToString:@"iPod5,1"])   return @"iPod Touch 5G";
-    
-    if ([platform isEqualToString:@"iPad1,1"])   return @"iPad 1G";
-    
-    if ([platform isEqualToString:@"iPad2,1"])   return @"iPad 2";
-    if ([platform isEqualToString:@"iPad2,2"])   return @"iPad 2";
-    if ([platform isEqualToString:@"iPad2,3"])   return @"iPad 2";
-    if ([platform isEqualToString:@"iPad2,4"])   return @"iPad 2";
-    if ([platform isEqualToString:@"iPad2,5"])   return @"iPad Mini 1G";
-    if ([platform isEqualToString:@"iPad2,6"])   return @"iPad Mini 1G";
-    if ([platform isEqualToString:@"iPad2,7"])   return @"iPad Mini 1G";
-    
-    if ([platform isEqualToString:@"iPad3,1"])   return @"iPad 3";
-    if ([platform isEqualToString:@"iPad3,2"])   return @"iPad 3";
-    if ([platform isEqualToString:@"iPad3,3"])   return @"iPad 3";
-    if ([platform isEqualToString:@"iPad3,4"])   return @"iPad 4";
-    if ([platform isEqualToString:@"iPad3,5"])   return @"iPad 4";
-    if ([platform isEqualToString:@"iPad3,6"])   return @"iPad 4";
-    
-    if ([platform isEqualToString:@"iPad4,1"])   return @"iPad Air";
-    if ([platform isEqualToString:@"iPad4,2"])   return @"iPad Air";
-    if ([platform isEqualToString:@"iPad4,3"])   return @"iPad Air";
-    if ([platform isEqualToString:@"iPad4,4"])   return @"iPad Mini 2G";
-    if ([platform isEqualToString:@"iPad4,5"])   return @"iPad Mini 2G";
-    if ([platform isEqualToString:@"iPad4,6"])   return @"iPad Mini 2G";
-    
-    if ([platform isEqualToString:@"i386"])      return @"iPhone Simulator";
-    if ([platform isEqualToString:@"x86_64"])    return @"iPhone Simulator";
-    
-    return platform;
-}
-
 + (UIImage *)imageWithColor:(UIColor *)color
 {
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
@@ -957,6 +879,18 @@ static GlobalFunc *sharedInstance;
     return dateString;
 }
 
++(NSDate*) getDateWithTimeStr:(NSString*)timestr{
+    
+    NSTimeZone* localzone = [NSTimeZone localTimeZone]; //本地时区
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dateFormatter setTimeZone:localzone];
+    
+    return [dateFormatter dateFromString:timestr];
+}
+
+
+
 
 #pragma mark - UIImagePickerControllerDelegate
 
@@ -977,266 +911,6 @@ static GlobalFunc *sharedInstance;
                   editingInfo:(NSDictionary *)editingInf{
     [picker dismissViewControllerAnimated:YES completion:^{}];
 }
-
-
-//表情判断
-+(NSString *)disableEmoji:(NSString *)text{
-    
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[^\\u0020-\\u007E\\u00A0-\\u00BE\\u2E80-\\uA4CF\\uF900-\\uFAFF\\uFE30-\\uFE4F\\uFF00-\\uFFEF\\u0080-\\u009F\\u2000-\\u201f\r\n]" options:NSRegularExpressionCaseInsensitive error:nil];
-    NSString *modifiedString = [regex stringByReplacingMatchesInString:text
-                                                               options:0
-                                                                 range:NSMakeRange(0, [text length])
-                                                          withTemplate:@""];
-    return modifiedString;
-}
-+(BOOL)stringContainsEmoji:(NSString *)string{
-    __block BOOL returnValue =NO;
-    [string enumerateSubstringsInRange:NSMakeRange(0, [string length]) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
-        const unichar hs = [substring characterAtIndex:0];
-        // surrogate pair
-        if (0xd800) {
-            if (0xd800 <= hs && hs <= 0xdbff) {
-                if (substring.length > 1) {
-                    const unichar ls = [substring characterAtIndex:1];
-                    const int uc = ((hs - 0xd800) * 0x400) + (ls - 0xdc00) + 0x10000;
-                    if (0x1d000 <= uc && uc <= 0x1f77f) {
-                        returnValue =YES;
-                    }
-                }
-            }else if (substring.length > 1) {
-                const unichar ls = [substring characterAtIndex:1];
-                if (ls == 0x20e3) {
-                    returnValue =YES;
-                }
-            }else {
-                // non surrogate
-                if (0x2100 <= hs && hs <= 0x27ff) {
-                    returnValue =YES;
-                }else if (0x2B05 <= hs && hs <= 0x2b07) {
-                    returnValue =YES;
-                }else if (0x2934 <= hs && hs <= 0x2935) {
-                    returnValue =YES;
-                }else if (0x3297 <= hs && hs <= 0x3299) {
-                    returnValue =YES;
-                }else if (hs == 0xa9 || hs == 0xae || hs == 0x303d || hs == 0x3030 || hs == 0x2b55 || hs == 0x2b1c || hs == 0x2b1b || hs == 0x2b50) {
-                    returnValue =YES;
-                }
-            }
-        }
-    }];
-    return returnValue;
-}
-
-//根据图片url获取图片尺寸
-+(CGSize)getImageSizeWithURL:(id)imageURL{
-    NSURL *URL = nil;
-    if([imageURL
-        isKindOfClass:[NSURL class]]){
-        URL = imageURL;
-    }
-    if([imageURL isKindOfClass:[NSString class]]){
-        URL= [NSURL URLWithString:imageURL];
-    }
-    if(URL == nil){
-        return  CGSizeZero;// url不正确返回CGSizeZero
-    }
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:URL];
-    NSString *pathExtendsion = [URL.pathExtension lowercaseString];
-    
-    CGSize size = CGSizeZero;
-    if([pathExtendsion isEqualToString:@"png"]){
-        size = [self getPNGImageSizeWithRequest:request];
-    }
-    else{
-        if([pathExtendsion  isEqual:@"gif"]) {
-            size = [self getGIFImageSizeWithRequest:request];
-        }
-        else{
-            size = [self getJPGImageSizeWithRequest:request];
-        }
-    }
-    
-    if(CGSizeEqualToSize(CGSizeZero, size)){//  如果获取文件头信息失败,发送异步请求请求原图
-        NSData* data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:URL] returningResponse:nil error:nil];
-        
-        UIImage *image = [UIImage imageWithData:data];
-        if(image){
-            size = image.size;
-        }
-    }
-    return size;
-}
-
-//获取gif图片的大小
-+(CGSize)getGIFImageSizeWithRequest:(NSMutableURLRequest*)request{
-    
-    [request setValue:@"bytes=6-9" forHTTPHeaderField:@"Range"];
-    
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    if(data.length == 4){
-        
-        short  w1 = 0, w2 = 0;
-        [data getBytes:&w1 range:NSMakeRange(0,1)];
-        [data getBytes:&w2 range:NSMakeRange(1,1)];
-        
-        short w = w1 + (w2 << 8);
-        short h1 = 0, h2 = 0;
-        [data getBytes:&h1 range:NSMakeRange(2, 1)];
-        [data getBytes:&h2 range:NSMakeRange(3, 1)];
-        
-        short  h = h1 + (h2 << 8);
-        return
-        CGSizeMake(w, h);
-    }
-    return CGSizeZero;
-}
-
-//获取jpg图片的大小
-+(CGSize)getJPGImageSizeWithRequest:(NSMutableURLRequest*)request{
-    
-    [request setValue:@"bytes=0-209" forHTTPHeaderField:@"Range"];
-    
-    NSData*  data = [NSURLConnection  sendSynchronousRequest:request returningResponse:nil  error:nil];
-    if ([data length] <= 0x58) {
-        return CGSizeZero;
-    }
-    
-    if ([data length] < 210) {// 肯定只有一个DQT字段
-        
-        short w1 = 0, w2 = 0;
-        [data getBytes:&w1 range:NSMakeRange(0x60,0x1)];
-        [data getBytes:&w2 range:NSMakeRange(0x61,0x1)];
-        short w = (w1 << 8) + w2;
-        short h1 = 0, h2 = 0;
-        [data getBytes:&h1 range:NSMakeRange(0x5e, 0x1)];
-        [data getBytes:&h2 range:NSMakeRange(0x5f,0x1)];
-        short h = (h1 << 8) + h2;
-        return CGSizeMake(w, h);
-    }
-    else {
-        short word = 0x0;
-        [data getBytes:&word range:NSMakeRange(0x15,0x1)];
-        if (word == 0xdb) {
-            [data getBytes:&word range:NSMakeRange(0x5a,0x1)];
-            if(word == 0xdb) {//两个DQT字段
-                
-                short w1 = 0, w2 = 0;
-                
-                [data getBytes:&w1 range:NSMakeRange(0xa5,0x1)];
-                
-                [data getBytes:&w2 range:NSMakeRange(0xa6,0x1)];
-                short w = (w1 << 8) + w2;
-                short h1 = 0, h2 = 0;
-                [data getBytes:&h1 range:NSMakeRange(0xa3,0x1)];
-                [data getBytes:&h2 range:NSMakeRange(0xa4,0x1)];
-                short h = (h1 << 8) + h2;
-                
-                return CGSizeMake(w, h);
-            }
-            else{//一个DQT字段
-                short w1 = 0, w2 = 0;
-                
-                [data getBytes:&w1 range:NSMakeRange(0x60,0x1)];
-                [data  getBytes:&w2 range:NSMakeRange(0x61,0x1)];
-                
-                short w = (w1 << 8) + w2;
-                short h1 = 0, h2 = 0;
-                
-                [data getBytes:&h1 range:NSMakeRange(0x5e,0x1)];
-                [data getBytes:&h2 range:NSMakeRange(0x5f,0x1)];
-                short h = (h1 << 8) + h2;
-                return CGSizeMake(w, h);
-                
-            }
-            
-        }
-        else{
-            return CGSizeZero;
-        }
-        
-    }
-    
-}
-//获取PNG图片的大小
-
-+(CGSize)getPNGImageSizeWithRequest:(NSMutableURLRequest*)request {
-    [request setValue:@"bytes=16-23" forHTTPHeaderField:@"Range"];
-    NSData*  data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    
-    if(data.length == 8){
-        int w1 = 0, w2 = 0, w3 = 0, w4 = 0;
-        [data getBytes:&w1 range:NSMakeRange(0,1)];
-        
-        [data getBytes:&w2 range:NSMakeRange(1,1)];
-        
-        [data getBytes:&w3 range:NSMakeRange(2,1)];
-        
-        [data getBytes:&w4 range:NSMakeRange(3,1)];
-        
-        int w = (w1 << 24) + (w2 << 16) + (w3 << 8) + w4;
-        
-        int h1 = 0, h2 = 0, h3 = 0, h4 = 0;
-        
-        [data getBytes:&h1 range:NSMakeRange(4,1)];
-        
-        [data getBytes:&h2 range:NSMakeRange(5,1)];
-        
-        [data getBytes:&h3 range:NSMakeRange(6,1)];
-        
-        [data getBytes:&h4 range:NSMakeRange(7,1)];
-        
-        int h = (h1 << 24) + (h2 << 16) + (h3 << 8) + h4;
-        
-        return CGSizeMake(w, h);
-        
-    }
-    
-    return CGSizeZero;
-    
-}
-
-+ (NSString*)dataTojsonString:(id)object
-{
-    NSString *jsonString = nil;
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:object
-                                                       options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
-                                                         error:&error];
-    if (! jsonData) {
-        NSLog(@"Got an error: %@", error);
-    } else {
-        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    }
-    return jsonString;
-}
-
-
-+(NSString*)getImageFileFolder{
-    
-    NSFileManager *fm = [NSFileManager defaultManager];
-
-    // create folder for database if needed
-    NSString *dir = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
-                                                         NSUserDomainMask,
-                                                         YES)
-                     lastObject];
-    NSString *imagefolder = [dir stringByAppendingPathComponent:@"imageFileFolder"];
-    
-    
-    NSLog(@"imagefolder = %@",imagefolder);
-    if (![fm fileExistsAtPath:imagefolder]) {
-        NSLog(@"start to create database folder");
-        NSError *error = nil;
-        if (![fm createDirectoryAtPath:imagefolder withIntermediateDirectories:YES attributes:nil error:&error]) {
-            NSLog(@"Ooops, cannot create imageCache folder - %@", imagefolder);
-//            return;
-        }
-    }
-    
-    return imagefolder;
-}
-
-
 
 //随机色
 +(UIColor *)randomColor {

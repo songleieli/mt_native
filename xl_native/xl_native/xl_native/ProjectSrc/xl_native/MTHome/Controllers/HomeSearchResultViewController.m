@@ -59,7 +59,12 @@
     return self;
 
 }
+//    [UIApplication sharedApplication].statusBarHidden = NO;
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [UIApplication sharedApplication].statusBarHidden = NO;
+}
 
 -(void)initNavTitle{
     self.isNavBackGroundHiden  = NO;

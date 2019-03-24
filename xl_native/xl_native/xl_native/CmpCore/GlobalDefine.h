@@ -64,6 +64,8 @@ isIPhoneXAll = [[UIApplication sharedApplication] delegate].window.safeAreaInset
 
 
 #define kNavBarHeight_New           (isIPhoneXAll?88.0f:64.0f)
+#define KNavBarHeightOffset_New      (isIPhoneXAll?24:0.0f)
+
 #define kTabBarHeight           49.0f
 #define kTabBarHeight_New           (isIPhoneXAll?83.0f:49.0f)
 #define KViewStartTopOffset_New      (isIPhoneXAll?-44.0f:-20.0f)
@@ -188,11 +190,15 @@ isIPhoneXAll = [[UIApplication sharedApplication] delegate].window.safeAreaInset
 
 #define defaultBgColor          [UIColor colorWithRed:243/255.0 green:243/255.0 blue:243/255.0 alpha:1]//F3F3F3
 
-#define MTColorLine                RGBA(36, 39, 49, 1)   //传家宝线条颜色  RGBA(54, 58, 67, 1)
-#define MTColorBtnNormal           RGBA(54, 58, 67, 1)   //传家宝线条颜色
-#define MTColorBtnHighlighted      RGBA(120, 122, 132, 1)   //传家宝线条颜色
+
+#define MTColorTitle               [UIColor whiteColor]  //面条Title颜色
+#define MTColorDesc                 RGBA(255.0, 255.0, 255.0, 0.8)  //面条Title颜色，白色的80%
+
+#define MTColorLine                RGBA(36, 39, 49, 1)   //面条描述内容颜色
+#define MTColorBtnNormal           RGBA(54, 58, 67, 1)   //面条button正常颜色
+#define MTColorBtnHighlighted      RGBA(120, 122, 132, 1)   //面条button高亮颜色
 #define MTColorBtnRedNormal        RGBA(252, 48, 88, 1)   //按钮红色正常颜色
-#define MTColorBtnRedHighlighted        RGBA(137, 36, 60, 1)   //按钮红色正常颜色
+#define MTColorBtnRedHighlighted        RGBA(137, 36, 60, 1)   //按钮红色高亮颜色
 
 /*
  定义全局的颜色值 乐家慧
@@ -213,8 +219,6 @@ isIPhoneXAll = [[UIApplication sharedApplication] delegate].window.safeAreaInset
 
 
 
-
-//#define defaultJawBgColor          RGBFromColor(0xe2e8f3)//背景色
 
 
 #define defaultJawBgColor          RGBFromColor(0xf0f0f0)//背景色
