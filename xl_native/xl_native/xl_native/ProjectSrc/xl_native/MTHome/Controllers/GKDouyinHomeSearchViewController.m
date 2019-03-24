@@ -314,7 +314,7 @@
     }
     else{//i音乐
         MusicInfoController *musicInfoController = [[MusicInfoController alloc] init];
-        musicInfoController.musicId = [NSString stringWithFormat:@"%@",model.music.id];
+        musicInfoController.musicId = [NSString stringWithFormat:@"%@",model.music.musicId];
         [self pushNewVC:musicInfoController animated:YES];
     }
     

@@ -26,14 +26,14 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubTopicCellId";
         _viewBg  = [UIButton buttonWithType:UIButtonTypeCustom];
         _viewBg.size = [UIView getSize_width:ScreenWidth height:SearchResultSubTopicCellHeight];
         _viewBg.origin = [UIView getPoint_x:0 y:0];
-
+        
         [_viewBg setBackgroundColor:ColorThemeBackground forState:UIControlStateNormal];
         [_viewBg setBackgroundColor:RGBAlphaColor(29, 32, 42, 1) forState:UIControlStateHighlighted];
         [_viewBg addTarget:self action:@selector(btnCellClick:) forControlEvents:UIControlEventTouchUpInside];
         
         
         //test
-//        [_viewBg setBackgroundColor:[GlobalFunc randomColor] forState:UIControlStateNormal];
+        //        [_viewBg setBackgroundColor:[GlobalFunc randomColor] forState:UIControlStateNormal];
         
         [_viewBg addSubview:self.imageVeiwBg];
     }
@@ -75,8 +75,10 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubTopicCellId";
     if (!_titleLalbe) {
         _titleLalbe = [[UILabel alloc] init];
         _titleLalbe.font = BigBoldFont;
-        _titleLalbe.textColor = [UIColor whiteColor];
-        _titleLalbe.size = [UIView getSize_width:230 height:20];
+        _titleLalbe.textColor = ColorWhite;
+        //根据屏幕宽度适配
+        _titleLalbe.size = [UIView getSize_width:self.viewBg.width - self.imageVeiwBg.right - 20
+                                          height:20];
         _titleLalbe.left = self.imageVeiwBg.right+5;
         _titleLalbe.centerY = self.imageVeiwBg.centerY;
     }
@@ -87,13 +89,15 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubTopicCellId";
     
     if (!_useCountLalbe) {
         _useCountLalbe = [[UILabel alloc] init];
-        _useCountLalbe.size = [UIView getSize_width:120 height:30];
+        _useCountLalbe.size = [UIView getSize_width:120 height:18];
         _useCountLalbe.right = ScreenWidth - 10;
-        _useCountLalbe.top = (SearchResultSubTopicCellHeight - _titleLalbe.height)/2;
+        _useCountLalbe.bottom = self.viewBg.height;
         _useCountLalbe.font = SmallFont;
         _useCountLalbe.clipsToBounds = YES;
-        _useCountLalbe.textColor = ColorWhiteAlpha60;
+        _useCountLalbe.textColor = ColorWhiteAlpha80;
         _useCountLalbe.textAlignment = NSTextAlignmentRight;
+        //test
+//        _useCountLalbe.backgroundColor = [UIColor redColor];
     }
     return _useCountLalbe;
 }
@@ -115,14 +119,14 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubTopicCellId";
 - (void)fillDataWithModel:(GetFuzzyTopicListModel *)model withKeyWord:(NSString*)withKeyWord{
     
     self.listModel = model;
-//    self.titleLalbe.text = model.topic;
+    //    self.titleLalbe.text = model.topic;
     
     [GlobalFunc setContentLabelColor:model.topic.trim
                               subStr:withKeyWord
                             subColor:[UIColor yellowColor]
                         contentLabel:self.titleLalbe];
     
-    self.useCountLalbe.text = [NSString stringWithFormat:@"%@次播放",[NSString formatCount:[model.hotCount integerValue]]];
+    self.useCountLalbe.text = [NSString stringWithFormat:@"%@热度值",[NSString formatCount:[model.hotCount integerValue]]];
 }
 
 

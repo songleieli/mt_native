@@ -31,8 +31,8 @@ NSString * const kCircleTextViewSeparateText   = @"   ";
     self = [super initWithFrame:frame];
     if(self) {
         _text = @"";
-        _textColor = ColorWhite;
-        _font = MediumFont;
+        _textColor = ColorWhiteAlpha80;
+        _font = BigFont;
         _textSeparateWidth = [kCircleTextViewSeparateText singleLineSizeWithText:_font].width;
         [self initLayer];
     }

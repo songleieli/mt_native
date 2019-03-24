@@ -60,22 +60,23 @@ static NSString* const ViewTableViewCellId = @"UserCollectionSubMusicCellId";
     self.labelTitle.textColor = [UIColor whiteColor];
     [self.viewBg addSubview:self.labelTitle];
 
+    self.labelTitle = [[UILabel alloc]init];
+    self.labelTitle.size = [UIView getSize_width:self.viewBg.width - self.imageVeiwIcon.right - 20
+                                          height:20];
+    self.labelTitle.origin = [UIView getPoint_x:self.imageVeiwIcon.right+10 y:18];
+    self.labelTitle.font = BigBoldFont;
+    self.labelTitle.textColor = ColorWhite;
+    [self.viewBg addSubview:self.labelTitle];
+    
+    //test
+    //    self.labelTitle.backgroundColor = [UIColor blueColor];
+    
     self.labelSign = [[UILabel alloc]init];
-    self.labelSign.size = [UIView getSize_width:220 height:20];
+    self.labelSign.size = [UIView getSize_width:self.labelTitle.width height:20];
     self.labelSign.origin = [UIView getPoint_x:self.labelTitle.left y:self.labelTitle.bottom+5];
-    self.labelSign.font = [UIFont defaultFontWithSize:14];
-    self.labelSign.textColor = RGBA(120, 122, 132, 1);
+    self.labelSign.font = SmallFont;
+    self.labelSign.textColor = ColorWhiteAlpha80;
     [self.viewBg addSubview:self.labelSign];
-    
-    
-    self.lableuseCount = [[UILabel alloc] init];
-    self.lableuseCount.size = [UIView getSize_width:80 height:30];
-    self.lableuseCount.right = ScreenWidth - 15;
-    self.lableuseCount.top = (SearchResultSubMusicCellHeight - self.lableuseCount.height)/2;
-    self.lableuseCount.font = [UIFont defaultFontWithSize:14];
-    self.lableuseCount.clipsToBounds = YES;
-    self.lableuseCount.textColor = RGBA(120, 122, 132, 1);
-    [self.viewBg addSubview:self.lableuseCount];
 }
 - (void)fillDataWithModel:(MusicSearchModel *)model{
     
@@ -83,7 +84,7 @@ static NSString* const ViewTableViewCellId = @"UserCollectionSubMusicCellId";
     [self.imageVeiwIcon sd_setImageWithURL:[NSURL URLWithString:model.coverUrl] placeholderImage:[UIImage imageNamed:@"img_find_default"]];
     
     self.labelTitle.text = model.musicName;
-//    self.lableuseCount.text = [NSString stringWithFormat:@"%@",model.];
+    self.labelSign.text = [NSString stringWithFormat:@"%@",model.nickname];
 }
 
 

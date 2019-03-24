@@ -194,7 +194,7 @@
     self.topicModel = musicModel;
     
     [self.imageViewCover sd_setImageWithURL:[NSURL URLWithString:musicModel.coverUrl] placeholderImage:[UIImage imageNamed:@"default_music_cover"]];
-    self.lableTopicName.text = musicModel.name;
+    self.lableTopicName.text = musicModel.musicName;
 //    self.lableAuthor.text = [NSString stringWithFormat:@"%@ >",musicModel.nickname];
     [self.btnAuthor setTitle:[NSString stringWithFormat:@"%@ >",musicModel.nickname] forState:UIControlStateNormal];
     self.lablePlayCount.text = [NSString stringWithFormat:@"%@人参与",[NSString formatCount:[musicModel.useCount integerValue]]];

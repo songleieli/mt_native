@@ -30,23 +30,20 @@
 
 @interface MusicHotModel : IObjcJsonBase
 
-//"music": {
-//    "id": 6609915509053852420,
-//    "name": "1, 2, 3, 4 (One, Two, Three, Four) [Fun Radio Edit]",
-//    "coverUrl": null,
-//    "playUrl": "http://p1.pstatp.com/obj/d19b000372d62c39c48f",
-//    "noodleId": null,
-//    "nickname": null,
-//    "hotCount": "6230399",
-//    "createTime": "2018-12-27 20:20:47",
-//    "useCount": 102,
-//    "isCollect": 0
-//},
+//"musicId": 6584922963072518919,
+//"musicName": "@KillerD创作的原声",
+//"musicType": null,
+//"coverUrl": "https://p22-dy.bytecdn.cn/aweme/1080x1080/1c9af00026150f891676d.jpeg",
+//"playUrl": "http://p3-dy.bytecdn.cn/obj/a10b0002a3b2c4ea81f8",
+//"noodleId": "73461915545",
+//"nickname": "KillerD",
+//"hotCount": "6366806",
+//"createTime": "2019-03-03 11:23:58",
+//"useCount": 20,
+//"isCollect": 0
 
-
-
-@property (copy, nonatomic) NSString *name;
-@property (strong, nonatomic) NSNumber *id;
+@property (copy, nonatomic) NSString *musicName;
+@property (strong, nonatomic) NSNumber *musicId;
 @property (copy, nonatomic) NSString *coverUrl;
 @property (copy, nonatomic) NSString *playUrl;
 @property (copy, nonatomic) NSString *noodleId;

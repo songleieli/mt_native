@@ -52,34 +52,39 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubMusicCellId";
     
     [self.viewBg addSubview:self.imageVeiwIcon];
     
-
-    self.labelTitle = [[UILabel alloc]init];
-    self.labelTitle.size = [UIView getSize_width:200 height:20];
-    self.labelTitle.origin = [UIView getPoint_x:self.imageVeiwIcon.right+10 y:18];
-    self.labelTitle.font = BigBoldFont;
-    self.labelTitle.textColor = ColorWhite;
-    [self.viewBg addSubview:self.labelTitle];
-
-    self.labelSign = [[UILabel alloc]init];
-    self.labelSign.size = [UIView getSize_width:220 height:20];
-    self.labelSign.origin = [UIView getPoint_x:self.labelTitle.left y:self.labelTitle.bottom+5];
-    self.labelSign.font = SmallFont;
-    self.labelSign.textColor = ColorWhiteAlpha60;
-    [self.viewBg addSubview:self.labelSign];
-    
-    
     self.lableuseCount = [[UILabel alloc] init];
-    self.lableuseCount.size = [UIView getSize_width:120 height:30];
+    self.lableuseCount.size = [UIView getSize_width:85 height:30];
     self.lableuseCount.right = ScreenWidth - 10;
     self.lableuseCount.top = (SearchResultSubMusicCellHeight - self.lableuseCount.height)/2;
     self.lableuseCount.font = SmallFont;
     self.lableuseCount.clipsToBounds = YES;
-    self.lableuseCount.textColor = ColorWhiteAlpha60;
+    self.lableuseCount.textColor = ColorWhiteAlpha80;
     self.lableuseCount.textAlignment = NSTextAlignmentRight;
     [self.viewBg addSubview:self.lableuseCount];
     
     //test
 //    self.lableuseCount.backgroundColor = [UIColor redColor];
+    
+    self.labelTitle = [[UILabel alloc]init];
+    self.labelTitle.size = [UIView getSize_width:self.viewBg.width - self.imageVeiwIcon.right - self.lableuseCount.width - 20
+                                          height:20];
+    self.labelTitle.origin = [UIView getPoint_x:self.imageVeiwIcon.right+10 y:18];
+    self.labelTitle.font = BigBoldFont;
+    self.labelTitle.textColor = ColorWhite;
+    [self.viewBg addSubview:self.labelTitle];
+    
+    //test
+//    self.labelTitle.backgroundColor = [UIColor blueColor];
+
+    self.labelSign = [[UILabel alloc]init];
+    self.labelSign.size = [UIView getSize_width:self.labelTitle.width height:20];
+    self.labelSign.origin = [UIView getPoint_x:self.labelTitle.left y:self.labelTitle.bottom+5];
+    self.labelSign.font = SmallFont;
+    self.labelSign.textColor = ColorWhiteAlpha80;
+    [self.viewBg addSubview:self.labelSign];
+    
+    
+
 }
 - (void)fillDataWithModel:(GetFuzzyMusicListModel *)model withKeyWord:(NSString*)withKeyWord{
     

@@ -15,21 +15,19 @@
 
 
 /*
- "id": 6606196836371794691,
- "name": "卖了佛轮",
- "coverUrl": "https://p1.pstatp.com/aweme/1080x1080/c16000003f97583dac4.jpeg",
- "playUrl": "http://p1.pstatp.com/obj/d07c000726bdc5e33b12",
- "noodleId": "64126710775",
- "nickname": "已重置",
- "hotCount": null,
- "createTime": "2018-12-26 17:28:47",
- "useCount": 125,
- "isCollect": 0
+ "musicId": 6641792023554689800,
+ "musicName": "@猫眼大明星创作的原声",
+ "coverUrl": "https://p1-dy.bytecdn.cn/aweme/1080x1080/18b600003ad88db2f54e3.jpeg",
+ "playUrl": "http://p3-dy.bytecdn.cn/obj/ies-music/1621531255439367.mp3",
+ "noodleId": "59091697912",
+ "nickname": "猫眼大明星",
+ "hotCount": "1392389",
+ "createTime": "2019-03-05 02:06:34"
 
  */
 
-@property (strong, nonatomic) NSNumber *id;
-@property (copy, nonatomic) NSString *name;
+@property (strong, nonatomic) NSNumber *musicId;
+@property (copy, nonatomic) NSString *musicName;
 @property (copy, nonatomic) NSString *coverUrl;
 @property (copy, nonatomic) NSString *playUrl;
 @property (copy, nonatomic) NSString *noodleId;

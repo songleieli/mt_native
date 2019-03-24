@@ -134,7 +134,7 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
     
     NetWork_mt_getHotVideosByMusic *request = [[NetWork_mt_getHotVideosByMusic alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.musicId = self.musicId;
+    request.musicId = [NSString stringWithFormat:@"%@",self.musicId];
     request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
     request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
     [request startGetWithBlock:^(GetHotVideosByMusicResponse *result, NSString *msg, BOOL finished) {
@@ -250,8 +250,8 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
             
             CollectionMusicContentModel *contentModel = [[CollectionMusicContentModel alloc] init];
             contentModel.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-            contentModel.musicId = [NSString stringWithFormat:@"%@",model.id];
-            contentModel.musicName = model.name;
+            contentModel.musicId = [NSString stringWithFormat:@"%@",model.musicId];
+            contentModel.musicName = model.musicName;
             contentModel.coverUrl = model.coverUrl;
             contentModel.playUrl = model.playUrl;
             contentModel.musicNoodleId = model.noodleId;

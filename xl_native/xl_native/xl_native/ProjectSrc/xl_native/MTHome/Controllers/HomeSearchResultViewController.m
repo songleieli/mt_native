@@ -216,7 +216,7 @@
 
 -(void)subMusicClick:(GetFuzzyMusicListModel *)model{
     MusicInfoController *musicInfoController = [[MusicInfoController alloc] init];
-    musicInfoController.musicId = model.id;
+    musicInfoController.musicId = model.musicId;
     [self pushNewVC:musicInfoController animated:YES];
 }
 

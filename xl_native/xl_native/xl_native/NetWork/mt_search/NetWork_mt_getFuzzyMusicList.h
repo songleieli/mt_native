@@ -22,7 +22,7 @@
  */
 
 
-@property (copy, nonatomic) NSString *id;
+@property (copy, nonatomic) NSString *musicId;
 @property (copy, nonatomic) NSString *musicName;
 @property (copy, nonatomic) NSString *coverUrl;
 @property (copy, nonatomic) NSString *playUrl;

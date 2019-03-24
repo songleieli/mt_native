@@ -54,7 +54,7 @@
         //音乐名称
         _musicName = [[CircleTextView alloc]init];
         _musicName.left = self.musicIcon.right;
-        _musicName.textColor = ColorWhite;
+        _musicName.textColor = ColorWhiteAlpha80;
         _musicName.font = BigFont;
         _musicName.width = self.width/2;
         _musicName.height = 24;
@@ -85,7 +85,7 @@
     if (_desc == nil){ //
         _desc = [[UILabel alloc]init];
         _desc.numberOfLines = 0;
-        _desc.textColor = MTColorTitle;
+        _desc.textColor = MTColorDesc;
         _desc.font = BigFont;
         _desc.left = 10;
         _desc.bottom = self.musicIcon.top;

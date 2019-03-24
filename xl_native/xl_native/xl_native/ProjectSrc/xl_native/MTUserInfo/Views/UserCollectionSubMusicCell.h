@@ -35,7 +35,7 @@
 @property(nonatomic,strong) UILabel * labelReadStatus;
 @property(nonatomic,strong) UILabel * labelTitle;
 @property(nonatomic,strong) UILabel * labelSign;
-@property (nonatomic, strong) UILabel *lableuseCount;
+//@property (nonatomic, strong) UILabel *lableuseCount;
 
 
 @property(nonatomic,weak) id <SearchResultSubMusicDelegate> subCellDelegate;

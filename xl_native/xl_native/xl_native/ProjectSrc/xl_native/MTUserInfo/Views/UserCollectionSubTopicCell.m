@@ -74,9 +74,11 @@ static NSString* const ViewTableViewCellId = @"UserCollectionSubTopicCell";
     
     if (!_titleLalbe) {
         _titleLalbe = [[UILabel alloc] init];
-        _titleLalbe.font = [UIFont defaultBoldFontWithSize:14];
-        _titleLalbe.textColor = [UIColor whiteColor];
-        _titleLalbe.size = [UIView getSize_width:250 height:20];
+        _titleLalbe.font = BigBoldFont;
+        _titleLalbe.textColor = ColorWhite;
+        //根据屏幕宽度适配
+        _titleLalbe.size = [UIView getSize_width:self.viewBg.width - self.imageVeiwBg.right - 20
+                                          height:20];
         _titleLalbe.left = self.imageVeiwBg.right+5;
         _titleLalbe.centerY = self.imageVeiwBg.centerY;
     }
@@ -87,28 +89,16 @@ static NSString* const ViewTableViewCellId = @"UserCollectionSubTopicCell";
     
     if (!_useCountLalbe) {
         _useCountLalbe = [[UILabel alloc] init];
-        _useCountLalbe.size = [UIView getSize_width:80 height:30];
-        _useCountLalbe.right = ScreenWidth - 15;
-        _useCountLalbe.top = (SearchResultSubTopicCellHeight - _titleLalbe.height)/2;
-        _useCountLalbe.font = [UIFont defaultFontWithSize:14];
+        _useCountLalbe.size = [UIView getSize_width:120 height:18];
+        _useCountLalbe.right = ScreenWidth - 10;
+        _useCountLalbe.bottom = self.viewBg.height;
+        _useCountLalbe.font = SmallFont;
         _useCountLalbe.clipsToBounds = YES;
-        _useCountLalbe.textColor = RGBA(120, 122, 132, 1);
+        _useCountLalbe.textColor = ColorWhiteAlpha80;
         _useCountLalbe.textAlignment = NSTextAlignmentRight;
     }
     return _useCountLalbe;
 }
-
-//self.lableuseCount = [[UILabel alloc] init];
-//self.lableuseCount.size = [UIView getSize_width:80 height:30];
-//self.lableuseCount.right = ScreenWidth - 15;
-//self.lableuseCount.top = (SearchResultSubMusicCellHeight - self.lableuseCount.height)/2;
-//self.lableuseCount.font = [UIFont defaultFontWithSize:14];
-//self.lableuseCount.clipsToBounds = YES;
-//self.lableuseCount.textColor = RGBA(120, 122, 132, 1);
-//[self.viewBg addSubview:self.lableuseCount];
-
-
-
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -128,7 +118,7 @@ static NSString* const ViewTableViewCellId = @"UserCollectionSubTopicCell";
     
     self.listModel = model;
     self.titleLalbe.text = model.topicName;
-    self.useCountLalbe.text = [NSString stringWithFormat:@"%@",model.playSum];
+    self.useCountLalbe.text = [NSString stringWithFormat:@"%@次播放",[NSString formatCount:[model.playSum integerValue]]];
 }
 
 

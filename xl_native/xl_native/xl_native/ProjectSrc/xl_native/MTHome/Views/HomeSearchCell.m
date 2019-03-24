@@ -156,7 +156,7 @@ static NSString* const ViewTableViewCellId = @"HomeSearchCellId";
     }
     else{
         [self.btnIcon setImage:[UIImage imageNamed:@"icon_m_music_red"] forState:UIControlStateNormal];
-        [self.titleLalbe setTitle:model.music.name forState:UIControlStateNormal];
+        [self.titleLalbe setTitle:model.music.musicName forState:UIControlStateNormal];
         self.descLalbe.text = @"热门音乐";
         self.playCountLalbe.text = [NSString formatCount:[model.music.hotCount integerValue]];
     }
