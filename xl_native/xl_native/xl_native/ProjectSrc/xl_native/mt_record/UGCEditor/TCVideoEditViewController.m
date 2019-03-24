@@ -109,7 +109,9 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
     
     //生成时的进度浮层
     UIView*             _generationView;
-    UIProgressView*     _generateProgressView;
+    MBProgressHUD *          _hub;
+    
+//    UIProgressView*     _generateProgressView;
     UILabel*            _generationTitleLabel;
     UILabel*            _timeLabel;
     UIButton*           _deleteBtn;
@@ -253,9 +255,6 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
             EffectInfo * v= [EffectInfo new];
             v.name = name;
             v.animateIcons = [NSMutableArray array];
-//            NSString *imageName = [NSString stringWithFormat: @"%@_select", animPrefix];
-//            NSString *path = [[NSBundle mainBundle] pathForResource:imageName ofType:@"png"];
-//            v.selectIcon = [UIImage imageWithContentsOfFile:path];
             for (int i = 0; i < 24; i ++) {
                 NSString *imageName = [NSString stringWithFormat: @"%@%d", animPrefix, i];
                 NSString *path = [[NSBundle mainBundle] pathForResource:imageName ofType:@"png"];
@@ -385,13 +384,7 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
     _musicView.hidden = YES;
     [self.view addSubview:_musicView];
     
-    
-//    _bgmListVC = [[TCBGMListViewController alloc] init];
-//    [_bgmListVC setBGMControllerListener:self];
-    
-
     [self initVideoEditor];
-//    [self initVideoPublish];
 }
 
 - (void)initVideoEditor
@@ -406,12 +399,11 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
     _ugcEdit.generateDelegate = self;
     _ugcEdit.previewDelegate = _videoPreview;
     
-    //[_ugcEdit setVideoPath:_videoPath];
     [_ugcEdit setVideoAsset:_videoAsset];
     [_ugcEdit setRenderRotation:self.renderRotation];
-//    UIImage *waterimage = [UIImage imageNamed:@"watermark"];
-//    [_ugcEdit setWaterMark:waterimage normalizationFrame:CGRectMake(0.01, 0.01, 0.3 , 0)];
 
+    /* 先屏蔽添加水印
+    //添加水印
     UIImage *tailWaterimage = [UIImage imageNamed:@"watermark"];
     float w = 0.15;
     float x = (1.0 - w) / 2.0;
@@ -419,54 +411,35 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
     float height = width * tailWaterimage.size.height / tailWaterimage.size.width;
     float y = (videoMsg.height - height) / 2 / videoMsg.height;
     [_ugcEdit setTailWaterMark:tailWaterimage normalizationFrame:CGRectMake(x,y,w,0) duration:1];
+     */
 }
 
-- (UIView*)generatingView
-{
+- (UIView*)generatingView{
+    
+    UIWindow *window = [UIApplication sharedApplication].delegate.window;
+    
     /*用作生成时的提示浮层*/
     if (!_generationView) {
         _generationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height + 64)];
         _generationView.backgroundColor = UIColor.blackColor;
-        _generationView.alpha = 0.9f;
-        
-        _generateProgressView = [UIProgressView new];
-        _generateProgressView.center = CGPointMake(_generationView.width / 2, _generationView.height / 2);
-        _generateProgressView.bounds = CGRectMake(0, 0, 225, 20);
-        _generateProgressView.progressTintColor = RGB(238, 100, 85);
-        [_generateProgressView setTrackImage:[UIImage imageNamed:@"slide_bar_small"]];
-        //_generateProgressView.trackTintColor = UIColor.whiteColor;
-        //_generateProgressView.transform = CGAffineTransformMakeScale(1.0, 2.0);
-        
-        _generationTitleLabel = [UILabel new];
-        _generationTitleLabel.font = [UIFont systemFontOfSize:14];
-        _generationTitleLabel.text = NSLocalizedString(@"TCVideoCutView.VideoGenerating", nil);
-        _generationTitleLabel.textColor = UIColor.whiteColor;
-        _generationTitleLabel.textAlignment = NSTextAlignmentCenter;
-        _generationTitleLabel.frame = CGRectMake(0, _generateProgressView.y - 34, _generationView.width, 14);
-        
-        _generateCannelBtn = [UIButton new];
-        [_generateCannelBtn setImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateNormal];
-        _generateCannelBtn.frame = CGRectMake(_generateProgressView.right + 15, _generationTitleLabel.bottom + 10, 20, 20);
-        [_generateCannelBtn addTarget:self action:@selector(onCancel:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [_generationView addSubview:_generationTitleLabel];
-        [_generationView addSubview:_generateProgressView];
-        [_generationView addSubview:_generateCannelBtn];
-        [[[UIApplication sharedApplication] delegate].window addSubview:_generationView];
+        _generationView.alpha = 0.7f;
+        [window addSubview:_generationView];
+
+        _hub = [MBProgressHUD showHUDAddedTo:window animated:YES];
+        _hub.mode = MBProgressHUDModeText;
+        _hub.label.text = @"视频生成中";
     }
-    
-    _generateProgressView.progress = 0.f;
     return _generationView;
 }
 
-- (void)setRenderRotation:(int)renderRotation
-{
+- (void)setRenderRotation:(int)renderRotation{
+    
     _renderRotation = renderRotation;
     [_ugcEdit setRenderRotation: renderRotation];
 }
 
--(void)onPlayVideo
-{
+-(void)onPlayVideo{
+    
     if (_isPlay) {
         [_ugcEdit pausePlay];
         _isPlay = NO;
@@ -594,6 +567,7 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
 
 
 - (void)goFinish{ //点击完成按钮
+    
     if (_bottomBar.hidden) {
         if (_effectSelectType == EffectSelectType_Paster) {
             [self removeAllPasterViewFromSuperView];
@@ -918,26 +892,26 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
 }
 #pragma mark - To SDK
 
-- (void)generateVideo
-{
+- (void)generateVideo{
+    
     [_ugcEdit pausePlay];
     [self setPlayBtn:NO];
     [self confirmGenerateVideo];
 }
 
-- (void)confirmGenerateVideo
-{
+- (void)confirmGenerateVideo{
     _generationView = [self generatingView];
     _generationView.hidden = NO;
     _generateCannelBtn.hidden = NO;
+    
     [_ugcEdit setCutFromTime:0 toTime:_duration];
     [_ugcEdit generateVideo:VIDEO_COMPRESSED_720P videoOutputPath:_videoOutputPath];
 }
 
 
 //设置贴纸（静态/动态贴纸）
-- (void)setVideoPastersToSDK
-{
+- (void)setVideoPastersToSDK{
+    
     NSMutableArray* animatePasters = [NSMutableArray new];
     NSMutableArray* staticPasters = [NSMutableArray new];
     for (VideoPasterInfo* pasterInfo in _videoPasterInfoList) {
@@ -967,8 +941,8 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
 }
 
 //设置字幕(气泡)
-- (void)setVideoSubtitlesToSDK
-{
+- (void)setVideoSubtitlesToSDK{
+    
     NSMutableArray* subtitles = [NSMutableArray new];
     NSMutableArray<VideoTextInfo*>* emptyVideoTexts;
     for (VideoTextInfo* textInfo in _videoTextInfoList) {
@@ -1091,11 +1065,11 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
 #pragma mark TXVideoGenerateListener
 -(void) onGenerateProgress:(float)progress{
     
-    _generateProgressView.progress = progress;
+    _hub.label.text = [NSString stringWithFormat:@"正在生成视频 %0.2f %%",progress*100];
 }
 
 -(void) onGenerateComplete:(TXGenerateResult *)result{
-    
+    [_hub hideAnimated:YES afterDelay:1.0];
     _generationView.hidden = YES; //进度条页面消失
 
     NSString *localVideoPath = _videoOutputPath;
@@ -1118,37 +1092,7 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
             publishViewController.videoPath = _videoPath;  //封面路径
             [self pushNewVC:publishViewController animated:YES];
             
-            
-            
-            /*
-            NetWork_mt_getUploadSignature *request = [[NetWork_mt_getUploadSignature alloc] init];
-            request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-            [request showWaitMsg:@"正在获取签名" handle:self];
-            [request startGetWithBlock:^(GetUploadSignatureResponse *result, NSString *msg, BOOL finished) {
-                
-                TXPublishParam * param = [[TXPublishParam alloc] init];
-                param.signature = result.obj;                                // 需要填写第四步中计算的上传签名
-                // 录制生成的视频文件路径 TXVideoRecordListener 的 onRecordComplete 回调中可以获取
-                param.videoPath = _videoPath;
-                // 录制生成的视频首帧预览图路径。值为通过调用startRecord指定的封面路径，或者指定一个路径，然后将TXVideoRecordListener 的 onRecordComplete 回调中获取到的UIImage保存到指定路径下，可以置为 nil。
-                param.coverPath = _videoOutputCoverPath; //_coverPath;
-                TXUGCPublish *_ugcPublish = [[TXUGCPublish alloc] init];
-                // 文件发布默认是采用断点续传
-                _ugcPublish.delegate = self;                                 // 设置 TXVideoPublishListener 回调
-                [_ugcPublish publishVideo:param];
-                
-            }];
-            */
-            
-            
-            
-            
-            
-            
-            
-            
         }else{
-//            _generationView.hidden = YES;
             ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
             [library writeVideoAtPathToSavedPhotosAlbum:[NSURL fileURLWithPath:_videoOutputPath] completionBlock:^(NSURL *assetURL, NSError *error) {
                 if (error != nil) {
@@ -1159,7 +1103,6 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
                 [self performSelector:@selector(dismissViewController) withObject:nil afterDelay:1];
             }];
         }
-        
     }
 }
 

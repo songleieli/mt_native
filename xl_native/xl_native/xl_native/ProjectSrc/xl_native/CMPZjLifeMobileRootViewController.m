@@ -15,7 +15,7 @@
 #import "UserInfoViewController.h"
 
 #import "TCVideoRecordViewController.h"
-//#import "TCUtil.h"
+
 #import "MBProgressHUD.h"
 #import "TCVideoLoadingController.h"
 

@@ -10,6 +10,9 @@
 #import "NetWork_mt_getUploadSignature.h"
 #import "PublishViewController.h"
 
+#import "MBProgressHUD.h"
+
+
 @interface TCVideoEditViewController : ZJBaseViewController
 
 @property (copy,nonatomic) NSString *videoPath;
