@@ -212,21 +212,6 @@
 		04CBC2D32179C01200658E47 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC0702179C01000658E47 /* TPKeyboardAvoidingScrollView.m */; };
 		04CBC2D52179C01200658E47 /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC0722179C01000658E47 /* TPKeyboardAvoidingCollectionView.m */; };
 		04CBC2D72179C01200658E47 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBC0752179C01000658E47 /* libmp3lame.a */; };
-		04CBC2E12179C01200658E47 /* UIImage+BBVoiceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC07F2179C01000658E47 /* UIImage+BBVoiceRecord.m */; };
-		04CBC2E32179C01200658E47 /* BBHoldToSpeakButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC0812179C01000658E47 /* BBHoldToSpeakButton.m */; };
-		04CBC2E52179C01200658E47 /* BBVoiceRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC0822179C01000658E47 /* BBVoiceRecordView.m */; };
-		04CBC2E72179C01200658E47 /* ic_record_ripple@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CBC0852179C01000658E47 /* ic_record_ripple@3x.png */; };
-		04CBC2E92179C01200658E47 /* ic_record_ripple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CBC0862179C01000658E47 /* ic_record_ripple@2x.png */; };
-		04CBC2EB2179C01200658E47 /* ic_record_too_short@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CBC0872179C01000658E47 /* ic_record_too_short@2x.png */; };
-		04CBC2ED2179C01200658E47 /* ic_record_too_short@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CBC0882179C01000658E47 /* ic_record_too_short@3x.png */; };
-		04CBC2EF2179C01200658E47 /* ic_release_to_cancel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CBC0892179C01000658E47 /* ic_release_to_cancel@3x.png */; };
-		04CBC2F12179C01200658E47 /* ic_record@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CBC08A2179C01000658E47 /* ic_record@2x.png */; };
-		04CBC2F32179C01200658E47 /* ic_record@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CBC08B2179C01000658E47 /* ic_record@3x.png */; };
-		04CBC2F52179C01200658E47 /* ic_release_to_cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CBC08C2179C01000658E47 /* ic_release_to_cancel@2x.png */; };
-		04CBC2F72179C01200658E47 /* UIColor+BBVoiceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC08E2179C01000658E47 /* UIColor+BBVoiceRecord.m */; };
-		04CBC2F92179C01200658E47 /* BBVoiceRecordToastContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC08F2179C01000658E47 /* BBVoiceRecordToastContentView.m */; };
-		04CBC2FB2179C01200658E47 /* BBVoiceRecordPowerAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC0942179C01000658E47 /* BBVoiceRecordPowerAnimationView.m */; };
-		04CBC2FD2179C01200658E47 /* BBVoiceRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC0952179C01000658E47 /* BBVoiceRecordController.m */; };
 		04CBC30F2179C01300658E47 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04CBC0AE2179C01100658E47 /* WeiboSDK.bundle */; };
 		04CBC3112179C01300658E47 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBC0B12179C01100658E47 /* libWeiboSDK.a */; };
 		04CBC3132179C01300658E47 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC0BA2179C01100658E47 /* SVRadialGradientLayer.m */; };
@@ -465,17 +450,6 @@
 		04DCA8F221A565D500691A3A /* PhotoTransitionToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA8CD21A565D500691A3A /* PhotoTransitionToolbar.m */; };
 		04DCA8F321A565D500691A3A /* BottomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA8CE21A565D500691A3A /* BottomTabBar.m */; };
 		04DCA8F421A565D500691A3A /* VideoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA8D221A565D500691A3A /* VideoInfo.m */; };
-		04DCA91021A5687600691A3A /* QBVideoIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA8FD21A5687500691A3A /* QBVideoIconView.m */; };
-		04DCA91121A5687600691A3A /* QBVideoIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA8FE21A5687500691A3A /* QBVideoIndicatorView.m */; };
-		04DCA91221A5687600691A3A /* QBImagePicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04DCA8FF21A5687500691A3A /* QBImagePicker.bundle */; };
-		04DCA91321A5687600691A3A /* QBAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA90321A5687500691A3A /* QBAlbumCell.m */; };
-		04DCA91421A5687600691A3A /* QBImagePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04DCA90421A5687500691A3A /* QBImagePicker.storyboard */; };
-		04DCA91521A5687600691A3A /* QBAlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA90621A5687500691A3A /* QBAlbumsViewController.m */; };
-		04DCA91621A5687600691A3A /* QBAssetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA90821A5687500691A3A /* QBAssetsViewController.m */; };
-		04DCA91721A5687600691A3A /* QBImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA90921A5687500691A3A /* QBImagePickerController.m */; };
-		04DCA91821A5687600691A3A /* QBCheckmarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA90A21A5687500691A3A /* QBCheckmarkView.m */; };
-		04DCA91921A5687600691A3A /* QBSlomoIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA90C21A5687500691A3A /* QBSlomoIconView.m */; };
-		04DCA91A21A5687600691A3A /* QBAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCA90D21A5687500691A3A /* QBAssetCell.m */; };
 		04DCEE8B21F59DD9007AC5B0 /* HomeSearchResultSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCEE8A21F59DD9007AC5B0 /* HomeSearchResultSubViewController.m */; };
 		04DCEE8E21F5ACD9007AC5B0 /* HomeSearchResultSubUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCEE8D21F5ACD9007AC5B0 /* HomeSearchResultSubUserViewController.m */; };
 		04DCEE9121F5B4B9007AC5B0 /* SearchResultSubUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DCEE8F21F5B4B9007AC5B0 /* SearchResultSubUserCell.m */; };
@@ -788,6 +762,19 @@
 		04F3B5A62247498E00F4C82E /* NSObject+A2BlockDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B5A32247498D00F4C82E /* NSObject+A2BlockDelegate.m */; };
 		04F3B60922474A8800F4C82E /* A2DynamicDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B60722474A8700F4C82E /* A2DynamicDelegate.m */; };
 		04F3B66922474B4200F4C82E /* A2BlockInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B66822474B4200F4C82E /* A2BlockInvocation.m */; };
+		04F3B68222474D8400F4C82E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 04F3B66B22474D8400F4C82E /* LICENSE */; };
+		04F3B68322474D8400F4C82E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 04F3B66C22474D8400F4C82E /* README.md */; };
+		04F3B68422474D8400F4C82E /* QBVideoIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B67122474D8400F4C82E /* QBVideoIconView.m */; };
+		04F3B68522474D8400F4C82E /* QBVideoIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B67222474D8400F4C82E /* QBVideoIndicatorView.m */; };
+		04F3B68622474D8400F4C82E /* QBImagePicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04F3B67322474D8400F4C82E /* QBImagePicker.bundle */; };
+		04F3B68722474D8400F4C82E /* QBAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B67722474D8400F4C82E /* QBAlbumCell.m */; };
+		04F3B68822474D8400F4C82E /* QBImagePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F3B67822474D8400F4C82E /* QBImagePicker.storyboard */; };
+		04F3B68922474D8400F4C82E /* QBAlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B67A22474D8400F4C82E /* QBAlbumsViewController.m */; };
+		04F3B68A22474D8400F4C82E /* QBAssetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B67C22474D8400F4C82E /* QBAssetsViewController.m */; };
+		04F3B68B22474D8400F4C82E /* QBImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B67D22474D8400F4C82E /* QBImagePickerController.m */; };
+		04F3B68C22474D8400F4C82E /* QBCheckmarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B67E22474D8400F4C82E /* QBCheckmarkView.m */; };
+		04F3B68D22474D8400F4C82E /* QBSlomoIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B68022474D8400F4C82E /* QBSlomoIconView.m */; };
+		04F3B68E22474D8400F4C82E /* QBAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B68122474D8400F4C82E /* QBAssetCell.m */; };
 		04F5E89B21CE7FB600781FCD /* SharePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5E89A21CE7FB600781FCD /* SharePopView.m */; };
 		04F5E89F21CE8DD200781FCD /* NetWork_mt_collectionVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5E89E21CE8DD100781FCD /* NetWork_mt_collectionVideo.m */; };
 		04F5E8A221CE95A800781FCD /* NetWork_mt_getVideoCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5E8A121CE95A700781FCD /* NetWork_mt_getVideoCollections.m */; };
@@ -1380,29 +1367,6 @@
 		04CBC0732179C01000658E47 /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
 		04CBC0752179C01000658E47 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
 		04CBC0762179C01000658E47 /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
-		04CBC07F2179C01000658E47 /* UIImage+BBVoiceRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BBVoiceRecord.m"; sourceTree = "<group>"; };
-		04CBC0802179C01000658E47 /* BBVoiceRecordToastContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBVoiceRecordToastContentView.h; sourceTree = "<group>"; };
-		04CBC0812179C01000658E47 /* BBHoldToSpeakButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBHoldToSpeakButton.m; sourceTree = "<group>"; };
-		04CBC0822179C01000658E47 /* BBVoiceRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBVoiceRecordView.m; sourceTree = "<group>"; };
-		04CBC0832179C01000658E47 /* BBVoiceRecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBVoiceRecordController.h; sourceTree = "<group>"; };
-		04CBC0852179C01000658E47 /* ic_record_ripple@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_record_ripple@3x.png"; sourceTree = "<group>"; };
-		04CBC0862179C01000658E47 /* ic_record_ripple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_record_ripple@2x.png"; sourceTree = "<group>"; };
-		04CBC0872179C01000658E47 /* ic_record_too_short@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_record_too_short@2x.png"; sourceTree = "<group>"; };
-		04CBC0882179C01000658E47 /* ic_record_too_short@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_record_too_short@3x.png"; sourceTree = "<group>"; };
-		04CBC0892179C01000658E47 /* ic_release_to_cancel@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_release_to_cancel@3x.png"; sourceTree = "<group>"; };
-		04CBC08A2179C01000658E47 /* ic_record@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_record@2x.png"; sourceTree = "<group>"; };
-		04CBC08B2179C01000658E47 /* ic_record@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_record@3x.png"; sourceTree = "<group>"; };
-		04CBC08C2179C01000658E47 /* ic_release_to_cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_release_to_cancel@2x.png"; sourceTree = "<group>"; };
-		04CBC08D2179C01000658E47 /* BBVoiceRecordPowerAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBVoiceRecordPowerAnimationView.h; sourceTree = "<group>"; };
-		04CBC08E2179C01000658E47 /* UIColor+BBVoiceRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BBVoiceRecord.m"; sourceTree = "<group>"; };
-		04CBC08F2179C01000658E47 /* BBVoiceRecordToastContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBVoiceRecordToastContentView.m; sourceTree = "<group>"; };
-		04CBC0902179C01000658E47 /* UIImage+BBVoiceRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BBVoiceRecord.h"; sourceTree = "<group>"; };
-		04CBC0912179C01000658E47 /* BBHoldToSpeakButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBHoldToSpeakButton.h; sourceTree = "<group>"; };
-		04CBC0922179C01000658E47 /* BBVoiceRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBVoiceRecordView.h; sourceTree = "<group>"; };
-		04CBC0932179C01000658E47 /* UIColor+BBVoiceRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BBVoiceRecord.h"; sourceTree = "<group>"; };
-		04CBC0942179C01000658E47 /* BBVoiceRecordPowerAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBVoiceRecordPowerAnimationView.m; sourceTree = "<group>"; };
-		04CBC0952179C01000658E47 /* BBVoiceRecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBVoiceRecordController.m; sourceTree = "<group>"; };
-		04CBC0962179C01000658E47 /* BBVoiceRecordHeaderDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBVoiceRecordHeaderDefine.h; sourceTree = "<group>"; };
 		04CBC0AC2179C01100658E47 /* WBHttpRequest+WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboUser.h"; sourceTree = "<group>"; };
 		04CBC0AD2179C01100658E47 /* WBSDKRelationshipButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSDKRelationshipButton.h; sourceTree = "<group>"; };
 		04CBC0AE2179C01100658E47 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
@@ -1882,28 +1846,6 @@
 		04DCA8D021A565D500691A3A /* VideoCutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCutView.h; sourceTree = "<group>"; };
 		04DCA8D121A565D500691A3A /* VideoPasterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPasterView.h; sourceTree = "<group>"; };
 		04DCA8D221A565D500691A3A /* VideoInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoInfo.m; sourceTree = "<group>"; };
-		04DCA8F721A5687500691A3A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		04DCA8F821A5687500691A3A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		04DCA8FA21A5687500691A3A /* QBImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBImagePickerController.h; sourceTree = "<group>"; };
-		04DCA8FB21A5687500691A3A /* QBAssetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAssetsViewController.h; sourceTree = "<group>"; };
-		04DCA8FC21A5687500691A3A /* QBAlbumsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAlbumsViewController.h; sourceTree = "<group>"; };
-		04DCA8FD21A5687500691A3A /* QBVideoIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBVideoIconView.m; sourceTree = "<group>"; };
-		04DCA8FE21A5687500691A3A /* QBVideoIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBVideoIndicatorView.m; sourceTree = "<group>"; };
-		04DCA8FF21A5687500691A3A /* QBImagePicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = QBImagePicker.bundle; sourceTree = "<group>"; };
-		04DCA90021A5687500691A3A /* QBCheckmarkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBCheckmarkView.h; sourceTree = "<group>"; };
-		04DCA90121A5687500691A3A /* QBAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAssetCell.h; sourceTree = "<group>"; };
-		04DCA90221A5687500691A3A /* QBSlomoIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBSlomoIconView.h; sourceTree = "<group>"; };
-		04DCA90321A5687500691A3A /* QBAlbumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAlbumCell.m; sourceTree = "<group>"; };
-		04DCA90421A5687500691A3A /* QBImagePicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QBImagePicker.storyboard; sourceTree = "<group>"; };
-		04DCA90521A5687500691A3A /* QBVideoIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBVideoIndicatorView.h; sourceTree = "<group>"; };
-		04DCA90621A5687500691A3A /* QBAlbumsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAlbumsViewController.m; sourceTree = "<group>"; };
-		04DCA90721A5687500691A3A /* QBVideoIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBVideoIconView.h; sourceTree = "<group>"; };
-		04DCA90821A5687500691A3A /* QBAssetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAssetsViewController.m; sourceTree = "<group>"; };
-		04DCA90921A5687500691A3A /* QBImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBImagePickerController.m; sourceTree = "<group>"; };
-		04DCA90A21A5687500691A3A /* QBCheckmarkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBCheckmarkView.m; sourceTree = "<group>"; };
-		04DCA90B21A5687500691A3A /* QBAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAlbumCell.h; sourceTree = "<group>"; };
-		04DCA90C21A5687500691A3A /* QBSlomoIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBSlomoIconView.m; sourceTree = "<group>"; };
-		04DCA90D21A5687500691A3A /* QBAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAssetCell.m; sourceTree = "<group>"; };
 		04DCEE8921F59DD8007AC5B0 /* HomeSearchResultSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSearchResultSubViewController.h; sourceTree = "<group>"; };
 		04DCEE8A21F59DD9007AC5B0 /* HomeSearchResultSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSearchResultSubViewController.m; sourceTree = "<group>"; };
 		04DCEE8C21F5ACD9007AC5B0 /* HomeSearchResultSubUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSearchResultSubUserViewController.h; sourceTree = "<group>"; };
@@ -2238,6 +2180,28 @@
 		04F3B60822474A8800F4C82E /* A2DynamicDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A2DynamicDelegate.h; sourceTree = "<group>"; };
 		04F3B66722474B4200F4C82E /* A2BlockInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A2BlockInvocation.h; sourceTree = "<group>"; };
 		04F3B66822474B4200F4C82E /* A2BlockInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A2BlockInvocation.m; sourceTree = "<group>"; };
+		04F3B66B22474D8400F4C82E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		04F3B66C22474D8400F4C82E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		04F3B66E22474D8400F4C82E /* QBImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBImagePickerController.h; sourceTree = "<group>"; };
+		04F3B66F22474D8400F4C82E /* QBAssetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAssetsViewController.h; sourceTree = "<group>"; };
+		04F3B67022474D8400F4C82E /* QBAlbumsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAlbumsViewController.h; sourceTree = "<group>"; };
+		04F3B67122474D8400F4C82E /* QBVideoIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBVideoIconView.m; sourceTree = "<group>"; };
+		04F3B67222474D8400F4C82E /* QBVideoIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBVideoIndicatorView.m; sourceTree = "<group>"; };
+		04F3B67322474D8400F4C82E /* QBImagePicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = QBImagePicker.bundle; sourceTree = "<group>"; };
+		04F3B67422474D8400F4C82E /* QBCheckmarkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBCheckmarkView.h; sourceTree = "<group>"; };
+		04F3B67522474D8400F4C82E /* QBAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAssetCell.h; sourceTree = "<group>"; };
+		04F3B67622474D8400F4C82E /* QBSlomoIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBSlomoIconView.h; sourceTree = "<group>"; };
+		04F3B67722474D8400F4C82E /* QBAlbumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAlbumCell.m; sourceTree = "<group>"; };
+		04F3B67822474D8400F4C82E /* QBImagePicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QBImagePicker.storyboard; sourceTree = "<group>"; };
+		04F3B67922474D8400F4C82E /* QBVideoIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBVideoIndicatorView.h; sourceTree = "<group>"; };
+		04F3B67A22474D8400F4C82E /* QBAlbumsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAlbumsViewController.m; sourceTree = "<group>"; };
+		04F3B67B22474D8400F4C82E /* QBVideoIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBVideoIconView.h; sourceTree = "<group>"; };
+		04F3B67C22474D8400F4C82E /* QBAssetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAssetsViewController.m; sourceTree = "<group>"; };
+		04F3B67D22474D8400F4C82E /* QBImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBImagePickerController.m; sourceTree = "<group>"; };
+		04F3B67E22474D8400F4C82E /* QBCheckmarkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBCheckmarkView.m; sourceTree = "<group>"; };
+		04F3B67F22474D8400F4C82E /* QBAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAlbumCell.h; sourceTree = "<group>"; };
+		04F3B68022474D8400F4C82E /* QBSlomoIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBSlomoIconView.m; sourceTree = "<group>"; };
+		04F3B68122474D8400F4C82E /* QBAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAssetCell.m; sourceTree = "<group>"; };
 		04F5E89921CE7FB600781FCD /* SharePopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharePopView.h; sourceTree = "<group>"; };
 		04F5E89A21CE7FB600781FCD /* SharePopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharePopView.m; sourceTree = "<group>"; };
 		04F5E89D21CE8DD100781FCD /* NetWork_mt_collectionVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_collectionVideo.h; sourceTree = "<group>"; };
@@ -2842,20 +2806,19 @@
 			path = MTFollow;
 			sourceTree = "<group>";
 		};
-		04468DAF214B8000002F4528 /* mt_record */ = {
+		04468DAF214B8000002F4528 /* MTrecord */ = {
 			isa = PBXGroup;
 			children = (
 				04DCA86321A55A2D00691A3A /* SDKHeader.h */,
 				043548EB21A79ED700AED5A8 /* Localizable.strings */,
 				04DCA89321A563CA00691A3A /* TCConstants.h */,
 				04C2612321A68FB200374E4D /* Common */,
-				04DCA8F621A5687500691A3A /* QBImagePickerController */,
 				04DCA89421A565D400691A3A /* UGCEditor */,
 				04DCA86421A55C5A00691A3A /* VideoUpload */,
 				04DCA83421A5580300691A3A /* Utils */,
 				04DCA82221A5576600691A3A /* UGCRecord */,
 			);
-			path = mt_record;
+			path = MTrecord;
 			sourceTree = "<group>";
 		};
 		0449AB632181BBF100D6172D /* MTLoginService */ = {
@@ -3280,44 +3243,6 @@
 				04CBC0762179C01000658E47 /* lame.h */,
 			);
 			path = lame;
-			sourceTree = "<group>";
-		};
-		04CBC07E2179C01000658E47 /* BBVoiceRecord */ = {
-			isa = PBXGroup;
-			children = (
-				04CBC07F2179C01000658E47 /* UIImage+BBVoiceRecord.m */,
-				04CBC0802179C01000658E47 /* BBVoiceRecordToastContentView.h */,
-				04CBC0812179C01000658E47 /* BBHoldToSpeakButton.m */,
-				04CBC0822179C01000658E47 /* BBVoiceRecordView.m */,
-				04CBC0832179C01000658E47 /* BBVoiceRecordController.h */,
-				04CBC0842179C01000658E47 /* resources */,
-				04CBC08D2179C01000658E47 /* BBVoiceRecordPowerAnimationView.h */,
-				04CBC08E2179C01000658E47 /* UIColor+BBVoiceRecord.m */,
-				04CBC08F2179C01000658E47 /* BBVoiceRecordToastContentView.m */,
-				04CBC0902179C01000658E47 /* UIImage+BBVoiceRecord.h */,
-				04CBC0912179C01000658E47 /* BBHoldToSpeakButton.h */,
-				04CBC0922179C01000658E47 /* BBVoiceRecordView.h */,
-				04CBC0932179C01000658E47 /* UIColor+BBVoiceRecord.h */,
-				04CBC0942179C01000658E47 /* BBVoiceRecordPowerAnimationView.m */,
-				04CBC0952179C01000658E47 /* BBVoiceRecordController.m */,
-				04CBC0962179C01000658E47 /* BBVoiceRecordHeaderDefine.h */,
-			);
-			path = BBVoiceRecord;
-			sourceTree = "<group>";
-		};
-		04CBC0842179C01000658E47 /* resources */ = {
-			isa = PBXGroup;
-			children = (
-				04CBC0852179C01000658E47 /* ic_record_ripple@3x.png */,
-				04CBC0862179C01000658E47 /* ic_record_ripple@2x.png */,
-				04CBC0872179C01000658E47 /* ic_record_too_short@2x.png */,
-				04CBC0882179C01000658E47 /* ic_record_too_short@3x.png */,
-				04CBC0892179C01000658E47 /* ic_release_to_cancel@3x.png */,
-				04CBC08A2179C01000658E47 /* ic_record@2x.png */,
-				04CBC08B2179C01000658E47 /* ic_record@3x.png */,
-				04CBC08C2179C01000658E47 /* ic_release_to_cancel@2x.png */,
-			);
-			path = resources;
 			sourceTree = "<group>";
 		};
 		04CBC0AB2179C01100658E47 /* WeiboSDK */ = {
@@ -3978,43 +3903,6 @@
 			path = VideoRangeSlider;
 			sourceTree = "<group>";
 		};
-		04DCA8F621A5687500691A3A /* QBImagePickerController */ = {
-			isa = PBXGroup;
-			children = (
-				04DCA8F721A5687500691A3A /* LICENSE */,
-				04DCA8F821A5687500691A3A /* README.md */,
-				04DCA8F921A5687500691A3A /* QBImagePicker */,
-			);
-			path = QBImagePickerController;
-			sourceTree = "<group>";
-		};
-		04DCA8F921A5687500691A3A /* QBImagePicker */ = {
-			isa = PBXGroup;
-			children = (
-				04DCA8FA21A5687500691A3A /* QBImagePickerController.h */,
-				04DCA8FB21A5687500691A3A /* QBAssetsViewController.h */,
-				04DCA8FC21A5687500691A3A /* QBAlbumsViewController.h */,
-				04DCA8FD21A5687500691A3A /* QBVideoIconView.m */,
-				04DCA8FE21A5687500691A3A /* QBVideoIndicatorView.m */,
-				04DCA8FF21A5687500691A3A /* QBImagePicker.bundle */,
-				04DCA90021A5687500691A3A /* QBCheckmarkView.h */,
-				04DCA90121A5687500691A3A /* QBAssetCell.h */,
-				04DCA90221A5687500691A3A /* QBSlomoIconView.h */,
-				04DCA90321A5687500691A3A /* QBAlbumCell.m */,
-				04DCA90421A5687500691A3A /* QBImagePicker.storyboard */,
-				04DCA90521A5687500691A3A /* QBVideoIndicatorView.h */,
-				04DCA90621A5687500691A3A /* QBAlbumsViewController.m */,
-				04DCA90721A5687500691A3A /* QBVideoIconView.h */,
-				04DCA90821A5687500691A3A /* QBAssetsViewController.m */,
-				04DCA90921A5687500691A3A /* QBImagePickerController.m */,
-				04DCA90A21A5687500691A3A /* QBCheckmarkView.m */,
-				04DCA90B21A5687500691A3A /* QBAlbumCell.h */,
-				04DCA90C21A5687500691A3A /* QBSlomoIconView.m */,
-				04DCA90D21A5687500691A3A /* QBAssetCell.m */,
-			);
-			path = QBImagePicker;
-			sourceTree = "<group>";
-		};
 		04DF9DBA22392FC600935A89 /* BgMusic_new */ = {
 			isa = PBXGroup;
 			children = (
@@ -4495,6 +4383,43 @@
 			path = Label;
 			sourceTree = "<group>";
 		};
+		04F3B66A22474D8400F4C82E /* QBImagePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				04F3B66B22474D8400F4C82E /* LICENSE */,
+				04F3B66C22474D8400F4C82E /* README.md */,
+				04F3B66D22474D8400F4C82E /* QBImagePicker */,
+			);
+			path = QBImagePickerController;
+			sourceTree = "<group>";
+		};
+		04F3B66D22474D8400F4C82E /* QBImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				04F3B66E22474D8400F4C82E /* QBImagePickerController.h */,
+				04F3B66F22474D8400F4C82E /* QBAssetsViewController.h */,
+				04F3B67022474D8400F4C82E /* QBAlbumsViewController.h */,
+				04F3B67122474D8400F4C82E /* QBVideoIconView.m */,
+				04F3B67222474D8400F4C82E /* QBVideoIndicatorView.m */,
+				04F3B67322474D8400F4C82E /* QBImagePicker.bundle */,
+				04F3B67422474D8400F4C82E /* QBCheckmarkView.h */,
+				04F3B67522474D8400F4C82E /* QBAssetCell.h */,
+				04F3B67622474D8400F4C82E /* QBSlomoIconView.h */,
+				04F3B67722474D8400F4C82E /* QBAlbumCell.m */,
+				04F3B67822474D8400F4C82E /* QBImagePicker.storyboard */,
+				04F3B67922474D8400F4C82E /* QBVideoIndicatorView.h */,
+				04F3B67A22474D8400F4C82E /* QBAlbumsViewController.m */,
+				04F3B67B22474D8400F4C82E /* QBVideoIconView.h */,
+				04F3B67C22474D8400F4C82E /* QBAssetsViewController.m */,
+				04F3B67D22474D8400F4C82E /* QBImagePickerController.m */,
+				04F3B67E22474D8400F4C82E /* QBCheckmarkView.m */,
+				04F3B67F22474D8400F4C82E /* QBAlbumCell.h */,
+				04F3B68022474D8400F4C82E /* QBSlomoIconView.m */,
+				04F3B68122474D8400F4C82E /* QBAssetCell.m */,
+			);
+			path = QBImagePicker;
+			sourceTree = "<group>";
+		};
 		04F5E89C21CE8DD100781FCD /* mt_collection */ = {
 			isa = PBXGroup;
 			children = (
@@ -4560,13 +4485,13 @@
 		7375C1FC1CE566460059974F /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				04F3B66A22474D8400F4C82E /* QBImagePickerController */,
 				04183B0B21C2BFF800383E3F /* COSSDK */,
 				0482F24A21BFCA7B00587B38 /* Masonry */,
 				0400F30F21AF96F10038E16C /* OpenSDK1.8.3 */,
 				0400F30821AF8CD50038E16C /* QQShare */,
 				043548EE21A7E9AC00AED5A8 /* AFNetworking */,
 				04DCA81E21A5458300691A3A /* TXLiteAVSDK_UGC_IJK.framework */,
-				04CBC07E2179C01000658E47 /* BBVoiceRecord */,
 				04CBC2702179C01200658E47 /* FDFullscreenPopGesture */,
 				04CBC0C42179C01100658E47 /* GPUImage */,
 				04CBC0742179C01000658E47 /* lame */,
@@ -4962,7 +4887,7 @@
 			isa = PBXGroup;
 			children = (
 				D9DD56BB1DD44D580031085B /* MTBase */,
-				04468DAF214B8000002F4528 /* mt_record */,
+				04468DAF214B8000002F4528 /* MTrecord */,
 				D904E95C1DD1D6DB00C7E45E /* MTCommon */,
 				0449AB632181BBF100D6172D /* MTLoginService */,
 				04C56C40214B62890052D15D /* MTHome */,
@@ -5359,10 +5284,10 @@
 				04E6E95421A8FFDC007C8A16 /* ghost-20.png in Resources */,
 				04E6E98521A8FFDC007C8A16 /* fenlie0.png in Resources */,
 				04B66E9921C15D41000D6C56 /* awemes.json in Resources */,
-				04CBC2F52179C01200658E47 /* ic_release_to_cancel@2x.png in Resources */,
 				04E6E8E421A8FFDC007C8A16 /* ghostshadow-2.png in Resources */,
 				04E6E9CC21A8FFDC007C8A16 /* phantom-13.png in Resources */,
 				04E6E97A21A8FFDC007C8A16 /* linghun20.png in Resources */,
+				04F3B68622474D8400F4C82E /* QBImagePicker.bundle in Resources */,
 				04E6E96F21A8FFDC007C8A16 /* linghun15.png in Resources */,
 				04E6E99221A8FFDC007C8A16 /* fenlie22.png in Resources */,
 				04E6E91621A8FFDC007C8A16 /* anhei17.png in Resources */,
@@ -5426,7 +5351,6 @@
 				04E6E9F121A8FFDC007C8A16 /* mirror-16.png in Resources */,
 				04E6E9E121A8FFDC007C8A16 /* phantom-21.png in Resources */,
 				04E6E9DA21A8FFDC007C8A16 /* phantom-8.png in Resources */,
-				04CBC2EB2179C01200658E47 /* ic_record_too_short@2x.png in Resources */,
 				04E6E9A621A8FFDC007C8A16 /* shutter-13.png in Resources */,
 				04E6E8F721A8FFDC007C8A16 /* lightning-14.png in Resources */,
 				04E6E93521A8FFDC007C8A16 /* jump_12.png in Resources */,
@@ -5436,6 +5360,7 @@
 				04E6E91B21A8FFDC007C8A16 /* anhei10.png in Resources */,
 				04E6E95821A8FFDC007C8A16 /* ghost-13.png in Resources */,
 				04E6E96421A8FFDC007C8A16 /* ghost-16.png in Resources */,
+				04F3B68322474D8400F4C82E /* README.md in Resources */,
 				D9F86D981DEBEE7600C3A2B6 /* MMVideoPreviewPlayHL@2x.png in Resources */,
 				04E6E9E821A8FFDC007C8A16 /* mirror-7.png in Resources */,
 				04E6E8DD21A8FFDC007C8A16 /* ghostshadow-21.png in Resources */,
@@ -5448,7 +5373,6 @@
 				04E6E91721A8FFDC007C8A16 /* anhei15.png in Resources */,
 				04E6E95D21A8FFDC007C8A16 /* ghost-0.png in Resources */,
 				04E6E90C21A8FFDC007C8A16 /* anhei20.png in Resources */,
-				04CBC2E72179C01200658E47 /* ic_record_ripple@3x.png in Resources */,
 				04E6E9F721A8FFDC007C8A16 /* mirror-23.png in Resources */,
 				04E6E96221A8FFDC007C8A16 /* ghost-4.png in Resources */,
 				04CBC31B2179C01300658E47 /* SVProgressHUD.bundle in Resources */,
@@ -5467,10 +5391,10 @@
 				04E6E9AD21A8FFDC007C8A16 /* shutter-1.png in Resources */,
 				04E6E90B21A8FFDC007C8A16 /* anhei22.png in Resources */,
 				04E6E96721A8FFDC007C8A16 /* ghost-17.png in Resources */,
-				04CBC2F12179C01200658E47 /* ic_record@2x.png in Resources */,
 				04E6E8F021A8FFDC007C8A16 /* ghostshadow-16.png in Resources */,
 				04E6E9D221A8FFDC007C8A16 /* phantom-7.png in Resources */,
 				D954C68E1DD1AB2C003CA535 /* onbConfiguration.plist in Resources */,
+				04F3B68822474D8400F4C82E /* QBImagePicker.storyboard in Resources */,
 				04E6E98321A8FFDC007C8A16 /* fenlie5.png in Resources */,
 				04E6E94421A8FFDC007C8A16 /* donggan6.png in Resources */,
 				04E6E94D21A8FFDC007C8A16 /* donggan17.png in Resources */,
@@ -5479,13 +5403,11 @@
 				04E6E90A21A8FFDC007C8A16 /* anhei23.png in Resources */,
 				04E6E97521A8FFDC007C8A16 /* linghun18.png in Resources */,
 				D9F86DB01DEBEE7600C3A2B6 /* photo_sel_previewVc@2x.png in Resources */,
-				04CBC2E92179C01200658E47 /* ic_record_ripple@2x.png in Resources */,
 				04E6E8DF21A8FFDC007C8A16 /* ghostshadow-22.png in Resources */,
 				04E6E91221A8FFDC007C8A16 /* anhei_select.png in Resources */,
 				04E6E99D21A8FFDC007C8A16 /* shutter-21.png in Resources */,
 				04E6E90121A8FFDC007C8A16 /* lightning-18.png in Resources */,
 				04E6E99721A8FFDC007C8A16 /* fenlie_select.png in Resources */,
-				04CBC2F32179C01200658E47 /* ic_record@3x.png in Resources */,
 				04E6E93021A8FFDC007C8A16 /* jump_16.png in Resources */,
 				04E6E94821A8FFDC007C8A16 /* donggan3.png in Resources */,
 				04B66E9A21C15D41000D6C56 /* favorites.json in Resources */,
@@ -5518,6 +5440,7 @@
 				04E6E9E421A8FFDC007C8A16 /* mirror-1.png in Resources */,
 				04E6E91C21A8FFDC007C8A16 /* anhei0.png in Resources */,
 				04E6E99921A8FFDC007C8A16 /* fenlie8.png in Resources */,
+				04F3B68222474D8400F4C82E /* LICENSE in Resources */,
 				04E6E8F121A8FFDC007C8A16 /* ghostshadow-17.png in Resources */,
 				04E6E8FA21A8FFDC007C8A16 /* lightning-13.png in Resources */,
 				04E6E9B621A8FFDC007C8A16 /* illusion-11.png in Resources */,
@@ -5609,7 +5532,6 @@
 				04E6E9FE21A902D1007C8A16 /* AnimatedPaster.bundle in Resources */,
 				04E6E97D21A8FFDC007C8A16 /* linghun22.png in Resources */,
 				04E6E9CD21A8FFDC007C8A16 /* phantom-12.png in Resources */,
-				04DCA91221A5687600691A3A /* QBImagePicker.bundle in Resources */,
 				04E6E90821A8FFDC007C8A16 /* lightning-3.png in Resources */,
 				04E6E92021A8FFDC007C8A16 /* anhei3.png in Resources */,
 				0499B55F223CC5AA0080A1B1 /* LabelCollectionCell.xib in Resources */,
@@ -5660,7 +5582,6 @@
 				04E6E8DC21A8FFDC007C8A16 /* ghostshadow-20.png in Resources */,
 				04E6E9D621A8FFDC007C8A16 /* phantom-1.png in Resources */,
 				04E6E93621A8FFDC007C8A16 /* jump_13.png in Resources */,
-				04DCA91421A5687600691A3A /* QBImagePicker.storyboard in Resources */,
 				04E6E97121A8FFDC007C8A16 /* linghun16.png in Resources */,
 				04E6E98D21A8FFDC007C8A16 /* fenlie10.png in Resources */,
 				04E6E92221A8FFDC007C8A16 /* anhei12.png in Resources */,
@@ -5668,7 +5589,6 @@
 				04E6E9C421A8FFDC007C8A16 /* illusion-22.png in Resources */,
 				04E6E9E221A8FFDC007C8A16 /* mirror-2.png in Resources */,
 				04DCA83221A5576700691A3A /* TCVideoRecordViewController.xib in Resources */,
-				04CBC2EF2179C01200658E47 /* ic_release_to_cancel@3x.png in Resources */,
 				04E6E9D421A8FFDC007C8A16 /* phantom-4.png in Resources */,
 				04E6E8E221A8FFDC007C8A16 /* ghostshadow-1.png in Resources */,
 				04CBC30F2179C01300658E47 /* WeiboSDK.bundle in Resources */,
@@ -5688,7 +5608,6 @@
 				04E6E96C21A8FFDC007C8A16 /* linghun14.png in Resources */,
 				04E6E8F921A8FFDC007C8A16 /* lightning-11.png in Resources */,
 				04E6E90E21A8FFDC007C8A16 /* anhei9.png in Resources */,
-				04CBC2ED2179C01200658E47 /* ic_record_too_short@3x.png in Resources */,
 				04DCA8E421A565D500691A3A /* TCVideoEditPrevViewController.xib in Resources */,
 				04E6E92A21A8FFDC007C8A16 /* jump_3.png in Resources */,
 				04E6E9D021A8FFDC007C8A16 /* phantom-15.png in Resources */,
@@ -5702,9 +5621,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04F3B68E22474D8400F4C82E /* QBAssetCell.m in Sources */,
 				D957AD4F1DD2CB2F00B7EE09 /* IQNSArray+Sort.m in Sources */,
 				D9F86DE31DEBEE7600C3A2B6 /* UIView+Layout.m in Sources */,
-				04DCA91721A5687600691A3A /* QBImagePickerController.m in Sources */,
 				04CBC4612179C01300658E47 /* GPUImageBulgeDistortionFilter.m in Sources */,
 				04DCA8EA21A565D500691A3A /* RangeContent.m in Sources */,
 				04CBC3732179C01300658E47 /* GPUImageBilateralFilter.m in Sources */,
@@ -5730,7 +5649,6 @@
 				C5336F931E83739600618975 /* TTPopupView.m in Sources */,
 				04CBC3CD2179C01300658E47 /* GPUImageRGBFilter.m in Sources */,
 				0482F26421BFCA7C00587B38 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
-				04CBC2E32179C01200658E47 /* BBHoldToSpeakButton.m in Sources */,
 				0493CA70221A5B560090968B /* ScrollPlayerListViewController.m in Sources */,
 				0482F27021BFCA7C00587B38 /* View+MASAdditions.m in Sources */,
 				04CBC4532179C01300658E47 /* GPUImageMosaicFilter.m in Sources */,
@@ -5745,7 +5663,6 @@
 				04CBC3612179C01300658E47 /* GPUImageHistogramEqualizationFilter.m in Sources */,
 				D9F86DDD1DEBEE7600C3A2B6 /* TZTestCell.m in Sources */,
 				04CBC40D2179C01300658E47 /* GPUImageBuffer.m in Sources */,
-				04DCA91A21A5687600691A3A /* QBAssetCell.m in Sources */,
 				04CBC4312179C01300658E47 /* GPUImageGlassSphereFilter.m in Sources */,
 				04CBC4432179C01300658E47 /* GPUImageNormalBlendFilter.m in Sources */,
 				04CBC4772179C01300658E47 /* UIImageView+HighlightedWebCache.m in Sources */,
@@ -5764,7 +5681,6 @@
 				0405BE8D222118FB0098D590 /* UserCollectionSubMusicCell.m in Sources */,
 				D9F6B03E1E135758008F9FC0 /* UIPlaceholderTextView.m in Sources */,
 				04CBC3DB2179C01300658E47 /* GPUImageView.m in Sources */,
-				04CBC2E52179C01200658E47 /* BBVoiceRecordView.m in Sources */,
 				04CBC3A52179C01300658E47 /* GPUImageRGBClosingFilter.m in Sources */,
 				D9EE757E1EF8C60C001A1299 /* SDBrowserImageView.m in Sources */,
 				04DCA8DD21A565D500691A3A /* TCVideoEditViewController.m in Sources */,
@@ -5799,6 +5715,7 @@
 				04F3B5A62247498E00F4C82E /* NSObject+A2BlockDelegate.m in Sources */,
 				044F0356217EC324007D88DF /* MJRefreshBackNormalFooter.m in Sources */,
 				04CBC3872179C01300658E47 /* GPUImageZoomBlurFilter.m in Sources */,
+				04F3B68D22474D8400F4C82E /* QBSlomoIconView.m in Sources */,
 				04FB537521C69B9F000ED131 /* AVPlayerManager.m in Sources */,
 				04A8C1252219013F004980F5 /* NetWork_mt_collectionTopic.m in Sources */,
 				04CBC34D2179C01300658E47 /* GPUImageColorInvertFilter.m in Sources */,
@@ -5815,16 +5732,13 @@
 				D957AD5B1DD2CB2F00B7EE09 /* IQKeyboardManager.m in Sources */,
 				04CBC38D2179C01300658E47 /* GPUImageAdaptiveThresholdFilter.m in Sources */,
 				04C882102109AB9800811DAD /* BaseWKWebViewController.m in Sources */,
-				04CBC2FB2179C01200658E47 /* BBVoiceRecordPowerAnimationView.m in Sources */,
 				04183B0521C2BC2200383E3F /* FavoriteView.m in Sources */,
 				04CBC3F52179C01300658E47 /* GPUImageColorBlendFilter.m in Sources */,
 				D98FCFBA1DEFC3DA0023C076 /* STPickerView.m in Sources */,
 				04CBC34F2179C01300658E47 /* GPUImageGrayscaleFilter.m in Sources */,
 				04A04EB621ECE553007CBABF /* HomeSearchResultViewController.m in Sources */,
-				04CBC2E12179C01200658E47 /* UIImage+BBVoiceRecord.m in Sources */,
 				D954C4F51DD1A40F003CA535 /* UIView+Genie.m in Sources */,
 				04CBC36D2179C01300658E47 /* GPUImageKuwaharaRadius3Filter.m in Sources */,
-				04CBC2F72179C01200658E47 /* UIColor+BBVoiceRecord.m in Sources */,
 				04CBC2972179C01200658E47 /* MJRefreshGifHeader.m in Sources */,
 				04CBC3452179C01300658E47 /* GPUImageUIElement.m in Sources */,
 				04CBC3812179C01300658E47 /* GPUImageColorMatrixFilter.m in Sources */,
@@ -5850,9 +5764,9 @@
 				04CBC3632179C01300658E47 /* GPUImageSketchFilter.m in Sources */,
 				04CBC2D32179C01200658E47 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				04CBC35D2179C01300658E47 /* GPUImagePixellatePositionFilter.m in Sources */,
+				04F3B68722474D8400F4C82E /* QBAlbumCell.m in Sources */,
 				04443E9021B3F91400C8DD34 /* XLPlayerListViewController.m in Sources */,
 				0434BDDC21EA000B0059A28C /* NetWork_mt_updateNoodelHead.m in Sources */,
-				04CBC2FD2179C01200658E47 /* BBVoiceRecordController.m in Sources */,
 				04CBC34B2179C01300658E47 /* GPUImageEmbossFilter.m in Sources */,
 				040208FD21D3CF0500765F06 /* NetWork_mt_getFlours.m in Sources */,
 				D957AD291DD2CAF300B7EE09 /* IHKeyboardAvoiding.m in Sources */,
@@ -5882,7 +5796,6 @@
 				0499B54B223CC5210080A1B1 /* TCBGMCutView.m in Sources */,
 				04CBC28D2179C01200658E47 /* MJRefreshAutoStateFooter.m in Sources */,
 				04F5E89B21CE7FB600781FCD /* SharePopView.m in Sources */,
-				04DCA91021A5687600691A3A /* QBVideoIconView.m in Sources */,
 				0499B568223D0E750080A1B1 /* NetWork_mt_getUploadSignature.m in Sources */,
 				04CBC39F2179C01300658E47 /* GPUImageTextureInput.m in Sources */,
 				04F3B53A2247485500F4C82E /* UIActionSheet+BlocksKit.m in Sources */,
@@ -5924,14 +5837,16 @@
 				04AB304A21CA92B10072808E /* UINavigationController+GKCategory.m in Sources */,
 				D9F86D921DEBEE7600C3A2B6 /* LxGridViewFlowLayout.m in Sources */,
 				04CBC3AB2179C01300658E47 /* GLProgram.m in Sources */,
+				04F3B68522474D8400F4C82E /* QBVideoIndicatorView.m in Sources */,
 				D9F86DC51DEBEE7600C3A2B6 /* TZAssetCell.m in Sources */,
 				0405BE8722210E8B0098D590 /* UserCollectionSubTopicCell.m in Sources */,
 				04F5E8A221CE95A800781FCD /* NetWork_mt_getVideoCollections.m in Sources */,
 				04CBC40F2179C01300658E47 /* GPUImageThresholdSketchFilter.m in Sources */,
 				04CBC35B2179C01300658E47 /* GPUImageMissEtikateFilter.m in Sources */,
 				04CBC3AD2179C01300658E47 /* GPUImageBrightnessFilter.m in Sources */,
+				04F3B68422474D8400F4C82E /* QBVideoIconView.m in Sources */,
 				04CBC3CF2179C01300658E47 /* GPUImageFramebufferCache.m in Sources */,
-				04DCA91921A5687600691A3A /* QBSlomoIconView.m in Sources */,
+				04F3B68A22474D8400F4C82E /* QBAssetsViewController.m in Sources */,
 				04CBC3312179C01300658E47 /* GPUImageLuminanceThresholdFilter.m in Sources */,
 				04CBC3472179C01300658E47 /* GPUImageNonMaximumSuppressionFilter.m in Sources */,
 				04CBC33B2179C01300658E47 /* GPUImageSoftEleganceFilter.m in Sources */,
@@ -5950,6 +5865,7 @@
 				04183B0721C2BC2200383E3F /* FocusView.m in Sources */,
 				04DCA8EF21A565D500691A3A /* EffectSelectView.m in Sources */,
 				04DCA8E721A565D500691A3A /* TCVideoJoinCell.m in Sources */,
+				04F3B68922474D8400F4C82E /* QBAlbumsViewController.m in Sources */,
 				D954C55D1DD1A40F003CA535 /* GlobalData.m in Sources */,
 				04CBC3D92179C01300658E47 /* GPUImagePicture+TextureSubimage.m in Sources */,
 				04CBC3372179C01300658E47 /* GPUImageSobelEdgeDetectionFilter.m in Sources */,
@@ -5977,9 +5893,6 @@
 				04CBC4272179C01300658E47 /* GPUImageMedianFilter.m in Sources */,
 				C552FC221E7136EA003D3E2E /* MyScrollView.m in Sources */,
 				04CBC4252179C01300658E47 /* GPUImageLinearBurnBlendFilter.m in Sources */,
-				04DCA91621A5687600691A3A /* QBAssetsViewController.m in Sources */,
-				04DCA91521A5687600691A3A /* QBAlbumsViewController.m in Sources */,
-				04DCA91321A5687600691A3A /* QBAlbumCell.m in Sources */,
 				04CBC3952179C01300658E47 /* GPUImageDissolveBlendFilter.m in Sources */,
 				D98FCFB21DEFC3080023C076 /* STPickerDate.m in Sources */,
 				04CBC4092179C01300658E47 /* GPUImageThreeInputFilter.m in Sources */,
@@ -6042,7 +5955,6 @@
 				04352BC221BBA6AA005F60E1 /* NetWork_mt_likeVideo.m in Sources */,
 				D954C5941DD1A40F003CA535 /* UIView+AutoLayout.m in Sources */,
 				D957AD511DD2CB2F00B7EE09 /* IQUIScrollView+Additions.m in Sources */,
-				04DCA91121A5687600691A3A /* QBVideoIndicatorView.m in Sources */,
 				04CBC2A12179C01200658E47 /* MJRefreshComponent.m in Sources */,
 				04C171E221CDDE9E0077FA6C /* UserInfoPlayerCell.m in Sources */,
 				042E65832217AE5100C56859 /* MyTopicHeaderView.m in Sources */,
@@ -6063,7 +5975,6 @@
 				04CBC45B2179C01300658E47 /* GPUImageChromaKeyBlendFilter.m in Sources */,
 				04CBC48F2179C01300658E47 /* MBProgressHUD.m in Sources */,
 				04CBC3A32179C01300658E47 /* GPUImageSphereRefractionFilter.m in Sources */,
-				04CBC2F92179C01200658E47 /* BBVoiceRecordToastContentView.m in Sources */,
 				04CBC3ED2179C01300658E47 /* GPUImageSwirlFilter.m in Sources */,
 				04CBC4392179C01300658E47 /* GPUImagePerlinNoiseFilter.m in Sources */,
 				04CBC4472179C01300658E47 /* GPUImage3x3ConvolutionFilter.m in Sources */,
@@ -6110,6 +6021,7 @@
 				04CBC3F12179C01300658E47 /* GPUImageSubtractBlendFilter.m in Sources */,
 				04CBC41D2179C01300658E47 /* GPUImageHoughTransformLineDetector.m in Sources */,
 				04CBC44B2179C01300658E47 /* GPUImageCrosshatchFilter.m in Sources */,
+				04F3B68B22474D8400F4C82E /* QBImagePickerController.m in Sources */,
 				04CBC48D2179C01300658E47 /* UIButton+WebCache.m in Sources */,
 				04183B0921C2BC2200383E3F /* NSString+Extension.m in Sources */,
 				04CBC4012179C01300658E47 /* GPUImageRawDataOutput.m in Sources */,
@@ -6145,6 +6057,7 @@
 				04CBC37B2179C01300658E47 /* GPUImageExclusionBlendFilter.m in Sources */,
 				04CBC4812179C01300658E47 /* SDWebImagePrefetcher.m in Sources */,
 				04CBC3C92179C01300658E47 /* GPUImageBoxBlurFilter.m in Sources */,
+				04F3B68C22474D8400F4C82E /* QBCheckmarkView.m in Sources */,
 				0403662021C3A5D1000FDC5E /* CommentsPopView.m in Sources */,
 				04CBC3AF2179C01300658E47 /* GPUImageDifferenceBlendFilter.m in Sources */,
 				04274C7020EDC5CC00D4B5E2 /* iCarousel.m in Sources */,
@@ -6194,7 +6107,6 @@
 				D954C5E21DD1A40F003CA535 /* GlobalFunc.m in Sources */,
 				04F3B4C8224746C100F4C82E /* Label.m in Sources */,
 				0405BE8A222116990098D590 /* NetWork_mt_getMusicCollections.m in Sources */,
-				04DCA91821A5687600691A3A /* QBCheckmarkView.m in Sources */,
 				04CBC4732179C01300658E47 /* SDWebImageManager.m in Sources */,
 				D98FCFAC1DEFC3080023C076 /* STPickerArea.m in Sources */,
 				04CBC3E12179C01300658E47 /* GPUImageGaussianBlurFilter.m in Sources */,
