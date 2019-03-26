@@ -14,6 +14,8 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 
+#import "FileHelper.h"
+
 
 
 @implementation SharePopView
@@ -268,8 +270,7 @@
     
 }
 
-- (void)handleSendResult:(QQApiSendResultCode)sendResult
-{
+- (void)handleSendResult:(QQApiSendResultCode)sendResult{
     switch (sendResult)
     {
         case EQQAPIAPPNOTREGISTED:
@@ -354,6 +355,44 @@
 }
 
 - (void)onActionItemTap:(UITapGestureRecognizer *)sender {
+    
+    
+    //test
+    //生成带水印的视频，并分享到微信或者qq
+    //获取本地磁盘缓存文件夹路径，同视频缓存同一个目录，缓存一天后删除
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *path = [paths lastObject];
+    NSString *diskCachePath = [NSString stringWithFormat:@"%@%@",path,@"/webCache"];
+    //当前视频播放Model
+    NSString *name = [NSString stringWithFormat:@"/share_download_%@.mp4",self.homeListModel.noodleVideoId];
+    NSString *chorusFileName = [NSString stringWithFormat:@"%@%@",diskCachePath,name];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:chorusFileName]){ //本地存在视频，开始使用SDK生成带水印的的视频
+        [self onloadVideoComplete];
+    }else{//
+        NSString *videoUrl = self.homeListModel.storagePath;
+        
+        [FileHelper downloadFile:chorusFileName playUrl:videoUrl processBlock:^(float percent) {
+            [self onloadVideoProcess:percent];
+        } completionBlock:^(BOOL result, NSString *msg) {
+            if(result){
+                [self onloadVideoComplete];
+            }
+            else{
+                [UIWindow showTips:msg];
+            }
+        }];
+        
+    }
+    
+    
+    
+    return;
+    
+    
+    
+    
 
     if ([self.delegate respondsToSelector:@selector(onActionItemClicked:index:)]) {
         [self.delegate onActionItemClicked:self index:sender.view.tag];
@@ -403,6 +442,22 @@
                      completion:^(BOOL finished) {
                          [self removeFromSuperview];
                      }];
+}
+
+
+#pragma -mark  ----------- 视频相关 ---------
+-(void)onloadVideoProcess:(CGFloat)process {
+    [GlobalFunc showHud:[NSString stringWithFormat:NSLocalizedString(@"TCVodPlay.VideoLoadingFmt", nil),(int)(process * 100)]];
+}
+
+-(void)onloadVideoComplete{
+    [GlobalFunc hideHUD:1.0f];
+    
+    //开始合成视频
+    
+    
+    
+    
 }
 
 @end

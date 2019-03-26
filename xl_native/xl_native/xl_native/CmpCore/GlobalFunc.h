@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+#import "MBProgressHUD.h"
 
 @protocol ChoosePictureDelegate <NSObject>
 
@@ -31,6 +31,9 @@
 
 @property (nonatomic,strong) UIImagePickerController *camare;
 @property(nonatomic, weak) id <ChoosePictureDelegate> delegate;
+
+@property (nonatomic, strong) MBProgressHUD     *hub;//等待控件
+
 
 
 
@@ -104,9 +107,10 @@
 #pragma mark - 比较版本号大小
 + (BOOL)moreThanVersion:(NSString *)version;
 
-#pragma mark - 展示一般的警告
-+ (void)showAlertHUD:(NSString *)message;
-+ (void)showAlertHUD:(NSString *)message timeOut:(NSInteger)timeOut;
+//#pragma mark - 展示一般的警告
+//+ (void)showHUD:(NSString *)message;
+//+ (void)showHUD:(NSString *)message timeOut:(NSInteger)timeOut;
+//+ (void)hideHUD;
 
 + (UIImage *)imageWithColor:(UIColor *)color;
 + (CGSize)sizeWithText:(NSString *)text font:(UIFont *)font size:(CGSize)size;
@@ -115,8 +119,6 @@
 + (NSString *)detailTimer:(NSString *)minut byIndex:(NSInteger)index;
 + (NSString *)detailSignTimer:(NSString *)minut byIndex:(NSInteger)index;
 + (NSString *)compareDate:(NSString *)dateStr day:(BOOL)day;
-
-+ (UIImage *)pngWithName:(NSString *)name;
 
 + (UIImage *) scaleToSizeAlpha:(UIImage *)img alpha:(float)alpha;
 + (UIImage *) scaleToSizeAlpha:(UIImage *)img fixedWith:(float)fixedWith;
@@ -168,6 +170,15 @@
 
 //判断文件是否已经在沙盒中已经存在？
 + (BOOL) isFileExist:(NSString *)fileName;
+
+/*
+ *全局等待框
+ */
++ (void)showHud:(NSString*)msg;
+
++ (void)hideHUD;
+
++ (void)hideHUD:(NSTimeInterval)delay;
 
 @end
 

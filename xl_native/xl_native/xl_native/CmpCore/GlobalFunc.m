@@ -598,40 +598,6 @@ static GlobalFunc *sharedInstance;
     return rect.size;
 }
 
-//+ (BOOL)checkCameraAuthorization
-//{
-//    BOOL isAvalible = YES;
-//    //ios 7.0以上的系统新增加摄像头权限检测
-//    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
-//        //获取对摄像头的访问权限。
-//        AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-//        switch (authStatus) {
-//            case AVAuthorizationStatusRestricted://此应用程序没有被授权访问的照片数据。可能是家长控制权限。
-//                NSLog(@"Restricted");
-//                break;
-//            case AVAuthorizationStatusDenied://用户已经明确否认了这一照片数据的应用程序访问.
-//                NSLog(@"Denied");
-//                isAvalible = NO;
-//                break;
-//            case AVAuthorizationStatusAuthorized://用户已授权应用访问照片数据.
-//                NSLog(@"Authorized");
-//                break;
-//            case AVAuthorizationStatusNotDetermined://用户尚未做出了选择这个应用程序的问候
-//                isAvalible =[UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
-//                break;
-//            default:
-//                break;
-//        }
-//    }
-//    if (!isAvalible) {
-//        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"" message:@"您关闭了搜狐社区的相机权限，无法进行拍照。可以在手机 > 设置 > 隐私 > 相机中开启权限。" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-//        [errorAlert show];
-//        errorAlert = nil;
-//    }
-//
-//    return isAvalible;
-//}
-
 #pragma mark - 倒计时
 + (NSString *)detailTimer:(NSString *)minut byIndex:(NSInteger)index
 {
@@ -773,14 +739,6 @@ static GlobalFunc *sharedInstance;
     return nil;
 }
 
-+ (UIImage *)pngWithName:(NSString *)name
-{
-    NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@"png"];
-    UIImage *img = [UIImage imageWithContentsOfFile:path];
-    path = nil;
-    
-    return img;
-}
 
 #pragma -mark 压缩图片
 
@@ -1028,6 +986,54 @@ static GlobalFunc *sharedInstance;
 //    NSLog(@"这个文件已经存在：%@",result?@"是的":@"不存在");
     ;
 }
+
+
+/*
+ *全局等待框
+ */
++ (void)createHUD{  //alloc一个等待控件出来
+    
+    if (![GlobalFunc sharedInstance].hub){
+        
+        UIWindow *window =  [UIApplication sharedApplication].delegate.window;
+        [GlobalFunc sharedInstance].hub = [MBProgressHUD showHUDAddedTo:window animated:YES];
+        [GlobalFunc sharedInstance].hub.mode = MBProgressHUDModeText;
+        [GlobalFunc sharedInstance].hub.label.text = @"加载中...";
+    }
+}
+
++ (void)showHud:(NSString*)msg{
+    
+    [GlobalFunc createHUD];
+    [GlobalFunc sharedInstance].hub.label.text = msg;
+}
+
++(void)hideHUD{
+    
+    if([GlobalFunc sharedInstance].hub){
+        [[GlobalFunc sharedInstance].hub hideAnimated:YES];
+        [GlobalFunc sharedInstance].hub = nil;
+    }
+}
+
++(void)hideHUD:(NSTimeInterval)delay{
+    
+    if([GlobalFunc sharedInstance].hub){
+        [[GlobalFunc sharedInstance].hub hideAnimated:YES afterDelay:delay];
+        [[GlobalFunc sharedInstance] performSelector:@selector(delayMethod) withObject:nil afterDelay:delay];
+    }
+}
+
+- (void)delayMethod {
+    NSLog(@"delayMethodEnd");
+    [GlobalFunc sharedInstance].hub = nil;
+}
+
+
+
+
+
+
 
 
 @end

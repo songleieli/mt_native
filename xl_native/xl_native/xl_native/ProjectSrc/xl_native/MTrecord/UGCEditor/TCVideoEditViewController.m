@@ -159,8 +159,8 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
     NSInteger _timeIndex;
 }
 
--(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+    
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _effectType = -1;
@@ -395,11 +395,20 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
     TXPreviewParam *param = [[TXPreviewParam alloc] init];
     param.videoView = _videoPreview.renderView;
     param.renderMode = PREVIEW_RENDER_MODE_FILL_EDGE;
-    _ugcEdit = [[TXVideoEditer alloc] initWithPreview:param];
-    _ugcEdit.generateDelegate = self;
-    _ugcEdit.previewDelegate = _videoPreview;
     
+    //TXVideoEditer, 视频编辑类
+    _ugcEdit = [[TXVideoEditer alloc] initWithPreview:param];
+    ///生成视频回调的委托对象, 可以获取生成进度与完成时间等
+    _ugcEdit.generateDelegate = self;
+    // 视频预览回调的委托对象，可以获取视频的播放进度等
+    _ugcEdit.previewDelegate = _videoPreview;
+     //设置视频 AVAsset
     [_ugcEdit setVideoAsset:_videoAsset];
+    /**
+     * 设置画面渲染角度
+     * @param rotation 画面渲染角度, 必须是90的倍数
+     * @warning 只支持视频旋转
+     */
     [_ugcEdit setRenderRotation:self.renderRotation];
 
     /* 先屏蔽添加水印

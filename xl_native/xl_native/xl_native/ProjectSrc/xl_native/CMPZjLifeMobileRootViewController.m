@@ -16,12 +16,12 @@
 
 #import "TCVideoRecordViewController.h"
 
-#import "MBProgressHUD.h"
+//#import "MBProgressHUD.h"
 #import "TCVideoLoadingController.h"
 
 
 @interface CMPZjLifeMobileRootViewController ()<ZJChangeIndexDelegate,presentViewControllerDelegate,WYPopoverControllerDelegate,QBImagePickerControllerDelegate>{
-    MBProgressHUD *          _hub;
+//    MBProgressHUD *          _hub;
 }
 
 @end
@@ -234,6 +234,9 @@
 
 
 -(void)onloadVideoComplete:(NSString *)videoPath {
+    
+    
+    [GlobalFunc hideHUD];
     if (videoPath) {
         HomeListModel *homeListModel= self.homeNewViewController.playerVC.currentCell.listModel;
 
@@ -253,16 +256,23 @@
         
         BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
         [self presentViewController:nav animated:YES completion:nil];
-        [_hub hideAnimated:YES];
+//        [_hub hideAnimated:YES];
+        
+//        [GlobalFunc hideHUD];
         
     }else{
-        _hub.label.text = NSLocalizedString(@"TCVodPlay.VideoLoadFailed", nil);
-        [_hub hideAnimated:YES afterDelay:1.0];
+//        [GlobalFunc showHud:NSLocalizedString(@"TCVodPlay.VideoLoadFailed", nil)];
+//        [GlobalFunc hideHUD:1.0f];
+        //_hub.label.text = NSLocalizedString(@"TCVodPlay.VideoLoadFailed", nil);
+//        [_hub hideAnimated:YES afterDelay:1.0];
     }
 }
 
 -(void)onloadVideoProcess:(CGFloat)process {
-    _hub.label.text = [NSString stringWithFormat:NSLocalizedString(@"TCVodPlay.VideoLoadingFmt", nil),(int)(process * 100)];
+    
+    //_hub.label.text = [NSString stringWithFormat:NSLocalizedString(@"TCVodPlay.VideoLoadingFmt", nil),(int)(process * 100)];
+    
+    [GlobalFunc showHud:[NSString stringWithFormat:NSLocalizedString(@"TCVodPlay.VideoLoadingFmt", nil),(int)(process * 100)]];
 }
 
 
@@ -297,9 +307,9 @@
     }
     else if(row == 1){//视频合唱
         
-        _hub = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        _hub.mode = MBProgressHUDModeText;
-        _hub.label.text = NSLocalizedString(@"TCVodPlay.VideoLoading", nil);
+//        _hub = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        _hub.mode = MBProgressHUDModeText;
+//        _hub.label.text = NSLocalizedString(@"TCVodPlay.VideoLoading", nil);
         
         
         //获取本地磁盘缓存文件夹路径，同视频缓存同一个目录，缓存一天后删除
@@ -310,7 +320,6 @@
         //当前视频播放Model
         HomeListModel *homeListModel= self.homeNewViewController.playerVC.currentCell.listModel;
         NSString *name = [NSString stringWithFormat:@"/chorus_%@.mp4",homeListModel.noodleVideoId];
-        
         NSString *chorusFileName = [NSString stringWithFormat:@"%@%@",diskCachePath,name];
         
         if ([[NSFileManager defaultManager] fileExistsAtPath:chorusFileName]){
