@@ -9,7 +9,8 @@
 #import "BaseTableViewCell.h"
 #import "VUILable.h"
 #import "NetWork_mt_getFuzzyAccountList.h"
-
+#import "NetWork_mt_saveflour.h"
+#import "NetWork_mt_delflour.h"
 
 @protocol SearchResultSubUserDelegate <NSObject>
 

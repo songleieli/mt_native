@@ -71,6 +71,7 @@
 @property (copy, nonatomic) NSString *signature;
 @property (strong, nonatomic) NSNumber *followSum;
 @property (strong, nonatomic) NSNumber *likeTotal;
+@property (assign, nonatomic) BOOL isFlour;
 
 @end
 

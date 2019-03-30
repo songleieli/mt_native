@@ -38,7 +38,7 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubUserCellId";
     
     [self.viewBg addTarget:self action:@selector(btnDelClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.viewBg];
-
+    
     self.imageVeiwIcon = [[UIImageView alloc]init];
     self.imageVeiwIcon.size = [UIView getSize_width:SearchResultSubUserCellHeight/5*3 height:SearchResultSubUserCellHeight/5*3];
     self.imageVeiwIcon.origin = [UIView getPoint_x:10 y:(self.viewBg.height - self.imageVeiwIcon.height)/2];
@@ -63,10 +63,11 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubUserCellId";
     [self.focusButton setImageEdgeInsets:UIEdgeInsetsMake(0, -2, 0, 0)];
     [self.focusButton setBackgroundColor:MTColorBtnRedNormal forState:UIControlStateNormal];
     [self.focusButton setBackgroundColor:MTColorBtnRedHighlighted forState:UIControlStateHighlighted];
+    [self.focusButton addTarget:self action:@selector(btnCollectionClick) forControlEvents:UIControlEventTouchUpInside];
     self.focusButton.layer.cornerRadius = 2;
     [self.viewBg addSubview:self.focusButton];
     
-
+    
     self.labelTitle = [[VUILable alloc]init];
     //宽度根据屏幕适配
     self.labelTitle.size = [UIView getSize_width:self.viewBg.width - self.imageVeiwIcon.right - self.focusButton.width - 30
@@ -86,7 +87,7 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubUserCellId";
     [self.viewBg addSubview:self.labelNoodleInfo];
     
     //test
-
+    
     self.labelSign = [[VUILable alloc]init];
     self.labelSign.size = [UIView getSize_width:self.labelTitle.width height:30];
     self.labelSign.origin = [UIView getPoint_x:self.labelTitle.left y:self.labelNoodleInfo.bottom];
@@ -102,9 +103,9 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubUserCellId";
     
     NSString *content = [NSString stringWithFormat:@"@%@",listModel.nickname];
     [GlobalFunc setContentLabelColor:content
-                        subStr:withKeyWord
-                      subColor:[UIColor yellowColor]
-                  contentLabel:self.labelTitle];
+                              subStr:withKeyWord
+                            subColor:[UIColor yellowColor]
+                        contentLabel:self.labelTitle];
     
     self.labelNoodleInfo.text = [NSString stringWithFormat:@"面条号:%@ 获赞:%@",listModel.noodleId,listModel.likeTotal];
     
@@ -113,6 +114,17 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubUserCellId";
                               subStr:withKeyWord
                             subColor:[UIColor yellowColor]
                         contentLabel:self.labelSign];
+    
+    if(self.listModel.isFlour){
+        [self.focusButton setBackgroundColor:MTColorBtnNormal forState:UIControlStateNormal];
+        [self.focusButton setBackgroundColor:MTColorBtnHighlighted forState:UIControlStateHighlighted];
+        [self.focusButton setTitle:@"已关注" forState:UIControlStateNormal];
+    }
+    else{
+        [self.focusButton setTitle:@"关注" forState:UIControlStateNormal];
+        [self.focusButton setBackgroundColor:MTColorBtnRedNormal forState:UIControlStateNormal];
+        [self.focusButton setBackgroundColor:MTColorBtnRedHighlighted forState:UIControlStateHighlighted];
+    }
 }
 
 
@@ -126,5 +138,84 @@ static NSString* const ViewTableViewCellId = @"SearchResultSubUserCellId";
         NSLog(@"代理没响应，快开看看吧");
     }
 }
+
+
+-(void)btnCollectionClick{
+    
+    
+    [[ZJLoginService sharedInstance] authenticateWithCompletion:^(BOOL success) {
+        
+        
+        
+        if(self.listModel.isFlour){ //已关注，取消关注
+            
+            //调用取消关注接口，关注成功后，startFocusAnimation
+            DelFlourContentModel *contentModel = [[DelFlourContentModel alloc] init];
+            contentModel.flourId = [GlobalData sharedInstance].loginDataModel.noodleId;
+            contentModel.noodleId = self.listModel.noodleId;
+            
+            NetWork_mt_delflour *request = [[NetWork_mt_delflour alloc] init];
+            request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+            request.content = [contentModel generateJsonStringForProperties];
+            [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+                
+                if(finished){
+                    self.listModel.isFlour = NO;
+                    [self.focusButton setTitle:@"关注" forState:UIControlStateNormal];
+                    [self.focusButton setBackgroundColor:MTColorBtnRedNormal forState:UIControlStateNormal];
+                    [self.focusButton setBackgroundColor:MTColorBtnRedHighlighted forState:UIControlStateHighlighted];
+                }
+                else{
+                    [UIWindow showTips:msg];
+                }
+            }];
+            contentModel = nil;
+            
+        }
+        else{//关注
+            //调用关注接口，关注成功后，startFocusAnimation
+            SaveflourContentModel *contentModel = [[SaveflourContentModel alloc] init];
+            contentModel.flourId = [GlobalData sharedInstance].loginDataModel.noodleId;
+            contentModel.noodleId = self.listModel.noodleId;
+            contentModel.flourHead = [GlobalData sharedInstance].loginDataModel.head;
+            contentModel.flourNickname = [GlobalData sharedInstance].loginDataModel.nickname;
+            contentModel.flourSignature = [GlobalData sharedInstance].loginDataModel.signature;
+            contentModel.noodleHead = self.listModel.head;
+            contentModel.noodleNickname = self.listModel.nickname;
+            contentModel.noodleSignature = self.listModel.signature;
+            
+            NetWork_mt_saveflour *request = [[NetWork_mt_saveflour alloc] init];
+            request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+            request.content = [contentModel generateJsonStringForProperties];
+            [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+                
+                if(finished){
+                    self.listModel.isFlour = YES;
+                    [self.focusButton setBackgroundColor:MTColorBtnNormal forState:UIControlStateNormal];
+                    [self.focusButton setBackgroundColor:MTColorBtnHighlighted forState:UIControlStateHighlighted];
+                    [self.focusButton setTitle:@"已关注" forState:UIControlStateNormal];
+                    
+                }
+                else{
+                    [UIWindow showTips:msg];
+                }
+            }];
+            contentModel = nil;
+        }
+        
+        
+        
+    } cancelBlock:nil isAnimat:YES];
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
 
 @end
