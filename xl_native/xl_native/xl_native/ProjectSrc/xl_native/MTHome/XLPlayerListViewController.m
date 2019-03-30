@@ -8,7 +8,7 @@
 
 #import "XLPlayerListViewController.h"
 
-@interface XLPlayerListViewController ()<HomeDelegate,VideoSahreDelegate,MtHomeTopDelegate>
+@interface XLPlayerListViewController ()<HomeDelegate,VideoSahreDelegate,MtHomeTopDelegate,VideoSahreDelegate,TXVideoGenerateListener>
 
 @end
 
@@ -272,6 +272,10 @@
     [self.mainTableView.mj_header beginRefreshing];
 }
 
+
+
+
+
 #pragma mark --------------- HomeDelegate代理 -----------------
 
 -(void)currVideoProgressUpdate:(HomeListModel *)listModel current:(CGFloat)current total:(CGFloat)total{
@@ -413,13 +417,45 @@
 
 #pragma mark --------------- VideoSahreDelegate 代理 -----------------
 
-- (void)onShareItemClicked:(SharePopView *)sharePopView index:(NSInteger)index{
+- (void)onShareItemClicked:(SharePopView *)sharePopView index:(MTShareType)index{
     
+    self.shareType = index;
+    
+    if(index == MTShareTypeWechatVideo || index == MTShareTypeRegQQVideo ){
+        //生成带水印的视频，并分享到微信或者qq
+        //获取本地磁盘缓存文件夹路径，同视频缓存同一个目录，缓存一天后删除
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        NSString *path = [paths lastObject];
+        NSString *diskCachePath = [NSString stringWithFormat:@"%@%@",path,@"/webCache"];
+        //当前视频播放Model
+        NSString *name = [NSString stringWithFormat:@"/share_download_%@.mp4",self.currentCell.listModel.noodleVideoId];
+        NSString *chorusFileName = [NSString stringWithFormat:@"%@%@",diskCachePath,name];
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:chorusFileName]){ //本地存在视频，开始使用SDK生成带水印的的视频
+            [self onloadVideoComplete:chorusFileName];
+        }
+        else{//
+            NSString *videoUrl = self.currentCell.listModel.storagePath;
+            
+            [FileHelper downloadFile:chorusFileName playUrl:videoUrl processBlock:^(float percent) {
+                [self onloadVideoProcess:percent];
+            } completionBlock:^(BOOL result, NSString *msg) {
+                if(result){
+                    [self onloadVideoComplete:chorusFileName];
+                }
+                else{
+                    [UIWindow showTips:msg];
+                }
+            }];
+            
+        }
+    }
 }
 
-- (void)onActionItemClicked:(SharePopView *)sharePopView index:(NSInteger)index{
+- (void)onActionItemClicked:(SharePopView *)sharePopView index:(MTShareActionType)index{
     
-    if(index == 0){
+    if(index == MTShareActionTypeCollention){
         
         CollectionContentModel *contentModel = [[CollectionContentModel alloc] init];
         contentModel.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;//当前登录者面条号
@@ -440,5 +476,100 @@
         }];
     }
 }
+
+#pragma -mark  ----------- 视频合成相关 ---------
+-(void)onloadVideoProcess:(CGFloat)process {
+    [GlobalFunc showHud:[NSString stringWithFormat:@"正在下载视频%d %%",(int)(process * 100)]];
+}
+
+-(void)onloadVideoComplete:(NSString *)videoPath {
+    [GlobalFunc hideHUD:1.0f];
+    
+    //开始合成视频
+    NSURL *avUrl = [NSURL fileURLWithPath:videoPath];
+    self.videoAsset = [AVAsset assetWithURL:avUrl];
+    
+    
+    TXPreviewParam *param = [[TXPreviewParam alloc] init];
+    //    param.videoView = _videoPreview.renderView;
+    param.renderMode = PREVIEW_RENDER_MODE_FILL_EDGE;
+    
+    self.ugcEdit = [[TXVideoEditer alloc] initWithPreview:param];
+    ///生成视频回调的委托对象, 可以获取生成进度与完成时间等
+    self.ugcEdit.generateDelegate = self;
+    //设置视频 AVAsset
+    [self.ugcEdit setVideoAsset:self.videoAsset];
+    
+    TXVideoInfo *videoMsg = [TXVideoInfoReader getVideoInfoWithAsset:self.videoAsset];
+    UIImage *tailWaterimage = [UIImage imageNamed:@"watermark"];
+    [self.ugcEdit setWaterMark:tailWaterimage normalizationFrame:CGRectMake(0.01, 0.01, 0.3 , 0)]; //全局水印
+    
+    float w = 0.35;
+    float x = (1.0 - w) / 2.0;
+    float width = w * videoMsg.width;
+    float height = width * tailWaterimage.size.height / tailWaterimage.size.width;
+    float y = (videoMsg.height - height) / 2 / videoMsg.height;
+    [self.ugcEdit setTailWaterMark:tailWaterimage normalizationFrame:CGRectMake(x,y,w,0) duration:1];//片尾水印
+    
+    NSString *videoOutputPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"outputCut_temp.mp4"];
+    //[self.ugcEdit generateVideo:VIDEO_COMPRESSED_720P videoOutputPath:videoOutputPath];
+    [self.ugcEdit generateVideo:VIDEO_COMPRESSED_720P videoOutputPath:videoOutputPath];
+}
+
+#pragma -mark  ----------- TXVideoGenerateListener ---------
+
+/**
+ * 短视频生成完成
+ * @param progress 生成视频进度百分比
+ */
+-(void) onGenerateProgress:(float)progress{
+    [GlobalFunc showHud:[NSString stringWithFormat:@"正在加载视频%d %%",(int)(progress * 100)]];
+}
+
+/**
+ * 短视频生成完成
+ * @param result 生成结果
+ * @see TXGenerateResult
+ */
+-(void) onGenerateComplete:(TXGenerateResult *)result{
+    
+    [GlobalFunc hideHUD];
+    
+    NSString *videoOutputPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"outputCut_temp.mp4"];
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    [library writeVideoAtPathToSavedPhotosAlbum:[NSURL fileURLWithPath:videoOutputPath] completionBlock:^(NSURL *assetURL, NSError *error) {
+        if (error != nil) {
+            [GlobalFunc showAlertWithMessage:@"视频保存失败！"];
+        }else{
+//            [GlobalFunc showAlertWithMessage:@"视频保存成功！"];
+            
+            if(self.shareType == MTShareTypeWechatVideo){
+                
+                NSURL * url = [NSURL URLWithString:@"weixin://"];
+                BOOL canOpen = [[UIApplication sharedApplication] canOpenURL:url];
+                //先判断是否能打开该url
+                if (canOpen)
+                {   //打开微信
+                    [[UIApplication sharedApplication] openURL:url];
+                }else {
+                    [GlobalFunc showAlertWithMessage:@"没有安装微信"];
+                }
+            }
+            else if (self.shareType == MTShareTypeRegQQVideo){
+                NSURL * url = [NSURL URLWithString:@"mqq://"];
+                BOOL canOpen = [[UIApplication sharedApplication] canOpenURL:url];
+                //先判断是否能打开该url
+                if (canOpen)
+                {   //打开微信
+                    [[UIApplication sharedApplication] openURL:url];
+                }else {
+                    [GlobalFunc showAlertWithMessage:@"没有安装qq"];
+                }
+            }
+            
+        }
+    }];
+}
+
 
 @end

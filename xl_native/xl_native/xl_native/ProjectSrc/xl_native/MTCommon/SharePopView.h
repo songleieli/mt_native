@@ -11,14 +11,35 @@
 #import "NetWork_mt_forwardVideoCount.h" //统计分享数量
 
 
+typedef NS_ENUM(NSInteger, MTShareType){
+    
+    MTShareTypeFriendCircle = 0,
+    MTShareTypeWechat,
+    MTShareTypeQQZone,
+    MTShareTypeQQ,
+    MTShareTypeWechatVideo,
+    MTShareTypeRegQQVideo
+};
+
+
+typedef NS_ENUM(NSInteger, MTShareActionType){
+    
+    MTShareActionTypeCollention = 0,
+    MTShareActionTypeReport,
+    MTShareActionTypeDownload,
+    MTShareActionTypeCopylink,
+    MTShareActionTypeDislike
+};
+
+
 @class SharePopView;
 
 @protocol VideoSahreDelegate <NSObject>
 
 
-- (void)onShareItemClicked:(SharePopView *)sharePopView index:(NSInteger)index;
+- (void)onShareItemClicked:(SharePopView *)sharePopView index:(MTShareType)index;
 
-- (void)onActionItemClicked:(SharePopView *)sharePopView index:(NSInteger)index;
+- (void)onActionItemClicked:(SharePopView *)sharePopView index:(MTShareActionType)index;
 
 @end
 
@@ -30,6 +51,8 @@
 
 @property(nonatomic,strong) HomeListModel * homeListModel;
 @property(nonatomic, weak)id <VideoSahreDelegate> delegate;
+
+
 
 
 - (void)show;

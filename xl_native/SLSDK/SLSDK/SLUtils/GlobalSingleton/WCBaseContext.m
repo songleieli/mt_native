@@ -87,11 +87,11 @@ static BOOL _hasSetup;
 }
 
 -(NSString *)getShortVideoLicenceURL{
-    return @"http://license.vod2.myqcloud.com/license/v1/7f8e6519e98e7a717162c4a2acaa7287/TXUgcSDK.licence";
+    return @"http://license.vod2.myqcloud.com/license/v1/4d4403bd08f605ef24f2b55dbb2e2dce/TXUgcSDK.licence";
 }
 
 -(NSString *)getShortVideoLicenceKey{
-    return @"d286070c49f44f2e2c262a7ac7493664";
+    return @"1c7a317d883d1404ac208ddc550669e7";
 }
 
 

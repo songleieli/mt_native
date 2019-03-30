@@ -29,6 +29,9 @@
 #import "ASIOperationWrapper.h"
 #import "ASIFormDataRequest.h"
 
+#import "FileHelper.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+
 
 typedef NS_ENUM(NSInteger,StatusOfRefresh) {
     REFRESH_Normal = 0,     //正常状态
@@ -52,6 +55,12 @@ typedef NS_ENUM(NSInteger,StatusOfRefresh) {
 //记录手指滑动状态
 @property (nonatomic, assign)StatusOfRefresh refreshStatus;
 @property (nonatomic, assign)CGPoint startPoint;
+
+//视频合成，用于保存后发到微信好友
+@property (strong,nonatomic) AVAsset  *videoAsset;
+@property (strong,nonatomic)  TXVideoEditer*  ugcEdit;    //sdk编辑器
+@property (nonatomic, assign) MTShareType shareType;
+
 
 /*block*/
 @property (nonatomic, copy) void(^scrollBlock)(BOOL isScroll);

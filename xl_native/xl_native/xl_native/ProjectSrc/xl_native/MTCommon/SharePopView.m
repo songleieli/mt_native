@@ -27,17 +27,17 @@
                                  @"icon_profile_share_wxTimeline",
                                  @"icon_profile_share_wechat",
                                  @"icon_profile_share_qqZone",
+                                 @"icon_profile_share_qq",
+                                 @"icon_profile_share_wechat",
                                  @"icon_profile_share_qq"
-//                                 @"icon_profile_share_weibo",
-//                                 @"iconHomeAllshareXitong"
                                  ];
         NSArray *topTexts = @[
                              @"朋友圈",
                              @"微信好友",
                              @"QQ空间",
-                             @"QQ好友"
-//                             @"微博",
-//                             @"更多分享"
+                             @"QQ好友",
+                             @"发送至微信",
+                             @"发送至qq"
                              ];
         NSArray *bottomIconsName = @[
                                     @"icon_home_all_share_collention",
@@ -90,10 +90,11 @@
         [_container addSubview:topScrollView];
         
         for (NSInteger i = 0; i < topIconsName.count; i++) {
+            
             ShareItem *item = [[ShareItem alloc] initWithFrame:CGRectMake(20 + itemWidth*i, 0, 48, 90)];
             item.icon.image = [UIImage imageNamed:topIconsName[i]];
             item.label.text = topTexts[i];
-            item.tag = i;
+            item.tag = (MTShareType)i;
             [item addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onShareItemTap:)]];
             [item startAnimation:i*0.03f];
             [topScrollView addSubview:item];
@@ -110,13 +111,15 @@
         [_container addSubview:bottomScrollView];
         
         for (NSInteger i = 0; i < bottomIconsName.count; i++) {
+            
             ShareItem *item = [[ShareItem alloc] initWithFrame:CGRectMake(20 + itemWidth*i, 0, 48, 90)];
             item.icon.image = [UIImage imageNamed:bottomIconsName[i]];
             item.label.text = bottomTexts[i];
-            item.tag = i;
+            item.tag = (MTShareActionType)i;
             [item addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onActionItemTap:)]];
             [item startAnimation:i*0.03f];
             [bottomScrollView addSubview:item];
+            
         }
         
         
@@ -266,6 +269,12 @@
     }];
     
     
+    if ([self.delegate respondsToSelector:@selector(onShareItemClicked:index:)]) {
+        [self.delegate onShareItemClicked:self index:(MTShareType)sender.view.tag];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
+    
     [self dismiss];
     
 }
@@ -356,46 +365,8 @@
 
 - (void)onActionItemTap:(UITapGestureRecognizer *)sender {
     
-    
-    //test
-    //生成带水印的视频，并分享到微信或者qq
-    //获取本地磁盘缓存文件夹路径，同视频缓存同一个目录，缓存一天后删除
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-    NSString *path = [paths lastObject];
-    NSString *diskCachePath = [NSString stringWithFormat:@"%@%@",path,@"/webCache"];
-    //当前视频播放Model
-    NSString *name = [NSString stringWithFormat:@"/share_download_%@.mp4",self.homeListModel.noodleVideoId];
-    NSString *chorusFileName = [NSString stringWithFormat:@"%@%@",diskCachePath,name];
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:chorusFileName]){ //本地存在视频，开始使用SDK生成带水印的的视频
-        [self onloadVideoComplete];
-    }else{//
-        NSString *videoUrl = self.homeListModel.storagePath;
-        
-        [FileHelper downloadFile:chorusFileName playUrl:videoUrl processBlock:^(float percent) {
-            [self onloadVideoProcess:percent];
-        } completionBlock:^(BOOL result, NSString *msg) {
-            if(result){
-                [self onloadVideoComplete];
-            }
-            else{
-                [UIWindow showTips:msg];
-            }
-        }];
-        
-    }
-    
-    
-    
-    return;
-    
-    
-    
-    
-
     if ([self.delegate respondsToSelector:@selector(onActionItemClicked:index:)]) {
-        [self.delegate onActionItemClicked:self index:sender.view.tag];
+        [self.delegate onActionItemClicked:self index:(MTShareActionType)sender.view.tag];
     } else {
         NSLog(@"代理没响应，快开看看吧");
     }
@@ -445,20 +416,8 @@
 }
 
 
-#pragma -mark  ----------- 视频相关 ---------
--(void)onloadVideoProcess:(CGFloat)process {
-    [GlobalFunc showHud:[NSString stringWithFormat:NSLocalizedString(@"TCVodPlay.VideoLoadingFmt", nil),(int)(process * 100)]];
-}
 
--(void)onloadVideoComplete{
-    [GlobalFunc hideHUD:1.0f];
-    
-    //开始合成视频
-    
-    
-    
-    
-}
+
 
 @end
 
