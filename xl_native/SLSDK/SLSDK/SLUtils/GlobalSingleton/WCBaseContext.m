@@ -60,7 +60,7 @@ static BOOL _hasSetup;
     NSString *appServerAdress = @"";
     
     if ([[WCBaseContext sharedInstance].configuration.adressType isEqualToString:@"1"]){
-        appServerAdress = @"http://106.13.57.126:8080";
+        appServerAdress = @"http://www.miantiaotech.com:8080";
     }
     else if ([[WCBaseContext sharedInstance].configuration.adressType isEqualToString:@"2"]){
         appServerAdress = @"https://csp.zmsq.net";

@@ -256,8 +256,6 @@
         }
     }
     
-    
-    
     NetWork_mt_forwardVideoCount *request = [[NetWork_mt_forwardVideoCount alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.noodleVideoId = [NSString stringWithFormat:@"%@",self.homeListModel.noodleVideoId];

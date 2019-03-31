@@ -8,7 +8,7 @@
 
 #import "MTMessageViewController.h"
 
-@interface MTMessageViewController ()<GetFollowsDelegate>
+@interface MTMessageViewController ()<MyFollowDelegate>
 
 @property (copy, nonatomic) NSString *myCallBack;
 

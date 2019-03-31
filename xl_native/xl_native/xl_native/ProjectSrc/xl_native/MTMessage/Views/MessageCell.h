@@ -11,7 +11,7 @@
 #import "NetWork_mt_getFollows.h"
 
 
-@protocol GetFollowsDelegate <NSObject>
+@protocol MyFollowDelegate <NSObject>
 
 -(void)btnCellClick:(GetFollowsModel*)model;
 
@@ -37,7 +37,7 @@
 @property(nonatomic,strong) UILabel * labelSign;
 @property(nonatomic,strong) UILabel * labelTImes;
 
-@property(nonatomic,weak) id <GetFollowsDelegate> getFollowsDelegate;
+@property(nonatomic,weak) id <MyFollowDelegate> getFollowsDelegate;
 
 
 @end

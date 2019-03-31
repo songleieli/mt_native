@@ -9,9 +9,11 @@
 #import "BaseViewController.h"
 #import "NetWork_mt_search_getMusicList.h"
 #import "TCBGMProgressView.h"
+#import "AddTopicViewController.h"
+#import "AtFriendViewController.h"
 
 
-@interface PublishViewController : ZJBaseViewController<UITextViewDelegate>
+@interface PublishViewController : ZJBaseViewController<UITextViewDelegate,TopicClickDelegate>
 
 
 @property (nonatomic,strong) UIScrollView * scrollView;
@@ -29,13 +31,17 @@
 @property (nonatomic, strong) UIButton  *btnDraft; //草稿按钮
 @property (nonatomic, strong) UIButton  *btnSave; //保存按钮
 
+/*
+ *话题数组和@数组
+ */
+@property (strong, nonatomic) NSMutableArray *topicArray;
+@property (strong, nonatomic) NSMutableArray *atArray;
 
 
 @property (copy,nonatomic) NSString *videoPath;
 @property (copy,nonatomic) NSString *videoOutputCoverPath;
 
 @property (strong,nonatomic) MusicSearchModel  *musicModel;
-
 @property (nonatomic, strong) TCBGMProgressView *progressView;
 
 

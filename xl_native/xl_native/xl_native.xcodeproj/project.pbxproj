@@ -161,6 +161,8 @@
 		04B36299222AB8E000735B18 /* ZanListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B36298222AB8E000735B18 /* ZanListCell.m */; };
 		04B3629C222AB94600735B18 /* CommentMeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B3629A222AB94500735B18 /* CommentMeListCell.m */; };
 		04B3629F222ABA3400735B18 /* AMeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B3629D222ABA3400735B18 /* AMeListCell.m */; };
+		04B5CED1224F45AD009F93D4 /* AddTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5CED0224F45AC009F93D4 /* AddTopicViewController.m */; };
+		04B5CED4224F4E9C009F93D4 /* NetWork_mt_getTopicList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5CED3224F4E9B009F93D4 /* NetWork_mt_getTopicList.m */; };
 		04B66E9921C15D41000D6C56 /* awemes.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B66E9721C15D40000D6C56 /* awemes.json */; };
 		04B66E9A21C15D41000D6C56 /* favorites.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B66E9821C15D41000D6C56 /* favorites.json */; };
 		04B66E9D21C15DF3000D6C56 /* AwemesResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B66E9C21C15DF2000D6C56 /* AwemesResponse.m */; };
@@ -403,6 +405,7 @@
 		04CBC48D2179C01300658E47 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC2372179C01100658E47 /* UIButton+WebCache.m */; };
 		04CBC48F2179C01300658E47 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC23A2179C01200658E47 /* MBProgressHUD.m */; };
 		04CBC4BF2179C01300658E47 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC2722179C01200658E47 /* UINavigationController+FDFullscreenPopGesture.m */; };
+		04D469A322505D31006B8FC7 /* AtFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D469A222505D31006B8FC7 /* AtFriendViewController.m */; };
 		04D9B4C821D327B300DEC8B9 /* NetWork_mt_getFollows.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9B4C621D327B300DEC8B9 /* NetWork_mt_getFollows.m */; };
 		04D9B4CE21D343A400DEC8B9 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9B4CC21D343A300DEC8B9 /* MessageCell.m */; };
 		04DCA81F21A5458300691A3A /* TXLiteAVSDK_UGC_IJK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DCA81E21A5458300691A3A /* TXLiteAVSDK_UGC_IJK.framework */; };
@@ -1261,6 +1264,10 @@
 		04B3629B222AB94500735B18 /* CommentMeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentMeListCell.h; sourceTree = "<group>"; };
 		04B3629D222ABA3400735B18 /* AMeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMeListCell.m; sourceTree = "<group>"; };
 		04B3629E222ABA3400735B18 /* AMeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMeListCell.h; sourceTree = "<group>"; };
+		04B5CECF224F45AC009F93D4 /* AddTopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTopicViewController.h; sourceTree = "<group>"; };
+		04B5CED0224F45AC009F93D4 /* AddTopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTopicViewController.m; sourceTree = "<group>"; };
+		04B5CED2224F4E9B009F93D4 /* NetWork_mt_getTopicList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getTopicList.h; sourceTree = "<group>"; };
+		04B5CED3224F4E9B009F93D4 /* NetWork_mt_getTopicList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getTopicList.m; sourceTree = "<group>"; };
 		04B66E9721C15D40000D6C56 /* awemes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awemes.json; sourceTree = "<group>"; };
 		04B66E9821C15D41000D6C56 /* favorites.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = favorites.json; sourceTree = "<group>"; };
 		04B66E9B21C15DF2000D6C56 /* AwemesResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwemesResponse.h; sourceTree = "<group>"; };
@@ -1755,6 +1762,8 @@
 		04CBC23D2179C01200658E47 /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.mdown; sourceTree = "<group>"; };
 		04CBC2712179C01200658E47 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
 		04CBC2722179C01200658E47 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
+		04D469A122505D31006B8FC7 /* AtFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtFriendViewController.h; sourceTree = "<group>"; };
+		04D469A222505D31006B8FC7 /* AtFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtFriendViewController.m; sourceTree = "<group>"; };
 		04D9B4C621D327B300DEC8B9 /* NetWork_mt_getFollows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getFollows.m; sourceTree = "<group>"; };
 		04D9B4C721D327B300DEC8B9 /* NetWork_mt_getFollows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getFollows.h; sourceTree = "<group>"; };
 		04D9B4CC21D343A300DEC8B9 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
@@ -2673,6 +2682,10 @@
 				042E657D22169BA900C56859 /* TopicInfoController.m */,
 				043A788A2219770200F20CDC /* MusicInfoController.h */,
 				043A78892219770200F20CDC /* MusicInfoController.m */,
+				04B5CECF224F45AC009F93D4 /* AddTopicViewController.h */,
+				04B5CED0224F45AC009F93D4 /* AddTopicViewController.m */,
+				04D469A122505D31006B8FC7 /* AtFriendViewController.h */,
+				04D469A222505D31006B8FC7 /* AtFriendViewController.m */,
 				0493CA6F221A5B550090968B /* ScrollPlayerListViewController.h */,
 				0493CA6E221A5B550090968B /* ScrollPlayerListViewController.m */,
 			);
@@ -2914,6 +2927,8 @@
 				048BF55021EEC4F1005D3708 /* NetWork_mt_getHotVideoList.m */,
 				0499B569223D366A0080A1B1 /* NetWork_mt_search_getMusicList.h */,
 				0499B56A223D366A0080A1B1 /* NetWork_mt_search_getMusicList.m */,
+				04B5CED2224F4E9B009F93D4 /* NetWork_mt_getTopicList.h */,
+				04B5CED3224F4E9B009F93D4 /* NetWork_mt_getTopicList.m */,
 			);
 			path = mt_search;
 			sourceTree = "<group>";
@@ -5607,6 +5622,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04B5CED1224F45AD009F93D4 /* AddTopicViewController.m in Sources */,
 				04F3B68E22474D8400F4C82E /* QBAssetCell.m in Sources */,
 				D957AD4F1DD2CB2F00B7EE09 /* IQNSArray+Sort.m in Sources */,
 				D9F86DE31DEBEE7600C3A2B6 /* UIView+Layout.m in Sources */,
@@ -5893,6 +5909,7 @@
 				04CBC42F2179C01300658E47 /* GPUImageTwoInputCrossTextureSamplingFilter.m in Sources */,
 				D9BD11B51F02B134006CE841 /* WYPopoverController.m in Sources */,
 				0406762221F7175800543917 /* HomeSearchResultSubTopicViewController.m in Sources */,
+				04D469A322505D31006B8FC7 /* AtFriendViewController.m in Sources */,
 				04DCA8EC21A565D500691A3A /* TextAddView.m in Sources */,
 				040E28D121C0F0D400D15B44 /* PictureInfo.m in Sources */,
 				04CBC4632179C01300658E47 /* GPUImageLookupFilter.m in Sources */,
@@ -5943,6 +5960,7 @@
 				D957AD511DD2CB2F00B7EE09 /* IQUIScrollView+Additions.m in Sources */,
 				04CBC2A12179C01200658E47 /* MJRefreshComponent.m in Sources */,
 				04C171E221CDDE9E0077FA6C /* UserInfoPlayerCell.m in Sources */,
+				04B5CED4224F4E9C009F93D4 /* NetWork_mt_getTopicList.m in Sources */,
 				042E65832217AE5100C56859 /* MyTopicHeaderView.m in Sources */,
 				04AC5B6C21FDFC5A002DD0CB /* NetWork_mt_getFuzzyVideoList.m in Sources */,
 				04CBC4292179C01300658E47 /* GPUImageLocalBinaryPatternFilter.m in Sources */,

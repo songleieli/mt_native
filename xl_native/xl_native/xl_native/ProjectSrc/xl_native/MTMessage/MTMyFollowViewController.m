@@ -8,7 +8,7 @@
 
 #import "MTMyFollowViewController.h"
 
-@interface MTMyFollowViewController ()<GetFollowsDelegate>
+@interface MTMyFollowViewController ()<MyFollowDelegate>
 
 @property (copy, nonatomic) NSString *myCallBack;
 

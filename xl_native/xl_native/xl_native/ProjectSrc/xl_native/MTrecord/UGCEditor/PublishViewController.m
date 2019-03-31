@@ -21,6 +21,28 @@
 
 #pragma mark ------------- 懒加载  ----------
 
+/*
+ *话题数组
+ */
+- (NSMutableArray *)topicArray {
+    if (!_topicArray) {
+        _topicArray = [[NSMutableArray alloc] init];
+    }
+    return _topicArray;
+}
+
+/*
+ *话题数组
+ */
+- (NSMutableArray *)atArray {
+    if (!_atArray) {
+        _atArray = [[NSMutableArray alloc] init];
+    }
+    return _atArray;
+}
+
+
+
 - (UITextView *) speakTextView{
     
     if (_speakTextView == nil){
@@ -321,6 +343,25 @@
     
 }
 
+#pragma -mark  --------------- CustomMethod  ---
+
+-(NSString*)getTopStr{
+    
+    NSMutableString *topicStr = [[NSMutableString alloc] init];
+    for(int i=0;i<self.topicArray.count;i++){
+        GetFuzzyTopicListModel *topicModel = [self.topicArray objectAtIndex:i];
+        
+        if(i == self.topicArray.count -1){
+        [topicStr appendString:topicModel.topic];
+        }
+        else{
+            [topicStr appendString:[NSString stringWithFormat:@"%@,",topicModel.topic]];
+        }
+    }
+    return topicStr;
+}
+
+
 #pragma mark ----------  UITextViewDelegate  -------------
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
@@ -340,6 +381,54 @@
         _placeHoldelLebel.hidden = NO;
     }
 }
+
+#pragma mark ----------  TopicClickDelegate  -------------
+
+-(void)TopicClick:(GetFuzzyTopicListModel*)model{
+    
+    [self.topicArray addObject:model];
+    
+    NSString *topicString = [NSString stringWithFormat:@"%@",model.topic];
+    [self.speakTextView insertText:topicString];
+
+    NSMutableAttributedString *tmpAString = [[NSMutableAttributedString alloc] initWithAttributedString:self.speakTextView.attributedText];
+    [tmpAString setAttributes:@{ NSForegroundColorAttributeName:[UIColor yellowColor],
+                                 NSFontAttributeName:self.speakTextView.font}
+                        range:NSMakeRange(self.speakTextView.selectedRange.location - topicString.length, topicString.length)];
+    self.speakTextView.attributedText = tmpAString;
+    
+    if (self.speakTextView.text.length == 0) {
+        _placeHoldelLebel.hidden = NO;
+    }
+    else{
+        _placeHoldelLebel.hidden = YES;
+    }
+}
+
+-(void)AtFriendClick:(GetFollowsModel*)model{
+    
+    [self.atArray addObject:model];
+    
+    NSString *atString = [NSString stringWithFormat:@"@%@",model.noodleNickname];
+    [self.speakTextView insertText:atString];
+    
+    NSMutableAttributedString *tmpAString = [[NSMutableAttributedString alloc] initWithAttributedString:self.speakTextView.attributedText];
+    
+    [tmpAString setAttributes:@{ NSForegroundColorAttributeName: [UIColor yellowColor],
+                                 NSFontAttributeName: [UIFont systemFontOfSize:16] }
+                        range:NSMakeRange(self.speakTextView.selectedRange.location - atString.length, atString.length)];
+    
+    self.speakTextView.attributedText = tmpAString;
+    
+    
+    if (self.speakTextView.text.length == 0) {
+        _placeHoldelLebel.hidden = NO;
+    }
+    else{
+        _placeHoldelLebel.hidden = YES;
+    }
+}
+
 
 #pragma mark ----------  btnClick  -------------
 
@@ -372,10 +461,19 @@
 }
 
 -(void)btnAddTopic:(UIButton*)btn{
-    NSLog(@"------添加话题 ---s");
+
+    AddTopicViewController *addTopicViewController = [[AddTopicViewController alloc] init];
+    addTopicViewController.delegate = self;
+    [self presentViewController:addTopicViewController animated:YES completion:nil];
+    //[self pushNewVC:addTopicViewController animated:NO];
 }
 
 -(void)btnAFriend:(UIButton*)btn{
+    
+    AtFriendViewController *atFriendViewController = [[AtFriendViewController alloc] init];
+    atFriendViewController.delegate = self;
+    [self presentViewController:atFriendViewController animated:YES completion:nil];
+    
     NSLog(@"------@好友 ---s");
 }
 
@@ -415,7 +513,7 @@
     //    model.addr = @"北京市朝阳区北苑路180号";
     model.size = @"720p";
     model.title = strContent;
-    //    model.topic = @"#万圣节";
+    model.topic = @"#万圣节";
     
     NetWork_mt_saveVideo *request = [[NetWork_mt_saveVideo alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
