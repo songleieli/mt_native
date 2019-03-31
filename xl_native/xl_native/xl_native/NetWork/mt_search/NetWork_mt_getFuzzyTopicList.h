@@ -22,6 +22,11 @@
 @property (copy, nonatomic) NSString *topic;
 @property (copy, nonatomic) NSString *hotCount;
 
+/*
+ *发布视频计算At好友需要的
+ */
+@property (assign, nonatomic) NSRange topicRange;
+
 @end
 
 

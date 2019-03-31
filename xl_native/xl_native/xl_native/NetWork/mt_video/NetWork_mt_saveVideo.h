@@ -9,6 +9,23 @@
 #import "WCServiceBase.h"
 
 
+@interface SaveVideoAtFriendContentModel : IObjcJsonBase
+
+//{
+//    "noodle_id": "234324",
+//    "head":"https://p1.pstatp.com/aweme/1080x1080/75b5000e7686d2722ca7.jpeg",
+//    "nickname": "赵四"
+//}
+
+
+@property (nonatomic,copy) NSString * noodle_id;
+@property (nonatomic,copy) NSString * head;
+@property (nonatomic,copy) NSString * nickname;
+
+
+@end
+
+
 @interface SaveVideoContentModel : IObjcJsonBase
 
 /*
@@ -58,7 +75,7 @@
 @property (nonatomic,copy) NSString * musicUrl;
 @property (nonatomic,copy) NSString * title;
 @property (nonatomic,copy) NSString * topic;
-@property (nonatomic,copy) NSString * aFriends;
+@property (nonatomic,strong) NSMutableArray * aFriends;
 @property (nonatomic,copy) NSString * addr;
 @property (nonatomic,copy) NSString * iswholook;
 @property (nonatomic,copy) NSString * status;

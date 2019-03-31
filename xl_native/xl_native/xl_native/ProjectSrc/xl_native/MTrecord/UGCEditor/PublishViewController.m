@@ -13,6 +13,10 @@
 
 #import "TXUGCPublish.h"
 
+@implementation AtAndTopicModel
+
+@end
+
 @interface PublishViewController ()<TXVideoPublishListener>
 
 @end
@@ -32,13 +36,23 @@
 }
 
 /*
- *话题数组
+ *At好友数组
  */
 - (NSMutableArray *)atArray {
     if (!_atArray) {
         _atArray = [[NSMutableArray alloc] init];
     }
     return _atArray;
+}
+
+/*
+ *话题和At好友数组
+ */
+- (NSMutableArray *)atAndTopicArray {
+    if (!_atAndTopicArray) {
+        _atAndTopicArray = [[NSMutableArray alloc] init];
+    }
+    return _atAndTopicArray;
 }
 
 
@@ -337,10 +351,6 @@
     [self.scrollView addSubview:self.btnLocation];
     [self.scrollView addSubview:self.btnDraft];
     [self.scrollView addSubview:self.btnSave];
-    
-    
-    
-    
 }
 
 #pragma -mark  --------------- CustomMethod  ---
@@ -361,16 +371,21 @@
     return topicStr;
 }
 
+-(NSMutableArray*)getAtFriendArray{
+    
+    NSMutableArray *rangeArrays = [NSMutableArray array];
+    for(GetFollowsModel *model in self.atArray){
+        SaveVideoAtFriendContentModel *contentModel = [[SaveVideoAtFriendContentModel alloc] init];
+        contentModel.noodle_id = model.noodleId;
+        contentModel.head = model.noodleHead;
+        contentModel.nickname = model.noodleNickname;
+        [rangeArrays addObject:contentModel];
+    }
+    return rangeArrays;
+}
+
 
 #pragma mark ----------  UITextViewDelegate  -------------
-
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    if ([text isEqualToString:@"\n"]) {
-        [textView resignFirstResponder];
-        return NO;
-    }
-    return YES;
-}
 
 -(void)textViewDidBeginEditing:(UITextView *)textView{
     _placeHoldelLebel.hidden = YES;
@@ -382,20 +397,23 @@
     }
 }
 
-#pragma mark ----------  TopicClickDelegate  -------------
+#pragma mark ----------  话题和At好友相关  -------------
 
 -(void)TopicClick:(GetFuzzyTopicListModel*)model{
-    
-    [self.topicArray addObject:model];
-    
+
     NSString *topicString = [NSString stringWithFormat:@"%@",model.topic];
     [self.speakTextView insertText:topicString];
-
+    
     NSMutableAttributedString *tmpAString = [[NSMutableAttributedString alloc] initWithAttributedString:self.speakTextView.attributedText];
-    [tmpAString setAttributes:@{ NSForegroundColorAttributeName:[UIColor yellowColor],
-                                 NSFontAttributeName:self.speakTextView.font}
-                        range:NSMakeRange(self.speakTextView.selectedRange.location - topicString.length, topicString.length)];
+    NSRange range = NSMakeRange(self.cursorLocation - topicString.length, topicString.length);
+    model.topicRange = range;
+    
+    [tmpAString setAttributes:@{ NSForegroundColorAttributeName: [UIColor yellowColor],NSFontAttributeName: self.speakTextView.font }
+                        range:range];
+    
     self.speakTextView.attributedText = tmpAString;
+    [self.topicArray addObject:model];
+
     
     if (self.speakTextView.text.length == 0) {
         _placeHoldelLebel.hidden = NO;
@@ -407,19 +425,20 @@
 
 -(void)AtFriendClick:(GetFollowsModel*)model{
     
-    [self.atArray addObject:model];
     
     NSString *atString = [NSString stringWithFormat:@"@%@",model.noodleNickname];
     [self.speakTextView insertText:atString];
     
     NSMutableAttributedString *tmpAString = [[NSMutableAttributedString alloc] initWithAttributedString:self.speakTextView.attributedText];
+    NSRange range = NSMakeRange(self.cursorLocation - atString.length, atString.length);
+    model.atRange = range;
     
-    [tmpAString setAttributes:@{ NSForegroundColorAttributeName: [UIColor yellowColor],
-                                 NSFontAttributeName: [UIFont systemFontOfSize:16] }
-                        range:NSMakeRange(self.speakTextView.selectedRange.location - atString.length, atString.length)];
+    [tmpAString setAttributes:@{ NSForegroundColorAttributeName: [UIColor yellowColor],NSFontAttributeName: self.speakTextView.font }
+                        range:range];
     
     self.speakTextView.attributedText = tmpAString;
-    
+    [self.atArray addObject:model];
+
     
     if (self.speakTextView.text.length == 0) {
         _placeHoldelLebel.hidden = NO;
@@ -427,6 +446,98 @@
     else{
         _placeHoldelLebel.hidden = YES;
     }
+}
+
+- (void)textViewDidChangeSelection:(UITextView *)textView {
+    
+    self.cursorLocation = textView.selectedRange.location;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+        if ([text isEqualToString:@"\n"]) { //收起键盘
+            [textView resignFirstResponder];
+            return NO;
+        }
+    
+    if ([text isEqualToString:@""]) { // 删除
+        
+        //at Friends
+        NSArray *rangeArrays = [self getAtAndTopicRangeArray];
+        
+        for (NSInteger i = 0; i < rangeArrays.count; i++) {
+            AtAndTopicModel *atAndTopicModel = [rangeArrays objectAtIndex:i];
+            NSRange tmpRanges = NSRangeFromString(atAndTopicModel.rangeStr);
+            if ((range.location + range.length) == (tmpRanges.location + tmpRanges.length)) {
+                
+                if ([NSStringFromRange(tmpRanges) isEqualToString:NSStringFromRange(textView.selectedRange)]) {
+                    
+                    //[self.atArray removeObjectAtIndex:rangeArrays.count - 1];
+                    // 第二次点击删除按钮 删除
+                    
+                    if(atAndTopicModel.publishType == PublishTypeTopic){
+                        [self.topicArray removeObject:atAndTopicModel.topicModel];
+                    }
+                    else if(atAndTopicModel.publishType == PublishTypeAtFriend){
+                        [self.atArray removeObject:atAndTopicModel.atFriendModel];
+                    }
+                    else{
+                        return NO;
+                    }
+                    return YES;
+                } else {
+                    // 第一次点击删除按钮 选中
+                    textView.selectedRange = tmpRanges;
+                    return NO;
+                }
+            }
+        }
+    }
+    else{//增加,设置为正在编辑
+        
+        _changeRanges = NSMakeRange(range.location, text.length);
+        _isChanged = YES;
+        return YES;
+    }
+    
+    return YES;
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    //@功能
+    if (_isChanged) {
+        NSMutableAttributedString *tmpAStrings = [[NSMutableAttributedString alloc] initWithAttributedString:textView.attributedText];
+        [tmpAStrings setAttributes:@{ NSForegroundColorAttributeName:ColorWhite, NSFontAttributeName: [UIFont systemFontOfSize:16] } range:_changeRanges];
+        textView.attributedText = tmpAStrings;
+        _isChanged = NO;
+    }
+    
+}
+
+-(NSArray*)getAtAndTopicRangeArray{
+    
+    NSMutableArray *rangeArrays = [NSMutableArray array];
+    for(GetFollowsModel *model in self.atArray){
+        
+        AtAndTopicModel *atAndTopicModel = [[AtAndTopicModel alloc] init];
+        atAndTopicModel.publishType = PublishTypeAtFriend;
+        atAndTopicModel.atFriendModel = model;
+        atAndTopicModel.rangeStr = NSStringFromRange(model.atRange);
+        [rangeArrays addObject:atAndTopicModel];
+        
+        //[rangeArrays addObject:NSStringFromRange(model.atRange)];
+    }
+    for(GetFuzzyTopicListModel *model in self.topicArray){
+        //[rangeArrays addObject:NSStringFromRange(model.topicRange)];
+        
+        AtAndTopicModel *atAndTopicModel = [[AtAndTopicModel alloc] init];
+        atAndTopicModel.publishType = PublishTypeTopic;
+        atAndTopicModel.topicModel = model;
+        atAndTopicModel.rangeStr = NSStringFromRange(model.topicRange);
+        [rangeArrays addObject:atAndTopicModel];
+    }
+    
+    return rangeArrays;
 }
 
 
@@ -513,8 +624,9 @@
     //    model.addr = @"北京市朝阳区北苑路180号";
     model.size = @"720p";
     model.title = strContent;
-    model.topic = @"#万圣节";
-    
+    model.topic = [self getTopStr];
+    model.aFriends = [self getAtFriendArray];
+
     NetWork_mt_saveVideo *request = [[NetWork_mt_saveVideo alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.content = [model generateJsonStringForProperties];

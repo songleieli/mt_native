@@ -12,6 +12,25 @@
 #import "AddTopicViewController.h"
 #import "AtFriendViewController.h"
 
+typedef NS_ENUM(NSInteger, PublishType){
+    
+    PublishTypeTopic = 0,
+    PublishTypeAtFriend
+    
+};
+
+
+@interface AtAndTopicModel : IObjcJsonBase
+
+@property(nonatomic,assign) PublishType publishType;
+@property (nonatomic,strong) GetFollowsModel * atFriendModel;
+@property (nonatomic,strong) GetFuzzyTopicListModel * topicModel;
+@property (nonatomic,strong) NSString * rangeStr;
+
+
+
+@end
+
 
 @interface PublishViewController : ZJBaseViewController<UITextViewDelegate,TopicClickDelegate>
 
@@ -36,6 +55,13 @@
  */
 @property (strong, nonatomic) NSMutableArray *topicArray;
 @property (strong, nonatomic) NSMutableArray *atArray;
+@property (strong, nonatomic) NSMutableArray *atAndTopicArray;
+/// 光标位置
+@property (assign, nonatomic) NSInteger cursorLocation;
+/// 改变Range
+@property (assign, nonatomic) NSRange changeRanges;
+/// 是否改变
+@property (assign, nonatomic) BOOL isChanged;
 
 
 @property (copy,nonatomic) NSString *videoPath;

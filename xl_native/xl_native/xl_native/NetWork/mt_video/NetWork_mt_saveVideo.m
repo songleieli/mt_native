@@ -8,7 +8,20 @@
 
 #import "NetWork_mt_saveVideo.h"
 
+
+@implementation SaveVideoAtFriendContentModel
+
+@end
+
+
 @implementation SaveVideoContentModel
+
+- (NSDictionary *)propertyMappingObjcJson {
+    return @{@"aFriends" : @"aFriends"};
+}
+- (NSDictionary *)classNameForItemInArray {
+    return @{@"aFriends" : @"SaveVideoAtFriendContentModel"};
+}
 
 @end
 

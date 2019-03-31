@@ -40,6 +40,11 @@
 @property (copy, nonatomic) NSString *time;
 @property (copy, nonatomic) NSString *isNotice;
 
+/*
+ *发布视频计算At好友需要的
+ */
+@property (assign, nonatomic) NSRange atRange;
+
 @end
 
 

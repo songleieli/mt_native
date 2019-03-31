@@ -280,15 +280,14 @@
 
 -(void)clickRow:(NSInteger)row{
     
-    //test  测试发布视频页面
-    
-    PublishViewController *publishViewController = [[PublishViewController alloc] init];
-    
-    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:publishViewController];
-    [self presentViewController:nav animated:YES completion:nil];
-    
-    
-    return ;
+//    //test  测试发布视频页面
+//    
+//    PublishViewController *publishViewController = [[PublishViewController alloc] init];
+//    
+//    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:publishViewController];
+//    [self presentViewController:nav animated:YES completion:nil];
+//    
+//    return ;
     
     
     
@@ -306,11 +305,6 @@
         [self presentViewController:nav animated:YES completion:nil];
     }
     else if(row == 1){//视频合唱
-        
-//        _hub = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//        _hub.mode = MBProgressHUDModeText;
-//        _hub.label.text = NSLocalizedString(@"TCVodPlay.VideoLoading", nil);
-        
         
         //获取本地磁盘缓存文件夹路径，同视频缓存同一个目录，缓存一天后删除
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
