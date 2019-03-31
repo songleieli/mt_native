@@ -33,7 +33,8 @@ typedef void (^OnPlayerReady)(void);
 
 - (void)musicCDClicked:(HomeListModel *)listModel;
 
-
+/*点击话题*/
+- (void)topicAction:(NSString *)topicName;
 
 @end
 

@@ -32,7 +32,7 @@ typedef NS_ENUM(NSInteger, PublishType){
 @end
 
 
-@interface PublishViewController : ZJBaseViewController<UITextViewDelegate,TopicClickDelegate>
+@interface PublishViewController : ZJBaseViewController<UITextViewDelegate,TopicClickDelegate,AtFriendClickDelegate>
 
 
 @property (nonatomic,strong) UIScrollView * scrollView;

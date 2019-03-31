@@ -333,9 +333,19 @@
     
     
     CGRect contentLabelSize = [listLoginModel.title boundingRectWithSize:CGSizeMake(self.desc.width, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:self.desc.font,NSFontAttributeName, nil] context:nil];
+    
     self.desc.height = contentLabelSize.size.height;
     self.desc.text = listLoginModel.title;
     self.desc.bottom = self.musicIcon.top;
+    
+    
+    if(listLoginModel.topic.trim.length >0){ //如果存在话题，就给话题添加点击事件
+        NSArray *aArray = [listLoginModel.topic.trim componentsSeparatedByString:@","];
+        
+        [self.desc yb_addAttributeTapActionWithStrings:aArray delegate:self];
+    }
+    
+    
     
     self.nickName.text = [NSString stringWithFormat:@"@%@", listLoginModel.nickname];
     self.nickName.bottom = self.desc.top;
@@ -419,6 +429,28 @@
 //    }else{
 //        NSLog(@"没有实现代理或者没有设置代理人");
 //    }
+}
+
+
+#pragma mark ------------- YBAttributeTapActionDelegate ----
+
+
+/**
+ *  YBAttributeTapActionDelegate
+ *
+ *  @param string  点击的字符串
+ *  @param range   点击的字符串range
+ *  @param index 点击的字符在数组中的index
+ */
+- (void)yb_attributeTapReturnString:(NSString *)string
+                              range:(NSRange)range
+                              index:(NSInteger)index{
+
+    if (_delegate && [_delegate respondsToSelector:@selector(topicAction:)]) {
+        [_delegate topicAction:string];
+    }else{
+        NSLog(@"没有实现代理或者没有设置代理人");
+    }
 }
 
 

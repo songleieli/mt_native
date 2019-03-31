@@ -37,6 +37,8 @@
 @property(nonatomic,strong) UILabel * labelSign;
 @property(nonatomic,strong) UILabel * labelTImes;
 
+@property(nonatomic,assign) BOOL isHideTime;
+
 @property(nonatomic,weak) id <MyFollowDelegate> getFollowsDelegate;
 
 

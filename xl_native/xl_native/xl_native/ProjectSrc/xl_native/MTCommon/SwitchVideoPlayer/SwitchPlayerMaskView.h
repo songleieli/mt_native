@@ -35,9 +35,12 @@
 /*点赞*/
 - (void)zanButtonAction:(FavoriteView *)favoriteView;
 
+/*点击话题*/
+- (void)topicAction:(NSString *)topicName;
+
 @end
 
-@interface SwitchPlayerMaskView : UIView
+@interface SwitchPlayerMaskView : UIView<YBAttributeTapActionDelegate>
 
 
 -(instancetype)initWithFrame:(CGRect)frame;

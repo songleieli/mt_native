@@ -33,9 +33,30 @@
     self.isNavBackGroundHiden  = NO;
     self.btnLeft.hidden = YES;
     
+    self.lableNavTitle.textColor = [UIColor whiteColor];
+    self.lableNavTitle.font = BigBoldFont; //[UIFont defaultBoldFontWithSize:16];
     self.title = @"我的好友";
+    
+    
+    //取消按钮
+    self.cancleButton = [[UIButton alloc]init];
+    self.cancleButton.size = [UIView getSize_width:35 height:36];
+    self.cancleButton.right = ScreenWidth - 15;
+    self.cancleButton.bottom = self.navBackGround.height - 5;
+    [self.cancleButton setTitleColor:MTColorBtnRedNormal forState:UIControlStateNormal];
+    [self.cancleButton setTitleColor:MTColorBtnRedHighlighted forState:UIControlStateHighlighted];
+    
+    self.cancleButton.titleLabel.font = MediumBoldFont;
+    [self.cancleButton setTitle:@"取消" forState:UIControlStateNormal];
+    [self.cancleButton addTarget:self action:@selector(btnCancelClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.navBackGround addSubview:self.cancleButton];
 
-
+    UIView *viewLine = [[UIView alloc] init];
+    viewLine.left = 0;
+    viewLine.size = [UIView getSize_width:ScreenWidth - viewLine.left height:0.6];
+    viewLine.bottom = self.navBackGround.height - viewLine.height;
+    viewLine.backgroundColor = MTColorLine;
+    [self.navBackGround addSubview:viewLine];
 }
 
 - (void)viewDidLoad {
@@ -155,20 +176,9 @@
 #pragma mark - 取消按钮点击事件
 
 -(void)btnCancelClick{
-    [self.textFieldSearchKey resignFirstResponder];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark --------------- cellDelegate 代理 -----------------
--(void)btnCellIconClick:(GetFuzzyTopicListModel*)model{
-
-}
-
--(void)btnCellVideoClick:(NSArray*)videoList selectIndex:(NSInteger)selectIndex{
-    
-//    ScrollPlayerListViewController *controller;
-//    controller = [[ScrollPlayerListViewController alloc] initWithVideoData:videoList currentIndex:selectIndex];
-//    [self pushNewVC:controller animated:YES];
-}
 
 #pragma mark --------------- tabbleView代理 -----------------
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -184,9 +194,11 @@
     
     if(self.mainDataArr.count > 0){
         MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:[MessageCell cellId] forIndexPath:indexPath];
+        cell.isHideTime = YES;
         cell.getFollowsDelegate = self;
         GetFollowsModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
         [cell fillDataWithModel:model];
+        
         return cell;
     }
     else{

@@ -34,6 +34,9 @@ typedef void (^OnPlayerReady)(void);
 
 -(void)currVideoProgressUpdate:(HomeListModel *)listModel current:(CGFloat)current total:(CGFloat)total;
 
+/*点击话题*/
+- (void)topicAction:(NSString *)topicName;
+
 @end
 
 @interface HomeVideoCell : BaseTableViewCell<AVPlayerUpdateDelegate,SwitchPlayerMaskViewDelegate>

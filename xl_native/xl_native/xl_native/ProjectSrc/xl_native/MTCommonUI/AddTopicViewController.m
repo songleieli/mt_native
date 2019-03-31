@@ -56,16 +56,24 @@
     self.isNavBackGroundHiden  = NO;
     self.btnLeft.hidden = YES;
     
-    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightButton.size = [UIView getSize_width:15 height:26];
-    rightButton.origin = [UIView getPoint_x:self.navBackGround.width - rightButton.width-20
-                                          y:self.navBackGround.height - rightButton.height-9];
-    [rightButton setBackgroundImage:[UIImage imageNamed:@"icon_m_s_right"] forState:UIControlStateNormal];
-    [rightButton addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    self.btnRight = rightButton;
     
+    
+    //取消按钮
+    self.cancleButton = [[UIButton alloc]init];
+    self.cancleButton.size = [UIView getSize_width:35 height:36];
+    self.cancleButton.right = ScreenWidth - 15;
+    self.cancleButton.bottom = self.navBackGround.height - 5;
+    [self.cancleButton setTitleColor:MTColorBtnRedNormal forState:UIControlStateNormal];
+    [self.cancleButton setTitleColor:MTColorBtnRedHighlighted forState:UIControlStateHighlighted];
+
+    self.cancleButton.titleLabel.font = MediumBoldFont;
+    [self.cancleButton setTitle:@"取消" forState:UIControlStateNormal];
+    [self.cancleButton addTarget:self action:@selector(btnCancelClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.navBackGround addSubview:self.cancleButton];
+    
+
     self.textFieldBgView = [[UIView alloc] init];
-    self.textFieldBgView.size = [UIView getSize_width:self.navBackGround.width - 15*2 - rightButton.width - 25
+    self.textFieldBgView.size = [UIView getSize_width:self.navBackGround.width - 15*2 - self.cancleButton.width -15
                                                height:self.navBackGround.height];
     self.textFieldBgView.origin = [UIView getPoint_x:15 y:0];
     self.textFieldBgView.layer.borderWidth = 0.0;
@@ -73,45 +81,30 @@
     self.textFieldBgView.layer.borderColor = defaultLineColor.CGColor;
     [self.navBackGround addSubview:self.textFieldBgView];
     
-    //取消按钮
-    self.cancleButton = [[UIButton alloc]init];
-    self.cancleButton.size = [UIView getSize_width:35 height:36];
-    self.cancleButton.origin = [UIView getPoint_x:ScreenWidth y:self.textFieldBgView.height - self.cancleButton.height - 5];
-    [self.cancleButton setTitleColor:RGBA(252, 48, 88, 1) forState:UIControlStateNormal];
-//    [self.cancleButton setTitleColor:RGBFromColor(0xecedf1) forState:UIControlStateHighlighted];
-    self.cancleButton.titleLabel.font = [UIFont defaultFontWithSize:16];
-    [self.cancleButton setTitle:@"取消" forState:UIControlStateNormal];
-    [self.cancleButton addTarget:self action:@selector(btnCancelClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.navBackGround addSubview:self.cancleButton];
-    
-    
-    UIView * leftView = [[UIView alloc]init];
-    leftView.size = [UIView getSize_width:36 height:36];
-    leftView.origin = [UIView getPoint_x:0 y:self.textFieldBgView.height - leftView.height-5];
-    leftView.backgroundColor = RGBA(58, 58, 67, 1);
-    
-    UIImageView * iamgeViewPassWorld = [[UIImageView alloc]initWithFrame:CGRectMake(9, 9, 18, 18)];
-    iamgeViewPassWorld.image = [UIImage imageNamed:@"main_chaobiao_seach_left"];
-    [leftView addSubview:iamgeViewPassWorld];
-    [self.textFieldBgView addSubview:leftView];
     
     self.textFieldSearchKey = [[UITextField alloc] init];
-    self.textFieldSearchKey.size = [UIView getSize_width:self.textFieldBgView.width - leftView.width height:leftView.height];
-    self.textFieldSearchKey.origin = [UIView getPoint_x:leftView.right y:self.textFieldBgView.height - self.textFieldSearchKey.height-5];
-    self.textFieldSearchKey.placeholder = @"明星";
+    self.textFieldSearchKey.size = [UIView getSize_width:self.textFieldBgView.width height:36];
+    self.textFieldSearchKey.origin = [UIView getPoint_x:0 y:self.textFieldBgView.height - self.textFieldSearchKey.height-5];
+    self.textFieldSearchKey.layer.cornerRadius = 4.0f;
+    self.textFieldSearchKey.placeholder = @"# 请输入或选择话题";
     self.textFieldSearchKey.textColor = [UIColor whiteColor];
     self.textFieldSearchKey.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.textFieldSearchKey.clearsOnBeginEditing = YES;
     self.textFieldSearchKey.delegate = self;
-    self.textFieldSearchKey.returnKeyType = UIReturnKeySearch;
-    self.textFieldSearchKey.font = [UIFont defaultFontWithSize:16.0];
-    self.textFieldSearchKey.backgroundColor = [UIColor whiteColor];
-    [self.textFieldBgView addSubview:self.textFieldSearchKey];
-    self.textFieldSearchKey.backgroundColor = RGBA(58, 58, 67, 1);
+    self.textFieldSearchKey.returnKeyType = UIReturnKeyDone;
+    self.textFieldSearchKey.font = MediumFont;
+    self.textFieldSearchKey.backgroundColor = MTColorBtnNormal;
     [self.textFieldSearchKey setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    [self.textFieldBgView addSubview:self.textFieldSearchKey];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFiledEditChanged:) name:UITextFieldTextDidChangeNotification object:self.textFieldSearchKey];
-
-
+    
+    UIView *viewLine = [[UIView alloc] init];
+    viewLine.left = 0;
+    viewLine.size = [UIView getSize_width:ScreenWidth - viewLine.left height:0.6];
+    viewLine.bottom = self.navBackGround.height - viewLine.height;
+    viewLine.backgroundColor = MTColorLine;
+    [self.navBackGround addSubview:viewLine];
 }
 
 - (void)viewDidLoad {
@@ -125,6 +118,8 @@
     self.view.backgroundColor = ColorThemeBackground;
     
     [self.view addSubview:self.mainTableView];
+    
+    [self.textFieldSearchKey becomeFirstResponder]; //获得焦点
     
     NSInteger tableViewHeight = ScreenHeight - kNavBarHeight_New;
     self.mainTableView.size = [UIView getSize_width:ScreenWidth height:tableViewHeight];
@@ -141,15 +136,6 @@
 
 
 #pragma -mark ---------- CustomMethod ----------
-
-- (void) setBackgroundImage:(NSString *)imageName {
-    UIImageView *background = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    background.clipsToBounds = YES;
-    background.contentMode = UIViewContentModeScaleAspectFill;
-    background.image = [UIImage imageNamed:imageName];
-    //[self.view addSubview:background];
-    [self.view insertSubview:background atIndex:0];
-}
 
 -(void)initRequest{
     
@@ -226,56 +212,10 @@
 }
 
 
-#pragma mark ---------- 点击搜索按钮 --------
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    
-    NSString *topicName = textField.text.trim;
-    if(topicName.length == 0){
-        topicName = textField.placeholder;
-    }
-    
-    
-    //过滤携带的 “#” 号，接口不需要
-    NSUInteger location = [topicName rangeOfString:@"#"].location;
-    if (location == NSNotFound) {
-    } else {
-        topicName = [topicName substringFromIndex:1];
-    }
-    
-    [textField resignFirstResponder];
-    return YES;
-}
-
-
 #pragma mark - 取消按钮点击事件
 
 -(void)btnCancelClick{
-    [self.textFieldSearchKey resignFirstResponder];
-}
-
-#pragma mark --------------- cellDelegate 代理 -----------------
--(void)btnCellIconClick:(GetFuzzyTopicListModel*)model{
-    NSLog(@"----------");
-    
-//    if([model.hotType integerValue] == 1){//话题
-////        TopicInfoController *topicInfoController = [[TopicInfoController alloc] init];
-////        topicInfoController.topicName = model.topic.topic;
-////        [self pushNewVC:topicInfoController animated:YES];
-//    }
-//    else{//i音乐
-////        MusicInfoController *musicInfoController = [[MusicInfoController alloc] init];
-////        musicInfoController.musicId = [NSString stringWithFormat:@"%@",model.music.musicId];
-////        [self pushNewVC:musicInfoController animated:YES];
-//    }
-    
-}
-
--(void)btnCellVideoClick:(NSArray*)videoList selectIndex:(NSInteger)selectIndex{
-    
-//    ScrollPlayerListViewController *controller;
-//    controller = [[ScrollPlayerListViewController alloc] initWithVideoData:videoList currentIndex:selectIndex];
-//    [self pushNewVC:controller animated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark --------------- tabbleView代理 -----------------
@@ -312,7 +252,31 @@
 }
 
 
-#pragma mark -
+#pragma mark - -------- UITextFieldDelegate -------------
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    NSString *topicName = textField.text.trim;
+    if(topicName.length == 0){
+        topicName = textField.placeholder;
+        return NO;
+    }
+    
+    GetFuzzyTopicListModel *model = [[GetFuzzyTopicListModel alloc] init];
+    model.id = @"";
+    model.topic = [NSString stringWithFormat:@"#%@",topicName];
+    model.hotCount = @"0";
+    
+    if ([self.delegate respondsToSelector:@selector(TopicClick:)]) {
+        [self.delegate TopicClick:model];
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
+    
+    return YES;
+}
 
 -(void)textFiledEditChanged:(NSNotification*)obj{
     
@@ -320,6 +284,9 @@
     self.keyWord = textField.text;
     [self loadNewData];
 }
+
+#pragma mark - -------- SearchResultSubTopicDelegate -------------
+
 
 -(void)btnCellClick:(GetFuzzyTopicListModel*)model{
     
@@ -338,28 +305,16 @@
 
 //当键盘出现
 - (void)keyboardWillShow:(NSNotification *)notification{
-
-    if(!self.hasKeyBordShow){
-        /*
-         在调试过过程中发现，keyboardWillShow会多次调用弹起，通过 hasKeyBordShow 判断只有第一次调用才响应以下代码块
-         */
-        self.cancleButton.left = self.cancleButton.left - 50;
-        
-        [UIView animateWithDuration:1.0f animations:^{
-            self.btnRight.hidden = YES;
-        }];
-    }
-    self.hasKeyBordShow = YES;
+    
+    self.keyBoardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    self.mainTableView.height = ScreenHeight - self.keyBoardFrame.size.height -kNavBarHeight_New;
 }
 
 //当键退出
 - (void)keyboardWillHide:(NSNotification *)notification{
-    
-    self.hasKeyBordShow = NO;
-    self.cancleButton.left = self.cancleButton.left + 50;
-    [UIView animateWithDuration:1.0f animations:^{
-        self.btnRight.hidden = NO;
-    }];
+/*
+ *暂时保留
+ */
 }
 
 

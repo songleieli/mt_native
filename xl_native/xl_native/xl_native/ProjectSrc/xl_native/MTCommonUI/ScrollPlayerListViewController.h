@@ -9,6 +9,8 @@
 #import "ZJCustomTabBarLjhTableViewController.h"
 
 #import "MusicInfoController.h"
+#import "TopicInfoController.h"
+
 #import "UserInfoViewController.h"
 
 #import "UserInfoPlayerCell.h"

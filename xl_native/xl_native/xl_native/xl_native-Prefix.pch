@@ -27,6 +27,7 @@
 //#import "BaseTableMJViewController.h"
 #import "ZJBaseViewController.h"
 //#import "TBBaseViewController.h"
+#import "UILabel+YBAttributeTextTapAction.h"
 
 #import "NSData+Base64.h"
 #import "Masonry.h"//add by liyanjun

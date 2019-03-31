@@ -23,6 +23,7 @@
 
 #import "UserInfoViewController.h"
 #import "MusicInfoController.h"
+#import "TopicInfoController.h"
 
 
 #import "ASIHTTPRequest.h"

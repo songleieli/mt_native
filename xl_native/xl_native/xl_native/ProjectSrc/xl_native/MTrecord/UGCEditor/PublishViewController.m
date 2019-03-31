@@ -293,19 +293,8 @@
     leftButton.size = [UIView getSize_width:20 height:20];
     leftButton.origin = [UIView getPoint_x:15.0f y:self.navBackGround.height -leftButton.height-11];
     [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_titlebar_whiteback"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     self.btnLeft = leftButton;
-    
-    //    UIButton * rightBarButton = [[UIButton alloc]init];
-    //
-    //    rightBarButton.size = [UIView getSize_width:50 height:50];
-    //    rightBarButton.right = self.navBackGround.width - 5;
-    //    rightBarButton.bottom = self.navBackGround.bottom ;
-    //    [rightBarButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    //    rightBarButton.titleLabel.font = [UIFont defaultBoldFontWithSize:16];;
-    //    [rightBarButton setTitle:@"保存" forState:UIControlStateNormal];
-    //    [rightBarButton addTarget:self action:@selector(btnClcik) forControlEvents:UIControlEventTouchUpInside];
-    //    self.btnRight = rightBarButton;
-    
     
     UIView *viewLine = [[UIView alloc] init];
     viewLine.left = 0;
@@ -543,6 +532,10 @@
 
 #pragma mark ----------  btnClick  -------------
 
+-(void)leftBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void)btnSaveClcik{
     
     NetWork_mt_getUploadSignature *request = [[NetWork_mt_getUploadSignature alloc] init];
@@ -646,7 +639,5 @@
     [self dismissViewControllerAnimated:YES completion:^{
     }];
 }
-
-
 
 @end

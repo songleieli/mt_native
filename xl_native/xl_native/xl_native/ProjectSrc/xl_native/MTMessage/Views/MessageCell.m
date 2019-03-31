@@ -87,16 +87,9 @@ static NSString* const ViewTableViewCellId = @"MessageCellId";
     
     NSDate *date = [GlobalFunc getDateWithTimeStr:model.time];
     self.labelTImes.text = [GlobalFunc getTimeWithFormatter:date formattter:@"yy-MM-dd"];
+    
+    self.labelTImes.hidden = self.isHideTime;
 }
-
-//- (void)cellClick:(id)sender
-//{
-//    if ([self.delegate respondsToSelector:@selector(btnClicked:cell:)]) {
-//        [self.delegate btnClicked:sender cell:self];
-//    } else {
-//        NSLog(@"代理没响应，快开看看吧");
-//    }
-//}
 
 - (void)btnDelClick:(id)sender{
     

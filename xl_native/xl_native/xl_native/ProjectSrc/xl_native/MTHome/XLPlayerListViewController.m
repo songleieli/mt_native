@@ -136,8 +136,8 @@
 -(void)initRequest {
     
     NetWork_mt_home_list *request = [[NetWork_mt_home_list alloc] init];
-    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex=self.currentPageIndex+1];
-    request.pageSize = [NSString stringWithFormat:@"%ld",(long)self.currentPageSize];
+    request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
+    request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     [request startGetWithBlock:^(HomeListResponse *result, NSString *msg) {
         /*
@@ -154,19 +154,15 @@
             [self.mainDataArr addObjectsFromArray:result.obj];
             [self.mainTableView reloadData];
             
-//            if(self.isFirstLoad){//第一次加载
-////                NSLog(@"--------------------self.isFirstLoad------------------");
-//                self.isFirstLoad = NO;
-            
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentPlayVideoIndex inSection:0];
                 [self.mainTableView scrollToRowAtIndexPath:indexPath
                                           atScrollPosition:UITableViewScrollPositionTop
                                                   animated:NO];
                 self.currentCell = [self.mainTableView cellForRowAtIndexPath:indexPath];
                 [self playCurCellVideo];
-//            }
         }
         else{
+            self.currentPageIndex=self.currentPageIndex-1;
             [UIWindow showTips:@"网络不给力"];
         }
     }];
@@ -243,7 +239,7 @@
     }
     
     NSInteger offset = self.mainDataArr.count - self.currentPlayVideoIndex;
-    if(offset == 1){ //开始加载下一页
+    if(offset == 2){ //开始加载下一页
         [self initRequest];
     }
 }
@@ -414,6 +410,19 @@
 - (void)playButtonAction:(BOOL)isPlay{
     self.isDisAppearPlay = isPlay;
 }
+
+/*点击话题*/
+- (void)topicAction:(NSString *)topicName{
+    
+    NSLog(@"------");
+    
+    TopicInfoController *topicInfoController = [[TopicInfoController alloc] init];
+    topicInfoController.topicName = topicName;
+    [self pushNewVC:topicInfoController animated:YES];
+    
+}
+
+
 
 #pragma mark --------------- VideoSahreDelegate 代理 -----------------
 

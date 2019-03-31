@@ -155,6 +155,7 @@
     self.textFieldSearchKey.size = [UIView getSize_width:self.textFieldBgView.width - leftView.width height:leftView.height];
     self.textFieldSearchKey.origin = [UIView getPoint_x:leftView.right y:self.textFieldBgView.height - self.textFieldSearchKey.height-5];
     self.textFieldSearchKey.placeholder = @"明星";
+    self.textFieldSearchKey.layer.cornerRadius = 4.0f;
     self.textFieldSearchKey.textColor = [UIColor whiteColor];
     self.textFieldSearchKey.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.textFieldSearchKey.clearsOnBeginEditing = YES;
@@ -163,7 +164,7 @@
     self.textFieldSearchKey.font = [UIFont defaultFontWithSize:16.0];
     self.textFieldSearchKey.backgroundColor = [UIColor whiteColor];
     [self.textFieldBgView addSubview:self.textFieldSearchKey];
-    self.textFieldSearchKey.backgroundColor = RGBA(58, 58, 67, 1);
+    self.textFieldSearchKey.backgroundColor = MTColorBtnNormal;
     [self.textFieldSearchKey setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
 
 }
@@ -171,11 +172,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self registerForRemoteNotification];
-    
-    //暂时先屏蔽，转场动画
-//    _scalePresentAnimation = [ScalePresentAnimation new];
-//    _scaleDismissAnimation = [ScaleDismissAnimation new];
-//    _swipeLeftInteractiveTransition = [SwipeLeftInteractiveTransition new];
     
     [self setUpUI];
 }

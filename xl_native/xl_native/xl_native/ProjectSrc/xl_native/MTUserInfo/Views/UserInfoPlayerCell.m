@@ -237,5 +237,13 @@ static NSString* const ViewTableViewCellId = @"UserInfoPlayerCellId";
     }
 }
 
+- (void)topicAction:(NSString *)topicName { //点击话题
+    
+    if ([self.homeDelegate respondsToSelector:@selector(topicAction:)]) {
+        [self.homeDelegate topicAction:topicName];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
+}
 
 @end
