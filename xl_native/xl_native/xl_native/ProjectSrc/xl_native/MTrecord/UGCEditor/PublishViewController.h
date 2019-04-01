@@ -11,25 +11,7 @@
 #import "TCBGMProgressView.h"
 #import "AddTopicViewController.h"
 #import "AtFriendViewController.h"
-
-typedef NS_ENUM(NSInteger, PublishType){
-    
-    PublishTypeTopic = 0,
-    PublishTypeAtFriend
-    
-};
-
-
-@interface AtAndTopicModel : IObjcJsonBase
-
-@property(nonatomic,assign) PublishType publishType;
-@property (nonatomic,strong) GetFollowsModel * atFriendModel;
-@property (nonatomic,strong) GetFuzzyTopicListModel * topicModel;
-@property (nonatomic,strong) NSString * rangeStr;
-
-
-
-@end
+#import "mt_common_model_atFriend_topic.h"
 
 
 @interface PublishViewController : ZJBaseViewController<UITextViewDelegate,TopicClickDelegate,AtFriendClickDelegate>

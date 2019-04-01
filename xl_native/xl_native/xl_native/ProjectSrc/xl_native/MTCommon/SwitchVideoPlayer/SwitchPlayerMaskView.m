@@ -12,8 +12,6 @@
 
 @interface SwitchPlayerMaskView ()
 
-
-
 @end
 
 @implementation SwitchPlayerMaskView
@@ -328,24 +326,12 @@
             wself.musicAlum.album.image = [image drawCircleImage];
         }
     }];
-    
     [_musicAlum startAnimation:12];
-    
-    
-    CGRect contentLabelSize = [listLoginModel.title boundingRectWithSize:CGSizeMake(self.desc.width, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:self.desc.font,NSFontAttributeName, nil] context:nil];
-    
-    self.desc.height = contentLabelSize.size.height;
-    self.desc.text = listLoginModel.title;
-    self.desc.bottom = self.musicIcon.top;
-    
-    
-    if(listLoginModel.topic.trim.length >0){ //如果存在话题，就给话题添加点击事件
-        NSArray *aArray = [listLoginModel.topic.trim componentsSeparatedByString:@","];
-        
-        [self.desc yb_addAttributeTapActionWithStrings:aArray delegate:self];
-    }
-    
-    
+
+    //处理话题和@好友的点击事件
+    [self dealAtFriendAndTopicClickWithTitle:listLoginModel.title
+                                       topic:listLoginModel.topic
+                                aFriendArray:listLoginModel.aFriends];
     
     self.nickName.text = [NSString stringWithFormat:@"@%@", listLoginModel.nickname];
     self.nickName.bottom = self.desc.top;
@@ -375,6 +361,7 @@
 
 
 -(void)layoutSubviews {
+    
     [super layoutSubviews];
     [CATransaction begin];
     [CATransaction setDisableActions:YES];
@@ -394,7 +381,6 @@
                             self.pauseIcon.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
                         } completion:^(BOOL finished) {
                         }];
-    
 }
 
 -(void)hidePlayBtn{
@@ -415,6 +401,133 @@
     }
 }
 
+//播放按钮
+- (void)dealAtFriendAndTopicClickWithTitle:(NSString*)title
+                                     topic:(NSString*)topic
+                                   aFriendArray:(NSArray*)aFriendArray{
+    
+    
+    BOOL isCanClick = YES; //默认可以点击
+    
+    if(topic.trim.length >0){//如果话题存在才可以添加判断
+        NSArray *topicArray = [topic.trim componentsSeparatedByString:@","];
+        //检查title 中是否包含有 topic，如果没有，就是不合法，checkIsCanClick = NO，不可点击
+        for(NSString *topicTemp in topicArray){
+            if ([title rangeOfString:topicTemp].location == NSNotFound) {
+                NSLog(@"----------- [%@] 不存在 [%@]",title,topicTemp);
+                isCanClick = NO;
+                break;
+            }
+        }
+    }
+    
+    for(ATFriendsModel *model in aFriendArray){
+        NSString *atFriendStr = [NSString stringWithFormat:@"@%@",model.nickname];
+        //检查title 中是否包含有 atFriendStr，如果没有，就是不合法，checkIsCanClick = NO，不可点击
+        if ([title rangeOfString:atFriendStr].location == NSNotFound) {
+            NSLog(@"----------- [%@] 不存在 [%@]",title,atFriendStr);
+            isCanClick = NO;
+            break;
+        }
+    }
+    
+    //如果存在话题，就给话题添加点击事件
+    if(isCanClick){
+        
+        NSMutableArray *atAndTopicModelArray = [NSMutableArray array];
+        NSMutableArray *atAndTopicNameArray = [NSMutableArray array];
+        
+        //处理话题
+        if(topic.trim.length >0){//如果话题存在才可以参加计算
+            NSArray *topicArray = [topic.trim componentsSeparatedByString:@","];
+            for(NSString *topic in topicArray){
+                
+                GetFuzzyTopicListModel *topicModel = [[GetFuzzyTopicListModel alloc] init];
+                topicModel.topic = topic;
+                
+                AtAndTopicModel *model = [[AtAndTopicModel alloc] init];
+                model.publishType = PublishTypeTopic;
+                model.topicModel = topicModel;
+                
+                [atAndTopicModelArray addObject:model];
+                [atAndTopicNameArray addObject:model.topicModel.topic];
+            }
+        }
+        
+        //处理at好友
+        for(ATFriendsModel *model in aFriendArray){
+            
+            GetFollowsModel *atFriendModel = [[GetFollowsModel alloc] init];
+            atFriendModel.noodleId = model.noodleId;
+            atFriendModel.noodleNickname = [NSString stringWithFormat:@"@%@",model.nickname];
+            
+            AtAndTopicModel *model = [[AtAndTopicModel alloc] init];
+            model.publishType = PublishTypeAtFriend;
+            model.atFriendModel = atFriendModel;
+            
+            [atAndTopicModelArray addObject:model];
+            [atAndTopicNameArray addObject:model.atFriendModel.noodleNickname];
+            
+        }
+        
+        //NSAttributedString 多行的换行的写法
+        self.desc.numberOfLines = 0;//表示label可以多行显示
+        self.desc.lineBreakMode = NSLineBreakByCharWrapping;//换行模式
+        
+        NSAttributedString *str = [self getAttributeWith:atAndTopicNameArray
+                                                  string:title
+                                               orginFont:[self.desc.font pointSize]
+                                              orginColor:self.desc.textColor
+                                           attributeFont:[self.desc.font pointSize]
+                                          attributeColor:self.desc.textColor];
+        
+        CGSize maxSize = CGSizeMake(self.desc.width, 1000);
+        CGSize attrStrSize = [str boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
+        
+        self.desc.height = attrStrSize.height;
+        self.desc.bottom = self.musicIcon.top;
+        self.desc.attributedText = str;
+        
+        //添加 NSMutableAttributedString 的点击Block
+        [self.desc yb_addAttributeTapActionWithStrings:atAndTopicNameArray
+                                            tapClicked:^(UILabel *label, NSString *string, NSRange range, NSInteger index) {
+                                                
+                                                
+                                                AtAndTopicModel *model = [atAndTopicModelArray objectAtIndex:index];
+                                                if(model.publishType == PublishTypeTopic){//话题处理
+                                                    
+                                                    if (_delegate && [_delegate respondsToSelector:@selector(topicAction:)]) {
+                                                        [_delegate topicAction:string];
+                                                    }else{
+                                                        NSLog(@"没有实现代理或者没有设置代理人");
+                                                    }
+                                                }
+                                                else if(model.publishType == PublishTypeAtFriend){//处理@好友 - (void)atFriendAction:(NSString *)userNoodleId;
+                                                    
+                                                    if(model.atFriendModel.noodleId.length > 0){
+                                                        
+                                                        if (_delegate && [_delegate respondsToSelector:@selector(atFriendAction:)]) {
+                                                            [_delegate atFriendAction:model.atFriendModel.noodleId.trim];
+                                                        }else{
+                                                            NSLog(@"没有实现代理或者没有设置代理人");
+                                                        }
+                                                    }
+                                                    
+                                                }
+                                            }];
+    }
+    else{
+        //text 多行的换行的写法
+        CGSize maxSize = CGSizeMake(self.desc.width, 1000);
+        CGRect contentLabelSize = [title boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:self.desc.font,NSFontAttributeName, nil] context:nil];
+        
+        self.desc.height = contentLabelSize.size.height;
+        self.desc.bottom = self.musicIcon.top;
+        self.desc.text = title;
+    }
+}
+
+
 #pragma mark ------------ 首页第一行下拉刷新，添加蒙版，响应事件添加方法，模仿响应事件,特殊处理----------------
 
 /*
@@ -423,12 +536,6 @@
 -(void)followHomeClick{
     
     [self.focus beginAnimation];
-//    //关注响应事件
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(followButtonAction:)]) {
-//        [self.delegate followButtonAction:self.focus];
-//    }else{
-//        NSLog(@"没有实现代理或者没有设置代理人");
-//    }
 }
 
 
@@ -498,6 +605,13 @@
         NSLog(@"--------点击背景View-----------");
         //获取点击坐标，用于设置爱心显示位置
         CGPoint point = [sender locationInView:self];
+        if(point.y > self.nickName.y){
+            return;
+        }
+        
+        NSLog(@"----------point = %@",NSStringFromCGPoint(point));
+        
+        
         //获取当前时间
         NSTimeInterval time = [[NSDate dateWithTimeIntervalSinceNow:0] timeIntervalSince1970];
         //判断当前点击时间与上次点击时间的时间间隔
@@ -567,6 +681,56 @@
     return [[UIImage imageWithContentsOfFile:path] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
+
+- (NSAttributedString *)getAttributeWith:(id)sender
+                                  string:(NSString *)string
+                               orginFont:(CGFloat)orginFont
+                              orginColor:(UIColor *)orginColor
+                           attributeFont:(CGFloat)attributeFont
+                          attributeColor:(UIColor *)attributeColor
+{
+    
+    __block  NSMutableAttributedString *totalStr = [[NSMutableAttributedString alloc] initWithString:string];
+    [totalStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:orginFont] range:NSMakeRange(0, string.length)];
+    [totalStr addAttribute:NSForegroundColorAttributeName value:orginColor range:NSMakeRange(0, string.length)];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:5.0f]; //设置行间距
+    [paragraphStyle setLineBreakMode:NSLineBreakByTruncatingTail];
+    [paragraphStyle setAlignment:NSTextAlignmentLeft];
+    [paragraphStyle setLineBreakMode:NSLineBreakByCharWrapping];
+    [totalStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [totalStr length])];
+    
+    if ([sender isKindOfClass:[NSArray class]]) {
+        
+        __block NSString *oringinStr = string;
+        __weak typeof(self) weakSelf = self;
+        
+        [sender enumerateObjectsUsingBlock:^(NSString *  _Nonnull str, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            NSRange range = [oringinStr rangeOfString:str];
+            [totalStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:attributeFont] range:range];
+            [totalStr addAttribute:NSForegroundColorAttributeName value:attributeColor range:range];
+            oringinStr = [oringinStr stringByReplacingCharactersInRange:range withString:[weakSelf getStringWithRange:range]];
+        }];
+        
+    }else if ([sender isKindOfClass:[NSString class]]) {
+        
+        NSRange range = [string rangeOfString:sender];
+        
+        [totalStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:attributeFont] range:range];
+        [totalStr addAttribute:NSForegroundColorAttributeName value:attributeColor range:range];
+    }
+    return totalStr;
+}
+
+- (NSString *)getStringWithRange:(NSRange)range
+{
+    NSMutableString *string = [NSMutableString string];
+    for (int i = 0; i < range.length ; i++) {
+        [string appendString:@" "];
+    }
+    return string;
+}
 
 
 

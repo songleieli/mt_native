@@ -9,6 +9,20 @@
 #import "WCServiceBase.h"
 
 
+@interface ATFriendsModel : IObjcJsonBase
+
+@property (copy, nonatomic) NSString *noodleId;
+@property (copy, nonatomic) NSString *head;
+@property (copy, nonatomic) NSString *nickname;
+
+
+//"noodleId": "1963807587",
+//"head": "https://p3-dy.bytecdn.cn/aweme/1080x1080/18bcf0002a066274f8e00.jpeg",
+//"nickname": "潘长江"
+
+@end
+
+
 /*
  {
  "noodleVideoId": 987654321087654326,
@@ -100,6 +114,7 @@
 @property (copy, nonatomic) NSString *musicName;
 @property (copy, nonatomic) NSString *title;
 @property (copy, nonatomic) NSString *topic;
+@property(nonatomic,strong) NSArray * aFriends;
 @property (copy, nonatomic) NSString *addr;
 @property (copy, nonatomic) NSString *iswholook;
 @property (strong, nonatomic) NSNumber *likeSum;
@@ -110,7 +125,6 @@
 @property (copy, nonatomic) NSString *forwardQQzoneSum;
 @property (copy, nonatomic) NSString *generateNvQrcodeSum;
 @property (strong, nonatomic) NSNumber *saveAlbumSum;
-//@property (copy, nonatomic) NSString *copyLinkSum;
 @property (copy, nonatomic) NSString *stealshowSum;
 @property (copy, nonatomic) NSString *matchshowSum;
 @property (copy, nonatomic) NSString *status;
@@ -118,7 +132,6 @@
 @property (copy, nonatomic) NSString *nickname;
 @property (strong, nonatomic) NSNumber *forwardSum;
 @property (copy, nonatomic) NSString *commentSum;
-//@property (copy, nonatomic) NSString *forwardSum;
 @property (copy, nonatomic) NSString *createTime;
 
 @property (strong, nonatomic) NSNumber *isFlour;  //是否关注

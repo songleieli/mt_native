@@ -16,6 +16,7 @@
 #import "FocusView.h"
 #import "WebCacheHelpler.h"
 #import "NetWork_mt_home_list.h"
+#import "mt_common_model_atFriend_topic.h"
 
 @protocol SwitchPlayerMaskViewDelegate <NSObject>
 
@@ -37,6 +38,9 @@
 
 /*点击话题*/
 - (void)topicAction:(NSString *)topicName;
+
+/*点击@好友*/
+- (void)atFriendAction:(NSString *)userNoodleId;
 
 @end
 

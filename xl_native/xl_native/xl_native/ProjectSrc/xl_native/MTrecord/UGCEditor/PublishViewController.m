@@ -13,9 +13,9 @@
 
 #import "TXUGCPublish.h"
 
-@implementation AtAndTopicModel
-
-@end
+//@implementation AtAndTopicModel
+//
+//@end
 
 @interface PublishViewController ()<TXVideoPublishListener>
 

@@ -8,8 +8,18 @@
 
 #import "NetWork_mt_home_list.h"
 
+@implementation ATFriendsModel
+
+@end
 
 @implementation HomeListModel
+
+- (NSDictionary *)propertyMappingObjcJson {
+    return @{@"aFriends" : @"aFriends"};
+}
+- (NSDictionary *)classNameForItemInArray {
+    return @{@"aFriends" : @"ATFriendsModel"};
+}
 
 @end
 

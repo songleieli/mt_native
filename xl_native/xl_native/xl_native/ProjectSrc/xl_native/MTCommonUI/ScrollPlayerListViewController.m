@@ -376,10 +376,22 @@
 /*点击话题*/
 - (void)topicAction:(NSString *)topicName{
     
-    NSLog(@"------");
     TopicInfoController *topicInfoController = [[TopicInfoController alloc] init];
     topicInfoController.topicName = topicName;
     [self pushNewVC:topicInfoController animated:YES];
+}
+
+/*点击话题*/
+- (void)atFriendAction:(NSString *)userNoodleId{
+    
+    UserInfoViewController *userInfoViewController = [[UserInfoViewController alloc] init];
+    userInfoViewController.userNoodleId = userNoodleId;
+    userInfoViewController.fromType = FromTypeHome; //我的页面，需要显示返回按钮，隐藏TabBar
+    [self pushNewVC:userInfoViewController animated:YES];
+    
+//    TopicInfoController *topicInfoController = [[TopicInfoController alloc] init];
+//    topicInfoController.topicName = topicName;
+//    [self pushNewVC:topicInfoController animated:YES];
 }
 
 @end

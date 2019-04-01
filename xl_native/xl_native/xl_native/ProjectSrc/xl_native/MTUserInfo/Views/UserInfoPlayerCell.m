@@ -246,4 +246,14 @@ static NSString* const ViewTableViewCellId = @"UserInfoPlayerCellId";
     }
 }
 
+/*点击@好友*/
+- (void)atFriendAction:(NSString *)userNoodleId{
+    
+    if ([self.homeDelegate respondsToSelector:@selector(atFriendAction:)]) {
+        [self.homeDelegate atFriendAction:userNoodleId];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
+}
+
 @end

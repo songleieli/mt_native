@@ -750,6 +750,7 @@
 		04E6E9FF21A902D1007C8A16 /* bubbleText.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04E6E9FC21A902D1007C8A16 /* bubbleText.bundle */; };
 		04E700D3219FBD8B0096099F /* NetWork_mt_home_list.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E700D2219FBD8B0096099F /* NetWork_mt_home_list.m */; };
 		04E700D9219FF5C10096099F /* MtHomeTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E700D7219FF5C00096099F /* MtHomeTopView.m */; };
+		04E9B30D22525F9E00369DA4 /* mt_common_model_atFriend_topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E9B30C22525F9D00369DA4 /* mt_common_model_atFriend_topic.m */; };
 		04EB6895222B83DD00D5C0C1 /* MTMyFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EB6894222B83DC00D5C0C1 /* MTMyFollowViewController.m */; };
 		04ED451921CBD897009DE89F /* NetWork_mt_delLikeVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ED451821CBD896009DE89F /* NetWork_mt_delLikeVideo.m */; };
 		04EEBA5F21ABE3EE00A5F6F2 /* PopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EEBA5E21ABE3EE00A5F6F2 /* PopViewController.m */; };
@@ -2161,6 +2162,8 @@
 		04E700D2219FBD8B0096099F /* NetWork_mt_home_list.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_home_list.m; sourceTree = "<group>"; };
 		04E700D7219FF5C00096099F /* MtHomeTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MtHomeTopView.m; sourceTree = "<group>"; };
 		04E700D8219FF5C10096099F /* MtHomeTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MtHomeTopView.h; sourceTree = "<group>"; };
+		04E9B30B22525F9D00369DA4 /* mt_common_model_atFriend_topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mt_common_model_atFriend_topic.h; sourceTree = "<group>"; };
+		04E9B30C22525F9D00369DA4 /* mt_common_model_atFriend_topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mt_common_model_atFriend_topic.m; sourceTree = "<group>"; };
 		04EB6893222B83DC00D5C0C1 /* MTMyFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMyFollowViewController.h; sourceTree = "<group>"; };
 		04EB6894222B83DC00D5C0C1 /* MTMyFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMyFollowViewController.m; sourceTree = "<group>"; };
 		04ED451721CBD896009DE89F /* NetWork_mt_delLikeVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_delLikeVideo.h; sourceTree = "<group>"; };
@@ -2637,12 +2640,14 @@
 		04183B1021C2C09600383E3F /* WebH5Demo */ = {
 			isa = PBXGroup;
 			children = (
-				04183B1121C2C09600383E3F /* Callback_voice_purchase.m */,
-				04183B1221C2C09600383E3F /* Callback_userInfo.h */,
+				04E9B30B22525F9D00369DA4 /* mt_common_model_atFriend_topic.h */,
+				04E9B30C22525F9D00369DA4 /* mt_common_model_atFriend_topic.m */,
+				04183B1621C2C09600383E3F /* Callback_token.h */,
 				04183B1321C2C09600383E3F /* Callback_token.m */,
+				04183B1221C2C09600383E3F /* Callback_userInfo.h */,
 				04183B1421C2C09600383E3F /* Callback_userInfo.m */,
 				04183B1521C2C09600383E3F /* Callback_voice_purchase.h */,
-				04183B1621C2C09600383E3F /* Callback_token.h */,
+				04183B1121C2C09600383E3F /* Callback_voice_purchase.m */,
 			);
 			path = WebH5Demo;
 			sourceTree = "<group>";
@@ -5966,6 +5971,7 @@
 				04CBC4292179C01300658E47 /* GPUImageLocalBinaryPatternFilter.m in Sources */,
 				04CBC3F92179C01300658E47 /* GPUImageRGBDilationFilter.m in Sources */,
 				04CBC4692179C01300658E47 /* GPUImageLightenBlendFilter.m in Sources */,
+				04E9B30D22525F9E00369DA4 /* mt_common_model_atFriend_topic.m in Sources */,
 				04A8C12822190992004980F5 /* NetWork_mt_getTopicCollections.m in Sources */,
 				D904E9661DD1D6DB00C7E45E /* ZJCustomTabBarLjhTableViewController.m in Sources */,
 				D91E53D71DE6774000B7DA74 /* BundleUtil.m in Sources */,

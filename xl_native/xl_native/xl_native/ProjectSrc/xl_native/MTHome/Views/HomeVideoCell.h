@@ -37,6 +37,9 @@ typedef void (^OnPlayerReady)(void);
 /*点击话题*/
 - (void)topicAction:(NSString *)topicName;
 
+/*点击@好友*/
+- (void)atFriendAction:(NSString *)userNoodleId;
+
 @end
 
 @interface HomeVideoCell : BaseTableViewCell<AVPlayerUpdateDelegate,SwitchPlayerMaskViewDelegate>
