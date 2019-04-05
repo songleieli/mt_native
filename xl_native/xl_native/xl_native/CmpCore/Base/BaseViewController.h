@@ -10,8 +10,10 @@
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import "ShowNotice.h"
 #import "MJTableView.h"
+#import "BaseTableViewCell.h"
 
-@interface BaseViewController : UIViewController <UIAlertViewDelegate,UITextFieldDelegate,UINavigationControllerDelegate,WCServiceJrLoanDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface BaseViewController : UIViewController <UIAlertViewDelegate,UITextFieldDelegate,UINavigationControllerDelegate,
+WCServiceJrLoanDelegate,UITableViewDelegate,UITableViewDataSource,CellDelegate>
 
 @property (strong, nonatomic) UIButton *btnLeft;
 @property (strong, nonatomic) UIButton *btnRight;

@@ -15,7 +15,7 @@
 #import "mt_common_model_atFriend_topic.h"
 
 
-@interface PublishViewController : ZJBaseViewController<UITextViewDelegate,TopicClickDelegate,AtFriendClickDelegate>
+@interface PublishViewController : ZJBaseViewController<UITextViewDelegate,TopicClickDelegate,AtFriendClickDelegate,LocationClickDelegate>
 
 
 @property (nonatomic,strong) UIScrollView * scrollView;
@@ -51,6 +51,8 @@
 @property (copy,nonatomic) NSString *videoOutputCoverPath;
 
 @property (strong,nonatomic) MusicSearchModel  *musicModel;
+@property (strong,nonatomic) LocaltionModel  *localtionModel;
+
 @property (nonatomic, strong) TCBGMProgressView *progressView;
 
 

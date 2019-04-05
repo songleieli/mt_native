@@ -215,6 +215,7 @@
                 model.name = mapItem.placemark.name;
                 model.adress = [NSString stringWithFormat:@"%@%@%@",mapItem.placemark.locality,mapItem.placemark.subLocality,mapItem.placemark.thoroughfare];
                 model.coordinate = coordinate;
+                model.city = mapItem.placemark.locality;
                 [self.mainDataArr addObject:model];
             }
         }
@@ -264,7 +265,7 @@
     
     if(self.mainDataArr.count > 0){
         AddLocarionCell *cell = [tableView dequeueReusableCellWithIdentifier:[AddLocarionCell cellId] forIndexPath:indexPath];
-        cell.subCellDelegate = self;
+        cell.delegate = self;
         LocaltionModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
         [cell fillDataWithModel:model withKeyWord:self.keyWord];
         return cell;
@@ -280,7 +281,7 @@
 
 //设置每一组的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return  SearchResultSubTopicCellHeight;
+    return  AddLocarionCellHeight;
 }
 
 
@@ -288,24 +289,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-    NSString *topicName = textField.text.trim;
-    if(topicName.length == 0){
-        topicName = textField.placeholder;
-        return NO;
-    }
-    
-    GetFuzzyTopicListModel *model = [[GetFuzzyTopicListModel alloc] init];
-    model.id = @"";
-    model.topic = [NSString stringWithFormat:@"#%@",topicName];
-    model.hotCount = @"0";
-    
-    if ([self.delegate respondsToSelector:@selector(TopicClick:)]) {
-        [self.delegate TopicClick:model];
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
-    } else {
-        NSLog(@"代理没响应，快开看看吧");
-    }
+
     
     return YES;
 }
@@ -321,19 +305,16 @@
 
 #pragma mark - -------- SearchResultSubTopicDelegate -------------
 
-
--(void)btnCellClick:(GetFuzzyTopicListModel*)model{
+- (void)btnClicked:(id)sender cell:(AddLocarionCell *)cell{
     
-    if ([self.delegate respondsToSelector:@selector(TopicClick:)]) {
-        [self.delegate TopicClick:model];
+    if ([self.delegate respondsToSelector:@selector(LocalCellClick:)]) {
+        [self.delegate LocalCellClick:cell.listModel];
     } else {
         NSLog(@"代理没响应，快开看看吧");
     }
     
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
+    [self btnCancelClick];
 }
-
 
 #pragma mark - 键盘 show 与 hide
 

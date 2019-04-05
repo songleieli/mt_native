@@ -12,9 +12,9 @@
 #import <CoreLocation/CoreLocation.h>
 
 
-@protocol TopicClickDelegate <NSObject>
+@protocol LocationClickDelegate <NSObject>
 
--(void)TopicClick:(GetFuzzyTopicListModel*)model;
+-(void)LocalCellClick:(LocaltionModel*)model;
 
 @end
 
@@ -27,7 +27,7 @@
 
 @property(nonatomic,assign) CGRect keyBoardFrame; //键盘的frame
 
-@property(nonatomic,weak) id <TopicClickDelegate> delegate;
+@property(nonatomic,weak) id <LocationClickDelegate> delegate;
 
 //返回播放列表Block
 @property (nonatomic, copy) void(^backClickBlock)();

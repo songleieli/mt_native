@@ -49,18 +49,15 @@ static NSString* const ViewTableViewCellId = @"AddLocarionCellId";
                                           height:40];
     self.labelTitle.left = 20;
     self.labelTitle.bottom = self.viewBg.height/2 - 5;
-//    self.labelTitle.origin = [UIView getPoint_x:+10 y:self.viewBg.height/2];
     self.labelTitle.font = BigBoldFont;
     self.labelTitle.verticalAlignment = VerticalAlignmentBottom;
     self.labelTitle.textColor = ColorWhite;
     [self.viewBg addSubview:self.labelTitle];
     
-    
     //test
-    
     self.labelSign = [[VUILable alloc]init];
     self.labelSign.size = [UIView getSize_width:self.labelTitle.width height:30];
-    self.labelSign.origin = [UIView getPoint_x:self.labelTitle.left y:self.labelTitle.bottom+5];
+    self.labelSign.origin = [UIView getPoint_x:self.labelTitle.left y:self.viewBg.height/2 + 5];
     self.labelSign.font = SmallFont;
     self.labelSign.textColor = ColorWhiteAlpha80;
     self.labelSign.verticalAlignment = VerticalAlignmentTop;
@@ -71,7 +68,7 @@ static NSString* const ViewTableViewCellId = @"AddLocarionCellId";
     self.listModel = listModel;
     
     if(withKeyWord.length > 0){
-        NSString *content = [NSString stringWithFormat:@"@%@",listModel.name];
+        NSString *content = listModel.name;
         [GlobalFunc setContentLabelColor:content
                                   subStr:withKeyWord
                                 subColor:[UIColor yellowColor]
@@ -95,8 +92,8 @@ static NSString* const ViewTableViewCellId = @"AddLocarionCellId";
 
 - (void)btnDelClick:(id)sender{
     
-    if ([self.subCellDelegate respondsToSelector:@selector(btnCellClick:)]) {
-        [self.subCellDelegate btnCellClick:self.listModel];
+    if ([self.delegate respondsToSelector:@selector(btnClicked:cell:)]) {
+        [self.delegate btnClicked:sender cell:self];
     } else {
         NSLog(@"代理没响应，快开看看吧");
     }

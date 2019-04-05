@@ -13,10 +13,6 @@
 
 #import "TXUGCPublish.h"
 
-//@implementation AtAndTopicModel
-//
-//@end
-
 @interface PublishViewController ()<TXVideoPublishListener>
 
 @end
@@ -188,23 +184,20 @@
         _btnLocation.top = self.viewLine.bottom;
         [_btnLocation addTarget:self action:@selector(btnAddLocation:) forControlEvents:UIControlEventTouchUpInside];
 
-        
-        
         UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_m_location"]];
         imgView.size = [UIView getScaleSize_width:14 height:14];
         imgView.origin = [UIView getPoint_x:15 y:(_btnLocation.height - imgView.height)/2];
         [_btnLocation addSubview:imgView];
         
-        
         UILabel *titleLalbe = [[UILabel alloc] init];
+        titleLalbe.tag = 99;
         titleLalbe.font = [UIFont defaultBoldFontWithSize:13];
         titleLalbe.textColor = ColorWhite;
-        titleLalbe.size = [UIView getSize_width:150 height:30];
+        titleLalbe.size = [UIView getSize_width:_btnLocation.width - 20 height:30];
         titleLalbe.origin = [UIView getPoint_x:imgView.right+15
                                              y:(_btnLocation.height - titleLalbe.height)/2];
         titleLalbe.text = @"添加位置";
         [_btnLocation addSubview:titleLalbe];
-        
         
         UIImageView *narrowImg= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_m_s_right"]];
         narrowImg.size = [UIView getSize_width:9 height:15];
@@ -388,7 +381,7 @@
     }
 }
 
-#pragma mark ----------  话题和At好友相关  -------------
+#pragma mark ----------  话题,At好友, 选择地址Delegete-------------
 
 -(void)TopicClick:(GetFuzzyTopicListModel*)model{
 
@@ -438,6 +431,20 @@
         _placeHoldelLebel.hidden = YES;
     }
 }
+
+-(void)LocalCellClick:(LocaltionModel*)model{
+    NSLog(@"-------");
+    self.localtionModel = model;
+    
+    UILabel *titleLalbe = [self.btnLocation viewWithTag:99];
+    if(titleLalbe){
+        titleLalbe.text = self.localtionModel.adress;
+    }
+}
+
+
+
+#pragma mark ----------  textView Delegete-------------
 
 - (void)textViewDidChangeSelection:(UITextView *)textView {
     
@@ -584,8 +591,9 @@
 -(void)btnAddLocation:(UIButton*)btn{
     
     AddLocationViewController *addLocationViewController = [[AddLocationViewController alloc] init];
-    [self pushNewVC:addLocationViewController animated:YES];
-    
+    addLocationViewController.delegate = self;
+    [self presentViewController:addLocationViewController animated:YES completion:nil];
+
 }
 
 
@@ -626,6 +634,12 @@
     model.title = strContent;
     model.topic = [self getTopStr];
     model.aFriends = [self getAtFriendArray];
+    if(self.localtionModel){
+        model.addr = self.localtionModel.adress;
+        model.city = self.localtionModel.city;
+        model.latitude = [NSString stringWithFormat:@"%f",self.localtionModel.coordinate.latitude];
+        model.longitude = [NSString stringWithFormat:@"%f",self.localtionModel.coordinate.longitude];
+    }
 
     NetWork_mt_saveVideo *request = [[NetWork_mt_saveVideo alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;

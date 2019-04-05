@@ -54,6 +54,9 @@
     "nickname": "李六"
 }],
 "addr": "北京市东城区体育馆路4号",
+ "city": "北京",//城市
+ "longitude": "103",//经度
+ "latitude": "201",//纬度
 "iswholook": 1,
 "status": 1
 */
@@ -77,6 +80,9 @@
 @property (nonatomic,copy) NSString * topic;
 @property (nonatomic,strong) NSMutableArray * aFriends;
 @property (nonatomic,copy) NSString * addr;
+@property (nonatomic,copy) NSString * city;
+@property (nonatomic,copy) NSString * longitude;
+@property (nonatomic,copy) NSString * latitude;
 @property (nonatomic,copy) NSString * iswholook;
 @property (nonatomic,copy) NSString * status;
 

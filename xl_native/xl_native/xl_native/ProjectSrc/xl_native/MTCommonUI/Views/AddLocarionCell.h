@@ -22,14 +22,7 @@
 
 @end
 
-@protocol LocaltionCellDelegate <NSObject>
-
--(void)btnCellClick:(LocaltionModel*)model;
-
-@end
-
-
-#define AddLocarionCellHeight 90.0f
+#define AddLocarionCellHeight 80.0f
 #define AddLocarionCellSpace 6.0f
 
 
@@ -37,12 +30,9 @@
 
 + (NSString*) cellId;
 
-
-
 @property(nonatomic,strong) UIButton * viewBg;
 @property(nonatomic,strong) VUILable * labelTitle;
 @property(nonatomic,strong) VUILable * labelSign;
-@property(nonatomic,weak) id <LocaltionCellDelegate> subCellDelegate;
 @property(nonatomic,strong) LocaltionModel * listModel;
 
 - (void)fillDataWithModel:(LocaltionModel *)listModel withKeyWord:(NSString*)withKeyWord;
