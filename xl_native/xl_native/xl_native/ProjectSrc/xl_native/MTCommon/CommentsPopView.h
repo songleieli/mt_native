@@ -10,6 +10,8 @@
 #import "NetWork_mt_home_list.h"
 #import "NetWork_mt_publishComment.h"
 #import "NetWork_mt_getCommentList.h"
+#import "NetWork_mt_likeComment.h"
+#import "NetWork_mt_delLikeComment.h"
 
 @interface CommentsPopView:UIView
 
@@ -34,7 +36,7 @@
 @interface CommentListCell : UITableViewCell
 
 @property (nonatomic, strong) UIImageView        *avatar;
-@property (nonatomic, strong) UIImageView        *likeIcon;
+@property (nonatomic, strong) UIButton        *likeIcon;
 @property (nonatomic, strong) UILabel            *nickName;
 @property (nonatomic, strong) UILabel            *extraTag;
 @property (nonatomic, strong) UILabel            *content;
@@ -42,7 +44,10 @@
 @property (nonatomic, strong) UILabel            *date;
 @property (nonatomic, strong) UIView             *splitLine;
 
+@property (nonatomic, strong) CommentListModel   *listModel;
+
 -(void)initData:(CommentListModel *)comment;
+
 +(CGFloat)cellHeight:(CommentListModel *)comment;
 
 @end

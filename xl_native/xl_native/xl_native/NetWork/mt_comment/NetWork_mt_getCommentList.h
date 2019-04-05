@@ -38,6 +38,9 @@
 @property (copy, nonatomic) NSString *status;
 @property (copy, nonatomic) NSString *isNotice;
 
+@property (strong, nonatomic) NSNumber *isLike;   //是否喜欢（赞）过
+
+
 @end
 
 

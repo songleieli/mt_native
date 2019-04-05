@@ -169,6 +169,8 @@
 		04B6E2C72241423B00F3B51E /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B6E2C62241423B00F3B51E /* PublishViewController.m */; };
 		04BBCBA62256FC4C009AC181 /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBCBA52256FC4C009AC181 /* AddLocationViewController.m */; };
 		04BBCBA922571B1F009AC181 /* AddLocarionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBCBA822571B1F009AC181 /* AddLocarionCell.m */; };
+		04BBCBAD2257738B009AC181 /* NetWork_mt_likeComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBCBAC2257738B009AC181 /* NetWork_mt_likeComment.m */; };
+		04BBCBB02257779E009AC181 /* NetWork_mt_delLikeComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBCBAF2257779E009AC181 /* NetWork_mt_delLikeComment.m */; };
 		04BC59872197C88700D5EA12 /* XLProjectWkWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BC59862197C88600D5EA12 /* XLProjectWkWebViewController.m */; };
 		04C171E221CDDE9E0077FA6C /* UserInfoPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */; };
 		04C1720B21CE3EC80077FA6C /* NetWork_mt_getMyVideos.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171F421CE3EC70077FA6C /* NetWork_mt_getMyVideos.m */; };
@@ -1281,6 +1283,10 @@
 		04BBCBA52256FC4C009AC181 /* AddLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocationViewController.m; sourceTree = "<group>"; };
 		04BBCBA722571B1E009AC181 /* AddLocarionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLocarionCell.h; sourceTree = "<group>"; };
 		04BBCBA822571B1F009AC181 /* AddLocarionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocarionCell.m; sourceTree = "<group>"; };
+		04BBCBAB2257738A009AC181 /* NetWork_mt_likeComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_likeComment.h; sourceTree = "<group>"; };
+		04BBCBAC2257738B009AC181 /* NetWork_mt_likeComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_likeComment.m; sourceTree = "<group>"; };
+		04BBCBAE2257779D009AC181 /* NetWork_mt_delLikeComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_delLikeComment.h; sourceTree = "<group>"; };
+		04BBCBAF2257779E009AC181 /* NetWork_mt_delLikeComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_delLikeComment.m; sourceTree = "<group>"; };
 		04BC59852197C88600D5EA12 /* XLProjectWkWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLProjectWkWebViewController.h; sourceTree = "<group>"; };
 		04BC59862197C88600D5EA12 /* XLProjectWkWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLProjectWkWebViewController.m; sourceTree = "<group>"; };
 		04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoPlayerCell.m; sourceTree = "<group>"; };
@@ -3090,6 +3096,10 @@
 		04C1720321CE3EC70077FA6C /* mt_comment */ = {
 			isa = PBXGroup;
 			children = (
+				04BBCBAE2257779D009AC181 /* NetWork_mt_delLikeComment.h */,
+				04BBCBAF2257779E009AC181 /* NetWork_mt_delLikeComment.m */,
+				04BBCBAB2257738A009AC181 /* NetWork_mt_likeComment.h */,
+				04BBCBAC2257738B009AC181 /* NetWork_mt_likeComment.m */,
 				04C1720421CE3EC70077FA6C /* NetWork_mt_publishComment.h */,
 				04C1720621CE3EC70077FA6C /* NetWork_mt_publishComment.m */,
 				04C1720521CE3EC70077FA6C /* NetWork_mt_getCommentList.h */,
@@ -5942,6 +5952,7 @@
 				04A308FA222A8D41000BC762 /* NetWork_mt_getCommentMeList.m in Sources */,
 				04CBC4672179C01300658E47 /* GPUImageStillCamera.m in Sources */,
 				04C1720E21CE3EC80077FA6C /* NetWork_mt_personal_homePage.m in Sources */,
+				04BBCBB02257779E009AC181 /* NetWork_mt_delLikeComment.m in Sources */,
 				04CBC3BF2179C01300658E47 /* GPUImageFilterPipeline.m in Sources */,
 				04CBC4832179C01300658E47 /* SDImageCache.m in Sources */,
 				04C2615F21A68FB200374E4D /* VerticalButton.m in Sources */,
@@ -6133,6 +6144,7 @@
 				D98FCFAC1DEFC3080023C076 /* STPickerArea.m in Sources */,
 				04CBC3E12179C01300658E47 /* GPUImageGaussianBlurFilter.m in Sources */,
 				043A788B2219770200F20CDC /* MusicInfoController.m in Sources */,
+				04BBCBAD2257738B009AC181 /* NetWork_mt_likeComment.m in Sources */,
 				04DCA8F121A565D500691A3A /* TXCVEFColorPalette.m in Sources */,
 				04CBC3DD2179C01300658E47 /* GPUImageSaturationBlendFilter.m in Sources */,
 				0441FA2921CF547100801225 /* UserCollectionHeader.m in Sources */,

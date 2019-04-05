@@ -414,12 +414,9 @@
 /*点击话题*/
 - (void)topicAction:(NSString *)topicName{
     
-    NSLog(@"------");
-    
     TopicInfoController *topicInfoController = [[TopicInfoController alloc] init];
     topicInfoController.topicName = topicName;
     [self pushNewVC:topicInfoController animated:YES];
-    
 }
 
 

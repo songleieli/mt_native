@@ -336,6 +336,8 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
 #define MaxContentWidth     ScreenWidth - 55 - 35
 //cell
 @implementation CommentListCell
+
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self) {
@@ -348,9 +350,14 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
         _avatar.layer.cornerRadius = 14;
         [self addSubview:_avatar];
         
-        _likeIcon = [[UIImageView alloc] init];
-        _likeIcon.contentMode = UIViewContentModeCenter;
-        _likeIcon.image = [UIImage imageNamed:@"icCommentLikeBefore_black"];
+        _likeIcon = [UIButton buttonWithType:UIButtonTypeCustom]; //[[UIImageView alloc] init];
+//        _likeIcon.contentMode = UIViewContentModeCenter;
+//        _likeIcon.image = [UIImage imageNamed:@"icCommentLikeBefore_black"];
+        [_likeIcon setBackgroundImage:[UIImage imageNamed:@"icCommentLikeBefore_black"] forState:UIControlStateNormal];
+        [_likeIcon setBackgroundImage:[UIImage imageNamed:@"icCommentLikeBefore_red"] forState:UIControlStateHighlighted];
+        [_likeIcon setBackgroundImage:[UIImage imageNamed:@"icCommentLikeBefore_red"] forState:UIControlStateSelected];
+        [_likeIcon addTarget:self action:@selector(btnPriseClick:) forControlEvents:UIControlEventTouchUpInside];
+
         [self addSubview:_likeIcon];
         
         _nickName = [[UILabel alloc] init];
@@ -421,6 +428,8 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
 
 -(void)initData:(CommentListModel *)comment {
     
+    self.listModel = comment;
+    
     NSURL *avatarUrl;
     avatarUrl = [NSURL URLWithString:comment.commentHead];
     _nickName.text = comment.commentNickname;
@@ -439,6 +448,48 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
     CGSize size = [attributedString multiLineSize:MaxContentWidth];
     return size.height + 30 + SmallFont.lineHeight * 2;
 }
+
+
+-(void)btnPriseClick:(UIButton*)btn{
+    
+    NSString *temp = [self.listModel generateJsonStringForProperties];
+    
+    NSLog(@"--------temp = %@",temp);
+    
+    if([self.listModel.isLike intValue] == 1){
+        
+        
+        NetWork_mt_delLikeComment *request = [[NetWork_mt_delLikeComment alloc] init];
+        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        request.id = self.listModel.id;
+        [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+            if(finished){
+                btn.selected = NO;
+                self.likeNum.text = [NSString stringWithFormat:@"%d",[self.likeNum.text intValue]-1];
+                self.listModel.isLike = @(0);
+                
+            }
+        }];
+        
+
+    }
+    else{
+        NetWork_mt_likeComment *request = [[NetWork_mt_likeComment alloc] init];
+        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        request.id = self.listModel.id;
+        [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+            if(finished){
+                btn.selected = YES;
+                self.likeNum.text = [NSString stringWithFormat:@"%d",[self.likeNum.text intValue]+1];
+                self.listModel.isLike = @(1);
+            }
+        }];
+       
+    }
+}
+
+
+
 @end
 
 
