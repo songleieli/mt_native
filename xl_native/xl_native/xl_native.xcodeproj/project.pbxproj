@@ -167,6 +167,8 @@
 		04B66E9A21C15D41000D6C56 /* favorites.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B66E9821C15D41000D6C56 /* favorites.json */; };
 		04B66E9D21C15DF3000D6C56 /* AwemesResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B66E9C21C15DF2000D6C56 /* AwemesResponse.m */; };
 		04B6E2C72241423B00F3B51E /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B6E2C62241423B00F3B51E /* PublishViewController.m */; };
+		04BBCBA62256FC4C009AC181 /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBCBA52256FC4C009AC181 /* AddLocationViewController.m */; };
+		04BBCBA922571B1F009AC181 /* AddLocarionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBCBA822571B1F009AC181 /* AddLocarionCell.m */; };
 		04BC59872197C88700D5EA12 /* XLProjectWkWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BC59862197C88600D5EA12 /* XLProjectWkWebViewController.m */; };
 		04C171E221CDDE9E0077FA6C /* UserInfoPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */; };
 		04C1720B21CE3EC80077FA6C /* NetWork_mt_getMyVideos.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171F421CE3EC70077FA6C /* NetWork_mt_getMyVideos.m */; };
@@ -1275,6 +1277,10 @@
 		04B66E9C21C15DF2000D6C56 /* AwemesResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwemesResponse.m; sourceTree = "<group>"; };
 		04B6E2C52241423B00F3B51E /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
 		04B6E2C62241423B00F3B51E /* PublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
+		04BBCBA42256FC4C009AC181 /* AddLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLocationViewController.h; sourceTree = "<group>"; };
+		04BBCBA52256FC4C009AC181 /* AddLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocationViewController.m; sourceTree = "<group>"; };
+		04BBCBA722571B1E009AC181 /* AddLocarionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLocarionCell.h; sourceTree = "<group>"; };
+		04BBCBA822571B1F009AC181 /* AddLocarionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocarionCell.m; sourceTree = "<group>"; };
 		04BC59852197C88600D5EA12 /* XLProjectWkWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLProjectWkWebViewController.h; sourceTree = "<group>"; };
 		04BC59862197C88600D5EA12 /* XLProjectWkWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLProjectWkWebViewController.m; sourceTree = "<group>"; };
 		04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoPlayerCell.m; sourceTree = "<group>"; };
@@ -2689,6 +2695,8 @@
 				043A78892219770200F20CDC /* MusicInfoController.m */,
 				04B5CECF224F45AC009F93D4 /* AddTopicViewController.h */,
 				04B5CED0224F45AC009F93D4 /* AddTopicViewController.m */,
+				04BBCBA42256FC4C009AC181 /* AddLocationViewController.h */,
+				04BBCBA52256FC4C009AC181 /* AddLocationViewController.m */,
 				04D469A122505D31006B8FC7 /* AtFriendViewController.h */,
 				04D469A222505D31006B8FC7 /* AtFriendViewController.m */,
 				0493CA6F221A5B550090968B /* ScrollPlayerListViewController.h */,
@@ -2700,6 +2708,8 @@
 		042E65802217AE5100C56859 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				04BBCBA722571B1E009AC181 /* AddLocarionCell.h */,
+				04BBCBA822571B1F009AC181 /* AddLocarionCell.m */,
 				042E65822217AE5100C56859 /* MyTopicHeaderView.h */,
 				042E65812217AE5100C56859 /* MyTopicHeaderView.m */,
 				042E65852217B00200C56859 /* MyMusicHeaderView.h */,
@@ -5832,6 +5842,7 @@
 				0400F32A21AFA62D0038E16C /* UIAlertView+WX.m in Sources */,
 				04CBC43D2179C01300658E47 /* GPUImageHueBlendFilter.m in Sources */,
 				042E6573221663B300C56859 /* SearchResultSubVideoCollectionCell.m in Sources */,
+				04BBCBA62256FC4C009AC181 /* AddLocationViewController.m in Sources */,
 				04CBC4052179C01300658E47 /* GPUImageVoronoiConsumerFilter.m in Sources */,
 				044F0355217EC324007D88DF /* MJRefreshBackStateFooter.m in Sources */,
 				D957AD531DD2CB2F00B7EE09 /* IQUITextFieldView+Additions.m in Sources */,
@@ -5990,6 +6001,7 @@
 				04CBC4472179C01300658E47 /* GPUImage3x3ConvolutionFilter.m in Sources */,
 				04CBC3B52179C01300658E47 /* GPUImageOutput.m in Sources */,
 				C552FC261E7136EA003D3E2E /* MyImageView.m in Sources */,
+				04BBCBA922571B1F009AC181 /* AddLocarionCell.m in Sources */,
 				0434BDD221E9E1560059A28C /* PersonalInformationViewController.m in Sources */,
 				04CBC38B2179C01300658E47 /* GPUImagePolarPixellateFilter.m in Sources */,
 				D904E9641DD1D6DB00C7E45E /* ZJCustomTabBar.m in Sources */,

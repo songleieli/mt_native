@@ -11,6 +11,7 @@
 #import "TCBGMProgressView.h"
 #import "AddTopicViewController.h"
 #import "AtFriendViewController.h"
+#import "AddLocationViewController.h"
 #import "mt_common_model_atFriend_topic.h"
 
 

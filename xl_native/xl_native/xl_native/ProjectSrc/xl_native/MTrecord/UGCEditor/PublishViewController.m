@@ -186,6 +186,8 @@
         [_btnLocation setBackgroundColor:MTColorBtnNormal forState:UIControlStateHighlighted];
         _btnLocation.size = [UIView getSize_width:ScreenWidth height:sizeScale(40)];
         _btnLocation.top = self.viewLine.bottom;
+        [_btnLocation addTarget:self action:@selector(btnAddLocation:) forControlEvents:UIControlEventTouchUpInside];
+
         
         
         UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_m_location"]];
@@ -577,8 +579,13 @@
     AtFriendViewController *atFriendViewController = [[AtFriendViewController alloc] init];
     atFriendViewController.delegate = self;
     [self presentViewController:atFriendViewController animated:YES completion:nil];
+}
+
+-(void)btnAddLocation:(UIButton*)btn{
     
-    NSLog(@"------@好友 ---s");
+    AddLocationViewController *addLocationViewController = [[AddLocationViewController alloc] init];
+    [self pushNewVC:addLocationViewController animated:YES];
+    
 }
 
 
