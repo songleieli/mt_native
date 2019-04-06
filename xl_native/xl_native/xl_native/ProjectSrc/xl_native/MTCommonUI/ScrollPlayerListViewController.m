@@ -37,12 +37,12 @@
 }
 
 
--(instancetype)initWithVideoData:(NSMutableArray<HomeListModel *> *)data
+-(instancetype)initWithVideoData:(NSArray<HomeListModel *> *)data
                     currentIndex:(NSInteger)currentIndex{
     
     self = [super init];
     if(self){
-        self.mainDataArr = data;
+        self.mainDataArr = [NSMutableArray arrayWithArray:data];
         self.currentIndex = currentIndex;
     }
     return self;

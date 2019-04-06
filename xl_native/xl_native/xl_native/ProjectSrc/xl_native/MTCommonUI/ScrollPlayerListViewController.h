@@ -32,7 +32,7 @@
 @property (nonatomic, strong)UserInfoPlayerCell *currentCell;  //当前显示到屏幕的cell
 
 
--(instancetype)initWithVideoData:(NSMutableArray<HomeListModel *> *)data
+-(instancetype)initWithVideoData:(NSArray<HomeListModel *> *)data
                     currentIndex:(NSInteger)currentIndex;
 
 

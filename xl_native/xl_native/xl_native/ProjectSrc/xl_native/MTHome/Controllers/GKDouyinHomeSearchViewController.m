@@ -154,7 +154,7 @@
     self.textFieldSearchKey = [[UITextField alloc] init];
     self.textFieldSearchKey.size = [UIView getSize_width:self.textFieldBgView.width - leftView.width height:leftView.height];
     self.textFieldSearchKey.origin = [UIView getPoint_x:leftView.right y:self.textFieldBgView.height - self.textFieldSearchKey.height-5];
-    self.textFieldSearchKey.placeholder = @"明星";
+//    self.textFieldSearchKey.placeholder = @"明星";
     self.textFieldSearchKey.layer.cornerRadius = 4.0f;
     self.textFieldSearchKey.textColor = [UIColor whiteColor];
     self.textFieldSearchKey.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -206,22 +206,31 @@
 
 #pragma -mark ---------- CustomMethod ----------
 
-- (void) setBackgroundImage:(NSString *)imageName {
-    UIImageView *background = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    background.clipsToBounds = YES;
-    background.contentMode = UIViewContentModeScaleAspectFill;
-    background.image = [UIImage imageNamed:imageName];
-    //[self.view addSubview:background];
-    [self.view insertSubview:background atIndex:0];
-}
-
 -(void)refreshVideoList:(NSArray*)searchSixModelList{
     
     __weak __typeof(self) weakSelf = self;
     [self.functionView reloadWithSource:searchSixModelList dataLoadFinishBlock:^() {
         weakSelf.viewHeadBg.height = weakSelf.functionView.height+100;
-        self.lableHeadBottomTitle.top = self.functionView.bottom;
+        weakSelf.lableHeadBottomTitle.top = weakSelf.functionView.bottom;
         weakSelf.mainTableView.tableHeaderView = weakSelf.viewHeadBg;
+        
+        /*
+         随机去除一个model
+         */
+        int x = arc4random() % searchSixModelList.count;
+        GetHotSearchSixModel *model = [searchSixModelList objectAtIndex:x];
+        //过滤topic携带的 “#” 号，接口不需要
+        NSString *topicNameTemp = model.topic;
+        NSUInteger location = [topicNameTemp rangeOfString:@"#"].location;
+        if (location == NSNotFound) {
+        } else {
+            topicNameTemp = [topicNameTemp substringFromIndex:1];
+        }
+        
+        
+        weakSelf.textFieldSearchKey.placeholder = topicNameTemp;
+        [weakSelf.textFieldSearchKey setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+
     }];
     
 }
@@ -295,10 +304,6 @@
         [self.mainTableView.mj_footer endRefreshingWithNoMoreData];
     }
 }
-
-
-
-
 
 #pragma mark ---------- 点击搜索按钮 --------
 

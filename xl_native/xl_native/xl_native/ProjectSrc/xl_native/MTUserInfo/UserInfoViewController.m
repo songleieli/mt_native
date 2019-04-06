@@ -109,15 +109,10 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 
 - (void)viewDidLoad {
     _tabIndex = 0;
-    
-    //    _scalePresentAnimation = [ScalePresentAnimation new];
-    //    _scaleDismissAnimation = [ScaleDismissAnimation new];
-    //    _swipeLeftInteractiveTransition = [SwipeLeftInteractiveTransition new];
-    
+
     [self registerForRemoteNotification];
     
     [super viewDidLoad];
-    //    [self loadUserData];
     [self setUpUI];
 }
 
@@ -149,8 +144,14 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     layout.minimumLineSpacing = 1.5;     //行间距
     layout.minimumInteritemSpacing = 0;  //列间距
     
-    //行间距与列间距配合 _itemWidth _itemHeight 达到布局的效果
-    CGRect frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight  - kTabBarHeight_New);
+    CGRect frame = CGRectZero;
+    if(self.fromType == FromTypeMy){
+        frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight  - kTabBarHeight_New);
+    }
+    else{
+        frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+    }
+    
     _collectionView = [[UICollectionView  alloc]initWithFrame:frame collectionViewLayout:layout];
     _collectionView.backgroundColor = ColorClear;
     
@@ -330,6 +331,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 
 
 - (void)updateNavigationTitle:(CGFloat)offsetY {
+    
     if (kUserInfoHeaderHeight - self.navBackGround.height*2 > offsetY) {
         self.lableNavTitle.textColor = [UIColor clearColor];
     }
@@ -339,8 +341,6 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     }
     if (offsetY > kUserInfoHeaderHeight - self.navBackGround.height) {
         self.lableNavTitle.textColor = [UIColor whiteColor];
-        
-        //test
     }
 }
 
@@ -357,11 +357,6 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         _userInfoHeader = header;
         if(_user) {
             [header initData:_user];
-            //            //默认没有关注，如果已经关注需要Show 一下
-            //            if(_user.isFlour){
-            //                [header startFocusAnimation];
-            //            }
-            
             header.delegate = self;
             header.slideTabBar.delegate = self;
         }

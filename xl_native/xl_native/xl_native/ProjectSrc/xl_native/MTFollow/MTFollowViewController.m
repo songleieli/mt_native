@@ -175,13 +175,9 @@
     [self.mainDataArr addObjectsFromArray:result.obj];
     [self.mainTableView reloadData];
     
-//    if(self.isFirstLoad){//第一次加载
-    
-//        self.isFirstLoad = NO;
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentIndex inSection:0];
-        self.currentCell = [self.mainTableView cellForRowAtIndexPath:indexPath];
-        [self playCurCellVideo];
-//    }
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentIndex inSection:0];
+    self.currentCell = [self.mainTableView cellForRowAtIndexPath:indexPath];
+    [self playCurCellVideo];
 }
 
 
