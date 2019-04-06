@@ -25,6 +25,7 @@
 @implementation GKDouyinHomeViewController
 
 #pragma mark ----------- 懒加载 ----------
+
 - (GKDouyinScrollView *)scrollView {
     if (!_scrollView) {
         _scrollView = [[GKDouyinScrollView alloc] init];
@@ -79,8 +80,20 @@
 }
 
 
+#pragma mark ----------- Controller 生命周期 ----------
+
 - (void)dealloc {
 //    NSLog(@"%@ dealloc", NSStringFromClass([self class]));
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    [self.playerVC playListCurrPause]; //切换到其他页面，暂停首页播放
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -92,18 +105,14 @@
         3.如果是搜索页面，显示状态栏
      */
     if(self.isTableHiden){ //搜索页面
-        [UIApplication sharedApplication].statusBarHidden = NO;
+        [self searchViewControllerDidAppear];
     }
     else{//视频播放列表页面
-        [UIApplication sharedApplication].statusBarHidden = YES;
+        [self playListViewControllerDidAppear];
     }
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-//    NSLog(@"%@ -----viewWillAppear-----------", NSStringFromClass([self class]));
-}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -137,15 +146,21 @@
     
     [UIApplication sharedApplication].statusBarHidden = NO;
     [self hiddenTabBar:YES isAnimat:YES]; //隐藏tablebar
-    [self.playerVC playListCurrPlayDisAppear];
-    
     [self.searchVC didScrollToSearchView];//通知SearchViewController
+    
+    [self.playerVC playListCurrPause]; //切换到searchView，暂停首页播放
 }
 
 -(void)playListViewControllerDidAppear{
     [UIApplication sharedApplication].statusBarHidden = YES;
     [self hiddenTabBar:NO isAnimat:YES]; //显示tablebar
-    [self.playerVC playListCurrPlayDidAppear];
+    
+    if(self.playerVC.isDisAppearPlay){ //切换到播放列表，如果以前是播放的就播放，如果以前是暂停的就暂停
+        [self.playerVC playListCurrPlay];
+    }
+    else{
+        [self.playerVC playListCurrPause];
+    }
 }
 
 

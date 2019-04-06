@@ -9,7 +9,7 @@
 #import "ZJCustomTabBarLjhTableViewController.h"
 
 #import "MtHomeTopView.h"
-#import "MTHomeRefreshNavigitionView.h"
+//#import "MTHomeRefreshNavigitionView.h"
 #import "HomeVideoCell.h"
 #import "CommentsPopView.h"
 #import "SharePopView.h"
@@ -41,15 +41,11 @@ typedef NS_ENUM(NSInteger,StatusOfRefresh) {
     XDREFRESH_BeginRefresh,    //刷新状态
 };
 
-#define MaxDistance 25 //向下拖拽最大点-刷新临界值
-#define MaxScroll 300 //向上拖拽最大点-到达最大点就动画让tableview滚动到第二个cell
-
 @interface XLPlayerListViewController : ZJBaseViewController
 
 @property (nonatomic,strong) MtHomeTopView *topView;
 @property (nonatomic, assign) NSInteger currentPlayVideoIndex; //当前播放视频的Index
 @property (nonatomic, strong)HomeVideoCell *currentCell;  //当前显示到屏幕的cell
-@property (nonatomic, assign) BOOL  isCurPlayerPause;
 
 /*仿抖音下拉刷新*/
 @property (nonatomic, copy)void(^refreshBlock)(void);
@@ -71,16 +67,16 @@ typedef NS_ENUM(NSInteger,StatusOfRefresh) {
  1.如果页面离开前是播放状态，那么回来后还播放。
  2.如果页面离开前是暂停状态，那么回来后还是暂停状态。
  */
-@property (nonatomic, assign)BOOL isDisAppearPlay;
+@property (nonatomic, assign) BOOL isDisAppearPlay;
 
 /*
  页面显示或从其他页面返回来已经显示调用方法
  */
-- (void)playListCurrPlayDidAppear;
+- (void)playListCurrPlay;
 /*
  页面消失调用方法
  */
-- (void)playListCurrPlayDisAppear;
+- (void)playListCurrPause;
 
 
 @end

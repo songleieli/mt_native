@@ -32,7 +32,7 @@ typedef void (^OnPlayerReady)(void);
 
 - (void)playButtonAction:(BOOL)isPlay;
 
--(void)currVideoProgressUpdate:(HomeListModel *)listModel current:(CGFloat)current total:(CGFloat)total;
+- (void)currVideoProgressUpdate:(HomeListModel *)listModel current:(CGFloat)current total:(CGFloat)total;
 
 /*点击话题*/
 - (void)topicAction:(NSString *)topicName;

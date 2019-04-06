@@ -31,12 +31,12 @@
     [super viewDidAppear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
-    [self playListCurrPlayDidAppear];
+//    [self playListCurrPlayDidAppear];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self playListCurrPlayDisAppear];
+//    [self playListCurrPlayDisAppear];
 }
 
 -(void)initNavTitle{
@@ -53,7 +53,7 @@
     [[AVPlayerManager shareManager] removeAllPlayers];
 }
 
-- (void)viewDidLoad {
+-(void)viewDidLoad {
     [super viewDidLoad];
     
     [self setupUI];
@@ -97,7 +97,7 @@
         //当前cell的视频源还未准备好播放，则实现cell的OnPlayerReady Block 用于等待视频准备好后通知播放
         self.currentCell.onPlayerReady = ^{
             NSIndexPath *indexPath = [wself.mainTableView indexPathForCell:wcell];
-            if(!wself.isCurPlayerPause && indexPath && indexPath.row == wself.currentPlayVideoIndex) {
+            if(indexPath && indexPath.row == wself.currentPlayVideoIndex) {
                 [wcell play];
             }
         };
@@ -105,19 +105,19 @@
 }
 
 /*
- 页面显示或从其他页面返回来已经显示调用方法
+  GKDouyinHomeViewController 调用播放方法
  */
-- (void)playListCurrPlayDidAppear{
+- (void)playListCurrPlay{
     
-    if(self.currentCell && self.isDisAppearPlay){
+    if(self.currentCell){
         [self.currentCell.playerView play];
     }
 }
 /*
- 页面消失调用方法
+ GKDouyinHomeViewController 调用暂停方法
  */
-- (void)playListCurrPlayDisAppear{
-        if(self.currentCell && self.isDisAppearPlay){
+- (void)playListCurrPause{
+        if(self.currentCell){
             [self.currentCell.playerView pause];
         }
 }
