@@ -264,13 +264,10 @@
 -(void)scanBtnClick{
     NSLog(@"------scanBtnClick----------");
 }
+
 -(void)refreshBtnClick{
     [self.mainTableView.mj_header beginRefreshing];
 }
-
-
-
-
 
 #pragma mark --------------- HomeDelegate代理 -----------------
 

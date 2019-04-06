@@ -381,6 +381,13 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
     else{
         [self pause];
     }
+    
+    //响应代理
+    if ([self.followDelegate respondsToSelector:@selector(playButtonAction:)]) {
+        [self.followDelegate playButtonAction:isPlay];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
 }
 
 -(void)showPlayBtn{

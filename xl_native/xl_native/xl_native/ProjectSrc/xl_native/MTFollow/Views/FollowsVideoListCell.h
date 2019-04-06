@@ -22,6 +22,8 @@ typedef void (^OnPlayerReady)(void);
 
 - (void)shareClicked:(HomeListModel *)listModel;
 
+- (void)playButtonAction:(BOOL)isPlay;
+
 @end
 
 #define FollowsVideoListCellSpace 10.0f   //上下space间隔 高度

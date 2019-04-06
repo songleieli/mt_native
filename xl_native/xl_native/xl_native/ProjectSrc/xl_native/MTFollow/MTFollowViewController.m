@@ -23,26 +23,32 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [UIApplication sharedApplication].statusBarHidden = NO;
     self.tabBar.top = [self getTabbarTop];    //  重新设置tabbar的高度
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     
-//    [self.mainDataArr removeAllObjects]; //加载页面内容时，先清除老数据
-//    [self initRequest];
+    [self playListCurrPause]; //切换到其他页面，暂停首页播放
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    if(self.isDisAppearPlay){ //切换到播放列表，如果以前是播放的就播放，如果以前是暂停的就暂停
+        [self playListCurrPlay];
+    }
+    else{
+        [self playListCurrPause];
+    }
 }
 
 -(void)initNavTitle{
     self.isNavBackGroundHiden = NO;
-    
     self.navBackGround.height = KStatusBarHeight_New; //状态栏的高度
-    
-//    self.lableNavTitle.textColor = [UIColor whiteColor];
-//    self.lableNavTitle.font = [UIFont defaultBoldFontWithSize:16];
-//
-//    self.title = @"关注";
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.isFirstLoad = YES;
     
     [self setupUI];
 }
@@ -75,7 +81,7 @@
         CGRect contentLabelSize = [homeListModel.title boundingRectWithSize:CGSizeMake(FollowsVideoListCellTitleWidth, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:FollowsVideoListCellTitleFont,NSFontAttributeName, nil] context:nil];
         
         CGFloat cellHeight = FollowsVideoListCellIconHeight + contentLabelSize.size.height + FollowsVideoListCellVideoHeight+FollowsVideoListCellBottomHeight+FollowsVideoListCellSpace*2;
-
+        
         
         homeListModel.fpllowVideoListTitleHeight = contentLabelSize.size.height;
         homeListModel.fpllowVideoListCellHeight = cellHeight;
@@ -84,7 +90,7 @@
 
 -(void)playCurCellVideo{
     
-    //    BOOL temp = firstLoad
+    self.isDisAppearPlay = YES;
     
     [_currentCell startDownloadHighPriorityTask];
     __weak typeof (FollowsVideoListCell) *wcell = self.currentCell;
@@ -93,9 +99,6 @@
     if(self.currentCell.isPlayerReady) {
         //播放视频
         [_currentCell replay];
-        
-        NSLog(@"---------[_currentCell replay];-------");
-        
     }else {
         [[AVPlayerManager shareManager] pauseAll];
         //当前cell的视频源还未准备好播放，则实现cell的OnPlayerReady Block 用于等待视频准备好后通知播放
@@ -108,7 +111,62 @@
     }
 }
 
--(void)loadVideoData:(GetFollowsVideoListResponse *)result{
+/*
+ GKDouyinHomeViewController 调用播放方法
+ */
+- (void)playListCurrPlay{
+    
+    if(self.currentCell){
+        [self.currentCell.playerView play];
+    }
+}
+/*
+ GKDouyinHomeViewController 调用暂停方法
+ */
+- (void)playListCurrPause{
+    if(self.currentCell){
+        [self.currentCell.playerView pause];
+    }
+}
+
+#pragma mark - 数据加载代理
+
+-(void)loadNewData{
+    
+    self.currentPageIndex = 0;
+    self.currentPageSize = 10; //默认20，当前页面不适合 20条，10条
+    [self initRequest];
+}
+
+-(void)loadMoreData{
+    [self initRequest];
+}
+
+#pragma mark ------ initRequest  ------
+
+-(void)initRequest{
+    
+    NetWork_mt_getFollowsVideoList *request = [[NetWork_mt_getFollowsVideoList alloc] init];
+    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+    request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
+    request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
+    [request startGetWithBlock:^(id result, NSString *msg) {
+        /*
+         *暂不考虑缓存问题
+         */
+    } finishBlock:^(GetFollowsVideoListResponse *result, NSString *msg, BOOL finished) {
+        
+        [self.mainTableView.mj_header endRefreshing];
+        [self.mainTableView.mj_footer endRefreshing];
+
+        if(finished){
+            [self loadData:result];
+        }
+    }];
+    
+}
+
+-(void)loadData:(GetFollowsVideoListResponse *)result{
     if (self.currentPageIndex == 1 ) {
         [self.mainDataArr removeAllObjects];
         [self refreshNoDataViewWithListCount:result.obj.count];
@@ -117,55 +175,15 @@
     [self.mainDataArr addObjectsFromArray:result.obj];
     [self.mainTableView reloadData];
     
-    if(self.isFirstLoad){//第一次加载
-        self.isFirstLoad = NO;
-        
+//    if(self.isFirstLoad){//第一次加载
+    
+//        self.isFirstLoad = NO;
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentIndex inSection:0];
         self.currentCell = [self.mainTableView cellForRowAtIndexPath:indexPath];
         [self playCurCellVideo];
-    }
-}
-
-
-#pragma mark ------ initRequest  ------
-
--(void)initRequest{
-    
-    NetWork_mt_getFollowsVideoList *request = [[NetWork_mt_getFollowsVideoList alloc] init];
-    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.pageNo = [NSString stringWithFormat:@"%ld",self.currentPageIndex=self.currentPageIndex+1];
-    request.pageSize = [NSString stringWithFormat:@"%ld",self.currentPageSize];
-    [request startGetWithBlock:^(id result, NSString *msg) {
-        /*
-         *暂不考虑缓存问题
-         */
-    } finishBlock:^(GetFollowsVideoListResponse *result, NSString *msg, BOOL finished) {
-        NSLog(@"----------------");
-        
-        [self.mainTableView.mj_header endRefreshing];
-        if(finished){
-            [self loadVideoData:result];
-        }
-    }];
-    
-}
-
-#pragma mark - 数据加载代理
--(void)loadNewData{
-    self.mainTableView.mj_footer.hidden = YES;
-    self.currentPageIndex = 0;
-    [self initRequest];
-}
-
--(void)loadMoreData{
-//    self.tableView.mj_header.hidden = YES;
-//    [self initRequest];
-//    if (self.totalCount == self.listDataArray.count) {
-//        [self showFaliureHUD:@"暂无更多数据"];
-//        [self.tableView.mj_footer endRefreshingWithNoMoreData];
-//        self.tableView.mj_footer.hidden = YES;
 //    }
 }
+
 
 #pragma mark --------------- GetFollowsDelegate -----------------
 
@@ -209,7 +227,6 @@
             }
         }];
     }
-    
 }
 
 - (void)commentClicked:(HomeListModel *)listModel{
@@ -224,10 +241,15 @@
 }
 
 - (void)shareClicked:(HomeListModel *)listModel{
+    
     SharePopView *popView = [[SharePopView alloc] init];
     popView.homeListModel = listModel;
     popView.delegate = self;
     [popView show];
+}
+
+- (void)playButtonAction:(BOOL)isPlay{
+    self.isDisAppearPlay = isPlay;
 }
 
 #pragma mark --------------- tabbleView代理 -----------------

@@ -176,11 +176,9 @@
 
 #pragma mark --------------- UIScrollView 代理 -----------------
 
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     if(self.isTableHiden == NO){ //如果在视频播放列表
-        
         CGFloat w = self.view.frame.size.width;
         self.offset +=  self.scrollView.contentOffset.x - w;
         if(fabs(self.offset) <= 50.0f){
@@ -188,7 +186,6 @@
         }
     }
 }
-
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
