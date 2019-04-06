@@ -409,6 +409,7 @@
 		04CBC48D2179C01300658E47 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC2372179C01100658E47 /* UIButton+WebCache.m */; };
 		04CBC48F2179C01300658E47 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC23A2179C01200658E47 /* MBProgressHUD.m */; };
 		04CBC4BF2179C01300658E47 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC2722179C01200658E47 /* UINavigationController+FDFullscreenPopGesture.m */; };
+		04CD6DA42258738900C35475 /* VideoFenerateFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CD6DA32258738900C35475 /* VideoFenerateFunc.m */; };
 		04D469A322505D31006B8FC7 /* AtFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D469A222505D31006B8FC7 /* AtFriendViewController.m */; };
 		04D9B4C821D327B300DEC8B9 /* NetWork_mt_getFollows.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9B4C621D327B300DEC8B9 /* NetWork_mt_getFollows.m */; };
 		04D9B4CE21D343A400DEC8B9 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9B4CC21D343A300DEC8B9 /* MessageCell.m */; };
@@ -1775,6 +1776,8 @@
 		04CBC23D2179C01200658E47 /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.mdown; sourceTree = "<group>"; };
 		04CBC2712179C01200658E47 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
 		04CBC2722179C01200658E47 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
+		04CD6DA22258738800C35475 /* VideoGenerateFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoGenerateFunc.h; sourceTree = "<group>"; };
+		04CD6DA32258738900C35475 /* VideoFenerateFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoFenerateFunc.m; sourceTree = "<group>"; };
 		04D469A122505D31006B8FC7 /* AtFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtFriendViewController.h; sourceTree = "<group>"; };
 		04D469A222505D31006B8FC7 /* AtFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtFriendViewController.m; sourceTree = "<group>"; };
 		04D9B4C621D327B300DEC8B9 /* NetWork_mt_getFollows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getFollows.m; sourceTree = "<group>"; };
@@ -4852,6 +4855,8 @@
 		D904E95C1DD1D6DB00C7E45E /* MTCommon */ = {
 			isa = PBXGroup;
 			children = (
+				04CD6DA22258738800C35475 /* VideoGenerateFunc.h */,
+				04CD6DA32258738900C35475 /* VideoFenerateFunc.m */,
 				0441FA2121CF3FBA00801225 /* LoadMoreControl.h */,
 				0441FA2221CF3FBA00801225 /* LoadMoreControl.m */,
 				0441FA1F21CF3F0E00801225 /* PhotoView.h */,
@@ -5808,6 +5813,7 @@
 				04DCA8F021A565D500691A3A /* VideoPreview.m in Sources */,
 				04CBC4132179C01300658E47 /* GPUImageWhiteBalanceFilter.m in Sources */,
 				04CBC28F2179C01200658E47 /* MJRefreshAutoGifFooter.m in Sources */,
+				04CD6DA42258738900C35475 /* VideoFenerateFunc.m in Sources */,
 				04CBC39D2179C01300658E47 /* GPUImagePixellateFilter.m in Sources */,
 				04C1721221CE3EC80077FA6C /* NetWork_mt_publishComment.m in Sources */,
 				04CBC3512179C01300658E47 /* GPUImageMovie.m in Sources */,

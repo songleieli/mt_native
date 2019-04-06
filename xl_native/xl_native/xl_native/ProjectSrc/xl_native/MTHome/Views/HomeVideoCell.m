@@ -169,10 +169,8 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
 #pragma mark ---------AVPlayerUpdateDelegate-------------
 
 -(void)onProgressUpdate:(CGFloat)current total:(CGFloat)total {
+    
     //播放进度更新
-    
-//    NSLog(@"------------current = %f-----total = %f------------",current,total);
-    
     if ([self.homeDelegate respondsToSelector:@selector(followClicked:)]) {
         [self.homeDelegate currVideoProgressUpdate:self.listModel current:current total:total];
     } else {
@@ -182,6 +180,7 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
 }
 
 -(void)onPlayItemStatusUpdate:(AVPlayerItemStatus)status { //播放状态更新
+    
     switch (status) {
         case AVPlayerItemStatusUnknown:
             [self startLoadingPlayItemAnim:YES];
@@ -192,8 +191,6 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
             
             _isPlayerReady = YES;
 //            [_musicAlum startAnimation:_aweme.rate];
-            
-            
             //根据视频的宽高比例，显示视频的填充方式
             NSArray *array = self.playerView.urlAsset.tracks;
             CGSize videoSize = CGSizeZero;
@@ -211,10 +208,6 @@ static NSString* const ViewTableViewCellId = @"HomeVideoCellId";
             else{
                 self.playerView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
             }
-            
-//            NSLog(@"-------------videoSize = %@",NSStringFromCGSize(videoSize));
-//            NSLog(@"-------------whScale = %f",whScale);
-
             if(_onPlayerReady) {
                 _onPlayerReady();
             }

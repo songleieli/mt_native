@@ -69,16 +69,19 @@
         //获取本地磁盘缓存文件夹路径
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
         NSString *path = [paths lastObject];
-        NSString *diskCachePath = [NSString stringWithFormat:@"%@%@",path,@"/webCache"];
+        self.diskCachePath = [NSString stringWithFormat:@"%@%@",path,@"/webCache"];
+        
+        
+        
         //判断是否创建本地磁盘缓存文件夹
         BOOL isDirectory = NO;
-        BOOL isExisted = [_fileManager fileExistsAtPath:diskCachePath isDirectory:&isDirectory];
+        BOOL isExisted = [_fileManager fileExistsAtPath:self.diskCachePath isDirectory:&isDirectory];
         if (!isDirectory || !isExisted){
             NSError *error;
-            [_fileManager createDirectoryAtPath:diskCachePath withIntermediateDirectories:YES attributes:nil error:&error];
+            [_fileManager createDirectoryAtPath:self.diskCachePath withIntermediateDirectories:YES attributes:nil error:&error];
         }
         //本地磁盘缓存文件夹URL
-        _diskCacheDirectoryURL = [NSURL fileURLWithPath:diskCachePath];
+        _diskCacheDirectoryURL = [NSURL fileURLWithPath:self.diskCachePath];
         //初始化查询缓存任务队列
         _ioQueue = dispatch_queue_create("com.start.webcache", DISPATCH_QUEUE_SERIAL);
     }
@@ -171,6 +174,7 @@
 }
 //获取key值对应的磁盘缓存文件路径，文件路径包含指定扩展名
 - (NSString *)diskCachePathForKey:(NSString *)key extension:(NSString *)extension {
+    
     NSString *fileName = [self md5:key];
     NSString *cachePathForKey = [_diskCacheDirectoryURL URLByAppendingPathComponent:fileName].path;
     if(extension) {
@@ -215,7 +219,6 @@
         NSDate *nowData = [NSDate date];
 //        NSLog(@" ======文件创建的本地时区时间====== %@",[GlobalFunc getTimeWithFormatter:fileCreateDate formattter:@"YYYY-MM-dd HH:mm"]);
 //        NSLog(@" ======当前本地时区时间====== %@",[GlobalFunc getTimeWithFormatter:nowData formattter:@"YYYY-MM-dd HH:mm"]);
-//
 //        NSLog(@"文件的基本信息  %@",fileAttrs);
 //        NSLog(@"------------fileCreateData  %@",[GlobalFunc getCurrentTime]);
         
@@ -223,7 +226,6 @@
         NSCalendarUnit type = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
         NSDateComponents *cmps = [calendar components:type fromDate:fileCreateDate toDate:nowData options:0];
 //        NSLog(@"两个时间相差%ld年%ld月%ld日%ld小时%ld分钟%ld秒", cmps.year, cmps.month, cmps.day, cmps.hour, cmps.minute, cmps.second);
-        
         if(isClearAllVideoCacle){//全部清除
             folderSize += fileAttrs.fileSize;
             [_fileManager removeItemAtPath:filePath error:NULL];

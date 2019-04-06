@@ -25,39 +25,13 @@
 #import "MusicInfoController.h"
 #import "TopicInfoController.h"
 
-
-#import "ASIHTTPRequest.h"
-#import "ASIOperationWrapper.h"
-#import "ASIFormDataRequest.h"
-
-#import "FileHelper.h"
-#import <AssetsLibrary/AssetsLibrary.h>
-
-
-typedef NS_ENUM(NSInteger,StatusOfRefresh) {
-    REFRESH_Normal = 0,     //正常状态
-    REFRESH_MoveDown ,     //手指下拉
-    REFRESH_MoveUp,         //手指上拉
-    XDREFRESH_BeginRefresh,    //刷新状态
-};
+#import "VideoGenerateFunc.h"
 
 @interface XLPlayerListViewController : ZJBaseViewController
 
 @property (nonatomic,strong) MtHomeTopView *topView;
 @property (nonatomic, assign) NSInteger currentPlayVideoIndex; //当前播放视频的Index
 @property (nonatomic, strong)HomeVideoCell *currentCell;  //当前显示到屏幕的cell
-
-/*仿抖音下拉刷新*/
-@property (nonatomic, copy)void(^refreshBlock)(void);
-//记录手指滑动状态
-@property (nonatomic, assign)StatusOfRefresh refreshStatus;
-@property (nonatomic, assign)CGPoint startPoint;
-
-//视频合成，用于保存后发到微信好友
-@property (strong,nonatomic) AVAsset  *videoAsset;
-@property (strong,nonatomic)  TXVideoEditer*  ugcEdit;    //sdk编辑器
-@property (nonatomic, assign) MTShareType shareType;
-
 
 /*block*/
 @property (nonatomic, copy) void(^scrollBlock)(BOOL isScroll);

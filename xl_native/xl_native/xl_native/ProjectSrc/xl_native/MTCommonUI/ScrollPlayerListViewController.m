@@ -8,7 +8,7 @@
 
 #import "ScrollPlayerListViewController.h"
 
-@interface ScrollPlayerListViewController ()<UserInfoPlayerDelegate>
+@interface ScrollPlayerListViewController ()<UserInfoPlayerDelegate,VideoSahreDelegate>
 
 @property (nonatomic, strong) NSMutableArray          *listData;
 
@@ -388,10 +388,45 @@
     userInfoViewController.userNoodleId = userNoodleId;
     userInfoViewController.fromType = FromTypeHome; //我的页面，需要显示返回按钮，隐藏TabBar
     [self pushNewVC:userInfoViewController animated:YES];
+}
+
+#pragma mark --------------- VideoSahreDelegate 代理 -----------------
+
+- (void)onShareItemClicked:(SharePopView *)sharePopView index:(MTShareType)index{
     
-//    TopicInfoController *topicInfoController = [[TopicInfoController alloc] init];
-//    topicInfoController.topicName = topicName;
-//    [self pushNewVC:topicInfoController animated:YES];
+    if(index == MTShareTypeWechatVideo || index == MTShareTypeRegQQVideo ){
+        //生成带水印的视频，并分享到微信或者qq
+        //获取本地磁盘缓存文件夹路径
+        NSString *path = [[WebCacheHelpler sharedWebCache] diskCachePathForKey:_currentCell.listModel.storagePath extension:@"mp4"];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]){ //本地存在视频，开始使用SDK生成带水印的的视频
+            //[self onloadVideoComplete:path];
+            [[VideoGenerateFunc sharedInstance] globalFuncGenerateVideo:path shareType:index];
+        }
+    }
+}
+
+- (void)onActionItemClicked:(SharePopView *)sharePopView index:(MTShareActionType)index{
+    
+    if(index == MTShareActionTypeCollention){
+        
+        CollectionContentModel *contentModel = [[CollectionContentModel alloc] init];
+        contentModel.noodleId = [GlobalData sharedInstance].loginDataModel.noodleId;//当前登录者面条号
+        contentModel.noodleVideoId = [NSString stringWithFormat:@"%@",self.currentCell.listModel.noodleVideoId]; //视频Id
+        contentModel.videoNoodleId = self.currentCell.listModel.noodleId;      //视频所属者面条好
+        contentModel.noodleVideoCover = self.currentCell.listModel.coverUrl;    //
+        
+        NetWork_mt_collectionVideo *request = [[NetWork_mt_collectionVideo alloc] init];
+        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        request.content = [contentModel generateJsonStringForProperties];
+        [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+            if(finished){
+                [UIWindow showTips:@"收藏成功"];
+            }
+            else{
+                [UIWindow showTips:@"收藏失败"];
+            }
+        }];
+    }
 }
 
 @end

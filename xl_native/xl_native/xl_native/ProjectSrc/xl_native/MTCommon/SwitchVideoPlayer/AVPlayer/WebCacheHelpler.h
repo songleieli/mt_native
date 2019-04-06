@@ -36,6 +36,7 @@ typedef void(^WebDownloaderCancelBlock)(void);
 @property (strong, nonatomic) WebDownloadOperation     *downloadOperation;
 //取消查询缓存NSOperation任务和下载资源WebDownloadOperation任务
 - (void)cancel;
+
 @end
 
 
@@ -44,6 +45,10 @@ typedef void(^WebDownloaderCancelBlock)(void);
 @interface WebCacheHelpler : NSObject
 //单例
 + (WebCacheHelpler *)sharedWebCache;
+
+@property(nonatomic,copy) NSString * diskCachePath;
+
+
 //根据key值从内存和本地磁盘中查询缓存数据
 -(NSOperation *)queryDataFromMemory:(NSString *)key cacheQueryCompletedBlock:(WebCacheQueryCompletedBlock)cacheQueryCompletedBlock;
 //根据key值从本地磁盘中查询缓存数据
@@ -67,6 +72,8 @@ typedef void(^WebDownloaderCancelBlock)(void);
  */
 
 - (void)clearCache:(WebCacheClearCompletedBlock) cacheClearCompletedBlock isClearAllVideoCacle:(BOOL)isClearAllVideoCacle;
+
+- (NSString *)diskCachePathForKey:(NSString *)key extension:(NSString *)extension;
 
 @end
 
