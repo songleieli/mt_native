@@ -32,4 +32,10 @@
 @property(nonatomic,strong) MTSearchHeadFunctionView *functionView;
 
 
+/*
+ 滚动到当前页，调用方法
+ */
+- (void)didScrollToSearchView;
+
+
 @end

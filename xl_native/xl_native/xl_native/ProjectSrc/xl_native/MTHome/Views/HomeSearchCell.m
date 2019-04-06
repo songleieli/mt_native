@@ -172,7 +172,7 @@ static NSString* const ViewTableViewCellId = @"HomeSearchCellId";
         btnVideo.height = videoHeight;
         btnVideo.width = videoWidth;
         btnVideo.origin = [UIView getPoint_x:idx*btnVideo.width y:0];
-        [btnVideo sd_setImageWithURL:[NSURL URLWithString:obj.noodleVideoCover] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"defaul_publishcover"]];
+        [btnVideo sd_setImageWithURL:[NSURL URLWithString:obj.noodleVideoCover] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"default_bg_cover"]];
         [[btnVideo imageView] setContentMode:UIViewContentModeScaleAspectFill];
         btnVideo.layer.borderWidth = 0.25;
         btnVideo.layer.borderWidth = 1.0;

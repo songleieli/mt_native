@@ -385,7 +385,7 @@
 
 -(void)TopicClick:(GetFuzzyTopicListModel*)model{
 
-    NSString *topicString = [NSString stringWithFormat:@"%@",model.topic];
+    NSString *topicString = [NSString stringWithFormat:@"%@ ",model.topic];
     [self.speakTextView insertText:topicString];
     
     NSMutableAttributedString *tmpAString = [[NSMutableAttributedString alloc] initWithAttributedString:self.speakTextView.attributedText];
@@ -410,7 +410,7 @@
 -(void)AtFriendClick:(GetFollowsModel*)model{
     
     
-    NSString *atString = [NSString stringWithFormat:@"@%@",model.noodleNickname];
+    NSString *atString = [NSString stringWithFormat:@"@%@ ",model.noodleNickname];
     [self.speakTextView insertText:atString];
     
     NSMutableAttributedString *tmpAString = [[NSMutableAttributedString alloc] initWithAttributedString:self.speakTextView.attributedText];

@@ -138,6 +138,8 @@
     [UIApplication sharedApplication].statusBarHidden = NO;
     [self hiddenTabBar:YES isAnimat:YES]; //隐藏tablebar
     [self.playerVC playListCurrPlayDisAppear];
+    
+    [self.searchVC didScrollToSearchView];//通知SearchViewController
 }
 
 -(void)playListViewControllerDidAppear{
@@ -164,51 +166,18 @@
     
     if(self.isTableHiden == NO){ //如果在视频播放列表
         
-//        NSLog(@"----视频播放列表--");
         CGFloat w = self.view.frame.size.width;
-        
-//        NSLog(@"============fabs(self.offset) = %f",fabs(self.offset));
-//        NSLog(@"============self.scrollView.contentOffset.x = %f",self.scrollView.contentOffset.x);
         self.offset +=  self.scrollView.contentOffset.x - w;
-//        NSLog(@"============fabs(self.offset) = %f",fabs(self.offset));
-
         if(fabs(self.offset) <= 50.0f){
-//            NSLog(@"============self.offset = %f",self.offset);
-//            NSLog(@"============fabs(self.offset) = %f",fabs(self.offset));
             self.scrollView.contentOffset = CGPointMake(w, 0);
         }
-        
     }
-//    else{
-////        NSLog(@"----搜索页面--");
-//    }
-    
-    
-//    CGFloat w = self.view.frame.size.width;
-//    NSLog(@"----self.scrollView.contentOffset=%f----",self.scrollView.contentOffset.x);
-//    self.scrollView.contentOffset = CGPointMake(w, 0);
-
 }
 
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-//    NSLog(@"----scrollViewDidEndDragging--");
-//    self.offset = 0.0f;
-//    NSLog(@"-------------------------------------------------fabs(self.offset) = %f",fabs(self.offset));
-//}
-//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-//    NSLog(@"----scrollViewDidEndDragging--");
-//    self.offset = 0.0f;
-//    NSLog(@"-------------------------------------------------fabs(self.offset) = %f",fabs(self.offset));
-//
-//
-//}
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
-//    NSLog(@"----scrollViewDidEndDragging--");
     self.offset = 0.0f;
-//    NSLog(@"-------------------------------------------------fabs(self.offset) = %f",fabs(self.offset));
-    
     CGPoint rect = scrollView.contentOffset;
     CGFloat w = self.view.frame.size.width;
     if(rect.x == 0.0f){ //搜索页面，显示完成

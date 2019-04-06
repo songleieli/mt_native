@@ -166,7 +166,6 @@
     [self.textFieldBgView addSubview:self.textFieldSearchKey];
     self.textFieldSearchKey.backgroundColor = MTColorBtnNormal;
     [self.textFieldSearchKey setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-
 }
 
 - (void)viewDidLoad {
@@ -190,8 +189,19 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.backgroundColor = [UIColor clearColor]; //RGBFromColor(0xecedf1);
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.mainTableView.mj_header beginRefreshing];
+//    [self.mainTableView.mj_header beginRefreshing];
     [self.mainTableView registerClass:HomeSearchCell.class forCellReuseIdentifier:[HomeSearchCell cellId]];
+}
+
+- (void)didScrollToSearchView{
+    NSLog(@"------didScrollToSearchView---");
+    
+    /*
+     *如果没有加载数据加载，如果已经加载数据，忽略
+     */
+    if(self.mainDataArr.count == 0){
+        [self.mainTableView.mj_header beginRefreshing];
+    }
 }
 
 
@@ -204,8 +214,6 @@
     background.image = [UIImage imageNamed:imageName];
     //[self.view addSubview:background];
     [self.view insertSubview:background atIndex:0];
-    
-    
 }
 
 -(void)refreshVideoList:(NSArray*)searchSixModelList{
@@ -219,26 +227,6 @@
     
 }
 
--(void)loadBodyDataList{
-    
-    NetWork_mt_getHotVideoList *request = [[NetWork_mt_getHotVideoList alloc] init];
-    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.pageNo = @"1";
-    request.pageSize = @"10";
-    [request startGetWithBlock:^(id result, NSString *msg) {
-        /*暂时不考虑缓存问题*/
-    } finishBlock:^(GetHotSearchSixResponse *result, NSString *msg, BOOL finished) {
-        
-        if(finished){
-            [self.mainDataArr addObjectsFromArray:result.obj];
-            [self.mainTableView reloadData];
-        }
-        else{
-            [UIWindow showTips:msg];
-        }
-    }];
-}
-
 -(void)backBtnClick:(UIButton*)btn{
     
     if(self.backClickBlock){
@@ -248,17 +236,13 @@
 
 #pragma mark -------------- 加载更多 --------------
 
--(void)loadNewData{
-    
+-(void)requestHeadData{
+
     NetWork_mt_getHotSearchSix *request = [[NetWork_mt_getHotSearchSix alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     [request startGetWithBlock:^(id result, NSString *msg) {
         /*暂时不考虑缓存问题*/
     } finishBlock:^(GetHotSearchSixResponse *result, NSString *msg, BOOL finished) {
-        NSLog(@"-------");
-        [self.mainTableView.mj_header endRefreshing];
-        [self loadBodyDataList]; //加载cell Data
-
         if(finished){
             [self refreshVideoList:result.obj];
         }
@@ -267,6 +251,54 @@
         }
     }];
 }
+
+-(void)loadNewData{
+    self.currentPageIndex = 0;
+    self.currentPageSize = 5; //默认20，当前页面不适合 20条，5条
+    [self initRequest]; //加载列表数据
+    [self requestHeadData];//加载head热搜数据
+}
+
+-(void)loadMoreData{
+    [self initRequest];
+}
+
+
+
+-(void)initRequest{
+    
+    NetWork_mt_getHotVideoList *request = [[NetWork_mt_getHotVideoList alloc] init];
+    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+    request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
+    request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
+    [request startGetWithBlock:^(id result, NSString *msg) {
+        /*暂时不考虑缓存问题*/
+    } finishBlock:^(GetHotSearchSixResponse *result, NSString *msg, BOOL finished) {
+        [self.mainTableView.mj_header endRefreshing];
+        [self.mainTableView.mj_footer endRefreshing];
+        if(finished){
+            [self loadData:result];
+        }
+        else{
+            [UIWindow showTips:msg];
+        }
+    }];
+}
+
+-(void)loadData:(GetHotSearchSixResponse *)result{
+    if (self.currentPageIndex == 1 ) {
+        [self.mainDataArr removeAllObjects];
+    }
+    [self.mainDataArr addObjectsFromArray:result.obj];
+    [self.mainTableView reloadData];
+    
+    if(self.mainDataArr.count < self.currentPageSize || result.obj.count == 0) {//最后一页数据
+        [self.mainTableView.mj_footer endRefreshingWithNoMoreData];
+    }
+}
+
+
+
 
 
 #pragma mark ---------- 点击搜索按钮 --------
