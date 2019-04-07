@@ -33,10 +33,18 @@
     self.title = @"消息";
 }
 
+-(void)dealloc{
+    /*
+     *移除页面中的观察者
+     */
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setupUI];
+    [self registerForRemoteNotification];
 }
 
 #pragma mark ------ CustomMethod  ------
@@ -124,6 +132,21 @@
         [self pushNewVC:commentViewController animated:YES];
     }
 }
+
+-(void)registerForRemoteNotification{
+    
+    //增加监听，用户登录成功
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(userLoginSuccess:)
+                                                 name:NSNotificationUserLoginSuccess
+                                               object:nil];
+}
+
+- (void)userLoginSuccess:(NSNotification *)notification{
+    
+    [self.mainTableView.mj_header beginRefreshing];//刷新数据
+}
+
 
 #pragma mark - --------- 数据加载代理 ------------
 -(void)loadNewData{

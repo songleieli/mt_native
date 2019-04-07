@@ -62,22 +62,6 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 #pragma -mark ---------- Controller 生命周期 -------------
 
 
--(void)dealloc{
-    
-    NSLog(@"---------------%@ dealloc ",NSStringFromClass([self class]));
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:NSNotificationUserInfoChange
-                                                  object:nil];
-}
-
--(void)registerForRemoteNotification{
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(changeUserInfo:)
-                                                 name:NSNotificationUserInfoChange
-                                               object:nil];
-}
-
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
@@ -97,23 +81,13 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         self.btnLeft.hidden = YES;
         self.btnLeft.backgroundColor = [UIColor redColor];
     }
-    
-    //test
-    [self onNetworkStatusChange:nil];// 模仿抖音Demo中，的网络变化，加载数据
+    [self onLoadUserData];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-}
-
-- (void)viewDidLoad {
-    _tabIndex = 0;
-
-    [self registerForRemoteNotification];
     
-    [super viewDidLoad];
-    [self setUpUI];
 }
 
 -(void)initNavTitle{
@@ -130,6 +104,24 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     self.btnLeft = leftButton;
 }
 
+-(void)dealloc{
+    /*
+     *移除页面中的观察者
+     */
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewDidLoad {
+    _tabIndex = 0;
+
+    [self registerForRemoteNotification];
+    
+    [super viewDidLoad];
+    [self setUpUI];
+    [self registerForRemoteNotification];
+}
+
+#pragma -mark ----------Custom Method----------
 
 -(void)setUpUI{
     
@@ -186,9 +178,37 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     [_collectionView addSubview:_loadMore];
 }
 
+-(void)registerForRemoteNotification{
+    
+    //增加监听，用户登录成功
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(userLoginSuccess:)
+                                                 name:NSNotificationUserLoginSuccess
+                                               object:nil];
+}
+
+- (void)userLoginSuccess:(NSNotification *)notification{
+    
+    [self startUserRequest];
+    [self loadData];
+}
+
+//网络状态发送变化
+-(void)onLoadUserData{
+    
+    if(_user == nil) {
+        [self startUserRequest];
+    }
+    if(self.workAwemes.count == 0 && self.dynamicAwemes.count == 0 && self.favoriteAwemes.count == 0){
+        [self loadData];
+    }
+}
+
+
 #pragma -mark ----------HTTP data request----------
 
--(void)loadUserData {
+
+-(void)startUserRequest {
     
     NetWork_mt_personal_homePage *request = [[NetWork_mt_personal_homePage alloc] init];
     request.noodleId = self.userNoodleId;
@@ -264,19 +284,27 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
             NSLog(@"--------");
             if(finished){
                 
-                [UIView setAnimationsEnabled:NO];
-                [self.collectionView performBatchUpdates:^{
-                    [self.dynamicAwemes addObjectsFromArray:result.obj];
-                    NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
-                    for(NSInteger row = self.dynamicAwemes.count - result.obj.count; row<self.dynamicAwemes.count; row++) {
-                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
-                        [indexPaths addObject:indexPath];
-                    }
-                    [self.collectionView insertItemsAtIndexPaths:indexPaths];
-                    
-                } completion:^(BOOL finished) {
-                    [UIView setAnimationsEnabled:YES];
-                }];
+//                [UIView setAnimationsEnabled:NO];
+//                [self.collectionView performBatchUpdates:^{
+//                    [self.dynamicAwemes addObjectsFromArray:result.obj];
+//                    NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
+//                    for(NSInteger row = self.dynamicAwemes.count - result.obj.count; row<self.dynamicAwemes.count; row++) {
+//                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
+//                        [indexPaths addObject:indexPath];
+//                    }
+//                    [self.collectionView insertItemsAtIndexPaths:indexPaths];
+//
+//                } completion:^(BOOL finished) {
+//                    [UIView setAnimationsEnabled:YES];
+//                }];
+                
+                [self.dynamicAwemes addObjectsFromArray:result.obj];
+                NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
+                for(NSInteger row = self.dynamicAwemes.count - result.obj.count; row<self.dynamicAwemes.count; row++) {
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
+                    [indexPaths addObject:indexPath];
+                }
+                [self.collectionView insertItemsAtIndexPaths:indexPaths];
                 
                 [self.loadMore endLoading];
                 if(self.dynamicAwemes.count < self.currentPageSize || result.obj.count == 0) {
@@ -453,17 +481,6 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//网络状态发送变化
--(void)onNetworkStatusChange:(NSNotification *)notification {
-    
-    if(_user == nil) {
-        [self loadUserData];
-    }
-    if(self.favoriteAwemes.count == 0 && self.workAwemes.count == 0 && self.dynamicAwemes.count == 0) {
-        [self loadData];
-    }
-}
-
 
 //UserActionTap
 
@@ -570,13 +587,13 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     return;
 }
 
-
 - (void)onZanActionTap:(PersonalModel*)user{    //点击赞
     
     NSString *msg = [NSString stringWithFormat:@"\"%@\" 共获得%@个赞",user.nickname,user.likeTotal];
     UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
     [alert show];
 }
+
 - (void)onFollowActionTap:(PersonalModel*)user{//点击关注
     
     if([user.followSum integerValue] <=0){
@@ -609,8 +626,6 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     }
 }
 
-
-
 #pragma -mark ------------OnTabTapDelegate---------
 
 - (void)onTabTapAction:(NSInteger)index {
@@ -638,14 +653,6 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
         [self loadData];
     }];
     
-}
-
-#pragma mark ------------------ 通知 ---------------
-
--(void)changeUserInfo:(id)sender{
-    //[self updateUser];
-    
-    [self loadUserData];
 }
 
 @end

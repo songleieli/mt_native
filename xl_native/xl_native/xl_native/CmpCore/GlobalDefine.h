@@ -272,13 +272,10 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define XLColorBackgroundColor    [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1]   //默认背景颜色
 
 /*
- *我爱我乡，通知定义
+ *面条，通知定义
  */
 
-#define NSNotificationXLVoiceResultPushVC       @"NSNotificationXLVoiceResultPushVC"   //一呼即有，语音识别完成通知
 #define NSNotificationUserLoginSuccess          @"NSNotificationUserLoginSuccess"       //登录成功
-#define NSNotificationPublishState              @"NSNotificationPublishState"
-#define NSNotificationWXPayResult @"NSNotificationWXPayResult"  //微信支付结果
 
 
 /*

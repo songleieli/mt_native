@@ -47,10 +47,18 @@
     self.navBackGround.height = KStatusBarHeight_New; //状态栏的高度
 }
 
+-(void)dealloc{
+    /*
+     *移除页面中的观察者
+     */
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setupUI];
+    [self registerForRemoteNotification];
 }
 
 #pragma mark ------ CustomMethod  ------
@@ -71,6 +79,20 @@
     [self.mainTableView registerClass:FollowsVideoListCell.class forCellReuseIdentifier:[FollowsVideoListCell cellId]];
     
     [self.mainTableView.mj_header beginRefreshing];
+}
+
+-(void)registerForRemoteNotification{
+    
+    //增加监听，用户登录成功
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(userLoginSuccess:)
+                                                 name:NSNotificationUserLoginSuccess
+                                               object:nil];
+}
+
+- (void)userLoginSuccess:(NSNotification *)notification{
+    
+    [self.mainTableView.mj_header beginRefreshing];//刷新数据
 }
 
 //预先计算cell的g高度

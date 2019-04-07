@@ -559,14 +559,17 @@
 //登录成功
 - (void)loginSuccessful{
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationUserLoginSuccess
-                                                            object:nil];
-    });
+
     
     if ([ZJLoginService sharedInstance].completeBlock) {
         [ZJLoginService sharedInstance].completeBlock(YES);
     }
+    /*
+     *发送登录成功通知
+     */
+    [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationUserLoginSuccess
+                                                        object:nil];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 //取消成功
@@ -648,11 +651,9 @@
     [request showWaitMsg:@"正在登陆，请稍后......" handle:self];
     [request startPostWithBlock:^(LoginResponse *result, NSString *msg, BOOL finished) {
         
-        
         if(finished){
             [self deal_loginRespones:result.obj];
         }
-        NSLog(@"----");
     }];
     
     return;
