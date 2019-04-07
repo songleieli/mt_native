@@ -13,7 +13,9 @@
 
 #import "TXUGCPublish.h"
 
-@interface PublishViewController ()<TXVideoPublishListener>
+@interface PublishViewController ()<TXVideoPublishListener>{
+    CLLocationManager *locationmanager;//定位服务
+}
 
 @end
 
@@ -117,7 +119,7 @@
         _btnTopic.origin = [UIView getPoint_x:sizeScale(15) y:self.speakTextView.bottom];
         [_btnTopic setBackgroundColor:MTColorBtnNormal forState:UIControlStateNormal];
         [_btnTopic setBackgroundColor:MTColorBtnHighlighted forState:UIControlStateHighlighted];
-        _btnTopic.titleLabel.font = [UIFont defaultBoldFontWithSize:13];
+        _btnTopic.titleLabel.font = MediumFont;
         [_btnTopic setTitle:@"#话题" forState:UIControlStateNormal];
         _btnTopic.layer.cornerRadius = 2.0f;
         [_btnTopic setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -135,7 +137,7 @@
         _btnAFriend.origin = [UIView getPoint_x:self.btnTopic.right+sizeScale(15) y:self.speakTextView.bottom];
         [_btnAFriend setBackgroundColor:MTColorBtnNormal forState:UIControlStateNormal];
         [_btnAFriend setBackgroundColor:MTColorBtnHighlighted forState:UIControlStateHighlighted];
-        _btnAFriend.titleLabel.font = [UIFont defaultBoldFontWithSize:13];
+        _btnAFriend.titleLabel.font = MediumFont;
         [_btnAFriend setTitle:@"@好友" forState:UIControlStateNormal];
         [_btnAFriend setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _btnAFriend.layer.cornerRadius = 2.0f;
@@ -189,23 +191,39 @@
         imgView.origin = [UIView getPoint_x:15 y:(_btnLocation.height - imgView.height)/2];
         [_btnLocation addSubview:imgView];
         
-        UILabel *titleLalbe = [[UILabel alloc] init];
-        titleLalbe.tag = 99;
-        titleLalbe.font = [UIFont defaultBoldFontWithSize:13];
-        titleLalbe.textColor = ColorWhite;
-        titleLalbe.size = [UIView getSize_width:_btnLocation.width - 20 height:30];
-        titleLalbe.origin = [UIView getPoint_x:imgView.right+15
-                                             y:(_btnLocation.height - titleLalbe.height)/2];
-        titleLalbe.text = @"添加位置";
-        [_btnLocation addSubview:titleLalbe];
-        
         UIImageView *narrowImg= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_m_s_right"]];
         narrowImg.size = [UIView getSize_width:9 height:15];
         narrowImg.origin = [UIView getPoint_x:ScreenWidth - narrowImg.width - 15
                                             y:(_btnLocation.height - narrowImg.height)/2];
         [_btnLocation addSubview:narrowImg];
+        
+        UILabel *titleLalbe = [[UILabel alloc] init];
+        titleLalbe.tag = 99;
+        titleLalbe.font = MediumFont;
+        titleLalbe.textColor = ColorWhite;
+        titleLalbe.size = [UIView getSize_width:_btnLocation.width - imgView.width - narrowImg.width - 20 height:30];
+        titleLalbe.origin = [UIView getPoint_x:imgView.right + 5
+                                             y:(_btnLocation.height - titleLalbe.height)/2];
+        titleLalbe.text = @"添加位置";
+        [_btnLocation addSubview:titleLalbe];
+        
+
     }
     return  _btnLocation;
+}
+
+- (UIScrollView *) scrollerLocation{
+    if (_scrollerLocation == nil){
+        
+        CGRect rect =  [UIView getFrame_x:0 y:self.btnLocation.bottom width:self.btnLocation.width height:sizeScale(40)];
+        _scrollerLocation  = [[UIScrollView alloc] initWithFrame:rect];
+        _scrollerLocation.alwaysBounceVertical = NO;
+        _scrollerLocation.alwaysBounceHorizontal = YES;
+        
+        //test
+//        _scrollerLocation.backgroundColor = [UIColor redColor];
+    }
+    return _scrollerLocation;
 }
 
 - (UIButton *)btnDraft{
@@ -248,8 +266,10 @@
         _btnSave =  [UIButton buttonWithType:UIButtonTypeCustom];
         [_btnSave setBackgroundColor:MTColorBtnRedNormal forState:UIControlStateNormal];
         [_btnSave setBackgroundColor:MTColorBtnRedHighlighted forState:UIControlStateHighlighted];
-        _btnSave.size = [UIView getSize_width:sizeScale(150) height:sizeScale(35)];
-        _btnSave.left = self.scrollView.width/2 + 5;
+        _btnSave.size = [UIView getSize_width:sizeScale(250) height:sizeScale(35)];
+//        _btnSave.left = self.scrollView.width/2 + 5;
+        
+        _btnSave.centerX = self.view.width/2;
         _btnSave.bottom = self.scrollView.height - 50;
         _btnSave.layer.cornerRadius = 2.0f;
         
@@ -258,12 +278,12 @@
         
         UIImageView *imageIcon = [[UIImageView alloc] init];
         imageIcon.size = [UIView getSize_width:sizeScale(12.5) height:sizeScale(12.5)];
-        imageIcon.origin = [UIView getPoint_x:(_btnDraft.width - imageIcon.width)/2 - imageIcon.width-2
-                                            y:(_btnDraft.height - imageIcon.height)/2];
+        imageIcon.origin = [UIView getPoint_x:(_btnSave.width - imageIcon.width)/2 - imageIcon.width-2
+                                            y:(_btnSave.height - imageIcon.height)/2];
         imageIcon.image = [UIImage imageNamed:@"icon_home_all_share_collention"];
         
         UILabel *lableCollectionTitle = [[UILabel alloc] init];
-        lableCollectionTitle.size = [UIView getSize_width:_btnDraft.width/2 height:_btnDraft.height];
+        lableCollectionTitle.size = [UIView getSize_width:_btnSave.width/2 height:_btnSave.height];
         lableCollectionTitle.origin = [UIView getPoint_x:imageIcon.right+5 y:0];
         lableCollectionTitle.textColor = [UIColor whiteColor];
         lableCollectionTitle.textAlignment = NSTextAlignmentLeft;
@@ -275,7 +295,6 @@
     }
     return  _btnSave;
 }
-
 
 
 -(void)initNavTitle{
@@ -310,8 +329,11 @@
     [super viewDidLoad];
     
     [self setupUI];
-    
     self.imageViewCover.image = [UIImage imageWithContentsOfFile:self.videoOutputCoverPath];
+
+    //获取周边的地址
+    [self getLocation];
+
 }
 
 #pragma -mark  initUI---
@@ -333,7 +355,8 @@
     [self.scrollView addSubview:self.btnTopic];
     [self.scrollView addSubview:self.btnAFriend];
     [self.scrollView addSubview:self.btnLocation];
-    [self.scrollView addSubview:self.btnDraft];
+    [self.scrollView addSubview:self.scrollerLocation];
+//    [self.scrollView addSubview:self.btnDraft]; //屏蔽草稿按钮
     [self.scrollView addSubview:self.btnSave];
 }
 
@@ -366,6 +389,116 @@
         [rangeArrays addObject:contentModel];
     }
     return rangeArrays;
+}
+
+-(void)getLocation{
+    //判断定位功能是否打开
+    if ([CLLocationManager locationServicesEnabled] && [GlobalData sharedInstance].hasClickPublicLocationBtn) {
+        locationmanager = [[CLLocationManager alloc]init];
+        locationmanager.delegate = self;
+        [locationmanager requestAlwaysAuthorization];
+        [locationmanager requestWhenInUseAuthorization];
+        
+        //设置寻址精度
+        locationmanager.desiredAccuracy = kCLLocationAccuracyBest;
+        locationmanager.distanceFilter = 5.0;
+        [locationmanager startUpdatingLocation];
+    }
+}
+
+
+#pragma mark   --------- CLLocationManagerDelegate -----------
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    //设置提示提醒用户打开定位服务
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"允许定位提示" message:@"请在设置中打开定位" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"打开定位" style:UIAlertActionStyleDefault handler:nil];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:okAction];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    
+    [manager stopUpdatingLocation];
+    
+    CLLocation *currentLocation = [locations firstObject];
+    
+    self.coordinate = currentLocation.coordinate;
+    //打印当前的经度与纬度
+    NSLog(@"%f,%f",currentLocation.coordinate.latitude,currentLocation.coordinate.longitude);
+    
+    [self loadAroundAdress:currentLocation.coordinate];
+}
+
+-(void)loadAroundAdress:(CLLocationCoordinate2D )coordinate{
+    
+    NSString *kewWord = [GlobalData sharedInstance].searchKeyWord;
+    if(kewWord.trim.length == 0){
+        kewWord = @"地址"; //默认搜索的关键字是地址
+    }
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 1000, 1000);
+    MKLocalSearchRequest *localSearchRequest = [[MKLocalSearchRequest alloc] init] ;
+    localSearchRequest.region = region;
+    localSearchRequest.naturalLanguageQuery = kewWord;//textField.text;//搜索关键词
+    MKLocalSearch *localSearch = [[MKLocalSearch alloc] initWithRequest:localSearchRequest];
+    
+    [localSearch startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
+        
+        NSLog(@"the response's count is:%ld",response.mapItems.count);
+        if (error){
+            NSLog(@"error info：%@",error);
+        }
+        else{
+            
+            CGFloat btnRight = 0.0f;
+             CGFloat btnSpace = 15.0f;
+            [self.mainDataArr removeAllObjects];
+            [self.scrollerLocation removeAllSubviews];
+            for(int i=0;i<response.mapItems.count;i++){
+                
+                MKMapItem *mapItem = [response.mapItems objectAtIndex:i];
+                
+                NSLog(@"name:%@,\nthoroughfare:%@,\nsubThoroughfare:%@,\nlocality:%@,\nsubLocality:%@,\nadministrativeArea:%@,\nsubAdministrativeArea:%@,\ncountry:%@,\ninlandWater:%@,\nocean:%@",mapItem.placemark.name,mapItem.placemark.thoroughfare,mapItem.placemark.subThoroughfare,mapItem.placemark.locality,mapItem.placemark.subLocality,mapItem.placemark.administrativeArea,mapItem.placemark.subAdministrativeArea,mapItem.placemark.country,mapItem.placemark.inlandWater,mapItem.placemark.ocean);
+                
+                LocaltionModel *model = [[LocaltionModel alloc] init];
+                model.name = mapItem.placemark.name;
+                model.adress = [NSString stringWithFormat:@"%@%@%@",mapItem.placemark.locality,mapItem.placemark.subLocality,mapItem.placemark.thoroughfare];
+                model.coordinate = coordinate;
+                model.city = mapItem.placemark.locality;
+                [self.mainDataArr addObject:model];
+                
+                UIButton *btnAdress = [UIButton buttonWithType:UIButtonTypeCustom];
+                btnAdress.tag = i;
+                btnAdress.titleLabel.font = SmallFont;
+                btnAdress.layer.masksToBounds = YES;
+                btnAdress.layer.borderWidth = 0.6;
+                btnAdress.layer.borderColor = MTColorLine.CGColor;
+                btnAdress.layer.cornerRadius = 3;
+                [btnAdress setTitleColor:ColorWhiteAlpha40 forState:UIControlStateNormal];
+                [btnAdress setTitleColor:ColorThemeYellow forState:UIControlStateHighlighted];
+                [btnAdress setTitleColor:ColorThemeYellow forState:UIControlStateSelected];
+                [btnAdress setTitle:model.name forState:UIControlStateNormal];
+                [btnAdress addTarget:self action:@selector(btnAdressClick:) forControlEvents:UIControlEventTouchUpInside];
+
+                
+                CGSize titleSize = [model.name sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:btnAdress.titleLabel.font.fontName size:btnAdress.titleLabel.font.pointSize]}];
+                
+                btnAdress.width = titleSize.width+20;
+                btnAdress.height = sizeScale(25);
+                btnAdress.right = btnRight + btnAdress.width + btnSpace;
+                btnAdress.centerY = self.scrollerLocation.height/2;
+                btnRight = btnAdress.right;
+                
+                [self.scrollerLocation addSubview:btnAdress];
+            }
+            
+            self.scrollerLocation.contentSize = [UIView getSize_width:btnRight height:self.scrollerLocation.height];
+
+        }
+    }];
 }
 
 
@@ -440,8 +573,9 @@
     if(titleLalbe){
         titleLalbe.text = self.localtionModel.adress;
     }
+    
+    [self getLocation]; //如果搜索过，刷新一下关键字
 }
-
 
 
 #pragma mark ----------  textView Delegete-------------
@@ -590,10 +724,37 @@
 
 -(void)btnAddLocation:(UIButton*)btn{
     
+    [GlobalData sharedInstance].hasClickPublicLocationBtn = YES;
+    
     AddLocationViewController *addLocationViewController = [[AddLocationViewController alloc] init];
     addLocationViewController.delegate = self;
     [self presentViewController:addLocationViewController animated:YES completion:nil];
+}
 
+-(void)btnAdressClick:(UIButton*)btn{
+    
+    NSArray *btnArray = [self.scrollerLocation subviews];
+    for(UIButton *btn in btnArray){
+        if([btn isKindOfClass: [UIButton class]]){
+            btn.selected = NO;
+            btn.layer.borderColor = MTColorLine.CGColor;
+            [btn setTitleColor:ColorWhiteAlpha40 forState:UIControlStateNormal];
+
+        }
+    }
+    
+    btn.selected = YES;
+    btn.layer.borderColor = ColorThemeYellow.CGColor;
+
+    LocaltionModel *model = [self.mainDataArr objectAtIndex:btn.tag];
+    if(model){
+        self.localtionModel = model;
+        
+        UILabel *titleLalbe = [self.btnLocation viewWithTag:99];
+        if(titleLalbe){
+            titleLalbe.text = self.localtionModel.adress;
+        }
+    }
 }
 
 

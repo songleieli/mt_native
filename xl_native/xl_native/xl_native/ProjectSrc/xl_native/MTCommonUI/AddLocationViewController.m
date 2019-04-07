@@ -14,9 +14,6 @@
 @interface AddLocationViewController ()<CLLocationManagerDelegate>{
     
     CLLocationManager *locationmanager;//定位服务
-//    NSString *currentCity;//当前城市
-//    NSString *strlatitude;//经度
-//    NSString *strlongitude;//纬度
 }
 
 @property (nonatomic,strong) NSString * keyWord;
@@ -89,7 +86,7 @@
     self.textFieldSearchKey.size = [UIView getSize_width:self.textFieldBgView.width height:36];
     self.textFieldSearchKey.origin = [UIView getPoint_x:0 y:self.textFieldBgView.height - self.textFieldSearchKey.height-5];
     self.textFieldSearchKey.layer.cornerRadius = 4.0f;
-    self.textFieldSearchKey.placeholder = @"# 请输入或选择地址";
+    self.textFieldSearchKey.placeholder = @"请输入或选择地址";
     self.textFieldSearchKey.textColor = [UIColor whiteColor];
     self.textFieldSearchKey.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.textFieldSearchKey.clearsOnBeginEditing = YES;
@@ -99,6 +96,8 @@
     self.textFieldSearchKey.backgroundColor = MTColorBtnNormal;
     [self.textFieldSearchKey setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     [self.textFieldBgView addSubview:self.textFieldSearchKey];
+    
+
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFiledEditChanged:) name:UITextFieldTextDidChangeNotification object:self.textFieldSearchKey];
     
@@ -121,10 +120,13 @@
 -(void)setUpUI{
     
     self.view.backgroundColor = ColorThemeBackground;
-    
     [self.view addSubview:self.mainTableView];
     
+    if([GlobalData sharedInstance].searchKeyWord.trim.length > 0){
+        self.textFieldSearchKey.text = [GlobalData sharedInstance].searchKeyWord.trim;
+    }
     [self.textFieldSearchKey becomeFirstResponder]; //获得焦点
+    
     
     NSInteger tableViewHeight = ScreenHeight - kNavBarHeight_New;
     self.mainTableView.size = [UIView getSize_width:ScreenWidth height:tableViewHeight];
@@ -169,12 +171,11 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-
 #pragma mark 定位成功后则执行此代理方法
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
     
-    [locationmanager stopUpdatingHeading];
-    
+    [locationmanager stopUpdatingLocation];
+
     CLLocation *currentLocation = [locations firstObject];
     
     self.coordinate = currentLocation.coordinate;
@@ -183,8 +184,6 @@
     
     [self loadAroundAdress:currentLocation.coordinate];
 }
-
-
 
 
 -(void)loadAroundAdress:(CLLocationCoordinate2D )coordinate{
@@ -289,8 +288,8 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-
     
+    [textField resignFirstResponder]; //收起键盘
     return YES;
 }
 
@@ -298,8 +297,7 @@
     
     UITextField *textField = (UITextField *)obj.object;
     self.keyWord = textField.text;
-    //[self loadNewData];
-    
+    [GlobalData sharedInstance].searchKeyWord = self.keyWord;
     [self loadAroundAdress:self.coordinate];
 }
 
@@ -330,6 +328,7 @@
 /*
  *暂时保留
  */
+    self.mainTableView.height = ScreenHeight -kNavBarHeight_New;
 }
 
 

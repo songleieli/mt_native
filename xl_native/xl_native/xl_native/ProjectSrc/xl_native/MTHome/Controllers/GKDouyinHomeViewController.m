@@ -112,8 +112,6 @@
     }
 }
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -162,7 +160,6 @@
         [self.playerVC playListCurrPause];
     }
 }
-
 
 #pragma mark - GKViewControllerPushDelegate
 

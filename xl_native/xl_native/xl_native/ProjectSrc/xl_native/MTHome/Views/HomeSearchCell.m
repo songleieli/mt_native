@@ -163,6 +163,7 @@ static NSString* const ViewTableViewCellId = @"HomeSearchCellId";
     
     CGFloat videoHeight = 130;
     CGFloat videoWidth = (CGFloat)videoHeight/1.35;
+    
     self.scrollerBody.contentSize = [UIView getSize_width:(model.videoList.count)*videoWidth height:100];
     [self.scrollerBody removeAllSubviews];
     [model.videoList enumerateObjectsUsingBlock:^(HomeListModel  *obj, NSUInteger idx, BOOL * _Nonnull stop) {

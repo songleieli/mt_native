@@ -95,11 +95,11 @@
 		<true/>
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>“乡邻”需要访问您的媒体库权限以获取音乐，不允许则无法添加音乐</string>
+	<string>“面条”需要访问您的媒体库权限以获取音乐，不允许则无法添加音乐</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>“乡邻”需要您的同意才能使用您的蓝牙</string>
+	<string>“面条”需要您的同意才能使用您的蓝牙</string>
 	<key>NSCameraUsageDescription</key>
-	<string>“乡邻”需要您的同意才能使用您的摄像头</string>
+	<string>“面条”需要您的同意才能使用您的摄像头</string>
 	<key>NSContactsUsageDescription</key>
 	<string></string>
 	<key>NSLocationAlwaysUsageDescription</key>
@@ -107,13 +107,13 @@
 	<key>NSLocationUsageDescription</key>
 	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>我们需要地理位置来定位您身边的小站</string>
+	<string>我们需要地理位置来定位您身边的地址，以便您添加视频是可以选择地址。</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>“乡邻”包需要访问您的麦克风权限，开启后录制的视频才会有声音</string>
+	<string>“面条”包需要访问您的麦克风权限，开启后录制的视频才会有声音</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>“乡邻”需要您的同意才能访问您的相册</string>
+	<string>“面条”需要您的同意才能访问您的相册</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>“乡邻”需要您的同意才能读取媒体资料库</string>
+	<string>“面条”需要您的同意才能读取媒体资料库</string>
 	<key>New item</key>
 	<string></string>
 	<key>UIFileSharingEnabled</key>

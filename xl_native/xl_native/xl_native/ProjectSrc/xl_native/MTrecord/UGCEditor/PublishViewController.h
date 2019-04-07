@@ -7,15 +7,19 @@
 //
 
 #import "BaseViewController.h"
-#import "NetWork_mt_search_getMusicList.h"
 #import "TCBGMProgressView.h"
 #import "AddTopicViewController.h"
 #import "AtFriendViewController.h"
 #import "AddLocationViewController.h"
+
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+
 #import "mt_common_model_atFriend_topic.h"
+#import "NetWork_mt_search_getMusicList.h"
 
 
-@interface PublishViewController : ZJBaseViewController<UITextViewDelegate,TopicClickDelegate,AtFriendClickDelegate,LocationClickDelegate>
+@interface PublishViewController : ZJBaseViewController<UITextViewDelegate,TopicClickDelegate,AtFriendClickDelegate,LocationClickDelegate,CLLocationManagerDelegate>
 
 
 @property (nonatomic,strong) UIScrollView * scrollView;
@@ -27,6 +31,7 @@
 @property (nonatomic,strong) UIButton * btnTopic;
 @property (nonatomic,strong) UIButton * btnAFriend;
 @property (nonatomic,strong) UIView *viewLine;
+@property(nonatomic,strong) UIScrollView * scrollerLocation; //地址滚动条
 
 
 @property (nonatomic,strong) UIButton * btnLocation; //位置View
@@ -46,6 +51,8 @@
 /// 是否改变
 @property (assign, nonatomic) BOOL isChanged;
 
+//用户当前GPS坐标
+@property(assign, nonatomic) CLLocationCoordinate2D coordinate;
 
 @property (copy,nonatomic) NSString *videoPath;
 @property (copy,nonatomic) NSString *videoOutputCoverPath;
@@ -54,8 +61,6 @@
 @property (strong,nonatomic) LocaltionModel  *localtionModel;
 
 @property (nonatomic, strong) TCBGMProgressView *progressView;
-
-
 
 
 @end

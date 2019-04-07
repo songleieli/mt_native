@@ -107,11 +107,6 @@
 #pragma mark - 比较版本号大小
 + (BOOL)moreThanVersion:(NSString *)version;
 
-//#pragma mark - 展示一般的警告
-//+ (void)showHUD:(NSString *)message;
-//+ (void)showHUD:(NSString *)message timeOut:(NSInteger)timeOut;
-//+ (void)hideHUD;
-
 + (UIImage *)imageWithColor:(UIColor *)color;
 + (CGSize)sizeWithText:(NSString *)text font:(UIFont *)font size:(CGSize)size;
 

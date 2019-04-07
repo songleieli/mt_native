@@ -18,7 +18,7 @@
 
 @end
 
-@interface AddLocationViewController : ZJBaseViewController<UIViewControllerTransitioningDelegate,UITextFieldDelegate,SearchResultSubTopicDelegate>
+@interface AddLocationViewController : ZJBaseViewController<UIViewControllerTransitioningDelegate,UITextFieldDelegate>
 
 //title
 @property (nonatomic,strong) UIView *textFieldBgView;

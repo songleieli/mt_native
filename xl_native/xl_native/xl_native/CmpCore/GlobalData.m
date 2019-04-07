@@ -45,11 +45,43 @@
     [prefs synchronize];
 }
 
+- (BOOL)hasClickPublicLocationBtn {
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    return [prefs boolForKey:LJH_ACCOUNT_USER_HASCLICKPUBLICLOCATIONBTN];
+}
+
+- (void)setHasClickPublicLocationBtn:(BOOL)hasLogin {
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setBool:hasLogin forKey:LJH_ACCOUNT_USER_HASCLICKPUBLICLOCATIONBTN];
+    [prefs synchronize];
+}
+
+-(void)setSearchKeyWord:(NSString*)searchKeyWord{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setObject:searchKeyWord forKey:LJH_ACCOUNT_USER_SEARCHLOCATIONKEYWORD];
+    [prefs synchronize];
+}
+
+-(NSString*)getSearchKeyWord{
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSString *latitude = [prefs objectForKey:LJH_ACCOUNT_USER_SEARCHLOCATIONKEYWORD];
+    //        NSString *latitude =@"39.980507";
+    
+    if(latitude){
+        //        latitude = @"39.980507";
+    }
+    
+    return latitude;
+}
+
+
 - (BOOL)isNotFirstUse{
     return   [[NSUserDefaults standardUserDefaults] boolForKey:INFO_IS_NOT_FIRST_USER];
 }
 
 -(void)setIsNotFirstUse:(BOOL)isNotFirstUse{
+    
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     [prefs setBool:isNotFirstUse forKey:INFO_IS_NOT_FIRST_USER];
     [prefs synchronize];

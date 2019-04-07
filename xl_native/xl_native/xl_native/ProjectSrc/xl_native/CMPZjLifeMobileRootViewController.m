@@ -283,16 +283,11 @@
     //test  测试发布视频页面
     
 //    PublishViewController *publishViewController = [[PublishViewController alloc] init];
-//    
+//
 //    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:publishViewController];
 //    [self presentViewController:nav animated:YES completion:nil];
-//    
+//
 //    return ;
-    
-    
-    
-    
-    
     
     if (self.wy != nil) {
         [self.wy dismissPopoverAnimated:YES];
