@@ -377,6 +377,10 @@ alpha:1.0]
 #define IsValidPhoneNum(phoneNum)\
 [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^(13|14|15|17|18)\\d{9}$"] evaluateWithObject:[NSString stringWithFormat:@"%@",phoneNum]]
 
+//判断字符是否为字母
+#define IsValidZimu(phoneNum)\
+[[NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^[A-Za-z]+$"] evaluateWithObject:[NSString stringWithFormat:@"%@",phoneNum]]
+
 //判断是否是汉子姓名
 #define IsChaneseName(phoneNum)\
 [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^[\u4e00-\u9fa5]{1,}$"] evaluateWithObject:[NSString stringWithFormat:@"%@",phoneNum]]

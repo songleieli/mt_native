@@ -68,6 +68,7 @@
         _speakTextView.delegate = self;
         _speakTextView.textColor = ColorWhite;
         _speakTextView.returnKeyType = UIReturnKeyDone;
+//        _speakTextView.autocapitalizationType = UITextAutocapitalizationTypeNone;
         _speakTextView.font = [UIFont systemFontOfSize:16.0];
         [_speakTextView becomeFirstResponder];
     }
@@ -185,7 +186,7 @@
         _btnLocation.size = [UIView getSize_width:ScreenWidth height:sizeScale(40)];
         _btnLocation.top = self.viewLine.bottom;
         [_btnLocation addTarget:self action:@selector(btnAddLocation:) forControlEvents:UIControlEventTouchUpInside];
-
+        
         UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_m_location"]];
         imgView.size = [UIView getScaleSize_width:14 height:14];
         imgView.origin = [UIView getPoint_x:15 y:(_btnLocation.height - imgView.height)/2];
@@ -207,7 +208,7 @@
         titleLalbe.text = @"添加位置";
         [_btnLocation addSubview:titleLalbe];
         
-
+        
     }
     return  _btnLocation;
 }
@@ -221,7 +222,7 @@
         _scrollerLocation.alwaysBounceHorizontal = YES;
         
         //test
-//        _scrollerLocation.backgroundColor = [UIColor redColor];
+        //        _scrollerLocation.backgroundColor = [UIColor redColor];
     }
     return _scrollerLocation;
 }
@@ -267,12 +268,10 @@
         [_btnSave setBackgroundColor:MTColorBtnRedNormal forState:UIControlStateNormal];
         [_btnSave setBackgroundColor:MTColorBtnRedHighlighted forState:UIControlStateHighlighted];
         _btnSave.size = [UIView getSize_width:sizeScale(250) height:sizeScale(35)];
-//        _btnSave.left = self.scrollView.width/2 + 5;
         
         _btnSave.centerX = self.view.width/2;
         _btnSave.bottom = self.scrollView.height - 50;
         _btnSave.layer.cornerRadius = 2.0f;
-        
         _btnSave.layer.masksToBounds = true;//给按钮添加边框效果
         [_btnSave addTarget:self action:@selector(btnSaveClcik) forControlEvents:UIControlEventTouchUpInside];
         
@@ -330,10 +329,10 @@
     
     [self setupUI];
     self.imageViewCover.image = [UIImage imageWithContentsOfFile:self.videoOutputCoverPath];
-
+    
     //获取周边的地址
     [self getLocation];
-
+    
 }
 
 #pragma -mark  initUI---
@@ -356,7 +355,7 @@
     [self.scrollView addSubview:self.btnAFriend];
     [self.scrollView addSubview:self.btnLocation];
     [self.scrollView addSubview:self.scrollerLocation];
-//    [self.scrollView addSubview:self.btnDraft]; //屏蔽草稿按钮
+    //    [self.scrollView addSubview:self.btnDraft]; //屏蔽草稿按钮
     [self.scrollView addSubview:self.btnSave];
 }
 
@@ -369,7 +368,7 @@
         GetFuzzyTopicListModel *topicModel = [self.topicArray objectAtIndex:i];
         
         if(i == self.topicArray.count -1){
-        [topicStr appendString:topicModel.topic];
+            [topicStr appendString:topicModel.topic];
         }
         else{
             [topicStr appendString:[NSString stringWithFormat:@"%@,",topicModel.topic]];
@@ -455,7 +454,7 @@
         else{
             
             CGFloat btnRight = 0.0f;
-             CGFloat btnSpace = 15.0f;
+            CGFloat btnSpace = 15.0f;
             [self.mainDataArr removeAllObjects];
             [self.scrollerLocation removeAllSubviews];
             for(int i=0;i<response.mapItems.count;i++){
@@ -483,7 +482,7 @@
                 [btnAdress setTitleColor:ColorThemeYellow forState:UIControlStateSelected];
                 [btnAdress setTitle:model.name forState:UIControlStateNormal];
                 [btnAdress addTarget:self action:@selector(btnAdressClick:) forControlEvents:UIControlEventTouchUpInside];
-
+                
                 
                 CGSize titleSize = [model.name sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:btnAdress.titleLabel.font.fontName size:btnAdress.titleLabel.font.pointSize]}];
                 
@@ -497,7 +496,7 @@
             }
             
             self.scrollerLocation.contentSize = [UIView getSize_width:btnRight height:self.scrollerLocation.height];
-
+            
         }
     }];
 }
@@ -518,7 +517,7 @@
 #pragma mark ----------  话题,At好友, 选择地址Delegete-------------
 
 -(void)TopicClick:(GetFuzzyTopicListModel*)model{
-
+    
     NSString *topicString = [NSString stringWithFormat:@"%@ ",model.topic];
     [self.speakTextView insertText:topicString];
     
@@ -531,7 +530,7 @@
     
     self.speakTextView.attributedText = tmpAString;
     [self.topicArray addObject:model];
-
+    
     
     if (self.speakTextView.text.length == 0) {
         _placeHoldelLebel.hidden = NO;
@@ -556,7 +555,7 @@
     
     self.speakTextView.attributedText = tmpAString;
     [self.atArray addObject:model];
-
+    
     
     if (self.speakTextView.text.length == 0) {
         _placeHoldelLebel.hidden = NO;
@@ -594,11 +593,10 @@
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     
-        if ([text isEqualToString:@"\n"]) { //收起键盘
-            [textView resignFirstResponder];
-            return NO;
-        }
-    
+    if ([text isEqualToString:@"\n"]) { //收起键盘
+        [textView resignFirstResponder];
+        return NO;
+    }
     if ([text isEqualToString:@""]) { // 删除
         
         //at Friends
@@ -643,6 +641,20 @@
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
+    
+    /*
+    //参考：https://www.cnblogs.com/supercheng/archive/2012/11/26/2789677.html
+    textView.markedTextRange == nil判断是否有候选字符，如果不为nil，代表有候选字符，不纳入判断范围
+     */
+    if(textView.markedTextRange == nil){
+        NSLog(@"没有")
+    }
+    else{
+        NSLog(@"有")
+        _isChanged = NO;
+        return;
+    }
+    
     //@功能
     if (_isChanged) {
         NSMutableAttributedString *tmpAStrings = [[NSMutableAttributedString alloc] initWithAttributedString:textView.attributedText];
@@ -663,19 +675,14 @@
         atAndTopicModel.atFriendModel = model;
         atAndTopicModel.rangeStr = NSStringFromRange(model.atRange);
         [rangeArrays addObject:atAndTopicModel];
-        
-        //[rangeArrays addObject:NSStringFromRange(model.atRange)];
     }
     for(GetFuzzyTopicListModel *model in self.topicArray){
-        //[rangeArrays addObject:NSStringFromRange(model.topicRange)];
-        
         AtAndTopicModel *atAndTopicModel = [[AtAndTopicModel alloc] init];
         atAndTopicModel.publishType = PublishTypeTopic;
         atAndTopicModel.topicModel = model;
         atAndTopicModel.rangeStr = NSStringFromRange(model.topicRange);
         [rangeArrays addObject:atAndTopicModel];
     }
-    
     return rangeArrays;
 }
 
@@ -694,8 +701,6 @@
     [request startGetWithBlock:^(GetUploadSignatureResponse *result, NSString *msg, BOOL finished) {
         
         if(finished){
-            
-            
             TXPublishParam * param = [[TXPublishParam alloc] init];
             param.signature = result.obj;                                // 需要填写第四步中计算的上传签名
             // 录制生成的视频文件路径 TXVideoRecordListener 的 onRecordComplete 回调中可以获取
@@ -710,12 +715,11 @@
         else{
             [self showFaliureHUD:@"获取签名失败"];
         }
-        
     }];
 }
 
 -(void)btnAddTopic:(UIButton*)btn{
-
+    
     AddTopicViewController *addTopicViewController = [[AddTopicViewController alloc] init];
     addTopicViewController.delegate = self;
     [self presentViewController:addTopicViewController animated:YES completion:nil];
@@ -733,7 +737,7 @@
     
     [GlobalData sharedInstance].hasClickPublicLocationBtn = YES;
     [self loadAroundAdress:self.coordinate];
-
+    
     AddLocationViewController *addLocationViewController = [[AddLocationViewController alloc] init];
     addLocationViewController.delegate = self;
     [self presentViewController:addLocationViewController animated:YES completion:nil];
@@ -752,7 +756,7 @@
     
     btn.selected = YES;
     btn.layer.borderColor = ColorThemeYellow.CGColor;
-
+    
     LocaltionModel *model = [self.mainDataArr objectAtIndex:btn.tag];
     if(model){
         self.localtionModel = model;
@@ -820,7 +824,7 @@
         model.latitude = [NSString stringWithFormat:@"%f",self.localtionModel.coordinate.latitude];
         model.longitude = [NSString stringWithFormat:@"%f",self.localtionModel.coordinate.longitude];
     }
-
+    
     NetWork_mt_saveVideo *request = [[NetWork_mt_saveVideo alloc] init];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     request.content = [model generateJsonStringForProperties];
