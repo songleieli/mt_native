@@ -60,7 +60,7 @@ static VideoGenerateFunc *sharedInstance;
     
     NSString *videoOutputPath = [[WebCacheHelpler sharedWebCache].diskCachePath stringByAppendingPathComponent:@"outputCut_temp.mp4"];
     //[self.ugcEdit generateVideo:VIDEO_COMPRESSED_720P videoOutputPath:videoOutputPath];
-    [self.ugcEdit generateVideo:VIDEO_COMPRESSED_720P videoOutputPath:videoOutputPath];
+    [self.ugcEdit generateVideo:[GlobalData sharedInstance].videoQuality videoOutputPath:videoOutputPath];
     
 }
 

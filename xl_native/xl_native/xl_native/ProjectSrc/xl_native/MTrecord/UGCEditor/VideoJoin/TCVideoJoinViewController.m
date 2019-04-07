@@ -253,7 +253,7 @@ static NSString *indetifer = @"TCVideoJoinCell";
         [videoAssetList addObject:model.videoAsset];
     }
     [_videoJoiner setVideoAssetList:videoAssetList];
-    [_videoJoiner joinVideo:VIDEO_COMPRESSED_720P videoOutputPath:_videoOutputPath];
+    [_videoJoiner joinVideo:[GlobalData sharedInstance].videoQuality videoOutputPath:_videoOutputPath];
 }
 
 -(void)onCancelBtnClicked:(UIButton *)button

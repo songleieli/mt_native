@@ -914,7 +914,7 @@ typedef NS_ENUM(NSInteger,TCLVFilterType) {
     _generateCannelBtn.hidden = NO;
     
     [_ugcEdit setCutFromTime:0 toTime:_duration];
-    [_ugcEdit generateVideo:VIDEO_COMPRESSED_720P videoOutputPath:_videoOutputPath];
+    [_ugcEdit generateVideo:[GlobalData sharedInstance].videoQuality videoOutputPath:_videoOutputPath];
 }
 
 

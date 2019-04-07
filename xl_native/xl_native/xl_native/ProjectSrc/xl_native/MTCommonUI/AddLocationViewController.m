@@ -212,7 +212,7 @@
         self.keyWord = [self getRandomAdressType];
     }
     
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 1000, 1000);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 50, 50);
     MKLocalSearchRequest *localSearchRequest = [[MKLocalSearchRequest alloc] init] ;
     localSearchRequest.region = region;
     localSearchRequest.naturalLanguageQuery = self.keyWord;//textField.text;//搜索关键词

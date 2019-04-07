@@ -1231,7 +1231,7 @@ typedef NS_ENUM(NSInteger,CaptureMode)
                 && [[NSFileManager defaultManager] fileExistsAtPath:_videoPath]) {
                 if (0 == [_videoJoiner setVideoPathList:@[_recordVideoPath,_videoPath]]) {
                     [_videoJoiner setSplitScreenList:@[[NSValue valueWithCGRect:recordScreen],[NSValue valueWithCGRect:playScreen]] canvasWidth:720 * 2 canvasHeight:1280];
-                    [_videoJoiner splitJoinVideo:VIDEO_COMPRESSED_720P videoOutputPath:_joinVideoPath];
+                    [_videoJoiner splitJoinVideo:[GlobalData sharedInstance].videoQuality videoOutputPath:_joinVideoPath];
                     _hub = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
                     _hub.mode = MBProgressHUDModeText;
                     _hub.label.text = NSLocalizedString(@"TCVideoEditPrevView.VideoSynthesizing", nil);

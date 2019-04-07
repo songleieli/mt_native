@@ -358,11 +358,11 @@ typedef  NS_ENUM(NSInteger,VideoType)
             _generationView.hidden = NO;
             [_ugcEdit setCutFromTime:_leftTime toTime:_rightTime];
             if (largerThan1080p || _renderRotation % 360 != 0) {
-                [_ugcEdit generateVideo:VIDEO_COMPRESSED_720P videoOutputPath:_videoOutputPath];
+                [_ugcEdit generateVideo:[GlobalData sharedInstance].videoQuality videoOutputPath:_videoOutputPath];
             } else {
                 //使用快速剪切，速度快
                 _hasQuickGenerate = YES;
-                [_ugcEdit quickGenerateVideo:VIDEO_COMPRESSED_720P videoOutputPath:_videoOutputPath];
+                [_ugcEdit quickGenerateVideo:[GlobalData sharedInstance].videoQuality videoOutputPath:_videoOutputPath];
             }
         }
     }else{
@@ -372,7 +372,7 @@ typedef  NS_ENUM(NSInteger,VideoType)
         _hasNomalGenerate = YES;
         [_ugcEdit setVideoBitrate:10000];
         [_ugcEdit setCutFromTime:_leftTime toTime:_rightTime];
-        [_ugcEdit quickGenerateVideo:VIDEO_COMPRESSED_720P videoOutputPath:_videoOutputPath];
+        [_ugcEdit quickGenerateVideo:[GlobalData sharedInstance].videoQuality videoOutputPath:_videoOutputPath];
     }
 }
 
@@ -459,7 +459,7 @@ typedef  NS_ENUM(NSInteger,VideoType)
             [_ugcEdit cancelGenerate];
             [_ugcEdit setVideoBitrate:10000];
             [_ugcEdit setCutFromTime:_leftTime toTime:_rightTime];
-            [_ugcEdit generateVideo:VIDEO_COMPRESSED_720P videoOutputPath:_videoOutputPath];
+            [_ugcEdit generateVideo:[GlobalData sharedInstance].videoQuality videoOutputPath:_videoOutputPath];
             _hasNomalGenerate = YES;
         }else{
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"TCVideoCutView.HintVideoGeneratingFailed", nil)

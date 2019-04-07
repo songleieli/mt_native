@@ -50,6 +50,11 @@
     return [prefs boolForKey:LJH_ACCOUNT_USER_HASCLICKPUBLICLOCATIONBTN];
 }
 
+-(TXVideoCompressed)getVideoQuality{
+    
+    return VIDEO_COMPRESSED_720P;
+}
+
 - (void)setHasClickPublicLocationBtn:(BOOL)hasLogin {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     [prefs setBool:hasLogin forKey:LJH_ACCOUNT_USER_HASCLICKPUBLICLOCATIONBTN];

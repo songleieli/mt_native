@@ -797,8 +797,20 @@
         model.musicUrl = self.musicModel.playUrl;
         model.coverUrl = self.musicModel.coverUrl;
     }
-    //    model.addr = @"北京市朝阳区北苑路180号";
-    model.size = @"720p";
+    
+    if([GlobalData sharedInstance].videoQuality == VIDEO_COMPRESSED_720P){
+        model.size = @"720p";
+    }
+    if([GlobalData sharedInstance].videoQuality == VIDEO_COMPRESSED_540P){
+        model.size = @"540p";
+    }
+    if([GlobalData sharedInstance].videoQuality == VIDEO_COMPRESSED_480P){
+        model.size = @"480p";
+    }
+    if([GlobalData sharedInstance].videoQuality == VIDEO_COMPRESSED_360P){
+        model.size = @"360p";
+    }
+    
     model.title = strContent;
     model.topic = [self getTopStr];
     model.aFriends = [self getAtFriendArray];
