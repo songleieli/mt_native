@@ -280,8 +280,8 @@
 
 -(void)clickRow:(NSInteger)row{
     
-    //test  测试发布视频页面
-    
+//    //test  测试发布视频页面
+//    
 //    PublishViewController *publishViewController = [[PublishViewController alloc] init];
 //
 //    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:publishViewController];

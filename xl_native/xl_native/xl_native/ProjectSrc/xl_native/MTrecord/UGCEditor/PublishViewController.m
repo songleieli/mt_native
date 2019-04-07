@@ -406,6 +406,13 @@
     }
 }
 
+-(NSString*)getRandomAdressType{
+    
+    NSArray *array = @[@"车站",@"商场",@"酒店",@"景点",@"银行"];
+    int x = arc4random() % array.count;
+    return [array objectAtIndex:x];
+}
+
 
 #pragma mark   --------- CLLocationManagerDelegate -----------
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
@@ -434,17 +441,11 @@
 
 -(void)loadAroundAdress:(CLLocationCoordinate2D )coordinate{
     
-    NSString *kewWord = [GlobalData sharedInstance].searchKeyWord;
-    if(kewWord.trim.length == 0){
-        kewWord = @"地址"; //默认搜索的关键字是地址
-    }
-    
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 1000, 1000);
     MKLocalSearchRequest *localSearchRequest = [[MKLocalSearchRequest alloc] init] ;
     localSearchRequest.region = region;
-    localSearchRequest.naturalLanguageQuery = kewWord;//textField.text;//搜索关键词
+    localSearchRequest.naturalLanguageQuery = [self getRandomAdressType];//textField.text;//搜索关键词
     MKLocalSearch *localSearch = [[MKLocalSearch alloc] initWithRequest:localSearchRequest];
-    
     [localSearch startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
         
         NSLog(@"the response's count is:%ld",response.mapItems.count);
@@ -565,16 +566,22 @@
     }
 }
 
--(void)LocalCellClick:(LocaltionModel*)model{
+-(void)localCellClick:(LocaltionModel*)model{
     NSLog(@"-------");
     self.localtionModel = model;
     
     UILabel *titleLalbe = [self.btnLocation viewWithTag:99];
     if(titleLalbe){
-        titleLalbe.text = self.localtionModel.adress;
+        titleLalbe.text = self.localtionModel.name;
     }
-    
-    [self getLocation]; //如果搜索过，刷新一下关键字
+}
+
+-(void)localDeleteClick{
+    self.localtionModel = nil;
+    UILabel *titleLalbe = [self.btnLocation viewWithTag:99];
+    if(titleLalbe){
+        titleLalbe.text = @"添加位置";
+    }
 }
 
 
@@ -725,7 +732,8 @@
 -(void)btnAddLocation:(UIButton*)btn{
     
     [GlobalData sharedInstance].hasClickPublicLocationBtn = YES;
-    
+    [self loadAroundAdress:self.coordinate];
+
     AddLocationViewController *addLocationViewController = [[AddLocationViewController alloc] init];
     addLocationViewController.delegate = self;
     [self presentViewController:addLocationViewController animated:YES completion:nil];
@@ -739,7 +747,6 @@
             btn.selected = NO;
             btn.layer.borderColor = MTColorLine.CGColor;
             [btn setTitleColor:ColorWhiteAlpha40 forState:UIControlStateNormal];
-
         }
     }
     
@@ -752,7 +759,7 @@
         
         UILabel *titleLalbe = [self.btnLocation viewWithTag:99];
         if(titleLalbe){
-            titleLalbe.text = self.localtionModel.adress;
+            titleLalbe.text = self.localtionModel.name;
         }
     }
 }
@@ -796,7 +803,7 @@
     model.topic = [self getTopStr];
     model.aFriends = [self getAtFriendArray];
     if(self.localtionModel){
-        model.addr = self.localtionModel.adress;
+        model.addr = self.localtionModel.name;
         model.city = self.localtionModel.city;
         model.latitude = [NSString stringWithFormat:@"%f",self.localtionModel.coordinate.latitude];
         model.longitude = [NSString stringWithFormat:@"%f",self.localtionModel.coordinate.longitude];

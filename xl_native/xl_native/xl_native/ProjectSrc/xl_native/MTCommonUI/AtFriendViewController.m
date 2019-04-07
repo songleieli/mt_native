@@ -18,12 +18,6 @@
 
 @implementation AtFriendViewController
 
-
-
-
-
-
-
 -(void)dealloc{
     
 }

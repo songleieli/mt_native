@@ -22,7 +22,7 @@
 
 @end
 
-#define AddLocarionCellHeight 80.0f
+#define AddLocarionCellHeight 60.0f
 #define AddLocarionCellSpace 6.0f
 
 

@@ -25,6 +25,24 @@
 
 @implementation AddLocationViewController
 
+- (UIButton *) headButton{
+    
+    if (_headButton == nil){
+        
+        _headButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _headButton.size = [UIView getSize_width:ScreenWidth height:50.0f];
+        _headButton.origin = [UIView getPoint_x:0 y:0];
+        _headButton.titleLabel.font = BigFont;
+        [_headButton setTitle:@"    不显示我的位置" forState:UIControlStateNormal];
+        [_headButton  setTitleColor:ColorWhiteAlpha80 forState:UIControlStateNormal];
+        [_headButton  setTitleColor:ColorWhite forState:UIControlStateHighlighted];
+        _headButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [_headButton addTarget:self action:@selector(deleteLocation:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _headButton;
+}
+
 
 
 -(void)dealloc{
@@ -56,8 +74,6 @@
     self.isNavBackGroundHiden  = NO;
     self.btnLeft.hidden = YES;
     
-    
-    
     //取消按钮
     self.cancleButton = [[UIButton alloc]init];
     self.cancleButton.size = [UIView getSize_width:35 height:36];
@@ -86,7 +102,7 @@
     self.textFieldSearchKey.size = [UIView getSize_width:self.textFieldBgView.width height:36];
     self.textFieldSearchKey.origin = [UIView getPoint_x:0 y:self.textFieldBgView.height - self.textFieldSearchKey.height-5];
     self.textFieldSearchKey.layer.cornerRadius = 4.0f;
-    self.textFieldSearchKey.placeholder = @"请输入或选择地址";
+    self.textFieldSearchKey.placeholder = @"车站,学校,餐馆,景点,医院";
     self.textFieldSearchKey.textColor = [UIColor whiteColor];
     self.textFieldSearchKey.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.textFieldSearchKey.clearsOnBeginEditing = YES;
@@ -97,7 +113,6 @@
     [self.textFieldSearchKey setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     [self.textFieldBgView addSubview:self.textFieldSearchKey];
     
-
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFiledEditChanged:) name:UITextFieldTextDidChangeNotification object:self.textFieldSearchKey];
     
@@ -122,11 +137,7 @@
     self.view.backgroundColor = ColorThemeBackground;
     [self.view addSubview:self.mainTableView];
     
-    if([GlobalData sharedInstance].searchKeyWord.trim.length > 0){
-        self.textFieldSearchKey.text = [GlobalData sharedInstance].searchKeyWord.trim;
-    }
     [self.textFieldSearchKey becomeFirstResponder]; //获得焦点
-    
     
     NSInteger tableViewHeight = ScreenHeight - kNavBarHeight_New;
     self.mainTableView.size = [UIView getSize_width:ScreenWidth height:tableViewHeight];
@@ -136,7 +147,9 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.backgroundColor = [UIColor clearColor]; //RGBFromColor(0xecedf1);
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.mainTableView.tableHeaderView = self.headButton;
     [self.mainTableView.mj_header beginRefreshing];
+    self.mainTableView.mj_footer.hidden = YES;
     [self.mainTableView registerClass:AddLocarionCell.class forCellReuseIdentifier:[AddLocarionCell cellId]];
 }
 
@@ -156,6 +169,13 @@
         locationmanager.distanceFilter = 5.0;
         [locationmanager startUpdatingLocation];
     }
+}
+
+-(NSString*)getRandomAdressType{
+    
+    NSArray *array = @[@"车站",@"商场",@"酒店",@"景点",@"银行"];
+    int x = arc4random() % array.count;
+    return [array objectAtIndex:x];
 }
 
 
@@ -189,7 +209,7 @@
 -(void)loadAroundAdress:(CLLocationCoordinate2D )coordinate{
     
     if(self.keyWord.length == 0){
-        self.keyWord = @"地址";
+        self.keyWord = [self getRandomAdressType];
     }
     
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 1000, 1000);
@@ -206,17 +226,31 @@
             NSLog(@"error info：%@",error);
         }
         else{
+            
+            NSString *cityName = @"";
             for (MKMapItem *mapItem in response.mapItems){
                 
                 NSLog(@"name:%@,\nthoroughfare:%@,\nsubThoroughfare:%@,\nlocality:%@,\nsubLocality:%@,\nadministrativeArea:%@,\nsubAdministrativeArea:%@,\ncountry:%@,\ninlandWater:%@,\nocean:%@",mapItem.placemark.name,mapItem.placemark.thoroughfare,mapItem.placemark.subThoroughfare,mapItem.placemark.locality,mapItem.placemark.subLocality,mapItem.placemark.administrativeArea,mapItem.placemark.subAdministrativeArea,mapItem.placemark.country,mapItem.placemark.inlandWater,mapItem.placemark.ocean);
                 
                 LocaltionModel *model = [[LocaltionModel alloc] init];
                 model.name = mapItem.placemark.name;
-                model.adress = [NSString stringWithFormat:@"%@%@%@",mapItem.placemark.locality,mapItem.placemark.subLocality,mapItem.placemark.thoroughfare];
+                model.adress = [NSString stringWithFormat:@"%@%@%@",mapItem.placemark.locality,mapItem.placemark.subLocality,mapItem.placemark.name];
                 model.coordinate = coordinate;
                 model.city = mapItem.placemark.locality;
+                cityName = mapItem.placemark.locality;
                 [self.mainDataArr addObject:model];
             }
+            
+            if(cityName.trim.length > 0){
+                LocaltionModel *model = [[LocaltionModel alloc] init];
+                model.name = cityName;
+                model.adress = @"";
+                model.coordinate = coordinate;
+                model.city = cityName;
+                [self.mainDataArr insertObject:model atIndex:0];
+                //[self.mainDataArr addObject:model];
+            }
+            
         }
         
         [self.mainTableView reloadData];
@@ -226,11 +260,21 @@
     }];
 }
 
-
 -(void)backBtnClick:(UIButton*)btn{
     if(self.backClickBlock){
         self.backClickBlock();
     }
+}
+
+-(void)deleteLocation:(UIButton*)btn{
+    
+    if ([self.delegate respondsToSelector:@selector(localDeleteClick)]) {
+        [self.delegate localDeleteClick];
+    } else {
+        NSLog(@"代理没响应，快开看看吧");
+    }
+    [self btnCancelClick];
+
 }
 
 #pragma mark -------------- 加载更多 --------------
@@ -240,9 +284,6 @@
     
     [self getLocation];
 }
--(void)loadMoreData{
-}
-
 
 #pragma mark - 取消按钮点击事件
 
@@ -305,8 +346,8 @@
 
 - (void)btnClicked:(id)sender cell:(AddLocarionCell *)cell{
     
-    if ([self.delegate respondsToSelector:@selector(LocalCellClick:)]) {
-        [self.delegate LocalCellClick:cell.listModel];
+    if ([self.delegate respondsToSelector:@selector(localCellClick:)]) {
+        [self.delegate localCellClick:cell.listModel];
     } else {
         NSLog(@"代理没响应，快开看看吧");
     }

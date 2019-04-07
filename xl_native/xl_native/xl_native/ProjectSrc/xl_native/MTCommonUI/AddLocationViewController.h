@@ -14,13 +14,16 @@
 
 @protocol LocationClickDelegate <NSObject>
 
--(void)LocalCellClick:(LocaltionModel*)model;
+-(void)localCellClick:(LocaltionModel*)model;
+
+-(void)localDeleteClick;
 
 @end
 
 @interface AddLocationViewController : ZJBaseViewController<UIViewControllerTransitioningDelegate,UITextFieldDelegate>
 
 //title
+@property (nonatomic,strong) UIButton *headButton;
 @property (nonatomic,strong) UIView *textFieldBgView;
 @property (nonatomic,strong) UIButton *cancleButton;
 @property (nonatomic,strong) UITextField * textFieldSearchKey;

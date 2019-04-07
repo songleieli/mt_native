@@ -67,6 +67,10 @@ static NSString* const ViewTableViewCellId = @"AddLocarionCellId";
     
     self.listModel = listModel;
     
+    if(listModel.adress.trim.length == 0){
+        self.labelTitle.bottom = self.viewBg.height/2;
+    }
+    
     if(withKeyWord.length > 0){
         NSString *content = listModel.name;
         [GlobalFunc setContentLabelColor:content
@@ -74,7 +78,7 @@ static NSString* const ViewTableViewCellId = @"AddLocarionCellId";
                                 subColor:[UIColor yellowColor]
                             contentLabel:self.labelTitle];
         
-        NSString *signature = listModel.adress.length == 0?@"暂时还没有签名":listModel.adress;
+        NSString *signature = listModel.adress;
         [GlobalFunc setContentLabelColor:signature
                                   subStr:withKeyWord
                                 subColor:[UIColor yellowColor]
@@ -82,7 +86,6 @@ static NSString* const ViewTableViewCellId = @"AddLocarionCellId";
     }
     else{
         self.labelTitle.text = listModel.name;
-        
         self.labelSign.text = listModel.adress;
     }
 }
