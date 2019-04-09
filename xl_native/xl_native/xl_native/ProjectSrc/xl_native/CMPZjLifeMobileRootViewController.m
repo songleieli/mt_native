@@ -282,12 +282,12 @@
     
 //    //test  测试发布视频页面
 //    
-    PublishViewController *publishViewController = [[PublishViewController alloc] init];
-
-    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:publishViewController];
-    [self presentViewController:nav animated:YES completion:nil];
-
-    return ;
+//    PublishViewController *publishViewController = [[PublishViewController alloc] init];
+//
+//    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:publishViewController];
+//    [self presentViewController:nav animated:YES completion:nil];
+//
+//    return ;
     
     if (self.wy != nil) {
         [self.wy dismissPopoverAnimated:YES];
@@ -407,10 +407,8 @@
     }];
 }
 
-- (void)qb_imagePickerControllerDidCancel:(QBImagePickerController *)imagePickerController
-{
+- (void)qb_imagePickerControllerDidCancel:(QBImagePickerController *)imagePickerController{
     NSLog(@"Canceled.");
-    
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 

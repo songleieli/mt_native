@@ -109,6 +109,20 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
      *移除页面中的观察者
      */
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    if(self.requestMyVideo){
+        [self.requestMyVideo stop];
+        self.requestMyVideo = nil;
+    }
+    if(self.requestDynamic){
+        [self.requestDynamic stop];
+        self.requestDynamic = nil;
+    }
+    if(self.requestLike){
+        [self.requestLike stop];
+        self.requestLike = nil;
+    }
+    
 }
 
 - (void)viewDidLoad {
@@ -232,14 +246,16 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 
 - (void)loadData{
     
+    __weak __typeof(self)weakSelf = self;
+    
     if(_tabIndex == 0){
         
-        NetWork_mt_getMyVideos *request = [[NetWork_mt_getMyVideos alloc] init];
-        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-        request.noodleId = self.userNoodleId;
-        request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
-        request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
-        [request startGetWithBlock:^(id result, NSString *msg) {
+        weakSelf.requestMyVideo = [[NetWork_mt_getMyVideos alloc] init];
+        weakSelf.requestMyVideo.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        weakSelf.requestMyVideo.noodleId = weakSelf.userNoodleId;
+        weakSelf.requestMyVideo.pageNo = [NSString stringWithFormat:@"%d",weakSelf.currentPageIndex=weakSelf.currentPageIndex+1];
+        weakSelf.requestMyVideo.pageSize = [NSString stringWithFormat:@"%d",weakSelf.currentPageSize];
+        [weakSelf.requestMyVideo startGetWithBlock:^(id result, NSString *msg) {
             /*暂不考虑缓存*/
         } finishBlock:^(GetLikeVideoListResponse *result, NSString *msg, BOOL finished) {
             
@@ -247,21 +263,29 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
             if(finished){
                 
                 [UIView setAnimationsEnabled:NO];
-                [self.collectionView performBatchUpdates:^{
-                    [self.workAwemes addObjectsFromArray:result.obj];
+                [weakSelf.collectionView performBatchUpdates:^{
+                    [weakSelf.workAwemes addObjectsFromArray:result.obj];
                     NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
-                    for(NSInteger row = self.workAwemes.count - result.obj.count; row<self.workAwemes.count; row++) {
+                    for(NSInteger row = weakSelf.workAwemes.count - result.obj.count; row<weakSelf.workAwemes.count; row++) {
                         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
                         [indexPaths addObject:indexPath];
                     }
-                    [self.collectionView insertItemsAtIndexPaths:indexPaths];
+                    if (indexPaths.count == 0 || [weakSelf.collectionView numberOfItemsInSection:1] == weakSelf.workAwemes.count) {
+                        //                        [self.collectionView reloadData];
+                    }
+                    else{
+                        if(indexPaths.count > 0){
+                            [weakSelf.collectionView insertItemsAtIndexPaths:indexPaths];
+                        }
+                    }
+                    
                 } completion:^(BOOL finished) {
                     [UIView setAnimationsEnabled:YES];
                 }];
                 
-                [self.loadMore endLoading];
-                if(self.workAwemes.count < self.currentPageSize || result.obj.count == 0) {
-                    [self.loadMore loadingAll];
+                [weakSelf.loadMore endLoading];
+                if(weakSelf.workAwemes.count < weakSelf.currentPageSize || result.obj.count == 0) {
+                    [weakSelf.loadMore loadingAll];
                 }
             }
             else{
@@ -272,43 +296,43 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     }
     else if(_tabIndex == 1){
         
-        NetWork_mt_getDynamics *request = [[NetWork_mt_getDynamics alloc] init];
-        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-        request.noodleId = self.userNoodleId;
-        request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
-        request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
-        [request startGetWithBlock:^(id result, NSString *msg) {
+        
+        weakSelf.requestDynamic = [[NetWork_mt_getDynamics alloc] init];
+        weakSelf.requestDynamic.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        weakSelf.requestDynamic.noodleId = weakSelf.userNoodleId;
+        weakSelf.requestDynamic.pageNo = [NSString stringWithFormat:@"%d",weakSelf.currentPageIndex = weakSelf.currentPageIndex+1];
+        weakSelf.requestDynamic.pageSize = [NSString stringWithFormat:@"%d",weakSelf.currentPageSize];
+        [weakSelf.requestDynamic startGetWithBlock:^(id result, NSString *msg) {
             /*暂不考虑缓存*/
         } finishBlock:^(GetLikeVideoListResponse *result, NSString *msg, BOOL finished) {
             
             NSLog(@"--------");
             if(finished){
                 
-//                [UIView setAnimationsEnabled:NO];
-//                [self.collectionView performBatchUpdates:^{
-//                    [self.dynamicAwemes addObjectsFromArray:result.obj];
-//                    NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
-//                    for(NSInteger row = self.dynamicAwemes.count - result.obj.count; row<self.dynamicAwemes.count; row++) {
-//                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
-//                        [indexPaths addObject:indexPath];
-//                    }
-//                    [self.collectionView insertItemsAtIndexPaths:indexPaths];
-//
-//                } completion:^(BOOL finished) {
-//                    [UIView setAnimationsEnabled:YES];
-//                }];
+                [UIView setAnimationsEnabled:NO];
+                [weakSelf.collectionView performBatchUpdates:^{
+                    [weakSelf.dynamicAwemes addObjectsFromArray:result.obj];
+                    NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
+                    for(NSInteger row = weakSelf.dynamicAwemes.count - result.obj.count; row<weakSelf.dynamicAwemes.count; row++) {
+                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
+                        [indexPaths addObject:indexPath];
+                    }
+                    if (indexPaths.count == 0 || [weakSelf.collectionView numberOfItemsInSection:1] == weakSelf.dynamicAwemes.count) {
+//                        [self.collectionView reloadData];
+                    }
+                    else{
+                        if(indexPaths.count > 0){
+                            [weakSelf.collectionView insertItemsAtIndexPaths:indexPaths];
+                        }
+                    }
+
+                } completion:^(BOOL finished) {
+                    [UIView setAnimationsEnabled:YES];
+                }];
                 
-                [self.dynamicAwemes addObjectsFromArray:result.obj];
-                NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
-                for(NSInteger row = self.dynamicAwemes.count - result.obj.count; row<self.dynamicAwemes.count; row++) {
-                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
-                    [indexPaths addObject:indexPath];
-                }
-                [self.collectionView insertItemsAtIndexPaths:indexPaths];
-                
-                [self.loadMore endLoading];
-                if(self.dynamicAwemes.count < self.currentPageSize || result.obj.count == 0) {
-                    [self.loadMore loadingAll];
+                [weakSelf.loadMore endLoading];
+                if(weakSelf.dynamicAwemes.count < weakSelf.currentPageSize || result.obj.count == 0) {
+                    [weakSelf.loadMore loadingAll];
                 }
             }
             else{
@@ -319,34 +343,41 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     }
     else if(_tabIndex == 2){
         
-        
-        NetWork_mt_getLikeVideoList *request = [[NetWork_mt_getLikeVideoList alloc] init];
-        request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-        request.noodleId = self.userNoodleId;
-        request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
-        request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
-        [request startGetWithBlock:^(id result, NSString *msg) {
+        weakSelf.requestLike = [[NetWork_mt_getLikeVideoList alloc] init];
+        weakSelf.requestLike.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+        weakSelf.requestLike.noodleId = weakSelf.userNoodleId;
+        weakSelf.requestLike.pageNo = [NSString stringWithFormat:@"%d",weakSelf.currentPageIndex=weakSelf.currentPageIndex+1];
+        weakSelf.requestLike.pageSize = [NSString stringWithFormat:@"%d",weakSelf.currentPageSize];
+        [weakSelf.requestLike startGetWithBlock:^(id result, NSString *msg) {
             /*暂不考虑缓存*/
         } finishBlock:^(GetLikeVideoListResponse *result, NSString *msg, BOOL finished) {
             
             if(finished){
                 
                 [UIView setAnimationsEnabled:NO];
-                [self.collectionView performBatchUpdates:^{
-                    [self.favoriteAwemes addObjectsFromArray:result.obj];
+                [weakSelf.collectionView performBatchUpdates:^{
+                    [weakSelf.favoriteAwemes addObjectsFromArray:result.obj];
                     NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
-                    for(NSInteger row = self.favoriteAwemes.count - result.obj.count; row<self.favoriteAwemes.count; row++) {
+                    for(NSInteger row = weakSelf.favoriteAwemes.count - result.obj.count; row<weakSelf.favoriteAwemes.count; row++) {
                         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
                         [indexPaths addObject:indexPath];
                     }
-                    [self.collectionView insertItemsAtIndexPaths:indexPaths];
+                    if ([weakSelf.collectionView numberOfItemsInSection:1] == weakSelf.favoriteAwemes.count) {
+                        //                        [self.collectionView reloadData];
+                    }
+                    else{
+                        if(indexPaths.count > 0){
+                            [weakSelf.collectionView insertItemsAtIndexPaths:indexPaths];
+                        }
+                        
+                    }
                 } completion:^(BOOL finished) {
                     [UIView setAnimationsEnabled:YES];
                 }];
                 
-                [self.loadMore endLoading];
-                if(self.favoriteAwemes.count < self.currentPageSize || result.obj.count == 0) {
-                    [self.loadMore loadingAll];
+                [weakSelf.loadMore endLoading];
+                if(weakSelf.favoriteAwemes.count < weakSelf.currentPageSize || result.obj.count == 0) {
+                    [weakSelf.loadMore loadingAll];
                 }
             }
             else{
@@ -520,6 +551,7 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
             contentModel.noodleId = self.user.noodleId;
             
             NetWork_mt_delflour *request = [[NetWork_mt_delflour alloc] init];
+            
             request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
             request.content = [contentModel generateJsonStringForProperties];
             [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
@@ -629,9 +661,50 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 #pragma -mark ------------OnTabTapDelegate---------
 
 - (void)onTabTapAction:(NSInteger)index {
+    
     if(_tabIndex == index){
         return;
     }
+    
+    /*
+     *1.加载作品时，如果动态正在网络请求，那么请求成功后会争抢资源导致，崩溃，其他同理。
+     *2.解决方法是，加载一个数据时，取消另外两个请求的网络请求。
+     */
+    if(index == 0){
+//        if(self.requestMyVideo){
+//            [self.requestMyVideo stop];
+//        }
+        if(self.requestDynamic){
+            [self.requestDynamic stop];
+        }
+        if(self.requestLike){
+            [self.requestLike stop];
+        }
+    }
+    else if(index == 1){
+        if(self.requestMyVideo){
+            [self.requestMyVideo stop];
+        }
+//        if(self.requestDynamic){
+//            [self.requestDynamic stop];
+//        }
+        if(self.requestLike){
+            [self.requestLike stop];
+        }
+    }
+    else if(index == 2){
+        if(self.requestMyVideo){
+            [self.requestMyVideo stop];
+        }
+        if(self.requestDynamic){
+            [self.requestDynamic stop];
+        }
+//        if(self.requestLike){
+//            [self.requestLike stop];
+//        }
+    }
+    
+    
     _tabIndex = index;
     self.currentPageIndex = 0;
     

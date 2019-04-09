@@ -25,7 +25,7 @@
 
     self.view.backgroundColor = [UIColor whiteColor];
     
-    _arr1 = @[@"录制",@"合唱",@"本地视频",@"本地图片"];
+    _arr1 = @[@"录制",@"合拍",@"本地视频",@"本地图片"];
     _arr2 = @[@"main_pop_attention",@"main_pop_scan",@"main_pop_attention",@"main_pop_scan"];
     
     

@@ -647,10 +647,10 @@
     textView.markedTextRange == nil判断是否有候选字符，如果不为nil，代表有候选字符，不纳入判断范围
      */
     if(textView.markedTextRange == nil){
-        NSLog(@"没有")
+        NSLog(@"没有");
     }
     else{
-        NSLog(@"有")
+        NSLog(@"有");
         _isChanged = NO;
         return;
     }

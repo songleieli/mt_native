@@ -57,5 +57,8 @@ typedef enum{
 @property (nonatomic, assign) FromType                        fromType;
 @property (nonatomic, copy) NSString                          *userNoodleId;
 
+@property (nonatomic, strong) NetWork_mt_getMyVideos *requestMyVideo;
+@property (nonatomic, strong) NetWork_mt_getDynamics *requestDynamic;
+@property (nonatomic, strong) NetWork_mt_getLikeVideoList *requestLike;
 
 @end

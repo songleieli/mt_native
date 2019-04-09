@@ -277,9 +277,10 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 /*
  *面条，通知定义
  */
-
-#define NSNotificationUserLoginSuccess          @"NSNotificationUserLoginSuccess"       //登录成功
-
+//登录成功
+#define NSNotificationUserLoginSuccess                  @"NSNotificationUserLoginSuccess"
+//刷新用户信息，比如关注啦，某人，点啦某个赞
+#define NSNotificationUserLoginRefreshUserInfo          @"NSNotificationUserLoginRefreshUserInfo"
 
 /*
  *新版模仿抖音颜色定义
