@@ -570,14 +570,32 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationUserLoginSuccess
                                                         object:nil];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        NSLog(@"发送模态窗口消失通知");
+        
+        /*
+         *发送弹出模态窗口通知
+         */
+        [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationDismissViewViewController
+                                                            object:nil];
+        
+    }];
 }
 //取消成功
 - (void)loginCancle{
     if ([ZJLoginService sharedInstance].cancelledBlock) {
         [ZJLoginService sharedInstance].cancelledBlock();
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        NSLog(@"发送模态窗口消失通知");
+        
+        /*
+         *发送弹出模态窗口通知
+         */
+        [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationDismissViewViewController
+                                                            object:nil];
+        
+    }];
 }
 
 -(void)mtLogin:(NSString*)nickname head:(NSString*)head openid:(NSString*)openid {

@@ -283,6 +283,16 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define NSNotificationUserLoginRefreshUserInfo          @"NSNotificationUserLoginRefreshUserInfo"
 
 /*
+ *页面弹出模态窗口
+ */
+#define NSNotificationPresentViewController          @"NSNotificationPresentViewController"
+/*
+ *模态窗口消失
+ */
+#define NSNotificationDismissViewViewController          @"NSNotificationDismissViewViewController"
+
+
+/*
  *新版模仿抖音颜色定义
  */
 

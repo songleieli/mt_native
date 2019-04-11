@@ -83,7 +83,10 @@
 #pragma mark ----------- Controller 生命周期 ----------
 
 - (void)dealloc {
-//    NSLog(@"%@ dealloc", NSStringFromClass([self class]));
+    /*
+     *移除页面中的通知
+     */
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -135,10 +138,51 @@
     [UIApplication sharedApplication].statusBarHidden = YES;
     // 设置左滑push代理
     self.gk_pushDelegate = self;
+    
+    [self registerForRemoteNotification];
+}
+
+
+
+#pragma mark ----------- Notification ----------
+
+-(void)registerForRemoteNotification{
+    
+    //增加监听，弹出模态窗口
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(presentViewControllerDidAppear)
+                                                 name:NSNotificationPresentViewController
+                                               object:nil];
+    //增加监听，模态窗口消失
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(presentViewControllerDismiss)
+                                                 name:NSNotificationDismissViewViewController
+                                               object:nil];
 }
 
 #pragma mark ----------- CustomMethod ----------
 
+-(void)presentViewControllerDidAppear{
+    //弹出模态窗口
+    NSLog(@"---------弹出模态窗口--------");
+    
+    if([CMPZjLifeMobileAppDelegate shareApp].rootViewController.currentSelectIndex == 0){
+        NSLog(@"---------当前x选择首页--------");
+        [self viewWillDisappear:NO]; //等同于页面消失
+    }
+    
+}
+
+-(void)presentViewControllerDismiss{
+    //弹出模态窗口
+    NSLog(@"---------弹出模态窗口消失--------");
+    
+    if([CMPZjLifeMobileAppDelegate shareApp].rootViewController.currentSelectIndex == 0){
+        NSLog(@"---------当前x选择首页--------");
+        [self viewDidAppear:NO];
+
+    }
+}
 
 -(void)searchViewControllerDidAppear{
     

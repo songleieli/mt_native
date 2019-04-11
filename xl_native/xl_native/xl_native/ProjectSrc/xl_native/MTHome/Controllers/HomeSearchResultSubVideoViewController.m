@@ -192,18 +192,6 @@
     } else {
         NSLog(@"代理没响应，快开看看吧");
     }
-    
-    
-//    self.selectIndex = indexPath.row;
-//
-//    UserInfoPlayerListViewController *controller;
-//    controller = [[UserInfoPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex pageIndex:self.pageIndex pageSize:self.pageSize videoType:VideoTypeFavourites];
-//    controller.transitioningDelegate = self;
-//
-//    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-//    self.modalPresentationStyle = UIModalPresentationCurrentContext;
-//    [_swipeLeftInteractiveTransition wireToViewController:controller];
-//    [self presentViewController:controller animated:YES completion:nil];
 }
 
 //网络状态发送变化

@@ -35,7 +35,7 @@
 
 -(void)dealloc{
     /*
-     *移除页面中的观察者
+     *移除页面中的通知
      */
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

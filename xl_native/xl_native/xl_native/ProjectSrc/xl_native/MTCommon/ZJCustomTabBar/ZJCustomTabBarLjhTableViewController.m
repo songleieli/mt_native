@@ -16,7 +16,7 @@
 
 @implementation ZJCustomTabBarLjhTableViewController
 
-@synthesize selectedIndex = _selectedIndex;
+@synthesize pageIndex = _pageIndex;
 
 -(CGFloat)getTabbarTop{
     
@@ -128,7 +128,7 @@
     
     
     self.tabBar.frame = CGRectMake(0, [self getTabbarTop], ScreenWidth, kTabBarHeight_New);
-    [self.tabBar selectTabAtIndex:_selectedIndex];
+    [self.tabBar selectTabAtIndex:self.pageIndex];
     
     self.isTableHiden = NO;
     
@@ -156,9 +156,9 @@
 	return _tabBar;
 }
 
-- (NSUInteger)selectedIndex{
-	return _selectedIndex;
-}
+//- (NSUInteger)pageIndex{
+//    return _selectedIndex;
+//}
 
 
 #pragma mark - Private methods
@@ -197,7 +197,7 @@
 
 - (BOOL)tabBar:(ZJCustomTabBar *)tabBar shouldSelectIndex:(NSInteger)index{
     
-    if(index == _selectedIndex){
+    if(index == self.pageIndex){
         return NO;
     }
     else{

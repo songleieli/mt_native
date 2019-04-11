@@ -40,6 +40,7 @@
 
 
 @property (nonatomic, strong) BaseNavigationController *currentViewController;
+@property (nonatomic, assign) NSInteger currentSelectIndex;
 
 /*
  *popview

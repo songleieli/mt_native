@@ -33,7 +33,7 @@
 - (GKDouyinHomeViewController *)homeNewViewController{
     if (!_homeNewViewController){
         _homeNewViewController = [[GKDouyinHomeViewController alloc]init];
-        _homeNewViewController.selectedIndex = 0;
+        _homeNewViewController.pageIndex = 0;
         _homeNewViewController.changeIndexDelegate = self;
     }
     return _homeNewViewController;
@@ -42,7 +42,7 @@
 - (MTFollowViewController *)followViewController{
     if (!_followViewController){
         _followViewController = [[MTFollowViewController alloc]init];
-        _followViewController.selectedIndex = 1;
+        _followViewController.pageIndex = 1;
         _followViewController.changeIndexDelegate = self;
         
     }
@@ -62,7 +62,7 @@
 - (MTMessageViewController *)messageViewController{
     if (!_messageViewController){
         _messageViewController = [[MTMessageViewController alloc]init];
-        _messageViewController.selectedIndex = 3;
+        _messageViewController.pageIndex = 3;
         _messageViewController.changeIndexDelegate = self;
     }
     return _messageViewController;
@@ -71,7 +71,7 @@
 - (UserInfoViewController *)userInfoViewController{
     if (!_userInfoViewController){
         _userInfoViewController = [[UserInfoViewController alloc]init];
-        _userInfoViewController.selectedIndex = 4;
+        _userInfoViewController.pageIndex = 4;
         _userInfoViewController.changeIndexDelegate = self;
         _userInfoViewController.fromType = FromTypeMy; //我的页面，需要隐藏返回按钮，显示TabBar
     }
@@ -137,12 +137,13 @@
 //    [[UINavigationBar appearance] setTranslucent:NO];//这句话是控制导航栏颜色是否透明。//导航栏颜色透明
     
     self.currentViewController = self.xlHomeNavViewController;
+    self.currentSelectIndex = 0; //默认选择第一个tab
     [self.view addSubview:self.xlHomeNavViewController.view];
     
 }
 - (void)selectTabAtIndex:(NSInteger)toIndex{
     
-    
+    self.currentSelectIndex = toIndex;
     BaseNavigationController *toViewController = [self.childViewControllers objectAtIndex:toIndex];
     [toViewController popToRootViewControllerAnimated:NO];
     
@@ -156,8 +157,6 @@
         // do nothing
         [UIView setAnimationsEnabled:YES];
         self.currentViewController = toViewController;
-        //切换完成后需要将 suspensionBtn 提到最上层
-//        [self.view bringSubviewToFront:self.suspensionBtn];
     }];
 }
 
@@ -235,7 +234,6 @@
 
 -(void)onloadVideoComplete:(NSString *)videoPath {
     
-    
     [GlobalFunc hideHUD];
     if (videoPath) {
         HomeListModel *homeListModel= self.homeNewViewController.playerVC.currentCell.listModel;
@@ -255,16 +253,16 @@
         musicSearchModel = nil;
         
         BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
-        [self presentViewController:nav animated:YES completion:nil];
-//        [_hub hideAnimated:YES];
-        
-//        [GlobalFunc hideHUD];
-        
-    }else{
-//        [GlobalFunc showHud:NSLocalizedString(@"TCVodPlay.VideoLoadFailed", nil)];
-//        [GlobalFunc hideHUD:1.0f];
-        //_hub.label.text = NSLocalizedString(@"TCVodPlay.VideoLoadFailed", nil);
-//        [_hub hideAnimated:YES afterDelay:1.0];
+        [self presentViewController:nav animated:YES completion:^{
+            NSLog(@"发送通知");
+            
+            /*
+             *发送弹出模态窗口通知
+             */
+            [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationPresentViewController
+                                                                object:nil];
+            
+        }];
     }
 }
 
@@ -297,7 +295,16 @@
     if (row == 0) { //点击录制视频
         TCVideoRecordViewController *videoRecord = [[TCVideoRecordViewController alloc] initWithNibName:nil bundle:nil];
         BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:videoRecord];
-        [self presentViewController:nav animated:YES completion:nil];
+        [self presentViewController:nav animated:YES completion:^{
+            NSLog(@"发送通知");
+            
+            /*
+             *发送弹出模态窗口通知
+             */
+            [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationPresentViewController
+                                                                object:nil];
+            
+        }];
     }
     else if(row == 1){//视频合唱
         
@@ -340,7 +347,16 @@
         imagePickerController.allowsMultipleSelection = YES;
         imagePickerController.showsNumberOfSelectedAssets = YES;
         //    imagePickerController.maximumNumberOfSelection = 5;
-        [self presentViewController:imagePickerController animated:YES completion:NULL];
+        [self presentViewController:imagePickerController animated:YES completion:^{
+            NSLog(@"发送通知");
+            
+            /*
+             *发送弹出模态窗口通知
+             */
+            [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationPresentViewController
+                                                                object:nil];
+            
+        }];
     }
     else if(row == 3){//选择本地图片
         
@@ -351,7 +367,16 @@
         imagePickerController.allowsMultipleSelection = YES;
         imagePickerController.showsNumberOfSelectedAssets = YES;
         imagePickerController.minimumNumberOfSelection = 3;
-        [self presentViewController:imagePickerController animated:YES completion:NULL];
+        [self presentViewController:imagePickerController animated:YES completion:^{
+            NSLog(@"发送通知");
+            
+            /*
+             *发送弹出模态窗口通知
+             */
+            [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationPresentViewController
+                                                                object:nil];
+            
+        }];
         
     }
 }

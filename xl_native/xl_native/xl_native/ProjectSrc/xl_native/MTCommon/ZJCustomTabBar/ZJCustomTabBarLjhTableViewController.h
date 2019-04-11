@@ -12,11 +12,11 @@
 @protocol ZJChangeIndexDelegate;
 
 @interface ZJCustomTabBarLjhTableViewController : ZJBaseViewController <ZJCustomTabBarDelegate>{
-	ZJCustomTabBar        *_tabBar;
-	NSUInteger      _selectedIndex;
+//    ZJCustomTabBar        *_tabBar;
+//    NSUInteger      _selectedIndex;
 }
 
-@property(nonatomic) NSUInteger selectedIndex;
+@property(nonatomic) NSUInteger pageIndex;
 @property(nonatomic) BOOL isTableHiden;
 @property (nonatomic, retain) ZJCustomTabBar *tabBar;
 @property (nonatomic, weak) id <ZJChangeIndexDelegate> changeIndexDelegate;

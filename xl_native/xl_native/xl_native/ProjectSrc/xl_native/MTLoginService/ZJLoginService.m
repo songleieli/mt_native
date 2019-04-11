@@ -67,7 +67,16 @@ static ZJLoginService *SharedInstance = nil;
         BaseNavigationController *tempNav = [[BaseNavigationController alloc]initWithRootViewController:tempVC];
         tempNav.modalPresentationStyle = UIModalPresentationOverCurrentContext;
 
-        [[UIApplication sharedApplication].delegate.window.rootViewController presentViewController:tempNav animated:isAnimat completion:nil];
+        [[UIApplication sharedApplication].delegate.window.rootViewController presentViewController:tempNav
+                                                                                           animated:isAnimat
+                                                                                         completion:^{
+                                                                                             /*
+                                                                                              *发送弹出模态窗口通知
+                                                                                              */
+                                                                                             [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationPresentViewController
+                                                                                                                                                 object:nil];
+                                                                                             
+                                                                                         }];
     }
     else{
         if(self.completeBlock){
