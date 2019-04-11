@@ -128,8 +128,6 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
 - (void)viewDidLoad {
     _tabIndex = 0;
 
-    [self registerForRemoteNotification];
-    
     [super viewDidLoad];
     [self setUpUI];
     [self registerForRemoteNotification];
@@ -199,6 +197,12 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
                                              selector:@selector(userLoginSuccess:)
                                                  name:NSNotificationUserLoginSuccess
                                                object:nil];
+    
+//    //增加监听，用户登录成功
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(refreshUserHeadData:)
+//                                                 name:NSNotificationUserLoginRefreshUserInfo
+//                                               object:nil];
 }
 
 - (void)userLoginSuccess:(NSNotification *)notification{
@@ -207,12 +211,18 @@ NSString * const kAwemeCollectionCell  = @"AwemeCollectionCell";
     [self loadData];
 }
 
+//- (void)refreshUserHeadData:(NSNotification *)notification{ //刷新用户Head数据
+//
+//    [self startUserRequest];
+//}
+
 //网络状态发送变化
 -(void)onLoadUserData{
     
-    if(_user == nil) {
-        [self startUserRequest];
-    }
+//    if(_user == nil) {
+//        [self startUserRequest];
+//    }
+    [self startUserRequest];
     if(self.workAwemes.count == 0 && self.dynamicAwemes.count == 0 && self.favoriteAwemes.count == 0){
         [self loadData];
     }

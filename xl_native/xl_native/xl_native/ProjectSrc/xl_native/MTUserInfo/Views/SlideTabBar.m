@@ -73,6 +73,9 @@
     [_titles removeAllObjects];
     [_titles addObjectsFromArray:titles];
     _tabIndex = tabIndex;
+    
+    //更新数据 
+    [self layoutSubviews];
 }
 
 - (void)onTapAction:(UITapGestureRecognizer *)sender {

@@ -114,6 +114,7 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
 }
 
 - (void) initActionsView {
+    
     _settingIcon = [[UIImageView alloc] init];
     _settingIcon.image = [UIImage imageNamed:@"icon_titlebar_whitemore"];
     _settingIcon.contentMode = UIViewContentModeCenter;
@@ -355,6 +356,7 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
     
     //如果已关注，或者是自己的话，调用一下方法，显示取消关注和发送消息按钮
     if(user.isFlour || [user.noodleId isEqualToString:[GlobalData sharedInstance].loginDataModel.noodleId]){
+        self.isFollowed = NO;
         [self showSendMessageAnimation];
         [self showFollowedAnimation];
     }
@@ -451,14 +453,10 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
         [_focusButton setHidden:NO];
     }
     
-    
     //如果不是自己，需要隐藏发消息按钮，modify by 2019.03.03, 暂时屏蔽，如果需要还会放开。
     if(![self.user.noodleId isEqualToString:[GlobalData sharedInstance].loginDataModel.noodleId]){
         [_sendMessage setHidden:YES];
     }
-
-    
-    
     _focusButton.userInteractionEnabled = NO;
     _focusIcon.userInteractionEnabled = NO;
     if(_isFollowed) {
@@ -499,6 +497,7 @@ static const NSTimeInterval kAnimationDefaultDuration = 0.25;
     }
 }
 - (void)showFollowedAnimation {
+    
     CAAnimationGroup *animationGroup = [[CAAnimationGroup alloc] init];
     animationGroup.duration = kAnimationDefaultDuration;
     animationGroup.removedOnCompletion = NO;
