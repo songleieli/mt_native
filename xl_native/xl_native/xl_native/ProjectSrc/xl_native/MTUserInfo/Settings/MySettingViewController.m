@@ -28,7 +28,7 @@
         
         _dataList = [[NSMutableArray alloc] init];
         
-        int selectionCount = 5;
+        int selectionCount = 2;
         for (int i =0 ; i<selectionCount; i ++) {
             MyViewTableViewSelectionModel *model = [[MyViewTableViewSelectionModel alloc] init];
             switch (i) {
@@ -44,15 +44,15 @@
                                 model.cellTag = MyCellTag_editor;
                                 break;
                             case 1:
-                                model.titleStr = @"账号与安全";
+                                model.titleStr = @"清除缓存";
                                 model.imageStr = @"icon_m_s_order";
-                                model.cellTag = MyCellTag_other;
+                                model.cellTag = MyCellTag_cleanCache;
 
                                 break;
                             default:
-                                model.titleStr = @"隐私设置";
+                                model.titleStr = @"关于面条";
                                 model.imageStr = @"icon_m_s_lock";
-                                model.cellTag = MyCellTag_other;
+                                model.cellTag = MyCellTag_about;
                                 model.isShowLine = YES;
                                 break;
                         }
@@ -64,13 +64,13 @@
                 case 1:{
                     model.selectTitle = @"通用";
                     NSMutableArray *cellList = [[NSMutableArray alloc] init];
-                    for (int j =0 ; j<2; j ++) {
+                    for (int j =0 ; j<1; j ++) {
                         MyViewTableViewCellModel *model = [[MyViewTableViewCellModel alloc] init];
                         switch (j) {
                             case 0:
-                                model.titleStr = @"通知设置";
+                                model.titleStr = @"退出登录";
                                 model.imageStr = @"icon_m_s_lock";
-                                model.cellTag = MyCellTag_other;
+                                model.cellTag = MyCellTag_logout;
                                 break;
                             case 1:
                                 model.titleStr = @"通用设置";

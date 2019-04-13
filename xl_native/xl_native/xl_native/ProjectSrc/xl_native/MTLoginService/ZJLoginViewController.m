@@ -10,7 +10,7 @@
 
 #import "IHKeyboardAvoiding.h"
 #import "ZJLoginService.h"
-#import "GTMBase64.h"
+//#import "GTMBase64.h"
 
 #import "NetWork_mt_login.h"
 #import "NetWork_mt_sendSMS.h"
@@ -38,6 +38,9 @@
 
 @property(nonatomic,strong) UIButton * buttonlogin;
 @property(nonatomic,strong) UILabel *lableRegister;
+
+@property (nonatomic,copy) NSString * smsId;
+
 
 
 @property(nonatomic,strong)UIButton* weChatLogin;//微信登录
@@ -366,17 +369,18 @@
 
 - (void)request_mobileCodeWithMsg:(NSString *)msg{
     
-    __weak __typeof(self) weakSelf = self;
+//    __weak __typeof(self) weakSelf = self;
     NetWork_mt_sendSMS *sendSms =  [[NetWork_mt_sendSMS alloc] init];
     sendSms.mobile = self.textFieldUser.text.trim;
     [sendSms showWaitMsg:msg handle:self];
-    [sendSms startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+    [sendSms startPostWithBlock:^(SendSMSResponse *result, NSString *msg, BOOL finished) {
         
         if (finished) {
+            self.smsId = result.obj;
             [self codeReduce];
         }else{
             if(msg != nil && msg.trim.length > 0){
-                [weakSelf showFaliureHUD:msg];
+                [self showFaliureHUD:msg];
             }
         }
     }];
@@ -502,6 +506,7 @@
     request.accoutType = @"3";//手机号登录
     request.identifyingCode = self.textFiledSmsVerify.text.trim;
     request.mobile = self.textFieldUser.text.trim;
+    request.msgId = self.smsId;
     [request showWaitMsg:@"正在登陆，请稍后......" handle:self];
     [request startPostWithBlock:^(LoginResponse *result, NSString *msg, BOOL finished) {
         

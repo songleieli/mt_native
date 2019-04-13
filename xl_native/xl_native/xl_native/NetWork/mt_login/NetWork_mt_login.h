@@ -132,8 +132,9 @@
 @property (nonatomic,copy) NSString * accoutType;
 @property (nonatomic,copy) NSString * code;
 @property (nonatomic,copy) NSString * accessToken;
+
 @property (nonatomic,copy) NSString * identifyingCode;
 @property (nonatomic,copy) NSString * mobile;
-
+@property (nonatomic,copy) NSString * msgId;
 
 @end

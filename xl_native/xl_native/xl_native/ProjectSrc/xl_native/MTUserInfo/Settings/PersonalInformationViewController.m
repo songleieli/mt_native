@@ -375,18 +375,16 @@
 
 -(void)nickNameClcik{
     
-//    [GlobalFunc event:@"event_modify_user_nickName"];
-    
     NickNameViewController * nickNameViewController = [[NickNameViewController alloc]init];
-    //    [self pushNewVC:nickNameViewController animated:YES];
-    [self.navigationController pushViewController:nickNameViewController animated:YES];
+    [self pushNewVC:nickNameViewController animated:YES];
+//    [self.navigationController pushViewController:nickNameViewController animated:YES];
 }
 
 -(void)introduceClcik{
     
     IntroduceViewController * introduceViewController = [[IntroduceViewController alloc]init];
-    //    [self pushNewVC:nickNameViewController animated:YES];
-    [self.navigationController pushViewController:introduceViewController animated:YES];
+    [self pushNewVC:introduceViewController animated:YES];
+//    [self.navigationController pushViewController:introduceViewController animated:YES];
 }
 
 #pragma mark ------------------ 通知 ---------------

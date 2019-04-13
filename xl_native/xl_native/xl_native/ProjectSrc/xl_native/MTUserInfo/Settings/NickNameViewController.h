@@ -10,5 +10,7 @@
 
 @interface NickNameViewController : ZJBaseViewController
 
+@property (nonatomic,strong) UIScrollView * scrollView;
+@property (nonatomic, strong) UIButton  *btnSave; //保存按钮
 
 @end

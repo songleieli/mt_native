@@ -68,7 +68,6 @@
         _speakTextView.delegate = self;
         _speakTextView.textColor = ColorWhite;
         _speakTextView.returnKeyType = UIReturnKeyDone;
-//        _speakTextView.autocapitalizationType = UITextAutocapitalizationTypeNone;
         _speakTextView.font = [UIFont systemFontOfSize:16.0];
         [_speakTextView becomeFirstResponder];
     }

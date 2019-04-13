@@ -203,6 +203,9 @@ isIPhoneXAll = [[UIApplication sharedApplication] delegate].window.safeAreaInset
 #define MTColorBtnRedNormal        RGBA(252, 48, 88, 1)   //按钮红色正常颜色
 #define MTColorBtnRedHighlighted        RGBA(137, 36, 60, 1)   //按钮红色高亮颜色
 
+#define MTColorCellHighlighted      RGBAlphaColor(29, 32, 42, 1)   //面条button高亮颜色
+
+
 /*
  定义全局的颜色值 乐家慧
  */
