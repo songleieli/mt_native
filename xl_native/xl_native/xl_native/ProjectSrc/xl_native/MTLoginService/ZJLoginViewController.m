@@ -13,6 +13,7 @@
 #import "GTMBase64.h"
 
 #import "NetWork_mt_login.h"
+#import "NetWork_mt_sendSMS.h"
 
 #import "WXApiManager.h"
 #import "WeiboSDK.h"
@@ -82,7 +83,7 @@
     
     [_thirdLogin mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view);
-        make.top.mas_equalTo(self.bgView.mas_bottom).mas_equalTo(MasScale_1080(70));
+        make.top.mas_equalTo(self.bgView.mas_bottom).mas_equalTo(70);
     }];
 }
 
@@ -100,7 +101,7 @@
     [_leftThirdLoginLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(MasScale_1080(150));
         make.height.mas_equalTo(MasScale_1080(3));
-        make.top.mas_equalTo(self.bgView.mas_bottom).mas_equalTo(MasScale_1080(100));
+        make.top.mas_equalTo(self.bgView.mas_bottom).mas_equalTo(80);
         make.leading.mas_equalTo(self.view.mas_leading).mas_equalTo(MasScale_1080(64));
     }];
 }
@@ -217,41 +218,48 @@
                                                object:nil];
 }
 
+
+
 -(void)creatUI{
     
     //模糊效果
     UIBlurEffect *blurEffect =[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc]initWithEffect:blurEffect];
     visualEffectView.frame = self.view.bounds;
-    visualEffectView.alpha = 1;
-    [self.view addSubview:visualEffectView];
+    visualEffectView.alpha = 0.5;
+//    [self.view addSubview:visualEffectView];
     [self.view addSubview:self.btnCancel];
+//    self.view.backgroundColor = [UIColor clearColor];
     
     
-    self.view.backgroundColor = RGBAlphaColor(0, 0, 0, 0.5); //[UIColor clearColor];
+//    self.view.backgroundColor = RGBAlphaColor(0, 0, 0, 0.5); //[UIColor clearColor];
     self.bgView = [[UIView alloc]init];
     self.bgView.size = [UIView getSize_width:ScreenWidth-2*21 height:350];
     self.bgView.top  = sizeScale(70);
     self.bgView.left = 21;
     [self.view addSubview:self.bgView];
     
-    self.bgView.backgroundColor = [UIColor clearColor];
+
+    //test
+//    self.bgView.backgroundColor = [UIColor redColor];
     
-//    UIImageView * iocnImageView =[[UIImageView alloc]init];
-//    iocnImageView.size = [UIView getSize_width:85 height:85];
-//    iocnImageView.left = (self.bgView.width - iocnImageView.width)/2;
-//    iocnImageView.top = 0;
-//    iocnImageView.image = [BundleUtil getCurrentBundleImageByName:@"login_icon"]; //[UIImage imageNamed:@"login_icon"];
-//    iocnImageView.layer.masksToBounds = YES;
-//    iocnImageView.layer.cornerRadius = 20.0;
-//    [self.bgView addSubview:iocnImageView];
+    UIImageView * iocnImageView =[[UIImageView alloc]init];
+    iocnImageView.size = [UIView getSize_width:85 height:85];
+    iocnImageView.left = (self.bgView.width - iocnImageView.width)/2;
+    iocnImageView.top = 0;
+    iocnImageView.image = [BundleUtil getCurrentBundleImageByName:@"login_icon"]; //[UIImage imageNamed:@"login_icon"];
+    iocnImageView.layer.masksToBounds = YES;
+    iocnImageView.layer.cornerRadius = 20.0;
+    [self.bgView addSubview:iocnImageView];
     
     UIView * userViwe = [[UIView alloc]init];
     userViwe.size = [UIView getSize_width:self.bgView.width height:63];
     userViwe.left = 0;
     userViwe.top = 100;
     [self.bgView addSubview:userViwe];
-//    [self.bgView addSubView:userViwe frameBottomView:iocnImageView offset:42];
+    
+    //test
+//    userViwe.backgroundColor = [UIColor blueColor];
     
     self.textFieldUser = [[UITextField alloc]init];
     self.textFieldUser.size = [UIView getSize_width:userViwe.width height:20];
@@ -263,21 +271,16 @@
     self.textFieldUser.borderStyle = UITextBorderStyleNone;
     self.textFieldUser.keyboardType = UIKeyboardTypeNumberPad;
     self.textFieldUser.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.textFieldUser.placeholder = @"请输入账号";
-    
-    //test
-//    self.textFieldUser.text = @"18210225831";
-    
-    [self.textFieldPass addTarget:self action:@selector(textFieldEditingDidChange:) forControlEvents:UIControlEventEditingChanged];
+    self.textFieldUser.placeholder = @"请输入手机号";
+    [self.textFieldUser addTarget:self action:@selector(textFieldEditingDidChange:) forControlEvents:UIControlEventEditingChanged];
     [userViwe addSubview:self.textFieldUser];
 
     
-    
     UILabel *lableUser = [[UILabel alloc]init];
-    lableUser.size = [UIView getSize_width:40 height:25];
+    lableUser.size = [UIView getSize_width:60 height:25];
     lableUser.origin = [UIView getPoint_x:0 y:0];
     lableUser.backgroundColor = [UIColor clearColor];
-    lableUser.text = @"账号";
+    lableUser.text = @"手机号";
     lableUser.textColor = RGBAlphaColor(167, 167, 167, 1);
     lableUser.font = [UIFont defaultFontWithSize:17];
 
@@ -286,175 +289,175 @@
     self.textFieldUser.leftViewMode = UITextFieldViewModeAlways;
     
     UILabel * colorLable = [[UILabel alloc]init];
-    colorLable.frame = [UIView getFrame_x:0 y:userViwe.y-1 width:userViwe.width height:1];
+    colorLable.frame = [UIView getFrame_x:0 y:userViwe.height - 1 width:userViwe.width height:1];
     colorLable.backgroundColor = RGBFromColor(0xecedf1);
     [userViwe addSubview:colorLable];
-    
 
-    UIView *  passwordViwe = [[UIView alloc]init];
-    passwordViwe.size = [UIView getSize_width:self.bgView.width height:63];
-    passwordViwe.left = 0;
-    [self.bgView addSubView:passwordViwe frameBottomView:userViwe offset:0];
+    //  输入手机短信中的验证码
+    UIView * inviteDataView = [[UIView alloc]init];
+    inviteDataView.size = [UIView getSize_width:self.bgView.width height:63];
+    inviteDataView.left = 0;
+    [self.bgView addSubView:inviteDataView frameBottomView:userViwe];
     
-    UILabel * passColorLable = [[UILabel alloc]init];
-    passColorLable.frame = [UIView getFrame_x:0 y:passColorLable.y-1 width:userViwe.width height:1];
-    passColorLable.backgroundColor = RGBFromColor(0xecedf1);
-    [passwordViwe addSubview:passColorLable];
+    UILabel * labeleinviteDataViewLine = [[UILabel alloc]init];
+    labeleinviteDataViewLine.size = [UIView getSize_width:self.bgView.width height:1];
+    labeleinviteDataViewLine.left = 0;
+    labeleinviteDataViewLine.top = inviteDataView.height -1 ;
+    labeleinviteDataViewLine.backgroundColor =RGBFromColor(0xecedf1);
+    [inviteDataView addSubview:labeleinviteDataViewLine];
     
-    self.textFieldPass = [[UITextField alloc]init];
-    self.textFieldPass.size = [UIView getSize_width:userViwe.width height:20];
-    self.textFieldPass.top = (userViwe.height - self.textFieldPass.height)/2;
-    self.textFieldPass.left = 0;
-    self.textFieldPass.tag = 10001;
-    self.textFieldPass.delegate = self;
-    self.textFieldPass.borderStyle = UITextBorderStyleNone;
-    self.textFieldPass.clearButtonMode =UITextFieldViewModeWhileEditing;
-    self.textFieldPass.placeholder = @"";
-    self.textFieldPass.font = [UIFont defaultFontWithSize:14];
-    [passwordViwe addSubview:self.textFieldPass];
+    self.textFiledSmsVerify = [[UITextField alloc]init];
+    self.textFiledSmsVerify.tag = 10001;
+    self.textFiledSmsVerify.size = [UIView getSize_width:inviteDataView.width-80 height:20];
+    self.textFiledSmsVerify.top = (inviteDataView.height - self.textFiledSmsVerify.height)/2;
+    self.textFiledSmsVerify.left = 0;
+    self.textFiledSmsVerify.delegate = self;
+    self.textFiledSmsVerify.font = [UIFont defaultFontWithSize:14];
+    self.textFiledSmsVerify.borderStyle = UITextBorderStyleNone;
+    self.textFiledSmsVerify.keyboardType = UIKeyboardTypeNumberPad;
+    self.textFiledSmsVerify.clearButtonMode =UITextFieldViewModeWhileEditing;
+    self.textFiledSmsVerify.placeholder = @"请输入手机短信中的验证码";
+    [inviteDataView addSubview:self.textFiledSmsVerify];
     
-    //test
-//    self.textFieldPass.text = @"zhangtao";
+    self.buttonText = [[UIButton alloc]init];
+    self.buttonText.size = [UIView getSize_width:80 height:20];
+    self.buttonText.left = inviteDataView.width - self.buttonText.width;
+    self.buttonText.top = self.textFiledSmsVerify.top;
+    [self.buttonText setTitle:@"获取验证码" forState:UIControlStateNormal];
+    self.buttonText.tag = 342433;
     
-    [self.textFieldPass addTarget:self action:@selector(textFieldEditingDidChange:) forControlEvents:UIControlEventEditingChanged];
+    UILabel * labelButtonText = [[UILabel alloc]init];
+    labelButtonText.backgroundColor = RGBFromColor(0xecedf1);
+    labelButtonText.left = 0;
+    labelButtonText.top = 0;
+    labelButtonText.width =1;
+    labelButtonText.height = self.buttonText.height;
+    [self.buttonText addSubview:labelButtonText];
+    
+    self.buttonText.titleLabel.font = [UIFont defaultFontWithSize:14];
+    [self.buttonText setTitleColor:defaultMainColor forState:UIControlStateNormal];
+    [self.buttonText addTarget:self action:@selector(btnClck:) forControlEvents:UIControlEventTouchUpInside];
+    [inviteDataView addSubview:self.buttonText];
 
-/* 由于不能发送手机短信，暂时先屏蔽忘记密码功能。
-    UIButton * forgetButtun = [[UIButton alloc]init];
-    forgetButtun.tag = 94;
-    forgetButtun.size = [UIView getSize_width:100 height:30];
-    forgetButtun.right = passwordViwe.right - 14;
-    forgetButtun.titleLabel.font = [UIFont defaultFontWithSize:14];
-    forgetButtun.titleLabel.textColor = RGBAlphaColor(70, 73, 82, 1);
-    [forgetButtun setTitleEdgeInsets:UIEdgeInsetsMake(-15, 0, 0, -45)];
-    [forgetButtun setTitle:@"忘记密码" forState:UIControlStateNormal];
-    [forgetButtun addTarget:self action:@selector(btnClck:) forControlEvents:UIControlEventTouchUpInside];
-    [forgetButtun setTitleColor:RGBFromColor(0x464952) forState:UIControlStateNormal];
-    [forgetButtun setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    [bgView addSubView:forgetButtun frameBottomView:passwordViwe offset:16];
-*/
-    
-//    //test
-//    passwordViwe.backgroundColor = [UIColor redColor];
-    
-    
-    
-    UILabel *lablePwd = [[UILabel alloc]init];
-    lablePwd.size = [UIView getSize_width:40 height:25];
-    lablePwd.origin = [UIView getPoint_x:0 y:0];
-    lablePwd.backgroundColor = [UIColor clearColor];
-    lablePwd.textColor = RGBAlphaColor(167, 167, 167, 1);
-    lablePwd.text = @"密码";
-    lablePwd.font = [UIFont defaultFontWithSize:17];
-    
-    self.textFieldPass.leftView = lablePwd;
-    self.textFieldPass.placeholder = @"请输入密码";
-    self.textFieldPass.leftViewMode = UITextFieldViewModeAlways;
-    UIButton * rightButtonPassWorld = [[UIButton alloc]initWithFrame:CGRectMake(0, 5.5, 17, 17)];
-    [rightButtonPassWorld setBackgroundImage:[UIImage imageNamed:@"loginview_hidePassworld"] forState:UIControlStateNormal];
-    rightButtonPassWorld.tag = 1000;
-    [rightButtonPassWorld addTarget:self action:@selector(rightButtonClcik:) forControlEvents:UIControlEventTouchUpInside];
-    self.textFieldPass.delegate = self;
-    self.textFieldPass.rightView = rightButtonPassWorld;
-    self.textFieldPass.secureTextEntry = YES;
-    self.textFieldPass.rightViewMode = UITextFieldViewModeAlways;
-    self.textFieldPass.clearButtonMode = UITextFieldViewModeWhileEditing;
-    
-    
-    
-    
-    
-    self.buttonlogin = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.buttonlogin = [[UIButton alloc]init];
     self.buttonlogin.enabled = NO;
     self.buttonlogin.tag = 92;
-    self.buttonlogin.size = [UIView getSize_width:passwordViwe.width height:sizeScale(40)];
-    self.buttonlogin.left = 0;
-    self.buttonlogin.layer.cornerRadius = 20;
-    self.buttonlogin.layer.masksToBounds = YES;
+    self.buttonlogin.backgroundColor = defaultMainColor;
+    [self.buttonlogin setTitleColor:RGBFromColor(0x464952) forState:UIControlStateNormal];
+    self.buttonlogin.size = [UIView getSize_width:inviteDataView.width height:sizeScale(40)];
+    self.buttonlogin.origin = [UIView getPoint_x:0 y:inviteDataView.bottom + 10];
     [self.buttonlogin setTitle:@"登录" forState:UIControlStateNormal];
     [self.buttonlogin setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.buttonlogin.backgroundColor = RGBFromColor(0xaaaaaa);
-    self.buttonlogin.titleLabel.font = [UIFont defaultFontWithSize:16];
+    self.buttonlogin.titleLabel.font = [UIFont defaultFontWithSize:22];
     [self.buttonlogin addTarget:self action:@selector(btnClck:) forControlEvents:UIControlEventTouchUpInside];
-    [self.bgView addSubView:self.buttonlogin frameBottomView:passwordViwe offset:66];
+    self.buttonlogin.layer.cornerRadius = sizeScale(6);
     
     [IHKeyboardAvoiding setAvoidingView:self.view withTarget:self.bgView];
     
-    
-    
-    
-    self.lableRegister = [[UILabel alloc]init];
-    self.lableRegister.size = [UIView getSize_width:180 height:25];
-    self.lableRegister.origin = [UIView getPoint_x:(self.bgView.width-self.lableRegister.width)/2 y:0];
-    self.lableRegister.backgroundColor = [UIColor clearColor];
-//    lableRegister.text = @"还没有账号？我要注册";
-    self.lableRegister.textColor = RGBAlphaColor(167, 167, 167, 1);
-    self.lableRegister.font = [UIFont defaultFontWithSize:16];
-    
-    NSString *registerStr = @"还没有账号？我要注册";
-    NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc]initWithString:registerStr];
-    [attributed addAttribute:NSFontAttributeName
-                       value:self.lableRegister.font
-                       range:NSMakeRange(0,registerStr.length)]; //设置字体大小
-    [attributed addAttribute:NSForegroundColorAttributeName
-                       value:XLColorMainPart
-                       range:NSMakeRange(6,4)];//设置颜色标签颜色
-    
-    self.lableRegister.attributedText = attributed;
-    [self.lableRegister yb_addAttributeTapActionWithStrings:@[@"我要注册"] delegate:self];
-    
-    
-    [self.bgView addSubView:self.lableRegister frameBottomView:self.buttonlogin offset:10];
-
-    
-    self.bgView.height = self.lableRegister.bottom;
-    
-    //bgView居中
-    self.bgView.top = (self.view.height - self.bgView.height)/2-50;
-    
-    //test
-//    self.bgView.backgroundColor = [UIColor redColor];
+    [self.bgView addSubView:self.buttonlogin frameBottomView:inviteDataView offset:50];
+    self.bgView.height = self.buttonlogin.bottom;
+    self.bgView.top = (self.view.height - self.bgView.height)/2 - 50;
     
     [self addThirdLogin];
 }
 
+#pragma -mark 发送短信验证码请求
+
+- (void)request_mobileCodeWithMsg:(NSString *)msg{
+    
+    __weak __typeof(self) weakSelf = self;
+    NetWork_mt_sendSMS *sendSms =  [[NetWork_mt_sendSMS alloc] init];
+    sendSms.mobile = self.textFieldUser.text.trim;
+    [sendSms showWaitMsg:msg handle:self];
+    [sendSms startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+        
+        if (finished) {
+            [self codeReduce];
+        }else{
+            if(msg != nil && msg.trim.length > 0){
+                [weakSelf showFaliureHUD:msg];
+            }
+        }
+    }];
+}
+
+//倒计时
+- (void)codeReduce{
+    __block int timeout = 60;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);     dispatch_source_set_event_handler(_timer, ^{
+        if(timeout<=0){
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.buttonText setTitle:@"发送验证码" forState:UIControlStateNormal];
+                self.buttonText.userInteractionEnabled = YES;
+            });
+        }else{
+            NSString *strTime = [NSString stringWithFormat:@"%.2d", timeout];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIView beginAnimations:nil context:nil];
+                [UIView setAnimationDuration:1];
+                [self.buttonText setTitle:[NSString stringWithFormat:@"%@ S",strTime] forState:UIControlStateNormal];
+                [UIView commitAnimations];
+                self.buttonText.userInteractionEnabled = NO;
+            });
+            timeout--;
+        }
+    });
+    dispatch_resume(_timer);
+    /*
+     if (self.count == 0) {
+     [self.buttonText setEnabled:YES];
+     //关闭定时器
+     [GlobalData invalidateTimer];
+     
+     NSString *buttonTitle = @"重获验证码";
+     [self.buttonText setTitle:buttonTitle forState:UIControlStateNormal];
+     [self.buttonText setTitle:buttonTitle forState:UIControlStateHighlighted];
+     return ;
+     }
+     if (self.buttonText.enabled) {
+     [self.buttonText setEnabled:NO];
+     }
+     NSString *buttonTitle = [NSString stringWithFormat:@"%ld S",(long)--self.count];
+     [self.buttonText setTitle:buttonTitle forState:UIControlStateDisabled];
+     */
+}
+
 
 #pragma mark 添加第三方登录
+
 - (void)addThirdLogin{
     
     [self.view addSubview:self.thirdLogin];
-    
     [self.view addSubview:self.leftThirdLoginLine];
-    
     [self.view addSubview:self.rightThirdLoginLine];
-    
     [self.view addSubview:self.weChatLogin];
-    
     [self.view addSubview:self.weBoLogin];
     
     [self thirdLoginF];
-    
     [self leftThirdLoginLineF];
-    
     [self rightThirdLoginLineF];
-    
     [self weChatLoginF];
-    
     [self weBoLoginF];
-    
 }
 
-- (void)textFieldEditingDidChange:(UITextField *)textField
-{
+- (void)textFieldEditingDidChange:(UITextField *)textField{
+    
     if (textField == self.textFieldUser) {
         if (textField.text.length>=11) {
             textField.text = [textField.text substringToIndex:11];
         }
     }
-    if (textField == self.textFieldPass) {
+    if (textField == self.textFiledSmsVerify) {
         if (textField.text.length>=20) {
             textField.text = [textField.text substringToIndex:20];
         }
-    }}
+    }
+}
+
 -(void)btnClck:(UIButton *)btn{
     
     if(btn.tag == 90){
@@ -465,7 +468,7 @@
     }
     else if(btn.tag == 92){
         // 释放键盘
-        [self.textFieldPass resignFirstResponder];
+        [self.textFiledSmsVerify resignFirstResponder];
         [self.textFieldUser resignFirstResponder];
         
         [self doLoginAction];
@@ -474,92 +477,53 @@
         [self.view endEditing:YES];
         [self loginCancle];
     }
-    else if(btn.tag == 94){ // 忘记密码
+    else if(btn.tag == 342433){
+        if (self.textFieldUser) {
+            if(IsValidPhoneNum(self.textFieldUser.text.trim)&&self.textFieldUser.text.length ==11){
+                
+                [self request_mobileCodeWithMsg:@"验证码发送中....."];
+                
+            }else{
+                [self showFaliureHUD:@"您输入的手机号格式不正确!"];
+            }
+        }
         
-        [self.view endEditing:YES];
-        
-//        ZJRetrieveViewController *retrieveViewController = [[ZJRetrieveViewController alloc] init];
-//        [self.navigationController pushViewController:retrieveViewController animated:YES];
-        
-//        ZJForgetPassworldViewController * forgetViewController = [[ZJForgetPassworldViewController alloc]init];
-//        [self.navigationController pushViewController:forgetViewController animated:YES];
-
     }
-}
-
--(void)rightButtonClcik:(UIButton *)btn{
-//    [GlobalFunc event:@"event_click_"];
-    UITextField * passworldTextFiled = (UITextField *)[self.view viewWithTag:10001];
-    
-    if (!passworldTextFiled.secureTextEntry) {
-        UIButton * rightButtonPassWorld = (UIButton *)[self.view viewWithTag:1000];
-        [rightButtonPassWorld setBackgroundImage:[UIImage imageNamed:@"loginview_hidePassworld"] forState:UIControlStateNormal];
-        passworldTextFiled.secureTextEntry = YES;
-        
-    }else{
-        UIButton * rightButtonPassWorld = (UIButton *)[self.view viewWithTag:1000];
-        [rightButtonPassWorld setBackgroundImage:[UIImage imageNamed:@"loginpPassworldShow"] forState:UIControlStateNormal];
-        passworldTextFiled.secureTextEntry = NO;
-    }
-}
-
-#pragma -mark Custom Method
-
--(void)gotoRegisterViewController{
-    
-}
-
--(void)gotoForgetPasswordViewController{
-    
 }
 
 -(void)doLoginAction{
     NSString *userName = self.textFieldUser.text.trim;
-    NSString *userPassword = self.textFieldPass.text.trim;
-    
-    
     bool mobileResult = IsValidPhoneNum(userName);
-    bool pwdResult = IsValidUserPwd(userPassword);
-    
     if(!mobileResult){
         [self showFaliureHUD:@"手机号格式有误"];
         return;
     }
-    
-    if(!pwdResult){ /*暂时先不验证*/
-//        [self showFaliureHUD:@"密码格式有误"];
-//        return;
-    }
-    
-//    __weak __typeof (self) weakSelf = self;
-//    NetWork_login *request = [[NetWork_login alloc]init];
-//    request.mobile = userName;
-//    request.password = [userPassword RSA];
-//    [request showWaitMsg:@"加载中......" handle:self];
-//    [request startPostWithBlock:^(ZjLoginRespone *result, NSString *msg, BOOL finished) {
-//        if(finished){
-//            weakSelf.buttonlogin.enabled = NO;
-//            [weakSelf deal_loginRespones:result userPwd:userPassword];
-//            [weakSelf loginSuccessful:userName];
-//        }
-//        else{
-//            [weakSelf showFaliureHUD:msg];
-//            weakSelf.buttonlogin.enabled = YES;
-//        }
-//    }];
+    NetWork_mt_login *request = [[NetWork_mt_login alloc] init];
+    request.accoutType = @"3";//手机号登录
+    request.identifyingCode = self.textFiledSmsVerify.text.trim;
+    request.mobile = self.textFieldUser.text.trim;
+    [request showWaitMsg:@"正在登陆，请稍后......" handle:self];
+    [request startPostWithBlock:^(LoginResponse *result, NSString *msg, BOOL finished) {
+        
+        if(finished){
+            [self deal_loginRespones:result.obj];
+        }
+        else{
+            [UIWindow showTips:@"登录失败，请检查网络！"];
+        }
+    }];
 }
 
 
 /*处理-登录*/
 - (void)deal_loginRespones:(LoginModel *)loginModel{
+    
     [GlobalData sharedInstance].hasLogin = YES;
     [GlobalData sharedInstance].loginDataModel = loginModel;
     [self loginSuccessful];
 }
 //登录成功
 - (void)loginSuccessful{
-    
-
     
     if ([ZJLoginService sharedInstance].completeBlock) {
         [ZJLoginService sharedInstance].completeBlock(YES);
@@ -598,48 +562,6 @@
     }];
 }
 
--(void)mtLogin:(NSString*)nickname head:(NSString*)head openid:(NSString*)openid {
-    
-    ContentModel *model = [[ContentModel alloc] init];
-    model.nickname = nickname;
-    model.wechat_id = @"sdsfd";
-    
-    
-    
-    NSMutableDictionary *fileDic = [[NSMutableDictionary alloc]init];
-    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:head]];
-    //sizeImage = UIImageJPEGRepresentation([GlobalFunc scaleToSizeAlpha:image alpha:alpha], 0.7); //压缩图片质量，保留。
-    NSString *key = @"head";
-    [fileDic setObject:imageData forKey:key];
-    
-//    NetWork_mt_login *request = [[NetWork_mt_login alloc] init];
-////    request.head = head;
-//    request.content = [model generateJsonStringForProperties];
-//    request.uploadFilesDic = fileDic;
-//    [request showWaitMsg:@"正在登陆，请稍后......" handle:self];
-//    [request startPostWithBlock:^(LoginResponse *result, NSString *msg, BOOL finished) {
-//        
-//        
-//        if(finished){
-//            [self deal_loginRespones:result.obj];
-//        }
-//        NSLog(@"----");
-//    }];
-    
-}
-
-#pragma mark- YBAttributeTapActionDelegate
-
-- (void)yb_attributeTapReturnString:(NSString *)string
-                              range:(NSRange)range
-                              index:(NSInteger)index{
-    NSLog(@"%@",string);
-    
-    
-//    RegisterViewController *registerViewController = [[RegisterViewController alloc] init];
-//    [self.navigationController pushViewController:registerViewController animated:YES];
-}
-
 #pragma mark 微信登录
 -(void)sendWeChatAuthRequest{
     
@@ -656,7 +578,6 @@
     }
 }
 
-#pragma mark --CMPLjhMobileAppDelegateDelegate
 #pragma mark 微信授权成功
 - (void)loginSuccessByWechat:(NSString *)code{
     
@@ -697,6 +618,7 @@
         }
     }];
 }
+
 -(void)tencentLoginFail:(NSNotification *)notification{
     NSDictionary *resultDic = notification.userInfo;
     NSString  *reson = [resultDic objectForKey:@"reson"];
@@ -828,7 +750,7 @@
     if(enable == YES){
         btn.enabled = YES;
         //btn.backgroundColor = RGBFromColor(0xfa555c);
-        btn.backgroundColor = XLColorMainPart;
+        btn.backgroundColor = MTColorBtnRedNormal;
     }
     else{
         btn.enabled = NO;

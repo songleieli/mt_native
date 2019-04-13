@@ -15,7 +15,9 @@
 
 /*注册成功后，需要带上手机号 RegisterViewController 中调用*/
 @property(nonatomic,strong)UITextField * textFieldUser;//userTextField;
-@property(nonatomic,strong)UITextField * textFieldPass;
+@property(nonatomic,strong)UITextField * textFiledSmsVerify;
+/** 获取验证码按钮 */
+@property(nonatomic,strong) UIButton * buttonText;
 
 @property (nonatomic, strong)TencentOAuth *oauth;
 
