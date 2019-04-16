@@ -1030,7 +1030,48 @@ static GlobalFunc *sharedInstance;
 }
 
 
-
++ (void)showAlertWithTitle:(NSString *)title message:(NSString *)message makeSure:(VoidBlock)sure cancel:(VoidBlock)cancel{
+    //    NSString *str = @"";
+    //    if (title.length > 0) {
+    //        str = title;
+    //
+    //        if (message.length > 0) {
+    //            str = [NSString stringWithFormat:@"%@\n%@",title,message];
+    //        }
+    //    }else{
+    //        str = message;
+    //    }
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message
+                                                                             message:@""
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                        style:UIAlertActionStyleDestructive
+                                                      handler:^(UIAlertAction *action) {
+                                                          cancel();
+                                                      }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                        style:UIAlertActionStyleDestructive
+                                                      handler:^(UIAlertAction *action) {
+                                                          sure();
+                                                      }]];
+    UIViewController *topRootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
+    
+    // 在这里加一个这个样式的循环
+    while (topRootViewController.presentedViewController)
+    {
+        // 这里固定写法
+        topRootViewController = topRootViewController.presentedViewController;
+    }
+    
+    [topRootViewController presentViewController:alertController animated:YES completion:^{
+        
+    }];
+    //    [[AppDelegate shareAppDelegate].tabbarController.selectedViewController presentViewController:alertController animated:YES completion:^{
+    //
+    //    }];
+}
 
 
 

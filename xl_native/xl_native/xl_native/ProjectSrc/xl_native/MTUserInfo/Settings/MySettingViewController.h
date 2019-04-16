@@ -9,7 +9,7 @@
 //#import "SettingViewController.h"
 #import "MyViewTableViewCell.h"
 #import "PersonalInformationViewController.h"
-
+#import "SettingAboutViewController.h"
 
 
 @interface MyViewTableViewSelectionModel : NSObject

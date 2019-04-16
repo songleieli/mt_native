@@ -22,5 +22,6 @@
 
 @property(nonatomic,strong) MusicSearchModel * selectMusicModel;//合唱需要musicModel
 
+-(void)useHotMusicClick:(MusicSearchModel *)musicModel; //合拍时调用
 
 @end

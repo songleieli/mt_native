@@ -21,6 +21,41 @@
 
 @implementation IntroduceViewController
 
+- (UIButton *)btnSave{
+    
+    if (!_btnSave) {
+        
+        _btnSave =  [UIButton buttonWithType:UIButtonTypeCustom];
+        [_btnSave setBackgroundColor:MTColorBtnRedNormal forState:UIControlStateNormal];
+        [_btnSave setBackgroundColor:MTColorBtnRedHighlighted forState:UIControlStateHighlighted];
+        _btnSave.size = [UIView getSize_width:sizeScale(250) height:sizeScale(35)];
+        
+        _btnSave.centerX = self.view.width/2;
+        _btnSave.bottom = self.scrollView.height - 50;
+        _btnSave.layer.cornerRadius = 2.0f;
+        _btnSave.layer.masksToBounds = true;//给按钮添加边框效果
+        [_btnSave addTarget:self action:@selector(btnSaveClcik:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIImageView *imageIcon = [[UIImageView alloc] init];
+        imageIcon.size = [UIView getSize_width:sizeScale(12.5) height:sizeScale(12.5)];
+        imageIcon.origin = [UIView getPoint_x:(_btnSave.width - imageIcon.width)/2 - imageIcon.width-2
+                                            y:(_btnSave.height - imageIcon.height)/2];
+        imageIcon.image = [UIImage imageNamed:@"icon_home_all_share_collention"];
+        
+        UILabel *lableCollectionTitle = [[UILabel alloc] init];
+        lableCollectionTitle.size = [UIView getSize_width:_btnSave.width/2 height:_btnSave.height];
+        lableCollectionTitle.origin = [UIView getPoint_x:imageIcon.right+5 y:0];
+        lableCollectionTitle.textColor = [UIColor whiteColor];
+        lableCollectionTitle.textAlignment = NSTextAlignmentLeft;
+        lableCollectionTitle.text = @"保存";
+        lableCollectionTitle.font = [UIFont defaultBoldFontWithSize:14];
+        
+        [_btnSave addSubview:imageIcon];
+        [_btnSave addSubview:lableCollectionTitle];
+    }
+    return  _btnSave;
+}
+
 -(void)initNavTitle{
     self.isNavBackGroundHiden = NO;
     self.lableNavTitle.textColor = [UIColor whiteColor];
@@ -33,17 +68,7 @@
     [leftButton addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     self.btnLeft = leftButton;
-    
-    UIButton * rightBarButton = [[UIButton alloc]init];
-    rightBarButton.size = [UIView getSize_width:50 height:50];
-    [rightBarButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    rightBarButton.titleLabel.font = [UIFont defaultFontWithSize:17];
-    //    rightBarButton.titleLabel.textColor = [UIColor whiteColor] ;
-    rightBarButton.enabled = YES;
-    [rightBarButton setTitle:@"保存" forState:UIControlStateNormal];
-    [rightBarButton addTarget:self action:@selector(btnClcik:) forControlEvents:UIControlEventTouchUpInside];
-    self.btnRight = rightBarButton;
-    
+
     self.title = @"签名";
 }
 
@@ -57,32 +82,46 @@
     
     self.view.backgroundColor = ColorThemeBackground;
     
-// 昵称的View
+    
+    CGRect frame = CGRectMake(0, self.navBackGround.bottom, ScreenWidth, ScreenHeight - kNavBarHeight_New);
+    self.scrollView = [[UIScrollView alloc] initWithFrame:frame];
+    self.scrollView.alwaysBounceVertical = YES; //垂直方向添加弹簧效果
+    [self.view addSubview:self.scrollView];
+    
+    
+    // 昵称的View
     UIView * nickNameView = [[UIView alloc]init];
     nickNameView.size = [UIView getSize_width:ScreenWidth height:63];
     nickNameView.left = 0;
-    nickNameView.top = 12+self.navBackGround.bottom;
+    nickNameView.top = 12;
     nickNameView.backgroundColor = ColorThemeBackground;
-    [self.view addSubview:nickNameView];
+    [self.scrollView addSubview:nickNameView];
+    
+    
     
     self.nickNameTextField = [[UITextField alloc]init];
-    self.nickNameTextField.size = [UIView getSize_width:ScreenWidth-12*2 height:40];
-    self.nickNameTextField.tag = 2222;
+    self.nickNameTextField.size = [UIView getSize_width:ScreenWidth-12*2 height:20];
     self.nickNameTextField.top = (nickNameView.height - self.nickNameTextField.height)/2;
     self.nickNameTextField.left = 12;
+    self.nickNameTextField.delegate = self;
     self.nickNameTextField.font = [UIFont defaultFontWithSize:14];
     self.nickNameTextField.borderStyle = UITextBorderStyleNone;
     self.nickNameTextField.clearButtonMode =UITextFieldViewModeWhileEditing;
-    self.nickNameTextField.placeholder = @"请填写签名";
+    self.nickNameTextField.placeholder = @"请填写一句话介绍";
     self.nickNameTextField.text = [GlobalData sharedInstance].loginDataModel.signature;
     self.nickNameTextField.textColor = [UIColor whiteColor];
-
     [nickNameView addSubview:self.nickNameTextField];
-
     [self.nickNameTextField becomeFirstResponder];
+    
+    
+    
+    //test
+    nickNameView.backgroundColor = MTColorCellHighlighted;
+    
+    [self.scrollView addSubView:self.btnSave frameBottomView:nickNameView offset:100];
 }
 
--(void)btnClcik:(UIButton *)btn{
+-(void)btnSaveClcik:(UIButton *)btn{
     
     NSString *signature = self.nickNameTextField.text.trim;
     if(signature.length > 0){

@@ -13,19 +13,32 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
 
 @interface MusicInfoController ()
 
-
 @property (nonatomic, assign) CGFloat                          itemWidth;
 @property (nonatomic, assign) CGFloat                          itemHeight;
-
 @property (nonatomic, assign) NSInteger                        tabIndex;
-
 @property (nonatomic, strong) NSMutableArray          *favoriteAwemes;
+
+@property (nonatomic, strong) UIButton          *btnPTK;
+
 
 @end
 
 @implementation MusicInfoController
 
 #pragma -mark ---------- 懒加载页面元素 -------------
+
+-(UIButton*)btnPTK{
+    if(!_btnPTK){
+        _btnPTK = [UIButton buttonWithType:UIButtonTypeCustom];
+        _btnPTK.size = [UIView getSize_width:70 height:70];
+        _btnPTK.bottom = ScreenHeight - 50;
+        _btnPTK.centerX = ScreenWidth/2;
+        [_btnPTK setBackgroundImage:[UIImage imageNamed:@"videoex"] forState:UIControlStateNormal];
+        [_btnPTK setBackgroundImage:[UIImage imageNamed:@"videoex_press"] forState:UIControlStateHighlighted];
+        [_btnPTK addTarget:self action:@selector(btnPTKClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _btnPTK;
+}
 
 -(NSMutableArray*)favoriteAwemes{
     if(!_favoriteAwemes){
@@ -126,6 +139,8 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
         [wself loadData];
     }];
     [_collectionView addSubview:_loadMore];
+    
+    [self.view addSubview:self.btnPTK];
 }
 
 #pragma -mark ----------HTTP data request----------
@@ -297,6 +312,61 @@ NSString * const kMyMusicHeaderView         = @"kMyTopicHeaderView";
 }
 
 #pragma -mark ------------Custom Method---------
+
+-(void)btnPTKClick:(UIButton*)btn{//点击拍同款按钮
+    [[ZJLoginService sharedInstance] authenticateWithCompletion:^(BOOL success) {
+        
+        NSString *fileName = [self.musicModel.playUrl pathExtension];
+        if(fileName.trim.length == 0){
+            fileName = @"mp3";
+        }
+        NSString *bgmPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/bgm"];
+
+        NSString *filePath = [bgmPath stringByAppendingPathComponent:self.musicModel.musicName];
+        NSString *localUrl = [NSString stringWithFormat:@"%@.%@",filePath,fileName];
+        
+        if([GlobalFunc isFileExist:localUrl]){
+            
+            [self gotoRecourd:localUrl];
+        }
+        else{
+            
+            [FileHelper downloadFile:localUrl playUrl:self.musicModel.playUrl processBlock:^(float percent) {
+                [GlobalFunc showHud:[NSString stringWithFormat:@"正在加载音乐%d %%",(int)(percent * 100)]];
+            } completionBlock:^(BOOL result, NSString *msg) {
+                [GlobalFunc hideHUD:1.0f];
+                if(result){
+                    [self gotoRecourd:localUrl];
+                }
+                else{
+                    [UIWindow showTips:msg];
+                }
+            }];
+        }
+    } cancelBlock:nil isAnimat:YES];
+}
+
+-(void)gotoRecourd:(NSString*)localUrl{
+    
+    TCVideoRecordViewController *videoRecord = [[TCVideoRecordViewController alloc] initWithNibName:nil bundle:nil];
+    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:videoRecord];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [self presentViewController:nav animated:YES completion:^{
+        //页面加载完成，调用选择背景音乐，
+//        videoRecord
+        MusicSearchModel *musicSearchModel = [[MusicSearchModel alloc] init];
+        musicSearchModel.musicId = weakSelf.musicModel.musicId;
+        musicSearchModel.musicName = weakSelf.musicModel.musicName;
+        musicSearchModel.coverUrl = weakSelf.musicModel.coverUrl;
+        musicSearchModel.playUrl = weakSelf.musicModel.playUrl;
+        musicSearchModel.localUrl = localUrl;
+        
+        [videoRecord useHotMusicClick:musicSearchModel];
+        
+    }];
+}
 
 -(void)backBtnClick:(UIButton*)btn{
     [self.navigationController popViewControllerAnimated:YES];

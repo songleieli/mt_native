@@ -436,6 +436,12 @@ NSString * const kCommentFooterCell   = @"CommentFooterCell";
     [_avatar sd_setImageWithURL:avatarUrl completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
     }];
+    if([comment.isLike intValue] == 1){
+        _likeIcon.selected = YES;
+    }
+    else{
+        _likeIcon.selected = NO;
+    }
     _content.text = comment.commentContent;
     _date.text = comment.commentTime;
     _likeNum.text = [NSString formatCount:[comment.likeSum integerValue]];

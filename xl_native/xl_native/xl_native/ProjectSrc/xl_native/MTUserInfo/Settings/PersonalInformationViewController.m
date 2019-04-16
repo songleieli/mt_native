@@ -89,7 +89,7 @@
     
     // 头像的view
     UIView * iconView = [[UIView alloc]init];
-    iconView.size = [UIView getSize_width:ScreenWidth height:sizeScale(66)];
+    iconView.size = [UIView getSize_width:ScreenWidth height:sizeScale(45)];
     iconView.origin =[UIView getPoint_x:0 y:12];
     [self.scrollBg addSubview:iconView];
     
@@ -102,7 +102,7 @@
     [iconView addSubview:lableLine];
     
     UILabel * labelIcon = [[UILabel alloc]init];
-    labelIcon.font = [UIFont defaultFontWithSize:sizeScale(14)];
+    labelIcon.font = MediumBoldFont;
     labelIcon.textColor = [UIColor whiteColor];
     labelIcon.text = @"头像";
     
@@ -136,12 +136,12 @@
     [iconView addSubview:self.loginIconImageView];
     // 昵称
     self.nicknameView = [[UIView alloc]init];
-    self.nicknameView.size = [UIView getSize_width:ScreenWidth height:sizeScale(66)];
+    self.nicknameView.size = [UIView getSize_width:ScreenWidth height:sizeScale(45)];
     self.nicknameView.origin =[UIView getPoint_x:0 y:iconView.bottom];
     [self.scrollBg addSubview:self.nicknameView];
     
     UILabel * labelLoginIcon = [[UILabel alloc]init];
-    labelLoginIcon.font = [UIFont defaultFontWithSize:sizeScale(14)];
+    labelLoginIcon.font = MediumBoldFont;
     labelLoginIcon.textColor = [UIColor whiteColor];
     labelLoginIcon.text = @"昵称";
     CGSize lableNicknameSize = [labelLoginIcon.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:labelLoginIcon.font,NSFontAttributeName, nil]];
@@ -161,8 +161,8 @@
     self.labelNickName = [[UILabel alloc]init];
     self.labelNickName.userInteractionEnabled = YES;
     self.labelNickName.textAlignment = NSTextAlignmentRight;
-    self.labelNickName.font = [UIFont defaultFontWithSize:sizeScale(14)];
-    self.labelNickName.textColor = RGBFromColor(0x777777);
+    self.labelNickName.font = MediumFont;
+    self.labelNickName.textColor = ColorWhiteAlpha80;
     [self.nicknameView addSubview:self.labelNickName];
     
     UIButton * buttonClear = [[UIButton alloc]init];
@@ -183,25 +183,24 @@
     
     //编辑资料
     UIView * viewIntroduce = [[UIView alloc]init];
-    viewIntroduce.size   =[UIView getSize_width:ScreenWidth height:sizeScale(66)];
+    viewIntroduce.size   =[UIView getSize_width:ScreenWidth height:sizeScale(45)];
     viewIntroduce.origin =[UIView getPoint_x:0 y:self.nicknameView.bottom];
     [self.scrollBg addSubview:viewIntroduce];
     
     UILabel * lablescan = [[UILabel alloc]init];
-    lablescan.font = [UIFont defaultFontWithSize:sizeScale(14)];
+    lablescan.font = MediumBoldFont;
     lablescan.textColor = [UIColor whiteColor];
-    lablescan.text = @"介绍";
+    lablescan.text = @"签名";
     lablescan.left = 21;
     lablescan.top = 0;
     lablescan.size = [UIView getSize_width:100 height:viewIntroduce.height];
     [viewIntroduce addSubview:lablescan];
     
-    
     self.labelIntrduce = [[UILabel alloc]init];
     self.labelIntrduce.userInteractionEnabled = YES;
     self.labelIntrduce.textAlignment = NSTextAlignmentRight;
-    self.labelIntrduce.font = [UIFont defaultFontWithSize:sizeScale(14)];
-    self.labelIntrduce.textColor = RGBFromColor(0x777777);
+    self.labelIntrduce.font = MediumFont;
+    self.labelIntrduce.textColor = ColorWhiteAlpha80;
     [viewIntroduce addSubview:self.labelIntrduce];
     
     

@@ -10,6 +10,9 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 
+
+typedef void(^VoidBlock)(void);
+
 @protocol ChoosePictureDelegate <NSObject>
 
 @optional
@@ -174,6 +177,8 @@
 + (void)hideHUD;
 
 + (void)hideHUD:(NSTimeInterval)delay;
+
++ (void)showAlertWithTitle:(NSString *)title message:(NSString *)message makeSure:(VoidBlock)sure cancel:(VoidBlock)cancel;
 
 @end
 

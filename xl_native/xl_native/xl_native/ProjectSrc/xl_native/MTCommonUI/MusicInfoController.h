@@ -11,6 +11,7 @@
 
 
 #import "ScrollPlayerListViewController.h"
+#import "TCVideoRecordViewController.h"
 #import "MyMusicHeaderView.h"
 
 #import "NetWork_mt_getHotVideosByMusic.h"

@@ -32,7 +32,7 @@
 @property (copy, nonatomic) NSString *commentNickname;
 @property (copy, nonatomic) NSString *commentHead;
 @property (copy, nonatomic) NSString *commentContent;
-@property (copy, nonatomic) NSString *likeSum;
+@property (strong, nonatomic) NSNumber *likeSum;
 @property (copy, nonatomic) NSString *commentTime;
 @property (copy, nonatomic) NSString *parentNoodleId;
 @property (copy, nonatomic) NSString *status;

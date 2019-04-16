@@ -363,13 +363,17 @@
     }
     else if (model.cellTag == MyCellTag_about){
         NSLog(@"--------关于-------");
+        
+        SettingAboutViewController *settingAboutViewController = [[SettingAboutViewController alloc] init];
+        [self pushNewVC:settingAboutViewController animated:YES];
 
     }
     else if (model.cellTag == MyCellTag_logout){
-        NSLog(@"--------退出登录-------");
         
-        [GlobalData cleanAccountInfo];
-        [[CMPZjLifeMobileAppDelegate shareApp].rootViewController selectTabAtIndex:0];
+        [GlobalFunc showAlertWithTitle:@"温馨提示" message:@"您确定要退出登录" makeSure:^{
+            [GlobalData cleanAccountInfo];
+            [[CMPZjLifeMobileAppDelegate shareApp].rootViewController selectTabAtIndex:0];
+        } cancel:^{}];
     }
     else if(model.cellTag == MyCellTag_cleanCache){
         
@@ -377,12 +381,20 @@
          *清理缓存
          */
 //        [self startWithCursor:@"正在清理缓存"];
-        [[WebCacheHelpler sharedWebCache] clearCache:^(NSString *cacheSize) {
-            //NSLog(@"-------清理缓存----cacheSize = %@ M----",cacheSize);
-//            [self stopWatiCursor:@"正在清理缓存"];
-            [UIWindow showTips:[NSString stringWithFormat:@"清理缓存[%@ M]",cacheSize]];
+        
+        [GlobalFunc showAlertWithTitle:@"温馨提示" message:@"您确定要请里缓存？缓存清理后，保存的视频，会重新下载。" makeSure:^{
             
-        } isClearAllVideoCacle:YES];
+            [[WebCacheHelpler sharedWebCache] clearCache:^(NSString *cacheSize) {
+                //NSLog(@"-------清理缓存----cacheSize = %@ M----",cacheSize);
+                //            [self stopWatiCursor:@"正在清理缓存"];
+                [UIWindow showTips:[NSString stringWithFormat:@"清理缓存[%@ M]",cacheSize]];
+                
+            } isClearAllVideoCacle:YES];
+            
+        } cancel:^{}];
+        
+        
+
     }
 }
 

@@ -156,10 +156,10 @@
         NetWork_mt_updateNoodleAccount *request = [[NetWork_mt_updateNoodleAccount alloc] init];
         request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
         request.content = [model generateJsonStringForProperties];
+        [request showWaitMsg:@"正在保存" handle:self];
         [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+            
             if(finished){
-                NSLog(@"-------");
-                
                 LoginModel *tempModel = [GlobalData sharedInstance].loginDataModel;
                 tempModel.nickname = nickName;
                 [GlobalData sharedInstance].loginDataModel = tempModel;

@@ -254,8 +254,6 @@
         
         BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
         [self presentViewController:nav animated:YES completion:^{
-            NSLog(@"发送通知");
-            
             /*
              *发送弹出模态窗口通知
              */
@@ -296,7 +294,6 @@
         TCVideoRecordViewController *videoRecord = [[TCVideoRecordViewController alloc] initWithNibName:nil bundle:nil];
         BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:videoRecord];
         [self presentViewController:nav animated:YES completion:^{
-            NSLog(@"发送通知");
             
             /*
              *发送弹出模态窗口通知
