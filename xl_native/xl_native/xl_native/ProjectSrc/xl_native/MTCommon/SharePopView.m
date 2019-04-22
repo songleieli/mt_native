@@ -27,31 +27,31 @@
                                  @"icon_profile_share_wxTimeline",
                                  @"icon_profile_share_wechat",
                                  @"icon_profile_share_qqZone",
-                                 @"icon_profile_share_qq",
-                                 @"icon_profile_share_wechat",
                                  @"icon_profile_share_qq"
+//                                 @"icon_profile_share_wechat",
+//                                 @"icon_profile_share_qq"
                                  ];
         NSArray *topTexts = @[
                              @"朋友圈",
                              @"微信好友",
                              @"QQ空间",
                              @"QQ好友",
-                             @"发送至微信",
-                             @"发送至qq"
+//                             @"发送至微信",
+//                             @"发送至qq"
                              ];
         NSArray *bottomIconsName = @[
                                     @"icon_home_all_share_collention",
-                                    @"icon_home_allshare_report",
+//                                    @"icon_home_allshare_report",
                                     @"icon_home_allshare_download",
-                                    @"icon_home_allshare_copylink",
-                                    @"icon_home_all_share_dislike"
+                                    @"icon_home_allshare_copylink"
+//                                    @"icon_home_all_share_dislike"
                                     ];
         NSArray *bottomTexts = @[
                                 @"收藏",
-                                @"举报",
+//                                @"举报",
                                 @"保存至相册",
-                                @"复制链接",
-                                @"不感兴趣"
+                                @"复制链接"
+//                                @"不感兴趣"
                                 ];
         
         self.frame = ScreenFrame;
@@ -412,10 +412,6 @@
                          [self removeFromSuperview];
                      }];
 }
-
-
-
-
 
 @end
 

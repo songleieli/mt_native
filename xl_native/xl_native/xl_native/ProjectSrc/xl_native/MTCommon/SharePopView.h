@@ -25,10 +25,10 @@ typedef NS_ENUM(NSInteger, MTShareType){
 typedef NS_ENUM(NSInteger, MTShareActionType){
     
     MTShareActionTypeCollention = 0,
-    MTShareActionTypeReport,
+//    MTShareActionTypeReport,
     MTShareActionTypeDownload,
-    MTShareActionTypeCopylink,
-    MTShareActionTypeDislike
+    MTShareActionTypeCopylink
+//    MTShareActionTypeDislike
 };
 
 

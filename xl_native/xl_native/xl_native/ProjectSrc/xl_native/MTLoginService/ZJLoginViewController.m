@@ -131,7 +131,7 @@
     
     if (!_weChatLogin) {
         _weChatLogin = [[UIButton alloc] init];
-        [_weChatLogin setImage:[UIImage imageNamed:@"WechatLogin"] forState:UIControlStateNormal];
+        [_weChatLogin setImage:[UIImage imageNamed:@"icon_profile_share_wechat"] forState:UIControlStateNormal];
         [_weChatLogin addTarget:self action:@selector(sendWeChatAuthRequest) forControlEvents:UIControlEventTouchUpInside];
     }
     return _weChatLogin;
@@ -150,7 +150,7 @@
     
     if (!_weBoLogin) {
         _weBoLogin = [[UIButton alloc] init];
-        [_weBoLogin setImage:[UIImage imageNamed:@"WeboLogin"] forState:UIControlStateNormal];
+        [_weBoLogin setImage:[UIImage imageNamed:@"icon_profile_share_qq"] forState:UIControlStateNormal];
         [_weBoLogin addTarget:self action:@selector(sendWeiboAuth) forControlEvents:UIControlEventTouchUpInside];
     }
     return _weBoLogin;

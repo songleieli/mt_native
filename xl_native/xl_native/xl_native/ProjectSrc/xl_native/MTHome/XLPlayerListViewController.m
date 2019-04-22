@@ -462,6 +462,23 @@
             }
         }];
     }
+    
+    else if(index == MTShareActionTypeDownload){ //保存至相册
+        
+    }
+    else if (index == MTShareActionTypeCopylink){
+        
+        NSString *apiBaseUrl = [WCBaseContext sharedInstance].appInterfaceServer;
+        NSString *shareUrl = [NSString stringWithFormat:@"%@/miantiao/home/shareVideo?videosrc=%@",apiBaseUrl,self.currentCell.listModel.storagePath];
+        UIPasteboard *pab = [UIPasteboard generalPasteboard];
+        [pab setString:shareUrl];
+        if (pab == nil) {
+            [GlobalFunc showAlertWithMessage:@"复制失败!"];
+        }
+        else{
+            [GlobalFunc showAlertWithMessage:@"已复制"];
+        }
+    }
 }
 
 @end

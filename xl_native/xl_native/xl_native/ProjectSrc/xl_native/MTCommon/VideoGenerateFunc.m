@@ -27,8 +27,12 @@ static VideoGenerateFunc *sharedInstance;
 
 -(void)globalFuncGenerateVideo:(NSString*)videoPath shareType:(MTShareType)shareType{
     
-    
     self.shareType = shareType;
+    
+    [self globalFuncGenerateVideo:videoPath];
+}
+
+-(void)globalFuncGenerateVideo:(NSString*)videoPath{
     
     [GlobalFunc hideHUD:1.0f];
     
@@ -61,7 +65,6 @@ static VideoGenerateFunc *sharedInstance;
     NSString *videoOutputPath = [[WebCacheHelpler sharedWebCache].diskCachePath stringByAppendingPathComponent:@"outputCut_temp.mp4"];
     //[self.ugcEdit generateVideo:VIDEO_COMPRESSED_720P videoOutputPath:videoOutputPath];
     [self.ugcEdit generateVideo:[GlobalData sharedInstance].videoQuality videoOutputPath:videoOutputPath];
-    
 }
 
 
@@ -85,39 +88,42 @@ static VideoGenerateFunc *sharedInstance;
     [GlobalFunc hideHUD];
     
     NSString *videoOutputPath = [[WebCacheHelpler sharedWebCache].diskCachePath stringByAppendingPathComponent:@"outputCut_temp.mp4"];
-    
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     [library writeVideoAtPathToSavedPhotosAlbum:[NSURL fileURLWithPath:videoOutputPath] completionBlock:^(NSURL *assetURL, NSError *error) {
         if (error != nil) {
             [GlobalFunc showAlertWithMessage:@"视频保存失败！"];
         }else{
-            //            [GlobalFunc showAlertWithMessage:@"视频保存成功！"];
             
-            if(self.shareType == MTShareTypeWechatVideo){
+            if(self.actionType != MTShareActionTypeDownload){
                 
-                NSURL * url = [NSURL URLWithString:@"weixin://"];
-                BOOL canOpen = [[UIApplication sharedApplication] canOpenURL:url];
-                //先判断是否能打开该url
-                if (canOpen)
-                {   //打开微信
-                    [[UIApplication sharedApplication] openURL:url];
-                }else {
-                    [GlobalFunc showAlertWithMessage:@"没有安装微信"];
+                if(self.shareType == MTShareTypeWechatVideo){
+                    
+                    NSURL * url = [NSURL URLWithString:@"weixin://"];
+                    BOOL canOpen = [[UIApplication sharedApplication] canOpenURL:url];
+                    //先判断是否能打开该url
+                    if (canOpen)
+                    {   //打开微信
+                        [[UIApplication sharedApplication] openURL:url];
+                    }else {
+                        [GlobalFunc showAlertWithMessage:@"没有安装微信"];
+                    }
+                }
+                
+                else if (self.shareType == MTShareTypeRegQQVideo){
+                    NSURL * url = [NSURL URLWithString:@"mqq://"];
+                    BOOL canOpen = [[UIApplication sharedApplication] canOpenURL:url];
+                    //先判断是否能打开该url
+                    if (canOpen)
+                    {   //打开微信
+                        [[UIApplication sharedApplication] openURL:url];
+                    }else {
+                        [GlobalFunc showAlertWithMessage:@"没有安装qq"];
+                    }
                 }
             }
-            
-            else if (self.shareType == MTShareTypeRegQQVideo){
-                NSURL * url = [NSURL URLWithString:@"mqq://"];
-                BOOL canOpen = [[UIApplication sharedApplication] canOpenURL:url];
-                //先判断是否能打开该url
-                if (canOpen)
-                {   //打开微信
-                    [[UIApplication sharedApplication] openURL:url];
-                }else {
-                    [GlobalFunc showAlertWithMessage:@"没有安装qq"];
-                }
+            else{
+                [GlobalFunc showAlertWithMessage:@"视频保存至相册！"];
             }
-            
         }
     }];
 }
