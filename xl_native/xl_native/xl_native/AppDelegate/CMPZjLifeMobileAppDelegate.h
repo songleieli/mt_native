@@ -13,7 +13,7 @@
 
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "WXApi.h"
-#import "WeiboSDK.h"
+//#import "WeiboSDK.h"
 #import "WXApiManager.h"
 //qq互联
 #import <TencentOpenAPI/TencentOAuth.h>

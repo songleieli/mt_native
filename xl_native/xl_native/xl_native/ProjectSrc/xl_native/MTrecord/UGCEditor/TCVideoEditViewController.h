@@ -10,7 +10,8 @@
 #import "NetWork_mt_getUploadSignature.h"
 #import "PublishViewController.h"
 
-#import "MBProgressHUD.h"
+
+//#import "MBProgressHUD.h"
 
 
 @interface TCVideoEditViewController : ZJBaseViewController

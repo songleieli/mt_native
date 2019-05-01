@@ -78,29 +78,10 @@
     return [UIDevice currentDevice].systemVersion;
 }
 
-//获取设备idfa
-+(NSString *)getIDFA
-{
-    NSString *idfa= [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
-    return idfa;
-}
-
 +(NSString*)getIMEI{
   return [UIDevice currentDevice].uniqueID;
 }
 
-+ (NSString *)getKeychainIDFA{
-   NSString* idfa = [SFHFKeychainUtils getPasswordForUsername:@"slsdk_jrd_idfa" andServiceName:@"slsdk_jrd_idfa" error:nil];
-    return idfa;
-}
-
-+ (BOOL)saveKeychainIDFA:(NSString*)idfa{
-    assert(idfa != nil);
-    
-   BOOL result = [SFHFKeychainUtils storeUsername:@"slsdk_jrd_idfa" andPassword:idfa forServiceName:@"slsdk_jrd_idfa" updateExisting:YES error:nil];
-    return result;
-    
-}
 
 
 //获取设备类型

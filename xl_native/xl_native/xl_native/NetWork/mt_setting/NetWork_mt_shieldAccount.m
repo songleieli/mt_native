@@ -6,14 +6,9 @@
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
-#import "NetWork_mt_saveReport.h"
+#import "NetWork_mt_shieldAccount.h"
 
-@implementation SaveReportContentModel
-
-@end
-
-
-@implementation SaveReportResponse
+@implementation ShieldAccountResponse
 
 //- (NSDictionary *)propertyMappingObjcJson {
 //    return @{@"obj" : @"obj"};
@@ -25,13 +20,13 @@
 @end
 
 
-@implementation NetWork_mt_saveReport
+@implementation NetWork_mt_shieldAccount
 
 -(Class)responseType{
-    return [SaveReportResponse class];
+    return [ShieldAccountResponse class];
 }
 -(NSString*)responseCategory{
-    return @"/miantiao/setting/saveReport";
+    return @"/miantiao/setting/shieldAccount";
 }
 
 

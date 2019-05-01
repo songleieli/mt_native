@@ -7,6 +7,8 @@
 //
 
 #import "NetWork_mt_personal_homePage.h"
+#import "NetWork_mt_saveReport.h"
+#import "NetWork_mt_shieldAccount.h"
 
 @interface UserSettingViewController : ZJBaseViewController <UIActionSheetDelegate>
 

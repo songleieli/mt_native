@@ -77,6 +77,11 @@
                 imageView.contentMode =  UIViewContentModeScaleAspectFill;
                 [imageView sd_setImageWithURL:[NSURL URLWithString:model.noodleVideoCover]
                              placeholderImage:[UIImage imageNamed:@"actitvtiyDefout"]];
+                
+                [imageView sd_setImageWithURL:[NSURL URLWithString:model.noodleVideoCover.trim] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                    NSLog(@"-----");
+                }];
+                
                 imageView.layer.masksToBounds = YES;
                 imageView.layer.cornerRadius = 4.0f;
                 imageView.userInteractionEnabled = YES;

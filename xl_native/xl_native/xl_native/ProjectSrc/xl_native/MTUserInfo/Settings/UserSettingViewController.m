@@ -222,14 +222,51 @@
 
 
 -(void)reportClcik{
-    UIAlertView *msgbox = [[UIAlertView alloc] initWithTitle:@"提示" message:@"确定举报该用户？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
-    [msgbox show];
+
+    [[ZJLoginService sharedInstance] authenticateWithCompletion:^(BOOL success) {
+        
+        NSArray *titles = @[@"色情低俗",@"政治敏感",@"违法犯罪",@"垃圾广告，售卖假货等",@"冒充官方，头像，昵称，签名违规",@"盗用他人作品",@"疑似自我伤害",@"侮辱谩骂",@"其他"];
+        [GlobalFunc showActionSheetWithTitle:titles Action:^(NSInteger index) {
+            
+            NSString *report = [titles objectAtIndex:index];
+            
+            SaveReportContentModel *contentModel = [[SaveReportContentModel alloc] init];
+            contentModel.noodleId = [GlobalData sharedInstance].getLoginDataModel.noodleId;
+            contentModel.reportType = @"1"; //举报用户
+            contentModel.reportNoodleId = self.user.noodleId;
+            contentModel.reportCategory = report;
+            contentModel.reportContent = report;
+            
+            NetWork_mt_saveReport *request = [[NetWork_mt_saveReport alloc] init];
+            request.currentNoodleId = [GlobalData sharedInstance].getLoginDataModel.noodleId;
+            request.content = [contentModel generateJsonStringForProperties];
+            [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+                if(finished){
+                    [UIWindow showTips:@"举报成功，管理员审核完成后，将会给予该用户做出出相应的处理。"];
+                }
+            }];
+        }];
+        
+    } cancelBlock:nil isAnimat:YES];
 }
 
 -(void)defriendClcik{
     
-    UIAlertView *msgbox = [[UIAlertView alloc] initWithTitle:@"提示" message:@"确定拉黑该用户？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
-    [msgbox show];
+    [[ZJLoginService sharedInstance] authenticateWithCompletion:^(BOOL success) {
+        
+        [GlobalFunc showAlertWithTitle:@"提示" message:@"确定拉黑该用户？他将无法看到你在面条上的内容。" makeSure:^{
+            
+            NetWork_mt_shieldAccount *request = [[NetWork_mt_shieldAccount alloc] init];
+            request.currentNoodleId = [GlobalData sharedInstance].getLoginDataModel.noodleId;
+            request.shieldNoodleId = self.user.noodleId;
+            [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+                if(finished){
+                    [UIWindow showTips:@"已拉黑，他将无法看到你在面条上的内容。"];
+                }
+            }];
+        } cancel:^{}];
+        
+    } cancelBlock:nil isAnimat:YES];
 }
 
 @end

@@ -6,33 +6,32 @@
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
-#import "NetWork_mt_userAgreement.h"
+#import "NetWork_mt_saveReport.h"
 
-
-
-@implementation UserAgreementModel
+@implementation SaveReportContentModel
 
 @end
 
-@implementation UserAgreementResponse
+
+@implementation SaveReportResponse
 
 //- (NSDictionary *)propertyMappingObjcJson {
 //    return @{@"obj" : @"obj"};
 //}
-- (NSDictionary *)classNameForItemInArray {
-    return @{@"obj" : @"UserAgreementModel"};
-}
+//- (NSDictionary *)classNameForItemInArray {
+//    return @{@"obj" : @"UserAgreementModel"};
+//}
 
 @end
 
 
-@implementation NetWork_mt_userAgreement
+@implementation NetWork_mt_saveReport
 
 -(Class)responseType{
-    return [UserAgreementResponse class];
+    return [SaveReportResponse class];
 }
 -(NSString*)responseCategory{
-    return @"/miantiao/setting/userAgreement";
+    return @"/miantiao/setting/saveReport";
 }
 
 

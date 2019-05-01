@@ -6,35 +6,33 @@
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
-#import "NetWork_mt_setting_userAgreement.h"
+#import "NetWork_mt_userAgreement.h"
 
-@implementation ContentModel
 
-@end
 
-@implementation LoginModel
+@implementation UserAgreementModel
 
 @end
 
-@implementation LoginResponse
+@implementation UserAgreementResponse
 
 //- (NSDictionary *)propertyMappingObjcJson {
 //    return @{@"obj" : @"obj"};
 //}
 - (NSDictionary *)classNameForItemInArray {
-    return @{@"obj" : @"LoginModel"};
+    return @{@"obj" : @"UserAgreementModel"};
 }
 
 @end
 
 
-@implementation NetWork_mt_setting_userAgreement
+@implementation NetWork_mt_userAgreement
 
 -(Class)responseType{
-    return [LoginResponse class];
+    return [UserAgreementResponse class];
 }
 -(NSString*)responseCategory{
-    return @"/miantiao/login/loginNoodel";
+    return @"/miantiao/setting/userAgreement";
 }
 
 

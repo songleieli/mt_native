@@ -6,16 +6,16 @@
 //  Copyright © 2017年 CMP_Ljh. All rights reserved.
 //
 
-#import "UserProtocolViewController.h"
+#import "PrivacyPolicyViewController.h"
 
-@interface UserProtocolViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface PrivacyPolicyViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong)UITableView* tableView;
 @property (nonatomic ,strong)NSMutableArray *dataSource;
 
 @end
 
-@implementation UserProtocolViewController
+@implementation PrivacyPolicyViewController
 
 - (WKWebView *)webDefault{
     
@@ -54,7 +54,7 @@
 }
 
 -(void)initNavTitle{
-    self.title = @"用户服务协议";
+    self.title = @"隐私政策";
     self.isNavBackGroundHiden = NO;
     
     self.isNavBackGroundHiden = NO;
@@ -92,7 +92,7 @@
     
     self.view.backgroundColor = ColorThemeBackground;
 
-    NSString *htmlString = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.miantiaotech.com:8080/miantiao/setting/userAgreement"] encoding:NSUTF8StringEncoding error:nil];
+    NSString *htmlString = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.miantiaotech.com:8080/miantiao/setting/privacyPolicy"] encoding:NSUTF8StringEncoding error:nil];
     [self.webDefault loadHTMLString:htmlString baseURL:nil];
 
     [self.view addSubview:self.webDefault];

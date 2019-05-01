@@ -63,10 +63,7 @@ static ZJLoginService *SharedInstance = nil;
      */
     if([GlobalData sharedInstance].hasLogin == NO){ //没有登陆
         ZJLoginViewController *tempVC = [[ZJLoginViewController alloc] init];
-
         BaseNavigationController *tempNav = [[BaseNavigationController alloc]initWithRootViewController:tempVC];
-        tempNav.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-
         [[UIApplication sharedApplication].delegate.window.rootViewController presentViewController:tempNav
                                                                                            animated:isAnimat
                                                                                          completion:^{

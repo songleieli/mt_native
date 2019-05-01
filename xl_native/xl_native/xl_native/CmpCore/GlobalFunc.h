@@ -9,9 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
-
+#import "CZActionSheetView.h"
 
 typedef void(^VoidBlock)(void);
+
+typedef void(^IntegerBlock)(NSInteger index);
+
 
 @protocol ChoosePictureDelegate <NSObject>
 
@@ -179,6 +182,8 @@ typedef void(^VoidBlock)(void);
 + (void)hideHUD:(NSTimeInterval)delay;
 
 + (void)showAlertWithTitle:(NSString *)title message:(NSString *)message makeSure:(VoidBlock)sure cancel:(VoidBlock)cancel;
+
++ (void)showActionSheetWithTitle:(NSArray  *)sheets  Action:(IntegerBlock)actionAt;
 
 @end
 

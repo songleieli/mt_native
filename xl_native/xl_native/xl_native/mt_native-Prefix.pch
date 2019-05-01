@@ -24,9 +24,7 @@
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
 #import "BaseViewController.h"
-//#import "BaseTableMJViewController.h"
 #import "ZJBaseViewController.h"
-//#import "TBBaseViewController.h"
 #import "UILabel+YBAttributeTextTapAction.h"
 
 #import "NSData+Base64.h"
@@ -36,7 +34,6 @@
 
 
 #import "ZJLoginService.h"
-//#import "TBLoginService.h"
 
 #import "BundleUtil.h"
 #import "NSDictionary+JSON.h"

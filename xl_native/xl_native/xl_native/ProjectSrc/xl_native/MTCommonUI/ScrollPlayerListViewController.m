@@ -427,6 +427,55 @@
             }
         }];
     }
+    else if(index == MTShareActionTypeReport){ //举报
+        
+        [[ZJLoginService sharedInstance] authenticateWithCompletion:^(BOOL success) {
+            
+            NSArray *titles = @[@"色情低俗",@"政治敏感",@"违法犯罪",@"垃圾广告",@"造谣传谣，涉嫌欺诈",@"侮辱谩骂",@"盗用他人作品",@"未成年人不当行为",@"引人不适",@"诱导点赞，分享，关注"];
+            [GlobalFunc showActionSheetWithTitle:titles Action:^(NSInteger index) {
+                
+                NSString *report = [titles objectAtIndex:index];
+                
+                SaveReportContentModel *contentModel = [[SaveReportContentModel alloc] init];
+                contentModel.noodleId = [GlobalData sharedInstance].getLoginDataModel.noodleId;
+                contentModel.reportType = @"2";
+                contentModel.reportVideoId = [NSString stringWithFormat:@"%@",self.currentCell.listModel.noodleVideoId];
+                contentModel.reportCategory = report;
+                contentModel.reportContent = report;
+                
+                NetWork_mt_saveReport *request = [[NetWork_mt_saveReport alloc] init];
+                request.currentNoodleId = [GlobalData sharedInstance].getLoginDataModel.noodleId;
+                request.content = [contentModel generateJsonStringForProperties];
+                [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+                    if(finished){
+                        [UIWindow showTips:@"举报成功，管理员审核完成后，将会给予视频作出相应的处理。"];
+                    }
+                }];
+            }];
+            
+        } cancelBlock:nil isAnimat:YES];
+        
+    }
+    else if(index == MTShareActionTypeDownload){ //保存至相册
+        
+        NSString *path = [[WebCacheHelpler sharedWebCache] diskCachePathForKey:_currentCell.listModel.storagePath extension:@"mp4"];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]){ //本地存在视频，开始使用SDK生成带水印的的视频
+            [[VideoGenerateFunc sharedInstance] globalFuncGenerateVideo:path shareType:MTShareTypeDownloadToLibiary];
+        }
+    }
+    else if (index == MTShareActionTypeCopylink){
+        
+        NSString *apiBaseUrl = [WCBaseContext sharedInstance].appInterfaceServer;
+        NSString *shareUrl = [NSString stringWithFormat:@"%@/miantiao/home/shareVideo?videosrc=%@",apiBaseUrl,self.currentCell.listModel.storagePath];
+        UIPasteboard *pab = [UIPasteboard generalPasteboard];
+        [pab setString:shareUrl];
+        if (pab == nil) {
+            [GlobalFunc showAlertWithMessage:@"复制失败!"];
+        }
+        else{
+            [GlobalFunc showAlertWithMessage:@"已复制"];
+        }
+    }
 }
 
 @end

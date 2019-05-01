@@ -77,17 +77,10 @@ enum DeviceType {
 + (NSString *)channelID;
 //获取平台类型
 + (NSString *)platformType;
-//获取设备idfa
-+(NSString *)getIDFA;
 
 //获得设备imei
 +(NSString*)getIMEI;
 
-//从钥匙串中获取idfa
-+ (NSString *)getKeychainIDFA;
-
-//将idfa存储到钥匙串中
-+ (BOOL)saveKeychainIDFA:(NSString*)idfa;
 
 //判断网络是否可用
 +(BOOL)isNetAvilable;

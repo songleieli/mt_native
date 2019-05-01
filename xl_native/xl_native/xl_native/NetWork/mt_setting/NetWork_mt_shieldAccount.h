@@ -8,18 +8,8 @@
 
 #import "WCServiceBase.h"
 
-@interface SaveReportContentModel : IObjcJsonBase
 
-@property (copy, nonatomic) NSString *noodleId;//当前登录面条号
-@property (copy, nonatomic) NSString *reportType;//举报类型:1.举报用户，2举报视频
-@property (copy, nonatomic) NSString *reportNoodleId;//reportType为 1.举报用户时填
-@property (copy, nonatomic) NSString *reportVideoId;//reportType为2举报视频时填  
-@property (copy, nonatomic) NSString *reportCategory;//具体见抖音
-@property (copy, nonatomic) NSString *reportContent;//具体见抖音
-
-@end
-
-@interface SaveReportResponse : IObjcJsonBase
+@interface ShieldAccountResponse : IObjcJsonBase
 
 @property(nonatomic,copy) NSString * status;
 @property(nonatomic,copy) NSString * message;
@@ -27,10 +17,11 @@
 
 @end
 
-@interface NetWork_mt_saveReport : WCServiceBase
+@interface NetWork_mt_shieldAccount : WCServiceBase
 
 @property(nonatomic,copy) NSString * currentNoodleId;
-@property(nonatomic,copy) NSString * content;
+@property(nonatomic,copy) NSString * shieldNoodleId
+;
 
 
 @end

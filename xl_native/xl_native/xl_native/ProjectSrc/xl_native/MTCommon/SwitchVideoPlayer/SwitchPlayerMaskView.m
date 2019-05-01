@@ -321,12 +321,20 @@
     [self.musicName setText:listLoginModel.musicName];
     
     __weak __typeof(self) wself = self;
-    [self.musicAlum.album sd_setImageWithURL:[NSURL URLWithString:listLoginModel.coverUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    
+    [self.musicAlum.album sd_setImageWithURL:[NSURL URLWithString:listLoginModel.coverUrl] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if(!error) {
             wself.musicAlum.album.image = [image drawCircleImage];
         }
     }];
     [_musicAlum startAnimation:12];
+    
+//    [self.musicAlum.album sd_setImageWithURL:[NSURL URLWithString:listLoginModel.coverUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//        if(!error) {
+//            wself.musicAlum.album.image = [image drawCircleImage];
+//        }
+//    }];
+//    [_musicAlum startAnimation:12];
 
     //处理话题和@好友的点击事件
     [self dealAtFriendAndTopicClickWithTitle:listLoginModel.title
@@ -493,11 +501,12 @@
                                             tapClicked:^(UILabel *label, NSString *string, NSRange range, NSInteger index) {
                                                 
                                                 
+                                                __weak typeof(self) weakSelf = self;
                                                 AtAndTopicModel *model = [atAndTopicModelArray objectAtIndex:index];
                                                 if(model.publishType == PublishTypeTopic){//话题处理
                                                     
-                                                    if (_delegate && [_delegate respondsToSelector:@selector(topicAction:)]) {
-                                                        [_delegate topicAction:string];
+                                                    if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(topicAction:)]) {
+                                                        [weakSelf.delegate topicAction:string];
                                                     }else{
                                                         NSLog(@"没有实现代理或者没有设置代理人");
                                                     }
@@ -506,8 +515,8 @@
                                                     
                                                     if(model.atFriendModel.noodleId.length > 0){
                                                         
-                                                        if (_delegate && [_delegate respondsToSelector:@selector(atFriendAction:)]) {
-                                                            [_delegate atFriendAction:model.atFriendModel.noodleId.trim];
+                                                        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(atFriendAction:)]) {
+                                                            [weakSelf.delegate atFriendAction:model.atFriendModel.noodleId.trim];
                                                         }else{
                                                             NSLog(@"没有实现代理或者没有设置代理人");
                                                         }

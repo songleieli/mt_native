@@ -17,7 +17,7 @@
                BlueprintIdentifier = "D954C4AE1DD1A40F003CA535"
                BuildableName = "mt_shortvideo.app"
                BlueprintName = "mt_shortvideo"
-               ReferencedContainer = "container:xl_native.xcodeproj">
+               ReferencedContainer = "container:mt_native.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "D954C4AE1DD1A40F003CA535"
             BuildableName = "mt_shortvideo.app"
             BlueprintName = "mt_shortvideo"
-            ReferencedContainer = "container:xl_native.xcodeproj">
+            ReferencedContainer = "container:mt_native.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -58,7 +58,7 @@
             BlueprintIdentifier = "D954C4AE1DD1A40F003CA535"
             BuildableName = "mt_shortvideo.app"
             BlueprintName = "mt_shortvideo"
-            ReferencedContainer = "container:xl_native.xcodeproj">
+            ReferencedContainer = "container:mt_native.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -77,7 +77,7 @@
             BlueprintIdentifier = "D954C4AE1DD1A40F003CA535"
             BuildableName = "mt_shortvideo.app"
             BlueprintName = "mt_shortvideo"
-            ReferencedContainer = "container:xl_native.xcodeproj">
+            ReferencedContainer = "container:mt_native.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

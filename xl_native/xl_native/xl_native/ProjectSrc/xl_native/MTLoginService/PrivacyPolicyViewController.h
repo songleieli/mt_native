@@ -8,7 +8,7 @@
 #import <WebKit/WebKit.h>
 #import "NetWork_mt_userAgreement.h"
 
-@interface UserProtocolViewController : ZJBaseViewController
+@interface PrivacyPolicyViewController : ZJBaseViewController
 
 
 @property (nonatomic, strong) WKWebView *webDefault;

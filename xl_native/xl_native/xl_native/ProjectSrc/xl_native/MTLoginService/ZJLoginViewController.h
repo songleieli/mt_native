@@ -6,10 +6,9 @@
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
-//#import "JPUSHService.h"
-
-//#import "RegisterViewController.h"
 #import <TencentOpenAPI/TencentOAuth.h>
+#import "UserProtocolViewController.h"
+#import "PrivacyPolicyViewController.h"
 
 @interface ZJLoginViewController : ZJBaseViewController<TencentSessionDelegate>
 

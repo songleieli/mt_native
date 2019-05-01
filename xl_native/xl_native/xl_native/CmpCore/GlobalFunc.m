@@ -1031,16 +1031,6 @@ static GlobalFunc *sharedInstance;
 
 
 + (void)showAlertWithTitle:(NSString *)title message:(NSString *)message makeSure:(VoidBlock)sure cancel:(VoidBlock)cancel{
-    //    NSString *str = @"";
-    //    if (title.length > 0) {
-    //        str = title;
-    //
-    //        if (message.length > 0) {
-    //            str = [NSString stringWithFormat:@"%@\n%@",title,message];
-    //        }
-    //    }else{
-    //        str = message;
-    //    }
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message
                                                                              message:@""
@@ -1068,11 +1058,30 @@ static GlobalFunc *sharedInstance;
     [topRootViewController presentViewController:alertController animated:YES completion:^{
         
     }];
-    //    [[AppDelegate shareAppDelegate].tabbarController.selectedViewController presentViewController:alertController animated:YES completion:^{
-    //
-    //    }];
 }
 
++ (void)showActionSheetWithTitle:(NSArray  *)sheets  Action:(IntegerBlock)actionAt {
+    
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+    titleView.backgroundColor = [UIColor redColor];
+    
+    CZActionSheetView *actionSheet = [[CZActionSheetView alloc] initWithTitleView:titleView optionsArr:sheets cancelTitle:@"取消" selectedBlock:^(NSInteger index) {
+        NSLog(@"select----%zd",index);
+        actionAt(index);
+    } cancelBlock:^{
+        NSLog(@"cancel");
+    }];
+    [actionSheet show];
+    
+//    [GLActionSheet showWithDataSource:sheets
+//                                title:@"title"
+//                          selectIndex:3
+//                        completeBlock:^(NSInteger index) {
+//                            NSLog(@"%ld",(long)index);
+//                            actionAt(index);
+//                        }];
+    
+}
 
 
 

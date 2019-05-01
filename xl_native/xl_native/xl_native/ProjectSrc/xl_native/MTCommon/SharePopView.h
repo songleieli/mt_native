@@ -18,14 +18,15 @@ typedef NS_ENUM(NSInteger, MTShareType){
     MTShareTypeQQZone,
     MTShareTypeQQ,
     MTShareTypeWechatVideo,
-    MTShareTypeRegQQVideo
+    MTShareTypeRegQQVideo,
+    MTShareTypeDownloadToLibiary
 };
 
 
 typedef NS_ENUM(NSInteger, MTShareActionType){
     
     MTShareActionTypeCollention = 0,
-//    MTShareActionTypeReport,
+    MTShareActionTypeReport,
     MTShareActionTypeDownload,
     MTShareActionTypeCopylink
 //    MTShareActionTypeDislike

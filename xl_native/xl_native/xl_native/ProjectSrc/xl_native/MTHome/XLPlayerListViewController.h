@@ -20,6 +20,7 @@
 #import "NetWork_mt_addVideoPlay.h"
 #import "NetWork_mt_getVideoCollections.h"
 #import "NetWork_mt_collectionVideo.h"
+#import "NetWork_mt_saveReport.h"
 
 #import "UserInfoViewController.h"
 #import "MusicInfoController.h"

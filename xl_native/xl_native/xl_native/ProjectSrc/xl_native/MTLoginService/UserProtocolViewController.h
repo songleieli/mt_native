@@ -5,16 +5,13 @@
 //  Created by Liyanjun on 2017/5/25.
 //  Copyright © 2017年 CMP_Ljh. All rights reserved.
 //
+#import <WebKit/WebKit.h>
+#import "NetWork_mt_userAgreement.h"
 
-//#import "LjhBaseViewController.h"
-
-@interface SettingAboutViewController : ZJBaseViewController
+@interface UserProtocolViewController : ZJBaseViewController
 
 
-@property (nonatomic, strong)UIImageView *img;//图片
-@property (nonatomic, strong)UILabel *versionLabel;//版本
-@property (nonatomic, strong)UILabel *contenLabel;//内容
-@property (nonatomic, strong)UILabel *copyrightLalel;//版权
-@property (nonatomic, strong)UILabel *companyLable;//公司
+@property (nonatomic, strong) WKWebView *webDefault;
+
 
 @end

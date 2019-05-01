@@ -41,14 +41,14 @@
                              ];
         NSArray *bottomIconsName = @[
                                     @"icon_home_all_share_collention",
-//                                    @"icon_home_allshare_report",
+                                    @"icon_home_allshare_report",
                                     @"icon_home_allshare_download",
                                     @"icon_home_allshare_copylink"
 //                                    @"icon_home_all_share_dislike"
                                     ];
         NSArray *bottomTexts = @[
                                 @"收藏",
-//                                @"举报",
+                                @"举报",
                                 @"保存至相册",
                                 @"复制链接"
 //                                @"不感兴趣"

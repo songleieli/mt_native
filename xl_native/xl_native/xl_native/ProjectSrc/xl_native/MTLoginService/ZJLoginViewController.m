@@ -16,7 +16,7 @@
 #import "NetWork_mt_sendSMS.h"
 
 #import "WXApiManager.h"
-#import "WeiboSDK.h"
+//#import "WeiboSDK.h"
 #import "AFHTTPSessionManager.h"
 
 
@@ -49,6 +49,9 @@
 @property (nonatomic,strong)UIView* leftThirdLoginLine;//左边很闲
 @property (nonatomic,strong)UIView* rightThirdLoginLine;//右边横线
 
+@property (nonatomic,strong) UIButton *selectButton;
+@property (nonatomic,strong) UILabel *desLable;
+
 @end
 
 @implementation ZJLoginViewController
@@ -68,6 +71,61 @@
 //        _btnCancel.backgroundColor = [UIColor redColor];
     }
     return _btnCancel;
+}
+
+- (UIButton *)selectButton{
+    
+    if (!_selectButton) {
+        
+        _selectButton = [UIButton buttonWithType:UIButtonTypeCustom]; //[[UIImageView alloc] init];
+        _selectButton.size = [UIView getSize_width:15 height:15];
+        _selectButton.origin = [UIView getPoint_x:20 y:30];
+        [_selectButton addTarget:self action:@selector(buttonDidCliked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_selectButton setBackgroundImage:[UIImage imageNamed:@"check_mark_selected"] forState:UIControlStateSelected];
+        [_selectButton setBackgroundImage:[GlobalFunc createImageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+        _selectButton.layer.cornerRadius = 4;
+        _selectButton.selected = YES;
+        _selectButton.layer.borderColor = [UIColor grayColor].CGColor;
+        _selectButton.layer.borderWidth = 1;
+        _selectButton.clipsToBounds = YES;
+    }
+    return _selectButton;
+}
+
+- (UILabel *)desLable{
+    
+    if (!_desLable) {
+        _desLable = [[UILabel alloc] init];
+        _desLable.size = [UIView getSize_width:310 height:15];
+        _desLable.textColor = [UIColor grayColor];
+        _desLable.font = SmallFont;
+        _desLable.textAlignment = NSTextAlignmentLeft;
+        
+        NSString *string = @"我已阅读并同意《用户服务协议》和《隐私政策》";
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:string];
+        [attributedString addAttribute:NSForegroundColorAttributeName value:defaultMainColor range:NSMakeRange(7, 8)];
+        [attributedString addAttribute:NSForegroundColorAttributeName value:defaultMainColor range:NSMakeRange(16, 6)];
+
+        _desLable.attributedText = attributedString;
+        
+        NSMutableArray *atAndTopicNameArray = [NSMutableArray array];
+        [atAndTopicNameArray addObject:@"《用户服务协议》"];
+        [atAndTopicNameArray addObject:@"《隐私政策》"];
+
+        [_desLable yb_addAttributeTapActionWithStrings:atAndTopicNameArray tapClicked:^(UILabel *label, NSString *string, NSRange range, NSInteger index) {
+           
+            if(index == 0){//用户协议
+            UserProtocolViewController *userProtocolViewController = [[UserProtocolViewController alloc] init];
+            [self pushNewVC:userProtocolViewController animated:YES];
+            }
+            else{
+                PrivacyPolicyViewController *privacyPolicyViewController = [[PrivacyPolicyViewController alloc] init];
+                [self pushNewVC:privacyPolicyViewController animated:YES];
+            }
+        }];
+    }
+    return _desLable;
 }
 
 - (UILabel *)thirdLogin{
@@ -174,11 +232,14 @@
     [[IQKeyboardManager sharedManager] setEnable:NO];
     [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    [UIApplication sharedApplication].statusBarHidden = YES;
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     
     [super viewWillDisappear:animated];
+
     [[IQKeyboardManager sharedManager] setEnable:YES];
 }
 
@@ -298,6 +359,10 @@
 
     //  输入手机短信中的验证码
     UIView * inviteDataView = [[UIView alloc]init];
+    //test
+//    inviteDataView.backgroundColor = [UIColor redColor];
+    
+    
     inviteDataView.size = [UIView getSize_width:self.bgView.width height:63];
     inviteDataView.left = 0;
     [self.bgView addSubView:inviteDataView frameBottomView:userViwe];
@@ -341,6 +406,14 @@
     [self.buttonText setTitleColor:defaultMainColor forState:UIControlStateNormal];
     [self.buttonText addTarget:self action:@selector(btnClck:) forControlEvents:UIControlEventTouchUpInside];
     [inviteDataView addSubview:self.buttonText];
+    
+    self.selectButton.top = inviteDataView.bottom + 10;
+    self.selectButton.left = 0;
+    [self.bgView addSubview:self.selectButton];
+    
+    self.desLable.top = self.selectButton.top;
+    self.desLable.left = self.selectButton.right+10;
+    [self.bgView addSubview:self.desLable];
 
     self.buttonlogin = [[UIButton alloc]init];
     self.buttonlogin.enabled = NO;
@@ -446,6 +519,15 @@
     [self rightThirdLoginLineF];
     [self weChatLoginF];
     [self weBoLoginF];
+    
+    //判断如果没有安装微信，就隐藏
+    if ([WXApi isWXAppInstalled]) {
+    }
+    else {
+        self.weChatLogin.hidden = YES;
+        self.weBoLogin.centerX = ScreenWidth/2;
+        //[self showFaliureHUD:@"请先安装微信客户端"];
+    }
 }
 
 - (void)textFieldEditingDidChange:(UITextField *)textField{
@@ -494,6 +576,11 @@
         
     }
 }
+
+- (void)buttonDidCliked:(UIButton *)button{
+    button.selected = !button.selected;
+}
+
 
 -(void)doLoginAction{
     NSString *userName = self.textFieldUser.text.trim;
