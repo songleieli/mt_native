@@ -290,16 +290,11 @@
 
 - (void)userInfoClicked:(HomeListModel *)listModel{
     
-    [[ZJLoginService sharedInstance] authenticateWithCompletion:^(BOOL success) {
-        
         UserInfoViewController *userInfoViewController = [[UserInfoViewController alloc] init];
         userInfoViewController.userNoodleId = listModel.noodleId;
         userInfoViewController.fromType = FromTypeHome; //我的页面，需要显示返回按钮，隐藏TabBar
         [self pushNewVC:userInfoViewController animated:YES];
-        
-    } cancelBlock:^{
-        NSLog(@"--------取消登录---------");
-    } isAnimat:YES];
+    
 }
 
 - (void)followClicked:(HomeListModel *)listModel{

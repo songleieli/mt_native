@@ -26,7 +26,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     _arr1 = @[@"录制",@"合拍",@"本地视频",@"本地图片"];
-    _arr2 = @[@"main_pop_attention",@"main_pop_scan",@"main_pop_attention",@"main_pop_scan"];
+    _arr2 = @[@"",@"",@"",@""];
     
     
     
@@ -66,7 +66,7 @@
 
     if (indexPath.row < (_arr2.count-1)) {
         UIView * lineView = [[UIView alloc] init];
-        lineView.frame = CGRectMake(sizeScale(10),sizeScale(38), sizeScale(100),sizeScale(0.6));
+        lineView.frame = CGRectMake(sizeScale(10),sizeScale(38), sizeScale(80),sizeScale(0.6));
         lineView.backgroundColor = RGBFromColor(0xecedf1);
         [cell.contentView addSubview:lineView];
         
@@ -93,7 +93,7 @@
     if (self.popoverPresentationController != nil) {
         CGSize tempSize ;
         tempSize.height = self.view.frame.size.height;
-        tempSize.width  = 125;
+        tempSize.width  = 100;
         CGSize size = [_tableVIew sizeThatFits:tempSize];  //返回一个完美适应tableView的大小的 size
         return size;
     }else{

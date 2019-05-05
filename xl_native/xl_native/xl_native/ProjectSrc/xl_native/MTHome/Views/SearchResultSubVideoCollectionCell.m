@@ -137,6 +137,11 @@
 
 - (void)initData:(HomeListModel *)aweme  withKeyWord:(NSString*)withKeyWord{
     
+    NSRange range = [aweme.noodleVideoCover rangeOfString:@"f_webp"];
+    if(range.location != NSNotFound){
+        aweme.noodleVideoCover =  [aweme.noodleVideoCover stringByReplacingCharactersInRange:range withString:@"f_png"];
+    }
+    
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:aweme.noodleVideoCover] placeholderImage:[UIImage imageNamed:@"default_bg_cover"]];
     [self.imageViewUser sd_setImageWithURL:[NSURL URLWithString:aweme.head] placeholderImage:[UIImage imageNamed:@"user_default_icon"]];
     

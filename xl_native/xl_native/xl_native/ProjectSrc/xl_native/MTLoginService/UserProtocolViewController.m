@@ -8,14 +8,14 @@
 
 #import "UserProtocolViewController.h"
 
-@interface UserProtocolViewController ()<UITableViewDelegate,UITableViewDataSource>
-
-@property (nonatomic, strong)UITableView* tableView;
-@property (nonatomic ,strong)NSMutableArray *dataSource;
+@interface UserProtocolViewController ()<WKNavigationDelegate>
 
 @end
 
 @implementation UserProtocolViewController
+
+
+#pragma mark - 懒加载
 
 - (WKWebView *)webDefault{
     
@@ -28,10 +28,9 @@
         _webDefault = [[WKWebView alloc] initWithFrame:CGRectMake(0, kNavBarHeight_New, ScreenWidth, ScreenHeight - kNavBarHeight_New) configuration:config];
         _webDefault.backgroundColor = ColorThemeBackground;
 //        _webDefault.UIDelegate = self;
-//        _webDefault.navigationDelegate = self;
+        _webDefault.navigationDelegate = self;
         _webDefault.scrollView.showsVerticalScrollIndicator = NO;
         _webDefault.scrollView.showsHorizontalScrollIndicator = NO;
-        
         _webDefault.opaque = NO;
         
         if (@available(iOS 11.0, *)) {
@@ -39,9 +38,6 @@
         } else {
             // Fallback on earlier versions
         }
-        
-//        [_webDefault addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew| NSKeyValueObservingOptionOld context:nil];
-//        [_webDefault addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew| NSKeyValueObservingOptionOld context:nil];
     }
     return _webDefault;
 }
@@ -49,7 +45,8 @@
 -(void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
-        [UIApplication sharedApplication].statusBarHidden = NO;
+    
+    [UIApplication sharedApplication].statusBarHidden = NO;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
@@ -70,24 +67,15 @@
     viewLine.backgroundColor = [UIColor grayColor];
     [self.navBackGround addSubview:viewLine];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUi];
 }
 
-#pragma mark - 懒加载
-
-- (NSMutableArray *)dataSource{
-    
-    if (!_dataSource) {
-        _dataSource = [NSMutableArray array];
-    }
-    
-    return _dataSource;
-    
-}
 
 #pragma mark - 设置UI
+
 - (void)setupUi{
     
     self.view.backgroundColor = ColorThemeBackground;
@@ -99,5 +87,16 @@
 }
 
 
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    
+    CGFloat scale = 234.0f; //sizeScale(200);
+    
+    NSString *html = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%.2f%%'",scale];
+    //修改字体大小 300%
+    [ webView evaluateJavaScript:html completionHandler:nil];
+    //修改字体颜色  #9098b8
+    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#ffffff'" completionHandler:nil];
+    
+}
 
 @end

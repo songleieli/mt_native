@@ -75,12 +75,19 @@
                 imageView.size = [UIView getSize_width:subView.width height:subView.height];
                 imageView.origin = [UIView getPoint_x:0 y:0];
                 imageView.contentMode =  UIViewContentModeScaleAspectFill;
+                
+                NSRange range = [model.noodleVideoCover rangeOfString:@"f_webp"];
+                if(range.location != NSNotFound){
+                    model.noodleVideoCover =  [model.noodleVideoCover stringByReplacingCharactersInRange:range withString:@"f_png"];
+                }
+                
+                
                 [imageView sd_setImageWithURL:[NSURL URLWithString:model.noodleVideoCover]
                              placeholderImage:[UIImage imageNamed:@"actitvtiyDefout"]];
                 
-                [imageView sd_setImageWithURL:[NSURL URLWithString:model.noodleVideoCover.trim] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                    NSLog(@"-----");
-                }];
+//                [imageView sd_setImageWithURL:[NSURL URLWithString:model.noodleVideoCover.trim] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//                    NSLog(@"-----");
+//                }];
                 
                 imageView.layer.masksToBounds = YES;
                 imageView.layer.cornerRadius = 4.0f;

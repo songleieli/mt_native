@@ -63,18 +63,12 @@
 - (void)initData:(HomeListModel *)aweme {
     __weak __typeof(self) wself = self;
     
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:aweme.noodleVideoCover] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//                if(error) {
-//                    [wself.imageView setImage:image];
-//                }
-    }];
-    
-//    [self.imageView setWebPImageWithURL:[NSURL URLWithString:aweme.video.dynamic_cover.url_list.firstObject] progressBlock:^(CGFloat percent) {
-//    } completedBlock:^(UIImage *image, NSError *error) {
-//        if(!error) {
-//            [wself.imageView setImage:image];
-//        }
-//    }];
+    NSRange range = [aweme.noodleVideoCover rangeOfString:@"f_webp"];
+    if(range.location != NSNotFound){
+        aweme.noodleVideoCover =  [aweme.noodleVideoCover stringByReplacingCharactersInRange:range withString:@"f_png"];
+    }
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:aweme.noodleVideoCover]
+                 placeholderImage:[UIImage imageNamed:@"actitvtiyDefout"]];
     [self.favoriteNum setTitle:[NSString formatCount:[aweme.likeSum integerValue]] forState:UIControlStateNormal];
 }
 

@@ -8,14 +8,14 @@
 
 #import "PrivacyPolicyViewController.h"
 
-@interface PrivacyPolicyViewController ()<UITableViewDelegate,UITableViewDataSource>
-
-@property (nonatomic, strong)UITableView* tableView;
-@property (nonatomic ,strong)NSMutableArray *dataSource;
+@interface PrivacyPolicyViewController ()<WKNavigationDelegate>
 
 @end
 
 @implementation PrivacyPolicyViewController
+
+
+#pragma mark - 懒加载
 
 - (WKWebView *)webDefault{
     
@@ -28,7 +28,7 @@
         _webDefault = [[WKWebView alloc] initWithFrame:CGRectMake(0, kNavBarHeight_New, ScreenWidth, ScreenHeight - kNavBarHeight_New) configuration:config];
         _webDefault.backgroundColor = ColorThemeBackground;
 //        _webDefault.UIDelegate = self;
-//        _webDefault.navigationDelegate = self;
+        _webDefault.navigationDelegate = self;
         _webDefault.scrollView.showsVerticalScrollIndicator = NO;
         _webDefault.scrollView.showsHorizontalScrollIndicator = NO;
         
@@ -39,9 +39,6 @@
         } else {
             // Fallback on earlier versions
         }
-        
-//        [_webDefault addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew| NSKeyValueObservingOptionOld context:nil];
-//        [_webDefault addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew| NSKeyValueObservingOptionOld context:nil];
     }
     return _webDefault;
 }
@@ -75,18 +72,6 @@
     [self setupUi];
 }
 
-#pragma mark - 懒加载
-
-- (NSMutableArray *)dataSource{
-    
-    if (!_dataSource) {
-        _dataSource = [NSMutableArray array];
-    }
-    
-    return _dataSource;
-    
-}
-
 #pragma mark - 设置UI
 - (void)setupUi{
     
@@ -96,6 +81,16 @@
     [self.webDefault loadHTMLString:htmlString baseURL:nil];
 
     [self.view addSubview:self.webDefault];
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    
+    CGFloat scale = 234.0f; //sizeScale(200);
+    NSString *html = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%.2f%%'",scale];
+    //修改字体大小
+    [ webView evaluateJavaScript:html completionHandler:nil];
+    //修改字体颜色
+    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#ffffff'" completionHandler:nil];
 }
 
 

@@ -195,7 +195,7 @@
                 
                 self.popVC = [[PopViewController alloc] init];
                 self.popVC.delegate = self;
-                self.popVC.preferredContentSize = CGSizeMake(sizeScale(125), sizeScale(160));
+                self.popVC.preferredContentSize = CGSizeMake(sizeScale(100), sizeScale(160));
                 
                 WYPopoverController * popover = [[WYPopoverController alloc] initWithContentViewController:self.popVC];
                 popover.delegate = self;

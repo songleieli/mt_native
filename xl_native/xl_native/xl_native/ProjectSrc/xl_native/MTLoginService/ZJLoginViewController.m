@@ -220,6 +220,14 @@
     [_weBoLogin mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.top.mas_equalTo(self.weChatLogin);
         make.trailing.mas_equalTo(self.view.mas_trailing).mas_equalTo(MasScale_1080(-267));
+        
+        //判断如果没有安装微信，就隐藏
+        if ([WXApi isWXAppInstalled]) {
+        }
+        else {
+            self.weChatLogin.hidden = YES;
+            make.left.mas_equalTo(ScreenWidth/3);
+        }
     }];
 }
 
@@ -525,7 +533,8 @@
     }
     else {
         self.weChatLogin.hidden = YES;
-        self.weBoLogin.centerX = ScreenWidth/2;
+        self.weBoLogin.left = 0;
+//        self.weBoLogin.centerX = ScreenWidth/2;
         //[self showFaliureHUD:@"请先安装微信客户端"];
     }
 }
