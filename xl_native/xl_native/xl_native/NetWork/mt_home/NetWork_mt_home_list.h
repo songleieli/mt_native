@@ -140,7 +140,8 @@
 //关注视频列表使用，计算Cell的高度
 @property (assign, nonatomic) CGFloat fpllowVideoListTitleHeight;
 @property (assign, nonatomic) CGFloat fpllowVideoListCellHeight;
-
+@property (assign, nonatomic) CGFloat fpllowVideoHeight;
+@property (assign, nonatomic) CGFloat fpllowVideoWidth;
 
 @end
 

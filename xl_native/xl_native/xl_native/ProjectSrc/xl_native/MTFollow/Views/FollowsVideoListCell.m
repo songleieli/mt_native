@@ -19,6 +19,18 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
     return ViewTableViewCellId;
 }
 
++ (CGFloat) defaultVideoHeight{
+    
+    /*
+     *视频没有加载完成的默认高度
+     */
+    
+    CGFloat whScale = ScreenHeight/ScreenWidth;
+    CGFloat videoWidth = FollowsVideoListCellVideoWidth;
+    CGFloat defaultVideoHeight = (CGFloat)videoWidth*whScale;
+    return defaultVideoHeight;
+}
+
 #pragma ----------mark 懒加载------
 
 - (UIButton *)viewBg{
@@ -78,7 +90,7 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
         _labelTitle.font = FollowsVideoListCellTitleFont;
         _labelTitle.textColor = [UIColor whiteColor];
         _labelTitle.numberOfLines = 0;
-
+        
     }
     return _labelTitle;
 }
@@ -86,7 +98,7 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
 -(AVPlayerView*)playerView{
     
     if(!_playerView){
-        CGRect frame = CGRectMake(self.imageVeiwIcon.left, self.labelTitle.bottom, FollowsVideoListCellVideoWidth, FollowsVideoListCellVideoHeight);
+        CGRect frame = CGRectMake(self.imageVeiwIcon.left, self.labelTitle.bottom, FollowsVideoListCellVideoWidth, [FollowsVideoListCell defaultVideoHeight]);
         _playerView = [[AVPlayerView alloc] initWithFrame:frame];
         _playerView.layer.cornerRadius = 8.0f;
         _playerView.layer.masksToBounds = YES;
@@ -112,7 +124,6 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
         //居中
         _pauseIcon.top = (self.playerView.height - _pauseIcon.height)/2;
         _pauseIcon.left = (self.playerView.width - _pauseIcon.width)/2;
-//        _pauseIcon.center = self.playerView.center;;
     }
     return _pauseIcon;
 }
@@ -126,9 +137,6 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
         _musicIcon.bottom = self.playerView.height;
         _musicIcon.contentMode = UIViewContentModeCenter;
         _musicIcon.image = [UIImage imageNamed:@"icon_home_musicnote3"];
-        
-        //test
-//        _musicIcon.backgroundColor = [UIColor redColor];
     }
     return _musicIcon;
 }
@@ -143,8 +151,6 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
         _musicName.width = self.width/2;
         _musicName.height = 24;
         _musicName.centerY = self.musicIcon.centerY; //centerY 需要放在宽高设置完成之后，要不然不起作用。
-        
-        //        _musicName.backgroundColor = [UIColor redColor];
     }
     return _musicName;
 }
@@ -159,7 +165,7 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
         _bottomView.top = self.playerView.bottom;
         
         //test
-//        _bottomView.backgroundColor = [UIColor redColor];
+        //        _bottomView.backgroundColor = [UIColor redColor];
     }
     return _bottomView;
 }
@@ -183,7 +189,7 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
             }
         };
         //test
-//        _favorite.backgroundColor = [UIColor redColor];
+        //        _favorite.backgroundColor = [UIColor redColor];
     }
     return _favorite;
 }
@@ -203,7 +209,7 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
         _favoriteNum.centerY = self.favorite.centerY;
         
         //test
-//        _favoriteNum.backgroundColor = [UIColor blueColor];
+        //        _favoriteNum.backgroundColor = [UIColor blueColor];
     }
     return _favoriteNum;
 }
@@ -302,7 +308,7 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
     [self.playerView addSubview:self.musicIcon];
     [self.playerView addSubview:self.musicName];
     [self.playerView addSubview:self.pauseIcon];
-
+    
     
     [self.viewBg addSubview:self.bottomView];
     [self.bottomView addSubview:self.favorite];
@@ -312,19 +318,33 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
     [self.bottomView addSubview:self.share];
     [self.bottomView addSubview:self.shareNum];
 }
+
 - (void)fillDataWithModel:(HomeListModel *)model{
     
+    self.listModel = model;
+
+    
     /*cell 的高度组成部分相加*/
-//    CGFloat cellHeight = FollowsVideoListCellIconHeight + model.fpllowVideoListTitleHeight + FollowsVideoListCellVideoHeight+FollowsVideoListCellBottomHeight+FollowsVideoListCellSpace*2;
+    //    CGFloat cellHeight = FollowsVideoListCellIconHeight + model.fpllowVideoListTitleHeight + FollowsVideoListCellVideoHeight+FollowsVideoListCellBottomHeight+FollowsVideoListCellSpace*2;
     self.viewBg.height = model.fpllowVideoListCellHeight;
     self.labelLine.top = self.viewBg.height - self.labelLine.height;
     self.labelTitle.height = model.fpllowVideoListTitleHeight;
     self.playerView.top = self.labelTitle.bottom+FollowsVideoListCellSpace;
+//    if(self.listModel.fpllowVideoHeight == 0.0f){//当视频还没有加载完后时，显示默认高度,默认高度等于宽度
+//        
+//        self.playerView.height = [FollowsVideoListCell defaultVideoHeight];
+//    }
+//    else{
+//        self.playerView.height = self.listModel.fpllowVideoHeight;
+//    }
+    
+    self.playerView.height = self.listModel.fpllowVideoHeight;
+    self.playerView.width = self.listModel.fpllowVideoWidth;
+
+    self.musicIcon.bottom = self.playerView.height;
+    self.musicName.centerY = self.musicIcon.centerY; //centerY 需要放在宽高设置完成之后，要不然不起作用。
     self.bottomView.top = self.playerView.bottom+FollowsVideoListCellSpace;
-    
-    
-    self.listModel = model;
-    
+
     //设置喜欢视频
     [self.favorite resetView];
     if([model.isLike integerValue] == 1){
@@ -451,7 +471,6 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
     
     _isPlayerReady = NO;
     [self.playerView cancelLoading];
-//    [self.maskView hidePlayBtn];
 }
 
 #pragma mark ---------AVPlayerUpdateDelegate-------------
@@ -464,17 +483,13 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
 -(void)onPlayItemStatusUpdate:(AVPlayerItemStatus)status { //播放状态更新
     switch (status) {
         case AVPlayerItemStatusUnknown:
-            //            [self startLoadingPlayItemAnim:YES];
             break;
-        case AVPlayerItemStatusReadyToPlay:
-            //            [self startLoadingPlayItemAnim:NO];
-            
+        case AVPlayerItemStatusReadyToPlay:{
             _isPlayerReady = YES;
-            //            [_musicAlum startAnimation:_aweme.rate];
-            
             if(_onPlayerReady) {
                 _onPlayerReady();
             }
+        }
             break;
         case AVPlayerItemStatusFailed:
             //            [self startLoadingPlayItemAnim:NO];
@@ -487,11 +502,11 @@ static NSString* const ViewTableViewCellId = @"FollowsVideoListCellId";
 
 - (void)btnDelClick:(id)sender{
     
-//    if ([self.getFollowsDelegate respondsToSelector:@selector(btnDeleteClick:)]) {
-//        [self.getFollowsDelegate btnDeleteClick:self.listModel];
-//    } else {
-//        NSLog(@"代理没响应，快开看看吧");
-//    }
+    //    if ([self.getFollowsDelegate respondsToSelector:@selector(btnDeleteClick:)]) {
+    //        [self.getFollowsDelegate btnDeleteClick:self.listModel];
+    //    } else {
+    //        NSLog(@"代理没响应，快开看看吧");
+    //    }
 }
 
 @end

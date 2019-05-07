@@ -24,23 +24,25 @@ typedef void (^OnPlayerReady)(void);
 
 - (void)playButtonAction:(BOOL)isPlay;
 
+- (void)cellHeightReady; //视频加载完成
+
 @end
 
 #define FollowsVideoListCellSpace 10.0f   //上下space间隔 高度
 #define FollowsVideoListCellIconHeight 50.0f   //icon+上下space 高度
 #define FollowsVideoListCellTitleFont [UIFont defaultFontWithSize:13]
-#define FollowsVideoListCellTitleWidth ScreenWidth - 20  //title(视频描述信息)的宽度
-#define FollowsVideoListCellVideoWidth ScreenWidth *718/1080 //中间显示视频宽度
-//中间显示视频高度，根据宽度和当前屏幕宽度的比例算出来
-#define FollowsVideoListCellVideoHeight  ScreenHeight*FollowsVideoListCellVideoWidth/ScreenWidth
+#define FollowsVideoListCellTitleWidth ScreenWidth - 20.0f  //title(视频描述信息)的宽度
+#define FollowsVideoListCellVideoWidth ScreenWidth - 100.0f //中间显示视频宽度
+#define FollowsVideoListCellVideoWidth_LessPointSix ScreenWidth - 20.0f //中间显示视频宽度
 #define FollowsVideoListCellBottomHeight 50.0f   // 底部功能按钮+上下space 高度
-
 #define FollowsVideoListCellHeight 580.0f  //初始默认cell高度
 
 
 @interface FollowsVideoListCell : BaseTableViewCell<AVPlayerUpdateDelegate>
 
 + (NSString*) cellId;
+
++ (CGFloat) defaultVideoHeight;
 
 - (void)fillDataWithModel:(HomeListModel *)listModel;
 

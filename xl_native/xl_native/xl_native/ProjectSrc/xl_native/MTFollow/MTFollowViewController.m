@@ -102,11 +102,27 @@
         
         CGRect contentLabelSize = [homeListModel.title boundingRectWithSize:CGSizeMake(FollowsVideoListCellTitleWidth, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:FollowsVideoListCellTitleFont,NSFontAttributeName, nil] context:nil];
         
-        CGFloat cellHeight = FollowsVideoListCellIconHeight + contentLabelSize.size.height + FollowsVideoListCellVideoHeight+FollowsVideoListCellBottomHeight+FollowsVideoListCellSpace*2;
-        
-        
-        homeListModel.fpllowVideoListTitleHeight = contentLabelSize.size.height;
-        homeListModel.fpllowVideoListCellHeight = cellHeight;
+        AVAsset *asset = [AVAsset assetWithURL:[NSURL URLWithString:homeListModel.storagePath]];
+        NSArray *tracks = [asset tracksWithMediaType:AVMediaTypeVideo];
+        if([tracks count] > 0) {
+            AVAssetTrack *videoTrack = [tracks objectAtIndex:0];
+            NSLog(@"=====hello  width:%f===height:%f",videoTrack.naturalSize.width,videoTrack.naturalSize.height);//宽高
+            CGSize videoSize = videoTrack.naturalSize;
+            CGFloat whScale = videoSize.width/videoSize.height;
+
+            CGFloat videoWidth = FollowsVideoListCellVideoWidth;
+            if(whScale > 0.6){
+                videoWidth = FollowsVideoListCellVideoWidth_LessPointSix;
+            }
+            
+            CGFloat videoHeight = (CGFloat)videoWidth/whScale;
+            CGFloat cellHeight = FollowsVideoListCellIconHeight + contentLabelSize.size.height + videoHeight +FollowsVideoListCellBottomHeight+FollowsVideoListCellSpace*2;
+            
+            homeListModel.fpllowVideoListTitleHeight = contentLabelSize.size.height;
+            homeListModel.fpllowVideoListCellHeight = cellHeight;
+            homeListModel.fpllowVideoHeight = videoHeight;
+            homeListModel.fpllowVideoWidth = videoWidth;
+        }
     }
 }
 
@@ -270,6 +286,16 @@
     self.isDisAppearPlay = isPlay;
 }
 
+- (void)cellHeightReady{
+    /*
+     *视频加载完成，说明cell高度已经计算好啦。
+     */
+    NSLog(@"%f",self.currentCell.listModel.fpllowVideoHeight);
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentIndex inSection:0];
+    
+    [self.mainTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
 #pragma mark --------------- tabbleView代理 -----------------
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -302,8 +328,10 @@
 //设置每一组的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    
+    
     HomeListModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
-
+    
     return  model.fpllowVideoListCellHeight;
 }
 
@@ -357,12 +385,6 @@
         self.currentCell = [self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentIndex inSection:0]];
         [self playCurCellVideo];
     }
-    
-    //    NSInteger offset = self.mainDataArr.count - self.currentIndex;
-    //    if(offset == 2){ //开始加载下一页
-    //        self.currentPage += 1;
-    //        [self initRequest];
-    //    }
 }
 
 
