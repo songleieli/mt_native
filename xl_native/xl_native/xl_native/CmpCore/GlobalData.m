@@ -81,11 +81,11 @@
 }
 
 
-- (BOOL)isNotFirstUse{
+- (BOOL)isLoadedApp{
     return   [[NSUserDefaults standardUserDefaults] boolForKey:INFO_IS_NOT_FIRST_USER];
 }
 
--(void)setIsNotFirstUse:(BOOL)isNotFirstUse{
+-(void)setIsLoadedApp:(BOOL)isNotFirstUse{
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     [prefs setBool:isNotFirstUse forKey:INFO_IS_NOT_FIRST_USER];

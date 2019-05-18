@@ -6,28 +6,33 @@
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
-#import "NetWork_mt_getFollowsVideoList.h"
+#import "NetWork_mt_getWinners.h"
+
+@implementation GetWinnerModel
 
 
-@implementation GetFollowsVideoListResponse
+@end
+
+
+@implementation GetWinnersResponse
 
 - (NSDictionary *)propertyMappingObjcJson {
     return @{@"obj" : @"obj"};
 }
 - (NSDictionary *)classNameForItemInArray {
-    return @{@"obj" : @"HomeListModel"};
+    return @{@"obj" : @"GetWinnerModel"};
 }
 
 @end
 
 
-@implementation NetWork_mt_getFollowsVideoList
+@implementation NetWork_mt_getWinners
 
 -(Class)responseType{
-    return [GetFollowsVideoListResponse class];
+    return [GetWinnersResponse class];
 }
 -(NSString*)responseCategory{
-    return @"/miantiao/follow/getFollowsVideoList";
+    return @"/miantiao/home/getWinners";
 }
 
 

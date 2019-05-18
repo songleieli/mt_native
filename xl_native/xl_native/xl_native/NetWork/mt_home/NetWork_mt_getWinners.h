@@ -9,9 +9,25 @@
 //#import "WCServiceBase.h"
 #import "NetWork_mt_home_list.h"
 
+@interface GetWinnerModel : IObjcJsonBase
 
 
-@interface GetFollowsVideoListResponse : IObjcJsonBase
+/*
+ "noodleId": "12345",
+ "nickname": "张三",
+ "jiangpinName": "苹果笔记本",
+ "wTime": "2019-05-13 19:58:11"
+
+ */
+
+@property (nonatomic,copy) NSString * noodleId;
+@property (nonatomic,copy) NSString * nickname;
+@property (nonatomic,copy) NSString * jiangpinName;
+@property (nonatomic,copy) NSString * wTime;
+
+@end
+
+@interface GetWinnersResponse : IObjcJsonBase
 
 @property(nonatomic,copy) NSString * status;
 @property(nonatomic,copy) NSString * message;
@@ -19,10 +35,7 @@
 
 @end
 
-@interface NetWork_mt_getFollowsVideoList : WCServiceBase
+@interface NetWork_mt_getWinners : WCServiceBase
 
-@property (nonatomic,strong) NSString * pageNo;
-@property (nonatomic,strong) NSString * pageSize;
-@property (nonatomic,strong) NSString * currentNoodleId;
 
 @end

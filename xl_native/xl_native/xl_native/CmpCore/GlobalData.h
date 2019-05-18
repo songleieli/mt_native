@@ -25,7 +25,7 @@
 @property (strong, nonatomic,getter=getSearchKeyWord,setter=setSearchKeyWord:) NSString *searchKeyWord; //用户搜多地址关键字
 
 
-@property(nonatomic,assign)BOOL  isNotFirstUse;
+@property(nonatomic,assign)BOOL  isLoadedApp; //用户是否已经使用过App
 
 @property (strong, nonatomic,getter=getLatitude,setter=setLatitude:) NSString *latitude;   //当前用户经度
 @property (strong, nonatomic,getter=getLongitude,setter=setLongitude:) NSString *longitude; //当前用户纬度

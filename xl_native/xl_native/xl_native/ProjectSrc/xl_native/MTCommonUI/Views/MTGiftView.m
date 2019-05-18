@@ -6,16 +6,11 @@
 //  Copyright © 2016年 Junrongdai. All rights reserved.
 //
 
-#import "CTProdectView.h"
+#import "MTGiftView.h"
 #import "UIButton+Create.h"
 
 
-@implementation CTProdectItemModel
-
-@end
-
-
-@interface CTProdectView () <UIScrollViewDelegate>
+@interface MTGiftView () <UIScrollViewDelegate>
 
 @property (strong, nonatomic) UIImageView *imgIcon;
 @property (assign, nonatomic) NSInteger currentPage;
@@ -23,13 +18,13 @@
 
 @end
 
-@implementation CTProdectView
+@implementation MTGiftView
 
 - (instancetype)initWithFrame:(CGRect)frame{
     
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor clearColor];
     }
     
     return self;
@@ -65,43 +60,34 @@
             btnSub.tag = i*rowCount+j;
             btnSub.size = [UIView getSize_width:cellWidth height:cellHeight];
             btnSub.origin = [UIView getPoint_x:j*cellWidth y:i*cellHeight];
-//            btnSub.layer.borderWidth = 0.25;
-            btnSub.layer.borderWidth = 0.0;
-//            btnSub.layer.borderColor = defaultLineColor.CGColor;
+//            btnSub.layer.borderWidth = 0.5;
             [self addSubview:btnSub];
             
             if(index < self.source.count){
                 
-                [btnSub setBackgroundColor:RGBAlphaColor(239, 239, 243, 1) forState:UIControlStateHighlighted];
-                [btnSub addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-                
-                CTProdectItemModel *model = [self.source objectAtIndex:index];
                 UIImageView *imageView = [[UIImageView alloc]init];
-                imageView.size = [UIView getScaleSize_width:40 height:40];
-                imageView.origin = [UIView getPoint_x:(btnSub.width - imageView.width)/2
-                                                    y:(btnSub.height - imageView.height)/2-10];
-                imageView.image = [UIImage imageNamed:model.itemIcon];
+                imageView.size = [UIView getScaleSize_width:20 height:20];
+                imageView.origin = [UIView getPoint_x:sizeScale(10)
+                                                    y:(btnSub.height - imageView.height)/2];
+                imageView.image = [UIImage imageNamed:@"main_ad_gift"];
                 [btnSub addSubview:imageView];
                 
                 UILabel *lableFunctionTitle = [[UILabel alloc] init];
-                lableFunctionTitle.size = [UIView getSize_width:btnSub.width height:sizeScale(20)];
-                lableFunctionTitle.origin = [UIView getPoint_x:0 y:imageView.bottom + 5];
+                lableFunctionTitle.size = [UIView getSize_width:btnSub.width - imageView.right - 10  height:btnSub.height];
+                lableFunctionTitle.top = 0;
+                lableFunctionTitle.left = imageView.right+10;
+                
                 lableFunctionTitle.textAlignment = NSTextAlignmentCenter;
-                lableFunctionTitle.textColor = RGBFromColor(0x494949); //RGBAlphaColor(70, 73, 81, 1);
-                lableFunctionTitle.font = [UIFont defaultFontWithSize:14];
-                lableFunctionTitle.text = model.itemTitle;
+                lableFunctionTitle.textColor = [UIColor blackColor];
+                lableFunctionTitle.font = [UIFont defaultFontWithSize:16];
+                lableFunctionTitle.text = [self.source objectAtIndex:index];
+                lableFunctionTitle.textAlignment = NSTextAlignmentLeft;
+                //test
+//                lableFunctionTitle.backgroundColor = [UIColor redColor];
                 
                 [btnSub addSubview:lableFunctionTitle];
             }
         }
-    }
-}
-
--(void)btnClick:(UIButton*)btn{
-    //self.userInteractionEnabled = NO;
-    CTProdectItemModel *item = [self.source objectAtIndex:btn.tag];
-    if(self.blockClcik){
-        self.blockClcik(item);
     }
 }
 

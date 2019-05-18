@@ -6,32 +6,20 @@
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
-#import "NetWork_mt_getMusicList.h"
+#import "NetWork_mt_getPrizeList.h"
 
-
-@implementation MusicModel
-
-@end
-
-@implementation GetMusicListResponse
-
-- (NSDictionary *)propertyMappingObjcJson {
-    return @{@"obj" : @"obj"};
-}
-- (NSDictionary *)classNameForItemInArray {
-    return @{@"obj" : @"MusicModel"};
-}
+@implementation GetPrizeListResponse
 
 @end
 
 
-@implementation NetWork_mt_getMusicList
+@implementation NetWork_mt_getPrizeList
 
 -(Class)responseType{
-    return [GetMusicListResponse class];
+    return [GetPrizeListResponse class];
 }
 -(NSString*)responseCategory{
-    return @"/miantiao/music/getMusicList";
+    return @"/miantiao/home/getPrizeList";
 }
 
 

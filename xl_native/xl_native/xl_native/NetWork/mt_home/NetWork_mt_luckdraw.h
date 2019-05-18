@@ -7,25 +7,18 @@
 //
 
 #import "WCServiceBase.h"
-//
-//@interface GetPrizeListModel : IObjcJsonBase
-//
-//@property (copy, nonatomic) NSString *id;
-//@property (copy, nonatomic) NSString *name;
-//
-//
-//@end
 
-
-
-@interface GetPrizeListResponse : IObjcJsonBase
+@interface LuckdrawResponse : IObjcJsonBase
 
 @property(nonatomic,copy) NSString * status;
 @property(nonatomic,copy) NSString * message;
-@property(nonatomic,strong) NSArray * obj;
+@property(nonatomic,copy) NSString * obj;
 
 @end
 
-@interface NetWork_mt_getPrizeList : WCServiceBase
+@interface NetWork_mt_luckdraw : WCServiceBase
+
+
+@property(nonatomic,copy) NSString * currentNoodleId;
 
 @end

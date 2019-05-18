@@ -11,7 +11,7 @@
 #import "NetWork_mt_getTopicCollections.h"
 
 
-@protocol SearchResultSubTopicDelegate <NSObject>
+@protocol CollectionSubTopicDelegate <NSObject>
 
 -(void)btnCellClick:(GetTopicCollectionModel*)model;
 
@@ -36,6 +36,6 @@
 @property(nonatomic,strong) UILabel * titleLalbe;
 @property(nonatomic,strong) UILabel * useCountLalbe;
 
-@property(nonatomic,weak) id <SearchResultSubTopicDelegate> subTopicDelegate;
+@property(nonatomic,weak) id <CollectionSubTopicDelegate> subTopicDelegate;
 
 @end

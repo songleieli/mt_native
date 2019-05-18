@@ -10,7 +10,7 @@
 #import "SearchResultSubMusicCell.h"
 
 
-@protocol SubCellDelegate <NSObject>
+@protocol SubMusicCellDelegate <NSObject>
 
 -(void)subMusicClick:(GetFuzzyMusicListModel *)model;
 
@@ -21,7 +21,7 @@
 
 @property(nonatomic,strong) NSString *parameter;
 @property(nonatomic,strong) NSString *keyWord;
-@property (nonatomic, weak) id<SubCellDelegate> delegate;
+@property (nonatomic, weak) id<SubMusicCellDelegate> delegate;
 
 
 @end

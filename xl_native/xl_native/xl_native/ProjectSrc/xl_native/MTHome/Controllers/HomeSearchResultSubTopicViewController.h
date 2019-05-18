@@ -9,7 +9,7 @@
 #import "SearchResultSubTopicCell.h"
 
 
-@protocol SubCellDelegate <NSObject>
+@protocol SubCellTopicDelegate <NSObject>
 
 -(void)subCellTopicClick:(GetFuzzyTopicListModel *)model;
 
@@ -20,7 +20,7 @@
 
 @property(nonatomic,strong) NSString *parameter;
 @property(nonatomic,strong) NSString *keyWord;
-@property (nonatomic, weak) id<SubCellDelegate> delegate;
+@property (nonatomic, weak) id<SubCellTopicDelegate> delegate;
 
 
 @end

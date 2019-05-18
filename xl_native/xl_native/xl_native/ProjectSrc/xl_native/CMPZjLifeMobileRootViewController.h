@@ -13,7 +13,11 @@
 
 //test
 #import "PublishViewController.h"
-
+#import "MTGiftView.h"
+#import "LSMarqueeView.h"
+#import "NetWork_mt_getPrizeList.h"
+#import "NetWork_mt_luckdraw.h"
+#import "NetWork_mt_getWinners.h"
 
 @class BaseNavigationController;
 
@@ -52,6 +56,15 @@
  *QBImagePickerMediaType
  */
 @property (nonatomic) QBImagePickerMediaType mediaType;
+
+@property (strong, nonatomic) UIImageView *viewPopAd; //弹出广告黑色背景View
+@property (strong, nonatomic) UIImageView *imageViewNoolde; //挑面动画
+@property (strong, nonatomic) MTGiftView *viewGift; //礼品View
+@property (nonatomic, strong) LSMarqueeView *marqueeView; //中奖人员，跑马灯
+
+@property (nonatomic ,strong)NSMutableArray *advertisingPopSource;//弹出广告数据源
+@property (nonatomic ,strong)NSMutableArray *prizeWinerSource;//获奖人员数据源
+
 
 
 - (void)selectTabAtIndex:(NSInteger)toIndex;

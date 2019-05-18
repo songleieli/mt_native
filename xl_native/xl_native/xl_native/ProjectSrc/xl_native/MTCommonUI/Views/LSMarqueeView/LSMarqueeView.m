@@ -38,9 +38,9 @@
 - (UIView *)backView{
     if (!_backView) {
         _backView = [[UIView alloc] initWithFrame:self.bounds];
-        _backView.backgroundColor = [UIColor whiteColor];
+        _backView.backgroundColor = [UIColor clearColor];
         UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:_backView.bounds];
-        bgImgView.image = [UIImage imageNamed:@"topup_banner"];
+//        bgImgView.image = [UIImage imageNamed:@"topup_banner"];
         [_backView addSubview:bgImgView];
         _backView.clipsToBounds = YES;
         _backView.userInteractionEnabled = YES;
@@ -81,16 +81,16 @@
 - (void)timerRepeat {
     UILabel *targetLab = [self.lsLabelArr objectAtIndex:_seconds % self.lsLabelArr.count];
     if (_seconds <= self.lsLabelArr.count) {
-        targetLab.frame = CGRectMake(10, self.backView.frame.size.height, self.backView.frame.size.width, self.backView.frame.size.height);
+        targetLab.frame = CGRectMake(0, self.backView.frame.size.height, self.backView.frame.size.width, self.backView.frame.size.height);
     }
     [UIView animateWithDuration:.75f animations:^{
-        targetLab.frame = CGRectMake(10, self.backView.frame.origin.y, self.backView.frame.size.width, self.backView.frame.size.height);
+        targetLab.frame = CGRectMake(0, self.backView.frame.origin.y, self.backView.frame.size.width, self.backView.frame.size.height);
     } completion:^(BOOL finished) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:.75f animations:^{
-                targetLab.frame = CGRectMake(10, -self.backView.frame.size.height, self.backView.frame.size.width, self.backView.frame.size.height);
+                targetLab.frame = CGRectMake(0, -self.backView.frame.size.height, self.backView.frame.size.width, self.backView.frame.size.height);
             } completion:^(BOOL finished) {
-                targetLab.frame = CGRectMake(10, self.backView.frame.size.height, self.backView.frame.size.width, self.backView.frame.size.height);
+                targetLab.frame = CGRectMake(0, self.backView.frame.size.height, self.backView.frame.size.width, self.backView.frame.size.height);
             }];
         });
     }];

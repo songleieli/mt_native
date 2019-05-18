@@ -119,10 +119,248 @@
 }
 
 
+#pragma -mark advertisingPopSource
+
+- (NSMutableArray *)advertisingPopSource{
+    
+    if (!_advertisingPopSource) {
+        _advertisingPopSource = [[NSMutableArray alloc] init];
+    }
+    return _advertisingPopSource;
+}
+
+- (NSMutableArray *)prizeWinerSource{
+    
+    if (!_prizeWinerSource) {
+        _prizeWinerSource = [[NSMutableArray alloc] init];
+    }
+    return _prizeWinerSource;
+}
+
+
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //test
+    [GlobalData sharedInstance].isLoadedApp = NO;
+    
+    if(![GlobalData sharedInstance].isLoadedApp){ //第一次启动App
+        [GlobalData sharedInstance].isLoadedApp = YES;
+        /*
+         *加载广告
+         */
+        [self dealPopAdverist];
+        [self loadAdRequest];
+        [self loadWinnersRequest];
+    }
+    else{
+        [self loadTableBar];
+    }
+}
+
+#pragma -mark ----- CustomMethod ------------
+
+-(void)dealPopAdverist{
+    
+    if(self.viewPopAd){
+        [self.viewPopAd removeAllSubviews];
+        [self.viewPopAd removeFromSuperview];
+        self.viewPopAd = nil;
+    }
+    
+    self.viewPopAd = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    self.viewPopAd.image = [UIImage imageNamed:@"main_ad_bg"];
+    //UIImageView - 解决Button加到ImageView上后Button 无法响应单击事件的方法
+    self.viewPopAd.userInteractionEnabled = YES;
+    
+    [self.view addSubview:self.viewPopAd];
+    [self.view bringSubviewToFront:self.viewPopAd];
+    
+    
+    
+    
+    /*
+     *迎新title
+     */
+    UIImageView *imageViewTitle = [[UIImageView alloc] init];
+    imageViewTitle.size = [UIView getScaleSize_width:130 height:25];
+    imageViewTitle.centerX = self.viewPopAd.width/2;
+    imageViewTitle.top = sizeScale(30);
+    imageViewTitle.image = [UIImage imageNamed:@"main_ad_title"];
+    [self.viewPopAd addSubview:imageViewTitle];
+    
+    
+    self.imageViewNoolde = [[UIImageView alloc] init];
+    self.imageViewNoolde.size = [UIView getSize_width:ScreenWidth height:ScreenWidth];
+    self.imageViewNoolde.centerX = self.viewPopAd.width/2;
+    self.imageViewNoolde.top = sizeScale(30);
+    [self.imageViewNoolde setImage:[UIImage imageNamed:@"part_1"]];
+
+    [self.viewPopAd addSubview:self.imageViewNoolde];
+    
+    //test
+//    imageViewNoolde.backgroundColor = [UIColor redColor];
+    
+    //创建一个可变数组
+    NSMutableArray *ary=[NSMutableArray new];
+    for(int I=1;I<=2;I++){
+        //通过for 循环,把我所有的 图片存到数组里面
+        NSString *imageName=[NSString stringWithFormat:@"part_%d",I];
+        UIImage *image=[UIImage imageNamed:imageName];
+        [ary addObject:image];
+    }
+    
+    // 设置图片的序列帧 图片数组
+    self.imageViewNoolde.animationImages=ary;
+    //动画重复次数
+    self.imageViewNoolde.animationRepeatCount=1;
+    //动画执行时间,多长时间执行完动画
+    self.imageViewNoolde.animationDuration = 1.0;
+
+    /*
+     *抽奖和跳过按钮
+     */
+    UIButton *btnLuck = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnLuck.tag = 90;
+    btnLuck.size = [UIView getScaleSize_width:137 height:43];
+    btnLuck.right = self.viewPopAd.width/2 - sizeScale(7);
+    btnLuck.bottom = self.viewPopAd.height -sizeScale(35);
+    [btnLuck setBackgroundImage:[UIImage imageNamed:@"main_ad_btn_luck"] forState:UIControlStateNormal];
+    btnLuck.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [btnLuck setTitle:@"抽奖" forState:UIControlStateNormal];
+    [btnLuck addTarget:self action:@selector(adClick:) forControlEvents:UIControlEventTouchUpInside];
+    btnLuck.titleLabel.font = [UIFont defaultFontWithSize:22];
+    [self.viewPopAd addSubview:btnLuck];
+    
+    UIButton *btnSkip= [UIButton buttonWithType:UIButtonTypeCustom];
+    btnSkip.tag = 91;
+    btnSkip.size = [UIView getScaleSize_width:137 height:43];
+    btnSkip.left = self.viewPopAd.width/2 + sizeScale(7);
+    btnSkip.bottom = self.viewPopAd.height -sizeScale(35);
+    [btnSkip setBackgroundImage:[UIImage imageNamed:@"main_ad_btn_skip"] forState:UIControlStateNormal];
+    btnSkip.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [btnSkip setTitle:@"跳过" forState:UIControlStateNormal];
+    [btnSkip addTarget:self action:@selector(adClick:) forControlEvents:UIControlEventTouchUpInside];
+    btnSkip.titleLabel.font = [UIFont defaultFontWithSize:22];
+    [self.viewPopAd addSubview:btnSkip];
+    
+    
+    /*
+     *奖品池
+     */
+    self.viewGift = [[MTGiftView alloc] init];
+    self.viewGift.size = [UIView getSize_width:ScreenWidth height:sizeScale(80)];
+    self.viewGift.centerX = self.viewPopAd.width/2;
+    self.viewGift.bottom = btnLuck.top - sizeScale(50);
+    [self.viewPopAd addSubview:self.viewGift];
+    
+    
+    UILabel *lableGiftTitle = [[UILabel alloc] init];
+    lableGiftTitle.size = [UIView getSize_width:ScreenWidth height:50];
+    lableGiftTitle.bottom = self.viewGift.top;
+    lableGiftTitle.left = 10;
+    
+    lableGiftTitle.textAlignment = NSTextAlignmentCenter;
+    lableGiftTitle.textColor = [UIColor blackColor];
+    lableGiftTitle.font = [UIFont defaultFontWithSize:25];
+    lableGiftTitle.text = @"奖品池";
+    lableGiftTitle.textAlignment = NSTextAlignmentLeft;
+    //test
+//    lableGiftTitle.backgroundColor = [UIColor redColor];
+    
+    [self.viewPopAd addSubview:lableGiftTitle];
+
+    //test
+//    self.viewGift.backgroundColor = [UIColor redColor];
+}
+
+-(void)loadAdRequest{
+    NetWork_mt_getPrizeList *request = [[NetWork_mt_getPrizeList alloc] init];
+    [request startGetWithBlock:^(GetPrizeListResponse *result, NSString *msg, BOOL finished) {
+        if(finished){
+            NSLog(@"--------");
+            
+            [self.viewGift reloadWithSource:result.obj rowCount:2];
+            
+            
+        }
+    }];
+    
+}
+
+-(void)luckDrawRequest{ //点击抽奖
+    NetWork_mt_luckdraw *request = [[NetWork_mt_luckdraw alloc] init];
+    [request startGetWithBlock:^(LuckdrawResponse *result, NSString *msg, BOOL finished) {
+        if(finished){
+            [UIWindow showTips:result.obj];
+//            [self loadTableBar];
+            [self performSelector:@selector(loadTableBar) withObject:nil/*可传任意类型参数*/ afterDelay:4.0];
+
+        }
+    }];
+}
+
+-(void)loadWinnersRequest{
+    NetWork_mt_getWinners *request = [[NetWork_mt_getWinners alloc] init];
+    [request startGetWithBlock:^(GetWinnersResponse *result, NSString *msg, BOOL finished) {
+        if(finished){
+//            [self.prizeWinerSource addObjectsFromArray:result.obj];
+            
+            [self loadWinnersUI:result.obj];
+        }
+    }];
+}
+
+-(void)loadWinnersUI:(NSArray *)array{
+    
+        /*
+         *中奖人员，跑马灯
+         */
+    
+        NSMutableArray *tempArr = @[].mutableCopy;
+    
+    for(GetWinnerModel *model in array){
+        
+        UILabel *labelOne = [UILabel new];
+        labelOne.font = [UIFont systemFontOfSize:13];
+        labelOne.text = [NSString stringWithFormat:@"%@ 获得 [%@]   %@",model.nickname,model.jiangpinName,model.wTime];
+        labelOne.textColor = [UIColor blackColor];
+        labelOne.textAlignment = NSTextAlignmentCenter;
+        
+        [tempArr addObject:labelOne];
+    }
+
+    self.marqueeView = [[LSMarqueeView alloc] initWithFrame:CGRectMake(0, 100, ScreenWidth, 60) andLableArr:tempArr];
+    self.marqueeView.top = sizeScale(30) + 25;
+    [self.view addSubview:self.marqueeView];
+    [self.marqueeView  startCountdown];
+    
+    self.imageViewNoolde.top = self.marqueeView.bottom - 50;
+}
+
+
+
+-(void)adClick:(UIButton*)btn{
+    if(btn.tag == 90){ //抽奖
+        //开始动画
+        [self.imageViewNoolde startAnimating];
+        [self luckDrawRequest];
+
+    }
+    else if(btn.tag == 91){//跳过
+        [self loadTableBar];
+    }
+}
+
+-(void)loadTableBar{
+    
+    if(self.viewGift){
+        [self.viewGift removeFromSuperview];
+    }
+    
+    
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     [self addChildViewController:self.xlHomeNavViewController];
@@ -133,14 +371,15 @@
     
     //[[UINavigationBar appearance] setBarTintColor:defaultZjBlueColor];
     //（这里就很费解，按照系统文档上解释的话，默认应该是YES才对，可是事实证明系统默认是NO）
-//    [[UINavigationBar appearance] setBarTintColor:[UIColor clearColor]];
-//    [[UINavigationBar appearance] setTranslucent:NO];//这句话是控制导航栏颜色是否透明。//导航栏颜色透明
+    //    [[UINavigationBar appearance] setBarTintColor:[UIColor clearColor]];
+    //    [[UINavigationBar appearance] setTranslucent:NO];//这句话是控制导航栏颜色是否透明。//导航栏颜色透明
     
     self.currentViewController = self.xlHomeNavViewController;
     self.currentSelectIndex = 0; //默认选择第一个tab
     [self.view addSubview:self.xlHomeNavViewController.view];
-    
 }
+
+
 - (void)selectTabAtIndex:(NSInteger)toIndex{
     
     self.currentSelectIndex = toIndex;

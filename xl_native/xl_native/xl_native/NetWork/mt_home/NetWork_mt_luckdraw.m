@@ -6,32 +6,22 @@
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
-#import "NetWork_mt_getPrizeList.h"
+#import "NetWork_mt_luckdraw.h"
 
 
-//@implementation GetPrizeListModel
-//
-//@end
+@implementation LuckdrawResponse
 
-@implementation GetPrizeListResponse
-
-//- (NSDictionary *)propertyMappingObjcJson {
-//    return @{@"obj" : @"obj"};
-//}
-//- (NSDictionary *)classNameForItemInArray {
-//    return @{@"obj" : @"GetPrizeListModel"};
-//}
 
 @end
 
 
-@implementation NetWork_mt_getPrizeList
+@implementation NetWork_mt_luckdraw
 
 -(Class)responseType{
-    return [GetPrizeListResponse class];
+    return [LuckdrawResponse class];
 }
 -(NSString*)responseCategory{
-    return @"/miantiao/home/getPrizeList";
+    return @"/miantiao/home/luckdraw";
 }
 
 
