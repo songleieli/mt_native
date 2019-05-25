@@ -794,10 +794,11 @@
 		04F3B68C22474D8400F4C82E /* QBCheckmarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B67E22474D8400F4C82E /* QBCheckmarkView.m */; };
 		04F3B68D22474D8400F4C82E /* QBSlomoIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B68022474D8400F4C82E /* QBSlomoIconView.m */; };
 		04F3B68E22474D8400F4C82E /* QBAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B68122474D8400F4C82E /* QBAssetCell.m */; };
-		04F5E89B21CE7FB600781FCD /* SharePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5E89A21CE7FB600781FCD /* SharePopView.m */; };
+		04F5E89B21CE7FB600781FCD /* SharePopViewVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5E89A21CE7FB600781FCD /* SharePopViewVideo.m */; };
 		04F5E89F21CE8DD200781FCD /* NetWork_mt_collectionVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5E89E21CE8DD100781FCD /* NetWork_mt_collectionVideo.m */; };
 		04F5E8A221CE95A800781FCD /* NetWork_mt_getVideoCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5E8A121CE95A700781FCD /* NetWork_mt_getVideoCollections.m */; };
 		04F627EB2296A47C000E4A14 /* NetWork_mt_addWater.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F627EA2296A47C000E4A14 /* NetWork_mt_addWater.m */; };
+		04F6646C229938AC00BBE27F /* SharePopViewDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F6646B229938AC00BBE27F /* SharePopViewDownload.m */; };
 		04FB536B21C61036000ED131 /* AVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB536A21C61036000ED131 /* AVPlayerView.m */; };
 		04FB537121C61639000ED131 /* WebCacheHelpler.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB537021C61639000ED131 /* WebCacheHelpler.m */; };
 		04FB537521C69B9F000ED131 /* AVPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB537421C69B9F000ED131 /* AVPlayerManager.m */; };
@@ -2258,14 +2259,16 @@
 		04F3B67F22474D8400F4C82E /* QBAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAlbumCell.h; sourceTree = "<group>"; };
 		04F3B68022474D8400F4C82E /* QBSlomoIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBSlomoIconView.m; sourceTree = "<group>"; };
 		04F3B68122474D8400F4C82E /* QBAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAssetCell.m; sourceTree = "<group>"; };
-		04F5E89921CE7FB600781FCD /* SharePopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharePopView.h; sourceTree = "<group>"; };
-		04F5E89A21CE7FB600781FCD /* SharePopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharePopView.m; sourceTree = "<group>"; };
+		04F5E89921CE7FB600781FCD /* SharePopViewVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharePopViewVideo.h; sourceTree = "<group>"; };
+		04F5E89A21CE7FB600781FCD /* SharePopViewVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharePopViewVideo.m; sourceTree = "<group>"; };
 		04F5E89D21CE8DD100781FCD /* NetWork_mt_collectionVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_collectionVideo.h; sourceTree = "<group>"; };
 		04F5E89E21CE8DD100781FCD /* NetWork_mt_collectionVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_collectionVideo.m; sourceTree = "<group>"; };
 		04F5E8A021CE95A700781FCD /* NetWork_mt_getVideoCollections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getVideoCollections.h; sourceTree = "<group>"; };
 		04F5E8A121CE95A700781FCD /* NetWork_mt_getVideoCollections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getVideoCollections.m; sourceTree = "<group>"; };
 		04F627E92296A47C000E4A14 /* NetWork_mt_addWater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_addWater.h; sourceTree = "<group>"; };
 		04F627EA2296A47C000E4A14 /* NetWork_mt_addWater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_addWater.m; sourceTree = "<group>"; };
+		04F6646A229938AC00BBE27F /* SharePopViewDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharePopViewDownload.h; sourceTree = "<group>"; };
+		04F6646B229938AC00BBE27F /* SharePopViewDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharePopViewDownload.m; sourceTree = "<group>"; };
 		04FB536921C61036000ED131 /* AVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerView.h; sourceTree = "<group>"; };
 		04FB536A21C61036000ED131 /* AVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPlayerView.m; sourceTree = "<group>"; };
 		04FB536F21C61639000ED131 /* WebCacheHelpler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebCacheHelpler.h; sourceTree = "<group>"; };
@@ -4928,8 +4931,10 @@
 				0402A45A21C4AA0600C35CA9 /* UIWindow+Extension.m */,
 				0403661F21C3A5D1000FDC5E /* CommentsPopView.h */,
 				0403661E21C3A5D1000FDC5E /* CommentsPopView.m */,
-				04F5E89921CE7FB600781FCD /* SharePopView.h */,
-				04F5E89A21CE7FB600781FCD /* SharePopView.m */,
+				04F5E89921CE7FB600781FCD /* SharePopViewVideo.h */,
+				04F5E89A21CE7FB600781FCD /* SharePopViewVideo.m */,
+				04F6646A229938AC00BBE27F /* SharePopViewDownload.h */,
+				04F6646B229938AC00BBE27F /* SharePopViewDownload.m */,
 				04183AEE21C2BC2200383E3F /* SwitchVideoPlayer */,
 				D904E95D1DD1D6DB00C7E45E /* ZJCustomTabBar */,
 			);
@@ -5960,7 +5965,7 @@
 				0452ADC52279A50100E04998 /* AFAutoPurgingImageCache.m in Sources */,
 				0452AD852279A47900E04998 /* MJRefreshBackGifFooter.m in Sources */,
 				0499B54B223CC5210080A1B1 /* TCBGMCutView.m in Sources */,
-				04F5E89B21CE7FB600781FCD /* SharePopView.m in Sources */,
+				04F5E89B21CE7FB600781FCD /* SharePopViewVideo.m in Sources */,
 				0499B568223D0E750080A1B1 /* NetWork_mt_getUploadSignature.m in Sources */,
 				04CBC39F2179C01300658E47 /* GPUImageTextureInput.m in Sources */,
 				0452AD872279A47900E04998 /* MJRefreshBackNormalFooter.m in Sources */,
@@ -6324,6 +6329,7 @@
 				04A308F7222A8346000BC762 /* FlourCell.m in Sources */,
 				04CBC3C12179C01300658E47 /* GPUImageXYDerivativeFilter.m in Sources */,
 				04AB304021CA91310072808E /* GKDouyinScrollView.m in Sources */,
+				04F6646C229938AC00BBE27F /* SharePopViewDownload.m in Sources */,
 				04DCA87C21A55C5B00691A3A /* TXUGCPublishUtil.m in Sources */,
 				04CBC3672179C01300658E47 /* GPUImageJFAVoronoiFilter.m in Sources */,
 				04D9B4C821D327B300DEC8B9 /* NetWork_mt_getFollows.m in Sources */,

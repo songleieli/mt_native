@@ -405,7 +405,7 @@
 
 - (void)shareClicked:(HomeListModel *)listModel{
     
-    SharePopView *popView = [[SharePopView alloc] init];
+    SharePopViewVideo *popView = [[SharePopViewVideo alloc] init];
     popView.homeListModel = listModel;
     popView.delegate = self;
     [popView show];
@@ -441,7 +441,7 @@
 
 #pragma mark --------------- VideoSahreDelegate 代理 -----------------
 
-- (void)onShareItemClicked:(SharePopView *)sharePopView index:(MTShareType)index{
+- (void)onShareItemClicked:(SharePopViewVideo *)sharePopView index:(MTShareType)index{
     
     if(index == MTShareTypeWechatVideo || index == MTShareTypeRegQQVideo ){
         //生成带水印的视频，并分享到微信或者qq
@@ -454,7 +454,7 @@
     }
 }
 
-- (void)onActionItemClicked:(SharePopView *)sharePopView index:(MTShareActionType)index{
+- (void)onActionItemClicked:(SharePopViewVideo *)sharePopView index:(MTShareActionType)index{
     
     if(index == MTShareActionTypeCollention){
         

@@ -16,7 +16,7 @@
 #import "UserInfoPlayerCell.h"
 #import "CommentsPopView.h"
 #import "LoadMoreControl.h"
-#import "SharePopView.h"
+#import "SharePopViewVideo.h"
 
 #import "NetWork_mt_likeVideo.h"
 #import "NetWork_mt_delLikeVideo.h"

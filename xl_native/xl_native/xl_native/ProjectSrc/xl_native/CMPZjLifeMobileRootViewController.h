@@ -72,11 +72,6 @@
 @property (nonatomic ,strong)NSMutableArray *prizeWinerSource;//获奖人员数据源
 
 
-
 - (void)selectTabAtIndex:(NSInteger)toIndex;
-
-- (void)showBoiledNoodles;
-
-- (void)removeBoiledNoodles;
 
 @end

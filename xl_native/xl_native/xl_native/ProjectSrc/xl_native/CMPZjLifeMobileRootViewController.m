@@ -19,7 +19,7 @@
 //#import "MBProgressHUD.h"
 #import "TCVideoLoadingController.h"
 
-#import "SharePopView.h"
+#import "SharePopViewVideo.h"
 
 @interface CMPZjLifeMobileRootViewController ()<ZJChangeIndexDelegate,presentViewControllerDelegate,WYPopoverControllerDelegate,QBImagePickerControllerDelegate,VideoSahreDelegate>{
 //    MBProgressHUD *          _hub;

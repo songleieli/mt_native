@@ -6,7 +6,7 @@
 //  Copyright © 2018年 Qiao Shi. All rights reserved.
 //
 
-#import "SharePopView.h"
+#import "SharePopViewDownload.h"
 
 //引入分享微信
 #import "WXApi.h"
@@ -18,7 +18,7 @@
 
 
 
-@implementation SharePopView
+@implementation SharePopViewDownload
 
 - (instancetype)init {
     self = [super init];
@@ -28,35 +28,17 @@
                                  @"icon_profile_share_wechat",
                                  @"icon_profile_share_qqZone",
                                  @"icon_profile_share_qq"
-//                                 @"icon_profile_share_wechat",
-//                                 @"icon_profile_share_qq"
                                  ];
         NSArray *topTexts = @[
                              @"朋友圈",
                              @"微信好友",
                              @"QQ空间",
                              @"QQ好友",
-//                             @"发送至微信",
-//                             @"发送至qq"
                              ];
-        NSArray *bottomIconsName = @[
-                                    @"icon_home_all_share_collention",
-                                    @"icon_home_allshare_report",
-                                    @"icon_home_allshare_download",
-                                    @"icon_home_allshare_copylink"
-//                                    @"icon_home_all_share_dislike"
-                                    ];
-        NSArray *bottomTexts = @[
-                                @"收藏",
-                                @"举报",
-                                @"保存至相册",
-                                @"复制链接"
-//                                @"不感兴趣"
-                                ];
         
         self.frame = ScreenFrame;
         [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGuesture:)]];
-        _container = [[UIView alloc] initWithFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 280 + SafeAreaBottomHeight)];
+        _container = [[UIView alloc] initWithFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 180 + SafeAreaBottomHeight)];
         _container.backgroundColor = ColorBlackAlpha60;
         [self addSubview:_container];
         
@@ -91,7 +73,7 @@
         
         for (NSInteger i = 0; i < topIconsName.count; i++) {
             
-            ShareItem *item = [[ShareItem alloc] initWithFrame:CGRectMake(20 + itemWidth*i, 0, 48, 90)];
+            ShareItemDown *item = [[ShareItemDown alloc] initWithFrame:CGRectMake(20 + itemWidth*i, 0, 48, 90)];
             item.icon.image = [UIImage imageNamed:topIconsName[i]];
             item.label.text = topTexts[i];
             item.tag = (MTShareType)i;
@@ -100,30 +82,7 @@
             [topScrollView addSubview:item];
         }
         
-        UIView *splitLine = [[UIView alloc] initWithFrame:CGRectMake(0, 130, ScreenWidth, 0.5f)];
-        splitLine.backgroundColor = ColorWhiteAlpha10;
-        [_container addSubview:splitLine];
-        
-        UIScrollView *bottomScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 135, ScreenWidth, 90)];
-        bottomScrollView.contentSize = CGSizeMake(itemWidth * bottomIconsName.count, 80);
-        bottomScrollView.showsHorizontalScrollIndicator = NO;
-        bottomScrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 30);
-        [_container addSubview:bottomScrollView];
-        
-        for (NSInteger i = 0; i < bottomIconsName.count; i++) {
-            
-            ShareItem *item = [[ShareItem alloc] initWithFrame:CGRectMake(20 + itemWidth*i, 0, 48, 90)];
-            item.icon.image = [UIImage imageNamed:bottomIconsName[i]];
-            item.label.text = bottomTexts[i];
-            item.tag = (MTShareActionType)i;
-            [item addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onActionItemTap:)]];
-            [item startAnimation:i*0.03f];
-            [bottomScrollView addSubview:item];
-            
-        }
-        
-        
-        _cancel = [[UIButton alloc] initWithFrame:CGRectMake(0, 230, ScreenWidth, 50 + SafeAreaBottomHeight)];
+        _cancel = [[UIButton alloc] initWithFrame:CGRectMake(0, 130, ScreenWidth, 50 + SafeAreaBottomHeight)];
         [_cancel setTitleEdgeInsets:UIEdgeInsetsMake(-SafeAreaBottomHeight, 0, 0, 0)];
         
         [_cancel setTitle:@"取消" forState:UIControlStateNormal];
@@ -144,16 +103,12 @@
 
 - (void)onShareItemTap:(UITapGestureRecognizer *)sender {
     
-    if(!self.homeListModel){
-        [self dismiss];
-        return;
-    }
-    
-    
-    NSString *shareTitle = [NSString stringWithFormat:@"@%@",self.homeListModel.nickname];
-    NSString *shareDescription = self.homeListModel.title;
+    NSString *shareTitle = @"面条短视频";
+    NSString *shareDescription = @"上面有很多有趣的视频,你也来看一下吧！";
     NSString *apiBaseUrl = [WCBaseContext sharedInstance].appInterfaceServer;
-    NSString *shareUrl = [NSString stringWithFormat:@"%@/miantiao/home/shareVideo?videosrc=%@",apiBaseUrl,self.homeListModel.storagePath];
+    NSString *shareUrl = [NSString stringWithFormat:@"%@/miantiao/home/shareApp",apiBaseUrl];
+    UIImage * shareImage =  [UIImage imageNamed:@"login_icon"];
+
      NSString *shareType = @"";//分享类型1.微信好友2.微信朋友圈3.QQ好友4.QQ空间
 
     
@@ -168,7 +123,7 @@
         else{
             shareType = @"2"; //朋友圈
             //分享朋友圈只显示title，所以将title和描述合在一起。
-            shareTitle = [NSString stringWithFormat:@"@%@ %@",self.homeListModel.nickname,shareDescription];
+//            shareTitle = [NSString stringWithFormat:@"@%@ %@",self.homeListModel.nickname,shareDescription];
 
             
             //创建发送对象实例
@@ -179,9 +134,7 @@
             WXMediaMessage *urlMessage = [WXMediaMessage message];
             urlMessage.title = shareTitle;
             
-            UIImage * image =  [UIImage imageWithData:[NSData dataWithContentsOfURL:
-                                                       [NSURL URLWithString:self.homeListModel.noodleVideoCover]]];
-            [urlMessage setThumbImage:image];//分享图片,使用SDK的setThumbImage方法可压缩图片大小
+            [urlMessage setThumbImage:shareImage];//分享图片,使用SDK的setThumbImage方法可压缩图片大小
 
             //创建多媒体对象
             WXWebpageObject *webObj = [WXWebpageObject object];
@@ -214,9 +167,7 @@
             }else{
                 urlMessage.description = shareDescription;
             }
-            UIImage * image =  [UIImage imageWithData:[NSData dataWithContentsOfURL:
-                                                       [NSURL URLWithString:self.homeListModel.noodleVideoCover]]];
-            [urlMessage setThumbImage:image];//分享图片,使用SDK的setThumbImage方法可压缩图片大小
+            [urlMessage setThumbImage:shareImage];//分享图片,使用SDK的setThumbImage方法可压缩图片大小
             WXWebpageObject *webObj = [WXWebpageObject object];
             webObj.webpageUrl = shareUrl;
             //完成发送对象实例
@@ -233,7 +184,9 @@
         }
         else{
             shareType = @"4"; //qq空间
-            QQApiNewsObject  * newsObj = [QQApiNewsObject objectWithURL:[NSURL URLWithString:shareUrl] title:shareTitle description:shareDescription previewImageURL:[NSURL URLWithString:self.homeListModel.noodleVideoCover]];
+            NSData *imageData = UIImagePNGRepresentation(shareImage);
+
+            QQApiNewsObject  * newsObj = [QQApiNewsObject objectWithURL:[NSURL URLWithString:shareUrl] title:shareTitle description:shareDescription previewImageData:imageData];
             //这个貌似是直接拉起QQ空间分享的值，0为NO，1为YES.文档上没有。
             uint64_t cflag = 1;
             [newsObj  setCflag:cflag];
@@ -248,30 +201,22 @@
         }
         else{
             shareType = @"3"; //qq好友
-            QQApiNewsObject  * newsObj = [QQApiNewsObject objectWithURL:[NSURL URLWithString:shareUrl] title:shareTitle description:shareDescription previewImageURL:[NSURL URLWithString:self.homeListModel.noodleVideoCover]];
+            
+            NSData *imageData = UIImagePNGRepresentation(shareImage);
+
+            
+            QQApiNewsObject  * newsObj = [QQApiNewsObject objectWithURL:[NSURL URLWithString:shareUrl] title:shareTitle description:shareDescription previewImageData:imageData];
             SendMessageToQQReq * req = [SendMessageToQQReq reqWithContent:newsObj];
             QQApiSendResultCode sent = [QQApiInterface sendReq:req];
             [self handleSendResult:sent];
-
         }
     }
     
-    NetWork_mt_forwardVideoCount *request = [[NetWork_mt_forwardVideoCount alloc] init];
-    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.noodleVideoId = [NSString stringWithFormat:@"%@",self.homeListModel.noodleVideoId];
-    request.forwardType = shareType;
-    [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
-        if(finished){
-            NSLog(@"-----------分享量增加-----------");
-        }
-    }];
-    
-    
-    if ([self.delegate respondsToSelector:@selector(onShareItemClicked:index:)]) {
-        [self.delegate onShareItemClicked:self index:(MTShareType)sender.view.tag];
-    } else {
-        NSLog(@"代理没响应，快开看看吧");
-    }
+//    if ([self.delegate respondsToSelector:@selector(onShareItemClicked:index:)]) {
+//        [self.delegate onShareItemClicked:self index:(MTShareType)sender.view.tag];
+//    } else {
+//        NSLog(@"代理没响应，快开看看吧");
+//    }
     
     [self dismiss];
     
@@ -361,17 +306,6 @@
     }
 }
 
-- (void)onActionItemTap:(UITapGestureRecognizer *)sender {
-    
-    if ([self.delegate respondsToSelector:@selector(onActionItemClicked:index:)]) {
-        [self.delegate onActionItemClicked:self index:(MTShareActionType)sender.view.tag];
-    } else {
-        NSLog(@"代理没响应，快开看看吧");
-    }
-    
-    [self dismiss];
-}
-
 - (void)handleGuesture:(UITapGestureRecognizer *)sender {
     CGPoint point = [sender locationInView:_container];
     if(![_container.layer containsPoint:point]) {
@@ -419,7 +353,8 @@
 
 #pragma Item view
 
-@implementation ShareItem
+@implementation ShareItemDown
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {

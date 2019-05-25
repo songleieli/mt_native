@@ -276,7 +276,7 @@
 
 - (void)shareClicked:(HomeListModel *)listModel{
     
-    SharePopView *popView = [[SharePopView alloc] init];
+    SharePopViewVideo *popView = [[SharePopViewVideo alloc] init];
     popView.homeListModel = listModel;
     popView.delegate = self;
     [popView show];

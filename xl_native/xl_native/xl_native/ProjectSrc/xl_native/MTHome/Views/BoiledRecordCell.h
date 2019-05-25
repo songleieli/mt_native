@@ -7,19 +7,10 @@
 //
 
 #import "BaseTableViewCell.h"
+#import "NetWork_mt_getBoiledRecords.h"
 
-#import "NetWork_mt_getBoiledRecords.h"   //查看粉丝列表
-
-
-//@protocol GetFloursDelegate <NSObject>
-//
-//-(void)btnCellClick:(GetFloursModel*)model;
-//
-//@end
-
-
-#define FlourCellHeight 80.0f
-#define FlourCellSpace 6.0f
+#define BoiledRecordCellHeight 80.0f
+#define BoiledRecordCellSpace 6.0f
 
 
 @interface BoiledRecordCell : BaseTableViewCell
@@ -30,14 +21,9 @@
 
 @property(nonatomic,strong) BoiledRecordModel * listModel;
 @property(nonatomic,strong) UIButton * viewBg;
-@property(nonatomic,strong) UIImageView * imageVeiwIcon;
 
-@property(nonatomic,strong) UILabel * labelReadStatus;
 @property(nonatomic,strong) UILabel * labelTitle;
 @property(nonatomic,strong) UILabel * labelSign;
-@property(nonatomic,strong) UILabel * labelTImes;
-
-//@property(nonatomic,weak) id <GetFloursDelegate> followsDelegate;
 
 
 @end

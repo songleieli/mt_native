@@ -17,21 +17,6 @@
 
 #pragma mark - 懒加载
 
-- (UIButton *)btnCancel{
-    
-    if (!_btnCancel) {
-        _btnCancel = [UIButton buttonWithType:UIButtonTypeCustom]; //[[UIImageView alloc] init];
-        _btnCancel.size = [UIView getSize_width:20 height:20];
-        _btnCancel.origin = [UIView getPoint_x:20 y:30];
-        [_btnCancel setImage:[UIImage imageNamed:@"login_close"] forState:UIControlStateNormal];
-        _btnCancel.clipsToBounds  = YES;
-        [_btnCancel addTarget:self action:@selector(loginCancle) forControlEvents:UIControlEventTouchUpInside];
-        //test
-        //        _btnCancel.backgroundColor = [UIColor redColor];
-    }
-    return _btnCancel;
-}
-
 - (WKWebView *)webDefault{
     
     if (!_webDefault) {
@@ -81,22 +66,9 @@
     leftButton.origin = [UIView getPoint_x:15.0f y:self.navBackGround.height -leftButton.height-11];
     [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_titlebar_whiteback"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    
     self.btnLeft = leftButton;
-    
-//    [self.btnLeft setImage:[UIImage imageNamed:@"icon_titlebar_whiteback"] forState:UIControlStateNormal];
-    
-    UIView *viewLine = [[UIView alloc] init];
-    viewLine.left = 0;
-    viewLine.size = [UIView getSize_width:ScreenWidth - viewLine.left height:0.6];
-    viewLine.bottom = self.navBackGround.height - viewLine.height;
-    viewLine.backgroundColor = [UIColor grayColor];
-    [self.navBackGround addSubview:viewLine];
-    
-    self.navBackGround.backgroundColor = ColorThemeBackground;
-    
-//    [self.view addSubview:self.btnCancel];
 
+    self.navBackGround.backgroundColor = ColorThemeBackground;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -110,14 +82,7 @@
 
 #pragma mark - 设置UI
 - (void)setupUi{
-    
-    NetWork_mt_getRule *request = [[NetWork_mt_getRule alloc] init];
-    [request startGetWithBlock:^(id result, NSString *msg, BOOL finished) {
-        NSLog(@"-------");
-    }];
-    
-    
-    
+
     self.view.backgroundColor = ColorThemeBackground;
 
     NSString *htmlString = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.miantiaotech.com:8080/miantiao/boiled/getRule"] encoding:NSUTF8StringEncoding error:nil];

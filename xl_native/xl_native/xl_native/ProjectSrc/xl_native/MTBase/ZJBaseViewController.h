@@ -11,7 +11,5 @@
 @interface ZJBaseViewController : BaseViewController
 
 
-//@property(nonatomic,strong) UIImageView *navBarHairlineImageView;
-
 
 @end

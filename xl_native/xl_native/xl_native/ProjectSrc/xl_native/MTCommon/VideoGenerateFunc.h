@@ -6,7 +6,7 @@
 //  Copyright (c) 2012年 eastedge. All rights reserved.
 //
 
-#import "SharePopView.h"
+#import "SharePopViewVideo.h"
 #import "WebCacheHelpler.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 

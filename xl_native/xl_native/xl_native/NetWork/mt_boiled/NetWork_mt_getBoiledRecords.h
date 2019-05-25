@@ -17,7 +17,7 @@
 
 //下载本地音乐到本地的路径
 @property (copy, nonatomic) NSString* endTime;
-@property (copy, nonatomic) NSString *money;
+@property (strong, nonatomic) NSDecimalNumber *money;
 
 
 @end

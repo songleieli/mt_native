@@ -10,7 +10,6 @@
 
 @interface BoiledNoodleRuleViewController : ZJBaseViewController
 
-@property(nonatomic,strong)UIButton * btnCancel;
 @property (nonatomic, strong) WKWebView *webDefault;
 
 

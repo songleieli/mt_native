@@ -10,7 +10,7 @@
 
 #import "FollowsVideoListCell.h"
 #import "CommentsPopView.h"
-#import "SharePopView.h"
+#import "SharePopViewVideo.h"
 
 #import "NetWork_mt_getFollowsVideoList.h"
 #import "NetWork_mt_likeVideo.h"

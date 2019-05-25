@@ -40,7 +40,7 @@
     
     self.btnLeft = leftButton;
     
-    self.title = @"面粉";
+    self.title = @"煮面记录";
 }
 
 - (void)viewDidLoad {
@@ -107,9 +107,9 @@
 }
 
 -(void)loadData:(GetBoiledRecordsResponse *)result{
-    if (self.currentPageIndex == 1 ) {
-        [self.mainDataArr removeAllObjects];
-    }
+
+    [self.mainDataArr removeAllObjects];
+
     [self.mainDataArr addObjectsFromArray:result.obj];
     [self.mainTableView reloadData];
     
@@ -149,7 +149,7 @@
 //设置每一组的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return FlourCellHeight;
+    return BoiledRecordCellHeight;
 }
 
 

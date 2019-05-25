@@ -7,7 +7,7 @@
 //
 
 #import "BoiledNoodleViewController.h"
-#import "SharePopView.h"
+#import "SharePopViewDownload.h"
 
 @interface BoiledNoodleViewController ()<WKNavigationDelegate>
 
@@ -189,7 +189,7 @@
     else if (btn.tag == 92){
         NSLog(@"-------领水-----------");
         
-        SharePopView *popView = [[SharePopView alloc] init];
+        SharePopViewDownload *popView = [[SharePopViewDownload alloc] init];
         popView.delegate = self;
         [popView show];
         

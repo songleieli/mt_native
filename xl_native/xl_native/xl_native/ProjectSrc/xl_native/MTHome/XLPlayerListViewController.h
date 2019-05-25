@@ -11,7 +11,7 @@
 #import "MtHomeTopView.h"
 #import "HomeVideoCell.h"
 #import "CommentsPopView.h"
-#import "SharePopView.h"
+#import "SharePopViewVideo.h"
 
 #import "NetWork_mt_likeVideo.h"
 #import "NetWork_mt_delLikeVideo.h"

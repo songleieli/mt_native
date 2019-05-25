@@ -33,19 +33,19 @@ typedef NS_ENUM(NSInteger, MTShareActionType){
 };
 
 
-@class SharePopView;
+@class SharePopViewVideo;
 
 @protocol VideoSahreDelegate <NSObject>
 
 
-- (void)onShareItemClicked:(SharePopView *)sharePopView index:(MTShareType)index;
+- (void)onShareItemClicked:(SharePopViewVideo *)sharePopView index:(MTShareType)index;
 
-- (void)onActionItemClicked:(SharePopView *)sharePopView index:(MTShareActionType)index;
+- (void)onActionItemClicked:(SharePopViewVideo *)sharePopView index:(MTShareActionType)index;
 
 @end
 
 
-@interface SharePopView:UIView
+@interface SharePopViewVideo:UIView
 
 @property (nonatomic, strong) UIView           *container;
 @property (nonatomic, strong) UIButton         *cancel;
