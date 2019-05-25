@@ -13,11 +13,16 @@
 
 //test
 #import "PublishViewController.h"
+#import "BoiledNoodleRuleViewController.h" //煮面规则
+#import "BoiledRecordViewController.h" //煮面记录
+
 #import "MTGiftView.h"
 #import "LSMarqueeView.h"
 #import "NetWork_mt_getPrizeList.h"
 #import "NetWork_mt_luckdraw.h"
 #import "NetWork_mt_getWinners.h"
+#import "NetWork_mt_addWater.h"
+#import "NetWork_mt_getBoiledStatistics.h"
 
 @class BaseNavigationController;
 
@@ -62,11 +67,16 @@
 @property (strong, nonatomic) MTGiftView *viewGift; //礼品View
 @property (nonatomic, strong) LSMarqueeView *marqueeView; //中奖人员，跑马灯
 
+
 @property (nonatomic ,strong)NSMutableArray *advertisingPopSource;//弹出广告数据源
 @property (nonatomic ,strong)NSMutableArray *prizeWinerSource;//获奖人员数据源
 
 
 
 - (void)selectTabAtIndex:(NSInteger)toIndex;
+
+- (void)showBoiledNoodles;
+
+- (void)removeBoiledNoodles;
 
 @end

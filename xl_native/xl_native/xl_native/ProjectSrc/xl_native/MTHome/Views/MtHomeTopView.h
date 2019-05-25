@@ -35,7 +35,7 @@
 @property (nonatomic,strong) UIButton *recommendButton;
 
 /**城市按钮*/
-@property (nonatomic,strong) UIButton *cityButton;
+@property (nonatomic,strong) UIButton *boiledNoodlesButton;
 
 /**扫描按钮*/
 @property (nonatomic,strong) UIButton *scanButton;

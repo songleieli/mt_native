@@ -69,6 +69,9 @@
 		042E657E22169BA900C56859 /* TopicInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042E657D22169BA900C56859 /* TopicInfoController.m */; };
 		042E65832217AE5100C56859 /* MyTopicHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042E65812217AE5100C56859 /* MyTopicHeaderView.m */; };
 		042E65862217B00200C56859 /* MyMusicHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042E65842217B00200C56859 /* MyMusicHeaderView.m */; };
+		04319D7B2297EA190097C3F4 /* NetWork_mt_getBoiledRecords.m in Sources */ = {isa = PBXBuildFile; fileRef = 04319D7A2297EA190097C3F4 /* NetWork_mt_getBoiledRecords.m */; };
+		04319D7E2297EDD00097C3F4 /* BoiledRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04319D7D2297EDD00097C3F4 /* BoiledRecordCell.m */; };
+		04319D822297F68C0097C3F4 /* BoiledNoodleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04319D812297F68B0097C3F4 /* BoiledNoodleViewController.m */; };
 		0434BDD221E9E1560059A28C /* PersonalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434BDD121E9E1560059A28C /* PersonalInformationViewController.m */; };
 		0434BDD521E9E1B10059A28C /* NickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434BDD321E9E1B10059A28C /* NickNameViewController.m */; };
 		0434BDD821E9E1E80059A28C /* IntroduceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434BDD621E9E1E80059A28C /* IntroduceViewController.m */; };
@@ -203,6 +206,8 @@
 		04B36299222AB8E000735B18 /* ZanListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B36298222AB8E000735B18 /* ZanListCell.m */; };
 		04B3629C222AB94600735B18 /* CommentMeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B3629A222AB94500735B18 /* CommentMeListCell.m */; };
 		04B3629F222ABA3400735B18 /* AMeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B3629D222ABA3400735B18 /* AMeListCell.m */; };
+		04B42867229157A100E2F776 /* BoiledNoodleRuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B42865229157A100E2F776 /* BoiledNoodleRuleViewController.m */; };
+		04B4286B22915E5B00E2F776 /* NetWork_mt_getRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B4286A22915E5B00E2F776 /* NetWork_mt_getRule.m */; };
 		04B5CED1224F45AD009F93D4 /* AddTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5CED0224F45AC009F93D4 /* AddTopicViewController.m */; };
 		04B5CED4224F4E9C009F93D4 /* NetWork_mt_getTopicList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5CED3224F4E9B009F93D4 /* NetWork_mt_getTopicList.m */; };
 		04B66E9921C15D41000D6C56 /* awemes.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B66E9721C15D40000D6C56 /* awemes.json */; };
@@ -767,6 +772,8 @@
 		04E9B30D22525F9E00369DA4 /* mt_common_model_atFriend_topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E9B30C22525F9D00369DA4 /* mt_common_model_atFriend_topic.m */; };
 		04EB6895222B83DD00D5C0C1 /* MTMyFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EB6894222B83DC00D5C0C1 /* MTMyFollowViewController.m */; };
 		04ED451921CBD897009DE89F /* NetWork_mt_delLikeVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ED451821CBD896009DE89F /* NetWork_mt_delLikeVideo.m */; };
+		04EE0E3B2296DEE000F3A60C /* NetWork_mt_getBoiledStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE0E392296DEE000F3A60C /* NetWork_mt_getBoiledStatistics.m */; };
+		04EE0E3E2296E3A300F3A60C /* BoiledRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE0E3D2296E3A200F3A60C /* BoiledRecordViewController.m */; };
 		04EEBA5F21ABE3EE00A5F6F2 /* PopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EEBA5E21ABE3EE00A5F6F2 /* PopViewController.m */; };
 		04F2744F2261B05A00E6ACC7 /* NetWork_mt_sendSMS.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2744E2261B05900E6ACC7 /* NetWork_mt_sendSMS.m */; };
 		04F3B4C8224746C100F4C82E /* Label.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B4C7224746C100F4C82E /* Label.m */; };
@@ -790,6 +797,7 @@
 		04F5E89B21CE7FB600781FCD /* SharePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5E89A21CE7FB600781FCD /* SharePopView.m */; };
 		04F5E89F21CE8DD200781FCD /* NetWork_mt_collectionVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5E89E21CE8DD100781FCD /* NetWork_mt_collectionVideo.m */; };
 		04F5E8A221CE95A800781FCD /* NetWork_mt_getVideoCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5E8A121CE95A700781FCD /* NetWork_mt_getVideoCollections.m */; };
+		04F627EB2296A47C000E4A14 /* NetWork_mt_addWater.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F627EA2296A47C000E4A14 /* NetWork_mt_addWater.m */; };
 		04FB536B21C61036000ED131 /* AVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB536A21C61036000ED131 /* AVPlayerView.m */; };
 		04FB537121C61639000ED131 /* WebCacheHelpler.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB537021C61639000ED131 /* WebCacheHelpler.m */; };
 		04FB537521C69B9F000ED131 /* AVPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB537421C69B9F000ED131 /* AVPlayerManager.m */; };
@@ -1082,6 +1090,12 @@
 		042E65822217AE5100C56859 /* MyTopicHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTopicHeaderView.h; sourceTree = "<group>"; };
 		042E65842217B00200C56859 /* MyMusicHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMusicHeaderView.m; sourceTree = "<group>"; };
 		042E65852217B00200C56859 /* MyMusicHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMusicHeaderView.h; sourceTree = "<group>"; };
+		04319D792297EA180097C3F4 /* NetWork_mt_getBoiledRecords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getBoiledRecords.h; sourceTree = "<group>"; };
+		04319D7A2297EA190097C3F4 /* NetWork_mt_getBoiledRecords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getBoiledRecords.m; sourceTree = "<group>"; };
+		04319D7C2297EDD00097C3F4 /* BoiledRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoiledRecordCell.h; sourceTree = "<group>"; };
+		04319D7D2297EDD00097C3F4 /* BoiledRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoiledRecordCell.m; sourceTree = "<group>"; };
+		04319D802297F68B0097C3F4 /* BoiledNoodleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoiledNoodleViewController.h; sourceTree = "<group>"; };
+		04319D812297F68B0097C3F4 /* BoiledNoodleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoiledNoodleViewController.m; sourceTree = "<group>"; };
 		0434BDD021E9E1560059A28C /* PersonalInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInformationViewController.h; sourceTree = "<group>"; };
 		0434BDD121E9E1560059A28C /* PersonalInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInformationViewController.m; sourceTree = "<group>"; };
 		0434BDD321E9E1B10059A28C /* NickNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NickNameViewController.m; sourceTree = "<group>"; };
@@ -1359,6 +1373,10 @@
 		04B3629B222AB94500735B18 /* CommentMeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentMeListCell.h; sourceTree = "<group>"; };
 		04B3629D222ABA3400735B18 /* AMeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMeListCell.m; sourceTree = "<group>"; };
 		04B3629E222ABA3400735B18 /* AMeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMeListCell.h; sourceTree = "<group>"; };
+		04B42865229157A100E2F776 /* BoiledNoodleRuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoiledNoodleRuleViewController.m; sourceTree = "<group>"; };
+		04B42866229157A100E2F776 /* BoiledNoodleRuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoiledNoodleRuleViewController.h; sourceTree = "<group>"; };
+		04B4286922915E5B00E2F776 /* NetWork_mt_getRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getRule.h; sourceTree = "<group>"; };
+		04B4286A22915E5B00E2F776 /* NetWork_mt_getRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getRule.m; sourceTree = "<group>"; };
 		04B5CECF224F45AC009F93D4 /* AddTopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTopicViewController.h; sourceTree = "<group>"; };
 		04B5CED0224F45AC009F93D4 /* AddTopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTopicViewController.m; sourceTree = "<group>"; };
 		04B5CED2224F4E9B009F93D4 /* NetWork_mt_getTopicList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getTopicList.h; sourceTree = "<group>"; };
@@ -2195,6 +2213,10 @@
 		04EB6894222B83DC00D5C0C1 /* MTMyFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMyFollowViewController.m; sourceTree = "<group>"; };
 		04ED451721CBD896009DE89F /* NetWork_mt_delLikeVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_delLikeVideo.h; sourceTree = "<group>"; };
 		04ED451821CBD896009DE89F /* NetWork_mt_delLikeVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_delLikeVideo.m; sourceTree = "<group>"; };
+		04EE0E392296DEE000F3A60C /* NetWork_mt_getBoiledStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getBoiledStatistics.m; sourceTree = "<group>"; };
+		04EE0E3A2296DEE000F3A60C /* NetWork_mt_getBoiledStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getBoiledStatistics.h; sourceTree = "<group>"; };
+		04EE0E3C2296E3A200F3A60C /* BoiledRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoiledRecordViewController.h; sourceTree = "<group>"; };
+		04EE0E3D2296E3A200F3A60C /* BoiledRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoiledRecordViewController.m; sourceTree = "<group>"; };
 		04EEBA5D21ABE3EE00A5F6F2 /* PopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopViewController.h; sourceTree = "<group>"; };
 		04EEBA5E21ABE3EE00A5F6F2 /* PopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopViewController.m; sourceTree = "<group>"; };
 		04F2744D2261B05900E6ACC7 /* NetWork_mt_sendSMS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_sendSMS.h; sourceTree = "<group>"; };
@@ -2242,6 +2264,8 @@
 		04F5E89E21CE8DD100781FCD /* NetWork_mt_collectionVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_collectionVideo.m; sourceTree = "<group>"; };
 		04F5E8A021CE95A700781FCD /* NetWork_mt_getVideoCollections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getVideoCollections.h; sourceTree = "<group>"; };
 		04F5E8A121CE95A700781FCD /* NetWork_mt_getVideoCollections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getVideoCollections.m; sourceTree = "<group>"; };
+		04F627E92296A47C000E4A14 /* NetWork_mt_addWater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_addWater.h; sourceTree = "<group>"; };
+		04F627EA2296A47C000E4A14 /* NetWork_mt_addWater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_addWater.m; sourceTree = "<group>"; };
 		04FB536921C61036000ED131 /* AVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerView.h; sourceTree = "<group>"; };
 		04FB536A21C61036000ED131 /* AVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPlayerView.m; sourceTree = "<group>"; };
 		04FB536F21C61639000ED131 /* WebCacheHelpler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebCacheHelpler.h; sourceTree = "<group>"; };
@@ -3126,6 +3150,12 @@
 		04AB303321CA91310072808E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				04319D802297F68B0097C3F4 /* BoiledNoodleViewController.h */,
+				04319D812297F68B0097C3F4 /* BoiledNoodleViewController.m */,
+				04EE0E3C2296E3A200F3A60C /* BoiledRecordViewController.h */,
+				04EE0E3D2296E3A200F3A60C /* BoiledRecordViewController.m */,
+				04B42866229157A100E2F776 /* BoiledNoodleRuleViewController.h */,
+				04B42865229157A100E2F776 /* BoiledNoodleRuleViewController.m */,
 				04AB303421CA91310072808E /* GKDouyinScrollView.h */,
 				04AB303A21CA91310072808E /* GKDouyinScrollView.m */,
 				04AB303521CA91310072808E /* GKDouyinHomeViewController.h */,
@@ -3176,6 +3206,21 @@
 				04AB305B21CA93FB0072808E /* GKPopTransitionAnimation.h */,
 			);
 			path = TransitionAnimation;
+			sourceTree = "<group>";
+		};
+		04B4286822915E5B00E2F776 /* mt_boiled */ = {
+			isa = PBXGroup;
+			children = (
+				04319D792297EA180097C3F4 /* NetWork_mt_getBoiledRecords.h */,
+				04319D7A2297EA190097C3F4 /* NetWork_mt_getBoiledRecords.m */,
+				04EE0E3A2296DEE000F3A60C /* NetWork_mt_getBoiledStatistics.h */,
+				04EE0E392296DEE000F3A60C /* NetWork_mt_getBoiledStatistics.m */,
+				04F627E92296A47C000E4A14 /* NetWork_mt_addWater.h */,
+				04F627EA2296A47C000E4A14 /* NetWork_mt_addWater.m */,
+				04B4286922915E5B00E2F776 /* NetWork_mt_getRule.h */,
+				04B4286A22915E5B00E2F776 /* NetWork_mt_getRule.m */,
+			);
+			path = mt_boiled;
 			sourceTree = "<group>";
 		};
 		04C171DF21CDDE9E0077FA6C /* Views */ = {
@@ -3979,6 +4024,8 @@
 				0415F08821C7D462000440F4 /* MTHomeRefreshNavigitionView.m */,
 				04E700D8219FF5C10096099F /* MtHomeTopView.h */,
 				04E700D7219FF5C00096099F /* MtHomeTopView.m */,
+				04319D7C2297EDD00097C3F4 /* BoiledRecordCell.h */,
+				04319D7D2297EDD00097C3F4 /* BoiledRecordCell.m */,
 				048BF55321EEFE1E005D3708 /* HomeSearchCell.h */,
 				048BF55421EEFE1E005D3708 /* HomeSearchCell.m */,
 				04DCEE9021F5B4B9007AC5B0 /* SearchResultSubUserCell.h */,
@@ -4521,6 +4568,7 @@
 		7375C1FA1CE5660C0059974F /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
+				04B4286822915E5B00E2F776 /* mt_boiled */,
 				04DB379E227410D30072C301 /* mt_setting */,
 				04F2744C2261B05900E6ACC7 /* mt_sms */,
 				042E6574221693F200C56859 /* mt_topic */,
@@ -5942,6 +5990,7 @@
 				04F2744F2261B05A00E6ACC7 /* NetWork_mt_sendSMS.m in Sources */,
 				D957AD531DD2CB2F00B7EE09 /* IQUITextFieldView+Additions.m in Sources */,
 				04CBC3F72179C01300658E47 /* GPUImageAverageColor.m in Sources */,
+				04F627EB2296A47C000E4A14 /* NetWork_mt_addWater.m in Sources */,
 				04CBC3B92179C01300658E47 /* GPUImagePosterizeFilter.m in Sources */,
 				04CBC3532179C01300658E47 /* GPUImageLevelsFilter.m in Sources */,
 				04DCA82E21A5576700691A3A /* TCVideoRecordProcessView.m in Sources */,
@@ -6031,6 +6080,7 @@
 				04CBC40B2179C01300658E47 /* GPUImageShiTomasiFeatureDetectionFilter.m in Sources */,
 				0452ADF82279A80800E04998 /* UIImageView+WebCache.m in Sources */,
 				045B462F228FCB5F00BB2178 /* LSMarqueeView.m in Sources */,
+				04319D7E2297EDD00097C3F4 /* BoiledRecordCell.m in Sources */,
 				D9D208791F0CED6000B9FE13 /* RadioButton.m in Sources */,
 				04DCA8E221A565D500691A3A /* TCVideoJoinViewController.m in Sources */,
 				0420917821FC9DF3004C0524 /* SearchResultSubTopicCell.m in Sources */,
@@ -6066,6 +6116,7 @@
 				04F3B60922474A8800F4C82E /* A2DynamicDelegate.m in Sources */,
 				0434BDD821E9E1E80059A28C /* IntroduceViewController.m in Sources */,
 				0449AB6C2181BBF100D6172D /* ZJLoginViewController.m in Sources */,
+				04319D7B2297EA190097C3F4 /* NetWork_mt_getBoiledRecords.m in Sources */,
 				04DCA8E921A565D500691A3A /* VideoCutView.m in Sources */,
 				04CBC3E92179C01300658E47 /* GPUImageLuminosity.m in Sources */,
 				04DCA8F221A565D500691A3A /* PhotoTransitionToolbar.m in Sources */,
@@ -6082,9 +6133,11 @@
 				04AC5B6C21FDFC5A002DD0CB /* NetWork_mt_getFuzzyVideoList.m in Sources */,
 				04CBC4292179C01300658E47 /* GPUImageLocalBinaryPatternFilter.m in Sources */,
 				04CBC3F92179C01300658E47 /* GPUImageRGBDilationFilter.m in Sources */,
+				04B4286B22915E5B00E2F776 /* NetWork_mt_getRule.m in Sources */,
 				04CBC4692179C01300658E47 /* GPUImageLightenBlendFilter.m in Sources */,
 				04E9B30D22525F9E00369DA4 /* mt_common_model_atFriend_topic.m in Sources */,
 				04A8C12822190992004980F5 /* NetWork_mt_getTopicCollections.m in Sources */,
+				04EE0E3B2296DEE000F3A60C /* NetWork_mt_getBoiledStatistics.m in Sources */,
 				D904E9661DD1D6DB00C7E45E /* ZJCustomTabBarLjhTableViewController.m in Sources */,
 				0452ADC82279A50100E04998 /* AFHTTPSessionManager.m in Sources */,
 				D91E53D71DE6774000B7DA74 /* BundleUtil.m in Sources */,
@@ -6106,6 +6159,7 @@
 				0452AE212279A96600E04998 /* MASViewAttribute.m in Sources */,
 				04CBC3B52179C01300658E47 /* GPUImageOutput.m in Sources */,
 				0452ADC92279A50100E04998 /* AFURLSessionManager.m in Sources */,
+				04B42867229157A100E2F776 /* BoiledNoodleRuleViewController.m in Sources */,
 				C552FC261E7136EA003D3E2E /* MyImageView.m in Sources */,
 				04BBCBA922571B1F009AC181 /* AddLocarionCell.m in Sources */,
 				0434BDD221E9E1560059A28C /* PersonalInformationViewController.m in Sources */,
@@ -6127,6 +6181,7 @@
 				0406761F21F7158700543917 /* HomeSearchResultSubMusicViewController.m in Sources */,
 				04DF9DC6223941B000935A89 /* BgMusicListCollectionSubViewController.m in Sources */,
 				04CBC3432179C01300658E47 /* GPUImageWeakPixelInclusionFilter.m in Sources */,
+				04319D822297F68C0097C3F4 /* BoiledNoodleViewController.m in Sources */,
 				04CBC2D52179C01200658E47 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				C5336F971E83739600618975 /* UIView+TTFramePopupView.m in Sources */,
 				D954C5BF1DD1A40F003CA535 /* BaseTableViewCell.m in Sources */,
@@ -6212,6 +6267,7 @@
 				04CBC4332179C01300658E47 /* GPUImageMotionBlurFilter.m in Sources */,
 				D957AD5F1DD2CB2F00B7EE09 /* IQTextView.m in Sources */,
 				D9F86DD11DEBEE7600C3A2B6 /* TZImagePickerController.m in Sources */,
+				04EE0E3E2296E3A300F3A60C /* BoiledRecordViewController.m in Sources */,
 				04CBC3C52179C01300658E47 /* GPUImageFramebuffer.m in Sources */,
 				D971BDE11DD1CA9600BA2A7C /* CMPZjLifeMobileRootViewController.m in Sources */,
 				04C1721121CE3EC80077FA6C /* NetWork_mt_getMusicList.m in Sources */,
@@ -6437,7 +6493,7 @@
 					"$(SRCROOT)/xl_native/3rd/TXLiteAVSDK_UGC_IJK.framework/Headers/**",
 				);
 				INFOPLIST_FILE = "ProjectsCustomization/xl_native/mt_native-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6515,7 +6571,7 @@
 					"$(SRCROOT)/xl_native/3rd/TXLiteAVSDK_UGC_IJK.framework/Headers/**",
 				);
 				INFOPLIST_FILE = "ProjectsCustomization/xl_native/mt_native-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

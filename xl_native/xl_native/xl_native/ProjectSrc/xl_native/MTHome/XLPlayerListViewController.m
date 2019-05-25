@@ -258,7 +258,20 @@
 }
 
 -(void)cityBtnClick{
-    NSLog(@"------cityBtnClick----------");
+    
+    //需要登录
+    [[ZJLoginService sharedInstance] authenticateWithCompletion:^(BOOL success) {
+        
+        
+        BoiledNoodleViewController *vc = [[BoiledNoodleViewController alloc] init];
+        [self pushNewVC:vc animated:NO];
+        
+//        CMPZjLifeMobileRootViewController *rootVC = [CMPZjLifeMobileAppDelegate shareApp].rootViewController;
+//        [rootVC showBoiledNoodles];
+        
+    } cancelBlock:nil isAnimat:YES];
+    
+
 }
 
 -(void)scanBtnClick{

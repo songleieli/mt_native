@@ -9,7 +9,6 @@
 #import "ZJCustomTabBarLjhTableViewController.h"
 
 #import "MtHomeTopView.h"
-//#import "MTHomeRefreshNavigitionView.h"
 #import "HomeVideoCell.h"
 #import "CommentsPopView.h"
 #import "SharePopView.h"
@@ -25,6 +24,7 @@
 #import "UserInfoViewController.h"
 #import "MusicInfoController.h"
 #import "TopicInfoController.h"
+#import "BoiledNoodleViewController.h"
 
 #import "VideoGenerateFunc.h"
 

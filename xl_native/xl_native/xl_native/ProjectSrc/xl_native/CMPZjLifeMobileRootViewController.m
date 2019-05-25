@@ -19,8 +19,9 @@
 //#import "MBProgressHUD.h"
 #import "TCVideoLoadingController.h"
 
+#import "SharePopView.h"
 
-@interface CMPZjLifeMobileRootViewController ()<ZJChangeIndexDelegate,presentViewControllerDelegate,WYPopoverControllerDelegate,QBImagePickerControllerDelegate>{
+@interface CMPZjLifeMobileRootViewController ()<ZJChangeIndexDelegate,presentViewControllerDelegate,WYPopoverControllerDelegate,QBImagePickerControllerDelegate,VideoSahreDelegate>{
 //    MBProgressHUD *          _hub;
 }
 
@@ -118,6 +119,9 @@
     return _userInfoNavViewController;
 }
 
+#pragma -mark ------------- 煮面  ----------------
+
+
 
 #pragma -mark advertisingPopSource
 
@@ -136,9 +140,6 @@
     }
     return _prizeWinerSource;
 }
-
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -179,8 +180,6 @@
     [self.view bringSubviewToFront:self.viewPopAd];
     
     
-    
-    
     /*
      *迎新title
      */
@@ -195,7 +194,7 @@
     self.imageViewNoolde = [[UIImageView alloc] init];
     self.imageViewNoolde.size = [UIView getSize_width:ScreenWidth height:ScreenWidth];
     self.imageViewNoolde.centerX = self.viewPopAd.width/2;
-    self.imageViewNoolde.top = sizeScale(30);
+    self.imageViewNoolde.top = imageViewTitle.bottom;
     [self.imageViewNoolde setImage:[UIImage imageNamed:@"part_1"]];
 
     [self.viewPopAd addSubview:self.imageViewNoolde];
@@ -246,14 +245,13 @@
     btnSkip.titleLabel.font = [UIFont defaultFontWithSize:22];
     [self.viewPopAd addSubview:btnSkip];
     
-    
     /*
      *奖品池
      */
     self.viewGift = [[MTGiftView alloc] init];
     self.viewGift.size = [UIView getSize_width:ScreenWidth height:sizeScale(80)];
     self.viewGift.centerX = self.viewPopAd.width/2;
-    self.viewGift.bottom = btnLuck.top - sizeScale(50);
+    self.viewGift.top = self.imageViewNoolde.bottom;
     [self.viewPopAd addSubview:self.viewGift];
     
     
@@ -340,8 +338,6 @@
     self.imageViewNoolde.top = self.marqueeView.bottom - 50;
 }
 
-
-
 -(void)adClick:(UIButton*)btn{
     if(btn.tag == 90){ //抽奖
         //开始动画
@@ -353,6 +349,8 @@
         [self loadTableBar];
     }
 }
+
+
 
 -(void)loadTableBar{
     
@@ -398,6 +396,8 @@
         self.currentViewController = toViewController;
     }];
 }
+
+
 
 #pragma -mark ChangeIndexDelegate
 
@@ -464,11 +464,10 @@
     }
     return YES;
 }
+
 - (void)customTabBar:(ZJCustomTabBarLjhTableViewController *)tabBar didSelectIndex:(NSInteger)index{
     [self selectTabAtIndex:index];
 }
-
-
 
 
 -(void)onloadVideoComplete:(NSString *)videoPath {
@@ -616,6 +615,7 @@
         
     }
 }
+
 #pragma mark - WYPopoverControllerDelegate
 
 - (void)popoverControllerDidPresentPopover:(WYPopoverController *)controller{
@@ -656,7 +656,7 @@
     
     [self dismissViewControllerAnimated:YES completion:^ {
         TCVideoLoadingController *loadvc = [[TCVideoLoadingController alloc] init];
-        if (_mediaType == QBImagePickerMediaTypeVideo) {
+        if (self.mediaType == QBImagePickerMediaTypeVideo) {
             loadvc.composeMode = (assets.count > 1);
             [loadvc exportAssetList:assets assetType:AssetType_Video];
         }else{
