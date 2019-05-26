@@ -1,38 +1,16 @@
 PODS:
-  - DMProgressHUD (0.0.6)
-  - IQKeyboardManager (4.0.13)
-  - MJExtension (3.0.15.1)
-  - SDAutoLayout (2.2.1)
   - SVProgressHUD (2.2.5)
-  - YYKit (1.0.9):
-    - YYKit/no-arc (= 1.0.9)
-  - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
-  - DMProgressHUD
-  - IQKeyboardManager (~> 4.0.9)
-  - MJExtension (~> 3.0.13)
-  - SDAutoLayout
   - SVProgressHUD
-  - YYKit (~> 1.0.9)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - DMProgressHUD
-    - IQKeyboardManager
-    - MJExtension
-    - SDAutoLayout
     - SVProgressHUD
-    - YYKit
 
 SPEC CHECKSUMS:
-  DMProgressHUD: 08d99c8a3db0ae7a0c2d79c6939e8c32a5f8bfa1
-  IQKeyboardManager: 8eab4d8111418414619d1df8e4779ce5d0f8d7e2
-  MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
-  SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 8e14ac0be6e29f0bd07ac4ef14c46921820e6241
+PODFILE CHECKSUM: 783b66b8a065fae30b429d9939c0f8f0b5ddbbfd
 
 COCOAPODS: 1.6.1

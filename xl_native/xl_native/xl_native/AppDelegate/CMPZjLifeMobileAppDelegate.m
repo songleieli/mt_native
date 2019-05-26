@@ -10,6 +10,7 @@
 #import "TSStorageManager.h"
 #import "WebCacheHelpler.h"
 
+
 @interface CMPZjLifeMobileAppDelegate ()<WXApiDelegate>
 
 @end
@@ -54,9 +55,9 @@
     NSString *appid = [WCBaseContext sharedInstance].txAppId;
     _oauth = [[TencentOAuth alloc] initWithAppId:appid andDelegate:self];
     
-//    //注册微博分享
-//    [WeiboSDK enableDebugMode:YES];
-//    [WeiboSDK registerApp:[WCBaseContext sharedInstance].sinaAppKey];
+    //友盟
+    [UMConfigure initWithAppkey:@"5cea099f3fc1957d2b00004a" channel:@"App Store"];
+    [UMConfigure setLogEnabled:YES];
     
     //腾讯短视频
     [TXUGCBase setLicenceURL:[WCBaseContext sharedInstance].txShortVideoLicenceURL

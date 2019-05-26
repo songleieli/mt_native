@@ -13,12 +13,11 @@
 
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "WXApi.h"
-//#import "WeiboSDK.h"
 #import "WXApiManager.h"
 //qq互联
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
-//#import <TencentOpenAPI/TencentOAuthObject.h>
+#import <UMCommon/UMCommon.h>
 
 @class ZJHomeViewController;
 

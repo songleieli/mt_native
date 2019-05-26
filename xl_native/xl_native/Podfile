@@ -1,30 +1,12 @@
-#-*- coding: UTF-8 -*-
-source 'https://github.com/CocoaPods/Specs.git'
-source 'https://github.com/aliyun/aliyun-specs.git'
-platform :ios, '8.0'
+platform :ios, '10.0'
+target "mt_shortvideo" do
+  pod 'SVProgressHUD'
 
-#ruby语法
-#target数组 如果有新的target直接加入该数组
-targetsArray = ['mt_shortvideo']
-
-# 循环
-targetsArray.each do |t|
-  target t do
-    pod 'SDAutoLayout'
-#    pod 'AFNetworking'
-    pod 'SVProgressHUD'
-#    pod 'WebRTC'
-#    pod 'MBProgressHUD','1.1.0'
-    pod 'DMProgressHUD'
-#    pod 'Masonry'
-#    pod 'WebViewJavascriptBridge'
-#    pod 'SDWebImage'
-    pod 'YYKit', '~> 1.0.9'
-    pod 'IQKeyboardManager', '~> 4.0.9'
-    pod 'MJExtension', '~> 3.0.13'
-  end
+  
+  #pod 'UMCCommon'
+  #pod 'UMCCommonLog'
+  #pod 'UMCAnalytics'
 end
-
 #pod update --no-repo-update
 #pod install --no-repo-update
 

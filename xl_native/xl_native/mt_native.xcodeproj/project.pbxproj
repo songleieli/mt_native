@@ -776,6 +776,8 @@
 		04EE0E3E2296E3A300F3A60C /* BoiledRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE0E3D2296E3A200F3A60C /* BoiledRecordViewController.m */; };
 		04EEBA5F21ABE3EE00A5F6F2 /* PopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EEBA5E21ABE3EE00A5F6F2 /* PopViewController.m */; };
 		04F21AFA229A237100310884 /* NetWork_mt_forwardAppCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F21AF8229A237100310884 /* NetWork_mt_forwardAppCount.m */; };
+		04F21B0E229A489C00310884 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F21B0A229A489B00310884 /* UMCommon.framework */; };
+		04F21B0F229A489C00310884 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F21B0D229A489C00310884 /* UMAnalytics.framework */; };
 		04F2744F2261B05A00E6ACC7 /* NetWork_mt_sendSMS.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2744E2261B05900E6ACC7 /* NetWork_mt_sendSMS.m */; };
 		04F3B4C8224746C100F4C82E /* Label.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B4C7224746C100F4C82E /* Label.m */; };
 		04F3B5372247480600F4C82E /* UIAlertView+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B5362247480600F4C82E /* UIAlertView+BlocksKit.m */; };
@@ -2223,6 +2225,8 @@
 		04EEBA5E21ABE3EE00A5F6F2 /* PopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopViewController.m; sourceTree = "<group>"; };
 		04F21AF8229A237100310884 /* NetWork_mt_forwardAppCount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_forwardAppCount.m; sourceTree = "<group>"; };
 		04F21AF9229A237100310884 /* NetWork_mt_forwardAppCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_forwardAppCount.h; sourceTree = "<group>"; };
+		04F21B0A229A489B00310884 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
+		04F21B0D229A489C00310884 /* UMAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMAnalytics.framework; sourceTree = "<group>"; };
 		04F2744D2261B05900E6ACC7 /* NetWork_mt_sendSMS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_sendSMS.h; sourceTree = "<group>"; };
 		04F2744E2261B05900E6ACC7 /* NetWork_mt_sendSMS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_sendSMS.m; sourceTree = "<group>"; };
 		04F3B4C42247464300F4C82E /* TCVideoCutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCVideoCutViewController.h; sourceTree = "<group>"; };
@@ -2516,6 +2520,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D954C6071DD1A40F003CA535 /* libsqlite3.tbd in Frameworks */,
+				04F21B0F229A489C00310884 /* UMAnalytics.framework in Frameworks */,
 				D954C6061DD1A40F003CA535 /* libc++.tbd in Frameworks */,
 				0400F31721AF96F10038E16C /* libWeChatSDK.a in Frameworks */,
 				D954C60C1DD1A40F003CA535 /* SystemConfiguration.framework in Frameworks */,
@@ -2543,6 +2548,7 @@
 				D954C5FC1DD1A40F003CA535 /* CoreBluetooth.framework in Frameworks */,
 				D954C5FD1DD1A40F003CA535 /* Security.framework in Frameworks */,
 				D954C5FE1DD1A40F003CA535 /* CoreFoundation.framework in Frameworks */,
+				04F21B0E229A489C00310884 /* UMCommon.framework in Frameworks */,
 				D954C6001DD1A40F003CA535 /* CoreMotion.framework in Frameworks */,
 				D954C6011DD1A40F003CA535 /* libsqlite3.0.tbd in Frameworks */,
 				D954C6081DD1A40F003CA535 /* libstdc++.tbd in Frameworks */,
@@ -4466,6 +4472,55 @@
 			path = mt_home;
 			sourceTree = "<group>";
 		};
+		04F21B06229A489B00310884 /* UMSDK */ = {
+			isa = PBXGroup;
+			children = (
+				04F21B07229A489B00310884 /* common */,
+				04F21B0B229A489B00310884 /* analytics */,
+			);
+			path = UMSDK;
+			sourceTree = "<group>";
+		};
+		04F21B07229A489B00310884 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				04F21B08229A489B00310884 /* common_ios_2.0.1 */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		04F21B08229A489B00310884 /* common_ios_2.0.1 */ = {
+			isa = PBXGroup;
+			children = (
+				04F21B09229A489B00310884 /* normal */,
+			);
+			path = common_ios_2.0.1;
+			sourceTree = "<group>";
+		};
+		04F21B09229A489B00310884 /* normal */ = {
+			isa = PBXGroup;
+			children = (
+				04F21B0A229A489B00310884 /* UMCommon.framework */,
+			);
+			path = normal;
+			sourceTree = "<group>";
+		};
+		04F21B0B229A489B00310884 /* analytics */ = {
+			isa = PBXGroup;
+			children = (
+				04F21B0C229A489C00310884 /* analytics_ios_6.0.3 */,
+			);
+			path = analytics;
+			sourceTree = "<group>";
+		};
+		04F21B0C229A489C00310884 /* analytics_ios_6.0.3 */ = {
+			isa = PBXGroup;
+			children = (
+				04F21B0D229A489C00310884 /* UMAnalytics.framework */,
+			);
+			path = analytics_ios_6.0.3;
+			sourceTree = "<group>";
+		};
 		04F2744C2261B05900E6ACC7 /* mt_sms */ = {
 			isa = PBXGroup;
 			children = (
@@ -4598,6 +4653,7 @@
 		7375C1FC1CE566460059974F /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				04F21B06229A489B00310884 /* UMSDK */,
 				0452ADFE2279A96500E04998 /* Masonry */,
 				0452ADCF2279A80700E04998 /* SDWebImage */,
 				0452AD952279A50000E04998 /* AFNetworking */,
@@ -5728,16 +5784,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-mt_shortvideo/Pods-mt_shortvideo-resources.sh",
-				"${PODS_ROOT}/DMProgressHUD/DMProgressHUD/DMProgressImgs.bundle",
-				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DMProgressImgs.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6472,6 +6524,8 @@
 					"$(PROJECT_DIR)/lib",
 					"$(PROJECT_DIR)/xl_native/3rd",
 					"$(PROJECT_DIR)/xl_native/3rd/COSSDK",
+					"$(PROJECT_DIR)/xl_native/3rd/UMSDK/common/common_ios_2.0.1/normal",
+					"$(PROJECT_DIR)/xl_native/3rd/UMSDK/analytics/analytics_ios_6.0.3",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "xl_native/mt_native-Prefix.pch";
@@ -6550,6 +6604,8 @@
 					"$(PROJECT_DIR)/lib",
 					"$(PROJECT_DIR)/xl_native/3rd",
 					"$(PROJECT_DIR)/xl_native/3rd/COSSDK",
+					"$(PROJECT_DIR)/xl_native/3rd/UMSDK/common/common_ios_2.0.1/normal",
+					"$(PROJECT_DIR)/xl_native/3rd/UMSDK/analytics/analytics_ios_6.0.3",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "xl_native/mt_native-Prefix.pch";
