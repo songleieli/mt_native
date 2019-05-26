@@ -21,8 +21,8 @@
 
 enum DeviceType {
     Device_iPhone = 0,
-    Device_iTouch,
-    Device_iPad,
+    Device_iPad = 2,
+    Device_other = 3
 };
 
 
@@ -33,11 +33,13 @@ enum DeviceType {
 + (NSNumber *)screenWidth;
 + (NSString *)appName;
 + (NSString *)bundleId;
+
 //获取app Short 版本
 + (NSString *)appShortVersion;
 
 //获取app版本
 + (NSString *)appVersion;
+
 //获取手机版本号
 + (NSString *)appDeviceVersion;
 //获取设备类型

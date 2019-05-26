@@ -4,8 +4,6 @@ PODS:
   - MJExtension (3.0.15.1)
   - SDAutoLayout (2.2.1)
   - SVProgressHUD (2.2.5)
-  - WebRTC (63.11.20455)
-  - WebViewJavascriptBridge (6.0.3)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -16,8 +14,6 @@ DEPENDENCIES:
   - MJExtension (~> 3.0.13)
   - SDAutoLayout
   - SVProgressHUD
-  - WebRTC
-  - WebViewJavascriptBridge
   - YYKit (~> 1.0.9)
 
 SPEC REPOS:
@@ -27,8 +23,6 @@ SPEC REPOS:
     - MJExtension
     - SDAutoLayout
     - SVProgressHUD
-    - WebRTC
-    - WebViewJavascriptBridge
     - YYKit
 
 SPEC CHECKSUMS:
@@ -37,10 +31,8 @@ SPEC CHECKSUMS:
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
   SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  WebRTC: f2a6203584745fe53532633397557876b5d71640
-  WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 5d836bb6ea70d2dacaa0eb3105ede9878afa82ca
+PODFILE CHECKSUM: 8e14ac0be6e29f0bd07ac4ef14c46921820e6241
 
 COCOAPODS: 1.6.1

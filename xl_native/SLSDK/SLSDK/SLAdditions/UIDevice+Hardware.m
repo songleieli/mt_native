@@ -319,37 +319,14 @@ if ([btclass respondsToSelector:@selector(bluetoothStatus)])
 */
 
 - (NSString *)uniqueID {
-    //[SFHFKeychainUtils deleteItemForUsername:@"winchannel_wincrm" andServiceName:@"winchannel_wincrm" error:nil];
     NSString *uid = nil;
-    uid = [SFHFKeychainUtils getPasswordForUsername:@"slsdk_com" andServiceName:@"slsdk_com" error:nil];
+    uid = [SFHFKeychainUtils getPasswordForUsername:[SL_Utils bundleId] andServiceName:[SL_Utils bundleId] error:nil];
     if (uid) {
         return uid;
     }
-    //    NSString *uniqueIDFilePath = [[WCGlobalSingleton appDocumentDir] stringByAppendingPathComponent:@"uniqueID.txt"];
-    //    if ([[NSFileManager defaultManager] fileExistsAtPath:uniqueIDFilePath]) {
-    //        uid = [NSString stringWithContentsOfFile:uniqueIDFilePath encoding:NSUTF8StringEncoding error:nil];
-    //    }
-    //
-    //    if (uid) {
-    //        return uid;
-    //    }
-    
-    if ([[self.systemVersion substringToIndex:1] intValue] >= 7) {
-        uid = [[NSString UUIDString] lowercaseString];
-    } else {
-        uid = [self macaddress];
-    }
-    
-    /*
-     uid = [self macaddress];
-     
-     if (!uid) {
-     uid = [self UUIDString];
-     }*/
-    
+    uid = [[NSString UUIDString] lowercaseString];
     assert(uid != nil);
-    //    [uid writeToFile:uniqueIDFilePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
-    [SFHFKeychainUtils storeUsername:@"slsdk_com" andPassword:uid forServiceName:@"slsdk_com" updateExisting:YES error:nil];
+    [SFHFKeychainUtils storeUsername:[SL_Utils bundleId] andPassword:uid forServiceName:[SL_Utils bundleId] updateExisting:YES error:nil];
     return uid;
 }
 

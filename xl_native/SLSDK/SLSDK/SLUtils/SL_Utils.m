@@ -89,7 +89,6 @@
     
     NSString *modelname = [[UIDevice currentDevice]model];
     
-    
     NSRange rg = [[modelname lowercaseString]rangeOfString:@"iphone"];
     if(rg.location!=NSNotFound)
     {
@@ -99,19 +98,13 @@
     rg= [[modelname lowercaseString]rangeOfString:@"ipad"];
     if(rg.location!=NSNotFound){
         return Device_iPad;
-        
     }
-    rg= [[modelname lowercaseString]rangeOfString:@"ipod"];
-    if(rg.location!=NSNotFound){
-        return Device_iTouch;
-    }
-    
-    return -1;
+    return Device_other;
 }
 
 +(NSString*)getModelName{
     // 需要#import "sys/utsname.h"
-//#warning 题主呕心沥血总结！！最全面！亲测！全网独此一份！！
+#warning 题主呕心沥血总结！！最全面！亲测！全网独此一份！！
     struct utsname systemInfo;
     uname(&systemInfo);
     NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
@@ -142,6 +135,10 @@
     if ([deviceString isEqualToString:@"iPhone10,5"])   return @"美版(Global/A1897)iPhone 8 Plus";
     if ([deviceString isEqualToString:@"iPhone10,3"])   return @"国行(A1865)、日行(A1902)iPhone X";
     if ([deviceString isEqualToString:@"iPhone10,6"])   return @"美版(Global/A1901)iPhone X";
+    if ([deviceString isEqualToString:@"iPhone11,2"])   return @"iPhone XS";
+    if ([deviceString isEqualToString:@"iPhone11,4"])   return @"iPhone XS Max";
+    if ([deviceString isEqualToString:@"iPhone11,6"])   return @"iPhone XS Max";
+    if ([deviceString isEqualToString:@"iPhone11,8"])   return @"iPhone XR";
     
     if ([deviceString isEqualToString:@"iPod1,1"])      return @"iPod Touch 1G";
     if ([deviceString isEqualToString:@"iPod2,1"])      return @"iPod Touch 2G";
@@ -186,6 +183,17 @@
     if ([deviceString isEqualToString:@"iPad7,2"])     return @"iPad Pro 12.9 inch 2nd gen (Cellular)";
     if ([deviceString isEqualToString:@"iPad7,3"])     return @"iPad Pro 10.5 inch (WiFi)";
     if ([deviceString isEqualToString:@"iPad7,4"])     return @"iPad Pro 10.5 inch (Cellular)";
+    if ([deviceString isEqualToString:@"iPad7,5"])     return @"iPad 6th generation";
+    if ([deviceString isEqualToString:@"iPad7,6"])     return @"iPad 6th generation";
+    if ([deviceString isEqualToString:@"iPad8,1"])     return @"iPad Pro (11-inch)";
+    if ([deviceString isEqualToString:@"iPad8,2"])     return @"iPad Pro (11-inch)";
+    if ([deviceString isEqualToString:@"iPad8,3"])     return @"iPad Pro (11-inch)";
+    if ([deviceString isEqualToString:@"iPad8,4"])     return @"iPad Pro (11-inch)";
+    if ([deviceString isEqualToString:@"iPad8,5"])     return @"iPad Pro (12.9-inch) (3rd generation)";
+    if ([deviceString isEqualToString:@"iPad8,6"])     return @"iPad Pro (12.9-inch) (3rd generation)";
+    if ([deviceString isEqualToString:@"iPad8,7"])     return @"iPad Pro (12.9-inch) (3rd generation)";
+    if ([deviceString isEqualToString:@"iPad8,8"])     return @"iPad Pro (12.9-inch) (3rd generation)";
+    
     
     if ([deviceString isEqualToString:@"AppleTV2,1"])    return @"Apple TV 2";
     if ([deviceString isEqualToString:@"AppleTV3,1"])    return @"Apple TV 3";

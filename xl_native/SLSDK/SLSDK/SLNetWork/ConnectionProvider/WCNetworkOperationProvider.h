@@ -25,7 +25,7 @@
                             progressBlock:(void(^)(float progress))progressBlock
                              successBlock:(void(^)(NSData *responseData))completeBlock
                               failedBlock:(void(^)(NSError *error))failedBlock
-                              cancelBlock:(void(^)())cancelBlock
+                              cancelBlock:(void(^)(void))cancelBlock
                                   timeout:(NSUInteger)timeout;
 
 -(id<WCNetworkOperation>)createPostRequest:(NSString *)url
@@ -35,7 +35,7 @@
                              progressBlock:(void(^)(float progress))progressBlock
                               successBlock:(void(^)(NSData *responseData))completeBlock
                                failedBlock:(void(^)(NSError *error))failedBlock
-                               cancelBlock:(void(^)())cancelBlock
+                               cancelBlock:(void(^)(void))cancelBlock
                                    timeout:(NSUInteger)timeout;
 
 @end

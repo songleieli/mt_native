@@ -32,21 +32,21 @@
                               progressBlock:(void (^)(float progress))progressBlock
                                successBlock:(void (^)(NSData *responseData))completeBlock
                                 failedBlock:(void (^)(NSError *error))failedBlock
-                                cancelBlock:(void(^)())cancelBlock
+                                cancelBlock:(void(^)(void))cancelBlock
                                     timeout:(NSUInteger)timeout
 {
     /*
      处理params和headers
      */
-//    NSDictionary *headersPDic = [interfaceDic objectForKey:@"headersPDic"];
+    NSDictionary *commonPDic = [interfaceDic objectForKey:@"commonPDic"];
     NSDictionary *paramsDic = [interfaceDic objectForKey:@"paramsPDic"];
     
     NSMutableString *logStr = [[NSMutableString alloc] init];
     [logStr appendString:[NSString stringWithFormat:@"\r\n\r\n\r\n请求类型 GET\r接口请求类 %@\r请求url = %@\r",interfaceClassName,url]];
-    [logStr appendString:@"---------------------requestHeaders----------------------------\r"];
-//    for(id key in headersPDic.allKeys){
-//        [logStr appendString:[NSString stringWithFormat:@"%@ = %@\r",key,[headersPDic objectForKey:key]]];
-//    }
+    [logStr appendString:@"---------------------commonparams ----------------------------\r"];
+    for(id key in commonPDic.allKeys){
+        [logStr appendString:[NSString stringWithFormat:@"%@ = %@\r",key,[commonPDic objectForKey:key]]];
+    }
     [logStr appendString:@"---------------------requestparams----------------------------\r"];
     for(id key in paramsDic.allKeys){
         [logStr appendString:[NSString stringWithFormat:@"%@ = %@\r",key,[paramsDic objectForKey:key]]];
@@ -54,15 +54,16 @@
     [logStr appendString:@"--------------------------------------------------------------\r"];
     NSLog(logStr);
     
-    NSString *paramsDicStr = [SL_Utils strWithDic:paramsDic];
+    NSMutableDictionary * requestDic = [NSMutableDictionary dictionaryWithDictionary:commonPDic];
+    if(paramsDic.allKeys.count > 0){
+        [requestDic addEntriesFromDictionary:paramsDic];
+    }
+    NSString *paramsDicStr = [SL_Utils strWithDic:requestDic];
+    
     url = [NSString stringWithFormat:@"%@?%@",url,paramsDicStr];
     url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; //将请求的网址进行url编码
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
-//    for(id key in headersPDic.allKeys){
-//        [request addRequestHeader:key value:[headersPDic objectForKey:key]];
-//    }
-    
     if (timeout > 0){
         [request setTimeOutSeconds:timeout];
     }
@@ -112,23 +113,29 @@
                                progressBlock:(void (^)(float progress))progressBlock
                                 successBlock:(void (^)(NSData *responseData))completeBlock
                                  failedBlock:(void (^)(NSError *error))failedBlock
-                                 cancelBlock:(void(^)())cancelBlock
+                                 cancelBlock:(void(^)(void))cancelBlock
                                      timeout:(NSUInteger)timeout
 {
     /*
      处理params和headers
      */
-//    NSDictionary *headersPDic = [interfaceDic objectForKey:@"headersPDic"];
+    NSDictionary *commonPDic = [interfaceDic objectForKey:@"commonPDic"];
     NSDictionary *paramsDic = [interfaceDic objectForKey:@"paramsPDic"];
 
     NSMutableString *logStr = [[NSMutableString alloc] init];
     [logStr appendString:[NSString stringWithFormat:@"\r\n\r\n\r\n请求类型 POST\r接口请求类 %@\r请求url = %@\r",interfaceClassName,url]];
+    [logStr appendString:@"---------------------commonparams ----------------------------\r"];
+    for(id key in commonPDic.allKeys){
+        [logStr appendString:[NSString stringWithFormat:@"%@ = %@\r",key,[commonPDic objectForKey:key]]];
+    }
     [logStr appendString:@"---------------------requestparams----------------------------\r"];
     for(id key in paramsDic.allKeys){
         [logStr appendString:[NSString stringWithFormat:@"%@ = %@\r",key,[paramsDic objectForKey:key]]];
     }
     [logStr appendString:@"--------------------------------------------------------------\r"];
     NSLog(logStr);
+    
+    
     
     url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; //将请求的网址进行url编码
 
@@ -137,8 +144,13 @@
         [request setTimeOutSeconds:timeout];
     }
     request.requestMethod = @"POST";
-    for(id key in paramsDic.allKeys){
-        [request setPostValue:[paramsDic objectForKey:key] forKey:key];
+    
+    NSMutableDictionary * requestDic = [NSMutableDictionary dictionaryWithDictionary:commonPDic];
+    if(paramsDic.allKeys.count > 0){
+        [requestDic addEntriesFromDictionary:paramsDic];
+    }
+    for(id key in requestDic.allKeys){
+        [request setPostValue:[requestDic objectForKey:key] forKey:key];
     }
     
     if(uploadFilesDic.count>0){ //上传多张图片

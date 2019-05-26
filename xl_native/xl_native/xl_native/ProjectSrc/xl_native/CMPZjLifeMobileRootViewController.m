@@ -279,13 +279,9 @@
     [request startGetWithBlock:^(GetPrizeListResponse *result, NSString *msg, BOOL finished) {
         if(finished){
             NSLog(@"--------");
-            
             [self.viewGift reloadWithSource:result.obj rowCount:2];
-            
-            
         }
     }];
-    
 }
 
 -(void)luckDrawRequest{ //点击抽奖
@@ -293,9 +289,7 @@
     [request startGetWithBlock:^(LuckdrawResponse *result, NSString *msg, BOOL finished) {
         if(finished){
             [UIWindow showTips:result.obj];
-//            [self loadTableBar];
             [self performSelector:@selector(loadTableBar) withObject:nil/*可传任意类型参数*/ afterDelay:4.0];
-
         }
     }];
 }
@@ -304,8 +298,6 @@
     NetWork_mt_getWinners *request = [[NetWork_mt_getWinners alloc] init];
     [request startGetWithBlock:^(GetWinnersResponse *result, NSString *msg, BOOL finished) {
         if(finished){
-//            [self.prizeWinerSource addObjectsFromArray:result.obj];
-            
             [self loadWinnersUI:result.obj];
         }
     }];

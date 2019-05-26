@@ -24,11 +24,11 @@
 
 @implementation WCServiceBase
 
--(NSMutableDictionary*)headersPDic{
-    if(_headersPDic == nil){
-        _headersPDic =  [[NSMutableDictionary alloc] init];
+-(NSMutableDictionary*)commonPDic{
+    if(_commonPDic == nil){
+        _commonPDic =  [[NSMutableDictionary alloc] init];
     }
-    return _headersPDic;
+    return _commonPDic;
 }
 
 
@@ -41,17 +41,15 @@
         self.timeout = 15;
         self.apiBaseUrl = [WCBaseContext sharedInstance].appInterfaceServer;
         
-        [self.headersPDic removeAllObjects];
-        [self.headersPDic setObject:@"appNameOwner" forKey:@"appId"];
-        [self.headersPDic setObject:@"Apple Inc" forKey:@"devmanufacturer"];
-        [self.headersPDic setObject:@"1" forKey:@"platform"];
-        [self.headersPDic setObject:@"0.0.0.0" forKey:@"devIP"];
-        [self.headersPDic setObject:@"iosVer" forKey:@"devosversion"];
-        [self.headersPDic setObject:[SL_Utils getMacAddress] forKey:@"devmac"];
-        [self.headersPDic setObject:[SL_Utils getIMEI] forKey:@"devid"];
-        [self.headersPDic setObject:[SL_Utils getCarrier] forKey:@"devoperators"];
-        [self.headersPDic setObject:[SL_Utils getModelName] forKey:@"devmodel"];
-        [self.headersPDic setObject:[SL_Utils appShortVersion] forKey:@"appVersion"];
+        //通用参数
+        [self.commonPDic removeAllObjects];
+        [self.commonPDic setObject:[NSString stringWithFormat:@"%d",[SL_Utils getDeviceType]] forKey:@"deviceType"];
+        [self.commonPDic setObject:[SL_Utils getIMEI] forKey:@"uniqueId"];
+        [self.commonPDic setObject:[SL_Utils appName] forKey:@"appName"];
+        [self.commonPDic setObject:[NSString stringWithFormat:@"ios:%.2f",[SL_Utils getIOSVersion]] forKey:@"osType"];
+        [self.commonPDic setObject:[SL_Utils getModelName] forKey:@"model"];
+        [self.commonPDic setObject:[SL_Utils appShortVersion] forKey:@"appVersion"];
+        [self.commonPDic setObject:[SL_Utils bundleId] forKey:@"sign"];
     }
     return self;
 }

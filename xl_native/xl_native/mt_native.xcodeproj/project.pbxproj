@@ -5291,7 +5291,6 @@
 				D954C5F61DD1A40F003CA535 /* Frameworks */,
 				D954C6171DD1A40F003CA535 /* Resources */,
 				04CBB5DB217988DE00658E47 /* Embed App Extensions */,
-				100D780D42C982D460CC7637 /* [CP] Embed Pods Frameworks */,
 				09678DEC3B764AF14795C429 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -5744,28 +5743,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mt_shortvideo/Pods-mt_shortvideo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		100D780D42C982D460CC7637 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-mt_shortvideo/Pods-mt_shortvideo-frameworks.sh",
-				"${PODS_ROOT}/WebRTC/WebRTC.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mt_shortvideo/Pods-mt_shortvideo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		84A874B5AE22F07703B2B2F6 /* [CP] Check Pods Manifest.lock */ = {

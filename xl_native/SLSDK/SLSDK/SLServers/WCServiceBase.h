@@ -69,7 +69,7 @@ typedef enum
 @property(nonatomic, copy) NSString *apiBaseUrl;
 @property(nonatomic, copy) NSString *apiUploadUrl;
 @property(nonatomic, strong) NSMutableDictionary *paramsPDic;
-@property(nonatomic, strong) NSMutableDictionary *headersPDic;               //请求Header
+@property(nonatomic, strong) NSMutableDictionary *commonPDic;               //请求Header
 @property(nonatomic, strong) NSMutableDictionary *uploadFilesDic;
 @property(nonatomic, weak) id <WCServiceJrLoanDelegate> delegate;
 
