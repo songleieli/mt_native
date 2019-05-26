@@ -14,8 +14,7 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 
-#import "FileHelper.h"
-
+#import "NetWork_mt_forwardAppCount.h"
 
 
 @implementation SharePopViewDownload
@@ -132,7 +131,7 @@
             sendReq.scene = 1;//0 = 好友列表 1 = 朋友圈 2 = 收藏
             //创建分享内容对象
             WXMediaMessage *urlMessage = [WXMediaMessage message];
-            urlMessage.title = shareTitle;
+            urlMessage.title = [NSString stringWithFormat:@"%@,%@",shareTitle,shareDescription];
             
             [urlMessage setThumbImage:shareImage];//分享图片,使用SDK的setThumbImage方法可压缩图片大小
 
@@ -212,11 +211,10 @@
         }
     }
     
-//    if ([self.delegate respondsToSelector:@selector(onShareItemClicked:index:)]) {
-//        [self.delegate onShareItemClicked:self index:(MTShareType)sender.view.tag];
-//    } else {
-//        NSLog(@"代理没响应，快开看看吧");
-//    }
+    /*
+     上报分享结果
+     */
+    [self reportShareResult:shareType];
     
     [self dismiss];
     
@@ -316,6 +314,17 @@
     if([_cancel.layer containsPoint:point]) {
         [self dismiss];
     }
+}
+
+- (void)reportShareResult:(NSString *)shareType{
+    NetWork_mt_forwardAppCount *request = [[NetWork_mt_forwardAppCount alloc] init];
+    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+    request.forwardType = shareType;
+    [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+        if(finished){
+            NSLog(@"分享接口调用成功。");
+        }
+    }];
 }
 
 - (void)show {

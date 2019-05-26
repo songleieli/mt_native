@@ -19,23 +19,10 @@ typedef NS_ENUM(NSInteger, MTShareType){
 
 
 
-@class SharePopViewDownload;
-
-@protocol DownloadSahreDelegate <NSObject>
-
-
-- (void)onShareItemClicked:(SharePopViewDownload *)sharePopView index:(MTShareType)index;
-
-@end
-
-
 @interface SharePopViewDownload:UIView
 
 @property (nonatomic, strong) UIView           *container;
 @property (nonatomic, strong) UIButton         *cancel;
-
-@property(nonatomic, weak)id <DownloadSahreDelegate> delegate;
-
 
 - (void)show;
 - (void)dismiss;

@@ -27,10 +27,11 @@
         
         
         self.lableBoiledTitle = [[UILabel alloc] init];
-        self.lableBoiledTitle.width = _viewBoiledNoodles.width*0.64;
-        self.lableBoiledTitle.height = 30;
+        self.lableBoiledTitle.width = 220;
+        self.lableBoiledTitle.height = 60;
         self.lableBoiledTitle.centerX = _viewBoiledNoodles.width/2; //title水平居中
         self.lableBoiledTitle.top = kNavBarHeight_New + sizeScale(20);
+        self.lableBoiledTitle.numberOfLines = 2;
         self.lableBoiledTitle.font = [UIFont defaultBoldFontWithSize:20];
         self.lableBoiledTitle.textAlignment = NSTextAlignmentCenter;
         self.lableBoiledTitle.textColor = [UIColor blackColor];
@@ -163,11 +164,10 @@
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
     [request startGetWithBlock:^(GetBoiledStatisticsResponse *result, NSString *msg, BOOL finished) {
         if(finished){
-            self.lableBoiledTitle.text = result.obj.currDaysDesc;
+            self.lableBoiledTitle.text = [NSString stringWithFormat:@"%@ 当前水量【%@】",result.obj.currDaysDesc,result.obj.waterDesc];
         }
     }];
 }
-
 
 #pragma mark ----------- 点击事件 -------
 
@@ -190,9 +190,7 @@
         NSLog(@"-------领水-----------");
         
         SharePopViewDownload *popView = [[SharePopViewDownload alloc] init];
-        popView.delegate = self;
         [popView show];
-        
     }
     else if (btn.tag == 93){
         NSLog(@"-------加水-----------");

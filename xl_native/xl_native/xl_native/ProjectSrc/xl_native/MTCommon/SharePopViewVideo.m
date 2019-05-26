@@ -256,15 +256,10 @@
         }
     }
     
-    NetWork_mt_forwardVideoCount *request = [[NetWork_mt_forwardVideoCount alloc] init];
-    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
-    request.noodleVideoId = [NSString stringWithFormat:@"%@",self.homeListModel.noodleVideoId];
-    request.forwardType = shareType;
-    [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
-        if(finished){
-            NSLog(@"-----------分享量增加-----------");
-        }
-    }];
+    /*
+     上报分享结果
+     */
+    [self reportShareResult:shareType];
     
     
     if ([self.delegate respondsToSelector:@selector(onShareItemClicked:index:)]) {
@@ -370,6 +365,20 @@
     }
     
     [self dismiss];
+}
+
+
+- (void)reportShareResult:(NSString *)shareType{
+    
+    NetWork_mt_forwardVideoCount *request = [[NetWork_mt_forwardVideoCount alloc] init];
+    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+    request.noodleVideoId = [NSString stringWithFormat:@"%@",self.homeListModel.noodleVideoId];
+    request.forwardType = shareType;
+    [request startPostWithBlock:^(id result, NSString *msg, BOOL finished) {
+        if(finished){
+            NSLog(@"-----------分享量增加-----------");
+        }
+    }];
 }
 
 - (void)handleGuesture:(UITapGestureRecognizer *)sender {

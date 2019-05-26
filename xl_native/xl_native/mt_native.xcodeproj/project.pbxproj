@@ -775,6 +775,7 @@
 		04EE0E3B2296DEE000F3A60C /* NetWork_mt_getBoiledStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE0E392296DEE000F3A60C /* NetWork_mt_getBoiledStatistics.m */; };
 		04EE0E3E2296E3A300F3A60C /* BoiledRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE0E3D2296E3A200F3A60C /* BoiledRecordViewController.m */; };
 		04EEBA5F21ABE3EE00A5F6F2 /* PopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EEBA5E21ABE3EE00A5F6F2 /* PopViewController.m */; };
+		04F21AFA229A237100310884 /* NetWork_mt_forwardAppCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F21AF8229A237100310884 /* NetWork_mt_forwardAppCount.m */; };
 		04F2744F2261B05A00E6ACC7 /* NetWork_mt_sendSMS.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2744E2261B05900E6ACC7 /* NetWork_mt_sendSMS.m */; };
 		04F3B4C8224746C100F4C82E /* Label.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B4C7224746C100F4C82E /* Label.m */; };
 		04F3B5372247480600F4C82E /* UIAlertView+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F3B5362247480600F4C82E /* UIAlertView+BlocksKit.m */; };
@@ -2220,6 +2221,8 @@
 		04EE0E3D2296E3A200F3A60C /* BoiledRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoiledRecordViewController.m; sourceTree = "<group>"; };
 		04EEBA5D21ABE3EE00A5F6F2 /* PopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopViewController.h; sourceTree = "<group>"; };
 		04EEBA5E21ABE3EE00A5F6F2 /* PopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopViewController.m; sourceTree = "<group>"; };
+		04F21AF8229A237100310884 /* NetWork_mt_forwardAppCount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_forwardAppCount.m; sourceTree = "<group>"; };
+		04F21AF9229A237100310884 /* NetWork_mt_forwardAppCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_forwardAppCount.h; sourceTree = "<group>"; };
 		04F2744D2261B05900E6ACC7 /* NetWork_mt_sendSMS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_sendSMS.h; sourceTree = "<group>"; };
 		04F2744E2261B05900E6ACC7 /* NetWork_mt_sendSMS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_sendSMS.m; sourceTree = "<group>"; };
 		04F3B4C42247464300F4C82E /* TCVideoCutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCVideoCutViewController.h; sourceTree = "<group>"; };
@@ -4439,6 +4442,8 @@
 		04E700D0219FBD8B0096099F /* mt_home */ = {
 			isa = PBXGroup;
 			children = (
+				04F21AF9229A237100310884 /* NetWork_mt_forwardAppCount.h */,
+				04F21AF8229A237100310884 /* NetWork_mt_forwardAppCount.m */,
 				045B4633228FD64700BB2178 /* NetWork_mt_getWinners.h */,
 				045B4632228FD64700BB2178 /* NetWork_mt_getWinners.m */,
 				045B4628228FC4E300BB2178 /* NetWork_mt_luckdraw.h */,
@@ -5817,6 +5822,7 @@
 				04C1720F21CE3EC80077FA6C /* NetWork_mt_delflour.m in Sources */,
 				042E657E22169BA900C56859 /* TopicInfoController.m in Sources */,
 				04AB305D21CA93FB0072808E /* GKDelegateHandler.m in Sources */,
+				04F21AFA229A237100310884 /* NetWork_mt_forwardAppCount.m in Sources */,
 				04CBC3C32179C01300658E47 /* GPUImageColorDodgeBlendFilter.m in Sources */,
 				C5336F931E83739600618975 /* TTPopupView.m in Sources */,
 				04CBC3CD2179C01300658E47 /* GPUImageRGBFilter.m in Sources */,
