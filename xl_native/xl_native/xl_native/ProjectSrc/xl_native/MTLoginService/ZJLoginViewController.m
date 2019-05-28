@@ -444,6 +444,8 @@
     self.bgView.top = (self.view.height - self.bgView.height)/2 - 50;
     
     [self addThirdLogin];
+    
+    [self.view bringSubviewToFront:self.btnCancel];
 }
 
 #pragma -mark 发送短信验证码请求

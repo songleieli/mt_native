@@ -23,8 +23,8 @@
         
         WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
         
-        config.allowsInlineMediaPlayback = YES;
-        config.mediaTypesRequiringUserActionForPlayback = false;
+//        config.allowsInlineMediaPlayback = YES;
+//        config.mediaTypesRequiringUserActionForPlayback = false;
         
         _webDefault = [[WKWebView alloc] initWithFrame:CGRectMake(0, kNavBarHeight_New, ScreenWidth, ScreenHeight - kNavBarHeight_New) configuration:config];
         _webDefault.backgroundColor = ColorThemeBackground;

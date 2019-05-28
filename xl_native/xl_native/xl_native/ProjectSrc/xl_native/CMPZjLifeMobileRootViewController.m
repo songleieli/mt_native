@@ -254,6 +254,10 @@
     self.viewGift.top = self.imageViewNoolde.bottom;
     [self.viewPopAd addSubview:self.viewGift];
     
+    if(self.viewGift.bottom > btnLuck.top){
+        self.viewGift.bottom = btnLuck.top;
+    }
+    
     
     UILabel *lableGiftTitle = [[UILabel alloc] init];
     lableGiftTitle.size = [UIView getSize_width:ScreenWidth height:50];

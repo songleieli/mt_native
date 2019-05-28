@@ -55,8 +55,8 @@
     if (!_webDefault) {
         
         WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
-        config.allowsInlineMediaPlayback = YES;
-        config.mediaTypesRequiringUserActionForPlayback = false;
+//        config.allowsInlineMediaPlayback = YES;
+//        config.mediaTypesRequiringUserActionForPlayback = false;
         
         _webDefault = [[WKWebView alloc] initWithFrame:CGRectMake(0, KStatusBarHeight_New, ScreenWidth, ScreenHeight - KTabBarHeightOffset_New - KStatusBarHeight_New) configuration:config];
         _webDefault.backgroundColor = [UIColor whiteColor];
