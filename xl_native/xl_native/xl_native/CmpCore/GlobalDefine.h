@@ -97,6 +97,11 @@ isIPhoneXAll = [[UIApplication sharedApplication] delegate].window.safeAreaInset
 /*
  定义全局的NSUserDefault Key
  */
+#define MT_ACCOUNT_IS_DRAWACTIVE                       @"MT_ACCOUNT_IS_DRAWACTIVE"  //是否显示活动
+
+
+
+
 #define LJH_ACCOUNT_USER_HASLOGIN                       @"LJH_ACCOUNT_USER_HASLOGIN"
 #define LJH_ACCOUNT_USER_HASCLICKPUBLICLOCATIONBTN      @"LJH_ACCOUNT_USER_HASCLICKPUBLICLOCATIONBTN"
 #define LJH_ACCOUNT_USER_SEARCHLOCATIONKEYWORD      @"LJH_ACCOUNT_USER_SEARCHLOCATIONKEYWORD"

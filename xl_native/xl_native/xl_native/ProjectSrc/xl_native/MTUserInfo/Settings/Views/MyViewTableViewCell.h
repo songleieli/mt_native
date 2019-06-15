@@ -11,6 +11,7 @@
 enum MyCellTag {
     MyCellTag_logout = 0,
     MyCellTag_editor,
+    MyCellTag_wallet,
     MyCellTag_cleanCache,
     MyCellTag_about,
     MyCellTag_other

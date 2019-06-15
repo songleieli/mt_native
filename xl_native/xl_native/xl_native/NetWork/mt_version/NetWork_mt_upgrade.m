@@ -8,11 +8,14 @@
 
 #import "NetWork_mt_upgrade.h"
 
-//@implementation ContentModel
-//
-//@end
-
 @implementation UpgradeModel
+
+@dynamic description;
+
+-(void)setDescription:(NSString *)description{
+    _des = description;
+}
+
 
 @end
 
@@ -34,7 +37,7 @@
     return [UpgradeResponse class];
 }
 -(NSString*)responseCategory{
-    return @"/miantiao/sms/sendSMS";
+    return @"/miantiao/version/upgrade";
 }
 
 

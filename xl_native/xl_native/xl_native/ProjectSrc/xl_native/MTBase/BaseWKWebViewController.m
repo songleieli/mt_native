@@ -15,9 +15,9 @@
 #import "iToast.h"
 #import "MBProgressHUD.h"
 
-#import "Callback_token.h"
-#import "Callback_voice_purchase.h"
-#import "Callback_userInfo.h"
+//#import "Callback_token.h"
+//#import "Callback_voice_purchase.h"
+//#import "Callback_userInfo.h"
 
 
 
@@ -309,10 +309,12 @@ completionHandler:(void (^)(NSString *result))completionHandler{
 
 -(NSString*)HybridCall_GetToken:(NSString*)myCallBack{
     
-    Callback_token *callback_token = [[Callback_token alloc]init];
+//    Callback_token *callback_token = [[Callback_token alloc]init];
 //    callback_token.token = [GlobalData sharedInstance].loginDataModel.token;
     
-    return [NSString stringWithFormat:@"%@('%@');",myCallBack, [callback_token generateJsonStringForProperties]];
+//    return [NSString stringWithFormat:@"%@('%@');",myCallBack, [callback_token generateJsonStringForProperties]];
+    
+    return @"";
 }
 
 -(void)HybridCall_GoBack{
@@ -327,14 +329,18 @@ completionHandler:(void (^)(NSString *result))completionHandler{
 /*获取用户信息*/
 -(NSString*)HybridCall_GetUserInfo:(NSString*)myCallBack{
     
-    Callback_userInfo *callback_userInfo = [[Callback_userInfo alloc]init];
+//    Callback_userInfo *callback_userInfo = [[Callback_userInfo alloc]init];
 //    callback_userInfo.userId = [GlobalData sharedInstance].loginDataModel.userId;
 //    callback_userInfo.userName = [GlobalData sharedInstance].loginDataModel.userName;
 //    callback_userInfo.userIcon = [GlobalData sharedInstance].loginDataModel.userIcon;
 
     
-    return [NSString stringWithFormat:@"%@('%@');",myCallBack, [callback_userInfo generateJsonStringForProperties]];
+//    return [NSString stringWithFormat:@"%@('%@');",myCallBack, [callback_userInfo generateJsonStringForProperties]];
+    
+    return @"";
 }
+
+
 
 
 #pragma -mark 虚拟方法 在子类中重写功能

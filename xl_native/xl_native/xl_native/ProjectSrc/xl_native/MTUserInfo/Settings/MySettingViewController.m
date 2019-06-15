@@ -35,7 +35,7 @@
                 case 0:{
                     model.selectTitle = @"账号";
                     NSMutableArray *cellList = [[NSMutableArray alloc] init];
-                    for (int j =0 ; j<3; j ++) {
+                    for (int j =0 ; j<4; j ++) {
                         MyViewTableViewCellModel *model = [[MyViewTableViewCellModel alloc] init];
                         switch (j) {
                             case 0:
@@ -44,6 +44,11 @@
                                 model.cellTag = MyCellTag_editor;
                                 break;
                             case 1:
+                                model.titleStr = @"我的钱包";
+                                model.imageStr = @"icon_m_s_lock";
+                                model.cellTag = MyCellTag_wallet;
+                                break;
+                            case 2:
                                 model.titleStr = @"清除缓存";
                                 model.imageStr = @"icon_m_s_order";
                                 model.cellTag = MyCellTag_cleanCache;
@@ -361,6 +366,15 @@
         [self pushNewVC:personalInformationViewController animated:YES];
         
     }
+    
+    if(model.cellTag == MyCellTag_wallet){
+        NSLog(@"--------我的钱包-------");
+        
+        MyWalletViewController *myWalletViewController = [[MyWalletViewController alloc] init];
+        [self pushNewVC:myWalletViewController animated:YES];
+        
+    }
+    
     else if (model.cellTag == MyCellTag_about){
         NSLog(@"--------关于-------");
         

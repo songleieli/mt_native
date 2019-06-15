@@ -9,6 +9,7 @@
 #import "CMPZjLifeMobileAppDelegate.h"
 #import "TSStorageManager.h"
 #import "WebCacheHelpler.h"
+#import "NetWork_mt_upgrade.h"
 
 
 @interface CMPZjLifeMobileAppDelegate ()<WXApiDelegate>
@@ -64,6 +65,8 @@
                          key:[WCBaseContext sharedInstance].txShortVideoLicenceKey];
     [TXLiveBase setConsoleEnabled:YES];
     NSLog(@"TXUGCBase SDK Version = %@", [TXLiveBase getSDKVersionStr]);
+    
+
 }
 
 - (void)onBaseContextDidStartupWithOptions:(NSDictionary *)launchOptions{
@@ -79,11 +82,11 @@
     [[WebCacheHelpler sharedWebCache] clearCache:^(NSString *cacheSize) {
         NSLog(@"-------清理缓存----cacheSize = %@ M----",cacheSize);
     } isClearAllVideoCacle:NO];
-    
+
     /*
-     *版本更新
+     *检查版本更新
      */
-    //[self updateVrsion];
+    [MTControlCenter checkVersion];
 }
 
 -(UIViewController*)getProjRootViewController{

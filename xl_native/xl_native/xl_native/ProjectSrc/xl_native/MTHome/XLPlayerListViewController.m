@@ -521,10 +521,15 @@
         UIPasteboard *pab = [UIPasteboard generalPasteboard];
         [pab setString:shareUrl];
         if (pab == nil) {
-            [GlobalFunc showAlertWithMessage:@"复制失败!"];
+            //[GlobalFunc showAlertWithMessage:@"复制失败!"];
+            
+            [GlobalFunc showAlertWithTitle:@"温馨提示" message:@"复制失败!" makeSure:nil];
         }
         else{
-            [GlobalFunc showAlertWithMessage:@"已复制"];
+//            [GlobalFunc showAlertWithMessage:@"已复制"];
+            
+            [GlobalFunc showAlertWithTitle:@"温馨提示" message:@"已复制" makeSure:nil];
+
         }
     }
 }

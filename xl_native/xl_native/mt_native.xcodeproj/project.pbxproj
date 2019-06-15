@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		040046CB229BDCF10016D21B /* NetWork_mt_upgrade.m in Sources */ = {isa = PBXBuildFile; fileRef = 040046CA229BDCF10016D21B /* NetWork_mt_upgrade.m */; };
+		04005D2C22B2A05000067ED6 /* MyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04005D2A22B2A04F00067ED6 /* MyWalletViewController.m */; };
 		0400F30D21AF8CD60038E16C /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0400F30A21AF8CD50038E16C /* TencentOpenAPI.framework */; };
 		0400F31721AF96F10038E16C /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0400F31421AF96F10038E16C /* libWeChatSDK.a */; };
 		0400F32A21AFA62D0038E16C /* UIAlertView+WX.m in Sources */ = {isa = PBXBuildFile; fileRef = 0400F31A21AFA62C0038E16C /* UIAlertView+WX.m */; };
@@ -47,6 +48,8 @@
 		040E28D821C0F0D400D15B44 /* Visitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 040E28CE21C0F0D400D15B44 /* Visitor.m */; };
 		040E28DB21C1047F00D15B44 /* UserResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 040E28D921C1047E00D15B44 /* UserResponse.m */; };
 		040E28DD21C1089E00D15B44 /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 040E28DC21C1089E00D15B44 /* user.json */; };
+		0411BFAE22B48A4F00B4751A /* mt_common_model_atFriend_topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 0411BFAD22B48A4F00B4751A /* mt_common_model_atFriend_topic.m */; };
+		0411BFB322B48EF700B4751A /* MTControlCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0411BFB122B48EF700B4751A /* MTControlCenter.m */; };
 		0415F08A21C7D463000440F4 /* MTHomeRefreshNavigitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415F08821C7D462000440F4 /* MTHomeRefreshNavigitionView.m */; };
 		04183B0221C2BC2200383E3F /* SwitchPlayerMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183AEF21C2BC2200383E3F /* SwitchPlayerMaskView.m */; };
 		04183B0421C2BC2200383E3F /* MusicAlbumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183AF421C2BC2200383E3F /* MusicAlbumView.m */; };
@@ -57,9 +60,6 @@
 		04183B0921C2BC2200383E3F /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183AFC21C2BC2200383E3F /* NSString+Extension.m */; };
 		04183B0E21C2BFF800383E3F /* QCloudCOSXML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04183B0C21C2BFF800383E3F /* QCloudCOSXML.framework */; };
 		04183B0F21C2BFF800383E3F /* QCloudCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04183B0D21C2BFF800383E3F /* QCloudCore.framework */; };
-		04183B1721C2C09600383E3F /* Callback_voice_purchase.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183B1121C2C09600383E3F /* Callback_voice_purchase.m */; };
-		04183B1821C2C09600383E3F /* Callback_token.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183B1321C2C09600383E3F /* Callback_token.m */; };
-		04183B1921C2C09600383E3F /* Callback_userInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04183B1421C2C09600383E3F /* Callback_userInfo.m */; };
 		0420916B21FB53D1004C0524 /* SearchResultSubMusicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0420916921FB53D0004C0524 /* SearchResultSubMusicCell.m */; };
 		0420917121FB6173004C0524 /* NetWork_mt_getFuzzyMusicList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0420917021FB6172004C0524 /* NetWork_mt_getFuzzyMusicList.m */; };
 		0420917421FB6185004C0524 /* NetWork_mt_getFuzzyTopicList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0420917321FB6185004C0524 /* NetWork_mt_getFuzzyTopicList.m */; };
@@ -219,7 +219,6 @@
 		04BBCBA922571B1F009AC181 /* AddLocarionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBCBA822571B1F009AC181 /* AddLocarionCell.m */; };
 		04BBCBAD2257738B009AC181 /* NetWork_mt_likeComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBCBAC2257738B009AC181 /* NetWork_mt_likeComment.m */; };
 		04BBCBB02257779E009AC181 /* NetWork_mt_delLikeComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBCBAF2257779E009AC181 /* NetWork_mt_delLikeComment.m */; };
-		04BC59872197C88700D5EA12 /* XLProjectWkWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BC59862197C88600D5EA12 /* XLProjectWkWebViewController.m */; };
 		04C171E221CDDE9E0077FA6C /* UserInfoPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */; };
 		04C1720B21CE3EC80077FA6C /* NetWork_mt_getMyVideos.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171F421CE3EC70077FA6C /* NetWork_mt_getMyVideos.m */; };
 		04C1720C21CE3EC80077FA6C /* NetWork_mt_getDynamics.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171F821CE3EC70077FA6C /* NetWork_mt_getDynamics.m */; };
@@ -474,7 +473,6 @@
 		04DF9DC322392FC600935A89 /* BgMusicListHotSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DF9DC022392FC600935A89 /* BgMusicListHotSubViewController.m */; };
 		04DF9DC6223941B000935A89 /* BgMusicListCollectionSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DF9DC5223941B000935A89 /* BgMusicListCollectionSubViewController.m */; };
 		04DF9DCC223946D200935A89 /* MusicHotSubMusicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DF9DC9223946D200935A89 /* MusicHotSubMusicCell.m */; };
-		04E28F71218ABB96006A91DA /* XLGameWkWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E28F6F218ABB96006A91DA /* XLGameWkWebViewController.m */; };
 		04E48D0D228D5C27003F82D2 /* MTGiftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E48D0B228D5C26003F82D2 /* MTGiftView.m */; };
 		04E48D10228D68E6003F82D2 /* NetWork_mt_getPrizeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E48D0E228D68E6003F82D2 /* NetWork_mt_getPrizeList.m */; };
 		04E6E8DA21A8FFDC007C8A16 /* ghostshadow-19.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E6E7AF21A8FFDB007C8A16 /* ghostshadow-19.png */; };
@@ -770,7 +768,6 @@
 		04E6E9FF21A902D1007C8A16 /* bubbleText.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04E6E9FC21A902D1007C8A16 /* bubbleText.bundle */; };
 		04E700D3219FBD8B0096099F /* NetWork_mt_home_list.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E700D2219FBD8B0096099F /* NetWork_mt_home_list.m */; };
 		04E700D9219FF5C10096099F /* MtHomeTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E700D7219FF5C00096099F /* MtHomeTopView.m */; };
-		04E9B30D22525F9E00369DA4 /* mt_common_model_atFriend_topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E9B30C22525F9D00369DA4 /* mt_common_model_atFriend_topic.m */; };
 		04EB6895222B83DD00D5C0C1 /* MTMyFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EB6894222B83DC00D5C0C1 /* MTMyFollowViewController.m */; };
 		04ED451921CBD897009DE89F /* NetWork_mt_delLikeVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ED451821CBD896009DE89F /* NetWork_mt_delLikeVideo.m */; };
 		04EE0E3B2296DEE000F3A60C /* NetWork_mt_getBoiledStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE0E392296DEE000F3A60C /* NetWork_mt_getBoiledStatistics.m */; };
@@ -973,6 +970,8 @@
 /* Begin PBXFileReference section */
 		040046C9229BDCF10016D21B /* NetWork_mt_upgrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_upgrade.h; sourceTree = "<group>"; };
 		040046CA229BDCF10016D21B /* NetWork_mt_upgrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_upgrade.m; sourceTree = "<group>"; };
+		04005D2A22B2A04F00067ED6 /* MyWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWalletViewController.m; sourceTree = "<group>"; };
+		04005D2B22B2A04F00067ED6 /* MyWalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWalletViewController.h; sourceTree = "<group>"; };
 		0400F30A21AF8CD50038E16C /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		0400F31021AF96F10038E16C /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		0400F31121AF96F10038E16C /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
@@ -1052,6 +1051,10 @@
 		040E28D921C1047E00D15B44 /* UserResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserResponse.m; sourceTree = "<group>"; };
 		040E28DA21C1047F00D15B44 /* UserResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserResponse.h; sourceTree = "<group>"; };
 		040E28DC21C1089E00D15B44 /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
+		0411BFAC22B48A4F00B4751A /* mt_common_model_atFriend_topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mt_common_model_atFriend_topic.h; sourceTree = "<group>"; };
+		0411BFAD22B48A4F00B4751A /* mt_common_model_atFriend_topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mt_common_model_atFriend_topic.m; sourceTree = "<group>"; };
+		0411BFB122B48EF700B4751A /* MTControlCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTControlCenter.m; sourceTree = "<group>"; };
+		0411BFB222B48EF700B4751A /* MTControlCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTControlCenter.h; sourceTree = "<group>"; };
 		0415F08821C7D462000440F4 /* MTHomeRefreshNavigitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTHomeRefreshNavigitionView.m; sourceTree = "<group>"; };
 		0415F08921C7D462000440F4 /* MTHomeRefreshNavigitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTHomeRefreshNavigitionView.h; sourceTree = "<group>"; };
 		04183AEF21C2BC2200383E3F /* SwitchPlayerMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchPlayerMaskView.m; sourceTree = "<group>"; };
@@ -1070,12 +1073,6 @@
 		04183B0121C2BC2200383E3F /* FavoriteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteView.h; sourceTree = "<group>"; };
 		04183B0C21C2BFF800383E3F /* QCloudCOSXML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QCloudCOSXML.framework; sourceTree = "<group>"; };
 		04183B0D21C2BFF800383E3F /* QCloudCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QCloudCore.framework; sourceTree = "<group>"; };
-		04183B1121C2C09600383E3F /* Callback_voice_purchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Callback_voice_purchase.m; sourceTree = "<group>"; };
-		04183B1221C2C09600383E3F /* Callback_userInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Callback_userInfo.h; sourceTree = "<group>"; };
-		04183B1321C2C09600383E3F /* Callback_token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Callback_token.m; sourceTree = "<group>"; };
-		04183B1421C2C09600383E3F /* Callback_userInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Callback_userInfo.m; sourceTree = "<group>"; };
-		04183B1521C2C09600383E3F /* Callback_voice_purchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Callback_voice_purchase.h; sourceTree = "<group>"; };
-		04183B1621C2C09600383E3F /* Callback_token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Callback_token.h; sourceTree = "<group>"; };
 		0420916921FB53D0004C0524 /* SearchResultSubMusicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultSubMusicCell.m; sourceTree = "<group>"; };
 		0420916A21FB53D0004C0524 /* SearchResultSubMusicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultSubMusicCell.h; sourceTree = "<group>"; };
 		0420916F21FB6172004C0524 /* NetWork_mt_getFuzzyMusicList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getFuzzyMusicList.h; sourceTree = "<group>"; };
@@ -1402,8 +1399,6 @@
 		04BBCBAC2257738B009AC181 /* NetWork_mt_likeComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_likeComment.m; sourceTree = "<group>"; };
 		04BBCBAE2257779D009AC181 /* NetWork_mt_delLikeComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_delLikeComment.h; sourceTree = "<group>"; };
 		04BBCBAF2257779E009AC181 /* NetWork_mt_delLikeComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_delLikeComment.m; sourceTree = "<group>"; };
-		04BC59852197C88600D5EA12 /* XLProjectWkWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLProjectWkWebViewController.h; sourceTree = "<group>"; };
-		04BC59862197C88600D5EA12 /* XLProjectWkWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLProjectWkWebViewController.m; sourceTree = "<group>"; };
 		04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoPlayerCell.m; sourceTree = "<group>"; };
 		04C171E121CDDE9E0077FA6C /* UserInfoPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoPlayerCell.h; sourceTree = "<group>"; };
 		04C171F321CE3EC70077FA6C /* NetWork_mt_getDynamics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getDynamics.h; sourceTree = "<group>"; };
@@ -1912,8 +1907,6 @@
 		04DF9DC5223941B000935A89 /* BgMusicListCollectionSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BgMusicListCollectionSubViewController.m; sourceTree = "<group>"; };
 		04DF9DC9223946D200935A89 /* MusicHotSubMusicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicHotSubMusicCell.m; sourceTree = "<group>"; };
 		04DF9DCB223946D200935A89 /* MusicHotSubMusicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicHotSubMusicCell.h; sourceTree = "<group>"; };
-		04E28F6F218ABB96006A91DA /* XLGameWkWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLGameWkWebViewController.m; sourceTree = "<group>"; };
-		04E28F70218ABB96006A91DA /* XLGameWkWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLGameWkWebViewController.h; sourceTree = "<group>"; };
 		04E48D0B228D5C26003F82D2 /* MTGiftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTGiftView.m; sourceTree = "<group>"; };
 		04E48D0C228D5C27003F82D2 /* MTGiftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTGiftView.h; sourceTree = "<group>"; };
 		04E48D0E228D68E6003F82D2 /* NetWork_mt_getPrizeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getPrizeList.m; sourceTree = "<group>"; };
@@ -2213,8 +2206,6 @@
 		04E700D2219FBD8B0096099F /* NetWork_mt_home_list.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_home_list.m; sourceTree = "<group>"; };
 		04E700D7219FF5C00096099F /* MtHomeTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MtHomeTopView.m; sourceTree = "<group>"; };
 		04E700D8219FF5C10096099F /* MtHomeTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MtHomeTopView.h; sourceTree = "<group>"; };
-		04E9B30B22525F9D00369DA4 /* mt_common_model_atFriend_topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mt_common_model_atFriend_topic.h; sourceTree = "<group>"; };
-		04E9B30C22525F9D00369DA4 /* mt_common_model_atFriend_topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mt_common_model_atFriend_topic.m; sourceTree = "<group>"; };
 		04EB3646968E51E3022BFF93 /* Pods-mt_shortvideo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mt_shortvideo.release.xcconfig"; path = "Target Support Files/Pods-mt_shortvideo/Pods-mt_shortvideo.release.xcconfig"; sourceTree = "<group>"; };
 		04EB6893222B83DC00D5C0C1 /* MTMyFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMyFollowViewController.h; sourceTree = "<group>"; };
 		04EB6894222B83DC00D5C0C1 /* MTMyFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMyFollowViewController.m; sourceTree = "<group>"; };
@@ -2669,6 +2660,24 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
+		0411BFAB22B48A4F00B4751A /* CommonModel */ = {
+			isa = PBXGroup;
+			children = (
+				0411BFAC22B48A4F00B4751A /* mt_common_model_atFriend_topic.h */,
+				0411BFAD22B48A4F00B4751A /* mt_common_model_atFriend_topic.m */,
+			);
+			path = CommonModel;
+			sourceTree = "<group>";
+		};
+		0411BFB022B48EF700B4751A /* CommonCore */ = {
+			isa = PBXGroup;
+			children = (
+				0411BFB222B48EF700B4751A /* MTControlCenter.h */,
+				0411BFB122B48EF700B4751A /* MTControlCenter.m */,
+			);
+			path = CommonCore;
+			sourceTree = "<group>";
+		};
 		04183AEE21C2BC2200383E3F /* SwitchVideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -2706,21 +2715,6 @@
 				04183B0D21C2BFF800383E3F /* QCloudCore.framework */,
 			);
 			path = COSSDK;
-			sourceTree = "<group>";
-		};
-		04183B1021C2C09600383E3F /* WebH5Demo */ = {
-			isa = PBXGroup;
-			children = (
-				04E9B30B22525F9D00369DA4 /* mt_common_model_atFriend_topic.h */,
-				04E9B30C22525F9D00369DA4 /* mt_common_model_atFriend_topic.m */,
-				04183B1621C2C09600383E3F /* Callback_token.h */,
-				04183B1321C2C09600383E3F /* Callback_token.m */,
-				04183B1221C2C09600383E3F /* Callback_userInfo.h */,
-				04183B1421C2C09600383E3F /* Callback_userInfo.m */,
-				04183B1521C2C09600383E3F /* Callback_voice_purchase.h */,
-				04183B1121C2C09600383E3F /* Callback_voice_purchase.m */,
-			);
-			path = WebH5Demo;
 			sourceTree = "<group>";
 		};
 		04274C6D20EDC5CC00D4B5E2 /* iCarousel */ = {
@@ -3111,6 +3105,8 @@
 				04C4304D2234C47600AD260F /* UserSettingViewController.m */,
 				0434BDD021E9E1560059A28C /* PersonalInformationViewController.h */,
 				0434BDD121E9E1560059A28C /* PersonalInformationViewController.m */,
+				04005D2B22B2A04F00067ED6 /* MyWalletViewController.h */,
+				04005D2A22B2A04F00067ED6 /* MyWalletViewController.m */,
 				0434BDD421E9E1B10059A28C /* NickNameViewController.h */,
 				0434BDD321E9E1B10059A28C /* NickNameViewController.m */,
 				0434BDD721E9E1E80059A28C /* IntroduceViewController.h */,
@@ -4989,10 +4985,13 @@
 		D904E95C1DD1D6DB00C7E45E /* MTCommon */ = {
 			isa = PBXGroup;
 			children = (
-				04CD6DA22258738800C35475 /* VideoGenerateFunc.h */,
-				04CD6DA32258738900C35475 /* VideoGenerateFunc.m */,
+				0411BFB022B48EF700B4751A /* CommonCore */,
+				0411BFAB22B48A4F00B4751A /* CommonModel */,
+				042E65782216965000C56859 /* MTCommonUI */,
 				0441FA2121CF3FBA00801225 /* LoadMoreControl.h */,
 				0441FA2221CF3FBA00801225 /* LoadMoreControl.m */,
+				04CD6DA22258738800C35475 /* VideoGenerateFunc.h */,
+				04CD6DA32258738900C35475 /* VideoGenerateFunc.m */,
 				0441FA1F21CF3F0E00801225 /* PhotoView.h */,
 				0441FA1E21CF3F0E00801225 /* PhotoView.m */,
 				0441FA1B21CF3ED200801225 /* CircleProgressView.h */,
@@ -5068,7 +5067,6 @@
 				04468DAB214B7DB3002F4528 /* MTFollow */,
 				0441FA2A21CFD1C600801225 /* MTMessage */,
 				040E28AA21C0AA4900D15B44 /* MTUserInfo */,
-				042E65782216965000C56859 /* MTCommonUI */,
 				D971BDDF1DD1CA9600BA2A7C /* CMPZjLifeMobileRootViewController.h */,
 				D971BDE01DD1CA9600BA2A7C /* CMPZjLifeMobileRootViewController.m */,
 				04EEBA5D21ABE3EE00A5F6F2 /* PopViewController.h */,
@@ -5280,15 +5278,10 @@
 		D9DD56BB1DD44D580031085B /* MTBase */ = {
 			isa = PBXGroup;
 			children = (
-				04183B1021C2C09600383E3F /* WebH5Demo */,
 				D9DD56BE1DD44D780031085B /* ZJBaseViewController.h */,
 				D9DD56BF1DD44D780031085B /* ZJBaseViewController.m */,
 				04C8820F2109AB9800811DAD /* BaseWKWebViewController.h */,
 				04C8820E2109AB9800811DAD /* BaseWKWebViewController.m */,
-				04E28F70218ABB96006A91DA /* XLGameWkWebViewController.h */,
-				04E28F6F218ABB96006A91DA /* XLGameWkWebViewController.m */,
-				04BC59852197C88600D5EA12 /* XLProjectWkWebViewController.h */,
-				04BC59862197C88600D5EA12 /* XLProjectWkWebViewController.m */,
 			);
 			path = MTBase;
 			sourceTree = "<group>";
@@ -5931,7 +5924,6 @@
 				04CBC44F2179C01300658E47 /* GPUImageKuwaharaFilter.m in Sources */,
 				0452AD832279A47900E04998 /* NSBundle+MJRefresh.m in Sources */,
 				04D9B4CE21D343A400DEC8B9 /* MessageCell.m in Sources */,
-				04E28F71218ABB96006A91DA /* XLGameWkWebViewController.m in Sources */,
 				04CBC3E32179C01300658E47 /* GPUImagePoissonBlendFilter.m in Sources */,
 				04F3B5A62247498E00F4C82E /* NSObject+A2BlockDelegate.m in Sources */,
 				0452ADEE2279A80800E04998 /* SDWebImageDecoder.m in Sources */,
@@ -5944,6 +5936,7 @@
 				04CBC4372179C01300658E47 /* GPUImageVideoCamera.m in Sources */,
 				04CBC4232179C01300658E47 /* GPUImageDirectionalNonMaximumSuppressionFilter.m in Sources */,
 				D954C4D91DD1A40F003CA535 /* BaseCollectionController.m in Sources */,
+				04005D2C22B2A05000067ED6 /* MyWalletViewController.m in Sources */,
 				D954C4DF1DD1A40F003CA535 /* UIView+Hierarchy.m in Sources */,
 				D957AD571DD2CB2F00B7EE09 /* IQUIViewController+Additions.m in Sources */,
 				04AB305021CA933E0072808E /* GKNavigationBarConfigure.m in Sources */,
@@ -5969,7 +5962,6 @@
 				D957AD5D1DD2CB2F00B7EE09 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				0441FA2321CF3FBA00801225 /* LoadMoreControl.m in Sources */,
 				D98FCFC71DEFC41A0023C076 /* STPickerViewUI.m in Sources */,
-				04183B1921C2C09600383E3F /* Callback_userInfo.m in Sources */,
 				04FD7DE021EE2DB7004A57CA /* MTSearchHeadFunctionView.m in Sources */,
 				04CBC3EB2179C01300658E47 /* GPUImageMaskFilter.m in Sources */,
 				04CBC3D72179C01300658E47 /* GPUImagePicture.m in Sources */,
@@ -6189,7 +6181,6 @@
 				04CBC3F92179C01300658E47 /* GPUImageRGBDilationFilter.m in Sources */,
 				04B4286B22915E5B00E2F776 /* NetWork_mt_getRule.m in Sources */,
 				04CBC4692179C01300658E47 /* GPUImageLightenBlendFilter.m in Sources */,
-				04E9B30D22525F9E00369DA4 /* mt_common_model_atFriend_topic.m in Sources */,
 				04A8C12822190992004980F5 /* NetWork_mt_getTopicCollections.m in Sources */,
 				04EE0E3B2296DEE000F3A60C /* NetWork_mt_getBoiledStatistics.m in Sources */,
 				D904E9661DD1D6DB00C7E45E /* ZJCustomTabBarLjhTableViewController.m in Sources */,
@@ -6231,7 +6222,6 @@
 				04CBC3A72179C01300658E47 /* GPUImageSepiaFilter.m in Sources */,
 				0441FA2F21CFD1C600801225 /* MTMessageViewController.m in Sources */,
 				04C70D2F21E3A7C90022D897 /* NetWork_mt_aMeList.m in Sources */,
-				04183B1721C2C09600383E3F /* Callback_voice_purchase.m in Sources */,
 				0406761F21F7158700543917 /* HomeSearchResultSubMusicViewController.m in Sources */,
 				04DF9DC6223941B000935A89 /* BgMusicListCollectionSubViewController.m in Sources */,
 				04CBC3432179C01300658E47 /* GPUImageWeakPixelInclusionFilter.m in Sources */,
@@ -6272,12 +6262,10 @@
 				04C70D3B21E3AE600022D897 /* MTFollowViewController.m in Sources */,
 				0452AE1A2279A96600E04998 /* MASCompositeConstraint.m in Sources */,
 				04DCEE9121F5B4B9007AC5B0 /* SearchResultSubUserCell.m in Sources */,
-				04183B1821C2C09600383E3F /* Callback_token.m in Sources */,
 				04DCA8ED21A565D500691A3A /* VideoPasterView.m in Sources */,
 				04CBC4152179C01300658E47 /* GPUImageRawDataInput.m in Sources */,
 				0452AD8E2279A47900E04998 /* MJRefreshFooter.m in Sources */,
 				04F3B5A52247498E00F4C82E /* NSObject+A2DynamicDelegate.m in Sources */,
-				04BC59872197C88700D5EA12 /* XLProjectWkWebViewController.m in Sources */,
 				0452ADC02279A50100E04998 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				04CBC3292179C01300658E47 /* GPUImageTwoPassTextureSamplingFilter.m in Sources */,
 				0420917121FB6173004C0524 /* NetWork_mt_getFuzzyMusicList.m in Sources */,
@@ -6334,6 +6322,7 @@
 				04CBC4BF2179C01300658E47 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				04AB304D21CA92F20072808E /* UIViewController+GKCategory.m in Sources */,
 				04CBC41F2179C01300658E47 /* GPUImageMotionDetector.m in Sources */,
+				0411BFAE22B48A4F00B4751A /* mt_common_model_atFriend_topic.m in Sources */,
 				04CBC3852179C01300658E47 /* GPUImageMultiplyBlendFilter.m in Sources */,
 				0405BE842220FBD50098D590 /* UserCollectionController.m in Sources */,
 				04B6E2C72241423B00F3B51E /* PublishViewController.m in Sources */,
@@ -6372,6 +6361,7 @@
 				04CBC4352179C01300658E47 /* GPUImagePrewittEdgeDetectionFilter.m in Sources */,
 				04C1720C21CE3EC80077FA6C /* NetWork_mt_getDynamics.m in Sources */,
 				04AB304221CA91310072808E /* GKDouyinHomeSearchViewController.m in Sources */,
+				0411BFB322B48EF700B4751A /* MTControlCenter.m in Sources */,
 				D9F86DC81DEBEE7600C3A2B6 /* TZAssetModel.m in Sources */,
 				0405BE7F2220F6F90098D590 /* UserCollectionSubTopicViewController.m in Sources */,
 				04A919A421E4F045002DDB1A /* FollowsVideoListCell.m in Sources */,

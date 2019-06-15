@@ -13,10 +13,6 @@
 @interface GlobalData : NSObject
 
 
-/*
- *我爱我乡C端
- */
-
 @property (strong, nonatomic) NSTimer *timerCode;//时间对象
 @property (nonatomic, assign) BOOL hasLogin;
 @property (nonatomic, assign) BOOL hasClickPublicLocationBtn;

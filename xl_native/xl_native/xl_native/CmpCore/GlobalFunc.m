@@ -110,25 +110,6 @@ static GlobalFunc *sharedInstance;
     return [UIColor colorWithPatternImage:image];
 }
 
-+ (UIColor *)transformWithHexString:(NSString *)hexString
-{
-    if (hexString) {
-        NSMutableString * hexStringMutable = [NSMutableString stringWithString:hexString];
-        [hexStringMutable replaceCharactersInRange:[hexStringMutable rangeOfString:@"#" ] withString:@"0x"];
-        // 十六进制字符串转成整形。
-        long colorLong = strtoul([hexStringMutable cStringUsingEncoding:NSUTF8StringEncoding], 0, 16);
-        // 通过位与方法获取三色值
-        int R = (colorLong & 0xFF0000 )>>16;
-        int G = (colorLong & 0x00FF00 )>>8;
-        int B =  colorLong & 0x0000FF;
-        
-        //string转color
-        return [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1.0];
-    }
-    return [[UIColor alloc] init];
-    
-}
-
 + (NSString *)stringFromDate:(NSDate *)date format:(NSString*)format{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     //zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
@@ -137,427 +118,6 @@ static GlobalFunc *sharedInstance;
     [dateFormatter setDateFormat:format];
     NSString *destDateString = [dateFormatter stringFromDate:date];
     return destDateString;
-}
-
-//颜色转字符串
-+ (NSString *) changeUIColorToRGB:(UIColor *)color{
-    
-    
-    const CGFloat *cs=CGColorGetComponents(color.CGColor);
-    
-    
-    NSString *r = [NSString stringWithFormat:@"%@",[self  ToHex:cs[0]*255]];
-    NSString *g = [NSString stringWithFormat:@"%@",[self  ToHex:cs[1]*255]];
-    NSString *b = [NSString stringWithFormat:@"%@",[self  ToHex:cs[2]*255]];
-    return [NSString stringWithFormat:@"#%@%@%@",r,g,b];
-    
-    
-}
-
-
-//十进制转十六进制
-+ (NSString *)ToHex:(int)tmpid
-{
-    NSString *endtmp=@"";
-    NSString *nLetterValue;
-    NSString *nStrat;
-    int ttmpig=tmpid%16;
-    int tmp=tmpid/16;
-    switch (ttmpig)
-    {
-        case 10:
-            nLetterValue =@"A";break;
-        case 11:
-            nLetterValue =@"B";break;
-        case 12:
-            nLetterValue =@"C";break;
-        case 13:
-            nLetterValue =@"D";break;
-        case 14:
-            nLetterValue =@"E";break;
-        case 15:
-            nLetterValue =@"F";break;
-        default:nLetterValue=[[NSString alloc]initWithFormat:@"%i",ttmpig];
-            
-    }
-    switch (tmp)
-    {
-        case 10:
-            nStrat =@"A";break;
-        case 11:
-            nStrat =@"B";break;
-        case 12:
-            nStrat =@"C";break;
-        case 13:
-            nStrat =@"D";break;
-        case 14:
-            nStrat =@"E";break;
-        case 15:
-            nStrat =@"F";break;
-        default:nStrat=[[NSString alloc]initWithFormat:@"%i",tmp];
-            
-    }
-    endtmp=[[NSString alloc]initWithFormat:@"%@%@",nStrat,nLetterValue];
-    return endtmp;
-}
-
-
-
-
-
-#pragma mark -
-#pragma mark 文件的读写
-//路径
-+ (NSString *)pathWithFile:(NSString *)file
-{
-    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Library"];
-    NSString *filename = [path stringByAppendingPathComponent:file];
-    path = nil;
-    
-    return filename;
-}
-
-//是否存在文件
-+ (BOOL)existsFile:(NSString *)file
-{
-    NSString *filename = [self pathWithFile:file];
-    BOOL isExist = [[NSFileManager defaultManager] fileExistsAtPath:filename];
-    filename = nil;
-    
-    return isExist;
-}
-
-//删除文件
-+ (BOOL)deleteFile:(NSString *)file
-{
-    NSString *filename = [self pathWithFile:file];
-    BOOL remove = [[NSFileManager defaultManager] removeItemAtPath:filename error:nil];
-    filename = nil;
-    
-    return remove;
-}
-
-//把数组写入文件
-+ (BOOL)writeArrToFile:(NSArray *)arr fileName:(NSString *)file
-{
-    BOOL finish = NO;
-    @autoreleasepool {
-        NSString *filename = [self pathWithFile:file];
-        finish = [arr writeToFile:filename  atomically:YES];
-        filename = nil;
-    }
-    
-    return finish;
-}
-
-//把字典写入文件
-+ (BOOL)writeDicToFile:(NSDictionary *)dic fileName:(NSString *)file
-{
-    BOOL finish = NO;
-    @autoreleasepool {
-        NSString *filename = [self pathWithFile:file];
-        finish = [dic writeToFile:filename  atomically:YES];
-        filename = nil;
-    }
-    
-    return finish;
-}
-
-//解析文件得到数组
-+ (NSArray *)parseArrFromFile:(NSString *)file
-{
-    NSString *filename = [self pathWithFile:file];
-    NSMutableArray *array=[[NSMutableArray alloc] initWithContentsOfFile:filename];
-    filename = nil;
-    
-    return array;
-}
-
-//解析文件得到字典
-+ (NSDictionary *)parseDicFromFile:(NSString *)file
-{
-    //	读操作
-    NSString *filename = [self pathWithFile:file];
-    NSMutableDictionary *dic=[[NSMutableDictionary alloc] initWithContentsOfFile:filename];
-    filename = nil;
-    
-    return dic;
-}
-
-//存储数据
-+ (BOOL)writerData:(NSData *)data toFile:(NSString *)file
-{
-    NSString *filename = [self pathWithFile:file];
-    
-    //    if ([[NSFileManager defaultManager] fileExistsAtPath:filename]) {
-    //        [[NSFileManager defaultManager] removeItemAtPath:filename error:NULL];
-    //    }
-    
-    BOOL isFinished = [[NSFileManager defaultManager] createFileAtPath:filename contents:data attributes:nil];
-    filename = nil;
-    
-    return isFinished;
-}
-
-//读取数据
-+ (NSData *)readDataWithFile:(NSString *)file
-{
-    NSString *filename = [self pathWithFile:file];
-    NSData *data = [NSData dataWithContentsOfFile:filename];
-    filename = nil;
-    
-    return data;
-}
-
-#pragma mark 获取UUID
-+ (NSString*) getUUID {
-    CFUUIDRef puuid = CFUUIDCreate( nil );
-    CFStringRef uuidString = CFUUIDCreateString( nil, puuid );
-    NSString * result = (NSString *)CFBridgingRelease(CFStringCreateCopy( NULL, uuidString));
-    CFRelease(puuid);
-    CFRelease(uuidString);
-    
-    return result;
-}
-
-#pragma mark - 获取指定长度的纯数字随机码
-+ (NSString *)getNumbersWithIndex:(NSInteger)index
-{
-    NSString *str = @"";
-    
-    for (int i = 0; i < index; ++i) {
-        @autoreleasepool {
-            NSInteger code = arc4random()%10;
-            str = [str stringByAppendingFormat:@"%ld",(long)code];
-        }
-    }
-    
-    return str;
-}
-
-#pragma mark - 转化NSDate为字符串
-+ (NSString *)encodeDate:(NSDate *)date
-{
-    return [GlobalFunc encodeDate:date withFormatterString:@"yyyy-MM-dd HH:mm:ss"];
-}
-
-#pragma mark - 转化NSDate为字符串 （自定义格式）
-+ (NSString *)encodeDate:(NSDate *)date withFormatterString:(NSString *)formatter
-{
-    NSDateFormatter *tmpFormatter = [[NSDateFormatter alloc] init];
-    [tmpFormatter setDateFormat:formatter];
-    
-    return [tmpFormatter stringFromDate:date];
-}
-
-+ (NSString *)encodeDate1970:(double)time withFormatterString:(NSString *)formatter
-{
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:time];
-    
-    return [self encodeDate:date withFormatterString:formatter];
-}
-
-+ (NSDate *)dateWithStr:(NSString *)dateStr formatterString:(NSString *)fromatter
-{
-    NSDateFormatter *tmpFormatter = [[NSDateFormatter alloc] init];
-    [tmpFormatter setDateFormat:fromatter];
-    
-    return [tmpFormatter dateFromString:dateStr];
-}
-
-+ (NSString *)weekWithDate:(NSDate *)date
-{
-    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    NSInteger unitFlags = NSCalendarUnitWeekday;
-    //int week=0;
-    comps = [calendar components:unitFlags fromDate:date];
-    NSInteger week = [comps weekday];
-    NSLog(@"week int:%d",(int)week);
-    
-    NSArray *arrWeek = @[@"星期日",@"星期一",@"星期二",@"星期三",@"星期四",@"星期五",@"星期六"];
-    if(week > 0 && week <= arrWeek.count){
-        return [arrWeek objectAtIndex:week-1];
-    }
-    else{
-        return @"";
-    }
-    
-    //return arrWeek[week];
-}
-
-+ (NSString *)weekWithDate1970:(CGFloat)time
-{
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:time];
-    
-    return [self weekWithDate:date];
-}
-
-#pragma mark - 检查是否为字符串
-+ (BOOL)checkObject:(NSString *)str
-{
-    if (str == nil || [str isKindOfClass:[NSNull class]] || [str isEqualToString:@"(null)"] || [str isEqualToString:@"（null）"]) {
-        return NO;
-    }
-    
-    return YES;
-}
-
-//自定义默认字体
-+ (UIFont *)defaultFontWithSize:(CGFloat)size
-{
-    return [UIFont fontWithName:@"HelveticaNeue-Light" size:size];
-}
-
-+ (UIFont *)defaultBoldFontWithSize:(CGFloat)size
-{
-    return [UIFont fontWithName:@"HelveticaNeue-Bold" size:size];
-}
-
-//16进制字符串 转换为int
-+ (UIColor *)colorWithHex:(NSString *)hex alpha:(CGFloat)alpha
-{
-    if (hex.length < 7) {
-        return nil;
-    }
-    
-    unsigned color = 0;
-    NSScanner *hexValueScanner = [NSScanner scannerWithString:[hex substringFromIndex:1]];
-    [hexValueScanner scanHexInt:&color];
-    
-    int blue = color & 0xFF;
-    int green = (color >> 8) & 0xFF;
-    int red = (color >> 16) & 0xFF;
-    
-    return [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1.0];
-}
-
-#pragma mark 显示信息
-+ (void)showAlertWithMessage:(NSString *)msg
-{
-    UIAlertView *alertMsg = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:msg delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
-    [alertMsg show];
-}
-
-#pragma mark - 检测网络
-+ (NSInteger)checkNetWork
-{
-    NSInteger state = 0;//默认 无网络
-    Reachability *r=[Reachability reachabilityForInternetConnection];
-    switch ([r currentReachabilityStatus]) {
-        case NotReachable: // 没有网络连接 netstate=@"没有网络";
-            state = 0;
-            //NSLog(@"无网络");
-            break;
-        case ReachableViaWWAN:{ // 使用3G网络
-            state = 1;
-            //NSLog(@"3G");
-        }
-            break;
-        case ReachableViaWiFi:{ // 使用WiFi网络
-            state = 2;
-            //NSLog(@"wifi");
-        }
-            break;
-    }
-    
-    return state;
-}
-
-#pragma mark - 验证价格 double
-+ (NSString *)checkPrice:(double)price
-{
-    if (price == (int)price) {
-        return [NSString stringWithFormat:@"%.0f",price];
-    }
-    
-    NSString *price1 = [NSString stringWithFormat:@"%.1f",price];
-    NSString *price2 = [NSString stringWithFormat:@"%.2f",price];
-    if (price1.doubleValue == price2.doubleValue) {
-        return price1;
-    }
-    
-    return price2;
-}
-
-+ (NSString *)standerPrice:(double)price
-{
-    NSString *result = [GlobalFunc standerStrPrice:[GlobalFunc checkPrice:price]];
-    
-    return result;
-}
-
-+ (NSString *)standerStrPrice:(NSString *)price
-{
-    if (price == nil || ![price isKindOfClass:[NSString class]]) {
-        return nil;
-    }
-    
-    NSString *pref = price;
-    NSRange range = [price rangeOfString:@"."];
-    if (range.length) {
-        pref = [pref substringToIndex:range.location];
-    }
-    
-    NSInteger length = pref.length;
-    while (length > 3) {
-        length -= 3;
-        pref = [pref stringByReplacingCharactersInRange:NSMakeRange(length, 0) withString:@","];
-    }
-    
-    NSString *result = pref;
-    if (range.length) {
-        result = [pref stringByAppendingString:[price substringFromIndex:range.location]];
-    }
-    
-    return result;
-}
-
-+ (NSString *)unstanderStrPrice:(NSString *)price
-{
-    if (price == nil || ![price isKindOfClass:[NSString class]]) {
-        return nil;
-    }
-    
-    NSString *result = [price stringByReplacingOccurrencesOfString:@"," withString:@""];
-    
-    return result;
-}
-
-+ (NSString *)standerValue:(NSString *)value
-{
-    if ([value isKindOfClass:[NSString class]] && [value hasSuffix:@"."]) {
-        return [value substringToIndex:value.length-1];
-    }
-    return value;
-}
-
-#pragma mark - 检测URL
-+ (NSURL *)urlWithStr:(NSString *)str
-{
-    //NSLog(@"str:%@",str);
-    if ([str isKindOfClass:[NSString class]]) {
-        return [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    }
-    return nil;
-}
-
-#pragma mark - 检测是否开启推送
-+ (BOOL)enabledRemoteNotification
-{
-    //iOS8 check if user allow notification
-    if (IOS8_OR_LATER) {// system is iOS8
-        UIUserNotificationSettings *setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
-        if (UIUserNotificationTypeNone != setting.types) {
-            return YES;
-        }
-    } else {//iOS7
-        UIRemoteNotificationType type = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
-        if(UIRemoteNotificationTypeNone != type)
-            return YES;
-    }
-    
-    return NO;
 }
 
 #pragma mark - 比较版本号大小
@@ -596,147 +156,6 @@ static GlobalFunc *sharedInstance;
     attributeString = nil;
     
     return rect.size;
-}
-
-#pragma mark - 倒计时
-+ (NSString *)detailTimer:(NSString *)minut byIndex:(NSInteger)index
-{
-    // 0:天 1:时 2:分 3:秒 4:总小时
-    NSInteger day = 0;
-    long long hour = 0;
-    long long minutes = 0;
-    long long secondes = 0;
-    if (minut.intValue > 0) {
-        day = minut.integerValue/(24*60*60);
-        hour = (minut.longLongValue/(60*60))%24;
-        minutes = minut.longLongValue/60-(day*24*60)-(hour*60);
-        secondes = minut.longLongValue%60;
-    }
-    
-    NSString *returnStr = nil;
-    switch (index) {
-        case 0: { //天
-            if (day < 10) {
-                returnStr = [NSString stringWithFormat:@"0%ld",(long)day];
-            } else {
-                returnStr = [NSString stringWithFormat:@"%ld",(long)day];
-            }
-        }
-            break;
-        case 1: { //时
-            if (hour < 10) {
-                returnStr = [NSString stringWithFormat:@"0%lld",hour];
-            } else {
-                returnStr = [NSString stringWithFormat:@"%lld",hour];
-            }
-        }
-            break;
-        case 2: { //分
-            if (minutes < 10) {
-                returnStr = [NSString stringWithFormat:@"0%lld",minutes];
-            } else {
-                returnStr = [NSString stringWithFormat:@"%lld",minutes];
-            }
-        }
-            break;
-        case 3: { //秒
-            if (secondes < 10) {
-                returnStr = [NSString stringWithFormat:@"0%lld",secondes];
-            } else {
-                returnStr = [NSString stringWithFormat:@"%lld",secondes];
-            }
-        }
-            break;
-        case 4: { //总小时
-            if (day*24+hour < 10) {
-                returnStr = [NSString stringWithFormat:@"0%lld",day*24+hour];
-            } else {
-                returnStr = [NSString stringWithFormat:@"%lld",day*24+hour];
-            }
-        }
-            break;
-        default:
-            break;
-    }
-    
-    return returnStr;
-}
-
-+ (NSString *)detailSignTimer:(NSString *)minut byIndex:(NSInteger)index
-{
-    // 0:天 1:时 2:分 3:秒 4:总小时
-    NSInteger day = 0;
-    long long hour = 0;
-    long long minutes = 0;
-    long long secondes = 0;
-    if (minut.intValue > 0) {
-        day = minut.integerValue/(24*60*60);
-        hour = (minut.longLongValue/(60*60))%24;
-        minutes = minut.longLongValue/60-(day*24*60)-(hour*60);
-        secondes = minut.longLongValue%60;
-    }
-    
-    NSString *returnStr = nil;
-    switch (index) {
-        case 0: { //天
-            returnStr = [NSString stringWithFormat:@"%ld",(long)day];
-        }
-            break;
-        case 1: { //时
-            returnStr = [NSString stringWithFormat:@"%lld",hour];
-        }
-            break;
-        case 2: { //分
-            returnStr = [NSString stringWithFormat:@"%lld",minutes];
-        }
-            break;
-        case 3: { //秒
-            returnStr = [NSString stringWithFormat:@"%lld",secondes];
-        }
-            break;
-        case 4: { //总小时
-            returnStr = [NSString stringWithFormat:@"%lld",day*24+hour];
-        }
-            break;
-        default:
-            break;
-    }
-    
-    return returnStr;
-}
-
-+ (NSString *)compareDate:(NSString *)dateStr day:(BOOL)day
-{
-    //2015-09-28 13:55
-    NSDateFormatter* format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"yyyy-MM-dd HH:mm"];
-    NSDate *dateCurrent =[format dateFromString:dateStr];
-    
-    if (day) {
-        NSDate *today = [NSDate date];
-        NSDate *tomorrow = [NSDate dateWithTimeIntervalSinceNow:24*60*60];
-        
-        [format setDateFormat:@"yyyy-MM-dd"];
-        NSString *strCurrent = [format stringFromDate:dateCurrent];
-        NSString *strToday = [format stringFromDate:today];
-        NSString *strTomorrow = [format stringFromDate:tomorrow];
-        
-        if ([strCurrent isEqualToString:strToday]) {
-            return @"今天";
-        } else if ([strCurrent isEqualToString:strTomorrow]) {
-            return @"明天";
-        } else {
-            [format setDateFormat:@"M月d日"];
-            NSString *result = [format stringFromDate:dateCurrent];
-            return result;
-        }
-    } else {
-        [format setDateFormat:@"H:mm"];
-        NSString *result = [format stringFromDate:dateCurrent];
-        return result;
-    }
-    
-    return nil;
 }
 
 
@@ -809,7 +228,7 @@ static GlobalFunc *sharedInstance;
     [dateFormatter setTimeZone:localzone];
     
     NSString *dateString = [dateFormatter stringFromDate:currentDate];
-//    NSLog(@"dateString:%@",dateString);
+    //    NSLog(@"dateString:%@",dateString);
     
     return dateString;
 }
@@ -820,7 +239,7 @@ static GlobalFunc *sharedInstance;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:formattter];
     NSString *dateString = [dateFormatter stringFromDate:currentDate];
-//    NSLog(@"dateString:%@",dateString);
+    //    NSLog(@"dateString:%@",dateString);
     
     return dateString;
 }
@@ -886,46 +305,6 @@ static GlobalFunc *sharedInstance;
 }
 
 
-+ (void)countDownWithTime:(int)time
-           countDownBlock:(void (^)(int timeLeft))countDownBlock
-                 endBlock:(void (^)())endBlock
-{
-    __block int timeout = time; //倒计时时间
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
-    dispatch_source_set_event_handler(_timer, ^{
-        if(timeout<=0){ //倒计时结束，关闭
-            dispatch_source_cancel(_timer);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (endBlock) {
-                    endBlock();
-                }
-            });
-        } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (countDownBlock) {
-                    [UIView beginAnimations:nil context:nil];
-                    [UIView setAnimationDuration:1];
-                    countDownBlock(timeout);
-                    [UIView commitAnimations];
-                }
-                timeout--;
-            });
-        }
-    });
-    dispatch_resume(_timer);
-}
-
-+ (BOOL)isSimulator {
-#if TARGET_OS_SIMULATOR
-    return YES;
-#else
-    return NO;
-#endif
-}
-
-
 /**
  改变UILabel部分字符颜色
  */
@@ -980,10 +359,10 @@ static GlobalFunc *sharedInstance;
 
 //判断文件是否已经在沙盒中已经存在？
 + (BOOL) isFileExist:(NSString *)fileName{
-
+    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     return [fileManager fileExistsAtPath:fileName];
-//    NSLog(@"这个文件已经存在：%@",result?@"是的":@"不存在");
+    //    NSLog(@"这个文件已经存在：%@",result?@"是的":@"不存在");
     ;
 }
 
@@ -1030,27 +409,67 @@ static GlobalFunc *sharedInstance;
 }
 
 
+#pragma mark 显示信息
++ (void)showAlertWithTitle:(NSString *)title message:(NSString *)message makeSure:(VoidBlock)sure{
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
+                                                                             message:message
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                        style:UIAlertActionStyleDestructive
+                                                      handler:^(UIAlertAction *action) {
+                                                          
+                                                          if(sure){
+                                                              sure();
+                                                          }
+                                                      }]];
+    
+    
+    UIViewController *topRootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
+    
+    // 在这里加一个这个样式的循环
+    while (topRootViewController.presentedViewController){
+        // 这里固定写法
+        topRootViewController = topRootViewController.presentedViewController;
+    }
+    
+    [topRootViewController presentViewController:alertController animated:YES completion:^{
+        
+    }];
+    
+}
+
+
 + (void)showAlertWithTitle:(NSString *)title message:(NSString *)message makeSure:(VoidBlock)sure cancel:(VoidBlock)cancel{
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message
-                                                                             message:@""
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
+                                                                             message:message
                                                                       preferredStyle:UIAlertControllerStyleAlert];
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"取消"
                                                         style:UIAlertActionStyleDestructive
                                                       handler:^(UIAlertAction *action) {
-                                                          cancel();
+                                                          
+                                                          if(cancel){
+                                                              cancel();
+                                                          }
                                                       }]];
+    
     [alertController addAction:[UIAlertAction actionWithTitle:@"确定"
                                                         style:UIAlertActionStyleDestructive
                                                       handler:^(UIAlertAction *action) {
-                                                          sure();
+                                                          
+                                                          if(sure){
+                                                              sure();
+                                                          }
                                                       }]];
+    
+    
     UIViewController *topRootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
     
     // 在这里加一个这个样式的循环
-    while (topRootViewController.presentedViewController)
-    {
+    while (topRootViewController.presentedViewController){
         // 这里固定写法
         topRootViewController = topRootViewController.presentedViewController;
     }
@@ -1072,14 +491,6 @@ static GlobalFunc *sharedInstance;
         NSLog(@"cancel");
     }];
     [actionSheet show];
-    
-//    [GLActionSheet showWithDataSource:sheets
-//                                title:@"title"
-//                          selectIndex:3
-//                        completeBlock:^(NSInteger index) {
-//                            NSLog(@"%ld",(long)index);
-//                            actionAt(index);
-//                        }];
     
 }
 

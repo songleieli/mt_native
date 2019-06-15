@@ -91,7 +91,10 @@ static VideoGenerateFunc *sharedInstance;
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     [library writeVideoAtPathToSavedPhotosAlbum:[NSURL fileURLWithPath:videoOutputPath] completionBlock:^(NSURL *assetURL, NSError *error) {
         if (error != nil) {
-            [GlobalFunc showAlertWithMessage:@"视频保存失败！"];
+            //[GlobalFunc showAlertWithMessage:@"视频保存失败！"];
+            
+            [GlobalFunc showAlertWithTitle:@"温馨提示" message:@"视频保存失败！" makeSure:nil];
+
         }else{
             
             if(self.actionType != MTShareActionTypeDownload){
@@ -105,7 +108,9 @@ static VideoGenerateFunc *sharedInstance;
                     {   //打开微信
                         [[UIApplication sharedApplication] openURL:url];
                     }else {
-                        [GlobalFunc showAlertWithMessage:@"没有安装微信"];
+                        //[GlobalFunc showAlertWithMessage:@"没有安装微信"];
+                        [GlobalFunc showAlertWithTitle:@"温馨提示" message:@"没有安装微信" makeSure:nil];
+
                     }
                 }
                 
@@ -117,12 +122,16 @@ static VideoGenerateFunc *sharedInstance;
                     {   //打开微信
                         [[UIApplication sharedApplication] openURL:url];
                     }else {
-                        [GlobalFunc showAlertWithMessage:@"没有安装qq"];
+//                        [GlobalFunc showAlertWithMessage:@"没有安装qq"];
+                        [GlobalFunc showAlertWithTitle:@"温馨提示" message:@"没有安装qq" makeSure:nil];
+
                     }
                 }
             }
             else{
-                [GlobalFunc showAlertWithMessage:@"视频保存至相册！"];
+                //[GlobalFunc showAlertWithMessage:@"视频保存至相册！"];
+                [GlobalFunc showAlertWithTitle:@"温馨提示" message:@"视频保存至相册！" makeSure:nil];
+
             }
         }
     }];

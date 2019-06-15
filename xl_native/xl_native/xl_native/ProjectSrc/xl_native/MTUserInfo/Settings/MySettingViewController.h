@@ -9,6 +9,7 @@
 //#import "SettingViewController.h"
 #import "MyViewTableViewCell.h"
 #import "PersonalInformationViewController.h"
+#import "MyWalletViewController.h"
 #import "SettingAboutViewController.h"
 
 
