@@ -154,7 +154,7 @@
     self.textFieldSearchKey = [[UITextField alloc] init];
     self.textFieldSearchKey.size = [UIView getSize_width:self.textFieldBgView.width - leftView.width height:leftView.height];
     self.textFieldSearchKey.origin = [UIView getPoint_x:leftView.right y:self.textFieldBgView.height - self.textFieldSearchKey.height-5];
-//    self.textFieldSearchKey.placeholder = @"明星";
+    self.textFieldSearchKey.placeholder = @"明星";
     self.textFieldSearchKey.layer.cornerRadius = 4.0f;
     self.textFieldSearchKey.textColor = [UIColor whiteColor];
     self.textFieldSearchKey.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -165,7 +165,7 @@
     self.textFieldSearchKey.backgroundColor = [UIColor whiteColor];
     [self.textFieldBgView addSubview:self.textFieldSearchKey];
     self.textFieldSearchKey.backgroundColor = MTColorBtnNormal;
-    [self.textFieldSearchKey setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+//    [self.textFieldSearchKey setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
 }
 
 - (void)viewDidLoad {
@@ -229,7 +229,7 @@
         
         
         weakSelf.textFieldSearchKey.placeholder = topicNameTemp;
-        [weakSelf.textFieldSearchKey setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+//        [weakSelf.textFieldSearchKey setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
 
     }];
     

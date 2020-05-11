@@ -1,8 +1,12 @@
-platform :ios, '10.0'
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '9.0'
+
+
 target "mt_shortvideo" do
   pod 'SVProgressHUD'
-
-  
+#  pod 'TXIMSDK_iOS'
+  pod 'TXIMSDK_TUIKit_iOS'
+  pod 'AMap2DMap'
   #pod 'UMCCommon'
   #pod 'UMCCommonLog'
   #pod 'UMCAnalytics'

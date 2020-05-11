@@ -8,9 +8,9 @@
 #import "CMPZjLifeMobileRootViewController.h"
 
 #import "BaseNavigationController.h"
-
-#import "GKDouyinHomeViewController.h"
-#import "MTFollowViewController.h"
+#import "MTVideoViewController.h"
+//#import "GKDouyinHomeViewController.h"
+//#import "MTFollowViewController.h"
 #import "MTMessageViewController.h"
 #import "UserInfoViewController.h"
 
@@ -21,7 +21,7 @@
 
 #import "SharePopViewVideo.h"
 
-@interface CMPZjLifeMobileRootViewController ()<ZJChangeIndexDelegate,presentViewControllerDelegate,WYPopoverControllerDelegate,QBImagePickerControllerDelegate,VideoSahreDelegate>{
+@interface CMPZjLifeMobileRootViewController ()<ZJChangeIndexDelegate,ChangeIndexDelegate,presentViewControllerDelegate,WYPopoverControllerDelegate,QBImagePickerControllerDelegate,VideoSahreDelegate>{
 //    MBProgressHUD *          _hub;
 }
 
@@ -31,23 +31,22 @@
 
 #pragma mark ------------懒加载-----------
 
-- (GKDouyinHomeViewController *)homeNewViewController{
-    if (!_homeNewViewController){
-        _homeNewViewController = [[GKDouyinHomeViewController alloc]init];
-        _homeNewViewController.pageIndex = 0;
-        _homeNewViewController.changeIndexDelegate = self;
+- (MTVideoViewController *)videoViewController{
+    if (!_videoViewController){
+        _videoViewController = [[MTVideoViewController alloc]init];
+        _videoViewController.pageIndex = 0;
+        _videoViewController.changeIndexDelegate = self;
     }
-    return _homeNewViewController;
+    return _videoViewController;
 }
 
-- (MTFollowViewController *)followViewController{
-    if (!_followViewController){
-        _followViewController = [[MTFollowViewController alloc]init];
-        _followViewController.pageIndex = 1;
-        _followViewController.changeIndexDelegate = self;
-        
+- (MTScenicspotViewController *)scenicspotViewController{
+    if (!_scenicspotViewController){
+        _scenicspotViewController = [[MTScenicspotViewController alloc]init];
+        _scenicspotViewController.pageIndex = 1;
+        _scenicspotViewController.changeIndexDelegate = self;
     }
-    return _followViewController;
+    return _scenicspotViewController;
 }
 
 - (UIViewController *)topicViewController{
@@ -83,19 +82,19 @@
 
 #pragma -mark NavController
 
-- (BaseNavigationController *)xlHomeNavViewController{
-    if (!_xlHomeNavViewController){
-        _xlHomeNavViewController = [BaseNavigationController navigationWithRootViewController:self.homeNewViewController];
-        _xlHomeNavViewController.gk_openScrollLeftPush = YES;
+- (BaseNavigationController *)videoNavViewController{
+    if (!_videoNavViewController){
+        _videoNavViewController = [BaseNavigationController navigationWithRootViewController:self.videoViewController];
+//        videoNavViewController.gk_openScrollLeftPush = YES;
     }
-    return _xlHomeNavViewController;
+    return _videoNavViewController;
 }
 
-- (BaseNavigationController *)followNavViewController{
-    if (!_followNavViewController){
-        _followNavViewController = [BaseNavigationController navigationWithRootViewController:self.followViewController];
+- (BaseNavigationController *)scenicspotNavViewController{
+    if (!_scenicspotNavViewController){
+        _scenicspotNavViewController = [BaseNavigationController navigationWithRootViewController:self.scenicspotViewController];
     }
-    return _followNavViewController;
+    return _scenicspotNavViewController;
 }
 
 - (BaseNavigationController *)topicNavViewController{
@@ -157,8 +156,8 @@
     
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    [self addChildViewController:self.xlHomeNavViewController];
-    [self addChildViewController:self.followNavViewController];
+    [self addChildViewController:self.videoNavViewController];
+    [self addChildViewController:self.scenicspotNavViewController];
     [self addChildViewController:self.topicNavViewController];
     [self addChildViewController:self.messageNavViewController];
     [self addChildViewController:self.userInfoNavViewController];
@@ -168,9 +167,9 @@
     //    [[UINavigationBar appearance] setBarTintColor:[UIColor clearColor]];
     //    [[UINavigationBar appearance] setTranslucent:NO];//这句话是控制导航栏颜色是否透明。//导航栏颜色透明
     
-    self.currentViewController = self.xlHomeNavViewController;
+    self.currentViewController = self.videoNavViewController;
     self.currentSelectIndex = 0; //默认选择第一个tab
-    [self.view addSubview:self.xlHomeNavViewController.view];
+    [self.view addSubview:self.videoNavViewController.view];
 }
 
 
@@ -205,7 +204,7 @@
 //    }
     
     
-    if(index == 1 || index == 3 || index == 4){
+    if(index == 3 || index == 4){
         
         if([GlobalData sharedInstance].hasLogin){
              return YES;
@@ -218,7 +217,6 @@
             return NO;
         }
     }
-    
     
     
     if(index == 2){//拍视频需要验证登录
@@ -265,7 +263,7 @@
     [self selectTabAtIndex:index];
 }
 
-
+/*
 -(void)onloadVideoComplete:(NSString *)videoPath {
     
     [GlobalFunc hideHUD];
@@ -288,15 +286,16 @@
         
         BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
         [self presentViewController:nav animated:YES completion:^{
-            /*
-             *发送弹出模态窗口通知
-             */
+            //
+             //发送弹出模态窗口通知
+             //
             [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationPresentViewController
                                                                 object:nil];
             
         }];
     }
 }
+*/
 
 -(void)onloadVideoProcess:(CGFloat)process {
     
@@ -339,6 +338,7 @@
     }
     else if(row == 1){//视频合唱
         
+        /*
         //获取本地磁盘缓存文件夹路径，同视频缓存同一个目录，缓存一天后删除
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
         NSString *path = [paths lastObject];
@@ -366,7 +366,7 @@
             }];
             
         }
-        
+        */
     }
     else if(row == 2){//选择本地视频
         

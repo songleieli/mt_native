@@ -19,11 +19,14 @@
     
     
 }
+
+@property(nonatomic) NSUInteger pageIndex;
 @property(nonatomic) NSUInteger selectedIndex;
 @property (nonatomic, retain) ZJCustomTabBar *tabBar;
 @property (nonatomic, weak) id <ChangeIndexDelegate> changeIndexDelegate;
 
 -(CGFloat)getTabbarTop;
+
 - (void)hiddentabBar:(BOOL)hidden isAnimat:(BOOL)isAnimat;
 
 @end

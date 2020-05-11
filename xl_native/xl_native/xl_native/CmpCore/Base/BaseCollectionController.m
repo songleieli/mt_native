@@ -92,8 +92,6 @@ static NSString * const reuseIdentifier = @"Cell";
     // 马上进入刷新状态
     [self.collectionView.mj_header beginRefreshing];
     self.collectionView.mj_footer = footer;
-    
-//    [self.view addSubview:self.collectionViewTemp];
 }
 
 - (void)didReceiveMemoryWarning {

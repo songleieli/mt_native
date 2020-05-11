@@ -110,7 +110,7 @@
     self.textFieldSearchKey.returnKeyType = UIReturnKeyDone;
     self.textFieldSearchKey.font = MediumFont;
     self.textFieldSearchKey.backgroundColor = MTColorBtnNormal;
-    [self.textFieldSearchKey setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+//    [self.textFieldSearchKey setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     [self.textFieldBgView addSubview:self.textFieldSearchKey];
     
 

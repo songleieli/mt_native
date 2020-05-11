@@ -18,6 +18,7 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 #import <UMCommon/UMCommon.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
 
 @class ZJHomeViewController;
 

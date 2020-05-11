@@ -34,70 +34,69 @@
 
 -(CGFloat)getTabbarTop{
     
-    CGFloat top = ScreenHeight - kTabBarHeight_New;//默认隐藏
-    //    if(self.navigationController.navigationBarHidden == NO){ //显示
-    if(self.isNavBackGroundHiden == NO){
-        top = ScreenHeight - kTabBarHeight_New-kNavBarHeight_New-KTabBarHeightOffset_New;
-    }
+   CGFloat statusHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
+    
+    NSLog(@"ScreenHeight ---- %f",ScreenHeight);
+    NSLog(@"kTabBarHeight_New ---- %f",kTabBarHeight_New);
+    
+    CGFloat top = ScreenHeight - kTabBarHeight_New;
+    self.tabBar.height = kTabBarHeight_New;
     
     UIViewController *rootViewController = [[self parentViewController] parentViewController];
     UIViewController *baseNavViewController = [self parentViewController];
     
-    
-    
-    
     NSLog(@"self class = %@",NSStringFromClass([self class]));
     
-    //    if([rootViewController isKindOfClass:[JunrongLoanRootViewController class]]
-    //       && [baseNavViewController isKindOfClass:[BaseNavigationController class]]){
-    //
-    //        /*
-    //         用于判断应用启用无线热点，的页面适配
-    //         */
-    //
-    //    if(rootViewController.view.top == 0 && baseNavViewController.view.top == 0){
-    //        /*
-    //         正常启动 或 正常启动切换到热点再切换到正常
-    //         */
-    //        NSLog(@"正常启动 或 正常启动切换到热点再切换到正常");
-    //    }
-    //    else if (rootViewController.view.top == 20 && baseNavViewController.view.top == 0){
-    //        /*
-    //         正常启动情况下，切换到热点
-    //         */
-    //        NSLog(@"正常启动情况下，切换到热点");
-    //
-    //        top = top -20;
-    //
-    //    }
-    //    else if (rootViewController.view.top == 20 && baseNavViewController.view.top == 20){
-    //        /*
-    //         热点启动 或 热点启动切换到正常在切换到热点
-    //         */
-    //        NSLog(@"热点启动");
-    //
-    //        if(self.navigationController.navigationBarHidden == NO){//显示NAV
-    //            top = top -20;
-    //        }
-    //        else{//不显示NAV
-    //            top = top -40;
-    //        }
-    //    }
-    //    else if (rootViewController.view.top == 0 && baseNavViewController.view.top == 20){
-    //        /*
-    //         热点启动，切换到正常
-    //         */
-    //        NSLog(@"热点启动，切换到正常");
-    //        if(self.navigationController.navigationBarHidden == NO){//显示NAV
-    //            //不处理
-    //        }
-    //        else{//不显示NAV
-    //            top = top - 20;
-    //        }
-    //    }
-    //    }
+//    if([rootViewController isKindOfClass:[JunrongLoanRootViewController class]]
+//       && [baseNavViewController isKindOfClass:[BaseNavigationController class]]){
+//
+//        /*
+//         用于判断应用启用无线热点，的页面适配
+//         */
+//
+//    if(rootViewController.view.top == 0 && baseNavViewController.view.top == 0){
+//        /*
+//         正常启动 或 正常启动切换到热点再切换到正常
+//         */
+//        NSLog(@"正常启动 或 正常启动切换到热点再切换到正常");
+//    }
+//    else if (rootViewController.view.top == 20 && baseNavViewController.view.top == 0){
+//        /*
+//         正常启动情况下，切换到热点
+//         */
+//        NSLog(@"正常启动情况下，切换到热点");
+//
+//        top = top -20;
+//
+//    }
+//    else if (rootViewController.view.top == 20 && baseNavViewController.view.top == 20){
+//        /*
+//         热点启动 或 热点启动切换到正常在切换到热点
+//         */
+//        NSLog(@"热点启动");
+//
+//        if(self.navigationController.navigationBarHidden == NO){//显示NAV
+//            top = top -20;
+//        }
+//        else{//不显示NAV
+//            top = top -40;
+//        }
+//    }
+//    else if (rootViewController.view.top == 0 && baseNavViewController.view.top == 20){
+//        /*
+//         热点启动，切换到正常
+//         */
+//        NSLog(@"热点启动，切换到正常");
+//        if(self.navigationController.navigationBarHidden == NO){//显示NAV
+//            //不处理
+//        }
+//        else{//不显示NAV
+//            top = top - 20;
+//        }
+//    }
+//    }
     
-    
+
     
     return top;
 }
@@ -112,8 +111,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarFrameDidChange:) name : UIApplicationDidChangeStatusBarFrameNotification object : nil ];
     
-    NSArray *titles     = @[@"乡邻",@"惠农",@"",@"乡里",@"我的"];
-    
+    NSArray *titles     = @[@"视频",@"景区",@"",@"聊天",@"我的"];
+
     
     NSMutableDictionary * propertyProjectImageDic= [NSMutableDictionary dictionaryWithCapacity:0];
     [propertyProjectImageDic setObject:[UIImage imageNamed:@"tabBar0"] forKey:@"Default"];

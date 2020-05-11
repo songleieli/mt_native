@@ -1,16 +1,54 @@
 PODS:
+  - AMap2DMap (5.6.1):
+    - AMapFoundation (~> 1.4)
+  - AMapFoundation (1.6.3)
+  - ISVImageScrollView (0.1.2)
+  - MMLayout (0.2.0)
+  - ReactiveObjC (3.1.1)
+  - SDWebImage (5.5.2):
+    - SDWebImage/Core (= 5.5.2)
+  - SDWebImage/Core (5.5.2)
   - SVProgressHUD (2.2.5)
+  - Toast (4.0.0)
+  - TXIMSDK_iOS (4.7.2)
+  - TXIMSDK_TUIKit_iOS (4.6.100):
+    - ISVImageScrollView (= 0.1.2)
+    - MMLayout (= 0.2.0)
+    - ReactiveObjC (= 3.1.1)
+    - SDWebImage (= 5.5.2)
+    - Toast (= 4.0.0)
+    - TXIMSDK_iOS
 
 DEPENDENCIES:
+  - AMap2DMap
   - SVProgressHUD
+  - TXIMSDK_TUIKit_iOS
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AMap2DMap
+    - AMapFoundation
+    - ISVImageScrollView
+    - MMLayout
+    - ReactiveObjC
+    - SDWebImage
     - SVProgressHUD
+    - Toast
+    - TXIMSDK_iOS
+    - TXIMSDK_TUIKit_iOS
 
 SPEC CHECKSUMS:
+  AMap2DMap: cac76bc057de18a1641f34df6b50bf5bc6b23571
+  AMapFoundation: 9ed923193b357ebb30a073e9fe255d3c24054d5a
+  ISVImageScrollView: ba511d12a1661b40feb8921309c0854bf93ec749
+  MMLayout: 3fb59d58eeb8656c64e61d550fb0088e10666c11
+  ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
+  SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+  TXIMSDK_iOS: 0d3c292920c96ba08b6fa8efde65c7488eb436a7
+  TXIMSDK_TUIKit_iOS: 7c5a6556929b590e3d2cfb85a865a3c5b28f4d87
 
-PODFILE CHECKSUM: 783b66b8a065fae30b429d9939c0f8f0b5ddbbfd
+PODFILE CHECKSUM: b7253ef1d15a8531fd87ce27d09d17d909440825
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.7.1

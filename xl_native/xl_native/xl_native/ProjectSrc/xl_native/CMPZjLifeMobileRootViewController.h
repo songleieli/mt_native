@@ -10,6 +10,7 @@
 #import "PopViewController.h"
 #import "WYPopoverController.h"
 #import "QBImagePickerController.h"
+#import "MTScenicspotViewController.h"
 
 //test
 #import "PublishViewController.h"
@@ -26,7 +27,7 @@
 
 @class BaseNavigationController;
 
-@class GKDouyinHomeViewController;
+@class MTVideoViewController;
 @class MTFollowViewController;
 @class MTMessageViewController;
 @class UserInfoViewController;
@@ -34,15 +35,17 @@
 @interface CMPZjLifeMobileRootViewController : UIViewController
 
 //viewController
-@property (nonatomic, strong) GKDouyinHomeViewController* homeNewViewController;
-@property (nonatomic, strong) MTFollowViewController* followViewController;
+@property (nonatomic, strong) MTVideoViewController* videoViewController;
+//@property (nonatomic, strong) MTFollowViewController* followViewController;
+@property (nonatomic, strong) MTScenicspotViewController* scenicspotViewController;
+
 @property (nonatomic, strong) UIViewController* topicViewController;
 @property (nonatomic, strong) MTMessageViewController *messageViewController;
 @property (nonatomic, strong) UserInfoViewController* userInfoViewController; 
 
 //NavViewController
-@property (nonatomic, strong) BaseNavigationController *xlHomeNavViewController;
-@property (nonatomic, strong) BaseNavigationController *followNavViewController;
+@property (nonatomic, strong) BaseNavigationController *videoNavViewController;
+@property (nonatomic, strong) BaseNavigationController *scenicspotNavViewController;
 @property (nonatomic,strong)   BaseNavigationController * topicNavViewController;
 @property (nonatomic, strong) BaseNavigationController *messageNavViewController;
 @property (nonatomic,strong)   BaseNavigationController * userInfoNavViewController;

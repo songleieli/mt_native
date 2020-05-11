@@ -126,7 +126,7 @@
     self.textFieldSearchKey.backgroundColor = [UIColor whiteColor];
     [self.textFieldBgView addSubview:self.textFieldSearchKey];
     self.textFieldSearchKey.backgroundColor = RGBA(58, 58, 67, 1);
-    [self.textFieldSearchKey setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+//    [self.textFieldSearchKey setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
 
 }
 

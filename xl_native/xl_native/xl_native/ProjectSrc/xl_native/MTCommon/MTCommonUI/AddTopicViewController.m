@@ -94,7 +94,7 @@
     self.textFieldSearchKey.returnKeyType = UIReturnKeyDone;
     self.textFieldSearchKey.font = MediumFont;
     self.textFieldSearchKey.backgroundColor = MTColorBtnNormal;
-    [self.textFieldSearchKey setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+//    [self.textFieldSearchKey setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     [self.textFieldBgView addSubview:self.textFieldSearchKey];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFiledEditChanged:) name:UITextFieldTextDidChangeNotification object:self.textFieldSearchKey];

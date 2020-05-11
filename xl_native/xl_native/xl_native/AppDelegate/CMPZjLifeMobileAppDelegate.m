@@ -10,7 +10,7 @@
 #import "TSStorageManager.h"
 #import "WebCacheHelpler.h"
 #import "NetWork_mt_upgrade.h"
-
+#import "TUIKit.h"
 
 @interface CMPZjLifeMobileAppDelegate ()<WXApiDelegate>
 
@@ -66,6 +66,9 @@
     [TXLiveBase setConsoleEnabled:YES];
     NSLog(@"TXUGCBase SDK Version = %@", [TXLiveBase getSDKVersionStr]);
     
+    [[TUIKit sharedInstance] setupWithAppId:1400354764]; // SDKAppID 可以在 即时通信 IM 控制台中获取
+    
+    [AMapServices sharedServices].apiKey = @"953f115f5a2e0c843ce82a9ddab30af9";
 
 }
 
@@ -169,7 +172,6 @@
      用于重载 注册推送通知。
      */
 }
-
 
 /*! @brief 发送一个sendReq后，收到微信的回应
  *

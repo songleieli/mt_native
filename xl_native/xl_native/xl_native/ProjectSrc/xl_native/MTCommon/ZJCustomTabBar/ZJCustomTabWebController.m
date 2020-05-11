@@ -92,8 +92,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarFrameDidChange:) name : UIApplicationDidChangeStatusBarFrameNotification object : nil ];
 
-    NSArray *titles     = @[@"首页",@"关注",@"",@"消息",@"我"];
-    
+    NSArray *titles     = @[@"视频",@"景区",@"",@"聊天",@"我的"];
+
     
     NSMutableDictionary * propertyProjectImageDic= [NSMutableDictionary dictionaryWithCapacity:0];
     [propertyProjectImageDic setObject:[UIImage imageNamed:@"tabBar0"] forKey:@"Default"];
