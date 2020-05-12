@@ -40,58 +40,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     
     
-    MJRefreshGifHeader *mJefreshGifHeader = [[MJRefreshGifHeader alloc]init];
-    [mJefreshGifHeader prepare];
-    [mJefreshGifHeader setRefreshingTarget:self refreshingAction:@selector(loadNewData)];
-    // 设置普通状态的动画图片
-    NSMutableArray *idleImages = [NSMutableArray array];
-    for (NSUInteger i = 1; i<=16; i++) {
-//        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_anim__000%zd", i]];
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%d", i]];
 
-        [idleImages addObject:image];
-    }
-    [mJefreshGifHeader setImages:idleImages forState:MJRefreshStateIdle];
-    
-    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
-    NSMutableArray *refreshingImages = [NSMutableArray array];
-    for (NSUInteger i = 1; i<=16; i++) {
-//        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%zd", i]];
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%ld", i]];
-
-        [refreshingImages addObject:image];
-    }
-    [mJefreshGifHeader setImages:refreshingImages forState:MJRefreshStatePulling];
-    // 设置正在刷新状态的动画图片
-    [mJefreshGifHeader setImages:refreshingImages forState:MJRefreshStateRefreshing];
-    // 隐藏时间
-    mJefreshGifHeader.lastUpdatedTimeLabel.hidden = YES;
-    // 隐藏状态
-    mJefreshGifHeader.stateLabel.hidden = YES;
-    
-    
-    
-    MJRefreshAutoGifFooter *footer = [[MJRefreshAutoGifFooter alloc]init];
-    [footer prepare];
-    [footer setRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
-    
-    
-    // 设置正在刷新状态的动画图片
-    NSMutableArray *refreshingFooterImages = [NSMutableArray array];
-    for (NSUInteger i = 1; i<=16; i++) {
-//        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%zd", i]];
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%ld", i]];
-
-        [refreshingFooterImages addObject:image];
-    }
-    
-    [footer setImages:refreshingFooterImages forState:MJRefreshStateRefreshing];
-    footer.refreshingTitleHidden = YES;
-    
-    self.collectionView.mj_header = mJefreshGifHeader;
-    // 马上进入刷新状态
-    [self.collectionView.mj_header beginRefreshing];
-    self.collectionView.mj_footer = footer;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,6 +62,62 @@ static NSString * const reuseIdentifier = @"Cell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     return cell;
+}
+
+-(void)setRefresh{
+    
+        MJRefreshGifHeader *mJefreshGifHeader = [[MJRefreshGifHeader alloc]init];
+        [mJefreshGifHeader prepare];
+        [mJefreshGifHeader setRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+        // 设置普通状态的动画图片
+        NSMutableArray *idleImages = [NSMutableArray array];
+        for (NSUInteger i = 1; i<=16; i++) {
+    //        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_anim__000%zd", i]];
+            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%d", i]];
+
+            [idleImages addObject:image];
+        }
+        [mJefreshGifHeader setImages:idleImages forState:MJRefreshStateIdle];
+        
+        // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+        NSMutableArray *refreshingImages = [NSMutableArray array];
+        for (NSUInteger i = 1; i<=16; i++) {
+    //        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%zd", i]];
+            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%ld", i]];
+
+            [refreshingImages addObject:image];
+        }
+        [mJefreshGifHeader setImages:refreshingImages forState:MJRefreshStatePulling];
+        // 设置正在刷新状态的动画图片
+        [mJefreshGifHeader setImages:refreshingImages forState:MJRefreshStateRefreshing];
+        // 隐藏时间
+        mJefreshGifHeader.lastUpdatedTimeLabel.hidden = YES;
+        // 隐藏状态
+        mJefreshGifHeader.stateLabel.hidden = YES;
+        
+        
+        
+        MJRefreshAutoGifFooter *footer = [[MJRefreshAutoGifFooter alloc]init];
+        [footer prepare];
+        [footer setRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+        
+        
+        // 设置正在刷新状态的动画图片
+        NSMutableArray *refreshingFooterImages = [NSMutableArray array];
+        for (NSUInteger i = 1; i<=16; i++) {
+    //        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%zd", i]];
+            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%ld", i]];
+
+            [refreshingFooterImages addObject:image];
+        }
+        
+        [footer setImages:refreshingFooterImages forState:MJRefreshStateRefreshing];
+        footer.refreshingTitleHidden = YES;
+        
+        self.collectionView.mj_header = mJefreshGifHeader;
+        // 马上进入刷新状态
+//        [self.collectionView.mj_header beginRefreshing];
+        self.collectionView.mj_footer = footer;
 }
 
 #pragma mark - 下拉刷新和上拉加载更多，需要OverWrite

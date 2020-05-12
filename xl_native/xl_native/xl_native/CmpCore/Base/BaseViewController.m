@@ -50,6 +50,9 @@
     
     if (!_navBackGround) {
         _navBackGround = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, kNavBarHeight_New)];
+        
+
+        
         [self.view addSubview:_navBackGround];
     }
     return _navBackGround;

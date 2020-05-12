@@ -266,7 +266,12 @@ static GlobalFunc *sharedInstance;
     return [dateFormatter dateFromString:timestr];
 }
 
-
++(void)afterTime:(float)time todo:(VoidBlock)block{
+    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC));
+    dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+        block();
+    });
+}
 
 
 #pragma mark - UIImagePickerControllerDelegate

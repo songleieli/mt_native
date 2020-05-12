@@ -64,6 +64,7 @@ static ZJLoginService *SharedInstance = nil;
     if([GlobalData sharedInstance].hasLogin == NO){ //没有登陆
         ZJLoginViewController *tempVC = [[ZJLoginViewController alloc] init];
         BaseNavigationController *tempNav = [[BaseNavigationController alloc]initWithRootViewController:tempVC];
+        tempNav.modalPresentationStyle = UIModalPresentationFullScreen; //全屏模式，修复ios13 bug
         [[UIApplication sharedApplication].delegate.window.rootViewController presentViewController:tempNav
                                                                                            animated:isAnimat
                                                                                          completion:^{

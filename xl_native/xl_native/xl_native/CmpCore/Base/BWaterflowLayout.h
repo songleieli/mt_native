@@ -30,7 +30,7 @@
 - (CGFloat)columnCountInWaterflowLayout:(BWaterflowLayout *)waterflowLayout;
 /**每一列之间的间距*/
 - (CGFloat)columnMarginInWaterflowLayout:(BWaterflowLayout *)waterflowLayout;
-/**每一行之间的间距*/
+/**每一列之间的间距*/
 - (CGFloat)rowMarginInWaterflowLayout:(BWaterflowLayout *)waterflowLayout;
 /**cell边缘的间距*/
 - (UIEdgeInsets)edgeInsetsInWaterflowLayout:(BWaterflowLayout *)waterflowLayout;
@@ -42,6 +42,3 @@
 @property (nonatomic, weak) id<BWaterflowLayoutDelegate> delegate;
 
 @end
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com

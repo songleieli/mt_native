@@ -24,7 +24,13 @@
 @property (nonatomic, assign) NSInteger     currentPage;//当前页,默认值是1
 @property (nonatomic, assign) NSInteger     totalCount;//总条数
 
+
+
 #pragma mark ------------下拉刷新和上拉加载更多，需要OverWrite
+
+
+-(void)setRefresh;
+
 - (void)loadMoreData;
 - (void)loadNewData;
 

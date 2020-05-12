@@ -20,26 +20,14 @@ static NSString* const CollectionCellId=@"VideoCollectionViewCellId";
 
 @implementation VideoCollectionViewCell
 
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        [self initialization];
-    }
-    return self;
+#pragma mark - 类方法
++ (NSString *)registerCellID{
+    
+    return CollectionCellId;
 }
 
 
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (self) {
-        [self initialization];
-    }
-    return self;
-}
-
+#pragma mark - 初始化
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -67,118 +55,85 @@ static NSString* const CollectionCellId=@"VideoCollectionViewCellId";
     
     self.contentView.backgroundColor = [UIColor whiteColor];
     
-    [self.contentView addSubview:self.containView];
     
-    [self.contentView addSubview:self.contentLable];
-   
+    _imageView = [[UIImageView alloc] init];
+    _imageView.top = 0;
+    _imageView.left = 0;
+    _imageView.size = [UIView getSize_width:self.width height:self.height];
+    _imageView.backgroundColor = ColorThemeGray;
+    _imageView.contentMode = UIViewContentModeScaleAspectFill;
+    _imageView.clipsToBounds=true;
+    [self.contentView addSubview:_imageView];
     
-    [self containViewF];
-
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.colors = @[(__bridge id)ColorClear.CGColor, (__bridge id)ColorBlackAlpha20.CGColor, (__bridge id)ColorBlackAlpha60.CGColor];
+    gradientLayer.locations = @[@0.3, @0.6, @1.0];
+    gradientLayer.startPoint = CGPointMake(0.0f, 0.0f);
+    gradientLayer.endPoint = CGPointMake(0.0f, 1.0f);
+    gradientLayer.frame = CGRectMake(0, self.frame.size.height - 100, self.frame.size.width, 100);
+    [_imageView.layer addSublayer:gradientLayer];
     
-    [self contentLableF];
+    _favoriteNum = [[UIButton alloc] init];
+    [_favoriteNum setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [_favoriteNum setTitleEdgeInsets:UIEdgeInsetsMake(0, 2, 0, 0)];
+    [_favoriteNum setTitle:@"0" forState:UIControlStateNormal];
+    [_favoriteNum setTitleColor:ColorWhite forState:UIControlStateNormal];
+    _favoriteNum.titleLabel.font = SmallFont;
+    [_favoriteNum setImage:[UIImage imageNamed:@"icon_home_likenum"] forState:UIControlStateNormal];
+    [_favoriteNum setImageEdgeInsets:UIEdgeInsetsMake(0, -2, 0, 0)];
+    [self.contentView addSubview:_favoriteNum];
     
-    
+//    [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.equalTo(self.contentView);
+//    }];
+//    [_favoriteNum mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.contentView).offset(10);
+//        make.bottom.right.equalTo(self.contentView).inset(10);
+//    }];
     
     
 }
-#pragma mark - 懒加载
 
-- (UILabel *)contentLable{
-
-
-    if (!_contentLable) {
-        _contentLable = [[UILabel alloc] init];
-        
-        _contentLable.font = [UIFont defaultFontWithSize:MasScale_1080(33)];
-        
-        _contentLable.textColor = NavLableColor;
-        
-        
-        _contentLable.textAlignment = NSTextAlignmentCenter;
-        
-
-        
-    }
-
-    return _contentLable;
-}
-
-- (void)contentLableF{
-
-    [_contentLable mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.center.mas_equalTo(_containView);
+- (void)fillDataWithModel:(HomeListModel *)model{
     
-
-    }];
-
-}
-
-
-
-- (UIView *)containView{
-
-
-    if (!_containView) {
-        _containView = [[UIView alloc] init];
-        
-        _containView.backgroundColor = RGBFromColor(0xeaeef7);
-        
-        
-        _containView.layer.masksToBounds = YES;
-        
-        _containView.layer.cornerRadius = MasScale_1080(28);
-
-        
+    self.listModel = model;
+    
+    NSRange range = [model.noodleVideoCover rangeOfString:@"f_webp"];
+    if(range.location != NSNotFound){
+        model.noodleVideoCover =  [model.noodleVideoCover stringByReplacingCharactersInRange:range withString:@"f_png"];
     }
     
-    return _containView;
     
-
-}
-
-
-- (void)containViewF{
-
-
-    [_containView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.top.mas_equalTo(self.contentView.mas_top).offset(0);
-      
-        make.leading.mas_equalTo(self.contentView.mas_leading).offset(MasScale_1080(0));
+    NSRange range2 = [model.noodleVideoCover rangeOfString:@"//"];
+    if(range2.location != NSNotFound && ![model.noodleVideoCover hasPrefix:@"http://"]){
+        model.noodleVideoCover = [NSString stringWithFormat:@"http:%@",model.noodleVideoCover];
+    }
+    NSRange range3 = [model.noodleVideoCover rangeOfString:@"@"];
+    if(range3.location != NSNotFound){
+        //去掉 @ 及其以后的 字符
+        //http://publish-pic-cpu.baidu.com/4f9edf42-aba3-47e4-bb7b-587d54484630.jpeg@w_544,h_960|c_1,x_2,y_0,w_540,h_960
         
-        make.height.mas_equalTo(MasScale_1080(60));
-        make.width.mas_equalTo(MasScale_1080(300));
-       
-    }];
-
-
-}
-
-
-#pragma mark - 实例方法
-
-
-- (void)dataBind:(NSString *)titleStr{
-
-
-    self.contentLable.text = titleStr;
-
-}
-
-#pragma mark - 类方法
-+ (NSString *)registerCellID
-{
+        //model.noodleVideoCover = [NSString stringWithFormat:@"http:%@",model.noodleVideoCover];
+        
+        model.noodleVideoCover = [model.noodleVideoCover substringToIndex:range3.location];
+        
+        NSLog(@"-----");
+    }
     
-    return CollectionCellId;
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.noodleVideoCover]
+                 placeholderImage:[UIImage imageNamed:@"actitvtiyDefout"]];
+    [self.favoriteNum setTitle:[NSString formatCount:[model.likeSum integerValue]] forState:UIControlStateNormal];
     
+    
+    
+//    self.titleLalbe.text = model.topicName;
+//    self.useCountLalbe.text = [NSString stringWithFormat:@"%@次播放",[NSString formatCount:[model.playSum integerValue]]];
 }
 
-
-
-
-#pragma mark  - delegate
-
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    [self.imageView setImage:nil];
+}
 
 
 @end

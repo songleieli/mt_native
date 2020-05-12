@@ -22,6 +22,8 @@
 #import "GlobalDefine.h"
 #import "GlobalFunc.h"
 #import "UIImageView+WebCache.h"
+#import "SDWebImageDownloader.h"
+
 #import "UIButton+WebCache.h"
 #import "BaseViewController.h"
 #import "ZJBaseViewController.h"

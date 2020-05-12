@@ -12,6 +12,7 @@
 #import  "MTChangeViewAreaViewController.h"
 #import "VideoViewFlowLayout.h"
 #import "VideoCollectionViewCell.h"
+#import "ScrollPlayerListViewController.h"
 
 @interface MTVideoViewController ()<UICollectionViewDelegate,
 UICollectionViewDataSource,
@@ -61,6 +62,14 @@ UICollectionViewDelegateFlowLayout>
     [leftButton addTarget:self action:@selector(changeViewAreaClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.btnLeft = leftButton;
+    
+    UILabel *line = [[UILabel alloc]init];
+    line.tag = 999;
+    line.size = [UIView getSize_width:self.navBackGround.width height:1];
+    line.origin = [UIView getPoint_x:0 y:self.navBackGround.height-1];
+    line.backgroundColor = RGBAlphaColor(238, 238, 238, 1);
+    
+    [self.navBackGround addSubview:line];
 }
 
 -(void)dealloc{
@@ -79,27 +88,18 @@ UICollectionViewDelegateFlowLayout>
 
 -(void)setupUI{
     
-//    self.view.backgroundColor = ColorThemeBackground;
+    self.view.backgroundColor = ColorThemeBackground;
     
+    NSInteger count = 2; //每一行显示的个数
     //根据当前屏幕宽度j计算，item 宽度
-    _itemWidth = (ScreenWidth - 3) / 3.0f;
+    _itemWidth = (ScreenWidth - 3) / count;
     _itemHeight = _itemWidth * 1.35f; //高度为宽度的1.35倍
     
-    //SafeAreaTopHeight + kSlideTabBarHeight 为固定的高度
     VideoViewFlowLayout *layout = [[VideoViewFlowLayout alloc] initWithTopHeight:SafeAreaTopHeight + kSlideTabBarHeight];
+    
     layout.minimumLineSpacing = 1.5;     //行间距
     layout.minimumInteritemSpacing = 0;  //列间距
-    
-//    CGRect frame = CGRectZero;
-//    if(self.fromType == FromTypeMy){
-//        frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight  - kTabBarHeight_New);
-//    }
-//    else{
-//        frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
-//    }
-    
     CGRect frame = CGRectMake(0, kNavBarHeight_New, ScreenWidth, ScreenHeight - kNavBarHeight_New - kTabBarHeight_New);;
-    
     self.collectionView = [[UICollectionView  alloc]initWithFrame:frame collectionViewLayout:layout];
     self.collectionView.backgroundColor = ColorClear;
     
@@ -111,13 +111,13 @@ UICollectionViewDelegateFlowLayout>
     
     self.collectionView.alwaysBounceVertical = YES; //UIScrollView 的回弹效果
     self.collectionView.showsVerticalScrollIndicator = NO; //不显示滚动条
-    
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     [self.collectionView registerClass:[VideoCollectionViewCell class] forCellWithReuseIdentifier:[VideoCollectionViewCell registerCellID]];
-    
+    [self setRefresh]; //设置上拉加载更多和下拉刷新。ßß
     [self.view addSubview:self.collectionView];
-
+    
+    [self.collectionView.mj_header beginRefreshing];
 }
 
 -(void)changeViewAreaClick{
@@ -126,38 +126,78 @@ UICollectionViewDelegateFlowLayout>
     [self pushNewVC:changeViewAreaViewController animated:YES];
 }
 
+
+#pragma mark - --------- 数据加载代理 ------------
+
+-(void)loadNewData{
+    self.currentPageIndex = 0; //刷新是显示第一页美容
+    [self.mainDataArr removeAllObjects];
+    
+    [self initRequest];
+}
+
+-(void)loadMoreData{
+    [self initRequest];
+}
+
+#pragma mark --------- 网络请求 ------------
+
+-(void)initRequest {
+    
+    NetWork_mt_home_list *request = [[NetWork_mt_home_list alloc] init];
+    request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
+    request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
+    request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+    [request startGetWithBlock:^(HomeListResponse *result, NSString *msg) {
+        /*
+         缓存暂时先不用考虑
+         */
+    } finishBlock:^(HomeListResponse *result, NSString *msg, BOOL finished) {
+        
+
+        
+        if(finished){
+            if (self.currentPageIndex == 1 ) {
+                [self.mainDataArr removeAllObjects];
+                [self refreshNoDataViewWithListCount:result.obj.count];
+            }
+            [self.mainDataArr addObjectsFromArray:result.obj];
+            
+            //去掉 collectionView 加载 闪动的动画
+            [UIView setAnimationsEnabled:NO];
+            [self.collectionView reloadData];
+            [GlobalFunc afterTime:1.0f todo:^{
+                 [UIView setAnimationsEnabled:YES];
+                [self.collectionView.mj_header endRefreshing];
+            }];
+        }
+        else{
+            [self.collectionView.mj_header endRefreshing];
+            self.currentPageIndex=self.currentPageIndex-1;
+            [UIWindow showTips:msg];
+        }
+    }];
+}
+
+
+#pragma mark --------- UICollectionView DataSource ------------
+
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 100;
+    return self.mainDataArr.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
+    HomeListModel * listModel = [self.mainDataArr objectAtIndex:[indexPath row]];
     VideoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[VideoCollectionViewCell registerCellID] forIndexPath:indexPath];
-    
-    cell.contentView.backgroundColor = [UIColor yellowColor];
-    
-    
-    if (![cell.contentView viewWithTag:100]) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-        label.tag = 100;
-        label.textColor = [UIColor redColor];
-        label.font = [UIFont boldSystemFontOfSize:17];
-        [cell.contentView addSubview:label];
-    }
-    
-    UILabel *label = [cell.contentView viewWithTag:100];
-    
-    label.text = [NSString stringWithFormat:@"%zd", indexPath.item];
-    
-    
+    [cell fillDataWithModel:listModel];
     return cell;
-    
 }
 
 
@@ -174,23 +214,15 @@ UICollectionViewDelegateFlowLayout>
     return  CGSizeMake(_itemWidth, _itemHeight);
 }
 
+
 //UICollectionViewDelegate Delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//    self.selectIndex = indexPath.row;
-//
-//    ScrollPlayerListViewController *playerListViewController;
-//    if(_tabIndex == 0){ //我的作品
-//        playerListViewController = [[ScrollPlayerListViewController alloc] initWithVideoData:self.workAwemes currentIndex:self.selectIndex];
-//    }
-//    else if (_tabIndex == 1){ //动态
-//        playerListViewController = [[ScrollPlayerListViewController alloc] initWithVideoData:self.dynamicAwemes currentIndex:self.selectIndex];
-//
-//    }
-//    else{//喜欢
-//        playerListViewController = [[ScrollPlayerListViewController alloc] initWithVideoData:self.favoriteAwemes currentIndex:self.selectIndex];
-//
-//    }
-//    [self pushNewVC:playerListViewController animated:YES];
+    
+    HomeListModel * listModel = [self.mainDataArr objectAtIndex:[indexPath row]];
+
+    
+    ScrollPlayerListViewController *playerListViewController = [[ScrollPlayerListViewController alloc] initWithVideoData:self.mainDataArr currentIndex:indexPath.row];
+    [self pushNewVC:playerListViewController animated:YES];
 }
 
 

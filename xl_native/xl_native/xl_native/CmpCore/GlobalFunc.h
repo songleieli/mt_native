@@ -62,6 +62,8 @@ typedef void(^IntegerBlock)(NSInteger index);
 
 +(NSDate*) getDateWithTimeStr:(NSString*)timestr;
 
++(void)afterTime:(float)time todo:(VoidBlock)block;
+
 
 //随机色
 +(UIColor *)randomColor;

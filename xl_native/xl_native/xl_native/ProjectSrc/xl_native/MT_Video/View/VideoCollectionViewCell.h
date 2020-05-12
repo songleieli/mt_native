@@ -7,15 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NetWork_mt_home_list.h"
 
 @interface VideoCollectionViewCell : UICollectionViewCell
 
 
-- (void)dataBind:(NSString *)titleStr;
+#pragma mark ------- 属性 ------
 
+@property(nonatomic,strong) HomeListModel * listModel;
 
-// 创建id
+@property (nonatomic, strong) UIImageView    *imageView;
+@property (nonatomic, strong) UIButton         *favoriteNum;
+
+#pragma mark ------- 方法 ------
 
 + (NSString *)registerCellID;
+
+- (void)fillDataWithModel:(HomeListModel *)listModel;
+
 
 @end
