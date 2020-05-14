@@ -277,6 +277,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define XLColorMainClassTwoTitle    RGBFromColor(0x666666)   //二级标题色
 #define XLColorTitleTip             RGBFromColor(0xc4c4c4)   //注释,提示文字色
 #define XLColorCutLine              RGBFromColor(0xe1e1e1)   //分割线
+#define XLColorTagColor    RGBAlphaColor(43, 200, 198, 1)   //首页tag 主题色 和 tag颜色交替显示
+
 
 
 

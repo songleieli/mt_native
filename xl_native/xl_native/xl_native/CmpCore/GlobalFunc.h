@@ -47,6 +47,8 @@ typedef void(^IntegerBlock)(NSInteger index);
 + (NSString *)stringFromDate:(NSDate *)date format:(NSString*)format;
 
 + (UIImage *)imageWithColor:(UIColor *)color;
+
+//size 限制最大的宽度和高度
 + (CGSize)sizeWithText:(NSString *)text font:(UIFont *)font size:(CGSize)size;
 
 /*

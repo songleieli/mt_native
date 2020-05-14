@@ -205,6 +205,19 @@
 		04BBCBA922571B1F009AC181 /* AddLocarionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBCBA822571B1F009AC181 /* AddLocarionCell.m */; };
 		04BBCBAD2257738B009AC181 /* NetWork_mt_likeComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBCBAC2257738B009AC181 /* NetWork_mt_likeComment.m */; };
 		04BBCBB02257779E009AC181 /* NetWork_mt_delLikeComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBCBAF2257779E009AC181 /* NetWork_mt_delLikeComment.m */; };
+		04C13734246BB89900A603EB /* NetWork_mt_scenic_getScenicByAreaParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C13732246BB89900A603EB /* NetWork_mt_scenic_getScenicByAreaParam.m */; };
+		04C13738246C2DA100A603EB /* NetWork_mt_scenic_getScenicById.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C13737246C2DA000A603EB /* NetWork_mt_scenic_getScenicById.m */; };
+		04C13750246D891A00A603EB /* LBOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1373D246D891A00A603EB /* LBOptionView.m */; };
+		04C13751246D891A00A603EB /* LBPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04C1373E246D891A00A603EB /* LBPhotoBrowser.bundle */; };
+		04C13752246D891A00A603EB /* LBPhotoBrowserConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1373F246D891A00A603EB /* LBPhotoBrowserConst.m */; };
+		04C13753246D891A00A603EB /* UIView+LBFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C13740246D891A00A603EB /* UIView+LBFrame.m */; };
+		04C13754246D891A00A603EB /* LBLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C13741246D891A00A603EB /* LBLoadingView.m */; };
+		04C13755246D891A00A603EB /* LBPhotoBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C13743246D891A00A603EB /* LBPhotoBrowserView.m */; };
+		04C13756246D891A00A603EB /* LBPhotoBrowserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C13744246D891A00A603EB /* LBPhotoBrowserManager.m */; };
+		04C13757246D891A00A603EB /* UIImage+LBDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C13745246D891A00A603EB /* UIImage+LBDecoder.m */; };
+		04C13758246D891A00A603EB /* LBZoomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C13749246D891A00A603EB /* LBZoomScrollView.m */; };
+		04C13759246D891A00A603EB /* LBTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1374E246D891A00A603EB /* LBTapDetectingImageView.m */; };
+		04C1375E246D974300A603EB /* TagsFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1375C246D974300A603EB /* TagsFrame.m */; };
 		04C171E221CDDE9E0077FA6C /* UserInfoPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */; };
 		04C1720B21CE3EC80077FA6C /* NetWork_mt_getMyVideos.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171F421CE3EC70077FA6C /* NetWork_mt_getMyVideos.m */; };
 		04C1720C21CE3EC80077FA6C /* NetWork_mt_getDynamics.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171F821CE3EC70077FA6C /* NetWork_mt_getDynamics.m */; };
@@ -1363,6 +1376,31 @@
 		04BBCBAC2257738B009AC181 /* NetWork_mt_likeComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_likeComment.m; sourceTree = "<group>"; };
 		04BBCBAE2257779D009AC181 /* NetWork_mt_delLikeComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_delLikeComment.h; sourceTree = "<group>"; };
 		04BBCBAF2257779E009AC181 /* NetWork_mt_delLikeComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_delLikeComment.m; sourceTree = "<group>"; };
+		04C13732246BB89900A603EB /* NetWork_mt_scenic_getScenicByAreaParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_scenic_getScenicByAreaParam.m; sourceTree = "<group>"; };
+		04C13733246BB89900A603EB /* NetWork_mt_scenic_getScenicByAreaParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_scenic_getScenicByAreaParam.h; sourceTree = "<group>"; };
+		04C13736246C2DA000A603EB /* NetWork_mt_scenic_getScenicById.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_scenic_getScenicById.h; sourceTree = "<group>"; };
+		04C13737246C2DA000A603EB /* NetWork_mt_scenic_getScenicById.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_scenic_getScenicById.m; sourceTree = "<group>"; };
+		04C1373D246D891A00A603EB /* LBOptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBOptionView.m; sourceTree = "<group>"; };
+		04C1373E246D891A00A603EB /* LBPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LBPhotoBrowser.bundle; sourceTree = "<group>"; };
+		04C1373F246D891A00A603EB /* LBPhotoBrowserConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBPhotoBrowserConst.m; sourceTree = "<group>"; };
+		04C13740246D891A00A603EB /* UIView+LBFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LBFrame.m"; sourceTree = "<group>"; };
+		04C13741246D891A00A603EB /* LBLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBLoadingView.m; sourceTree = "<group>"; };
+		04C13742246D891A00A603EB /* LBZoomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBZoomScrollView.h; sourceTree = "<group>"; };
+		04C13743246D891A00A603EB /* LBPhotoBrowserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBPhotoBrowserView.m; sourceTree = "<group>"; };
+		04C13744246D891A00A603EB /* LBPhotoBrowserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBPhotoBrowserManager.m; sourceTree = "<group>"; };
+		04C13745246D891A00A603EB /* UIImage+LBDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LBDecoder.m"; sourceTree = "<group>"; };
+		04C13746246D891A00A603EB /* LBTapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBTapDetectingImageView.h; sourceTree = "<group>"; };
+		04C13747246D891A00A603EB /* LBOptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBOptionView.h; sourceTree = "<group>"; };
+		04C13748246D891A00A603EB /* LBPhotoBrowserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBPhotoBrowserManager.h; sourceTree = "<group>"; };
+		04C13749246D891A00A603EB /* LBZoomScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBZoomScrollView.m; sourceTree = "<group>"; };
+		04C1374A246D891A00A603EB /* LBPhotoBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBPhotoBrowserView.h; sourceTree = "<group>"; };
+		04C1374B246D891A00A603EB /* LBLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBLoadingView.h; sourceTree = "<group>"; };
+		04C1374C246D891A00A603EB /* UIView+LBFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LBFrame.h"; sourceTree = "<group>"; };
+		04C1374D246D891A00A603EB /* LBPhotoBrowserConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBPhotoBrowserConst.h; sourceTree = "<group>"; };
+		04C1374E246D891A00A603EB /* LBTapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBTapDetectingImageView.m; sourceTree = "<group>"; };
+		04C1374F246D891A00A603EB /* UIImage+LBDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LBDecoder.h"; sourceTree = "<group>"; };
+		04C1375C246D974300A603EB /* TagsFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsFrame.m; sourceTree = "<group>"; };
+		04C1375D246D974300A603EB /* TagsFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsFrame.h; sourceTree = "<group>"; };
 		04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoPlayerCell.m; sourceTree = "<group>"; };
 		04C171E121CDDE9E0077FA6C /* UserInfoPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoPlayerCell.h; sourceTree = "<group>"; };
 		04C171F321CE3EC70077FA6C /* NetWork_mt_getDynamics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getDynamics.h; sourceTree = "<group>"; };
@@ -3187,6 +3225,52 @@
 			path = mt_boiled;
 			sourceTree = "<group>";
 		};
+		04C13731246BB89900A603EB /* mt_scenic */ = {
+			isa = PBXGroup;
+			children = (
+				04C13736246C2DA000A603EB /* NetWork_mt_scenic_getScenicById.h */,
+				04C13737246C2DA000A603EB /* NetWork_mt_scenic_getScenicById.m */,
+				04C13733246BB89900A603EB /* NetWork_mt_scenic_getScenicByAreaParam.h */,
+				04C13732246BB89900A603EB /* NetWork_mt_scenic_getScenicByAreaParam.m */,
+			);
+			path = mt_scenic;
+			sourceTree = "<group>";
+		};
+		04C1373C246D891A00A603EB /* LBPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				04C1373D246D891A00A603EB /* LBOptionView.m */,
+				04C1373E246D891A00A603EB /* LBPhotoBrowser.bundle */,
+				04C1373F246D891A00A603EB /* LBPhotoBrowserConst.m */,
+				04C13740246D891A00A603EB /* UIView+LBFrame.m */,
+				04C13741246D891A00A603EB /* LBLoadingView.m */,
+				04C13742246D891A00A603EB /* LBZoomScrollView.h */,
+				04C13743246D891A00A603EB /* LBPhotoBrowserView.m */,
+				04C13744246D891A00A603EB /* LBPhotoBrowserManager.m */,
+				04C13745246D891A00A603EB /* UIImage+LBDecoder.m */,
+				04C13746246D891A00A603EB /* LBTapDetectingImageView.h */,
+				04C13747246D891A00A603EB /* LBOptionView.h */,
+				04C13748246D891A00A603EB /* LBPhotoBrowserManager.h */,
+				04C13749246D891A00A603EB /* LBZoomScrollView.m */,
+				04C1374A246D891A00A603EB /* LBPhotoBrowserView.h */,
+				04C1374B246D891A00A603EB /* LBLoadingView.h */,
+				04C1374C246D891A00A603EB /* UIView+LBFrame.h */,
+				04C1374D246D891A00A603EB /* LBPhotoBrowserConst.h */,
+				04C1374E246D891A00A603EB /* LBTapDetectingImageView.m */,
+				04C1374F246D891A00A603EB /* UIImage+LBDecoder.h */,
+			);
+			path = LBPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		04C1375B246D974300A603EB /* TagsFrame */ = {
+			isa = PBXGroup;
+			children = (
+				04C1375C246D974300A603EB /* TagsFrame.m */,
+				04C1375D246D974300A603EB /* TagsFrame.h */,
+			);
+			path = TagsFrame;
+			sourceTree = "<group>";
+		};
 		04C171DF21CDDE9E0077FA6C /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -4636,6 +4720,7 @@
 		7375C1FA1CE5660C0059974F /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
+				04C13731246BB89900A603EB /* mt_scenic */,
 				040046C8229BDCF10016D21B /* mt_version */,
 				04B4286822915E5B00E2F776 /* mt_boiled */,
 				04DB379E227410D30072C301 /* mt_setting */,
@@ -4698,6 +4783,8 @@
 		738866751CE2C7AD00296E79 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				04C1375B246D974300A603EB /* TagsFrame */,
+				04C1373C246D891A00A603EB /* LBPhotoBrowser */,
 				0441A280214670500077EA1F /* CustromUItextFeild */,
 				04274C6D20EDC5CC00D4B5E2 /* iCarousel */,
 				D9D2087A1F0DD3A400B9FE13 /* DLRadioButton */,
@@ -5478,6 +5565,7 @@
 				04E6E8EB21A8FFDC007C8A16 /* ghostshadow-12.png in Resources */,
 				04E6E9FD21A902D1007C8A16 /* Paster.bundle in Resources */,
 				04E6E9D721A8FFDC007C8A16 /* phantom-0.png in Resources */,
+				04C13751246D891A00A603EB /* LBPhotoBrowser.bundle in Resources */,
 				04E6E98C21A8FFDC007C8A16 /* fenlie14.png in Resources */,
 				04E6E99421A8FFDC007C8A16 /* fenlie21.png in Resources */,
 				04E6E92F21A8FFDC007C8A16 /* jump_17.png in Resources */,
@@ -5943,9 +6031,11 @@
 				0452AD832279A47900E04998 /* NSBundle+MJRefresh.m in Sources */,
 				04D9B4CE21D343A400DEC8B9 /* MessageCell.m in Sources */,
 				04CBC3E32179C01300658E47 /* GPUImagePoissonBlendFilter.m in Sources */,
+				04C13752246D891A00A603EB /* LBPhotoBrowserConst.m in Sources */,
 				04F3B5A62247498E00F4C82E /* NSObject+A2BlockDelegate.m in Sources */,
 				04CBC3872179C01300658E47 /* GPUImageZoomBlurFilter.m in Sources */,
 				04F3B68D22474D8400F4C82E /* QBSlomoIconView.m in Sources */,
+				04C13754246D891A00A603EB /* LBLoadingView.m in Sources */,
 				0452AE1D2279A96600E04998 /* NSArray+MASAdditions.m in Sources */,
 				04FB537521C69B9F000ED131 /* AVPlayerManager.m in Sources */,
 				04A8C1252219013F004980F5 /* NetWork_mt_collectionTopic.m in Sources */,
@@ -5968,15 +6058,19 @@
 				04A04EB621ECE553007CBABF /* HomeSearchResultViewController.m in Sources */,
 				D954C4F51DD1A40F003CA535 /* UIView+Genie.m in Sources */,
 				04CBC36D2179C01300658E47 /* GPUImageKuwaharaRadius3Filter.m in Sources */,
+				04C13755246D891A00A603EB /* LBPhotoBrowserView.m in Sources */,
 				04CBC3452179C01300658E47 /* GPUImageUIElement.m in Sources */,
 				04CBC3812179C01300658E47 /* GPUImageColorMatrixFilter.m in Sources */,
+				04C13734246BB89900A603EB /* NetWork_mt_scenic_getScenicByAreaParam.m in Sources */,
 				0452AD842279A47900E04998 /* UIView+MJExtension.m in Sources */,
 				0452ADC12279A50100E04998 /* UIImageView+AFNetworking.m in Sources */,
 				0452ADC72279A50100E04998 /* AFURLResponseSerialization.m in Sources */,
 				04CBC3992179C01300658E47 /* GPUImageOpacityFilter.m in Sources */,
 				04CBC3892179C01300658E47 /* GPUImageHardLightBlendFilter.m in Sources */,
+				04C13738246C2DA100A603EB /* NetWork_mt_scenic_getScenicById.m in Sources */,
 				D957AD5D1DD2CB2F00B7EE09 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				0441FA2321CF3FBA00801225 /* LoadMoreControl.m in Sources */,
+				04C13757246D891A00A603EB /* UIImage+LBDecoder.m in Sources */,
 				D98FCFC71DEFC41A0023C076 /* STPickerViewUI.m in Sources */,
 				04FD7DE021EE2DB7004A57CA /* MTSearchHeadFunctionView.m in Sources */,
 				04CBC3EB2179C01300658E47 /* GPUImageMaskFilter.m in Sources */,
@@ -6017,6 +6111,7 @@
 				0449AB6A2181BBF100D6172D /* ZJLoginService.m in Sources */,
 				0452AD882279A47900E04998 /* MJRefreshAutoStateFooter.m in Sources */,
 				D9D2087E1F0DD3A400B9FE13 /* DLRadioButton.m in Sources */,
+				04C13753246D891A00A603EB /* UIView+LBFrame.m in Sources */,
 				040E28B821C0E20200D15B44 /* AwemeCollectionCell.m in Sources */,
 				04CBC3592179C01300658E47 /* GPUImageHistogramFilter.m in Sources */,
 				0452ADC52279A50100E04998 /* AFAutoPurgingImageCache.m in Sources */,
@@ -6041,6 +6136,7 @@
 				0405BE802220F6F90098D590 /* UserCollectionSubMusicViewController.m in Sources */,
 				04FB537121C61639000ED131 /* WebCacheHelpler.m in Sources */,
 				D954C5171DD1A40F003CA535 /* UIImage+animatedGIF.m in Sources */,
+				04C13759246D891A00A603EB /* LBTapDetectingImageView.m in Sources */,
 				D957AD131DD2BFE600B7EE09 /* BWaterflowLayout.m in Sources */,
 				0400F32A21AFA62D0038E16C /* UIAlertView+WX.m in Sources */,
 				04CBC43D2179C01300658E47 /* GPUImageHueBlendFilter.m in Sources */,
@@ -6087,6 +6183,7 @@
 				04183B0721C2BC2200383E3F /* FocusView.m in Sources */,
 				04DCA8EF21A565D500691A3A /* EffectSelectView.m in Sources */,
 				04DCA8E721A565D500691A3A /* TCVideoJoinCell.m in Sources */,
+				04C13758246D891A00A603EB /* LBZoomScrollView.m in Sources */,
 				04F3B68922474D8400F4C82E /* QBAlbumsViewController.m in Sources */,
 				D954C55D1DD1A40F003CA535 /* GlobalData.m in Sources */,
 				04CBC3D92179C01300658E47 /* GPUImagePicture+TextureSubimage.m in Sources */,
@@ -6253,6 +6350,7 @@
 				04DCA8F321A565D500691A3A /* BottomTabBar.m in Sources */,
 				043A788E22197B6E00F20CDC /* NetWork_mt_getHotVideosByMusic.m in Sources */,
 				04CBC3752179C01300658E47 /* GPUImageHistogramGenerator.m in Sources */,
+				04C1375E246D974300A603EB /* TagsFrame.m in Sources */,
 				04CBC3F12179C01300658E47 /* GPUImageSubtractBlendFilter.m in Sources */,
 				04CBC41D2179C01300658E47 /* GPUImageHoughTransformLineDetector.m in Sources */,
 				04CBC44B2179C01300658E47 /* GPUImageCrosshatchFilter.m in Sources */,
@@ -6267,6 +6365,7 @@
 				0499B538223CC4260080A1B1 /* SoundMixView.m in Sources */,
 				04DCA87D21A55C5B00691A3A /* TVCReport.m in Sources */,
 				04CBC32D2179C01300658E47 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
+				04C13756246D891A00A603EB /* LBPhotoBrowserManager.m in Sources */,
 				04CBC3DF2179C01300658E47 /* GPUImageToneCurveFilter.m in Sources */,
 				04CBC4572179C01300658E47 /* GPUImageLuminosityBlendFilter.m in Sources */,
 				04C70D3B21E3AE600022D897 /* MTFollowViewController.m in Sources */,
@@ -6341,6 +6440,7 @@
 				04B6E2C72241423B00F3B51E /* PublishViewController.m in Sources */,
 				040E28B921C0E20200D15B44 /* SlideTabBar.m in Sources */,
 				040E28DB21C1047F00D15B44 /* UserResponse.m in Sources */,
+				04C13750246D891A00A603EB /* LBOptionView.m in Sources */,
 				0452AD8D2279A47900E04998 /* MJRefreshGifHeader.m in Sources */,
 				D954C5E21DD1A40F003CA535 /* GlobalFunc.m in Sources */,
 				04F3B4C8224746C100F4C82E /* Label.m in Sources */,

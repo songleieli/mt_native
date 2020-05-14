@@ -437,10 +437,10 @@
     self.isCacheToDB = YES;
     [self prepareRequestUrl:ERequestTypePost_JrLoan]; //处理参数
     
-    id result = [self getLocalCacheDataTypeAllFromDB:nil];
-    if(result){
-        cacheBlock(result,@"");
-    }
+//    id result = [self getLocalCacheDataTypeAllFromDB:nil];
+//    if(result){
+//        cacheBlock(result,@"");
+//    }
     
     [self startGetWithBlock:finishBlock];
 }

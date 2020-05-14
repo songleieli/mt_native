@@ -27,19 +27,16 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-        
-        UIImageView *imgIcon = [[UIImageView alloc] initWithFrame:self.bounds];
-//        imgIcon.backgroundColor = [UIColor redColor];
-//        imgIcon.image = [UIImage imageNamed:@"main_bannerIcon"];
-        [self addSubview:imgIcon];
-        
+        self.isUrlImg = YES;    //默认显示Url图片
+        self.isAutoScroll = YES;//默认自动滚动
+        self.isDisplayPageDefault = YES; //默认显示 pageDefault
     }
     return self;
 }
 
-- (void)reloadData:(NSArray*)source pageEnable:(BOOL)pageEnable full:(BOOL)full
-{
+- (void)reloadData:(NSArray*)source{
+    
+    
     if (source.count == 0) {
         return;
     }
@@ -50,7 +47,7 @@
     pageCount = source.count;
     
     if (source.count == 1) { //只有一张  不动
-        [self reloadOnlyViewWithPageEnable:pageEnable full:full];
+        [self reloadOnlyViewWithPageEnable];
         
     } else {
         //至少3张
@@ -58,10 +55,12 @@
             [muArrImg addObjectsFromArray:source];
         }
         
-        //初始化时间
-        [self initTime];
+        if(self.isAutoScroll){ //启动，自动滚动
+            //初始化时间
+            [self initTime];
+        }
         
-        [self reloadViewsWithPageEnable:pageEnable full:full];
+        [self reloadViews];
     }
 }
 
@@ -72,7 +71,8 @@
     }
     
     [self invalidateTimer];
-    self.scrolTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(changeImg) userInfo:nil repeats:YES];
+    
+    self.scrolTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(changeImg) userInfo:nil repeats:YES];
 }
 
 - (void)invalidateTimer
@@ -82,8 +82,8 @@
 }
 
 /*只有一张图片*/
-- (void)reloadOnlyViewWithPageEnable:(BOOL)pageEnable full:(BOOL)full
-{
+- (void)reloadOnlyViewWithPageEnable{
+    
     if (![muArrImg isKindOfClass:[NSArray class]] || muArrImg.count == 0) {
         return ;
     }
@@ -93,43 +93,44 @@
         _scrolDefault = [[UIScrollView alloc] initWithFrame:self.bounds];
         _scrolDefault.backgroundColor = [UIColor whiteColor];
         _scrolDefault.showsHorizontalScrollIndicator = NO;
-        _scrolDefault.pagingEnabled = pageEnable;
+        _scrolDefault.pagingEnabled = YES;
         _scrolDefault.delegate = self;
         [self addSubview:_scrolDefault];
         
         CGFloat width = self.frame.size.width;
         CGFloat height = self.frame.size.height;
         
-        MyImageView *imgViewDefault = [self addImageViewWithFrame:CGRectMake(0, 0, width, height) url:[muArrImg firstObject] tag:0 full:full];
-        imgViewDefault.image = [BundleUtil getCurrentBundleImageByName:[muArrImg firstObject]];
-        //[_scrolDefault addSubview:imgViewDefault];
-        imgViewDefault = nil;
+        NSString *imageUrl = [muArrImg firstObject];
         
+        MyImageView *imgViewDefault = [self addImageViewWithFrame:CGRectMake(0, 0, width, height) tag:0];
         
-//        [_pageDefault removeFromSuperview];
-//        _pageDefault = [[UIPageControl alloc] initWithFrame:CGRectMake(0, height-MasScale_1080(66), width, MasScale_1080(20))];
-//        _pageDefault.backgroundColor = [UIColor clearColor];
-//        _pageDefault.currentPageIndicatorTintColor = [UIColor whiteColor];
-//        _pageDefault.pageIndicatorTintColor = [UIColor lightGrayColor];
-//        _pageDefault.currentPage = 0;
-//        _pageDefault.numberOfPages = 1;
-//        _pageDefault.userInteractionEnabled = NO;
-//        [self addSubview:_pageDefault];
+        if(self.isUrlImg){
+            [imgViewDefault sd_setImageWithURL:[NSURL URLWithString:imageUrl]];
+        }
+        else{
+            imgViewDefault.image = [UIImage imageNamed:imageUrl];
+        }
+        imgViewDefault.contentMode =  UIViewContentModeScaleAspectFill; //图片不变形，可能会只显示部分
+        
         self.clipsToBounds = YES;
     }
 }
 
-- (void)reloadViewsWithPageEnable:(BOOL)pageEnable full:(BOOL)full
+- (void)reloadViews
 {
     muArrViews = [NSMutableArray array];
     @autoreleasepool {
+        
         [_scrolDefault removeFromSuperview];
+        
         _scrolDefault = [[UIScrollView alloc] initWithFrame:self.bounds];
         _scrolDefault.backgroundColor = [UIColor whiteColor];
         _scrolDefault.showsHorizontalScrollIndicator = NO;
-        _scrolDefault.pagingEnabled = pageEnable;
+        _scrolDefault.pagingEnabled = YES;
         _scrolDefault.delegate = self;
         [self addSubview:_scrolDefault];
+        
+        
         
         CGFloat width = self.frame.size.width;
         CGFloat height = self.frame.size.height;
@@ -141,41 +142,46 @@
         totalPage = 100000/muArrImg.count*muArrImg.count;
         currentIndex = totalPage/2;
         for (int i = 0; i < muArrImg.count; ++i) {
-            MyImageView *imgViewDefault = [self addImageViewWithFrame:CGRectMake((currentIndex+i)*width, 0, width, height) url:muArrImg[i] tag:(currentIndex+i) full:full];
+            MyImageView *imgViewDefault = [self addImageViewWithFrame:CGRectMake((currentIndex+i)*width, 0, width, height) tag:(currentIndex+i)];
             [muArrViews addObject:imgViewDefault];
             imgViewDefault = nil;
         }
         
-        
         [_pageDefault removeFromSuperview];
-        _pageDefault = [[UIPageControl alloc] initWithFrame:CGRectMake(0, height-MasScale_1080(66), width, MasScale_1080(20))];
+        
+        _pageDefault = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.height - sizeScale(30), width, sizeScale(20))];
         _pageDefault.backgroundColor = [UIColor clearColor];
         _pageDefault.currentPageIndicatorTintColor = [UIColor whiteColor];
         _pageDefault.pageIndicatorTintColor = [UIColor lightGrayColor];
         _pageDefault.currentPage = 0;
         _pageDefault.numberOfPages = pageCount;
         _pageDefault.userInteractionEnabled = NO;
+        
+        _pageDefault.hidden = !self.isDisplayPageDefault;
+        
         [self addSubview:_pageDefault];
+        
+        
         self.clipsToBounds = YES;
         
         _scrolDefault.contentSize = CGSizeMake(currentIndex*width*2, height);
         [_scrolDefault setContentOffset:CGPointMake(currentIndex*width, 0) animated:NO];
+        
+        
         [self loadImgWithIndex:currentIndex];
         [self changeImgWithIndex:currentIndex];
     }
 }
 
-- (MyImageView *)addImageViewWithFrame:(CGRect)frame url:(NSString *)url tag:(NSInteger)tag full:(BOOL)full
-{
+- (MyImageView *)addImageViewWithFrame:(CGRect)frame tag:(NSInteger)tag{
+    
     MyImageView *imgViewDefault = [[MyImageView alloc] initWithFrame:frame];
     imgViewDefault.index = tag;
     imgViewDefault.imageDelegate = self;
     imgViewDefault.userInteractionEnabled = YES;
     imgViewDefault.backgroundColor = [UIColor clearColor];
-    if (full) {
-        imgViewDefault.contentMode = UIViewContentModeScaleAspectFit;
-    }
-
+    
+    
     [self.scrolDefault addSubview:imgViewDefault];
     
     return imgViewDefault;
@@ -204,7 +210,7 @@
     [self.pageDefault updateCurrentPageDisplay];
 }
 
-- (void)changeImgWithIndex:(NSInteger)index
+- (void)changeImgWithIndex:(NSInteger)index 
 {
     currentIndex = index;
     if (index > 0) {
@@ -215,8 +221,8 @@
     }
 }
 
-- (void)loadImgWithIndex:(NSInteger)index
-{
+- (void)loadImgWithIndex:(NSInteger)index{
+    
     if (muArrViews.count == 0) {
         return;
     }
@@ -231,21 +237,16 @@
     
     NSInteger indexTemp = index%muArrViews.count;
     NSString *imgUrl = muArrImg[indexTemp];
-
+    if(self.isUrlImg){
+        [imgViewDefault sd_setImageWithURL:[NSURL URLWithString:imgUrl]];
+    }
+    else{
+        imgViewDefault.image = [UIImage imageNamed:imgUrl];
+    }
     
-    
-//    imgUrl = @"http://img2.imgtn.bdimg.com/it/u=1103657041\\,2822108077&fm=23&gp=0.jpg";
-   
-//    [imgViewDefault sd_setImageWithURL:[GlobalFunc urlWithStr:imgUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//    }];
-    
-//    [imgViewDefault setImage:[UIImage imageNamed:@"main_bannerIcon"]];
-    imgViewDefault.image = [BundleUtil getCurrentBundleImageByName:imgUrl];
     imgViewDefault.frame = CGRectMake(self.frame.size.width*index, 0, self.frame.size.width, self.frame.size.height);
     
-    imgViewDefault.contentMode =  UIViewContentModeScaleAspectFill; //图片不变形，可能会只显示部分
-    
-    
+    imgViewDefault.contentMode =  UIViewContentModeScaleAspectFill;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
