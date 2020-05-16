@@ -6,7 +6,7 @@
 //  Copyright © 2016年 CMP_Ljh. All rights reserved.
 //
 
-#import "NetWork_mt_scenic_getScenicByAreaParam.h"
+#import "NetWork_mt_scenic_getHotScenicList.h"
 
 //@implementation ScenicListModel
 //
@@ -19,25 +19,25 @@
 ////
 //@end
 
-@implementation ScenicGetScenicByAreaParamResponse
+@implementation ScenicGetHotScenicListResponse
 
 - (NSDictionary *)propertyMappingObjcJson {
     return @{@"obj" : @"obj"};
 }
 - (NSDictionary *)classNameForItemInArray {
-    return @{@"obj" : @"ScenicListModel"};
+    return @{@"obj" : @"ScenicModel"};
 }
 
 @end
 
 
-@implementation NetWork_mt_scenic_getScenicByAreaParam
+@implementation NetWork_mt_scenic_getHotScenicList
 
 -(Class)responseType{
-    return [ScenicGetScenicByAreaParamResponse class];
+    return [ScenicGetHotScenicListResponse class];
 }
 -(NSString*)responseCategory{
-    return @"/miantiao/scenic/getScenicByAreaParam";
+    return @"/miantiao/scenic/getHotScenicList";
 }
 
 

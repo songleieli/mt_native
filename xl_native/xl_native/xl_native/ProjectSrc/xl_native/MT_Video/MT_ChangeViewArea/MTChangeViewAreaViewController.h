@@ -7,10 +7,14 @@
 //
 
 #import "ZJCustomTabCollectionViewController.h"
-
+#import "NetWork_mt_scenic_getHotScenicList.h"
+#import "TagsFrame.h"
 #define kHEIGHT     (isIPhoneXAll?sizeScale(300.0f):sizeScale(275.0f))       //headImage Height
 
 @interface MTChangeViewAreaViewController : ZJBaseViewController
 
+@property (nonatomic,strong) TagsFrame *tagsFrame;//标签
+@property (nonatomic,strong) NSMutableArray   *arrayhotSpotStrs;
+@property (nonatomic,strong) NSMutableArray   *arrayhotSpotModel;
 
 @end

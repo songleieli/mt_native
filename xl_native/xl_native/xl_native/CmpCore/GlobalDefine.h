@@ -210,6 +210,7 @@ isIPhoneXAll = [[UIApplication sharedApplication] delegate].window.safeAreaInset
 
 #define MTColorCellHighlighted      RGBAlphaColor(29, 32, 42, 1)   //面条button高亮颜色
 
+#define FHLColorHighlighted [UIColor colorWithRed:247/255.0 green:247/255.0 blue:247/255.0 alpha:1.0]   //选中背景色
 
 /*
  定义全局的颜色值 乐家慧
@@ -454,3 +455,4 @@ alpha:1.0]
 
 #define NSNotificationUserQQLoginSuccess @"NSNotificationUserQQLoginSuccess"    //用户QQ第三方登录成功
 #define NSNotificationUserQQLoginFail @"NSNotificationUserQQLoginFail"    //用户QQ第三方登录失败
+#define NSNotificationUserChangeScenic @"NSNotificationUserChangeScenic"    //用户成功切换景区

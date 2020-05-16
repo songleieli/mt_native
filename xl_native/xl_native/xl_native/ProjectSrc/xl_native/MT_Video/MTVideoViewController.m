@@ -76,15 +76,29 @@ UICollectionViewDelegateFlowLayout>
     /*
      *移除页面中的观察者
      */
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self registerForRemoteNotification];
     [self setupUI];
 }
 
 #pragma mark ------ CustomMethod  ------
+
+/*
+ *注册通知
+ */
+-(void)registerForRemoteNotification{
+    
+    
+    //增加监听，用户成功切换景区
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(changeScenic:)
+                                                 name:NSNotificationUserChangeScenic
+                                               object:nil];
+}
 
 -(void)setupUI{
     
@@ -126,6 +140,16 @@ UICollectionViewDelegateFlowLayout>
     [self pushNewVC:changeViewAreaViewController animated:YES];
 }
 
+-(void)changeScenic:(NSNotification *)notification{
+    
+    NSDictionary *infoDic = (NSDictionary*)notification.object;
+    
+    NSString *scenicId = [NSString stringWithFormat:@"%@",[infoDic objectForKey:@"scenicId"]];
+
+    NSLog(@"");
+    
+    [self.collectionView.mj_header beginRefreshing];
+}
 
 #pragma mark - --------- 数据加载代理 ------------
 

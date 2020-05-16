@@ -57,22 +57,30 @@
     /*
      *移除页面中的观察者
      */
-    //    [[NSNotificationCenter defaultCenter] removeObserver:self];
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self registerForRemoteNotification];
     [self setupUI];
-    
-    [self initRequest];
-    
-    //CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(40.106216,116.08518);//纬度，经度
-    //
-    //    [self addTestPoint:coords];
+    [self initRequest:@"3"];
 }
 
 #pragma mark ------ CustomMethod  ------
+
+/*
+ *注册通知
+ */
+-(void)registerForRemoteNotification{
+    
+    
+    //增加监听，用户成功切换景区
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(changeScenic:)
+                                                 name:NSNotificationUserChangeScenic
+                                               object:nil];
+}
 
 -(void)setupUI{
     self.view.backgroundColor = ColorThemeBackground;
@@ -95,6 +103,19 @@
     
     //模拟向下拉5像素，解决地图下方有个黑条的bug
     self.mainTableView.contentOffset = CGPointMake(0, -kHEIGHT-5);
+}
+
+-(void)changeScenic:(NSNotification *)notification{
+    
+    NSDictionary *infoDic = (NSDictionary*)notification.object;
+    
+    NSString *scenicId = [NSString stringWithFormat:@"%@",[infoDic objectForKey:@"scenicId"]];
+
+    NSLog(@"");
+    
+    [self initRequest:scenicId];
+    
+//    [self.collectionView.mj_header beginRefreshing];
 }
 
 -(void)refreshScenicInfo{
@@ -294,20 +315,34 @@
     UIView *scenSpotListBg = [scenSpotListView viewWithTag:665];
     CGFloat spotCellHeight = 30.0f;
 
-    
+    [scenSpotListBg removeAllSubviews];
     for(int i=0;i<self.scenicModel.spots.count; i ++){
+        
         ScenicSpotModel *model = [self.scenicModel.spots objectAtIndex:i];
+
+
+        UIButton *btnSpotBg = [UIButton buttonWithType:UIButtonTypeCustom];
+        btnSpotBg.tag = i;
+        btnSpotBg.size = [UIView getSize_width:scenSpotListBg.width height:spotCellHeight];
+        btnSpotBg.top = i*spotCellHeight;
+        btnSpotBg.left = 0;
+        [btnSpotBg setBackgroundColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btnSpotBg setBackgroundColor:FHLColorHighlighted forState:UIControlStateHighlighted];
+        [btnSpotBg addTarget:self action:@selector(btnSpotBgClick:) forControlEvents:UIControlEventTouchUpInside];
+        [scenSpotListBg addSubview:btnSpotBg];
+        
+        
         
         UILabel * titleLib = [[UILabel alloc] init];
         titleLib.size = [UIView getSize_width:80 height:spotCellHeight];
         titleLib.left = 0;
-        titleLib.top = i*spotCellHeight;
+        titleLib.top = 0;
         titleLib.font = [UIFont defaultFontWithSize:13];
         titleLib.clipsToBounds = YES;
         titleLib.textColor = [UIColor blackColor];
         titleLib.textAlignment = NSTextAlignmentLeft;
         titleLib.text = [NSString stringWithFormat:@"%@:",model.spotsName];
-        [scenSpotListBg addSubview:titleLib];
+        [btnSpotBg addSubview:titleLib];
         
         //        titleLib.backgroundColor = [UIColor blueColor];
         
@@ -315,15 +350,15 @@
         UILabel * contentLib = [[UILabel alloc] init];
         contentLib.size = [UIView getSize_width:viewDynamicAttr.width -titleLib.width  height:spotCellHeight];
         contentLib.left = titleLib.right;
-        contentLib.top = i*spotCellHeight;
+        contentLib.top = 0;
         contentLib.font = [UIFont defaultFontWithSize:13];
         contentLib.clipsToBounds = YES;
         contentLib.textColor = [UIColor blackColor];
         contentLib.textAlignment = NSTextAlignmentRight;
         contentLib.text = @"距您100米";//[NSString stringWithFormat:@"%@:",model.spotsIntroduce];
-        [scenSpotListBg addSubview:contentLib];
+        [btnSpotBg addSubview:contentLib];
         
-        scenSpotListBg.height = titleLib.bottom;
+        scenSpotListBg.height = btnSpotBg.bottom;
     }
     scenSpotListView.height = scenSpotListBg.bottom + sizeScale(10);
     
@@ -332,10 +367,10 @@
     self.mainTableView.tableHeaderView = headView;
 }
 
--(void)initRequest {
+-(void)initRequest:(NSString*)scenicId{
     
     NetWork_mt_scenic_getScenicById *request = [[NetWork_mt_scenic_getScenicById alloc] init];
-    request.id = @"3";
+    request.id = scenicId;
     request.nsukey = @"GkcKRDlRgk8DgNW8EWyzIxT5VtfFRIHfJeaBalKhSSB08hTXFhG3Di9TDaQMBXEHiz3fI3bbzeM1dYTJGJ1ABV0uMQ6HL7TdcZf6abuTExe9M%2BuGnXN3m5k64kJaGsWmzvZMabc8NkOgrwPankl1lG3qz7Ist3DMUK8NTereVLVrilomN7teGj%2BrsSp%2BlbdBz9uRi2gHocbY5loywQj8jA%3D%3D";
     [request startGetWithBlock:^(ScenicGetScenicByIdResponse *result, NSString *msg) {
         /*
@@ -599,6 +634,18 @@
         [mapView addAnnotation:annotation];
         mapView.centerCoordinate = coords;
     }
+}
+
+-(void)btnSpotBgClick:(UIButton*)btn{
+    
+    ScenicSpotModel *model = [self.scenicModel.spots objectAtIndex:btn.tag];
+    
+    NSLog(@"----进入景点---%@",model.spotsName);
+    
+    MTSpotViewAreaViewController *spotViewAreaViewController = [[MTSpotViewAreaViewController alloc] init];
+    [self pushNewVC:spotViewAreaViewController animated:YES];
+
+    
 }
 
 #pragma -mark ------- UIScrollViewDelegate -------------

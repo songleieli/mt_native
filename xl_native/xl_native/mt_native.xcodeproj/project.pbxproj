@@ -218,6 +218,8 @@
 		04C13758246D891A00A603EB /* LBZoomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C13749246D891A00A603EB /* LBZoomScrollView.m */; };
 		04C13759246D891A00A603EB /* LBTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1374E246D891A00A603EB /* LBTapDetectingImageView.m */; };
 		04C1375E246D974300A603EB /* TagsFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1375C246D974300A603EB /* TagsFrame.m */; };
+		04C13764246F021A00A603EB /* MTSpotViewAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C13763246F021A00A603EB /* MTSpotViewAreaViewController.m */; };
+		04C13767246FA7CE00A603EB /* NetWork_mt_scenic_getHotScenicList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C13765246FA7CD00A603EB /* NetWork_mt_scenic_getHotScenicList.m */; };
 		04C171E221CDDE9E0077FA6C /* UserInfoPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */; };
 		04C1720B21CE3EC80077FA6C /* NetWork_mt_getMyVideos.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171F421CE3EC70077FA6C /* NetWork_mt_getMyVideos.m */; };
 		04C1720C21CE3EC80077FA6C /* NetWork_mt_getDynamics.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171F821CE3EC70077FA6C /* NetWork_mt_getDynamics.m */; };
@@ -1401,6 +1403,10 @@
 		04C1374F246D891A00A603EB /* UIImage+LBDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LBDecoder.h"; sourceTree = "<group>"; };
 		04C1375C246D974300A603EB /* TagsFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsFrame.m; sourceTree = "<group>"; };
 		04C1375D246D974300A603EB /* TagsFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsFrame.h; sourceTree = "<group>"; };
+		04C13762246F021A00A603EB /* MTSpotViewAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSpotViewAreaViewController.h; sourceTree = "<group>"; };
+		04C13763246F021A00A603EB /* MTSpotViewAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSpotViewAreaViewController.m; sourceTree = "<group>"; };
+		04C13765246FA7CD00A603EB /* NetWork_mt_scenic_getHotScenicList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_scenic_getHotScenicList.m; sourceTree = "<group>"; };
+		04C13766246FA7CE00A603EB /* NetWork_mt_scenic_getHotScenicList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_scenic_getHotScenicList.h; sourceTree = "<group>"; };
 		04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoPlayerCell.m; sourceTree = "<group>"; };
 		04C171E121CDDE9E0077FA6C /* UserInfoPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoPlayerCell.h; sourceTree = "<group>"; };
 		04C171F321CE3EC70077FA6C /* NetWork_mt_getDynamics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getDynamics.h; sourceTree = "<group>"; };
@@ -3228,6 +3234,8 @@
 		04C13731246BB89900A603EB /* mt_scenic */ = {
 			isa = PBXGroup;
 			children = (
+				04C13766246FA7CE00A603EB /* NetWork_mt_scenic_getHotScenicList.h */,
+				04C13765246FA7CD00A603EB /* NetWork_mt_scenic_getHotScenicList.m */,
 				04C13736246C2DA000A603EB /* NetWork_mt_scenic_getScenicById.h */,
 				04C13737246C2DA000A603EB /* NetWork_mt_scenic_getScenicById.m */,
 				04C13733246BB89900A603EB /* NetWork_mt_scenic_getScenicByAreaParam.h */,
@@ -3839,6 +3847,8 @@
 				04D3865B2467FFD100FEB221 /* view */,
 				04D386572467DDDB00FEB221 /* MTScenicspotViewController.h */,
 				04D386582467DDDC00FEB221 /* MTScenicspotViewController.m */,
+				04C13762246F021A00A603EB /* MTSpotViewAreaViewController.h */,
+				04C13763246F021A00A603EB /* MTSpotViewAreaViewController.m */,
 			);
 			path = MT_Scenicspot;
 			sourceTree = "<group>";
@@ -6151,6 +6161,7 @@
 				04CBC3532179C01300658E47 /* GPUImageLevelsFilter.m in Sources */,
 				04DCA82E21A5576700691A3A /* TCVideoRecordProcessView.m in Sources */,
 				04DCA8D721A565D500691A3A /* TCVideoCutViewController.m in Sources */,
+				04C13764246F021A00A603EB /* MTSpotViewAreaViewController.m in Sources */,
 				04AB304A21CA92B10072808E /* UINavigationController+GKCategory.m in Sources */,
 				D9F86D921DEBEE7600C3A2B6 /* LxGridViewFlowLayout.m in Sources */,
 				04CBC3AB2179C01300658E47 /* GLProgram.m in Sources */,
@@ -6478,6 +6489,7 @@
 				D9F86DC81DEBEE7600C3A2B6 /* TZAssetModel.m in Sources */,
 				0405BE7F2220F6F90098D590 /* UserCollectionSubTopicViewController.m in Sources */,
 				04A919A421E4F045002DDB1A /* FollowsVideoListCell.m in Sources */,
+				04C13767246FA7CE00A603EB /* NetWork_mt_scenic_getHotScenicList.m in Sources */,
 				04A308F7222A8346000BC762 /* FlourCell.m in Sources */,
 				04CBC3C12179C01300658E47 /* GPUImageXYDerivativeFilter.m in Sources */,
 				04AB304021CA91310072808E /* GKDouyinScrollView.m in Sources */,

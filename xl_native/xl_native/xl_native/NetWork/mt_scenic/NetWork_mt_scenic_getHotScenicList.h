@@ -27,7 +27,7 @@
 
 
 
-@interface ScenicGetScenicByAreaParamResponse : IObjcJsonBase
+@interface ScenicGetHotScenicListResponse : IObjcJsonBase
 
 @property(nonatomic,copy) NSString * status;
 @property(nonatomic,copy) NSString * message;
@@ -35,7 +35,7 @@
 
 @end
 
-@interface NetWork_mt_scenic_getScenicByAreaParam : WCServiceBase
+@interface NetWork_mt_scenic_getHotScenicList : WCServiceBase
 
 @property(nonatomic,copy) NSString * pageNo;
 @property(nonatomic,copy) NSString * pageSize;

@@ -526,7 +526,7 @@
     NSLog(@"%@ Service Error. ErrorCode: %i. Error Description:%@", NSStringFromClass([self class]),(int)error0.code, [error0 localizedDescription]);
     if (finishBlock){
         //                                                     finishBlock(nil,@"与服务器连接失败。",NO);
-        finishBlock(nil,@"业务量有些大,请稍后再试。",NO);
+        finishBlock(nil,[error0 localizedDescription],NO);
     }
     if([self.delegate respondsToSelector:@selector(service:error:)]){
         [self.delegate service:self error:error0];
