@@ -17,4 +17,10 @@
 @property (nonatomic, assign) CGFloat                          itemWidth;
 @property (nonatomic, assign) CGFloat                          itemHeight;
 
+
+@property (nonatomic,strong) UIButton   *btnCurScenic;//景区按钮
+@property (nonatomic,strong) UIButton   *btnRecommend;//推荐按钮
+
+@property (nonatomic,assign) BOOL  isRecommend;//当前选择的是否推荐
+
 @end

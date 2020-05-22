@@ -6,9 +6,9 @@
 //  Copyright © 2016年 ST. All rights reserved.
 //
 
-#import "UIView+STFrame.h"
+#import "UIView+STPicker.h"
 
-@implementation UIView (STFrame)
+@implementation UIView (STPicker)
 
 - (void)setSt_x:(CGFloat)st_x
 {
@@ -144,21 +144,6 @@
     CGRect frame = self.frame;
     frame.origin.y = bottom - frame.size.height;
     self.frame = frame;
-}
-
-
-- (void)st_fill
-{
-    self.frame = CGRectMake(0, 0, self.superview.st_width, self.superview.st_height);
-}
-
-- (void)addTarget:(id)target
-           action:(SEL)action;
-{
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:target
-                                                                         action:action];
-    self.userInteractionEnabled = YES;
-    [self addGestureRecognizer:tap];
 }
 
 - (void)addBorderColor:(UIColor *)color{

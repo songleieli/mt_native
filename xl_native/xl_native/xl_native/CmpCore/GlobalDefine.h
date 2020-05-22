@@ -99,10 +99,14 @@ isIPhoneXAll = [[UIApplication sharedApplication] delegate].window.safeAreaInset
  */
 #define MT_ACCOUNT_IS_DRAWACTIVE                       @"MT_ACCOUNT_IS_DRAWACTIVE"  //是否显示活动
 
+#define MT_ACCOUNT_CURRENT_SCENICID                       @"MT_ACCOUNT_CURRENT_SCENICID"  //当前选择景区Id
 
 
 
 #define LJH_ACCOUNT_USER_HASLOGIN                       @"LJH_ACCOUNT_USER_HASLOGIN"
+
+
+
 #define LJH_ACCOUNT_USER_HASCLICKPUBLICLOCATIONBTN      @"LJH_ACCOUNT_USER_HASCLICKPUBLICLOCATIONBTN"
 #define LJH_ACCOUNT_USER_SEARCHLOCATIONKEYWORD      @"LJH_ACCOUNT_USER_SEARCHLOCATIONKEYWORD"
 
@@ -456,3 +460,4 @@ alpha:1.0]
 #define NSNotificationUserQQLoginSuccess @"NSNotificationUserQQLoginSuccess"    //用户QQ第三方登录成功
 #define NSNotificationUserQQLoginFail @"NSNotificationUserQQLoginFail"    //用户QQ第三方登录失败
 #define NSNotificationUserChangeScenic @"NSNotificationUserChangeScenic"    //用户成功切换景区
+#define NSNotificationUserGetRandomScenic @"NSNotificationUserGetRandomScenic"    //随机景区获取成功

@@ -21,8 +21,11 @@ CGFloat const STMarginBig = 16;
 CGFloat const STNavigationBarY = 64;
 
 /** 5.控件的系统高度 44*/
-CGFloat const STControlSystemHeight = 55;
+CGFloat const STControlSystemHeight = 44;
 
 /** 6.控件的普通高度 36*/
 CGFloat const STControlNormalHeight = 36;
+
+/** 7.按钮的系统宽度 64*/
+CGFloat const STButtonSystemHeight = 64;
 

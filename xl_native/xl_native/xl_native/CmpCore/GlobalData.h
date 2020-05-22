@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NetWork_mt_login.h"
+#import "NetWork_mt_scenic_getScenicById.h"
 #import "TXVideoEditer.h"
 
 @interface GlobalData : NSObject
@@ -27,6 +28,7 @@
 @property (strong, nonatomic,getter=getLongitude,setter=setLongitude:) NSString *longitude; //当前用户纬度
 @property (strong, nonatomic,getter=getLoginDataModel,setter=setLoginDataModel:) LoginModel *loginDataModel;//登录信息
 
+@property (strong, nonatomic,getter=getCurScenicModel,setter=setCurScenicModel:) ScenicModel *curScenicModel;//当前用户选择的景区model
 
 
 

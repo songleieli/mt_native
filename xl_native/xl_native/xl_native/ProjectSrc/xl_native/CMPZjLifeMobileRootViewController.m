@@ -167,6 +167,33 @@
     //    [[UINavigationBar appearance] setBarTintColor:[UIColor clearColor]];
     //    [[UINavigationBar appearance] setTranslucent:NO];//这句话是控制导航栏颜色是否透明。//导航栏颜色透明
     
+    
+    if(![GlobalData sharedInstance].curScenicModel){
+        NetWork_mt_scenic_getRandomScenic *request = [[NetWork_mt_scenic_getRandomScenic alloc] init];
+        [request startGetWithBlock:^(ScenicGetRandomScenicResponse *result, NSString *msg, BOOL finished) {
+            if(finished){
+                
+                
+                [GlobalData sharedInstance].curScenicModel = result.obj;
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationUserGetRandomScenic object:nil];
+
+            }
+            else{
+                
+                [UIWindow showTips:msg];
+                
+                ScenicModel *model = [[ScenicModel alloc] init];
+                model.id = [NSNumber numberWithInt:3];
+                model.scenicName = @"北京凤凰岭自然风景公园";
+                [GlobalData sharedInstance].curScenicModel = model;
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationUserGetRandomScenic object:nil];
+
+            }
+            
+        }];
+    }
     self.currentViewController = self.videoNavViewController;
     self.currentSelectIndex = 0; //默认选择第一个tab
     [self.view addSubview:self.videoNavViewController.view];

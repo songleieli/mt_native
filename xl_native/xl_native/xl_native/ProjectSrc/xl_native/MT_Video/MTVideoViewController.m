@@ -27,7 +27,7 @@ UICollectionViewDelegateFlowLayout>
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [UIApplication sharedApplication].statusBarHidden = NO;
     self.tabBar.top = [self getTabbarTop];    //  重新设置tabbar的高度
 }
@@ -43,33 +43,61 @@ UICollectionViewDelegateFlowLayout>
 -(void)initNavTitle{
     self.isNavBackGroundHiden = NO;
     self.navBackGround.height = kNavBarHeight_New; //状态栏的高度
-    
-    self.navBackGround.backgroundColor = [UIColor whiteColor];
-    
-    self.title = @"六六行";
-    
-    self.lableNavTitle.font = [UIFont defaultBoldFontWithSize:20];
-    self.lableNavTitle.textColor = [UIColor blackColor];
+    self.navBackGround.backgroundColor = ColorThemeBackground;
+    self.lableNavTitle.textColor = [UIColor whiteColor];
     
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     leftButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    leftButton.size = [UIView getSize_width:100 height:30];
+    leftButton.size = [UIView getSize_width:200 height:30];
     leftButton.origin = [UIView getPoint_x:15.0f y:self.navBackGround.height -leftButton.height-11];
-    [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [leftButton setTitle:@"切换景区" forState:UIControlStateNormal];
-    leftButton.backgroundColor = [UIColor blueColor];
-//    [leftButton setBackgroundImage:[UIImage imageNamed:@"icon_titlebar_whiteback"] forState:UIControlStateNormal];
+    leftButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    if([GlobalData sharedInstance].curScenicModel.scenicName.trim.length>0){
+        [leftButton setTitle:[GlobalData sharedInstance].curScenicModel.scenicName forState:UIControlStateNormal];
+
+    }
+    leftButton.titleLabel.font = [UIFont defaultFontWithSize:17];
     [leftButton addTarget:self action:@selector(changeViewAreaClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.btnLeft = leftButton;
     
-    UILabel *line = [[UILabel alloc]init];
-    line.tag = 999;
-    line.size = [UIView getSize_width:self.navBackGround.width height:1];
-    line.origin = [UIView getPoint_x:0 y:self.navBackGround.height-1];
-    line.backgroundColor = RGBAlphaColor(238, 238, 238, 1);
     
-    [self.navBackGround addSubview:line];
+    
+    self.btnRecommend = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.btnRecommend.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    self.btnRecommend.size = [UIView getSize_width:50 height:30];
+    self.btnRecommend.right = self.navBackGround.width - 10;
+    self.btnRecommend.bottom = self.navBackGround.height - 11;
+    [self.btnRecommend setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.btnRecommend setTitle:@"推荐" forState:UIControlStateNormal];
+    self.btnRecommend.titleLabel.font = [UIFont defaultFontWithSize:17];
+    [self.btnRecommend addTarget:self action:@selector(recommendClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.navBackGround addSubview:self.btnRecommend];
+    
+    //test
+//    self.btnCurScenic.backgroundColor = [UIColor redColor];
+    
+    
+    self.btnCurScenic = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.btnCurScenic.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    self.btnCurScenic.size = [UIView getSize_width:50 height:30];
+    self.btnCurScenic.right = self.btnRecommend.left;
+    self.btnCurScenic.bottom = self.navBackGround.height - 11;
+    [self.btnCurScenic setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.btnCurScenic setTitle:@"景区" forState:UIControlStateNormal];
+    self.btnCurScenic.titleLabel.font = [UIFont defaultBoldFontWithSize:18];
+    [self.btnCurScenic addTarget:self action:@selector(curScenicClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.navBackGround addSubview:self.btnCurScenic];
+    
+    
+    self.isRecommend = NO; //默认选择景区
+    
+    //test
+//    self.btnCurScenic.backgroundColor = [UIColor redColor];
+    
 }
 
 -(void)dealloc{
@@ -97,6 +125,12 @@ UICollectionViewDelegateFlowLayout>
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(changeScenic:)
                                                  name:NSNotificationUserChangeScenic
+                                               object:nil];
+    
+    //推荐景区设置成功
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(recommendScenic:)
+                                                 name:NSNotificationUserGetRandomScenic
                                                object:nil];
 }
 
@@ -142,14 +176,44 @@ UICollectionViewDelegateFlowLayout>
 
 -(void)changeScenic:(NSNotification *)notification{
     
-    NSDictionary *infoDic = (NSDictionary*)notification.object;
-    
-    NSString *scenicId = [NSString stringWithFormat:@"%@",[infoDic objectForKey:@"scenicId"]];
+    if([GlobalData sharedInstance].curScenicModel.scenicName.trim.length>0){
+        [self.btnLeft setTitle:[GlobalData sharedInstance].curScenicModel.scenicName forState:UIControlStateNormal];
+    }
+    [self.collectionView.mj_header beginRefreshing];
+}
 
-    NSLog(@"");
+-(void)recommendScenic:(NSNotification *)notification{
+        
+    NSLog(@"推荐景区设置成功");
+    if([GlobalData sharedInstance].curScenicModel.scenicName.trim.length>0){
+        [self.btnLeft setTitle:[GlobalData sharedInstance].curScenicModel.scenicName forState:UIControlStateNormal];
+    }
+}
+
+-(void)curScenicClick:(UIButton*)btn{ //景区点击
+    if(!self.isRecommend){//如果挡圈选择景区，再点击景区，直接返回
+        return;
+    }
+    
+    self.isRecommend = NO; //当前选择推荐
+    self.btnRecommend.titleLabel.font = [UIFont defaultFontWithSize:17];
+    self.btnCurScenic.titleLabel.font = [UIFont defaultBoldFontWithSize:18];
+    
+    [self.collectionView.mj_header beginRefreshing];
+
+}
+-(void)recommendClick:(UIButton*)btn{//推荐点击
+    if(self.isRecommend){//如果挡圈选择推荐，再点击推荐，直接返回
+        return;
+    }
+    
+    self.isRecommend = YES; //当前选择推荐
+    self.btnRecommend.titleLabel.font = [UIFont defaultBoldFontWithSize:18];
+    self.btnCurScenic.titleLabel.font = [UIFont defaultFontWithSize:17];
     
     [self.collectionView.mj_header beginRefreshing];
 }
+
 
 #pragma mark - --------- 数据加载代理 ------------
 
@@ -157,7 +221,12 @@ UICollectionViewDelegateFlowLayout>
     self.currentPageIndex = 0; //刷新是显示第一页美容
     [self.mainDataArr removeAllObjects];
     
-    [self initRequest];
+    if(self.isRecommend){//加载推荐数据
+        [self initRequest];
+    }
+    else{//加载景区数据
+        [self initRequest];
+    }
 }
 
 -(void)loadMoreData{
@@ -172,6 +241,9 @@ UICollectionViewDelegateFlowLayout>
     request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
     request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
     request.currentNoodleId = [GlobalData sharedInstance].loginDataModel.noodleId;
+    if(!self.isRecommend){
+        request.scenicId = [NSString stringWithFormat:@"%@",[GlobalData sharedInstance].curScenicModel.id];
+    }
     [request startGetWithBlock:^(HomeListResponse *result, NSString *msg) {
         /*
          缓存暂时先不用考虑

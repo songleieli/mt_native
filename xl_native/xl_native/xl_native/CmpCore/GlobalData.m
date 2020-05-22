@@ -45,6 +45,33 @@
     [prefs synchronize];
 }
 
+- (ScenicModel*)getCurScenicModel {
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    
+    NSString *curScenicStr = [prefs objectForKey:MT_ACCOUNT_CURRENT_SCENICID];
+    if(curScenicStr.length > 0){
+        NSDictionary *curScenicDic = [curScenicStr objectFromJSONString];
+        
+        ScenicModel *model = [[ScenicModel alloc] initWithDictionary:curScenicDic];
+        return model;
+    }
+    else{
+        return nil;
+    }
+}
+
+- (void)setCurScenicModel:(ScenicModel*)curScenicModel {
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    if(curScenicModel == nil){
+        [prefs removeObjectForKey:MT_ACCOUNT_CURRENT_SCENICID];
+    }
+    else{
+        [prefs setObject:[curScenicModel generateJsonStringForProperties] forKey:MT_ACCOUNT_CURRENT_SCENICID];
+    }
+    [prefs synchronize];
+}
+
 - (BOOL)hasClickPublicLocationBtn {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     return [prefs boolForKey:LJH_ACCOUNT_USER_HASCLICKPUBLICLOCATIONBTN];

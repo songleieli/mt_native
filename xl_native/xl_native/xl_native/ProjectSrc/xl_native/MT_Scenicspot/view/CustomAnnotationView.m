@@ -9,7 +9,7 @@
 #import "CustomAnnotationView.h"
 #import "CustomCalloutView.h"
 
-#define kWidth  150.f
+#define kWidth  250.f
 #define kHeight 60.f
 
 #define kHoriMargin 5.f

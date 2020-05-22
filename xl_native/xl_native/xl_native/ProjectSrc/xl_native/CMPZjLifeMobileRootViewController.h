@@ -24,6 +24,7 @@
 #import "NetWork_mt_getWinners.h"
 #import "NetWork_mt_addWater.h"
 #import "NetWork_mt_getBoiledStatistics.h"
+#import "NetWork_mt_scenic_getRandomScenic.h"
 
 @class BaseNavigationController;
 

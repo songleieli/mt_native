@@ -159,6 +159,7 @@
 
 @property (nonatomic,strong) NSString * pageNo;
 @property (nonatomic,strong) NSString * pageSize;
+@property (nonatomic,strong) NSString * scenicId;
 @property (nonatomic,strong) NSString * currentNoodleId;
 
 @end

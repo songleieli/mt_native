@@ -237,6 +237,7 @@
     CGFloat ticketInfoCellTop = 0;
     CGFloat ticketInfoCellSpace = 5.0f;
 
+    [viewTicketBg removeAllSubviews];
     for(int i=0;i<self.scenicModel.ticketInfos.count; i ++){
         ScenicTicketInfoModel *model = [self.scenicModel.ticketInfos objectAtIndex:i];
         
@@ -370,7 +371,7 @@
 -(void)initRequest:(NSString*)scenicId{
     
     NetWork_mt_scenic_getScenicById *request = [[NetWork_mt_scenic_getScenicById alloc] init];
-    request.id = scenicId;
+    request.id = [NSString stringWithFormat:@"%@",[GlobalData sharedInstance].curScenicModel.id];
     request.nsukey = @"GkcKRDlRgk8DgNW8EWyzIxT5VtfFRIHfJeaBalKhSSB08hTXFhG3Di9TDaQMBXEHiz3fI3bbzeM1dYTJGJ1ABV0uMQ6HL7TdcZf6abuTExe9M%2BuGnXN3m5k64kJaGsWmzvZMabc8NkOgrwPankl1lG3qz7Ist3DMUK8NTereVLVrilomN7teGj%2BrsSp%2BlbdBz9uRi2gHocbY5loywQj8jA%3D%3D";
     [request startGetWithBlock:^(ScenicGetScenicByIdResponse *result, NSString *msg) {
         /*
@@ -626,8 +627,8 @@
     
     MAPointAnnotation *annotation = [[MAPointAnnotation alloc] init];
     annotation.coordinate = coords;
-    annotation.title    = @"凤凰岭";
-    annotation.subtitle = @"北京大自然的空调";
+    annotation.title    = self.scenicModel.scenicName;
+    annotation.subtitle = self.scenicModel.shortIntroduction;
     
     MAMapView *mapView = [self.mainTableView viewWithTag:101];
     if(mapView){
@@ -715,7 +716,7 @@
         }
         
         annotationView.portrait = [UIImage imageNamed:@"login_icon"];
-        annotationView.name     = @"凤凰岭";
+        annotationView.name     = self.scenicModel.scenicName;
         
         return annotationView;
     }

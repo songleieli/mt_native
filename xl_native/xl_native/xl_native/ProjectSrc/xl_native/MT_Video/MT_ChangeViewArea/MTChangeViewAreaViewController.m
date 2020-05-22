@@ -7,8 +7,10 @@
 //
 
 #import "MTChangeViewAreaViewController.h"
+#import "STPickerArea.h"
 
-@interface MTChangeViewAreaViewController ()
+
+@interface MTChangeViewAreaViewController ()<STPickerAreaDelegate>
 
 
 @end
@@ -74,9 +76,8 @@
 -(void)initRequestHotScenic{
     
     NetWork_mt_scenic_getHotScenicList *request = [[NetWork_mt_scenic_getHotScenicList alloc] init];
-    request.pageNo = @"0";
+    request.pageNo = @"1";
     request.pageSize = @"5";
-    request.nsukey = @"qh4Xifdh97fmRsOr6q3%2B8uYgm8dwZcTuFYZRfcAtOLqx1xjCfy%2BxWZbbnz4rE2zwKjMrU3l5VVbV31UtVmvnpfns60nbBuJv%2BLLMOKw%2F8wPanwGi2CO5FUfmU7TKS%2FH5Y393iRs2tceSg0LBxpyQZQ%2FWxdIpXrHbLRtTk4jwEEtWqBLuojYxNN2xQrZ5N0bQ%2FKvJMFtnOOw4UcKfcnQWaQ%3D%3D";
     [request startGetWithBlock:^(ScenicGetHotScenicListResponse *result, NSString *msg, BOOL finished) {
         
         NSLog(@"--------");
@@ -104,7 +105,6 @@
     
     //景区扩展属性栏目
     UIView *viewHotSpot  = [headView viewWithTag:999];
-    
     UIView *spotBgView = [viewHotSpot viewWithTag:997]; //tag背景View
     if(spotBgView){
         self.tagsFrame = [[TagsFrame alloc] initWithWidth:spotBgView.width];
@@ -135,13 +135,13 @@
             [spotBgView addSubview:tagsBtn];
         }
     }
-    viewHotSpot.height = spotBgView.bottom + sizeScale(10);
+    viewHotSpot.height = spotBgView.bottom;
     
     
-    
-    
+    UIView *viewSelectArea  = [headView viewWithTag:888];
+    viewSelectArea.top = viewHotSpot.bottom + sizeScale(10);
 
-    headView.height = viewHotSpot.bottom + sizeScale(10)+80;
+    headView.height = viewSelectArea.bottom + sizeScale(10);
     self.mainTableView.tableHeaderView = headView;
 }
 
@@ -169,14 +169,10 @@
     headview.backgroundColor = [UIColor clearColor];
     
     UIView *viewHotSpot = [self getHotSpotView:headview];
-//    UIView *viewTicket = [self getviewTicketView:headview viewArea:viewArea];
-//    UIView *scenIntroduceView = [self getScenIntroduceView:headview viewArea:viewTicket];
-//    UIView *scenSpotListView = [self getScenSpotListView:headview viewArea:scenIntroduceView];
+    UIView *viewSelectArea= [self getSelectAreaView:headview viewHotSpot:viewHotSpot];
 //
     [headview addSubview:viewHotSpot];
-//    [headview addSubview:viewTicket];
-//    [headview addSubview:scenIntroduceView];
-//    [headview addSubview:scenSpotListView];
+    [headview addSubview:viewSelectArea];
     
     return headview;
 }
@@ -197,8 +193,8 @@
     lableName.size = [UIView getSize_width:viewArea.width - sizeScale(10)*2 height:30];
     lableName.right = viewArea.width - sizeScale(20);
     lableName.left = sizeScale(10);
-    lableName.top = sizeScale(10);
-    lableName.font = [UIFont defaultBoldFontWithSize:25];
+    lableName.top = 0;
+    lableName.font = [UIFont defaultBoldFontWithSize:20];
     lableName.clipsToBounds = YES;
     lableName.textColor = [UIColor whiteColor];
     lableName.textAlignment = NSTextAlignmentLeft;
@@ -222,15 +218,64 @@
     
 }
 
+-(UIView*)getSelectAreaView:(UIView*)headview viewHotSpot:(UIView*)viewHotSpot{
+    
+    //添加名称栏
+    UIView *viewSelectArea= [[UIView alloc] init];
+    viewSelectArea.tag = 888;
+    viewSelectArea.size = [UIView getSize_width:headview.width - sizeScale(10)*2 height:200];
+    viewSelectArea.left = sizeScale(10);
+    viewSelectArea.top = viewHotSpot.bottom + sizeScale(10);
+//    viewSelectArea.backgroundColor = [UIColor whiteColor];
+//    viewSelectArea.layer.cornerRadius = 15;
+    
+    UILabel * lableName = [[UILabel alloc] init];
+    lableName.size = [UIView getSize_width:120 height:30];
+    lableName.right = viewHotSpot.width - sizeScale(20);
+    lableName.left = sizeScale(10);
+    lableName.top = 0;
+    lableName.font = [UIFont defaultBoldFontWithSize:20];
+    lableName.clipsToBounds = YES;
+    lableName.textColor = [UIColor whiteColor];
+    lableName.textAlignment = NSTextAlignmentLeft;
+    lableName.text = @"选择地区";
+    
+    [viewSelectArea addSubview:lableName];
+    
+    UIView *viewSelectBg = [[UIView alloc] init];
+        viewSelectBg.layer.borderWidth = 1.0f;
+        viewSelectBg.layer.borderColor = [UIColor blueColor].CGColor;
+    viewSelectBg.tag = 887;
+    viewSelectBg.size = [UIView getSize_width:viewHotSpot.width - sizeScale(10)*2 height:200];
+    viewSelectBg.left = sizeScale(10);
+    viewSelectBg.top = lableName.bottom + 5;
+    [viewSelectArea addSubview:viewSelectBg];
+    
+    
+    STPickerArea *pickerArea = [[STPickerArea alloc]initWithFeame:viewSelectBg.bounds];
+    [pickerArea setDelegate:self];
+    [pickerArea setSaveHistory:YES];
+    [pickerArea showWithFrame:viewSelectBg.bounds parentView:viewSelectBg];
+    
+    
+    viewSelectArea.height = viewSelectBg.bottom + sizeScale(10);
+    
+    
+    return viewSelectArea;
+    
+}
+
 
 -(void)btnScenicBgClick:(UIButton*)btn{
     
     ScenicModel *model = [self.arrayhotSpotModel objectAtIndex:btn.tag];
+    [GlobalData sharedInstance].curScenicModel = model;
+
     
     
+//    NSDictionary *infoDic = @{@"scenicId":model.id};
+    [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationUserChangeScenic object:nil];
     
-    NSDictionary *infoDic = @{@"scenicId":model.id};
-    [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationUserChangeScenic object:infoDic];
     
     [self.navigationController popViewControllerAnimated:YES];
     

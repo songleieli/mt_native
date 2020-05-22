@@ -9,15 +9,15 @@
 #import "WCServiceBase.h"
 #import "NetWork_mt_scenic_getScenicById.h"
 
-@interface ScenicGetHotScenicListResponse : IObjcJsonBase
+@interface ScenicGetRandomScenicResponse : IObjcJsonBase
 
 @property(nonatomic,copy) NSString * status;
 @property(nonatomic,copy) NSString * message;
-@property(nonatomic,strong) NSArray * obj;
+@property(nonatomic,strong) ScenicModel * obj;
 
 @end
 
-@interface NetWork_mt_scenic_getHotScenicList : WCServiceBase
+@interface NetWork_mt_scenic_getRandomScenic : WCServiceBase
 
 @property(nonatomic,copy) NSString * pageNo;
 @property(nonatomic,copy) NSString * pageSize;

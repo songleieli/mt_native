@@ -150,6 +150,11 @@
 		045B4630228FCB5F00BB2178 /* topup_banner@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 045B462C228FCB5F00BB2178 /* topup_banner@3x.png */; };
 		045B4631228FCB5F00BB2178 /* topup_banner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 045B462D228FCB5F00BB2178 /* topup_banner@2x.png */; };
 		045B4634228FD64700BB2178 /* NetWork_mt_getWinners.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B4632228FD64700BB2178 /* NetWork_mt_getWinners.m */; };
+		046A7F58247042E900B9430A /* STPickerArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 046A7F4C247042E900B9430A /* STPickerArea.m */; };
+		046A7F59247042E900B9430A /* STPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 046A7F4D247042E900B9430A /* STPickerView.m */; };
+		046A7F5A247042E900B9430A /* UIView+STPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 046A7F4E247042E900B9430A /* UIView+STPicker.m */; };
+		046A7F5B247042E900B9430A /* STPickerViewUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 046A7F50247042E900B9430A /* STPickerViewUI.m */; };
+		046A7F602470432300B9430A /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 046A7F5F2470432300B9430A /* area.plist */; };
 		04719704226200CF00AE3988 /* SettingAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04719702226200CE00AE3988 /* SettingAboutViewController.m */; };
 		047EE800221CE22100F77B96 /* NetWork_mt_collectionMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE7FE221CE22100F77B96 /* NetWork_mt_collectionMusic.m */; };
 		047EE803221D07B300F77B96 /* NetWork_mt_deleteCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE802221D07B300F77B96 /* NetWork_mt_deleteCollection.m */; };
@@ -220,6 +225,7 @@
 		04C1375E246D974300A603EB /* TagsFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1375C246D974300A603EB /* TagsFrame.m */; };
 		04C13764246F021A00A603EB /* MTSpotViewAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C13763246F021A00A603EB /* MTSpotViewAreaViewController.m */; };
 		04C13767246FA7CE00A603EB /* NetWork_mt_scenic_getHotScenicList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C13765246FA7CD00A603EB /* NetWork_mt_scenic_getHotScenicList.m */; };
+		04C1376B246FE3C700A603EB /* NetWork_mt_scenic_getRandomScenic.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C13769246FE3C700A603EB /* NetWork_mt_scenic_getRandomScenic.m */; };
 		04C171E221CDDE9E0077FA6C /* UserInfoPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */; };
 		04C1720B21CE3EC80077FA6C /* NetWork_mt_getMyVideos.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171F421CE3EC70077FA6C /* NetWork_mt_getMyVideos.m */; };
 		04C1720C21CE3EC80077FA6C /* NetWork_mt_getDynamics.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171F821CE3EC70077FA6C /* NetWork_mt_getDynamics.m */; };
@@ -895,15 +901,6 @@
 		D97F7D601E554170001DD916 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D909D85A1E53047F0071302A /* AddressBook.framework */; };
 		D97F7D611E5541DD001DD916 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D909D85C1E5304910071302A /* AudioToolbox.framework */; };
 		D97F7D621E5541EB001DD916 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D909D85E1E5304A40071302A /* Contacts.framework */; };
-		D98FCFA91DEFC3080023C076 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = D98FCF9D1DEFC3080023C076 /* area.plist */; };
-		D98FCFAC1DEFC3080023C076 /* STPickerArea.m in Sources */ = {isa = PBXBuildFile; fileRef = D98FCF9F1DEFC3080023C076 /* STPickerArea.m */; };
-		D98FCFAF1DEFC3080023C076 /* NSCalendar+ST.m in Sources */ = {isa = PBXBuildFile; fileRef = D98FCFA21DEFC3080023C076 /* NSCalendar+ST.m */; };
-		D98FCFB21DEFC3080023C076 /* STPickerDate.m in Sources */ = {isa = PBXBuildFile; fileRef = D98FCFA41DEFC3080023C076 /* STPickerDate.m */; };
-		D98FCFB51DEFC3080023C076 /* STPickerSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = D98FCFA71DEFC3080023C076 /* STPickerSingle.m */; };
-		D98FCFBA1DEFC3DA0023C076 /* STPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D98FCFB81DEFC3DA0023C076 /* STPickerView.m */; };
-		D98FCFC41DEFC41A0023C076 /* STPickerViewConst.m in Sources */ = {isa = PBXBuildFile; fileRef = D98FCFBE1DEFC41A0023C076 /* STPickerViewConst.m */; };
-		D98FCFC71DEFC41A0023C076 /* STPickerViewUI.m in Sources */ = {isa = PBXBuildFile; fileRef = D98FCFC01DEFC41A0023C076 /* STPickerViewUI.m */; };
-		D98FCFCA1DEFC41A0023C076 /* UIView+STFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = D98FCFC21DEFC41A0023C076 /* UIView+STFrame.m */; };
 		D9B41FD41DD9A02300AAF8B8 /* HYPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B41FD21DD9A02300AAF8B8 /* HYPageView.m */; };
 		D9BD11B51F02B134006CE841 /* WYPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BD11B11F02B134006CE841 /* WYPopoverController.m */; };
 		D9BD11B71F02B134006CE841 /* WYStoryboardPopoverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BD11B31F02B134006CE841 /* WYStoryboardPopoverSegue.m */; };
@@ -1268,6 +1265,15 @@
 		045B462E228FCB5F00BB2178 /* LSMarqueeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMarqueeView.h; sourceTree = "<group>"; };
 		045B4632228FD64700BB2178 /* NetWork_mt_getWinners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getWinners.m; sourceTree = "<group>"; };
 		045B4633228FD64700BB2178 /* NetWork_mt_getWinners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getWinners.h; sourceTree = "<group>"; };
+		046A7F4B247042E900B9430A /* STPickerViewUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPickerViewUI.h; sourceTree = "<group>"; };
+		046A7F4C247042E900B9430A /* STPickerArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPickerArea.m; sourceTree = "<group>"; };
+		046A7F4D247042E900B9430A /* STPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPickerView.m; sourceTree = "<group>"; };
+		046A7F4E247042E900B9430A /* UIView+STPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+STPicker.m"; sourceTree = "<group>"; };
+		046A7F50247042E900B9430A /* STPickerViewUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPickerViewUI.m; sourceTree = "<group>"; };
+		046A7F53247042E900B9430A /* UIView+STPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+STPicker.h"; sourceTree = "<group>"; };
+		046A7F54247042E900B9430A /* STPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPickerView.h; sourceTree = "<group>"; };
+		046A7F55247042E900B9430A /* STPickerArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPickerArea.h; sourceTree = "<group>"; };
+		046A7F5F2470432300B9430A /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		04719702226200CE00AE3988 /* SettingAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingAboutViewController.m; sourceTree = "<group>"; };
 		04719703226200CE00AE3988 /* SettingAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingAboutViewController.h; sourceTree = "<group>"; };
 		047EE7FE221CE22100F77B96 /* NetWork_mt_collectionMusic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_collectionMusic.m; sourceTree = "<group>"; };
@@ -1407,6 +1413,8 @@
 		04C13763246F021A00A603EB /* MTSpotViewAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSpotViewAreaViewController.m; sourceTree = "<group>"; };
 		04C13765246FA7CD00A603EB /* NetWork_mt_scenic_getHotScenicList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_scenic_getHotScenicList.m; sourceTree = "<group>"; };
 		04C13766246FA7CE00A603EB /* NetWork_mt_scenic_getHotScenicList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_scenic_getHotScenicList.h; sourceTree = "<group>"; };
+		04C13769246FE3C700A603EB /* NetWork_mt_scenic_getRandomScenic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_scenic_getRandomScenic.m; sourceTree = "<group>"; };
+		04C1376A246FE3C700A603EB /* NetWork_mt_scenic_getRandomScenic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_scenic_getRandomScenic.h; sourceTree = "<group>"; };
 		04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoPlayerCell.m; sourceTree = "<group>"; };
 		04C171E121CDDE9E0077FA6C /* UserInfoPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoPlayerCell.h; sourceTree = "<group>"; };
 		04C171F321CE3EC70077FA6C /* NetWork_mt_getDynamics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getDynamics.h; sourceTree = "<group>"; };
@@ -2454,24 +2462,6 @@
 		D98AB0D01D50916600A71700 /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		D98AB0D21D50916600A71700 /* VUILable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VUILable.h; sourceTree = "<group>"; };
 		D98AB0D31D50916600A71700 /* VUILable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VUILable.m; sourceTree = "<group>"; };
-		D98FCF9D1DEFC3080023C076 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
-		D98FCF9E1DEFC3080023C076 /* STPickerArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPickerArea.h; sourceTree = "<group>"; };
-		D98FCF9F1DEFC3080023C076 /* STPickerArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPickerArea.m; sourceTree = "<group>"; };
-		D98FCFA11DEFC3080023C076 /* NSCalendar+ST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+ST.h"; sourceTree = "<group>"; };
-		D98FCFA21DEFC3080023C076 /* NSCalendar+ST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+ST.m"; sourceTree = "<group>"; };
-		D98FCFA31DEFC3080023C076 /* STPickerDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPickerDate.h; sourceTree = "<group>"; };
-		D98FCFA41DEFC3080023C076 /* STPickerDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPickerDate.m; sourceTree = "<group>"; };
-		D98FCFA61DEFC3080023C076 /* STPickerSingle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPickerSingle.h; sourceTree = "<group>"; };
-		D98FCFA71DEFC3080023C076 /* STPickerSingle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPickerSingle.m; sourceTree = "<group>"; };
-		D98FCFB71DEFC3DA0023C076 /* STPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPickerView.h; sourceTree = "<group>"; };
-		D98FCFB81DEFC3DA0023C076 /* STPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPickerView.m; sourceTree = "<group>"; };
-		D98FCFBC1DEFC41A0023C076 /* STPickerViewConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPickerViewConfig.h; sourceTree = "<group>"; };
-		D98FCFBD1DEFC41A0023C076 /* STPickerViewConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPickerViewConst.h; sourceTree = "<group>"; };
-		D98FCFBE1DEFC41A0023C076 /* STPickerViewConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPickerViewConst.m; sourceTree = "<group>"; };
-		D98FCFBF1DEFC41A0023C076 /* STPickerViewUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPickerViewUI.h; sourceTree = "<group>"; };
-		D98FCFC01DEFC41A0023C076 /* STPickerViewUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPickerViewUI.m; sourceTree = "<group>"; };
-		D98FCFC11DEFC41A0023C076 /* UIView+STFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+STFrame.h"; sourceTree = "<group>"; };
-		D98FCFC21DEFC41A0023C076 /* UIView+STFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+STFrame.m"; sourceTree = "<group>"; };
 		D9B41FD11DD9A02300AAF8B8 /* HYPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPageView.h; sourceTree = "<group>"; };
 		D9B41FD21DD9A02300AAF8B8 /* HYPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPageView.m; sourceTree = "<group>"; };
 		D9BD11B01F02B134006CE841 /* WYPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPopoverController.h; sourceTree = "<group>"; };
@@ -3083,6 +3073,30 @@
 			path = LSMarqueeView;
 			sourceTree = "<group>";
 		};
+		046A7F48247042E900B9430A /* STPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				046A7F5E2470432300B9430A /* Resource */,
+				046A7F4B247042E900B9430A /* STPickerViewUI.h */,
+				046A7F50247042E900B9430A /* STPickerViewUI.m */,
+				046A7F55247042E900B9430A /* STPickerArea.h */,
+				046A7F4C247042E900B9430A /* STPickerArea.m */,
+				046A7F54247042E900B9430A /* STPickerView.h */,
+				046A7F4D247042E900B9430A /* STPickerView.m */,
+				046A7F53247042E900B9430A /* UIView+STPicker.h */,
+				046A7F4E247042E900B9430A /* UIView+STPicker.m */,
+			);
+			path = STPickerView;
+			sourceTree = "<group>";
+		};
+		046A7F5E2470432300B9430A /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				046A7F5F2470432300B9430A /* area.plist */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		0487EBB521E89ADD00501B9C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -3234,6 +3248,8 @@
 		04C13731246BB89900A603EB /* mt_scenic */ = {
 			isa = PBXGroup;
 			children = (
+				04C1376A246FE3C700A603EB /* NetWork_mt_scenic_getRandomScenic.h */,
+				04C13769246FE3C700A603EB /* NetWork_mt_scenic_getRandomScenic.m */,
 				04C13766246FA7CE00A603EB /* NetWork_mt_scenic_getHotScenicList.h */,
 				04C13765246FA7CD00A603EB /* NetWork_mt_scenic_getHotScenicList.m */,
 				04C13736246C2DA000A603EB /* NetWork_mt_scenic_getScenicById.h */,
@@ -4793,6 +4809,7 @@
 		738866751CE2C7AD00296E79 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				046A7F48247042E900B9430A /* STPickerView */,
 				04C1375B246D974300A603EB /* TagsFrame */,
 				04C1373C246D891A00A603EB /* LBPhotoBrowser */,
 				0441A280214670500077EA1F /* CustromUItextFeild */,
@@ -4804,7 +4821,6 @@
 				C552FC1B1E7136EA003D3E2E /* CustormScrollView */,
 				C552FC1E1E7136EA003D3E2E /* MyImageView */,
 				D9D19BFA1E272F32009C52A8 /* AlerViewjoinCostom */,
-				D98FCF9B1DEFC3080023C076 /* STPickerView */,
 				D9F86D641DEBEE7600C3A2B6 /* TZImagePickerController */,
 				D9B41FD01DD9A02300AAF8B8 /* HYPageView */,
 				D957AD2A1DD2CB2F00B7EE09 /* IQKeyBoardManager */,
@@ -5275,55 +5291,6 @@
 			path = VUILable;
 			sourceTree = "<group>";
 		};
-		D98FCF9B1DEFC3080023C076 /* STPickerView */ = {
-			isa = PBXGroup;
-			children = (
-				D98FCFBC1DEFC41A0023C076 /* STPickerViewConfig.h */,
-				D98FCFBD1DEFC41A0023C076 /* STPickerViewConst.h */,
-				D98FCFBE1DEFC41A0023C076 /* STPickerViewConst.m */,
-				D98FCFBF1DEFC41A0023C076 /* STPickerViewUI.h */,
-				D98FCFC01DEFC41A0023C076 /* STPickerViewUI.m */,
-				D98FCFC11DEFC41A0023C076 /* UIView+STFrame.h */,
-				D98FCFC21DEFC41A0023C076 /* UIView+STFrame.m */,
-				D98FCFB71DEFC3DA0023C076 /* STPickerView.h */,
-				D98FCFB81DEFC3DA0023C076 /* STPickerView.m */,
-				D98FCF9C1DEFC3080023C076 /* Area(地区) */,
-				D98FCFA01DEFC3080023C076 /* Date(日期) */,
-				D98FCFA51DEFC3080023C076 /* Single(单数组) */,
-			);
-			path = STPickerView;
-			sourceTree = "<group>";
-		};
-		D98FCF9C1DEFC3080023C076 /* Area(地区) */ = {
-			isa = PBXGroup;
-			children = (
-				D98FCF9D1DEFC3080023C076 /* area.plist */,
-				D98FCF9E1DEFC3080023C076 /* STPickerArea.h */,
-				D98FCF9F1DEFC3080023C076 /* STPickerArea.m */,
-			);
-			path = "Area(地区)";
-			sourceTree = "<group>";
-		};
-		D98FCFA01DEFC3080023C076 /* Date(日期) */ = {
-			isa = PBXGroup;
-			children = (
-				D98FCFA11DEFC3080023C076 /* NSCalendar+ST.h */,
-				D98FCFA21DEFC3080023C076 /* NSCalendar+ST.m */,
-				D98FCFA31DEFC3080023C076 /* STPickerDate.h */,
-				D98FCFA41DEFC3080023C076 /* STPickerDate.m */,
-			);
-			path = "Date(日期)";
-			sourceTree = "<group>";
-		};
-		D98FCFA51DEFC3080023C076 /* Single(单数组) */ = {
-			isa = PBXGroup;
-			children = (
-				D98FCFA61DEFC3080023C076 /* STPickerSingle.h */,
-				D98FCFA71DEFC3080023C076 /* STPickerSingle.m */,
-			);
-			path = "Single(单数组)";
-			sourceTree = "<group>";
-		};
 		D9B41FD01DD9A02300AAF8B8 /* HYPageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -5562,6 +5529,7 @@
 				04E6E97721A8FFDC007C8A16 /* linghun4.png in Resources */,
 				04E6E93B21A8FFDC007C8A16 /* donggan20.png in Resources */,
 				04E6E94021A8FFDC007C8A16 /* donggan5.png in Resources */,
+				046A7F602470432300B9430A /* area.plist in Resources */,
 				04E6E99521A8FFDC007C8A16 /* fenlie19.png in Resources */,
 				D9F86DB91DEBEE7600C3A2B6 /* TableViewArrow@2x.png in Resources */,
 				04E6E8E821A8FFDC007C8A16 /* ghostshadow-4.png in Resources */,
@@ -5699,7 +5667,6 @@
 				D9F86DAD1DEBEE7600C3A2B6 /* photo_sel_photoPickerVc@2x.png in Resources */,
 				D954C6881DD1AA70003CA535 /* xl_native.xcassets in Resources */,
 				04E6E93421A8FFDC007C8A16 /* jump_10.png in Resources */,
-				D98FCFA91DEFC3080023C076 /* area.plist in Resources */,
 				04E6E99A21A8FFDC007C8A16 /* shutter-9.png in Resources */,
 				04E6E9E421A8FFDC007C8A16 /* mirror-1.png in Resources */,
 				04E6E91C21A8FFDC007C8A16 /* anhei0.png in Resources */,
@@ -6063,7 +6030,6 @@
 				04C882102109AB9800811DAD /* BaseWKWebViewController.m in Sources */,
 				04183B0521C2BC2200383E3F /* FavoriteView.m in Sources */,
 				04CBC3F52179C01300658E47 /* GPUImageColorBlendFilter.m in Sources */,
-				D98FCFBA1DEFC3DA0023C076 /* STPickerView.m in Sources */,
 				04CBC34F2179C01300658E47 /* GPUImageGrayscaleFilter.m in Sources */,
 				04A04EB621ECE553007CBABF /* HomeSearchResultViewController.m in Sources */,
 				D954C4F51DD1A40F003CA535 /* UIView+Genie.m in Sources */,
@@ -6081,12 +6047,12 @@
 				D957AD5D1DD2CB2F00B7EE09 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				0441FA2321CF3FBA00801225 /* LoadMoreControl.m in Sources */,
 				04C13757246D891A00A603EB /* UIImage+LBDecoder.m in Sources */,
-				D98FCFC71DEFC41A0023C076 /* STPickerViewUI.m in Sources */,
 				04FD7DE021EE2DB7004A57CA /* MTSearchHeadFunctionView.m in Sources */,
 				04CBC3EB2179C01300658E47 /* GPUImageMaskFilter.m in Sources */,
 				04CBC3D72179C01300658E47 /* GPUImagePicture.m in Sources */,
 				04CBC3C72179C01300658E47 /* GPUImageLaplacianFilter.m in Sources */,
 				04CBC3772179C01300658E47 /* GPUImageGammaFilter.m in Sources */,
+				046A7F5B247042E900B9430A /* STPickerViewUI.m in Sources */,
 				04CBC46B2179C01300658E47 /* GPUImageCGAColorspaceFilter.m in Sources */,
 				D954C4FB1DD1A40F003CA535 /* BaseViewController.m in Sources */,
 				D9B41FD41DD9A02300AAF8B8 /* HYPageView.m in Sources */,
@@ -6204,6 +6170,7 @@
 				0452ADCB2279A50100E04998 /* AFNetworkReachabilityManager.m in Sources */,
 				0420916B21FB53D1004C0524 /* SearchResultSubMusicCell.m in Sources */,
 				04CBC3332179C01300658E47 /* GPUImageFilterGroup.m in Sources */,
+				046A7F58247042E900B9430A /* STPickerArea.m in Sources */,
 				04F5E89F21CE8DD200781FCD /* NetWork_mt_collectionVideo.m in Sources */,
 				04CBC3EF2179C01300658E47 /* GPUImageSoftLightBlendFilter.m in Sources */,
 				04CBC4072179C01300658E47 /* GPUImageMovieComposition.m in Sources */,
@@ -6223,14 +6190,12 @@
 				C552FC221E7136EA003D3E2E /* MyScrollView.m in Sources */,
 				04CBC4252179C01300658E47 /* GPUImageLinearBurnBlendFilter.m in Sources */,
 				04CBC3952179C01300658E47 /* GPUImageDissolveBlendFilter.m in Sources */,
-				D98FCFB21DEFC3080023C076 /* STPickerDate.m in Sources */,
 				04CBC4092179C01300658E47 /* GPUImageThreeInputFilter.m in Sources */,
 				0441A283214670500077EA1F /* UITextFeildCustrom.m in Sources */,
 				0420917421FB6185004C0524 /* NetWork_mt_getFuzzyTopicList.m in Sources */,
 				04D386682468386C00FEB221 /* MTVideoViewController.m in Sources */,
 				04CBC3572179C01300658E47 /* GPUImageFASTCornerDetectionFilter.m in Sources */,
 				04AEE2432275FBD800A9B1A0 /* CZActionSheetView.m in Sources */,
-				D98FCFB51DEFC3080023C076 /* STPickerSingle.m in Sources */,
 				04C430482234A33F00AD260F /* NetWork_mt_forwardVideoCount.m in Sources */,
 				04B3629F222ABA3400735B18 /* AMeListCell.m in Sources */,
 				040E28AD21C0AA4900D15B44 /* UserInfoViewController.m in Sources */,
@@ -6312,7 +6277,6 @@
 				04CBC3552179C01300658E47 /* GPUImageCannyEdgeDetectionFilter.m in Sources */,
 				04DF9DC122392FC600935A89 /* BgMusicListViewController.m in Sources */,
 				04DCEE8E21F5ACD9007AC5B0 /* HomeSearchResultSubUserViewController.m in Sources */,
-				D98FCFCA1DEFC41A0023C076 /* UIView+STFrame.m in Sources */,
 				04DB37A422741BFD0072C301 /* PrivacyPolicyViewController.m in Sources */,
 				04CBC3B12179C01300658E47 /* GPUImageStretchDistortionFilter.m in Sources */,
 				04CBC45B2179C01300658E47 /* GPUImageChromaKeyBlendFilter.m in Sources */,
@@ -6372,12 +6336,12 @@
 				04CBC3692179C01300658E47 /* GPUImageTransformFilter.m in Sources */,
 				04CBC42D2179C01300658E47 /* GPUImageScreenBlendFilter.m in Sources */,
 				0415F08A21C7D463000440F4 /* MTHomeRefreshNavigitionView.m in Sources */,
-				D98FCFC41DEFC41A0023C076 /* STPickerViewConst.m in Sources */,
 				0499B538223CC4260080A1B1 /* SoundMixView.m in Sources */,
 				04DCA87D21A55C5B00691A3A /* TVCReport.m in Sources */,
 				04CBC32D2179C01300658E47 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
 				04C13756246D891A00A603EB /* LBPhotoBrowserManager.m in Sources */,
 				04CBC3DF2179C01300658E47 /* GPUImageToneCurveFilter.m in Sources */,
+				046A7F59247042E900B9430A /* STPickerView.m in Sources */,
 				04CBC4572179C01300658E47 /* GPUImageLuminosityBlendFilter.m in Sources */,
 				04C70D3B21E3AE600022D897 /* MTFollowViewController.m in Sources */,
 				0452AE1A2279A96600E04998 /* MASCompositeConstraint.m in Sources */,
@@ -6419,8 +6383,8 @@
 				D957AD671DD2CB2F00B7EE09 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				04CBC3FB2179C01300658E47 /* GPUImageContrastFilter.m in Sources */,
 				04468F17214B8F14002F4528 /* ZJCustomTabWebController.m in Sources */,
+				04C1376B246FE3C700A603EB /* NetWork_mt_scenic_getRandomScenic.m in Sources */,
 				04D386612468027C00FEB221 /* CustomCalloutView.m in Sources */,
-				D98FCFAF1DEFC3080023C076 /* NSCalendar+ST.m in Sources */,
 				0452ADC32279A50100E04998 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				04CBC35F2179C01300658E47 /* GPUImageVignetteFilter.m in Sources */,
 				04C70D3721E3AC230022D897 /* MTMyCommentViewController.m in Sources */,
@@ -6438,6 +6402,7 @@
 				04C1721121CE3EC80077FA6C /* NetWork_mt_getMusicList.m in Sources */,
 				04CBC3E72179C01300658E47 /* GPUImageGaussianSelectiveBlurFilter.m in Sources */,
 				D957AD651DD2CB2F00B7EE09 /* IQToolbar.m in Sources */,
+				046A7F5A247042E900B9430A /* UIView+STPicker.m in Sources */,
 				04DCA8DA21A565D500691A3A /* TCVideoLoadingController.m in Sources */,
 				D954C5E11DD1A40F003CA535 /* WCOnbConfiguration.m in Sources */,
 				04CBC37D2179C01300658E47 /* GPUImageSolidColorGenerator.m in Sources */,
@@ -6456,7 +6421,6 @@
 				D954C5E21DD1A40F003CA535 /* GlobalFunc.m in Sources */,
 				04F3B4C8224746C100F4C82E /* Label.m in Sources */,
 				0405BE8A222116990098D590 /* NetWork_mt_getMusicCollections.m in Sources */,
-				D98FCFAC1DEFC3080023C076 /* STPickerArea.m in Sources */,
 				04CBC3E12179C01300658E47 /* GPUImageGaussianBlurFilter.m in Sources */,
 				043A788B2219770200F20CDC /* MusicInfoController.m in Sources */,
 				04BBCBAD2257738B009AC181 /* NetWork_mt_likeComment.m in Sources */,

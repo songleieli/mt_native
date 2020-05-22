@@ -7,14 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "STPickerViewConfig.h"
+#import "STPickerViewUI.h"
+#import "UIView+STPicker.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef NS_ENUM(NSInteger, STPickerContentMode) {
-    STPickerContentModeBottom, // 1.选择器在视图的下方
-    STPickerContentModeCenter  // 2.选择器在视图的中间
-};
 
 @interface STPickerView : UIButton
 
@@ -24,10 +20,7 @@ typedef NS_ENUM(NSInteger, STPickerContentMode) {
 @property (nonatomic, strong)UIView *lineView;
 /** 3.选择器 */
 @property (nonatomic, strong)UIPickerView *pickerView;
-/** 4.左边的按钮 */
-@property (nonatomic, strong)UIButton *buttonLeft;
-/** 5.右边的按钮 */
-@property (nonatomic, strong)UIButton *buttonRight;
+
 /** 6.标题label */
 @property (nonatomic, strong)UILabel *labelTitle;
 /** 7.下边线,在显示模式是STPickerContentModeCenter的时候显示 */
@@ -43,9 +36,9 @@ typedef NS_ENUM(NSInteger, STPickerContentMode) {
 @property(null_resettable, nonatomic,strong) UIColor  *borderButtonColor;
 /** 5.选择器的高度，default is 240 */
 @property (nonatomic, assign)CGFloat heightPicker;
-/** 6.视图的显示模式 */
-@property (nonatomic, assign)STPickerContentMode contentMode;
 
+
+- (instancetype)initWithFeame:(CGRect)frame;
 
 /**
  *  5.创建视图,初始化视图时初始数据
@@ -58,9 +51,9 @@ typedef NS_ENUM(NSInteger, STPickerContentMode) {
 - (void)selectedOk;
 
 /**
- *  7.显示
+ *  8.自定义显示
  */
-- (void)show;
+- (void)showWithFrame:(CGRect)frame parentView:(UIView*)parentView;
 
 /**
  *  8.移除

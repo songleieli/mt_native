@@ -8,17 +8,6 @@
 
 #import "NetWork_mt_scenic_getHotScenicList.h"
 
-//@implementation ScenicListModel
-//
-////@dynamic description;
-////
-//////-(void)setDescription:(NSString *)description{
-//////    _des = description;
-//////}
-////
-////
-//@end
-
 @implementation ScenicGetHotScenicListResponse
 
 - (NSDictionary *)propertyMappingObjcJson {
