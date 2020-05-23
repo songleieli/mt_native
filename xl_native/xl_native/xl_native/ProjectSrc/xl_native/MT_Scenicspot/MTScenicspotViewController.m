@@ -20,23 +20,11 @@
 
 #pragma mark =========== 懒加载 ===========
 
-//- (MyScrollView *)scrolBanner{
-//
-//    if (!_scrolBanner) {
-//        CGRect rect =  [UIView getFrame_x:0 y:0 width:ScreenWidth height:sizeScale(178)];
-//        _scrolBanner = [[MyScrollView alloc] initWithFrame:rect];
-//        _scrolBanner.isUrlImg = NO; //加载本地图片
-//        _scrolBanner.isDisplayPageDefault = YES; //不显示pageControl
-//        _scrolBanner.isAutoScroll = YES;
-//        _scrolBanner.scrolDelegate = self;
-//    }
-//    return  _scrolBanner;
-//}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    [UIApplication sharedApplication].statusBarHidden = NO;
+    [UIApplication sharedApplication].statusBarHidden = YES;
     self.tabBar.top = [self getTabbarTop];    //  重新设置tabbar的高度
 }
 
@@ -314,7 +302,7 @@
     UIView *scenSpotListView   = [headView viewWithTag:666];
     scenSpotListView.top = scenIntroduceView.bottom + sizeScale(10);
     UIView *scenSpotListBg = [scenSpotListView viewWithTag:665];
-    CGFloat spotCellHeight = 30.0f;
+    CGFloat spotCellHeight = 50.0f;
 
     [scenSpotListBg removeAllSubviews];
     for(int i=0;i<self.scenicModel.spots.count; i ++){
@@ -335,7 +323,7 @@
         
         
         UILabel * titleLib = [[UILabel alloc] init];
-        titleLib.size = [UIView getSize_width:80 height:spotCellHeight];
+        titleLib.size = [UIView getSize_width:180 height:spotCellHeight];
         titleLib.left = 0;
         titleLib.top = 0;
         titleLib.font = [UIFont defaultFontWithSize:13];
@@ -643,7 +631,8 @@
     
     NSLog(@"----进入景点---%@",model.spotsName);
     
-    MTSpotViewAreaViewController *spotViewAreaViewController = [[MTSpotViewAreaViewController alloc] init];
+    MTSpotViewController *spotViewAreaViewController = [[MTSpotViewController alloc] init];
+    spotViewAreaViewController.model = model;
     [self pushNewVC:spotViewAreaViewController animated:YES];
 
     

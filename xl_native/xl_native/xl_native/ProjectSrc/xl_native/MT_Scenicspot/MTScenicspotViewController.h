@@ -12,7 +12,7 @@
 #import "NetWork_mt_scenic_getScenicByAreaParam.h"
 #import "MyScrollView.h"
 #import "TagsFrame.h"
-#import "MTSpotViewAreaViewController.h"
+#import "MTSpotViewController.h"
 
 #define kHEIGHT     (isIPhoneXAll?sizeScale(300.0f):sizeScale(275.0f))       //headImage Height
 

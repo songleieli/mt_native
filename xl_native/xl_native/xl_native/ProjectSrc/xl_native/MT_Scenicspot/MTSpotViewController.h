@@ -10,7 +10,10 @@
 
 #define kHEIGHT     (isIPhoneXAll?sizeScale(300.0f):sizeScale(275.0f))       //headImage Height
 
-@interface MTSpotViewAreaViewController : ZJBaseViewController
+@interface MTSpotViewController : ZJBaseViewController
+
+@property (nonatomic,strong) ScenicSpotModel *model;//景点Model
+@property (nonatomic,strong) MyScrollView   *scrolBanner;//Banner轮播图
 
 
 @end

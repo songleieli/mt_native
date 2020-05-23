@@ -223,7 +223,7 @@
 		04C13758246D891A00A603EB /* LBZoomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C13749246D891A00A603EB /* LBZoomScrollView.m */; };
 		04C13759246D891A00A603EB /* LBTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1374E246D891A00A603EB /* LBTapDetectingImageView.m */; };
 		04C1375E246D974300A603EB /* TagsFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1375C246D974300A603EB /* TagsFrame.m */; };
-		04C13764246F021A00A603EB /* MTSpotViewAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C13763246F021A00A603EB /* MTSpotViewAreaViewController.m */; };
+		04C13764246F021A00A603EB /* MTSpotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C13763246F021A00A603EB /* MTSpotViewController.m */; };
 		04C13767246FA7CE00A603EB /* NetWork_mt_scenic_getHotScenicList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C13765246FA7CD00A603EB /* NetWork_mt_scenic_getHotScenicList.m */; };
 		04C1376B246FE3C700A603EB /* NetWork_mt_scenic_getRandomScenic.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C13769246FE3C700A603EB /* NetWork_mt_scenic_getRandomScenic.m */; };
 		04C171E221CDDE9E0077FA6C /* UserInfoPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C171E021CDDE9E0077FA6C /* UserInfoPlayerCell.m */; };
@@ -1409,8 +1409,8 @@
 		04C1374F246D891A00A603EB /* UIImage+LBDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LBDecoder.h"; sourceTree = "<group>"; };
 		04C1375C246D974300A603EB /* TagsFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsFrame.m; sourceTree = "<group>"; };
 		04C1375D246D974300A603EB /* TagsFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsFrame.h; sourceTree = "<group>"; };
-		04C13762246F021A00A603EB /* MTSpotViewAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSpotViewAreaViewController.h; sourceTree = "<group>"; };
-		04C13763246F021A00A603EB /* MTSpotViewAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSpotViewAreaViewController.m; sourceTree = "<group>"; };
+		04C13762246F021A00A603EB /* MTSpotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSpotViewController.h; sourceTree = "<group>"; };
+		04C13763246F021A00A603EB /* MTSpotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSpotViewController.m; sourceTree = "<group>"; };
 		04C13765246FA7CD00A603EB /* NetWork_mt_scenic_getHotScenicList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_scenic_getHotScenicList.m; sourceTree = "<group>"; };
 		04C13766246FA7CE00A603EB /* NetWork_mt_scenic_getHotScenicList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_scenic_getHotScenicList.h; sourceTree = "<group>"; };
 		04C13769246FE3C700A603EB /* NetWork_mt_scenic_getRandomScenic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_scenic_getRandomScenic.m; sourceTree = "<group>"; };
@@ -2415,7 +2415,7 @@
 		D91E53CA1DE59CF300B7DA74 /* xl_native.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = xl_native.bundle; sourceTree = "<group>"; };
 		D91E53D21DE6774000B7DA74 /* BundleUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BundleUtil.h; sourceTree = "<group>"; };
 		D91E53D31DE6774000B7DA74 /* BundleUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BundleUtil.m; sourceTree = "<group>"; };
-		D954C6841DD1A40F003CA535 /* mt_shortvideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mt_shortvideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D954C6841DD1A40F003CA535 /* 六六行.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "六六行.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D954C6871DD1AA70003CA535 /* xl_native.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = xl_native.xcassets; sourceTree = "<group>"; };
 		D954C68A1DD1AB2C003CA535 /* mt_native-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "mt_native-Info.plist"; sourceTree = "<group>"; };
 		D954C68B1DD1AB2C003CA535 /* onbConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = onbConfiguration.plist; sourceTree = "<group>"; };
@@ -3863,8 +3863,8 @@
 				04D3865B2467FFD100FEB221 /* view */,
 				04D386572467DDDB00FEB221 /* MTScenicspotViewController.h */,
 				04D386582467DDDC00FEB221 /* MTScenicspotViewController.m */,
-				04C13762246F021A00A603EB /* MTSpotViewAreaViewController.h */,
-				04C13763246F021A00A603EB /* MTSpotViewAreaViewController.m */,
+				04C13762246F021A00A603EB /* MTSpotViewController.h */,
+				04C13763246F021A00A603EB /* MTSpotViewController.m */,
 			);
 			path = MT_Scenicspot;
 			sourceTree = "<group>";
@@ -4954,7 +4954,7 @@
 		73A28E041CE1897300B335C8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D954C6841DD1A40F003CA535 /* mt_shortvideo.app */,
+				D954C6841DD1A40F003CA535 /* 六六行.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -5426,7 +5426,7 @@
 			);
 			name = mt_shortvideo;
 			productName = CMPLjhMobile;
-			productReference = D954C6841DD1A40F003CA535 /* mt_shortvideo.app */;
+			productReference = D954C6841DD1A40F003CA535 /* 六六行.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -5441,7 +5441,7 @@
 				TargetAttributes = {
 					D954C4AE1DD1A40F003CA535 = {
 						DevelopmentTeam = L9RBHF3VK5;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -6127,7 +6127,7 @@
 				04CBC3532179C01300658E47 /* GPUImageLevelsFilter.m in Sources */,
 				04DCA82E21A5576700691A3A /* TCVideoRecordProcessView.m in Sources */,
 				04DCA8D721A565D500691A3A /* TCVideoCutViewController.m in Sources */,
-				04C13764246F021A00A603EB /* MTSpotViewAreaViewController.m in Sources */,
+				04C13764246F021A00A603EB /* MTSpotViewController.m in Sources */,
 				04AB304A21CA92B10072808E /* UINavigationController+GKCategory.m in Sources */,
 				D9F86D921DEBEE7600C3A2B6 /* LxGridViewFlowLayout.m in Sources */,
 				04CBC3AB2179C01300658E47 /* GLProgram.m in Sources */,
@@ -6532,7 +6532,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
@@ -6583,7 +6583,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -6600,7 +6600,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = L9RBHF3VK5;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6665,9 +6665,9 @@
 					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.miantiao.video;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "六六行";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = mt_dev;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/xl_native/3rd/JPush-iOS-SDK-2.1-2.7/lib";
 			};
 			name = Debug;
@@ -6681,7 +6681,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = L9RBHF3VK5;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6746,9 +6746,9 @@
 					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.miantiao.video;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "六六行";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = adhoc_all;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/xl_native/3rd/JPush-iOS-SDK-2.1-2.7/lib";
 			};
 			name = Release;
