@@ -8,6 +8,7 @@
 
 #import "STPickerArea.h"
 
+
 @interface STPickerArea()<UIPickerViewDataSource, UIPickerViewDelegate>
 
 /** 1.数据源数组 */
@@ -18,15 +19,15 @@
 @property (nonatomic, strong, nullable)NSMutableArray *arrayCity;
 /** 4.当前地区数组 */
 @property (nonatomic, strong, nullable)NSMutableArray *arrayArea;
-/** 5.当前选中数组 */
-@property (nonatomic, strong, nullable)NSMutableArray *arraySelected;
+///** 5.当前选中数组 */
+//@property (nonatomic, strong, nullable)NSMutableArray *arraySelected;
 
 /** 6.省份 */
-@property (nonatomic, strong, nullable)NSString *province;
+@property (nonatomic, strong, nullable)GetProvinceDataModel *provinceModel;
 /** 7.城市 */
-@property (nonatomic, strong, nullable)NSString *city;
+@property (nonatomic, strong, nullable)GetProvinceDataModel *cityModel;
 /** 8.地区 */
-@property (nonatomic, strong, nullable)NSString *area;
+@property (nonatomic, strong, nullable)GetProvinceDataModel *areaModel;
 
 @end
 
@@ -36,91 +37,156 @@
 
 - (void)setupUI{
     
-    // 1.获取数据
-    [self.arrayRoot enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.arrayProvince addObject:obj[@"state"]];
-    }];
-
-    NSMutableArray *citys = [NSMutableArray arrayWithArray:[self.arrayRoot firstObject][@"cities"]];
-    [citys enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.arrayCity addObject:obj[@"city"]];
-    }];
-
-    self.arrayArea = [citys firstObject][@"area"];
-
-    self.province = self.arrayProvince[0];
-    self.city = self.arrayCity[0];
-    if (self.arrayArea.count != 0) {
-        self.area = self.arrayArea[0];
-    }else{
-        self.area = @"";
-    }
-    self.saveHistory = NO;
+    [self getPrivaceData];
     
     // 2.设置视图的默认属性
     _heightPickerComponent = 32;
-    [self setTitle:@"请选择城市地区"];
-    [self.pickerView setDelegate:self];
-    [self.pickerView setDataSource:self];
-
+    
 }
+
+#pragma mark - --- 初始化省市区数据 ---
+-(void)getPrivaceData{
+    NetWork_mt_scenic_getProvinceData *request = [[NetWork_mt_scenic_getProvinceData alloc] init];
+    [request startGetWithBlock:^(GetProvinceDataResponse *result, NSString *msg, BOOL finished) {
+        if(finished){
+            if(result.obj.count > 0){
+                self.arrayProvince = [[NSMutableArray alloc] initWithArray:result.obj];
+                [self getCityData:self.arrayProvince.firstObject];
+                self.provinceModel = self.arrayProvince.firstObject;
+            }
+        }
+    }];
+}
+-(void)getCityData:(GetProvinceDataModel*)proviceModel{
+    
+    NetWork_mt_scenic_getCityByProvinceCode *requestOne = [[NetWork_mt_scenic_getCityByProvinceCode alloc] init];
+    requestOne.code = proviceModel.code;
+    [requestOne startGetWithBlock:^(GetProvinceDataResponse *result, NSString *msg, BOOL finished) {
+        if(finished){
+            if(result.obj.count > 0){
+                self.arrayCity = [[NSMutableArray alloc] initWithArray:result.obj];
+//                [self getAreaData:self.arrayCity.firstObject];
+                self.cityModel = self.arrayCity.firstObject;
+                
+                
+                if ([self.delegate respondsToSelector:@selector(pickerArea:province:city:)]) {
+                    [self.delegate pickerArea:self province:self.provinceModel city:self.cityModel];
+                }
+                [self setTitle:@"请选择城市地区"];
+                [self.pickerView setDelegate:self];
+                [self.pickerView setDataSource:self];
+
+            }
+        }
+    }];
+}
+//-(void)getAreaData:(GetProvinceDataModel*)proviceModel{
+//
+//    NetWork_mt_scenic_getCountyByCityCode *requestOne = [[NetWork_mt_scenic_getCountyByCityCode alloc] init];
+//    requestOne.code = proviceModel.code;
+//    [requestOne startGetWithBlock:^(GetProvinceDataResponse *result, NSString *msg, BOOL finished) {
+//        if(finished){
+//            if(result.obj.count > 0){
+//                self.arrayCity = [[NSMutableArray alloc] initWithArray:result.obj];
+//
+//                self.provinceModel = (GetProvinceDataModel*)self.arrayProvince.firstObject;
+//                self.cityModel = (GetProvinceDataModel*)self.arrayCity.firstObject; //self.arrayCity[0];
+//                if (self.arrayArea.count != 0) {
+//                    self.areaModel =  (GetProvinceDataModel*)self.arrayArea.firstObject;//self.arrayArea[0];
+//                }else{
+//                    //self.area = @"";
+//                }
+//                self.saveHistory = NO;
+//
+//
+//                [self setTitle:@"请选择城市地区"];
+//                [self.pickerView setDelegate:self];
+//                [self.pickerView setDataSource:self];
+//            }
+//        }
+//    }];
+//}
+
 #pragma mark - --- delegate 视图委托 ---
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    return 3;
+    return 2;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     if (component == 0) {
         return self.arrayProvince.count;
     }else if (component == 1) {
+        
+        
         return self.arrayCity.count;
+        
+        
+        
+        
     }else{
         return self.arrayArea.count;
     }
 }
 
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
-{
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
     return self.heightPickerComponent;
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     if (component == 0) {
-        self.arraySelected = self.arrayRoot[row][@"cities"];
-
+        
+        
+        GetProvinceDataModel *model = [self.arrayProvince objectAtIndex:row];
         [self.arrayCity removeAllObjects];
-        [self.arraySelected enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [self.arrayCity addObject:obj[@"city"]];
+        
+        NetWork_mt_scenic_getCityByProvinceCode *requestOne = [[NetWork_mt_scenic_getCityByProvinceCode alloc] init];
+        requestOne.code = model.code;
+        [requestOne startGetWithBlock:^(GetProvinceDataResponse *result, NSString *msg, BOOL finished) {
+            if(finished){
+                if(result.obj.count > 0){
+                    self.arrayCity = [[NSMutableArray alloc] initWithArray:result.obj];
+                    self.cityModel = self.arrayCity.firstObject;
+                    
+                    if ([self.delegate respondsToSelector:@selector(pickerArea:province:city:)]) {
+                        [self.delegate pickerArea:self province:self.provinceModel city:self.cityModel];
+                    }
+
+                    [pickerView reloadComponent:1];
+//                    [pickerView reloadComponent:2];
+                    [pickerView selectRow:0 inComponent:1 animated:YES];
+//                    [pickerView selectRow:0 inComponent:2 animated:YES];
+                }
+            }
         }];
-
-        self.arrayArea = [NSMutableArray arrayWithArray:[self.arraySelected firstObject][@"areas"]];
-
-        [pickerView reloadComponent:1];
-        [pickerView reloadComponent:2];
-        [pickerView selectRow:0 inComponent:1 animated:YES];
-        [pickerView selectRow:0 inComponent:2 animated:YES];
-
-    }else if (component == 1) {
-        if (self.arraySelected.count == 0) {
-            self.arraySelected = [self.arrayRoot firstObject][@"cities"];
+    }
+    else if (component == 1) {
+        GetProvinceDataModel *model = [self.arrayCity objectAtIndex:row];
+        self.cityModel = model;
+        
+        if ([self.delegate respondsToSelector:@selector(pickerArea:province:city:)]) {
+            [self.delegate pickerArea:self province:self.provinceModel city:self.cityModel];
         }
-
-        self.arrayArea = [NSMutableArray arrayWithArray:[self.arraySelected objectAtIndex:row][@"areas"]];
-
-        [pickerView reloadComponent:2];
-        [pickerView selectRow:0 inComponent:2 animated:YES];
-
+        
+//        NetWork_mt_scenic_getCountyByCityCode *requestOne = [[NetWork_mt_scenic_getCountyByCityCode alloc] init];
+//        requestOne.code = model.code;
+//        [requestOne startGetWithBlock:^(GetProvinceDataResponse *result, NSString *msg, BOOL finished) {
+//            if(finished){
+//                if(result.obj.count > 0){
+//                    self.arrayArea = [[NSMutableArray alloc] initWithArray:result.obj];
+//
+////                    [pickerView reloadComponent:2];
+////                    [pickerView selectRow:0 inComponent:2 animated:YES];
+//                }
+//            }
+//        }];
     }else{
     }
 
     [self reloadData];
 }
 
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view
-{
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view{
 
     //设置分割线的颜色
     [pickerView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -130,40 +196,40 @@
     }];
     
     
-    NSString *text;
+    GetProvinceDataModel *model;
     if (component == 0) {
-        text =  self.arrayProvince[row];
+        model =  self.arrayProvince[row];
     }else if (component == 1){
-        text =  self.arrayCity[row];
+        model =  self.arrayCity[row];
     }else{
         if (self.arrayArea.count > 0) {
-            text = self.arrayArea[row];
-        }else{
-            text =  @"";
+            model = self.arrayArea[row];
+        }
+        else{
+//            text =  @"";
         }
     }
     
     UILabel *label = [[UILabel alloc]init];
     [label setTextAlignment:NSTextAlignmentCenter];
     [label setFont:[UIFont systemFontOfSize:17]];
-    [label setText:text];
+    [label setText:model.name];
     label.textColor = [UIColor whiteColor];
     return label;
 }
 #pragma mark - --- event response 事件相应 ---
 
-- (void)selectedOk
-{
+- (void)selectedOk{
     
     if (self.isSaveHistory) {
-        NSDictionary *dicHistory = @{@"province":self.province, @"city":self.city, @"area":self.area};
+        NSDictionary *dicHistory = @{@"province":self.provinceModel, @"city":self.cityModel, @"area":self.areaModel};
         [[NSUserDefaults standardUserDefaults] setObject:dicHistory forKey:@"STPickerArea"];
     }else {
         [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"STPickerArea"];
     }
     
     if ([self.delegate respondsToSelector:@selector(pickerArea:province:city:area:)]) {
-        [self.delegate pickerArea:self province:self.province city:self.city area:self.area];
+        [self.delegate pickerArea:self province:self.provinceModel city:self.cityModel area:self.areaModel];
     }
     [super selectedOk];
 }
@@ -174,75 +240,26 @@
 {
     NSInteger index0 = [self.pickerView selectedRowInComponent:0];
     NSInteger index1 = [self.pickerView selectedRowInComponent:1];
-    NSInteger index2 = [self.pickerView selectedRowInComponent:2];
-    self.province = self.arrayProvince[index0];
-    self.city = self.arrayCity[index1];
-    if (self.arrayArea.count != 0) {
-        self.area = self.arrayArea[index2];
+//    NSInteger index2 = [self.pickerView selectedRowInComponent:2];
+    self.provinceModel = self.arrayProvince[index0];
+    
+    if(self.arrayCity.count > 0){
+        self.cityModel = self.arrayCity[index1];
+    }
+    else{
+        self.cityModel = nil;
+    }
+    if (self.arrayArea.count > 0) {
+//        self.areaModel = self.arrayArea[index2];
     }else{
-        self.area = @"";
+        self.areaModel = nil;
     }
     
-    NSString *title = [NSString stringWithFormat:@"%@ %@ %@", self.province, self.city, self.area];
+    NSString *title = [NSString stringWithFormat:@"%@ %@ %@", self.provinceModel.name.length>0?self.provinceModel.name:@"",
+                       self.cityModel.name.length>0?self.cityModel.name:@"",
+                       self.areaModel.name.length>0?self.areaModel.name:@""];
     [self setTitle:title];
 
-}
-
-#pragma mark - --- setters 属性 ---
-
-- (void)setSaveHistory:(BOOL)saveHistory{
-    _saveHistory = saveHistory;
-    
-    if (saveHistory) {
-        NSDictionary *dicHistory = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"STPickerArea"];
-        __block NSUInteger numberProvince = 0;
-        __block NSUInteger numberCity = 0;
-        __block NSUInteger numberArea = 0;
-        
-        if (dicHistory) {
-            NSString *province = [NSString stringWithFormat:@"%@", dicHistory[@"province"]];
-            NSString *city = [NSString stringWithFormat:@"%@", dicHistory[@"city"]];
-            NSString *area = [NSString stringWithFormat:@"%@", dicHistory[@"area"]];
-            
-            [self.arrayProvince enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if ([obj isEqualToString:province]) {
-                    numberProvince = idx;
-                }
-            }];
-            
-            self.arraySelected = self.arrayRoot[numberProvince][@"cities"];
-            
-            [self.arrayCity removeAllObjects];
-            [self.arraySelected enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [self.arrayCity addObject:obj[@"city"]];
-            }];
-            
-            [self.arrayCity enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if ([obj isEqualToString:city]) {
-                    numberCity = idx;
-                }
-            }];
-            
-            
-            if (self.arraySelected.count == 0) {
-                self.arraySelected = [self.arrayRoot firstObject][@"cities"];
-            }
-            
-            self.arrayArea = [NSMutableArray arrayWithArray:[self.arraySelected objectAtIndex:numberCity][@"areas"]];
-            
-            [self.arrayArea enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if ([obj isEqualToString:area]) {
-                    numberArea = idx;
-                }
-            }];
-            
-            [self.pickerView selectRow:numberProvince inComponent:0 animated:NO];
-            [self.pickerView selectRow:numberCity inComponent:1 animated:NO];
-            [self.pickerView selectRow:numberArea inComponent:2 animated:NO];
-            [self.pickerView reloadAllComponents];
-            [self reloadData];
-        }
-    }
 }
 
 #pragma mark - --- getters 属性 ---
@@ -278,14 +295,6 @@
         _arrayArea = @[].mutableCopy;
     }
     return _arrayArea;
-}
-
-- (NSMutableArray *)arraySelected
-{
-    if (!_arraySelected) {
-        _arraySelected = @[].mutableCopy;
-    }
-    return _arraySelected;
 }
 
 @end

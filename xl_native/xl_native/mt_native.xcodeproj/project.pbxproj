@@ -158,6 +158,9 @@
 		04719704226200CF00AE3988 /* SettingAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04719702226200CE00AE3988 /* SettingAboutViewController.m */; };
 		047EE800221CE22100F77B96 /* NetWork_mt_collectionMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE7FE221CE22100F77B96 /* NetWork_mt_collectionMusic.m */; };
 		047EE803221D07B300F77B96 /* NetWork_mt_deleteCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE802221D07B300F77B96 /* NetWork_mt_deleteCollection.m */; };
+		0482AAC4247927DB00117EAF /* NetWork_mt_scenic_getProvinceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0482AAC3247927DB00117EAF /* NetWork_mt_scenic_getProvinceData.m */; };
+		0482AAC7247931AD00117EAF /* NetWork_mt_scenic_getCountyByCityCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0482AAC5247931AD00117EAF /* NetWork_mt_scenic_getCountyByCityCode.m */; };
+		0482AACA247939FD00117EAF /* NetWork_mt_scenic_getCityByProvinceCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0482AAC8247939FC00117EAF /* NetWork_mt_scenic_getCityByProvinceCode.m */; };
 		0487EBBA21E89ADE00501B9C /* MySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487EBB821E89ADD00501B9C /* MySettingViewController.m */; };
 		0487EBBF21E89C2900501B9C /* MyViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487EBBD21E89C2900501B9C /* MyViewTableViewCell.m */; };
 		048BF55221EEC4F2005D3708 /* NetWork_mt_getHotVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 048BF55021EEC4F1005D3708 /* NetWork_mt_getHotVideoList.m */; };
@@ -1280,6 +1283,12 @@
 		047EE7FF221CE22100F77B96 /* NetWork_mt_collectionMusic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_collectionMusic.h; sourceTree = "<group>"; };
 		047EE801221D07B300F77B96 /* NetWork_mt_deleteCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_deleteCollection.h; sourceTree = "<group>"; };
 		047EE802221D07B300F77B96 /* NetWork_mt_deleteCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_deleteCollection.m; sourceTree = "<group>"; };
+		0482AAC2247927DB00117EAF /* NetWork_mt_scenic_getProvinceData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_scenic_getProvinceData.h; sourceTree = "<group>"; };
+		0482AAC3247927DB00117EAF /* NetWork_mt_scenic_getProvinceData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_scenic_getProvinceData.m; sourceTree = "<group>"; };
+		0482AAC5247931AD00117EAF /* NetWork_mt_scenic_getCountyByCityCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_scenic_getCountyByCityCode.m; sourceTree = "<group>"; };
+		0482AAC6247931AD00117EAF /* NetWork_mt_scenic_getCountyByCityCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_scenic_getCountyByCityCode.h; sourceTree = "<group>"; };
+		0482AAC8247939FC00117EAF /* NetWork_mt_scenic_getCityByProvinceCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_scenic_getCityByProvinceCode.m; sourceTree = "<group>"; };
+		0482AAC9247939FD00117EAF /* NetWork_mt_scenic_getCityByProvinceCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_scenic_getCityByProvinceCode.h; sourceTree = "<group>"; };
 		0487EBB721E89ADD00501B9C /* MySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySettingViewController.h; sourceTree = "<group>"; };
 		0487EBB821E89ADD00501B9C /* MySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySettingViewController.m; sourceTree = "<group>"; };
 		0487EBBD21E89C2900501B9C /* MyViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewTableViewCell.m; sourceTree = "<group>"; };
@@ -3248,6 +3257,12 @@
 		04C13731246BB89900A603EB /* mt_scenic */ = {
 			isa = PBXGroup;
 			children = (
+				0482AAC2247927DB00117EAF /* NetWork_mt_scenic_getProvinceData.h */,
+				0482AAC3247927DB00117EAF /* NetWork_mt_scenic_getProvinceData.m */,
+				0482AAC9247939FD00117EAF /* NetWork_mt_scenic_getCityByProvinceCode.h */,
+				0482AAC8247939FC00117EAF /* NetWork_mt_scenic_getCityByProvinceCode.m */,
+				0482AAC6247931AD00117EAF /* NetWork_mt_scenic_getCountyByCityCode.h */,
+				0482AAC5247931AD00117EAF /* NetWork_mt_scenic_getCountyByCityCode.m */,
 				04C1376A246FE3C700A603EB /* NetWork_mt_scenic_getRandomScenic.h */,
 				04C13769246FE3C700A603EB /* NetWork_mt_scenic_getRandomScenic.m */,
 				04C13766246FA7CE00A603EB /* NetWork_mt_scenic_getHotScenicList.h */,
@@ -6033,6 +6048,7 @@
 				04CBC34F2179C01300658E47 /* GPUImageGrayscaleFilter.m in Sources */,
 				04A04EB621ECE553007CBABF /* HomeSearchResultViewController.m in Sources */,
 				D954C4F51DD1A40F003CA535 /* UIView+Genie.m in Sources */,
+				0482AACA247939FD00117EAF /* NetWork_mt_scenic_getCityByProvinceCode.m in Sources */,
 				04CBC36D2179C01300658E47 /* GPUImageKuwaharaRadius3Filter.m in Sources */,
 				04C13755246D891A00A603EB /* LBPhotoBrowserView.m in Sources */,
 				04CBC3452179C01300658E47 /* GPUImageUIElement.m in Sources */,
@@ -6196,6 +6212,7 @@
 				04D386682468386C00FEB221 /* MTVideoViewController.m in Sources */,
 				04CBC3572179C01300658E47 /* GPUImageFASTCornerDetectionFilter.m in Sources */,
 				04AEE2432275FBD800A9B1A0 /* CZActionSheetView.m in Sources */,
+				0482AAC7247931AD00117EAF /* NetWork_mt_scenic_getCountyByCityCode.m in Sources */,
 				04C430482234A33F00AD260F /* NetWork_mt_forwardVideoCount.m in Sources */,
 				04B3629F222ABA3400735B18 /* AMeListCell.m in Sources */,
 				040E28AD21C0AA4900D15B44 /* UserInfoViewController.m in Sources */,
@@ -6348,6 +6365,7 @@
 				04DCEE9121F5B4B9007AC5B0 /* SearchResultSubUserCell.m in Sources */,
 				04D3865E2467FFD100FEB221 /* CustomAnnotationView.m in Sources */,
 				04DCA8ED21A565D500691A3A /* VideoPasterView.m in Sources */,
+				0482AAC4247927DB00117EAF /* NetWork_mt_scenic_getProvinceData.m in Sources */,
 				04CBC4152179C01300658E47 /* GPUImageRawDataInput.m in Sources */,
 				04D386752469185B00FEB221 /* VideoCollectionViewCell.m in Sources */,
 				0452AD8E2279A47900E04998 /* MJRefreshFooter.m in Sources */,

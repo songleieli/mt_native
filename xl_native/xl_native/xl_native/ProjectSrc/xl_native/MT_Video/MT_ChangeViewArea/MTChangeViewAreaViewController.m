@@ -102,7 +102,6 @@
     
     UIView *headView = self.mainTableView.tableHeaderView;
     
-    
     //景区扩展属性栏目
     UIView *viewHotSpot  = [headView viewWithTag:999];
     UIView *spotBgView = [viewHotSpot viewWithTag:997]; //tag背景View
@@ -254,15 +253,11 @@
     
     STPickerArea *pickerArea = [[STPickerArea alloc]initWithFeame:viewSelectBg.bounds];
     [pickerArea setDelegate:self];
-    [pickerArea setSaveHistory:YES];
+//    [pickerArea setSaveHistory:YES];
     [pickerArea showWithFrame:viewSelectBg.bounds parentView:viewSelectBg];
     
-    
     viewSelectArea.height = viewSelectBg.bottom + sizeScale(10);
-    
-    
     return viewSelectArea;
-    
 }
 
 
@@ -281,6 +276,14 @@
     
 }
 
+#pragma mark --------- STPickerAreaDelegate ------------
+
+- (void)pickerArea:(STPickerArea *)pickerArea province:(GetProvinceDataModel *)province city:(GetProvinceDataModel *)city{
+    NSLog(@"------------当前选择城市----%@",city.name);
+    
+    
+    //刷新数组列表 
+}
 
 
 @end

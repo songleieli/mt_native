@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "STPickerView.h"
+#import "NetWork_mt_scenic_getProvinceData.h"
+#import "NetWork_mt_scenic_getCountyByCityCode.h"
+#import "NetWork_mt_scenic_getCityByProvinceCode.h"
+
 NS_ASSUME_NONNULL_BEGIN
 @class STPickerArea;
 @protocol  STPickerAreaDelegate<NSObject>
 
-- (void)pickerArea:(STPickerArea *)pickerArea province:(NSString *)province city:(NSString *)city area:(NSString *)area;
+- (void)pickerArea:(STPickerArea *)pickerArea province:(GetProvinceDataModel *)province city:(GetProvinceDataModel *)city area:(GetProvinceDataModel *)area;
+
+- (void)pickerArea:(STPickerArea *)pickerArea province:(GetProvinceDataModel *)province city:(GetProvinceDataModel *)city;
 
 @end
 @interface STPickerArea : STPickerView
