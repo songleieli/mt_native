@@ -8,9 +8,9 @@
 
 #import "MTChangeViewAreaViewController.h"
 #import "STPickerArea.h"
+#import "MTChangeScenicCell.h"
 
-
-@interface MTChangeViewAreaViewController ()<STPickerAreaDelegate>
+@interface MTChangeViewAreaViewController ()<STPickerAreaDelegate,ChangeScenicDelegate>
 
 
 @end
@@ -155,6 +155,13 @@
     self.mainTableView.height = ScreenHeight - kNavBarHeight_New;
     self.mainTableView.mj_footer = nil;
     self.mainTableView.mj_header = nil;
+    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.mainTableView.delegate = self;
+    self.mainTableView.dataSource = self;
+    self.mainTableView.backgroundColor = [UIColor clearColor]; //RGBFromColor(0xecedf1);
+    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.mainTableView registerClass:MTChangeScenicCell.class forCellReuseIdentifier:[MTChangeScenicCell cellId]];
+    
     self.mainTableView.tableHeaderView = headView;
     
     [self.view addSubview:self.mainTableView];
@@ -242,8 +249,8 @@
     [viewSelectArea addSubview:lableName];
     
     UIView *viewSelectBg = [[UIView alloc] init];
-        viewSelectBg.layer.borderWidth = 1.0f;
-        viewSelectBg.layer.borderColor = [UIColor blueColor].CGColor;
+//        viewSelectBg.layer.borderWidth = 1.0f;
+//        viewSelectBg.layer.borderColor = [UIColor blueColor].CGColor;
     viewSelectBg.tag = 887;
     viewSelectBg.size = [UIView getSize_width:viewHotSpot.width - sizeScale(10)*2 height:200];
     viewSelectBg.left = sizeScale(10);
@@ -265,15 +272,43 @@
     
     ScenicModel *model = [self.arrayhotSpotModel objectAtIndex:btn.tag];
     [GlobalData sharedInstance].curScenicModel = model;
-
-    
-    
-//    NSDictionary *infoDic = @{@"scenicId":model.id};
     [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationUserChangeScenic object:nil];
-    
-    
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+#pragma mark --------------- tabbleView代理 -----------------
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
+    return self.mainDataArr.count;
+}
+//设置cell的样式
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if(self.mainDataArr.count > 0){
+        MTChangeScenicCell *cell = [tableView dequeueReusableCellWithIdentifier:[MTChangeScenicCell cellId] forIndexPath:indexPath];
+        ScenicModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
+        cell.changeScenicDelegate = self;
+        [cell fillDataWithModel:model];
+        return cell;
+    }
+    else{
+        /*
+         有时会出现，self.mainDataArr count为0 cellForRowAtIndexPath，却响应的bug。
+         */
+        UITableViewCell * celltemp =  [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellid"];
+        return celltemp;
+    }
+}
+
+//设置每一组的高度
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return ZJMessageCellHeight;
 }
 
 #pragma mark --------- STPickerAreaDelegate ------------
@@ -281,9 +316,42 @@
 - (void)pickerArea:(STPickerArea *)pickerArea province:(GetProvinceDataModel *)province city:(GetProvinceDataModel *)city{
     NSLog(@"------------当前选择城市----%@",city.name);
     
+    self.currentPageIndex = 0;
+
+    
+    NetWork_mt_scenic_getScenicListByAreaParam *request = [[NetWork_mt_scenic_getScenicListByAreaParam alloc] init];
+    request.pageNo = [NSString stringWithFormat:@"%d",self.currentPageIndex=self.currentPageIndex+1];
+    request.pageSize = [NSString stringWithFormat:@"%d",self.currentPageSize];
+    request.parentType = @"1";
+    request.city = city.code;
+    [request startGetWithBlock:^(GetScenicListByAreaParamResponse *result, NSString *msg, BOOL finished) {
+        if(finished){
+            if (self.currentPageIndex == 1 ) {
+                [self.mainDataArr removeAllObjects];
+            }
+            [self.mainDataArr addObjectsFromArray:result.obj];
+            [self.mainTableView reloadData];
+            
+            if(self.mainDataArr.count < self.currentPageSize || result.obj.count == 0) {//最后一页数据
+                [self.mainTableView.mj_footer endRefreshingWithNoMoreData];
+            }
+        }
+        else{
+            [UIWindow showTips:msg];
+        }
+    }];
     
     //刷新数组列表 
 }
 
+
+#pragma mark --------- ChangeScenicDelegate ------------
+
+-(void)btnCellClick:(ScenicModel*)model{
+    
+    [GlobalData sharedInstance].curScenicModel = model;
+    [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationUserChangeScenic object:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 @end

@@ -41,6 +41,15 @@
     NSDictionary *commonPDic = [interfaceDic objectForKey:@"commonPDic"];
     NSDictionary *paramsDic = [interfaceDic objectForKey:@"paramsPDic"];
     
+
+    
+    NSMutableDictionary * requestDic = [NSMutableDictionary dictionaryWithDictionary:commonPDic];
+    if(paramsDic.allKeys.count > 0){
+        [requestDic addEntriesFromDictionary:paramsDic];
+    }
+    NSString *paramsDicStr = [SL_Utils strWithDic:requestDic];
+    url = [NSString stringWithFormat:@"%@?%@",url,paramsDicStr];
+
     NSMutableString *logStr = [[NSMutableString alloc] init];
     [logStr appendString:[NSString stringWithFormat:@"\r\n\r\n\r\n请求类型 GET\r接口请求类 %@\r请求url = %@\r",interfaceClassName,url]];
     [logStr appendString:@"---------------------commonparams ----------------------------\r"];
@@ -54,14 +63,9 @@
     [logStr appendString:@"--------------------------------------------------------------\r"];
     NSLog(logStr);
     
-    NSMutableDictionary * requestDic = [NSMutableDictionary dictionaryWithDictionary:commonPDic];
-    if(paramsDic.allKeys.count > 0){
-        [requestDic addEntriesFromDictionary:paramsDic];
-    }
-    NSString *paramsDicStr = [SL_Utils strWithDic:requestDic];
-    
-    url = [NSString stringWithFormat:@"%@?%@",url,paramsDicStr];
     url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; //将请求的网址进行url编码
+    
+
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
     if (timeout > 0){

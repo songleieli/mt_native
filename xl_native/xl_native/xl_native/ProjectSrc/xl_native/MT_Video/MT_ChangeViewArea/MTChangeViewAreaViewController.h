@@ -8,6 +8,7 @@
 
 #import "ZJCustomTabCollectionViewController.h"
 #import "NetWork_mt_scenic_getHotScenicList.h"
+#import "NetWork_mt_scenic_getScenicListByAreaParam.h"
 #import "TagsFrame.h"
 #define kHEIGHT     (isIPhoneXAll?sizeScale(300.0f):sizeScale(275.0f))       //headImage Height
 

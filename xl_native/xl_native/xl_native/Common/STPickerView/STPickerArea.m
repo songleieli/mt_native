@@ -228,9 +228,9 @@
         [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"STPickerArea"];
     }
     
-    if ([self.delegate respondsToSelector:@selector(pickerArea:province:city:area:)]) {
-        [self.delegate pickerArea:self province:self.provinceModel city:self.cityModel area:self.areaModel];
-    }
+//    if ([self.delegate respondsToSelector:@selector(pickerArea:province:city:area:)]) {
+//        [self.delegate pickerArea:self province:self.provinceModel city:self.cityModel area:self.areaModel];
+//    }
     [super selectedOk];
 }
 

@@ -36,7 +36,7 @@
     // 1.设置数据的默认值
     _title             = nil;
     _font              = [UIFont systemFontOfSize:17];
-    _titleColor        = [UIColor blackColor];
+    _titleColor        = [UIColor whiteColor];
 //    _borderButtonColor = [UIColor colorWithRed:205.0/255 green:205.0/255 blue:205.0/255 alpha:1] ;
     
     _borderButtonColor = [UIColor whiteColor];
@@ -111,7 +111,7 @@
         CGFloat contentW = STScreenWidth;
         CGFloat contentH = self.heightPicker;
         _contentView = [[UIView alloc]initWithFrame:CGRectMake(contentX, contentY, contentW, contentH)];
-        [_contentView setBackgroundColor:[UIColor whiteColor]];
+        [_contentView setBackgroundColor:[UIColor clearColor]];
         _contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     }
     return _contentView;

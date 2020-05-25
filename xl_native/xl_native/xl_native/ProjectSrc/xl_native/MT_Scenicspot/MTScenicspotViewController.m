@@ -150,14 +150,12 @@
                 tagsBtn.backgroundColor = XLColorMainPart;
             }
             [tagsBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-
             tagsBtn.titleLabel.font = TagsTitleFont;
 //            tagsBtn.layer.borderWidth = 1;
 //            tagsBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
             tagsBtn.layer.cornerRadius = 2;
             tagsBtn.layer.masksToBounds = YES;
             tagsBtn.frame = CGRectFromString(self.tagsFrame.tagsFrames[i]);
-            
             [tagBgView addSubview:tagsBtn];
         }
     }
@@ -180,7 +178,7 @@
         titleLib.size = [UIView getSize_width:80 height:dynamicAttrcellHeight];
         titleLib.left = 0;
         titleLib.top = i==0?dynamicAttrcellTop:dynamicAttrcellTop + dynamicAttrcellSpace;
-        titleLib.font = [UIFont defaultFontWithSize:13];
+        titleLib.font = [UIFont defaultFontWithSize:15];
         titleLib.clipsToBounds = YES;
         titleLib.textColor = [UIColor blackColor];
         titleLib.textAlignment = NSTextAlignmentLeft;
@@ -194,7 +192,7 @@
         contentLib.size = [UIView getSize_width:viewDynamicAttr.width -titleLib.width  height:dynamicAttrcellHeight];
         contentLib.left = titleLib.right;
         contentLib.top = titleLib.top;
-        contentLib.font = [UIFont defaultFontWithSize:13];
+        contentLib.font = [UIFont defaultFontWithSize:15];
         contentLib.clipsToBounds = YES;
         contentLib.textColor = [UIColor blackColor];
         contentLib.textAlignment = NSTextAlignmentLeft;
@@ -233,7 +231,7 @@
         titleLib.size = [UIView getSize_width:80 height:ticketInfoCellHeight];
         titleLib.left = 0;
         titleLib.top = ticketInfoCellTop + ticketInfoCellSpace;
-        titleLib.font = [UIFont defaultFontWithSize:13];
+        titleLib.font = [UIFont defaultFontWithSize:15];
         titleLib.clipsToBounds = YES;
         titleLib.textColor = [UIColor blackColor];
         titleLib.textAlignment = NSTextAlignmentLeft;
@@ -247,7 +245,7 @@
         contentLib.size = [UIView getSize_width:viewDynamicAttr.width -titleLib.width  height:ticketInfoCellHeight];
         contentLib.left = titleLib.right;
         contentLib.top = titleLib.top;
-        contentLib.font = [UIFont defaultFontWithSize:13];
+        contentLib.font = [UIFont defaultFontWithSize:15];
         contentLib.clipsToBounds = YES;
         contentLib.textColor = [UIColor blackColor];
         contentLib.textAlignment = NSTextAlignmentLeft;
@@ -280,16 +278,13 @@
         //自适应高度
         CGSize size = [GlobalFunc sizeWithText:lableScenIntroduce.text font:lableScenIntroduce.font size:CGSizeMake(lableScenIntroduce.width, 8000)];
         lableScenIntroduce.height = size.height;
-
     }
     
     if(self.scenicModel.images.count > 0){
-        
         self.scrolBanner.top = lableScenIntroduce.bottom + sizeScale(10);
             NSMutableArray *muArrViews = [NSMutableArray array];
             for(NSString *url in self.scenicModel.images){
                 NSString *weblUrl = [NSString stringWithFormat:@"%@%@",[WCBaseContext sharedInstance].appInterfaceServer,url];
-                
                 [muArrViews addObject:weblUrl];
             }
             self.scrolBanner.isUrlImg = YES;
@@ -297,7 +292,6 @@
     }
     scenIntroduceView.height = self.scrolBanner.bottom + sizeScale(10);
 
-    
     //景点列表
     UIView *scenSpotListView   = [headView viewWithTag:666];
     scenSpotListView.top = scenIntroduceView.bottom + sizeScale(10);
@@ -308,7 +302,6 @@
     for(int i=0;i<self.scenicModel.spots.count; i ++){
         
         ScenicSpotModel *model = [self.scenicModel.spots objectAtIndex:i];
-
 
         UIButton *btnSpotBg = [UIButton buttonWithType:UIButtonTypeCustom];
         btnSpotBg.tag = i;
@@ -321,12 +314,11 @@
         [scenSpotListBg addSubview:btnSpotBg];
         
         
-        
         UILabel * titleLib = [[UILabel alloc] init];
         titleLib.size = [UIView getSize_width:180 height:spotCellHeight];
         titleLib.left = 0;
         titleLib.top = 0;
-        titleLib.font = [UIFont defaultFontWithSize:13];
+        titleLib.font = [UIFont defaultFontWithSize:15];
         titleLib.clipsToBounds = YES;
         titleLib.textColor = [UIColor blackColor];
         titleLib.textAlignment = NSTextAlignmentLeft;
@@ -340,7 +332,7 @@
         contentLib.size = [UIView getSize_width:viewDynamicAttr.width -titleLib.width  height:spotCellHeight];
         contentLib.left = titleLib.right;
         contentLib.top = 0;
-        contentLib.font = [UIFont defaultFontWithSize:13];
+        contentLib.font = [UIFont defaultFontWithSize:15];
         contentLib.clipsToBounds = YES;
         contentLib.textColor = [UIColor blackColor];
         contentLib.textAlignment = NSTextAlignmentRight;
@@ -442,11 +434,11 @@
 
     UILabel * shotIntroduce = [[UILabel alloc] init];
     shotIntroduce.tag = 997;
-    shotIntroduce.size = [UIView getSize_width:viewArea.width - sizeScale(10)*2 height:30];
+    shotIntroduce.size = [UIView getSize_width:viewArea.width - sizeScale(10)*2 height:35];
     shotIntroduce.right = viewArea.width - sizeScale(20);
     shotIntroduce.left = lableName.left;
     shotIntroduce.top = lableName.bottom + 5;
-    shotIntroduce.font = [UIFont defaultFontWithSize:13];
+    shotIntroduce.font = [UIFont defaultFontWithSize:18];
     shotIntroduce.clipsToBounds = YES;
     shotIntroduce.textColor = [UIColor blackColor];
     shotIntroduce.textAlignment = NSTextAlignmentLeft;
@@ -543,7 +535,7 @@
     lableScenIntroduce.size = [UIView getSize_width:scenIntroduceView.width - sizeScale(10)*2   height:30];
     lableScenIntroduce.left = lableName.left;
     lableScenIntroduce.top = lableName.bottom + sizeScale(10);
-    lableScenIntroduce.font = [UIFont defaultFontWithSize:13];
+    lableScenIntroduce.font = [UIFont defaultFontWithSize:18];
     lableScenIntroduce.clipsToBounds = YES;
     lableScenIntroduce.textColor = [UIColor blackColor];
     lableScenIntroduce.textAlignment = NSTextAlignmentLeft;
@@ -560,19 +552,8 @@
     self.scrolBanner.scrolDelegate = self;
     
     [scenIntroduceView addSubview:self.scrolBanner];
-    
-    //    UIView *viewTicketBg = [[UIView alloc] init];
-    //    viewTicketBg.tag = 887;
-    //    viewTicketBg.size = [UIView getSize_width:viewArea.width - sizeScale(10)*2 height:300];
-    //    viewTicketBg.left = sizeScale(10);
-    //    viewTicketBg.top = lableName.bottom + 5;
-    //    [viewTicket addSubview:viewTicketBg];
-    //
-    //    viewTicket.height = viewTicketBg.bottom + sizeScale(10);
-    
-    
+
     return scenIntroduceView;
-    
 }
 
 -(UIView*)getScenSpotListView:(UIView*)headview viewArea:(UIView*)scenIntroduceView{

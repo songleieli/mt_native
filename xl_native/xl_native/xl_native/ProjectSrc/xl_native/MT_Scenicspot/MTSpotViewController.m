@@ -98,20 +98,10 @@
 - (UIView *)getHeadView{
     
     CGRect frame = CGRectMake(0, 0, self.view.width, 1500);
-    
     UIView *headview = [[UIView alloc] initWithFrame:frame];
     headview.backgroundColor = RGBA(245, 245, 245, 1);
-    
     UIView *viewSpotIntro = [self getSpotIntroduceView:headview];
-//    UIView *viewTicket = [self getviewTicketView:headview viewArea:viewArea];
-//    UIView *scenIntroduceView = [self getScenIntroduceView:headview viewArea:viewTicket];
-//    UIView *scenSpotListView = [self getScenSpotListView:headview viewArea:scenIntroduceView];
-//    
     [headview addSubview:viewSpotIntro];
-//    [headview addSubview:viewTicket];
-//    [headview addSubview:scenIntroduceView];
-//    [headview addSubview:scenSpotListView];
-    
     return headview;
 }
 
@@ -144,7 +134,7 @@
     lableScenIntroduce.size = [UIView getSize_width:scenIntroduceView.width - sizeScale(10)*2   height:30];
     lableScenIntroduce.left = lableName.left;
     lableScenIntroduce.top = lableName.bottom + sizeScale(10);
-    lableScenIntroduce.font = [UIFont defaultFontWithSize:13];
+    lableScenIntroduce.font = [UIFont defaultFontWithSize:18];
     lableScenIntroduce.clipsToBounds = YES;
     lableScenIntroduce.textColor = [UIColor blackColor];
     lableScenIntroduce.textAlignment = NSTextAlignmentLeft;

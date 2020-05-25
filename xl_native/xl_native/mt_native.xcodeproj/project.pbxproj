@@ -161,6 +161,8 @@
 		0482AAC4247927DB00117EAF /* NetWork_mt_scenic_getProvinceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0482AAC3247927DB00117EAF /* NetWork_mt_scenic_getProvinceData.m */; };
 		0482AAC7247931AD00117EAF /* NetWork_mt_scenic_getCountyByCityCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0482AAC5247931AD00117EAF /* NetWork_mt_scenic_getCountyByCityCode.m */; };
 		0482AACA247939FD00117EAF /* NetWork_mt_scenic_getCityByProvinceCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0482AAC8247939FC00117EAF /* NetWork_mt_scenic_getCityByProvinceCode.m */; };
+		0482AACD2479535900117EAF /* MTChangeScenicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0482AACC2479535900117EAF /* MTChangeScenicCell.m */; };
+		0482AAD0247953E100117EAF /* NetWork_mt_scenic_getScenicListByAreaParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 0482AACF247953E100117EAF /* NetWork_mt_scenic_getScenicListByAreaParam.m */; };
 		0487EBBA21E89ADE00501B9C /* MySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487EBB821E89ADD00501B9C /* MySettingViewController.m */; };
 		0487EBBF21E89C2900501B9C /* MyViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0487EBBD21E89C2900501B9C /* MyViewTableViewCell.m */; };
 		048BF55221EEC4F2005D3708 /* NetWork_mt_getHotVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 048BF55021EEC4F1005D3708 /* NetWork_mt_getHotVideoList.m */; };
@@ -1289,6 +1291,10 @@
 		0482AAC6247931AD00117EAF /* NetWork_mt_scenic_getCountyByCityCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_scenic_getCountyByCityCode.h; sourceTree = "<group>"; };
 		0482AAC8247939FC00117EAF /* NetWork_mt_scenic_getCityByProvinceCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_scenic_getCityByProvinceCode.m; sourceTree = "<group>"; };
 		0482AAC9247939FD00117EAF /* NetWork_mt_scenic_getCityByProvinceCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_scenic_getCityByProvinceCode.h; sourceTree = "<group>"; };
+		0482AACB2479535800117EAF /* MTChangeScenicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTChangeScenicCell.h; sourceTree = "<group>"; };
+		0482AACC2479535900117EAF /* MTChangeScenicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTChangeScenicCell.m; sourceTree = "<group>"; };
+		0482AACE247953E000117EAF /* NetWork_mt_scenic_getScenicListByAreaParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_scenic_getScenicListByAreaParam.h; sourceTree = "<group>"; };
+		0482AACF247953E100117EAF /* NetWork_mt_scenic_getScenicListByAreaParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_scenic_getScenicListByAreaParam.m; sourceTree = "<group>"; };
 		0487EBB721E89ADD00501B9C /* MySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySettingViewController.h; sourceTree = "<group>"; };
 		0487EBB821E89ADD00501B9C /* MySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySettingViewController.m; sourceTree = "<group>"; };
 		0487EBBD21E89C2900501B9C /* MyViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewTableViewCell.m; sourceTree = "<group>"; };
@@ -3257,6 +3263,8 @@
 		04C13731246BB89900A603EB /* mt_scenic */ = {
 			isa = PBXGroup;
 			children = (
+				0482AACE247953E000117EAF /* NetWork_mt_scenic_getScenicListByAreaParam.h */,
+				0482AACF247953E100117EAF /* NetWork_mt_scenic_getScenicListByAreaParam.m */,
 				0482AAC2247927DB00117EAF /* NetWork_mt_scenic_getProvinceData.h */,
 				0482AAC3247927DB00117EAF /* NetWork_mt_scenic_getProvinceData.m */,
 				0482AAC9247939FD00117EAF /* NetWork_mt_scenic_getCityByProvinceCode.h */,
@@ -3918,6 +3926,8 @@
 		04D386722469185B00FEB221 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0482AACB2479535800117EAF /* MTChangeScenicCell.h */,
+				0482AACC2479535900117EAF /* MTChangeScenicCell.m */,
 				04D3867724691E8900FEB221 /* VideoViewFlowLayout.h */,
 				04D3867824691E8A00FEB221 /* VideoViewFlowLayout.m */,
 				04D386732469185B00FEB221 /* VideoCollectionViewCell.h */,
@@ -6079,6 +6089,7 @@
 				04F3B68722474D8400F4C82E /* QBAlbumCell.m in Sources */,
 				04443E9021B3F91400C8DD34 /* XLPlayerListViewController.m in Sources */,
 				0434BDDC21EA000B0059A28C /* NetWork_mt_updateNoodelHead.m in Sources */,
+				0482AACD2479535900117EAF /* MTChangeScenicCell.m in Sources */,
 				04CBC34B2179C01300658E47 /* GPUImageEmbossFilter.m in Sources */,
 				040208FD21D3CF0500765F06 /* NetWork_mt_getFlours.m in Sources */,
 				0452AD4D2279A39C00E04998 /* MBProgressHUD.m in Sources */,
@@ -6159,6 +6170,7 @@
 				0452ADCA2279A50100E04998 /* AFURLRequestSerialization.m in Sources */,
 				04CBC3CF2179C01300658E47 /* GPUImageFramebufferCache.m in Sources */,
 				04F3B68A22474D8400F4C82E /* QBAssetsViewController.m in Sources */,
+				0482AAD0247953E100117EAF /* NetWork_mt_scenic_getScenicListByAreaParam.m in Sources */,
 				04CBC3312179C01300658E47 /* GPUImageLuminanceThresholdFilter.m in Sources */,
 				04CBC3472179C01300658E47 /* GPUImageNonMaximumSuppressionFilter.m in Sources */,
 				0452AD8C2279A47900E04998 /* MJRefreshStateHeader.m in Sources */,
@@ -6697,7 +6709,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = L9RBHF3VK5;
@@ -6766,7 +6778,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.miantiao.video;
 				PRODUCT_NAME = "六六行";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = adhoc_all;
+				PROVISIONING_PROFILE_SPECIFIER = "com.*";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/xl_native/3rd/JPush-iOS-SDK-2.1-2.7/lib";
 			};
 			name = Release;

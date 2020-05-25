@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class STPickerArea;
 @protocol  STPickerAreaDelegate<NSObject>
 
-- (void)pickerArea:(STPickerArea *)pickerArea province:(GetProvinceDataModel *)province city:(GetProvinceDataModel *)city area:(GetProvinceDataModel *)area;
+//- (void)pickerArea:(STPickerArea *)pickerArea province:(GetProvinceDataModel *)province city:(GetProvinceDataModel *)city area:(GetProvinceDataModel *)area;
 
 - (void)pickerArea:(STPickerArea *)pickerArea province:(GetProvinceDataModel *)province city:(GetProvinceDataModel *)city;
 

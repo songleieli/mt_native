@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D954C4AE1DD1A40F003CA535"
-               BuildableName = "mt_shortvideo.app"
+               BuildableName = "&#x516d;&#x516d;&#x884c;.app"
                BlueprintName = "mt_shortvideo"
                ReferencedContainer = "container:mt_native.xcodeproj">
             </BuildableReference>
@@ -27,19 +27,17 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-      </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D954C4AE1DD1A40F003CA535"
-            BuildableName = "mt_shortvideo.app"
+            BuildableName = "&#x516d;&#x516d;&#x884c;.app"
             BlueprintName = "mt_shortvideo"
             ReferencedContainer = "container:mt_native.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
+      <Testables>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -56,13 +54,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D954C4AE1DD1A40F003CA535"
-            BuildableName = "mt_shortvideo.app"
+            BuildableName = "&#x516d;&#x516d;&#x884c;.app"
             BlueprintName = "mt_shortvideo"
             ReferencedContainer = "container:mt_native.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -75,7 +71,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D954C4AE1DD1A40F003CA535"
-            BuildableName = "mt_shortvideo.app"
+            BuildableName = "&#x516d;&#x516d;&#x884c;.app"
             BlueprintName = "mt_shortvideo"
             ReferencedContainer = "container:mt_native.xcodeproj">
          </BuildableReference>
