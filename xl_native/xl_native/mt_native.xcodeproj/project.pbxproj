@@ -144,6 +144,14 @@
 		0452AE1F2279A96600E04998 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0452AE142279A96500E04998 /* MASConstraint.m */; };
 		0452AE202279A96600E04998 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0452AE162279A96600E04998 /* MASViewConstraint.m */; };
 		0452AE212279A96600E04998 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 0452AE172279A96600E04998 /* MASViewAttribute.m */; };
+		0454AAE424822D0A0081D9D3 /* ChatViewController_temp.m in Sources */ = {isa = PBXBuildFile; fileRef = 0454AAC724822D0A0081D9D3 /* ChatViewController_temp.m */; };
+		0454AAE724822D0A0081D9D3 /* GroupMemberController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0454AACB24822D0A0081D9D3 /* GroupMemberController.m */; };
+		0454AAEC24822D0A0081D9D3 /* TUserProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0454AAD424822D0A0081D9D3 /* TUserProfileController.m */; };
+		0454AAEE24822D0A0081D9D3 /* GroupInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0454AADB24822D0A0081D9D3 /* GroupInfoController.m */; };
+		0454AAEF24822D0A0081D9D3 /* MyCustomCellData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0454AADE24822D0A0081D9D3 /* MyCustomCellData.m */; };
+		0454AAF024822D0A0081D9D3 /* MyCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0454AAE124822D0A0081D9D3 /* MyCustomCell.m */; };
+		0454AAF724822EA70081D9D3 /* PAirSandbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 0454AAF324822EA60081D9D3 /* PAirSandbox.m */; };
+		0454AAF824822EA70081D9D3 /* TCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0454AAF524822EA60081D9D3 /* TCUtil.m */; };
 		0457917A218709A7000AAA2E /* ZJCustomTabCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04579179218709A7000AAA2E /* ZJCustomTabCollectionViewController.m */; };
 		045B4629228FC4E400BB2178 /* NetWork_mt_luckdraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B4627228FC4E300BB2178 /* NetWork_mt_luckdraw.m */; };
 		045B462F228FCB5F00BB2178 /* LSMarqueeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B462B228FCB5F00BB2178 /* LSMarqueeView.m */; };
@@ -156,6 +164,8 @@
 		046A7F5B247042E900B9430A /* STPickerViewUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 046A7F50247042E900B9430A /* STPickerViewUI.m */; };
 		046A7F602470432300B9430A /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 046A7F5F2470432300B9430A /* area.plist */; };
 		04719704226200CF00AE3988 /* SettingAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04719702226200CE00AE3988 /* SettingAboutViewController.m */; };
+		047E9D03247FC0A400E52DDC /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047E9D02247FC0A400E52DDC /* Bugly.framework */; };
+		047E9D07247FC33100E52DDC /* GenerateTestUserSig.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E9D05247FC33100E52DDC /* GenerateTestUserSig.m */; };
 		047EE800221CE22100F77B96 /* NetWork_mt_collectionMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE7FE221CE22100F77B96 /* NetWork_mt_collectionMusic.m */; };
 		047EE803221D07B300F77B96 /* NetWork_mt_deleteCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE802221D07B300F77B96 /* NetWork_mt_deleteCollection.m */; };
 		0482AAC4247927DB00117EAF /* NetWork_mt_scenic_getProvinceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0482AAC3247927DB00117EAF /* NetWork_mt_scenic_getProvinceData.m */; };
@@ -1260,6 +1270,23 @@
 		0452AE152279A96600E04998 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		0452AE162279A96600E04998 /* MASViewConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewConstraint.m; sourceTree = "<group>"; };
 		0452AE172279A96600E04998 /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
+		0454AAC724822D0A0081D9D3 /* ChatViewController_temp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController_temp.m; sourceTree = "<group>"; };
+		0454AACA24822D0A0081D9D3 /* GroupInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupInfoController.h; sourceTree = "<group>"; };
+		0454AACB24822D0A0081D9D3 /* GroupMemberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupMemberController.m; sourceTree = "<group>"; };
+		0454AAD424822D0A0081D9D3 /* TUserProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUserProfileController.m; sourceTree = "<group>"; };
+		0454AAD624822D0A0081D9D3 /* ChatViewController_temp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController_temp.h; sourceTree = "<group>"; };
+		0454AADB24822D0A0081D9D3 /* GroupInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupInfoController.m; sourceTree = "<group>"; };
+		0454AADC24822D0A0081D9D3 /* GroupMemberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMemberController.h; sourceTree = "<group>"; };
+		0454AADE24822D0A0081D9D3 /* MyCustomCellData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCustomCellData.m; sourceTree = "<group>"; };
+		0454AADF24822D0A0081D9D3 /* MyCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCustomCell.h; sourceTree = "<group>"; };
+		0454AAE024822D0A0081D9D3 /* MyCustomCellData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCustomCellData.h; sourceTree = "<group>"; };
+		0454AAE124822D0A0081D9D3 /* MyCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCustomCell.m; sourceTree = "<group>"; };
+		0454AAE224822D0A0081D9D3 /* TUserProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUserProfileController.h; sourceTree = "<group>"; };
+		0454AAF224822EA60081D9D3 /* TCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUtil.h; sourceTree = "<group>"; };
+		0454AAF324822EA60081D9D3 /* PAirSandbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAirSandbox.m; sourceTree = "<group>"; };
+		0454AAF424822EA60081D9D3 /* TCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCConstants.h; sourceTree = "<group>"; };
+		0454AAF524822EA60081D9D3 /* TCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUtil.m; sourceTree = "<group>"; };
+		0454AAF624822EA60081D9D3 /* PAirSandbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAirSandbox.h; sourceTree = "<group>"; };
 		04579178218709A6000AAA2E /* ZJCustomTabCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCustomTabCollectionViewController.h; sourceTree = "<group>"; };
 		04579179218709A7000AAA2E /* ZJCustomTabCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCustomTabCollectionViewController.m; sourceTree = "<group>"; };
 		045B4627228FC4E300BB2178 /* NetWork_mt_luckdraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_luckdraw.m; sourceTree = "<group>"; };
@@ -1281,6 +1308,9 @@
 		046A7F5F2470432300B9430A /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		04719702226200CE00AE3988 /* SettingAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingAboutViewController.m; sourceTree = "<group>"; };
 		04719703226200CE00AE3988 /* SettingAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingAboutViewController.h; sourceTree = "<group>"; };
+		047E9D02247FC0A400E52DDC /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
+		047E9D05247FC33100E52DDC /* GenerateTestUserSig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateTestUserSig.m; sourceTree = "<group>"; };
+		047E9D06247FC33100E52DDC /* GenerateTestUserSig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateTestUserSig.h; sourceTree = "<group>"; };
 		047EE7FE221CE22100F77B96 /* NetWork_mt_collectionMusic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_collectionMusic.m; sourceTree = "<group>"; };
 		047EE7FF221CE22100F77B96 /* NetWork_mt_collectionMusic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_collectionMusic.h; sourceTree = "<group>"; };
 		047EE801221D07B300F77B96 /* NetWork_mt_deleteCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_deleteCollection.h; sourceTree = "<group>"; };
@@ -2542,6 +2572,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				047E9D03247FC0A400E52DDC /* Bugly.framework in Frameworks */,
 				D954C6071DD1A40F003CA535 /* libsqlite3.tbd in Frameworks */,
 				04F21B0F229A489C00310884 /* UMAnalytics.framework in Frameworks */,
 				D954C6061DD1A40F003CA535 /* libc++.tbd in Frameworks */,
@@ -2823,6 +2854,7 @@
 		0441FA2A21CFD1C600801225 /* MTMessage */ = {
 			isa = PBXGroup;
 			children = (
+				0454AAC524822D0A0081D9D3 /* ChatModular */,
 				04D9B4CB21D343A300DEC8B9 /* Views */,
 				040208FF21D3D09700765F06 /* MTMyFansViewController.h */,
 				040208FE21D3D09700765F06 /* MTMyFansViewController.m */,
@@ -3077,6 +3109,54 @@
 			path = Masonry;
 			sourceTree = "<group>";
 		};
+		0454AAC524822D0A0081D9D3 /* ChatModular */ = {
+			isa = PBXGroup;
+			children = (
+				0454AAF124822EA60081D9D3 /* Util */,
+				0454AAC624822D0A0081D9D3 /* Chat */,
+			);
+			path = ChatModular;
+			sourceTree = "<group>";
+		};
+		0454AAC624822D0A0081D9D3 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				0454AADD24822D0A0081D9D3 /* Custom */,
+				0454AACA24822D0A0081D9D3 /* GroupInfoController.h */,
+				0454AADB24822D0A0081D9D3 /* GroupInfoController.m */,
+				0454AADC24822D0A0081D9D3 /* GroupMemberController.h */,
+				0454AACB24822D0A0081D9D3 /* GroupMemberController.m */,
+				0454AAD624822D0A0081D9D3 /* ChatViewController_temp.h */,
+				0454AAC724822D0A0081D9D3 /* ChatViewController_temp.m */,
+				0454AAD424822D0A0081D9D3 /* TUserProfileController.m */,
+				0454AAE224822D0A0081D9D3 /* TUserProfileController.h */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		0454AADD24822D0A0081D9D3 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				0454AADE24822D0A0081D9D3 /* MyCustomCellData.m */,
+				0454AADF24822D0A0081D9D3 /* MyCustomCell.h */,
+				0454AAE024822D0A0081D9D3 /* MyCustomCellData.h */,
+				0454AAE124822D0A0081D9D3 /* MyCustomCell.m */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		0454AAF124822EA60081D9D3 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				0454AAF524822EA60081D9D3 /* TCUtil.m */,
+				0454AAF224822EA60081D9D3 /* TCUtil.h */,
+				0454AAF624822EA60081D9D3 /* PAirSandbox.h */,
+				0454AAF324822EA60081D9D3 /* PAirSandbox.m */,
+				0454AAF424822EA60081D9D3 /* TCConstants.h */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		045B462A228FCB5F00BB2178 /* LSMarqueeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3110,6 +3190,22 @@
 				046A7F5F2470432300B9430A /* area.plist */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		047E9D04247FC33100E52DDC /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				047E9D05247FC33100E52DDC /* GenerateTestUserSig.m */,
+				047E9D06247FC33100E52DDC /* GenerateTestUserSig.h */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		047E9D0B247FDE3C00E52DDC /* Speech */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Speech;
 			sourceTree = "<group>";
 		};
 		0487EBB521E89ADD00501B9C /* Settings */ = {
@@ -4834,6 +4930,7 @@
 		738866751CE2C7AD00296E79 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				047E9D0B247FDE3C00E52DDC /* Speech */,
 				046A7F48247042E900B9430A /* STPickerView */,
 				04C1375B246D974300A603EB /* TagsFrame */,
 				04C1373C246D891A00A603EB /* LBPhotoBrowser */,
@@ -4884,6 +4981,7 @@
 		738866B41CE2CC2200296E79 /* CmpCore */ = {
 			isa = PBXGroup;
 			children = (
+				047E9D04247FC33100E52DDC /* Debug */,
 				D91E53D01DE6774000B7DA74 /* Helper */,
 				738866B51CE2CC2200296E79 /* Base */,
 				738866C21CE2CC2200296E79 /* ConfigurationClass */,
@@ -5051,6 +5149,7 @@
 		73A28EB41CE1BABB00B335C8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				047E9D02247FC0A400E52DDC /* Bugly.framework */,
 				04F228C92452A7EF00E24764 /* libTXIMSDK_TUIKit_iOS.a */,
 				04DCA82021A546AB00691A3A /* Accelerate.framework */,
 				D9F385551EA9F9530040FEB9 /* PassKit.framework */,
@@ -6053,6 +6152,7 @@
 				D957AD5B1DD2CB2F00B7EE09 /* IQKeyboardManager.m in Sources */,
 				04CBC38D2179C01300658E47 /* GPUImageAdaptiveThresholdFilter.m in Sources */,
 				04C882102109AB9800811DAD /* BaseWKWebViewController.m in Sources */,
+				0454AAF724822EA70081D9D3 /* PAirSandbox.m in Sources */,
 				04183B0521C2BC2200383E3F /* FavoriteView.m in Sources */,
 				04CBC3F52179C01300658E47 /* GPUImageColorBlendFilter.m in Sources */,
 				04CBC34F2179C01300658E47 /* GPUImageGrayscaleFilter.m in Sources */,
@@ -6086,6 +6186,7 @@
 				04CBC3632179C01300658E47 /* GPUImageSketchFilter.m in Sources */,
 				04CBC2D32179C01200658E47 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				04CBC35D2179C01300658E47 /* GPUImagePixellatePositionFilter.m in Sources */,
+				0454AAEF24822D0A0081D9D3 /* MyCustomCellData.m in Sources */,
 				04F3B68722474D8400F4C82E /* QBAlbumCell.m in Sources */,
 				04443E9021B3F91400C8DD34 /* XLPlayerListViewController.m in Sources */,
 				0434BDDC21EA000B0059A28C /* NetWork_mt_updateNoodelHead.m in Sources */,
@@ -6143,6 +6244,7 @@
 				D957AD131DD2BFE600B7EE09 /* BWaterflowLayout.m in Sources */,
 				0400F32A21AFA62D0038E16C /* UIAlertView+WX.m in Sources */,
 				04CBC43D2179C01300658E47 /* GPUImageHueBlendFilter.m in Sources */,
+				0454AAE424822D0A0081D9D3 /* ChatViewController_temp.m in Sources */,
 				042E6573221663B300C56859 /* SearchResultSubVideoCollectionCell.m in Sources */,
 				04BBCBA62256FC4C009AC181 /* AddLocationViewController.m in Sources */,
 				04CBC4052179C01300658E47 /* GPUImageVoronoiConsumerFilter.m in Sources */,
@@ -6189,6 +6291,7 @@
 				04DCA8EF21A565D500691A3A /* EffectSelectView.m in Sources */,
 				04DCA8E721A565D500691A3A /* TCVideoJoinCell.m in Sources */,
 				04C13758246D891A00A603EB /* LBZoomScrollView.m in Sources */,
+				0454AAF024822D0A0081D9D3 /* MyCustomCell.m in Sources */,
 				04F3B68922474D8400F4C82E /* QBAlbumsViewController.m in Sources */,
 				D954C55D1DD1A40F003CA535 /* GlobalData.m in Sources */,
 				04CBC3D92179C01300658E47 /* GPUImagePicture+TextureSubimage.m in Sources */,
@@ -6196,6 +6299,7 @@
 				D9F86DCB1DEBEE7600C3A2B6 /* TZImageManager.m in Sources */,
 				04E48D10228D68E6003F82D2 /* NetWork_mt_getPrizeList.m in Sources */,
 				0452ADCB2279A50100E04998 /* AFNetworkReachabilityManager.m in Sources */,
+				0454AAE724822D0A0081D9D3 /* GroupMemberController.m in Sources */,
 				0420916B21FB53D1004C0524 /* SearchResultSubMusicCell.m in Sources */,
 				04CBC3332179C01300658E47 /* GPUImageFilterGroup.m in Sources */,
 				046A7F58247042E900B9430A /* STPickerArea.m in Sources */,
@@ -6204,6 +6308,7 @@
 				04CBC4072179C01300658E47 /* GPUImageMovieComposition.m in Sources */,
 				04AB305E21CA93FB0072808E /* GKPopTransitionAnimation.m in Sources */,
 				04DCA8F421A565D500691A3A /* VideoInfo.m in Sources */,
+				0454AAEC24822D0A0081D9D3 /* TUserProfileController.m in Sources */,
 				D954C5671DD1A40F003CA535 /* NSString+Common.m in Sources */,
 				048BF55221EEC4F2005D3708 /* NetWork_mt_getHotVideoList.m in Sources */,
 				04CBC4412179C01300658E47 /* GPUImageAddBlendFilter.m in Sources */,
@@ -6367,6 +6472,7 @@
 				0415F08A21C7D463000440F4 /* MTHomeRefreshNavigitionView.m in Sources */,
 				0499B538223CC4260080A1B1 /* SoundMixView.m in Sources */,
 				04DCA87D21A55C5B00691A3A /* TVCReport.m in Sources */,
+				047E9D07247FC33100E52DDC /* GenerateTestUserSig.m in Sources */,
 				04CBC32D2179C01300658E47 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
 				04C13756246D891A00A603EB /* LBPhotoBrowserManager.m in Sources */,
 				04CBC3DF2179C01300658E47 /* GPUImageToneCurveFilter.m in Sources */,
@@ -6411,6 +6517,7 @@
 				04F3B66922474B4200F4C82E /* A2BlockInvocation.m in Sources */,
 				D954C5D11DD1A40F003CA535 /* iToast.m in Sources */,
 				D957AD671DD2CB2F00B7EE09 /* IQUIView+IQKeyboardToolbar.m in Sources */,
+				0454AAF824822EA70081D9D3 /* TCUtil.m in Sources */,
 				04CBC3FB2179C01300658E47 /* GPUImageContrastFilter.m in Sources */,
 				04468F17214B8F14002F4528 /* ZJCustomTabWebController.m in Sources */,
 				04C1376B246FE3C700A603EB /* NetWork_mt_scenic_getRandomScenic.m in Sources */,
@@ -6494,6 +6601,7 @@
 				0487EBBA21E89ADE00501B9C /* MySettingViewController.m in Sources */,
 				0452ADCC2279A50100E04998 /* AFSecurityPolicy.m in Sources */,
 				D9F86DDA1DEBEE7600C3A2B6 /* TZPhotoPreviewController.m in Sources */,
+				0454AAEE24822D0A0081D9D3 /* GroupInfoController.m in Sources */,
 				04DCA8EE21A565D500691A3A /* PasterAddView.m in Sources */,
 				04AEE2402275F92C00A9B1A0 /* GLActionSheet.m in Sources */,
 				04CBC42B2179C01300658E47 /* GPUImagePinchDistortionFilter.m in Sources */,
@@ -6649,6 +6757,7 @@
 					"$(PROJECT_DIR)/xl_native/3rd/COSSDK",
 					"$(PROJECT_DIR)/xl_native/3rd/UMSDK/common/common_ios_2.0.1/normal",
 					"$(PROJECT_DIR)/xl_native/3rd/UMSDK/analytics/analytics_ios_6.0.3",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "xl_native/mt_native-Prefix.pch";
@@ -6730,6 +6839,7 @@
 					"$(PROJECT_DIR)/xl_native/3rd/COSSDK",
 					"$(PROJECT_DIR)/xl_native/3rd/UMSDK/common/common_ios_2.0.1/normal",
 					"$(PROJECT_DIR)/xl_native/3rd/UMSDK/analytics/analytics_ios_6.0.3",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "xl_native/mt_native-Prefix.pch";

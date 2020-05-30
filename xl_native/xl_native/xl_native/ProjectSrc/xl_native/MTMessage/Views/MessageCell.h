@@ -8,12 +8,12 @@
 
 #import "BaseTableViewCell.h"
 
-#import "NetWork_mt_getFollows.h"
+#import "NetWork_mt_scenic_getScenicById.h"
 
 
 @protocol MyFollowDelegate <NSObject>
 
--(void)btnCellClick:(GetFollowsModel*)model;
+-(void)btnCellClick:(ScenicSpotModel*)model;
 
 @end
 
@@ -26,9 +26,9 @@
 
 + (NSString*) cellId;
 
-- (void)fillDataWithModel:(GetFollowsModel *)listModel;
+- (void)fillDataWithModel:(ScenicSpotModel *)listModel;
 
-@property(nonatomic,strong) GetFollowsModel * listModel;
+@property(nonatomic,strong) ScenicSpotModel * listModel;
 @property(nonatomic,strong) UIButton * viewBg;
 @property(nonatomic,strong) UIImageView * imageVeiwIcon;
 

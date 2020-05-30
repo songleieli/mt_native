@@ -69,7 +69,7 @@
 
 
 
-@property (copy, nonatomic) NSString *id;
+@property (strong, nonatomic) NSNumber *id;
 @property (copy, nonatomic) NSString *oldNoodleId;
 @property (copy, nonatomic) NSString *noodleId;
 @property (copy, nonatomic) NSString *noodleType;

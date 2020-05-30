@@ -8,6 +8,11 @@
 
 #import "MTMessageViewController.h"
 
+//IM 相关
+#import "GenerateTestUserSig.h"
+#import "ImSDK.h"
+#import "ChatViewController_temp.h"
+
 @interface MTMessageViewController ()<MyFollowDelegate>
 
 @property (copy, nonatomic) NSString *myCallBack;
@@ -23,6 +28,9 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [UIApplication sharedApplication].statusBarHidden = NO;
     self.tabBar.top = [self getTabbarTop];    //  重新设置tabbar的高度
+    
+    //加载数据
+    [self.mainTableView reloadData];
 }
 
 -(void)initNavTitle{
@@ -63,7 +71,9 @@
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.mainTableView registerClass:MessageCell.class forCellReuseIdentifier:[MessageCell cellId]];
     self.mainTableView.tableHeaderView = [self getHeadView];
-    [self.mainTableView.mj_header beginRefreshing];
+    self.mainTableView.mj_header = nil;
+    self.mainTableView.mj_footer = nil;
+//    [self.mainTableView.mj_header beginRefreshing];
 }
 
 -(UIView*)getHeadView{
@@ -206,14 +216,14 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return self.mainDataArr.count;
+    return [GlobalData sharedInstance].curScenicModel.spots.count;
 }
 //设置cell的样式
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if(self.mainDataArr.count > 0){
+    if([GlobalData sharedInstance].curScenicModel.spots.count > 0){
         MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:[MessageCell cellId] forIndexPath:indexPath];
-        GetFollowsModel *model = [self.mainDataArr objectAtIndex:[indexPath row]];
+        ScenicSpotModel *model = [[GlobalData sharedInstance].curScenicModel.spots objectAtIndex:[indexPath row]];
         cell.getFollowsDelegate = self;
         [cell fillDataWithModel:model];
         return cell;
@@ -235,10 +245,73 @@
 
 -(void)btnCellClick:(GetFollowsModel*)model{
     
-    UserInfoViewController *userInfoViewController = [[UserInfoViewController alloc] init];
-    userInfoViewController.userNoodleId = model.noodleId;
-    userInfoViewController.fromType = FromTypeHome; //我的页面，需要显示返回按钮，隐藏TabBar
-    [self pushNewVC:userInfoViewController animated:YES];
+    NSLog(@"创建当前景区的聊天室");
+    
+    NSString *userName = @"yihonggang"; //[NSString stringWithFormat:@"%@",[GlobalData sharedInstance].loginDataModel.id];
+    
+    
+//    NSNumber *appId = [[NSUserDefaults standardUserDefaults] objectForKey:Key_UserInfo_Appid];
+//    NSString *identifier = [[NSUserDefaults standardUserDefaults] objectForKey:Key_UserInfo_User];
+//    //NSString *pwd = [[NSUserDefaults standardUserDefaults] objectForKey:Key_UserInfo_Pwd];
+//    NSString *userSig = [[NSUserDefaults standardUserDefaults] objectForKey:Key_UserInfo_Sig];
+//    if([appId integerValue] == SDKAPPID && identifier.length != 0 && userSig.length != 0){
+//        //已经登录成功，不需要登录，开始蒋健聊天儿室，活进去聊天儿室
+//
+////        TUIConversationCellData *model = [[TUIConversationCellData alloc] init];
+////        model.convId = @"@TGS#2H2UFYPGF";
+////        model.convType = TIM_GROUP;
+////        model.title = @"就算你是";
+////
+////
+////        ChatViewController_temp *chat = [[ChatViewController_temp alloc] init];
+////        chat.conversationData =  model;//conversation.convData;
+////        [self.navigationController pushViewController:chat animated:YES];
+//    }
+//    else{
+        
+        TIMLoginParam *param = [[TIMLoginParam alloc] init];
+        param.identifier = userName;
+        //genTestUserSig 方法仅用于本地测试，请不要将如下代码发布到您的线上正式版本的 App 中，原因如下：
+        /*
+         *  本文件中的代码虽然能够正确计算出 UserSig，但仅适合快速调通 SDK 的基本功能，不适合线上产品，
+         *  这是因为客户端代码中的 SECRETKEY 很容易被反编译逆向破解，尤其是 Web 端的代码被破解的难度几乎为零。
+         *  一旦您的密钥泄露，攻击者就可以计算出正确的 UserSig 来盗用您的腾讯云流量。
+         *
+         *  正确的做法是将 UserSig 的计算代码和加密密钥放在您的业务服务器上，然后由 App 按需向您的服务器获取实时算出的 UserSig。
+         *  由于破解服务器的成本要高于破解客户端 App，所以服务器计算的方案能够更好地保护您的加密密钥。
+         */
+        param.userSig = [GenerateTestUserSig genTestUserSig:userName];
+        [[TIMManager sharedInstance] login:param succ:^{
+            
+            TUIConversationCellData *model = [[TUIConversationCellData alloc] init];
+            model.convId = @"@TGS#3KXKHPMG3";
+            model.convType = TIM_GROUP;
+            model.title = @"测试景点1";
+            
+            
+            ChatViewController_temp *chat = [[ChatViewController_temp alloc] init];
+            chat.conversationData =  model;//conversation.convData;
+            [self.navigationController pushViewController:chat animated:YES];
+            
+            
+            
+            NSLog(@"登录成功");
+            
+            [[NSUserDefaults standardUserDefaults] setObject:@(SDKAPPID) forKey:Key_UserInfo_Appid];
+            [[NSUserDefaults standardUserDefaults] setObject:param.identifier forKey:Key_UserInfo_User];
+            [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:Key_UserInfo_Pwd];
+            [[NSUserDefaults standardUserDefaults] setObject:param.userSig forKey:Key_UserInfo_Sig];
+            
+        } fail:^(int code, NSString *msg) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"code:%d msdg:%@ ,请检查 sdkappid,identifier,userSig 是否正确配置",code,msg] message:nil delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+            [alert show];
+        }];
+//    }
+    
+//    UserInfoViewController *userInfoViewController = [[UserInfoViewController alloc] init];
+//    userInfoViewController.userNoodleId = model.noodleId;
+//    userInfoViewController.fromType = FromTypeHome; //我的页面，需要显示返回按钮，隐藏TabBar
+//    [self pushNewVC:userInfoViewController animated:YES];
     
 }
 

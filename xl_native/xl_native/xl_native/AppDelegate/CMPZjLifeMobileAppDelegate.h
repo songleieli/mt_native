@@ -20,6 +20,8 @@
 #import <UMCommon/UMCommon.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 
+#define BUGLY_APP_ID      @"e965e5d928"
+
 @class ZJHomeViewController;
 
 @import TXLiteAVSDK_UGC_IJK;

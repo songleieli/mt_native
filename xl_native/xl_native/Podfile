@@ -7,6 +7,9 @@ target "mt_shortvideo" do
 #  pod 'TXIMSDK_iOS'
   pod 'TXIMSDK_TUIKit_iOS'
   pod 'AMap2DMap'
+  pod 'ReactiveObjC'
+#  pod 'TXLiteAVSDK_TRTC'
+
   #pod 'UMCCommon'
   #pod 'UMCCommonLog'
   #pod 'UMCAnalytics'

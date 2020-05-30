@@ -77,18 +77,18 @@ static NSString* const ViewTableViewCellId = @"MessageCellId";
     self.labelSign.textColor = MTColorDesc;
     [self.viewBg addSubview:self.labelSign];
 }
-- (void)fillDataWithModel:(GetFollowsModel *)model{
+- (void)fillDataWithModel:(ScenicSpotModel *)model{
     
     self.listModel = model;
-    [self.imageVeiwIcon sd_setImageWithURL:[NSURL URLWithString:model.noodleHead] placeholderImage:[UIImage imageNamed:@"img_find_default"]];
-    
-    self.labelTitle.text = model.noodleNickname;
-    self.labelSign.text = model.noodleSignature.length == 0?@"暂时还没有签名":model.noodleSignature;
-    
-    NSDate *date = [GlobalFunc getDateWithTimeStr:model.time];
-    self.labelTImes.text = [GlobalFunc getTimeWithFormatter:date formattter:@"yy-MM-dd"];
-    
-    self.labelTImes.hidden = self.isHideTime;
+//    [self.imageVeiwIcon sd_setImageWithURL:[NSURL URLWithString:model.noodleHead] placeholderImage:[UIImage imageNamed:@"img_find_default"]];
+//
+    self.labelTitle.text = model.spotsName;
+//    self.labelSign.text = model.noodleSignature.length == 0?@"暂时还没有签名":model.noodleSignature;
+//
+//    NSDate *date = [GlobalFunc getDateWithTimeStr:model.time];
+//    self.labelTImes.text = [GlobalFunc getTimeWithFormatter:date formattter:@"yy-MM-dd"];
+//
+//    self.labelTImes.hidden = self.isHideTime;
 }
 
 - (void)btnDelClick:(id)sender{
