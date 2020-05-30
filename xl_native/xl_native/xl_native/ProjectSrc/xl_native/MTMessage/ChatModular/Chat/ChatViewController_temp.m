@@ -177,7 +177,7 @@ self.navigationController.navigationBar.hidden = NO;
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
 
     //暂时屏蔽，查看群信息按钮。
-    self.navigationItem.rightBarButtonItems = @[rightItem];
+//    self.navigationItem.rightBarButtonItems = @[rightItem];
 
 
 }
