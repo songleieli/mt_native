@@ -12,6 +12,7 @@
 #import "GenerateTestUserSig.h"
 #import "ImSDK.h"
 #import "ChatViewController_temp.h"
+#import "TIMGroupManager.h"
 
 @interface MTMessageViewController ()<MyFollowDelegate>
 
@@ -73,7 +74,7 @@
     self.mainTableView.tableHeaderView = [self getHeadView];
     self.mainTableView.mj_header = nil;
     self.mainTableView.mj_footer = nil;
-//    [self.mainTableView.mj_header beginRefreshing];
+    //    [self.mainTableView.mj_header beginRefreshing];
 }
 
 -(UIView*)getHeadView{
@@ -243,76 +244,170 @@
     return ZJMessageCellHeight;
 }
 
--(void)btnCellClick:(GetFollowsModel*)model{
+-(void)btnCellClick:(ScenicSpotModel*)model{
     
     NSLog(@"创建当前景区的聊天室");
     
-    NSString *userName = @"yihonggang"; //[NSString stringWithFormat:@"%@",[GlobalData sharedInstance].loginDataModel.id];
+    NSString *userName = [NSString stringWithFormat:@"userId_%@",[GlobalData sharedInstance].loginDataModel.id];
+    NSString *spotName = [NSString stringWithFormat:@"%@",model.spotsName];
+    NSString *spotId = [NSString stringWithFormat:@"spot_id_%@",model.spotsId];//model.spotsId;
     
-    
-//    NSNumber *appId = [[NSUserDefaults standardUserDefaults] objectForKey:Key_UserInfo_Appid];
-//    NSString *identifier = [[NSUserDefaults standardUserDefaults] objectForKey:Key_UserInfo_User];
-//    //NSString *pwd = [[NSUserDefaults standardUserDefaults] objectForKey:Key_UserInfo_Pwd];
-//    NSString *userSig = [[NSUserDefaults standardUserDefaults] objectForKey:Key_UserInfo_Sig];
-//    if([appId integerValue] == SDKAPPID && identifier.length != 0 && userSig.length != 0){
-//        //已经登录成功，不需要登录，开始蒋健聊天儿室，活进去聊天儿室
-//
-////        TUIConversationCellData *model = [[TUIConversationCellData alloc] init];
-////        model.convId = @"@TGS#2H2UFYPGF";
-////        model.convType = TIM_GROUP;
-////        model.title = @"就算你是";
-////
-////
-////        ChatViewController_temp *chat = [[ChatViewController_temp alloc] init];
-////        chat.conversationData =  model;//conversation.convData;
-////        [self.navigationController pushViewController:chat animated:YES];
-//    }
-//    else{
+    [self imLogin:^(NSInteger code, NSString * _Nullable message) {
         
-        TIMLoginParam *param = [[TIMLoginParam alloc] init];
-        param.identifier = userName;
-        //genTestUserSig 方法仅用于本地测试，请不要将如下代码发布到您的线上正式版本的 App 中，原因如下：
-        /*
-         *  本文件中的代码虽然能够正确计算出 UserSig，但仅适合快速调通 SDK 的基本功能，不适合线上产品，
-         *  这是因为客户端代码中的 SECRETKEY 很容易被反编译逆向破解，尤其是 Web 端的代码被破解的难度几乎为零。
-         *  一旦您的密钥泄露，攻击者就可以计算出正确的 UserSig 来盗用您的腾讯云流量。
-         *
-         *  正确的做法是将 UserSig 的计算代码和加密密钥放在您的业务服务器上，然后由 App 按需向您的服务器获取实时算出的 UserSig。
-         *  由于破解服务器的成本要高于破解客户端 App，所以服务器计算的方案能够更好地保护您的加密密钥。
-         */
-        param.userSig = [GenerateTestUserSig genTestUserSig:userName];
-        [[TIMManager sharedInstance] login:param succ:^{
-            
-            TUIConversationCellData *model = [[TUIConversationCellData alloc] init];
-            model.convId = @"@TGS#3KXKHPMG3";
-            model.convType = TIM_GROUP;
-            model.title = @"测试景点1";
-            
-            
-            ChatViewController_temp *chat = [[ChatViewController_temp alloc] init];
-            chat.conversationData =  model;//conversation.convData;
-            [self.navigationController pushViewController:chat animated:YES];
-            
-            
-            
-            NSLog(@"登录成功");
-            
-            [[NSUserDefaults standardUserDefaults] setObject:@(SDKAPPID) forKey:Key_UserInfo_Appid];
-            [[NSUserDefaults standardUserDefaults] setObject:param.identifier forKey:Key_UserInfo_User];
-            [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:Key_UserInfo_Pwd];
-            [[NSUserDefaults standardUserDefaults] setObject:param.userSig forKey:Key_UserInfo_Sig];
-            
+        [[TIMGroupManager sharedInstance] getGroupInfo:@[spotId] succ:^(NSArray *groupList) {
+            NSLog(@"---");
+            if(groupList.count >= 1){//群组信息存在
+                TIMGroupInfo *groupInfo = groupList.firstObject;
+                if(groupInfo.memberNum == 0){//群成员数量为0，不存在
+                    [self createGroup:^(NSInteger code, NSString * _Nullable message) {
+                                       if(code == 1000){//群组创建成功
+                                           [self joinGroup:^(NSInteger code, NSString * _Nullable message) {
+                                               
+                                               if(code == 1000){//加入成功
+                                                   [self jumpToChatRoom:spotId groupName:spotName];
+                                               }
+                                               else if(code == 10013){//已经是群组成员
+                                                   [self jumpToChatRoom:spotId groupName:spotName];
+                                               }
+                                               else{
+                                                   [UIWindow showTips:message];
+                                               }
+                                               
+                                           } groupId:spotId];
+                                       }
+                                       else if(code == 10025){//群组已经存在
+                                           [self joinGroup:^(NSInteger code, NSString * _Nullable message) {
+                                               if(code == 1000){//加入成功
+                                                   [self jumpToChatRoom:spotId groupName:spotName];
+                                               }
+                                               else if(code == 10013){//已经是群组成员
+                                                   [self jumpToChatRoom:spotId groupName:spotName];
+                                               }
+                                           } groupId:spotId];
+                                       }
+                                       else{
+                                           [UIWindow showTips:message];
+                                       }
+                                   } groupId:spotId groupName:spotName];
+                }
+                else{
+                    [self joinGroup:^(NSInteger code, NSString * _Nullable message) {
+                        if(code == 1000){//加入成功
+                            [self jumpToChatRoom:spotId groupName:spotName];
+                        }
+                        else if(code == 10013){//已经是群组成员
+                            [self jumpToChatRoom:spotId groupName:spotName];
+                        }
+                        else{
+                            [UIWindow showTips:message];
+                        }
+                    } groupId:spotId];
+                }
+                
+                
+            }
+            else{//群组不存在，创建群组
+               [UIWindow showTips:@"没有查到群组信息"];
+            }
         } fail:^(int code, NSString *msg) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"code:%d msdg:%@ ,请检查 sdkappid,identifier,userSig 是否正确配置",code,msg] message:nil delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
-            [alert show];
+            [UIWindow showTips:message];
         }];
-//    }
+        
+    } spotId:spotId spotName:spotName userName:userName];
     
-//    UserInfoViewController *userInfoViewController = [[UserInfoViewController alloc] init];
-//    userInfoViewController.userNoodleId = model.noodleId;
-//    userInfoViewController.fromType = FromTypeHome; //我的页面，需要显示返回按钮，隐藏TabBar
-//    [self pushNewVC:userInfoViewController animated:YES];
     
+}
+
+
+
+-(void)imLogin:(IMResultBlock)resultBlock spotId:(NSString *)spotId spotName:(NSString*)spotName userName:(NSString*)userName{
+    
+    TIMLoginParam *param = [[TIMLoginParam alloc] init];
+    param.identifier = userName;
+    //genTestUserSig 方法仅用于本地测试，请不要将如下代码发布到您的线上正式版本的 App 中，原因如下：
+    /*
+     *  本文件中的代码虽然能够正确计算出 UserSig，但仅适合快速调通 SDK 的基本功能，不适合线上产品，
+     *  这是因为客户端代码中的 SECRETKEY 很容易被反编译逆向破解，尤其是 Web 端的代码被破解的难度几乎为零。
+     *  一旦您的密钥泄露，攻击者就可以计算出正确的 UserSig 来盗用您的腾讯云流量。
+     *
+     *  正确的做法是将 UserSig 的计算代码和加密密钥放在您的业务服务器上，然后由 App 按需向您的服务器获取实时算出的 UserSig。
+     *  由于破解服务器的成本要高于破解客户端 App，所以服务器计算的方案能够更好地保护您的加密密钥。
+     */
+    param.userSig = [GenerateTestUserSig genTestUserSig:userName];
+    [[TIMManager sharedInstance] login:param succ:^{
+        
+        if(resultBlock){
+            resultBlock(1000,@"登录成功");
+        }
+    } fail:^(int code, NSString *msg) {
+        
+        if(resultBlock){
+            resultBlock(code,msg);
+        }
+        
+        //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"code:%d msdg:%@ ,请检查 sdkappid,identifier,userSig 是否正确配置",code,msg] message:nil delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+        //        [alert show];
+    }];
+    
+}
+
+-(TIMGroupInfo*)querGroupInfo:(NSString*)groupid{
+    
+    TIMGroupInfo *groupModel = [[TIMGroupManager sharedInstance] queryGroupInfo:groupid];
+    
+    return groupModel;
+}
+
+-(void)createGroup:(IMResultBlock)resultBlock groupId:(NSString *)groupId groupName:(NSString*)groupName{
+    
+    
+    TIMCreateGroupInfo *groupModel = [[TIMCreateGroupInfo alloc] init];
+    groupModel.group = groupId;
+    groupModel.groupName = groupName;
+    groupModel.groupType = @"ChatRoom"; //聊天室
+    /**
+     *  是否设置入群选项，Private类型群组请设置为false
+     */
+    groupModel.setAddOpt = false;//
+    groupModel.addOpt = TIM_GROUP_ADD_ANY; //任何人可以加入
+    groupModel.maxMemberNum = 100; //群最多人数
+    
+    [[TIMGroupManager sharedInstance] createGroup:groupModel succ:^(NSString *groupId) {
+        if(resultBlock){
+            resultBlock(1000,@"群组创建成功");
+        }
+    } fail:^(int code, NSString *msg) {
+        if(resultBlock){
+            resultBlock(code,msg);
+        }
+    }];
+    
+    
+}
+
+-(void)joinGroup:(IMResultBlock)resultBlock groupId:(NSString *)groupId {
+    [[TIMGroupManager sharedInstance] joinGroup:groupId msg:@"加入群组" succ:^{
+        if(resultBlock){
+            resultBlock(1000,@"群组加入成功");
+        }
+    } fail:^(int code, NSString *msg) {
+        if(resultBlock){
+            resultBlock(code,msg);
+        }
+    }];
+}
+
+-(void)jumpToChatRoom:(NSString*)groupId groupName:(NSString*)groupName{
+    
+    TUIConversationCellData *model = [[TUIConversationCellData alloc] init];
+    model.convId = groupId;
+    model.convType = TIM_GROUP;
+    model.title = groupName;
+    
+    
+    ChatViewController_temp *chat = [[ChatViewController_temp alloc] init];
+    chat.conversationData =  model;//conversation.convData;
+    [self.navigationController pushViewController:chat animated:YES];
 }
 
 

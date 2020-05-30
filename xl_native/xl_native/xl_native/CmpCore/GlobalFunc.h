@@ -13,6 +13,8 @@
 
 typedef void(^VoidBlock)(void);
 
+
+typedef void(^IMResultBlock)(NSInteger code,NSString * _Nullable message);
 typedef void(^IntegerBlock)(NSInteger index);
 
 @protocol ChoosePictureDelegate <NSObject>
@@ -26,6 +28,8 @@ typedef void(^IntegerBlock)(NSInteger index);
 
 
 @interface GlobalFunc : NSObject<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+
+
 
 + (GlobalFunc *)sharedInstance;
 
