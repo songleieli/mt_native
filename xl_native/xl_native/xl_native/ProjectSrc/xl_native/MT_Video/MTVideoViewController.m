@@ -14,6 +14,8 @@
 #import "VideoCollectionViewCell.h"
 #import "ScrollPlayerListViewController.h"
 
+#import "RootViewController.h" //测试朗读功能
+
 @interface MTVideoViewController ()<UICollectionViewDelegate,
 UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout>
@@ -203,6 +205,7 @@ UICollectionViewDelegateFlowLayout>
 
 }
 -(void)recommendClick:(UIButton*)btn{//推荐点击
+    
     if(self.isRecommend){//如果挡圈选择推荐，再点击推荐，直接返回
         return;
     }

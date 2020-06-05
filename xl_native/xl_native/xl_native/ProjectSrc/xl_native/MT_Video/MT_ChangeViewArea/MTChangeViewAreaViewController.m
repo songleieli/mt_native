@@ -271,9 +271,22 @@
 -(void)btnScenicBgClick:(UIButton*)btn{
     
     ScenicModel *model = [self.arrayhotSpotModel objectAtIndex:btn.tag];
-    [GlobalData sharedInstance].curScenicModel = model;
-    [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationUserChangeScenic object:nil];
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    NetWork_mt_scenic_getScenicById *request = [[NetWork_mt_scenic_getScenicById alloc] init];
+    request.id = [NSString stringWithFormat:@"%@",model.id];
+    [request showWaitMsg:@"切换中..." handle:self];
+    [request startGetWithBlock:^(ScenicGetScenicByIdResponse *result, NSString *msg, BOOL finished) {
+        
+        if(finished){
+            [GlobalData sharedInstance].curScenicModel = result.obj;
+            //景区更新成功,发送通知，在景区页面不用再请求景区信息
+            [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationUserChangeScenic object:nil];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else{
+            [UIWindow showTips:msg];
+        }
+    }];
 }
 
 

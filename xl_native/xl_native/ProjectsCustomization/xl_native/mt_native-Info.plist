@@ -110,6 +110,12 @@
 	<string>用于从相册选取照片设置个人头像，上传发布视频，以及保存作品至本地</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>用于从相册选取照片设置个人头像，上传发布视频，以及保存作品至本地</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>用于朗读景区介绍</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
 	<key>UIFileSharingEnabled</key>
 	<false/>
 	<key>UIStatusBarHidden</key>

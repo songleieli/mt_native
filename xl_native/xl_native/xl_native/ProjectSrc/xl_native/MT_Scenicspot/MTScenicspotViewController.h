@@ -18,8 +18,11 @@
 
 @interface MTScenicspotViewController : ZJCustomTabBarLjhTableViewController
 
-@property (nonatomic, strong) ScenicModel* scenicModel; //当前景区 Model
+//@property (nonatomic, strong) ScenicModel* scenicModel; //当前景区 Model
 @property (nonatomic,strong) MyScrollView   *scrolBanner;//Banner轮播图
 @property (nonatomic,strong) TagsFrame *tagsFrame;//标签
+
+@property (nonatomic,assign) BOOL isReadLoad;//标签
+@property (nonatomic,strong) UIButton *btnPlayOrPause;//标签
 
 @end

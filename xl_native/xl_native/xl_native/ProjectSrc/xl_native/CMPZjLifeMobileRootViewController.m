@@ -169,29 +169,32 @@
     
     
     if(![GlobalData sharedInstance].curScenicModel){
-        NetWork_mt_scenic_getRandomScenic *request = [[NetWork_mt_scenic_getRandomScenic alloc] init];
-        [request startGetWithBlock:^(ScenicGetRandomScenicResponse *result, NSString *msg, BOOL finished) {
+        NetWork_mt_scenic_getRandomScenic *requestRandom = [[NetWork_mt_scenic_getRandomScenic alloc] init];
+        [requestRandom startGetWithBlock:^(ScenicGetRandomScenicResponse *result, NSString *msg, BOOL finished) {
             if(finished){
-                
-                
-                [GlobalData sharedInstance].curScenicModel = result.obj;
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationUserGetRandomScenic object:nil];
-
+                NetWork_mt_scenic_getScenicById *request = [[NetWork_mt_scenic_getScenicById alloc] init];
+                request.id = [NSString stringWithFormat:@"%@",result.obj.id];
+                [request startGetWithBlock:^(ScenicGetScenicByIdResponse *result, NSString *msg, BOOL finished) {
+                    if(finished){
+                        [GlobalData sharedInstance].curScenicModel = result.obj;
+                        //景区更新成功,发送通知，在景区页面不用再请求景区信息
+                        [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationUserChangeScenic object:nil];
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                    else{
+                        [UIWindow showTips:msg];
+                    }
+                }];
             }
             else{
-                
                 [UIWindow showTips:msg];
-                
                 ScenicModel *model = [[ScenicModel alloc] init];
                 model.id = [NSNumber numberWithInt:3];
                 model.scenicName = @"北京凤凰岭自然风景公园";
                 [GlobalData sharedInstance].curScenicModel = model;
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:NSNotificationUserGetRandomScenic object:nil];
-
             }
-            
         }];
     }
     self.currentViewController = self.videoNavViewController;

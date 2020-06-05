@@ -269,6 +269,14 @@
 }
 
 
-
+//在APPdelegate回调里实现
+- (void)applicationWillResignActive:(UIApplication *)application {
+//    if([SpeechManager sharedInstance].isSpeech) {
+//        //允许应用程序接收远程控制
+//        [[SpeechManager sharedInstance] setAudioSessionActive:YES];
+//        [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+//        [[SpeechManager sharedInstance] setLockScreenNowPlayingInfo];
+//    }
+}
 
 @end

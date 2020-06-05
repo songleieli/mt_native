@@ -158,6 +158,8 @@
 		045B4630228FCB5F00BB2178 /* topup_banner@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 045B462C228FCB5F00BB2178 /* topup_banner@3x.png */; };
 		045B4631228FCB5F00BB2178 /* topup_banner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 045B462D228FCB5F00BB2178 /* topup_banner@2x.png */; };
 		045B4634228FD64700BB2178 /* NetWork_mt_getWinners.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B4632228FD64700BB2178 /* NetWork_mt_getWinners.m */; };
+		04623ADE2484EB7F000A5E7A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04623ADD2484EB7F000A5E7A /* RootViewController.m */; };
+		04623AE12484F81F000A5E7A /* YSpeechManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04623AE02484F81F000A5E7A /* YSpeechManager.m */; };
 		046A7F58247042E900B9430A /* STPickerArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 046A7F4C247042E900B9430A /* STPickerArea.m */; };
 		046A7F59247042E900B9430A /* STPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 046A7F4D247042E900B9430A /* STPickerView.m */; };
 		046A7F5A247042E900B9430A /* UIView+STPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 046A7F4E247042E900B9430A /* UIView+STPicker.m */; };
@@ -1284,7 +1286,6 @@
 		0454AAE224822D0A0081D9D3 /* TUserProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUserProfileController.h; sourceTree = "<group>"; };
 		0454AAF224822EA60081D9D3 /* TCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUtil.h; sourceTree = "<group>"; };
 		0454AAF324822EA60081D9D3 /* PAirSandbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAirSandbox.m; sourceTree = "<group>"; };
-		0454AAF424822EA60081D9D3 /* TCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCConstants.h; sourceTree = "<group>"; };
 		0454AAF524822EA60081D9D3 /* TCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUtil.m; sourceTree = "<group>"; };
 		0454AAF624822EA60081D9D3 /* PAirSandbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAirSandbox.h; sourceTree = "<group>"; };
 		04579178218709A6000AAA2E /* ZJCustomTabCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCustomTabCollectionViewController.h; sourceTree = "<group>"; };
@@ -1297,6 +1298,10 @@
 		045B462E228FCB5F00BB2178 /* LSMarqueeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMarqueeView.h; sourceTree = "<group>"; };
 		045B4632228FD64700BB2178 /* NetWork_mt_getWinners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork_mt_getWinners.m; sourceTree = "<group>"; };
 		045B4633228FD64700BB2178 /* NetWork_mt_getWinners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork_mt_getWinners.h; sourceTree = "<group>"; };
+		04623ADC2484EB7F000A5E7A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		04623ADD2484EB7F000A5E7A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		04623ADF2484F81E000A5E7A /* YSpeechManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSpeechManager.h; sourceTree = "<group>"; };
+		04623AE02484F81F000A5E7A /* YSpeechManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSpeechManager.m; sourceTree = "<group>"; };
 		046A7F4B247042E900B9430A /* STPickerViewUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPickerViewUI.h; sourceTree = "<group>"; };
 		046A7F4C247042E900B9430A /* STPickerArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPickerArea.m; sourceTree = "<group>"; };
 		046A7F4D247042E900B9430A /* STPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPickerView.m; sourceTree = "<group>"; };
@@ -2854,7 +2859,6 @@
 		0441FA2A21CFD1C600801225 /* MTMessage */ = {
 			isa = PBXGroup;
 			children = (
-				0454AAC524822D0A0081D9D3 /* ChatModular */,
 				04D9B4CB21D343A300DEC8B9 /* Views */,
 				040208FF21D3D09700765F06 /* MTMyFansViewController.h */,
 				040208FE21D3D09700765F06 /* MTMyFansViewController.m */,
@@ -3152,7 +3156,6 @@
 				0454AAF224822EA60081D9D3 /* TCUtil.h */,
 				0454AAF624822EA60081D9D3 /* PAirSandbox.h */,
 				0454AAF324822EA60081D9D3 /* PAirSandbox.m */,
-				0454AAF424822EA60081D9D3 /* TCConstants.h */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -3166,6 +3169,26 @@
 				045B462D228FCB5F00BB2178 /* topup_banner@2x.png */,
 			);
 			path = LSMarqueeView;
+			sourceTree = "<group>";
+		};
+		04623ADA2484EB5D000A5E7A /* Modular */ = {
+			isa = PBXGroup;
+			children = (
+				0454AAC524822D0A0081D9D3 /* ChatModular */,
+				04623ADB2484EB5D000A5E7A /* SpeechModular */,
+			);
+			path = Modular;
+			sourceTree = "<group>";
+		};
+		04623ADB2484EB5D000A5E7A /* SpeechModular */ = {
+			isa = PBXGroup;
+			children = (
+				04623ADF2484F81E000A5E7A /* YSpeechManager.h */,
+				04623AE02484F81F000A5E7A /* YSpeechManager.m */,
+				04623ADC2484EB7F000A5E7A /* RootViewController.h */,
+				04623ADD2484EB7F000A5E7A /* RootViewController.m */,
+			);
+			path = SpeechModular;
 			sourceTree = "<group>";
 		};
 		046A7F48247042E900B9430A /* STPickerView */ = {
@@ -5085,6 +5108,7 @@
 		73A28E051CE1897300B335C8 /* xl_native */ = {
 			isa = PBXGroup;
 			children = (
+				04623ADA2484EB5D000A5E7A /* Modular */,
 				738866741CE2C7AD00296E79 /* AppDelegate */,
 				738866751CE2C7AD00296E79 /* Common */,
 				738866B41CE2CC2200296E79 /* CmpCore */,
@@ -6208,6 +6232,7 @@
 				0452AD862279A47900E04998 /* MJRefreshBackStateFooter.m in Sources */,
 				04CBC39D2179C01300658E47 /* GPUImagePixellateFilter.m in Sources */,
 				04C1721221CE3EC80077FA6C /* NetWork_mt_publishComment.m in Sources */,
+				04623AE12484F81F000A5E7A /* YSpeechManager.m in Sources */,
 				04CBC3512179C01300658E47 /* GPUImageMovie.m in Sources */,
 				04C1720B21CE3EC80077FA6C /* NetWork_mt_getMyVideos.m in Sources */,
 				042E6577221693F200C56859 /* NetWork_mt_getHotVideosByTopic.m in Sources */,
@@ -6532,6 +6557,7 @@
 				04EB6895222B83DD00D5C0C1 /* MTMyFollowViewController.m in Sources */,
 				04CBC4332179C01300658E47 /* GPUImageMotionBlurFilter.m in Sources */,
 				D957AD5F1DD2CB2F00B7EE09 /* IQTextView.m in Sources */,
+				04623ADE2484EB7F000A5E7A /* RootViewController.m in Sources */,
 				D9F86DD11DEBEE7600C3A2B6 /* TZImagePickerController.m in Sources */,
 				04EE0E3E2296E3A300F3A60C /* BoiledRecordViewController.m in Sources */,
 				04CBC3C52179C01300658E47 /* GPUImageFramebuffer.m in Sources */,

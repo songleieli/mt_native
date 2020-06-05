@@ -10,8 +10,9 @@
 #import <MAMapKit/MAMapKit.h>
 #import "CustomAnnotationView.h"
 #import "LBPhotoBrowserManager.h"
+#import "YSpeechManager.h"
 
-@interface MTScenicspotViewController ()<MAMapViewDelegate,MyScrolDelegate>
+@interface MTScenicspotViewController ()<MAMapViewDelegate,MyScrolDelegate,YSpeechManagerDelegate>
 
 
 @end
@@ -52,7 +53,10 @@
     [super viewDidLoad];
     [self registerForRemoteNotification];
     [self setupUI];
-    [self initRequest:@"3"];
+//    [self initRequest:@"3"];
+    
+    //进入当前页面，景区内容一定是准备好的，可以直接刷新数据
+    [self refreshScenicInfo];
 }
 
 #pragma mark ------ CustomMethod  ------
@@ -93,22 +97,25 @@
     self.mainTableView.contentOffset = CGPointMake(0, -kHEIGHT-5);
 }
 
--(void)changeScenic:(NSNotification *)notification{
+-(void)changeScenic:(NSNotification *)notification{ //景区切换成功，不需要再请求景区的数据
     
-    NSDictionary *infoDic = (NSDictionary*)notification.object;
+//    NSDictionary *infoDic = (NSDictionary*)notification.object;
+//    NSString *scenicId = [NSString stringWithFormat:@"%@",[infoDic objectForKey:@"scenicId"]];
     
-    NSString *scenicId = [NSString stringWithFormat:@"%@",[infoDic objectForKey:@"scenicId"]];
+     [self refreshScenicInfo];
+    
+    self.isReadLoad = NO;
+    if(self.btnPlayOrPause){
+        [self.btnPlayOrPause setTitle:@"播放" forState:UIControlStateNormal];
+        [[YSpeechManager shareSpeechManager] exitSpeech];
+    }
 
-    NSLog(@"");
-    
-    [self initRequest:scenicId];
-    
-//    [self.collectionView.mj_header beginRefreshing];
+//    [self initRequest:scenicId];
 }
 
 -(void)refreshScenicInfo{
     
-    CLLocationCoordinate2D coords = CLLocationCoordinate2DMake([self.scenicModel.latitude floatValue],[self.scenicModel.longitude floatValue]);//纬度，经度
+    CLLocationCoordinate2D coords = CLLocationCoordinate2DMake([[GlobalData sharedInstance].curScenicModel.latitude floatValue],[[GlobalData sharedInstance].curScenicModel.longitude floatValue]);//纬度，经度
     [self addTestPoint:coords];
     
     UIView *headView = self.mainTableView.tableHeaderView;
@@ -119,10 +126,10 @@
     UILabel *scenicsNameLib = [viewArea viewWithTag:998]; //景区名称
     UILabel *shotIntroduce = [viewArea viewWithTag:997]; //一句话介绍
     if(scenicsNameLib){
-        scenicsNameLib.text = self.scenicModel.scenicName;
+        scenicsNameLib.text = [GlobalData sharedInstance].curScenicModel.scenicName;
     }
     if(shotIntroduce){
-        shotIntroduce.text = self.scenicModel.shortIntroduction;
+        shotIntroduce.text = [GlobalData sharedInstance].curScenicModel.shortIntroduction;
     }
     
     UIView *tagBgView = [viewArea viewWithTag:995]; //tag背景View
@@ -131,18 +138,17 @@
         self.tagsFrame.tagsMinPadding = 12;
         self.tagsFrame.tagsMargin = 5;
         self.tagsFrame.tagsLineSpacing = 5;
-        self.tagsFrame.tagsArray = self.scenicModel.labels;
+        self.tagsFrame.tagsArray = [GlobalData sharedInstance].curScenicModel.labels;
         
         tagBgView.height = [self.tagsFrame tagsHeight];
         //   -10 目的：让viewBg向左移动10使第一个相册d左对齐
         //                tagBgView.left = sizeScale(10);
         
-        
         [tagBgView removeAllSubviews];
-        for (NSInteger i=0; i<self.scenicModel.labels.count; i++) {
+        for (NSInteger i=0; i<[GlobalData sharedInstance].curScenicModel.labels.count; i++) {
             
             UIButton *tagsBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [tagsBtn setTitle:self.scenicModel.labels[i] forState:UIControlStateNormal];
+            [tagsBtn setTitle:[GlobalData sharedInstance].curScenicModel.labels[i] forState:UIControlStateNormal];
             if(i%2 == 0){
                 tagsBtn.backgroundColor = XLColorTagColor;
             }
@@ -171,8 +177,8 @@
     CGFloat dynamicAttrcellTop = 0;
     CGFloat dynamicAttrcellSpace = 5.0f;
     
-    for(int i=0;i<self.scenicModel.dynamicAttributes.count; i ++){
-        ScenicDynamicAttributesModel *model = [self.scenicModel.dynamicAttributes objectAtIndex:i];
+    for(int i=0;i<[GlobalData sharedInstance].curScenicModel.dynamicAttributes.count; i ++){
+        ScenicDynamicAttributesModel *model = [[GlobalData sharedInstance].curScenicModel.dynamicAttributes objectAtIndex:i];
         
         VUILable * titleLib = [[VUILable alloc] init];
         titleLib.size = [UIView getSize_width:80 height:dynamicAttrcellHeight];
@@ -224,8 +230,8 @@
     CGFloat ticketInfoCellSpace = 5.0f;
 
     [viewTicketBg removeAllSubviews];
-    for(int i=0;i<self.scenicModel.ticketInfos.count; i ++){
-        ScenicTicketInfoModel *model = [self.scenicModel.ticketInfos objectAtIndex:i];
+    for(int i=0;i<[GlobalData sharedInstance].curScenicModel.ticketInfos.count; i ++){
+        ScenicTicketInfoModel *model = [[GlobalData sharedInstance].curScenicModel.ticketInfos objectAtIndex:i];
         
         VUILable * titleLib = [[VUILable alloc] init];
         titleLib.size = [UIView getSize_width:80 height:ticketInfoCellHeight];
@@ -273,17 +279,17 @@
     
     UILabel * lableScenIntroduce = [scenIntroduceView viewWithTag:776];
     if(lableScenIntroduce){
-        lableScenIntroduce.text = self.scenicModel.introduction;
+        lableScenIntroduce.text = [GlobalData sharedInstance].curScenicModel.introduction;
         
         //自适应高度
         CGSize size = [GlobalFunc sizeWithText:lableScenIntroduce.text font:lableScenIntroduce.font size:CGSizeMake(lableScenIntroduce.width, 8000)];
         lableScenIntroduce.height = size.height;
     }
     
-    if(self.scenicModel.images.count > 0){
+    if([GlobalData sharedInstance].curScenicModel.images.count > 0){
         self.scrolBanner.top = lableScenIntroduce.bottom + sizeScale(10);
             NSMutableArray *muArrViews = [NSMutableArray array];
-            for(NSString *url in self.scenicModel.images){
+            for(NSString *url in [GlobalData sharedInstance].curScenicModel.images){
                 NSString *weblUrl = [NSString stringWithFormat:@"%@%@",[WCBaseContext sharedInstance].appInterfaceServer,url];
                 [muArrViews addObject:weblUrl];
             }
@@ -299,9 +305,9 @@
     CGFloat spotCellHeight = 50.0f;
 
     [scenSpotListBg removeAllSubviews];
-    for(int i=0;i<self.scenicModel.spots.count; i ++){
+    for(int i=0;i<[GlobalData sharedInstance].curScenicModel.spots.count; i ++){
         
-        ScenicSpotModel *model = [self.scenicModel.spots objectAtIndex:i];
+        ScenicSpotModel *model = [[GlobalData sharedInstance].curScenicModel.spots objectAtIndex:i];
 
         UIButton *btnSpotBg = [UIButton buttonWithType:UIButtonTypeCustom];
         btnSpotBg.tag = i;
@@ -346,30 +352,6 @@
     
     headView.height = scenSpotListView.bottom + sizeScale(10)+80;
     self.mainTableView.tableHeaderView = headView;
-}
-
--(void)initRequest:(NSString*)scenicId{
-    
-    NetWork_mt_scenic_getScenicById *request = [[NetWork_mt_scenic_getScenicById alloc] init];
-    request.id = [NSString stringWithFormat:@"%@",[GlobalData sharedInstance].curScenicModel.id];
-    request.nsukey = @"GkcKRDlRgk8DgNW8EWyzIxT5VtfFRIHfJeaBalKhSSB08hTXFhG3Di9TDaQMBXEHiz3fI3bbzeM1dYTJGJ1ABV0uMQ6HL7TdcZf6abuTExe9M%2BuGnXN3m5k64kJaGsWmzvZMabc8NkOgrwPankl1lG3qz7Ist3DMUK8NTereVLVrilomN7teGj%2BrsSp%2BlbdBz9uRi2gHocbY5loywQj8jA%3D%3D";
-    [request startGetWithBlock:^(ScenicGetScenicByIdResponse *result, NSString *msg) {
-        /*
-         缓存暂时先不用考虑
-         */
-    } finishBlock:^(ScenicGetScenicByIdResponse *result, NSString *msg, BOOL finished) {
-        
-        
-        
-        if(finished){
-            self.scenicModel = result.obj;
-            [GlobalData sharedInstance].curScenicModel = self.scenicModel;
-            [self refreshScenicInfo];
-        }
-        else{
-            [UIWindow showTips:msg];
-        }
-    }];
 }
 
 - (MAMapView *)getHeadImageView{
@@ -530,6 +512,20 @@
     lableName.text = @"景区介绍";
     [scenIntroduceView addSubview:lableName];
     
+    UIButton *btnPlayOrPause = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnPlayOrPause.tag = 775;
+    btnPlayOrPause.size = [UIView getSize_width:50 height:30];
+    btnPlayOrPause.right = scenIntroduceView.width - sizeScale(20);
+    btnPlayOrPause.top = sizeScale(10);
+    [btnPlayOrPause setTitle:@"播放" forState:UIControlStateNormal];
+    [btnPlayOrPause setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btnPlayOrPause addTarget:self action:@selector(playOrPauseReadClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.btnPlayOrPause = btnPlayOrPause;
+    [scenIntroduceView addSubview:btnPlayOrPause];
+//    btnPlayOrPause.backgroundColor = [UIColor redColor];
+    
+    
     UILabel * lableScenIntroduce = [[UILabel alloc] init];
     lableScenIntroduce.tag = 776;
     lableScenIntroduce.numberOfLines = 0; // 需要把显示行数设置成无限制
@@ -597,8 +593,8 @@
     
     MAPointAnnotation *annotation = [[MAPointAnnotation alloc] init];
     annotation.coordinate = coords;
-    annotation.title    = self.scenicModel.scenicName;
-    annotation.subtitle = self.scenicModel.shortIntroduction;
+    annotation.title    = [GlobalData sharedInstance].curScenicModel.scenicName;
+    annotation.subtitle = [GlobalData sharedInstance].curScenicModel.shortIntroduction;
     
     MAMapView *mapView = [self.mainTableView viewWithTag:101];
     if(mapView){
@@ -609,7 +605,7 @@
 
 -(void)btnSpotBgClick:(UIButton*)btn{
     
-    ScenicSpotModel *model = [self.scenicModel.spots objectAtIndex:btn.tag];
+    ScenicSpotModel *model = [[GlobalData sharedInstance].curScenicModel.spots objectAtIndex:btn.tag];
     
     NSLog(@"----进入景点---%@",model.spotsName);
     
@@ -618,6 +614,59 @@
     [self pushNewVC:spotViewAreaViewController animated:YES];
 
     
+}
+
+-(void)playOrPauseReadClick:(UIButton*)btn{
+    if(!self.isReadLoad){
+        if([GlobalData sharedInstance].curScenicModel.introduction.length > 0){
+            [[YSpeechManager shareSpeechManager] startSpeechWith:[GlobalData sharedInstance].curScenicModel.introduction];
+            [YSpeechManager shareSpeechManager].delegate = self;
+            self.isReadLoad = YES;
+        }
+    }
+    
+    
+//            if(lableScenIntroduce.text.length > 0){ //数据刷新的时候，初始化阅读内容
+//                YSpeechManager *speechManager = [YSpeechManager shareSpeechManager];
+//                [speechManager exitSpeech];
+//                [speechManager startSpeechWith:lableScenIntroduce.text];
+//                speechManager.delegate = self;
+//            }
+    
+
+    if([GlobalData sharedInstance].curScenicModel.introduction.length > 0){
+        
+        if ([btn.currentTitle isEqualToString:@"播放"]) {
+            [btn setTitle:@"暂停" forState:UIControlStateNormal];
+            [[YSpeechManager shareSpeechManager] continueSpeech];
+        } else if ([btn.currentTitle isEqualToString:@"暂停"]) {
+            [btn setTitle:@"播放" forState:UIControlStateNormal];
+            [[YSpeechManager shareSpeechManager] pauseSpeech];
+        }
+    }
+    
+    
+}
+
+#pragma -mark ------- YSpeechManagerDelegate -------------
+
+- (void)speechManagerUpdateState:(YSpeechState)state {
+    NSLog(@"%s state:%zi",__func__,state);
+    
+    if(state == YSpeechStateFinish){
+        self.isReadLoad = NO;
+        if(self.btnPlayOrPause){
+            [self.btnPlayOrPause setTitle:@"播放" forState:UIControlStateNormal];
+        }
+    }
+}
+
+- (void)speechManagerWillChangeSection:(NSUInteger)section string:(NSString *)string {
+    NSLog(@"%s section:%zi  string:%@",__func__,section,string);
+}
+
+- (void)speechManagerWillSpeakRange:(NSRange)range {
+    NSLog(@"%s %@",__func__,NSStringFromRange(range));
 }
 
 #pragma -mark ------- UIScrollViewDelegate -------------
@@ -682,11 +731,11 @@
     
     
     NSMutableArray *items = [[NSMutableArray alloc]init];
-    for (int i = 0 ; i < self.scenicModel.images.count; i++) {
+    for (int i = 0 ; i < [GlobalData sharedInstance].curScenicModel.images.count; i++) {
 //           LBURLModel *urlModel = cellModel.urls[i];
 //           UIImageView *imageView = cell.imageViews[i];
         
-        NSString *weblUrl = [NSString stringWithFormat:@"%@%@",[WCBaseContext sharedInstance].appInterfaceServer,[self.scenicModel.images objectAtIndex:i]];
+        NSString *weblUrl = [NSString stringWithFormat:@"%@%@",[WCBaseContext sharedInstance].appInterfaceServer,[[GlobalData sharedInstance].curScenicModel.images objectAtIndex:i]];
 
             LBPhotoWebItem *item = [[LBPhotoWebItem alloc]initWithURLString:weblUrl frame:scrol.frame];
             [items addObject:item];
@@ -717,7 +766,7 @@
         }
         
         annotationView.portrait = [UIImage imageNamed:@"login_icon"];
-        annotationView.name     = self.scenicModel.scenicName;
+        annotationView.name     = [GlobalData sharedInstance].curScenicModel.scenicName;
         
         return annotationView;
     }
@@ -730,9 +779,9 @@
     
     NSLog(@"---用户点击---");
     
-    NSString *lat = self.scenicModel.latitude;
-    NSString *lit =self.scenicModel.longitude;
-                   CLLocationCoordinate2D coords = CLLocationCoordinate2DMake([self.scenicModel.latitude floatValue],[self.scenicModel.longitude floatValue]);//纬度，经度
+    NSString *lat = [GlobalData sharedInstance].curScenicModel.latitude;
+    NSString *lit = [GlobalData sharedInstance].curScenicModel.longitude;
+                   CLLocationCoordinate2D coords = CLLocationCoordinate2DMake([[GlobalData sharedInstance].curScenicModel.latitude floatValue],[[GlobalData sharedInstance].curScenicModel.longitude floatValue]);//纬度，经度
 
                    NSArray *locationArray = [NSArray arrayWithObjects:lat,lit, nil];
     [self doNavigationWithEndLocation:locationArray endlocation:coords];
